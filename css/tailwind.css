@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.remark-code-title {
+@apply text-gray-200 px-5 py-3 rounded-t bg-gray-700 text-sm font-mono font-bold;
+}
+  
+.remark-code-title + pre {
+@apply mt-0 rounded-t-none;
+}
+
+.task-list-item:before {
+@apply hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}

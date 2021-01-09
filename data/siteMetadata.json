@@ -1,0 +1,16 @@
+{
+  "title": "Next.js Starter Blog",
+  "author": "Tails Azimuth",
+  "headerTitle": "TailwindBlog",
+  "description": "A blog created with Next.js and Tailwind.css",
+  "language": "en-us",
+  "siteUrl": "https://nextjs-starter-blog-demo.com",
+  "siteRepo": "https://github.com/user/repo",
+  "image": "/static/images/avatar.png",
+  "email": "address@yoursite.com",
+  "github": "https://github.com",
+  "twitter": "https://twitter.com/Twitter",
+  "facebook": "https://facebook.com",
+  "youtube": "https://youtube.com",
+  "linkedin": "https://www.linkedin.com"
+}
