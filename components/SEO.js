@@ -26,7 +26,7 @@ export const SEO = {
   },
   additionalMetaTags: [
     {
-      property: 'author',
+      name: 'author',
       content: siteMetadata.author,
     },
   ],
