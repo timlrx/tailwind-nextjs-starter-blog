@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import kebabCase from 'just-kebab-case'
 import { NextSeo } from 'next-seo'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import Tag from '@/components/Tag'
+import Link from '@/components/Link'
 
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
@@ -35,8 +35,11 @@ export default function Tags({ tags }) {
             return (
               <div key={t} className="m-2">
                 <Tag text={t} />
-                <Link href={`/tags/${kebabCase(t)}`}>
-                  <a className="uppercase font-semibold text-sm mx-1 text-gray-600 dark:text-gray-300">{` (${tags[t]})`}</a>
+                <Link
+                  href={`/tags/${kebabCase(t)}`}
+                  className="uppercase font-semibold text-sm mx-1 text-gray-600 dark:text-gray-300"
+                >
+                  {` (${tags[t]})`}
                 </Link>
               </div>
             )

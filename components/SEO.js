@@ -3,7 +3,6 @@ import siteMetadata from '@/data/siteMetadata'
 const SEO = {
   title: siteMetadata.title,
   description: siteMetadata.description,
-  canonical: siteMetadata.siteUrl,
   openGraph: {
     type: 'website',
     locale: siteMetadata.language,

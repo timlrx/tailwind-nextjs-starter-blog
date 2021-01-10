@@ -21,9 +21,8 @@ const MobileNav = () => {
     <div className="sm:hidden">
       <button
         type="button"
-        className="rounded ml-1 mr-1 h-8 w-8 focus:outline-none"
+        className="rounded ml-1 mr-1 h-8 w-8"
         aria-label="Toggle Menu"
-        aria-hidden={!navShow}
         onClick={onToggleNav}
       >
         <svg
@@ -54,6 +53,7 @@ const MobileNav = () => {
       >
         <button
           type="button"
+          aria-label="toggle modal"
           className="w-full h-full fixed cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>

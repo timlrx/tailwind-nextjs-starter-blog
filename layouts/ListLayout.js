@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import tinytime from 'tinytime'
+import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 
 const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
@@ -58,11 +58,11 @@ export default function ListLayout({ posts, title }) {
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl leading-8 font-bold tracking-tight">
-                        <Link href={`/blog/${slug}`}>
-                          <a className="text-gray-900 dark:text-gray-100">{title}</a>
+                        <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
+                          {title}
                         </Link>
                       </h3>
-                      <div className="space-x-2">
+                      <div className="space-x-3">
                         {tags.map((tag) => (
                           <Tag key={tag} text={tag} />
                         ))}

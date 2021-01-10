@@ -1,8 +1,9 @@
 import tinytime from 'tinytime'
-import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import siteMetadata from '@/data/siteMetadata'
 import Tag from '@/components/Tag'
+import Link from '@/components/Link'
 
 const MAX_DISPLAY = 5
 const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
@@ -15,7 +16,16 @@ export async function getStaticProps() {
 
 export default function Home({ posts }) {
   return (
-    <div>
+    <>
+      <NextSeo
+        title={siteMetadata.title}
+        description={siteMetadata.description}
+        canonical={siteMetadata.siteUrl}
+        openGraph={{
+          url: siteMetadata.siteUrl,
+          description: siteMetadata.description,
+        }}
+      />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold text-gray-900 dark:text-gray-100 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -42,11 +52,11 @@ export default function Home({ posts }) {
                     <div className="space-y-6">
                       <div>
                         <h2 className="text-2xl leading-8 font-bold tracking-tight">
-                          <Link href={`/blog/${slug}`}>
-                            <a className="text-gray-900 dark:text-gray-100">{title}</a>
+                          <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
+                            {title}
                           </Link>
                         </h2>
-                        <div className="space-x-2">
+                        <div className="space-x-3">
                           {tags.map((tag) => (
                             <Tag key={tag} text={tag} />
                           ))}
@@ -57,13 +67,12 @@ export default function Home({ posts }) {
                       </div>
                     </div>
                     <div className="text-base leading-6 font-medium">
-                      <Link href={`/blog/${slug}`}>
-                        <a
-                          className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                          aria-label={`Read "${title}"`}
-                        >
-                          Read more &rarr;
-                        </a>
+                      <Link
+                        href={`/blog/${slug}`}
+                        className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                        aria-label={`Read "${title}"`}
+                      >
+                        Read more &rarr;
                       </Link>
                     </div>
                   </div>
@@ -85,6 +94,6 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
-    </div>
+    </>
   )
 }

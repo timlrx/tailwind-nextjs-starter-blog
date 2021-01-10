@@ -80,7 +80,7 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                 <h2 className="text-xs tracking-wide uppercase text-gray-500 dark:text-gray-400">
                   Tags
                 </h2>
-                <div className="space-x-2 xl:flex xl:flex-col xl:space-x-0">
+                <div className="space-x-3 xl:flex xl:flex-col xl:space-x-0">
                   {tags.map((tag) => (
                     <Tag key={tag} text={tag} />
                   ))}
