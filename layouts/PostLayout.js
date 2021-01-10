@@ -15,7 +15,6 @@ const postDateTemplate = tinytime('{dddd}, {MMMM} {DD}, {YYYY}')
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
   const { slug, fileName, date, title, tags } = frontMatter
-  console.log(fileName)
 
   return (
     <SectionContainer>
@@ -51,12 +50,12 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                     <dd className="text-gray-900 dark:text-gray-100">{siteMetdata.author}</dd>
                     <dt className="sr-only">Twitter</dt>
                     <dd>
-                      <a
+                      <Link
                         href={siteMetdata.twitter}
                         className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
                       >
                         {siteMetdata.twitter.replace('https://twitter.com/', '@')}
-                      </a>
+                      </Link>
                     </dd>
                   </dl>
                 </li>
