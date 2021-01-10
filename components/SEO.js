@@ -43,13 +43,12 @@ export const PageSeo = ({ title, description, url }) => {
   )
 }
 
-export const BlogSeo = ({ title, summary, date, url, image = siteMetadata.socialBanner }) => {
+export const BlogSeo = ({ title, summary, date, url, tags, image = siteMetadata.socialBanner }) => {
   const publishedAt = new Date(date).toISOString()
   const featuredImage = {
     url: `${siteMetadata.siteUrl}${image}`,
     alt: title,
   }
-
   return (
     <>
       <NextSeo
@@ -60,6 +59,9 @@ export const BlogSeo = ({ title, summary, date, url, image = siteMetadata.social
           type: 'article',
           article: {
             publishedTime: publishedAt,
+            modifiedTime: publishedAt,
+            authors: [`${siteMetadata.siteUrl}/about`],
+            tags,
           },
           url,
           title,
