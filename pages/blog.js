@@ -10,21 +10,20 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ posts }) {
-
   return (
     <>
       <NextSeo
-        title={`Blog - ${siteMetadata.name}`}
+        title={`Blog - ${siteMetadata.author}`}
         description={siteMetadata.description}
         canonical={`${siteMetadata.siteUrl}/blog`}
         openGraph={{
           url: `${siteMetadata.siteUrl}/blog`,
-          title: `Blog - ${siteMetadata.name}`,
+          title: `Blog - ${siteMetadata.author}`,
           description: siteMetadata.description,
         }}
       />
-      
-      <ListLayout posts={posts} title="All Posts"/>
+
+      <ListLayout posts={posts} title="All Posts" />
     </>
   )
 }
