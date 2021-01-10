@@ -2,56 +2,56 @@
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>Next.js Starter Blog</title>
-      <link>https://nextjs-starter-blog-demo.com/blog</link>
+      <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
       <description>A blog created with Next.js and Tailwind.css</description>
       <language>en-us</language>
       <lastBuildDate>Wed, 11 Nov 2020 00:00:00 GMT</lastBuildDate>
-      <atom:link href="https://nextjs-starter-blog-demo.com/index.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://nextjs-starter-blog-demo.comguide-to-using-images-in-nextjs</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appguide-to-using-images-in-nextjs</guid>
     <title>Images in Next.js</title>
-    <link>https://nextjs-starter-blog-demo.comguide-to-using-images-in-nextjs</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appguide-to-using-images-in-nextjs</link>
     <description>In this article we introduce adding images in the tailwind starter blog and the benefits and limitations of the next/image component.</description>
     <pubDate>Wed, 11 Nov 2020 00:00:00 GMT</pubDate>
   </item>
 
   <item>
-    <guid>https://nextjs-starter-blog-demo.comderiving-ols-estimator</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appderiving-ols-estimator</guid>
     <title>Deriving the OLS Estimator</title>
-    <link>https://nextjs-starter-blog-demo.comderiving-ols-estimator</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appderiving-ols-estimator</link>
     <description>How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</description>
     <pubDate>Sat, 16 Nov 2019 00:00:00 GMT</pubDate>
   </item>
 
   <item>
-    <guid>https://nextjs-starter-blog-demo.comgithub-markdown-guide</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appgithub-markdown-guide</guid>
     <title>Markdown Guide</title>
-    <link>https://nextjs-starter-blog-demo.comgithub-markdown-guide</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appgithub-markdown-guide</link>
     <description>Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on Github Flavored Markdown.</description>
     <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
   </item>
 
   <item>
-    <guid>https://nextjs-starter-blog-demo.comthe-time-machine</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appthe-time-machine</guid>
     <title>The Time Machine</title>
-    <link>https://nextjs-starter-blog-demo.comthe-time-machine</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appthe-time-machine</link>
     <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
     <pubDate>Wed, 15 Aug 2018 00:00:00 GMT</pubDate>
   </item>
 
   <item>
-    <guid>https://nextjs-starter-blog-demo.compictures-of-canada</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.apppictures-of-canada</guid>
     <title>O Canada</title>
-    <link>https://nextjs-starter-blog-demo.compictures-of-canada</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.apppictures-of-canada</link>
     <description>The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.</description>
     <pubDate>Sat, 15 Jul 2017 00:00:00 GMT</pubDate>
   </item>
 
   <item>
-    <guid>https://nextjs-starter-blog-demo.comcode-sample</guid>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appcode-sample</guid>
     <title>Sample .md file</title>
-    <link>https://nextjs-starter-blog-demo.comcode-sample</link>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appcode-sample</link>
     <description>Example of a markdown file with code blocks and syntax highlighting</description>
     <pubDate>Tue, 08 Mar 2016 00:00:00 GMT</pubDate>
   </item>
