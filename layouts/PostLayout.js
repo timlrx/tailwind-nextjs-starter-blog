@@ -7,14 +7,15 @@ import BlogSeo from '@/components/BlogSeo'
 import Tag from '@/components/Tag'
 import siteMetdata from '@/data/siteMetadata'
 
-const editUrl = (slug) => `${siteMetdata.github}/edit/master/data/blog/${slug}.mdx`
+const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetdata.siteUrl}/blog/${slug}`)}`
 
 const postDateTemplate = tinytime('{dddd}, {MMMM} {DD}, {YYYY}')
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
-  const { slug, date, title, tags } = frontMatter
+  const { slug, fileName, date, title, tags } = frontMatter
+  console.log(fileName)
 
   return (
     <SectionContainer>
@@ -65,13 +66,11 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
           <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
             <div className="prose dark:prose-dark max-w-none pt-10 pb-8">{children}</div>
             <div className="text-sm pt-6 pb-6 text-gray-700 dark:text-gray-300">
-              <a href={discussUrl(slug)} target="_blank" rel="noopener noreferrer">
+              <Link href={discussUrl(slug)} rel="nofollow">
                 {'Discuss on Twitter'}
-              </a>
+              </Link>
               {` • `}
-              <a href={editUrl(slug)} target="_blank" rel="noopener noreferrer">
-                {'Edit on GitHub'}
-              </a>
+              <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
             </div>
           </div>
           <footer className="text-sm font-medium leading-5 xl:divide-y divide-gray-200 dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
