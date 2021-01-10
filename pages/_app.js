@@ -19,43 +19,13 @@ export default function App({ Component, pageProps }) {
           </Head>
           <DefaultSeo {...SEO} />
           <Head>
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="57x57"
-              href="apple-touch-icon-57x57.png"
-            />
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="114x114"
-              href="apple-touch-icon-114x114.png"
-            />
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="72x72"
-              href="apple-touch-icon-72x72.png"
-            />
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="144x144"
-              href="apple-touch-icon-144x144.png"
-            />
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="120x120"
-              href="apple-touch-icon-120x120.png"
-            />
-            <link
-              rel="apple-touch-icon-precomposed"
-              sizes="152x152"
-              href="apple-touch-icon-152x152.png"
-            />
-            <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-            <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-            <link rel="manifest" href="/manifest.json" />
-            <meta name="application-name" content="&nbsp;" />
-            <meta name="msapplication-TileColor" content="#FFFFFF" />
-            <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-            <meta name="theme-color" content="#ffffff" />
+            <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+            <link rel="manifest" href="/site.webmanifest" />
+            <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+            <meta name="msapplication-TileColor" content="#000000" />
+            <meta name="theme-color" content="#000000" />
             <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
           </Head>
           <LayoutWrapper>
