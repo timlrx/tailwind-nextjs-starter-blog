@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import LayoutWrapper from '@/components/LayoutWrapper'
 class MyDocument extends Document {
   render() {
     return (
@@ -54,11 +53,9 @@ class MyDocument extends Document {
             crossorigin="anonymous"
           ></script>
         </Head>
-        <body className="bg-white dark:bg-gray-900 text-black dark:text-white">
-          <LayoutWrapper>
-            <Main />
-            <NextScript />
-          </LayoutWrapper>
+        <body className="bg-white text-black dark:bg-gray-900 dark:text-white antialiased">
+          <Main />
+          <NextScript />
         </body>
       </Html>
     )
