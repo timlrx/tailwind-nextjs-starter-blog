@@ -41,17 +41,39 @@ class MyDocument extends Document {
             />
           </noscript>
           <link
+            rel="preload"
+            href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/fonts/KaTeX_Main-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/fonts/KaTeX_Math-Italic.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/fonts/KaTeX_Size2-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/fonts/KaTeX_Size4-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+          />
+          <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
             integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j"
             crossorigin="anonymous"
           />
-          <script
-            defer
-            src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js"
-            integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ"
-            crossorigin="anonymous"
-          ></script>
         </Head>
         <body className="bg-white text-black dark:bg-gray-900 dark:text-white antialiased">
           <Main />
