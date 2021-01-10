@@ -1,9 +1,9 @@
 import kebabCase from 'just-kebab-case'
-import { NextSeo } from 'next-seo'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import Tag from '@/components/Tag'
 import Link from '@/components/Link'
+import { PageSeo } from '@/components/SEO'
 
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
@@ -15,13 +15,10 @@ export default function Tags({ tags }) {
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
   return (
     <>
-      <NextSeo
-        title={`Tags - ${siteMetadata.title}`}
-        canonical={`${siteMetadata.siteUrl}/tags`}
-        openGraph={{
-          url: `${siteMetadata.siteUrl}/tags`,
-          title: `Tags - ${siteMetadata.title}`,
-        }}
+      <PageSeo
+        title={`Tags - ${siteMetadata.author}`}
+        description="Things I blog about"
+        url={`${siteMetadata.siteUrl}/tags`}
       />
       <div className="flex items-start justify-start flex-col divide-y divide-gray-200 dark:divide-gray-700 md:justify-center md:items-center md:divide-y-0 md:flex-row md:space-x-6 md:mt-24">
         <div className="pt-6 pb-8 space-x-2 md:space-y-5">

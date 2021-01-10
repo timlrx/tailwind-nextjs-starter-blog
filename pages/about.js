@@ -1,17 +1,15 @@
 import { NextSeo } from 'next-seo'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import { PageSeo } from '@/components/SEO'
 
 export default function About() {
   return (
     <>
-      <NextSeo
+      <PageSeo
         title={`About - ${siteMetadata.author}`}
-        canonical={`${siteMetadata.siteUrl}/about`}
-        openGraph={{
-          url: `${siteMetadata.siteUrl}/about`,
-          title: `About - ${siteMetadata.author}`,
-        }}
+        description={`About me - ${siteMetadata.author}`}
+        url={`${siteMetadata.siteUrl}/about`}
       />
       <div className="divide-y">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">

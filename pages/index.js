@@ -1,9 +1,9 @@
 import tinytime from 'tinytime'
-import { NextSeo } from 'next-seo'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import siteMetadata from '@/data/siteMetadata'
 import Tag from '@/components/Tag'
 import Link from '@/components/Link'
+import { PageSeo } from '@/components/SEO'
 
 const MAX_DISPLAY = 5
 const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
@@ -17,14 +17,10 @@ export async function getStaticProps() {
 export default function Home({ posts }) {
   return (
     <>
-      <NextSeo
+      <PageSeo
         title={siteMetadata.title}
         description={siteMetadata.description}
-        canonical={siteMetadata.siteUrl}
-        openGraph={{
-          url: siteMetadata.siteUrl,
-          description: siteMetadata.description,
-        }}
+        url={siteMetadata.siteUrl}
       />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">

@@ -3,7 +3,7 @@ import Link from '@/components/Link'
 
 import SectionContainer from '@/components/SectionContainer'
 import PageTitle from '@/components/PageTitle'
-import BlogSeo from '@/components/BlogSeo'
+import { BlogSeo } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetdata from '@/data/siteMetadata'
 
