@@ -12,10 +12,10 @@ export const SEO = {
     description: siteMetadata.description,
     images: [
       {
-        url: siteMetadata.socialBanner,
+        url: `${siteMetadata.siteUrl}${siteMetadata.socialBanner}`,
         alt: siteMetadata.title,
-        width: 1280,
-        height: 720,
+        width: 1200,
+        height: 600,
       },
     ],
   },
