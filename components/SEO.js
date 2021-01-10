@@ -24,6 +24,12 @@ export const SEO = {
     site: siteMetadata.twitter,
     cardType: 'summary_large_image',
   },
+  additionalMetaTags: [
+    {
+      property: 'author',
+      content: siteMetadata.author,
+    },
+  ],
 }
 
 export const PageSeo = ({ title, description, url }) => {
