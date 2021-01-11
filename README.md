@@ -2,7 +2,11 @@
 
 # Tailwind Nextjs Starter Blog
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/timlrx/tailwind-nextjs-starter-blog)
+
 This is a [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) blogging starter template. Comes out of the box configured with the latest technologies to make technical writing a breeze. Easily configurable and customizable. Perfect as a replacement to existing Jekyll and Hugo individual blogs.
+
+[Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/)
 
 ## Motivation
 
@@ -71,8 +75,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 ## Deploy
 
 **Vercel**  
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/timlrx/tailwind-nextjs-starter-blog)
-
 The easiest way to deploy the template is to use the [Vercel Platform](https://vercel.com) from the creators of Next.js. Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 **Netlify / Github Pages / Firebase etc.**  
