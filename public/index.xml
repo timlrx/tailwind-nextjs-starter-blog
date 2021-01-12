@@ -5,9 +5,17 @@
       <link>https://tailwind-nextjs-starter-blog.vercel.app/blog</link>
       <description>A blog created with Next.js and Tailwind.css</description>
       <language>en-us</language>
-      <lastBuildDate>Wed, 11 Nov 2020 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Tue, 12 Jan 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.appintroducing-tailwind-nextjs-starter-blog</guid>
+    <title>Introducing Tailwind Nexjs Starter Blog</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.appintroducing-tailwind-nextjs-starter-blog</link>
+    <description>Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.</description>
+    <pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate>
+  </item>
+
   <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.appguide-to-using-images-in-nextjs</guid>
     <title>Images in Next.js</title>
@@ -22,14 +30,6 @@
     <link>https://tailwind-nextjs-starter-blog.vercel.appderiving-ols-estimator</link>
     <description>How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</description>
     <pubDate>Sat, 16 Nov 2019 00:00:00 GMT</pubDate>
-  </item>
-
-  <item>
-    <guid>https://tailwind-nextjs-starter-blog.vercel.appintroducing-tailwind-nextjs-starter-blog</guid>
-    <title>Markdown Guide</title>
-    <link>https://tailwind-nextjs-starter-blog.vercel.appintroducing-tailwind-nextjs-starter-blog</link>
-    <description>Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on Github Flavored Markdown.</description>
-    <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
   </item>
 
   <item>

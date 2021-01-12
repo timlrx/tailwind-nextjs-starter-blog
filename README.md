@@ -31,6 +31,14 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Support for tags - each unique tag will be its own page
 - SEO friendly with RSS feed, sitemaps and more!
 
+## Sample posts
+
+- [A markdown guide](https://tailwind-nextjs-starter-blog.vercel.app/blog/github-markdown-guide)
+- [Learn more about images in Next.js](https://tailwind-nextjs-starter-blog.vercel.app/blog/guide-to-using-images-in-nextjs)
+- [A tour of math typesetting](https://tailwind-nextjs-starter-blog.vercel.app/blog/deriving-ols-estimator)
+- [Simple MDX image grid](https://tailwind-nextjs-starter-blog.vercel.app/blog/pictures-of-canada)
+- [Example of long prose](https://tailwind-nextjs-starter-blog.vercel.app/blog/the-time-machine)
+
 ## Quick Start Guide
 
 1. Fork this project
