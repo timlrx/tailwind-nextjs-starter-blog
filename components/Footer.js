@@ -21,7 +21,9 @@ export default function Footer() {
         <Link href="/">{siteMetadata.title}</Link>
       </div>
       <div className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-        <Link href="/">Tailwind Nextjs Theme</Link>
+        <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
+          Tailwind Nextjs Theme
+        </Link>
       </div>
     </footer>
   )
