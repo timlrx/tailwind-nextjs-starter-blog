@@ -21,7 +21,7 @@ const MobileNav = () => {
     <div className="sm:hidden">
       <button
         type="button"
-        className="rounded ml-1 mr-1 h-8 w-8"
+        className="w-8 h-8 ml-1 mr-1 rounded"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
@@ -54,12 +54,12 @@ const MobileNav = () => {
         <button
           type="button"
           aria-label="toggle modal"
-          className="w-full h-full fixed cursor-auto focus:outline-none"
+          className="fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
         ></button>
-        <nav className="h-full mt-8 fixed">
+        <nav className="fixed h-full mt-8">
           {headerNavLinks.map((link) => (
-            <div key={link.title} className="py-4 px-12">
+            <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"

@@ -15,7 +15,7 @@ export default function ListLayout({ posts, title }) {
     <>
       <div className="divide-y">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold text-gray-900 dark:text-gray-100 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
           <div className="relative max-w-lg">
@@ -24,10 +24,10 @@ export default function ListLayout({ posts, title }) {
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search articles"
-              className="px-4 py-2 border border-gray-300 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100"
             />
             <svg
-              className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
+              className="absolute w-5 h-5 text-gray-400 right-3 top-3 dark:text-gray-300"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -51,13 +51,13 @@ export default function ListLayout({ posts, title }) {
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
                   <dl>
                     <dt className="sr-only">Published on</dt>
-                    <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       <time dateTime={date}>{postDateTemplate.render(new Date(date))}</time>
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl leading-8 font-bold tracking-tight">
+                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
                         <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
                           {title}
                         </Link>
@@ -68,7 +68,7 @@ export default function ListLayout({ posts, title }) {
                         ))}
                       </div>
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                    <div className="prose text-gray-500 max-w-none dark:text-gray-400">
                       {summary}
                     </div>
                   </div>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .remark-code-title {
-  @apply text-gray-200 px-5 py-3 rounded-t bg-gray-700 text-sm font-mono font-bold;
+  @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
 }
 
 .remark-code-title + pre {
