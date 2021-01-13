@@ -9,6 +9,7 @@ const siteMetadata = require('../data/siteMetadata')
     'pages/*.js',
     'data/**/*.mdx',
     'data/**/*.md',
+    'public/tags/**/*.xml',
     '!pages/_*.js',
     '!pages/api',
   ])
@@ -21,9 +22,11 @@ const siteMetadata = require('../data/siteMetadata')
                 const path = page
                   .replace('pages', '')
                   .replace('data', '')
+                  .replace('public', '')
                   .replace('.js', '')
                   .replace('.mdx', '')
                   .replace('.md', '')
+                  .replace('/index.xml', '')
                 const route = path === '/index' ? '' : path
                 return `
                         <url>
