@@ -1,9 +1,14 @@
+import fs from 'fs'
+import path from 'path'
 import kebabCase from 'just-kebab-case'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getAllTags } from '@/lib/tags'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@/components/SEO'
+import generateRss from '@/lib/generate-rss'
+
+const root = process.cwd()
 
 export async function getStaticPaths() {
   const tags = await getAllTags('blog')
@@ -23,6 +28,12 @@ export async function getStaticProps({ params }) {
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
+
+  // rss
+  const rss = generateRss(filteredPosts, `tags/${params.tag}/index.xml`)
+  const rssPath = path.join(root, 'public', 'tags', params.tag)
+  fs.mkdirSync(rssPath, { recursive: true })
+  fs.writeFileSync(path.join(rssPath, 'index.xml'), rss)
 
   return { props: { posts: filteredPosts, tag: params.tag } }
 }
