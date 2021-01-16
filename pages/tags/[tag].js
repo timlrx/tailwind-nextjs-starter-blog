@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import kebabCase from 'just-kebab-case'
+import { kebabCase } from '@/lib/utils'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getAllTags } from '@/lib/tags'
 import siteMetadata from '@/data/siteMetadata'
