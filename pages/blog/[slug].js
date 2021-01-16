@@ -3,6 +3,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { getFiles, getFileBySlug, getAllFilesFrontMatter } from '@/lib/mdx'
 import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@/components/MDXComponents'
+import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 
 export async function getStaticPaths() {
@@ -40,10 +41,19 @@ export default function Blog({ post, prev, next }) {
 
   return (
     <>
-      {frontMatter.draft !== true && (
+      {frontMatter.draft !== true ? (
         <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
           {content}
         </PostLayout>
+      ) : (
+        <div className="mt-24 text-center">
+          <PageTitle>
+            Under Construction{' '}
+            <span role="img" aria-label="roadwork sign">
+              🚧
+            </span>
+          </PageTitle>
+        </div>
       )}
     </>
   )
