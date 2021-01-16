@@ -1,6 +1,6 @@
 import fs from 'fs'
 import hydrate from 'next-mdx-remote/hydrate'
-import { getFiles, getFileBySlug, getAllFilesFrontMatter } from '@/lib/mdx'
+import { getFiles, getFileBySlug, getAllFilesFrontMatter, formatSlug } from '@/lib/mdx'
 import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   return {
     paths: posts.map((p) => ({
       params: {
-        slug: p.replace(/\.(mdx|md)/, ''),
+        slug: formatSlug(p),
       },
     })),
     fallback: false,
