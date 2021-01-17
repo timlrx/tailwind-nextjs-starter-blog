@@ -7,6 +7,7 @@
 This is a [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) blogging starter template. Comes out of the box configured with the latest technologies to make technical writing a breeze. Easily configurable and customizable. Perfect as a replacement to existing Jekyll and Hugo individual blogs.
 
 [Demo Blog - this repo](https://tailwind-nextjs-starter-blog.vercel.app/)
+
 [Demo Blog 2 - my personal blog](https://www.timlrx.com)
 
 ## Motivation
