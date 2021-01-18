@@ -54,8 +54,8 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
     images.length === 0
       ? [siteMetadata.socialBanner]
       : typeof images === 'string'
-      ? images
-      : [images]
+      ? [images]
+      : images
 
   const featuredImages = imagesArr.map((img) => {
     return {
