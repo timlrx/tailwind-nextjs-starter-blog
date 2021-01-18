@@ -51,9 +51,11 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
-    typeof images === 'string'
-      ? [images, siteMetadata.socialBanner]
-      : [...images, siteMetadata.socialBanner]
+    images.length === 0
+      ? [siteMetadata.socialBanner]
+      : typeof images === 'string'
+      ? images
+      : [images]
 
   const featuredImages = imagesArr.map((img) => {
     return {
