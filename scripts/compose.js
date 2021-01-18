@@ -24,6 +24,6 @@ summary:
 ---
 `
 
-fs.writeFile(`data/blog/${date}-${fileName}.${ext}`, frontMatter, (err) => {
+fs.writeFile(`data/blog/${fileName}.${ext}`, frontMatter, (err) => {
   if (err) throw err
 })
