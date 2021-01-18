@@ -47,12 +47,21 @@ export const PageSeo = ({ title, description, url }) => {
   )
 }
 
-export const BlogSeo = ({ title, summary, date, url, tags, image = siteMetadata.socialBanner }) => {
+export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] }) => {
   const publishedAt = new Date(date).toISOString()
-  const featuredImage = {
-    url: `${siteMetadata.siteUrl}${image}`,
-    alt: title,
-  }
+  const modifiedAt = new Date(lastmod || date).toISOString()
+  let imagesArr =
+    typeof images === 'string'
+      ? [images, siteMetadata.socialBanner]
+      : [...images, siteMetadata.socialBanner]
+
+  const featuredImages = imagesArr.map((img) => {
+    return {
+      url: `${siteMetadata.siteUrl}${img}`,
+      alt: title,
+    }
+  })
+
   return (
     <>
       <NextSeo
@@ -63,22 +72,22 @@ export const BlogSeo = ({ title, summary, date, url, tags, image = siteMetadata.
           type: 'article',
           article: {
             publishedTime: publishedAt,
-            modifiedTime: publishedAt,
+            modifiedTime: modifiedAt,
             authors: [`${siteMetadata.siteUrl}/about`],
             tags,
           },
           url,
           title,
           description: summary,
-          images: [featuredImage],
+          images: featuredImages,
         }}
       />
       <ArticleJsonLd
         authorName={siteMetadata.author}
         dateModified={publishedAt}
-        datePublished={publishedAt}
+        datePublished={modifiedAt}
         description={summary}
-        images={[featuredImage]}
+        images={featuredImages}
         publisherLogo="/static/favicons/android-chrome-96x96.png"
         publisherName={siteMetadata.author}
         title={title}
