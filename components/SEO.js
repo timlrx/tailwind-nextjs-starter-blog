@@ -83,6 +83,12 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
           description: summary,
           images: featuredImages,
         }}
+        additionalMetaTags={[
+          {
+            name: 'twitter:image',
+            content: featuredImages[0],
+          },
+        ]}
       />
       <ArticleJsonLd
         authorName={siteMetadata.author}
