@@ -86,7 +86,7 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
         additionalMetaTags={[
           {
             name: 'twitter:image',
-            content: featuredImages[0],
+            content: featuredImages[0].url,
           },
         ]}
       />
