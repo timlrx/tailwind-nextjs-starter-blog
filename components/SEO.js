@@ -96,7 +96,6 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
         datePublished={modifiedAt}
         description={summary}
         images={featuredImages}
-        publisherLogo="/static/favicons/android-chrome-96x96.png"
         publisherName={siteMetadata.author}
         title={title}
         url={url}
