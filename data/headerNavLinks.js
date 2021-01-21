@@ -1,7 +1,7 @@
 const headerNavLinks = [
   { href: '/blog', title: 'Blog' },
   { href: '/tags', title: 'Tags' },
-  { href: '/about', title: 'About' },
+  { href: 'https://produtomania.com', title: 'ProdutoMania' },
 ]
 
 export default headerNavLinks
