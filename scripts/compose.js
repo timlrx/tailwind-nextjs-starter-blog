@@ -7,7 +7,7 @@ const ext = typeof args[1] !== 'undefined' ? args[1] : 'mdx'
 const fileName = title
   .toLowerCase()
   .replace(/[^a-zA-Z0-9 ]/g, '')
-  .replace(' ', '-')
+  .replace(/ /g, '-')
 let d = new Date()
 const date = [
   d.getFullYear(),
