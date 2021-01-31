@@ -38,7 +38,7 @@ export async function getStaticProps({ params }) {
   return { props: { posts: filteredPosts, tag: params.tag } }
 }
 
-export default function Blog({ posts, tag }) {
+export default function Tag({ posts, tag }) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
