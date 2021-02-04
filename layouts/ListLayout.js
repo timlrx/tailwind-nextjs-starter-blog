@@ -7,9 +7,10 @@ const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
 
 export default function ListLayout({ posts, title }) {
   const [searchValue, setSearchValue] = useState('')
-  const filteredBlogPosts = posts.filter((frontMatter) =>
-    frontMatter.title.toLowerCase().includes(searchValue.toLowerCase())
-  )
+  const filteredBlogPosts = posts.filter((frontMatter) => {
+    const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
+    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+  })
 
   return (
     <>
