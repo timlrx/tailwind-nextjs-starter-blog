@@ -31,6 +31,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Automatic image optimization via [next/image](https://nextjs.org/docs/basic-features/image-optimization)
 - Flexible data retrieval with [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
 - Support for tags - each unique tag will be its own page
+- Projects page
 - SEO friendly with RSS feed, sitemaps and more!
 
 ## Sample posts
@@ -45,8 +46,11 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 1. Fork this project
 2. Rename the project to <yourusername>.github.io
-3. Modify `siteMetadata.json` and blog posts
-4. Deploy on Vercel
+3. Personalize `siteMetadata.json`
+4. Modify `projectsData.js`
+5. Modify `headerNavLinks.js` to customize navigation links
+6. Add blog posts
+7. Deploy on Vercel
 
 ## Development
 
@@ -65,6 +69,10 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 ## Extend / Customize
 
 `data/siteMetadata.json` - contains most of the site related information which should be modified for a user's need.
+
+`data/projectsData.js` - data used to generate styled card in projects page.
+
+`data/headerNavLinks.js` - navigation links.
 
 `data/logo.svg` - replace with your own logo.
 
