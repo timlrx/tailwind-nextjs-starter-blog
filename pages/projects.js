@@ -2,6 +2,7 @@ import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
 import projectsData from '@/data/projectsData'
 import Link from '@/components/Link'
+import Card from '@/components/Card'
 import { PageSeo } from '@/components/SEO'
 
 export default function Projects() {
@@ -24,38 +25,13 @@ export default function Projects() {
         <div className="container py-12">
           <div className="flex flex-wrap -m-4">
             {projectsData.map((d) => (
-              <div className="p-4 md:w-1/2" key={d.title}>
-                <div className="h-full border-2 border-gray-200 border-opacity-60 dark:border-gray-700 rounded-md overflow-hidden">
-                  <Link href={d.href} aria-label={`Link to ${d.title}`}>
-                    <Image
-                      alt={d.title}
-                      src={d.imgSrc}
-                      className="lg:h-48 md:h-36 object-cover object-center"
-                      width={721}
-                      height={401}
-                    />
-                  </Link>
-                  <div className="p-6">
-                    <h2 className="text-2xl font-bold leading-8 tracking-tight mb-3">
-                      <Link href={d.href} aria-label={`Link to ${d.title}`}>
-                        {d.title}
-                      </Link>
-                    </h2>
-                    <p className="prose text-gray-500 max-w-none dark:text-gray-400 mb-3">
-                      {d.description}
-                    </p>
-                    <div className="text-base font-medium leading-6">
-                      <Link
-                        href={d.href}
-                        className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                        aria-label={`Link to ${d.title}`}
-                      >
-                        Learn more &rarr;
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Card
+                key={d.title}
+                title={d.title}
+                description={d.description}
+                imgSrc={d.imgSrc}
+                href={d.href}
+              />
             ))}
           </div>
         </div>
