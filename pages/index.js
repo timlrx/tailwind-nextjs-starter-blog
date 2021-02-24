@@ -1,12 +1,11 @@
-import tinytime from 'tinytime'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
-import siteMetadata from '@/data/siteMetadata'
-import Tag from '@/components/Tag'
 import Link from '@/components/Link'
 import { PageSeo } from '@/components/SEO'
+import Tag from '@/components/Tag'
+import siteMetadata from '@/data/siteMetadata'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 
 const MAX_DISPLAY = 5
-const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
+const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
@@ -42,7 +41,9 @@ export default function Home({ posts }) {
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{postDateTemplate.render(new Date(date))}</time>
+                        <time dateTime={date}>
+                          {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                        </time>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
