@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import tinytime from 'tinytime'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
+import siteMetdata from '@/data/siteMetadata'
+import { useState } from 'react'
 
-const postDateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
+const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function ListLayout({ posts, title }) {
   const [searchValue, setSearchValue] = useState('')
@@ -53,7 +53,9 @@ export default function ListLayout({ posts, title }) {
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{postDateTemplate.render(new Date(date))}</time>
+                      <time dateTime={date}>
+                        {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                      </time>
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
