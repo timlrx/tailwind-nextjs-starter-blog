@@ -8,6 +8,7 @@ const fileName = title
   .toLowerCase()
   .replace(/[^a-zA-Z0-9 ]/g, '')
   .replace(/ /g, '-')
+  .replace(/-+/g, '-')
 let d = new Date()
 const date = [
   d.getFullYear(),
