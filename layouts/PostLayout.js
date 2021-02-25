@@ -1,8 +1,6 @@
-import tinytime from 'tinytime'
 import Link from '@/components/Link'
-
-import SectionContainer from '@/components/SectionContainer'
 import PageTitle from '@/components/PageTitle'
+import SectionContainer from '@/components/SectionContainer'
 import { BlogSeo } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetdata from '@/data/siteMetadata'
@@ -11,7 +9,7 @@ const editUrl = (fileName) => `${siteMetdata.siteRepo}/blob/master/data/blog/${f
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetdata.siteUrl}/blog/${slug}`)}`
 
-const postDateTemplate = tinytime('{dddd}, {MMMM} {DD}, {YYYY}')
+const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
   const { slug, fileName, date, title, tags } = frontMatter
@@ -27,7 +25,9 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                 <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{postDateTemplate.render(new Date(date))}</time>
+                    <time dateTime={date}>
+                      {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                    </time>
                   </dd>
                 </div>
               </dl>
