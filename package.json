@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next dev",
+    "start": "next-remote-watch ./data",
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
@@ -50,6 +50,7 @@
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "next-compose-plugins": "^2.2.1",
+    "next-remote-watch": "^0.3.0",
     "prettier": "2.2.1",
     "rehype": "11.0.0",
     "remark-frontmatter": "3.0.0",
