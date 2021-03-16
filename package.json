@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "env ANALYZE=true next build"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
