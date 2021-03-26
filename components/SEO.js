@@ -92,8 +92,8 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, tags, images = [] 
       />
       <ArticleJsonLd
         authorName={siteMetadata.author}
-        dateModified={publishedAt}
-        datePublished={modifiedAt}
+        dateModified={modifiedAt}
+        datePublished={publishedAt}
         description={summary}
         images={featuredImages}
         publisherName={siteMetadata.author}
