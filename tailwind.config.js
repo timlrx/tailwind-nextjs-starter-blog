@@ -4,9 +4,6 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   purge: {
     content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
-    options: {
-      safelist: ['type'], // [type='checkbox']
-    },
   },
   darkMode: 'class',
   theme: {
