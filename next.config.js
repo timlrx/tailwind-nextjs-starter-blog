@@ -4,8 +4,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  experimental: {
-    modern: true,
+  future: {
+    webpack5: true,
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({
