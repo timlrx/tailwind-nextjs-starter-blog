@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
-    "analyze": "env ANALYZE=true next build"
+    "analyze": "env ANALYZE=true next build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.5.0",
@@ -59,11 +60,6 @@
     "remark-stringify": "9.0.0",
     "unified": "9.2.1",
     "unist-util-visit": "2.0.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
