@@ -6,9 +6,12 @@
 
 This is a [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/) blogging starter template. Comes out of the box configured with the latest technologies to make technical writing a breeze. Easily configurable and customizable. Perfect as a replacement to existing Jekyll and Hugo individual blogs.
 
-[Demo Blog - this repo](https://tailwind-nextjs-starter-blog.vercel.app/)
+## Examples
 
-[Demo Blog 2 - my personal blog](https://www.timlrx.com)
+- [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
+- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
+
+Using the template? Happy to accept any PR with modifications made e.g. sub-paths, localization or multiple authors
 
 ## Motivation
 
@@ -44,13 +47,12 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. Fork this project
-2. Rename the project to <yourusername>.github.io
-3. Personalize `siteMetadata.json`
-4. Modify `projectsData.js`
-5. Modify `headerNavLinks.js` to customize navigation links
-6. Add blog posts
-7. Deploy on Vercel
+1. `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git`
+2. Personalize `siteMetadata.json`
+3. Modify `projectsData.js`
+4. Modify `headerNavLinks.js` to customize navigation links
+5. Add blog posts
+6. Deploy on Vercel
 
 ## Development
 
