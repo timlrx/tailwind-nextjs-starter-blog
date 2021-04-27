@@ -1,6 +1,6 @@
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
-import siteMetdata from '@/data/siteMetadata'
+import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -54,7 +54,7 @@ export default function ListLayout({ posts, title }) {
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       <time dateTime={date}>
-                        {new Date(date).toLocaleDateString(siteMetdata.locale, postDateTemplate)}
+                        {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                       </time>
                     </dd>
                   </dl>
