@@ -31,6 +31,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Automatic image optimization via [next/image](https://nextjs.org/docs/basic-features/image-optimization)
 - Flexible data retrieval with [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
 - Support for tags - each unique tag will be its own page
+- Support for nested routing of blog posts
 - Projects page
 - SEO friendly with RSS feed, sitemaps and more!
 
@@ -41,6 +42,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - [A tour of math typesetting](https://tailwind-nextjs-starter-blog.vercel.app/blog/deriving-ols-estimator)
 - [Simple MDX image grid](https://tailwind-nextjs-starter-blog.vercel.app/blog/pictures-of-canada)
 - [Example of long prose](https://tailwind-nextjs-starter-blog.vercel.app/blog/the-time-machine)
+- [Example of Nested Route Post](https://tailwind-nextjs-starter-blog.vercel.app/blog/nested-route/sample-post-in-nested-route)
 
 ## Quick Start Guide
 
