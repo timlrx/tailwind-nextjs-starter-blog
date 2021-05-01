@@ -7,9 +7,39 @@
       <language>en-us</language>
       <managingEditor>address@yoursite.com (Tails Azimuth)</managingEditor>
       <webMaster>address@yoursite.com (Tails Azimuth)</webMaster>
-      <lastBuildDate>Tue, 12 Jan 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sun, 02 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://tailwind-nextjs-starter-blog.vercel.app/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/nested-route/sample-post-in-nested-route</guid>
+    <title>Sample Nested Post</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/nested-route/sample-post-in-nested-route</link>
+    <description>Sample nested route, and example of why you may want to use them.</description>
+    <pubDate>Sun, 02 May 2021 00:00:00 GMT</pubDate>
+    <author>address@yoursite.com (Tails Azimuth)</author>
+    <category>multi author</category><category>internationalization</category><category>courses</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/lets-learn-hooks/lets-manage-state</guid>
+    <title>Lets Learn State Management</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/lets-learn-hooks/lets-manage-state</link>
+    <description>article to help learn hooks</description>
+    <pubDate>Sat, 17 Apr 2021 00:00:00 GMT</pubDate>
+    <author>address@yoursite.com (Tails Azimuth)</author>
+    <category>react</category><category>hooks</category><category>state</category>
+  </item>
+
+  <item>
+    <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/lets-learn-hooks</guid>
+    <title>Lets Learn React Hooks</title>
+    <link>https://tailwind-nextjs-starter-blog.vercel.app/blog/lets-learn-hooks</link>
+    <description>article to help learn hooks</description>
+    <pubDate>Sat, 17 Apr 2021 00:00:00 GMT</pubDate>
+    <author>address@yoursite.com (Tails Azimuth)</author>
+    <category>react</category><category>hooks</category>
+  </item>
+
   <item>
     <guid>https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog</guid>
     <title>Introducing Tailwind Nexjs Starter Blog</title>
