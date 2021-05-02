@@ -1,13 +1,11 @@
-import fs from 'fs'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import hydrate from 'next-mdx-remote/hydrate'
-import { getFiles, getFileBySlug, getAllFilesFrontMatter, formatSlug } from '@/lib/mdx'
-import PostLayout from '@/layouts/PostLayout'
 import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
+import PostLayout from '@/layouts/PostLayout'
 import generateRss from '@/lib/generate-rss'
+import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
+import fs from 'fs'
+import hydrate from 'next-mdx-remote/hydrate'
 
-/** @type {GetStaticPaths<{slug: string[]}>} */
 export async function getStaticPaths() {
   const posts = getFiles('blog')
   return {
@@ -20,16 +18,6 @@ export async function getStaticPaths() {
   }
 }
 
-/**
- * @type {
- *  GetStaticProps<{
- *    post:unknown,
- *    prev: number,
- *    next: number
- *  },
- *  { slug:string[]}
- * >}
- *  */
 export async function getStaticProps({ params }) {
   const allPosts = await getAllFilesFrontMatter('blog')
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
