@@ -9,7 +9,7 @@ import generateRss from '@/lib/generate-rss'
 
 /** @type {GetStaticPaths<{slug: string[]}>} */
 export async function getStaticPaths() {
-  const posts = await getFiles('blog')
+  const posts = getFiles('blog')
   return {
     paths: posts.map((p) => ({
       params: {
