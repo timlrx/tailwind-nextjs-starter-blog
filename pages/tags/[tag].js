@@ -1,12 +1,12 @@
-import fs from 'fs'
-import path from 'path'
-import { kebabCase } from '@/lib/utils'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
-import { getAllTags } from '@/lib/tags'
+import { PageSeo } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
-import { PageSeo } from '@/components/SEO'
 import generateRss from '@/lib/generate-rss'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { getAllTags } from '@/lib/tags'
+import { kebabCase } from '@/lib/utils/kebabCase'
+import fs from 'fs'
+import path from 'path'
 
 const root = process.cwd()
 
