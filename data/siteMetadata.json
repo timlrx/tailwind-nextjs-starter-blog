@@ -6,7 +6,7 @@
   "language": "en-us",
   "siteUrl": "https://tailwind-nextjs-starter-blog.vercel.app",
   "siteRepo": "https://github.com/timlrx/tailwind-nextjs-starter-blog",
-  "image": "/static/images/avatar.png",
+  "image": "/static/images/avatar.jpeg",
   "socialBanner": "/static/images/twitter-card.png",
   "email": "address@yoursite.com",
   "github": "https://github.com",
