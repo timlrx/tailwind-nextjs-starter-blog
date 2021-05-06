@@ -7,9 +7,29 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Tue, 12 Jan 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Thu, 06 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</guid>
+    <title>How to set up Swagger, OData and API versioning for an ASP.NET Core 5 web API - Part 1</title>
+    <link>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</link>
+    <description></description>
+    <pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>swagger</category><category>odata</category>
+  </item>
+
+  <item>
+    <guid>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-2</guid>
+    <title>How to set up Swagger, OData and API versioning for an ASP.NET Core 5 web API - Part 2</title>
+    <link>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-2</link>
+    <description></description>
+    <pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>swagger</category><category>odata</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/introducing-tailwind-nextjs-starter-blog</guid>
     <title>Introducing Tailwind Nexjs Starter Blog</title>
@@ -18,66 +38,6 @@
     <pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate>
     <author> (Nico Botha)</author>
     <category>next-js</category><category>tailwind</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/guide-to-using-images-in-nextjs</guid>
-    <title>Images in Next.js</title>
-    <link>https://nwb.one/blog/guide-to-using-images-in-nextjs</link>
-    <description>In this article we introduce adding images in the tailwind starter blog and the benefits and limitations of the next/image component.</description>
-    <pubDate>Wed, 11 Nov 2020 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>next js</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/deriving-ols-estimator</guid>
-    <title>Deriving the OLS Estimator</title>
-    <link>https://nwb.one/blog/deriving-ols-estimator</link>
-    <description>How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.</description>
-    <pubDate>Sat, 16 Nov 2019 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>next js</category><category>math</category><category>ols</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/github-markdown-guide</guid>
-    <title>Markdown Guide</title>
-    <link>https://nwb.one/blog/github-markdown-guide</link>
-    <description>Markdown cheatsheet for all your blogging needs - headers, lists, images, tables and more! An illustrated guide based on Github Flavored Markdown.</description>
-    <pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>github</category><category>guide</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/the-time-machine</guid>
-    <title>The Time Machine</title>
-    <link>https://nwb.one/blog/the-time-machine</link>
-    <description>The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated...</description>
-    <pubDate>Wed, 15 Aug 2018 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>writings</category><category>book</category><category>reflection</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/pictures-of-canada</guid>
-    <title>O Canada</title>
-    <link>https://nwb.one/blog/pictures-of-canada</link>
-    <description>The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.</description>
-    <pubDate>Sat, 15 Jul 2017 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>holiday</category><category>canada</category><category>images</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/code-sample</guid>
-    <title>Sample .md file</title>
-    <link>https://nwb.one/blog/code-sample</link>
-    <description>Example of a markdown file with code blocks and syntax highlighting</description>
-    <pubDate>Tue, 08 Mar 2016 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>markdown</category><category>code</category><category>features</category>
   </item>
 
     </channel>
