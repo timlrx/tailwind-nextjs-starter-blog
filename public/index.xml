@@ -12,32 +12,12 @@
       
   <item>
     <guid>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</guid>
-    <title>How to set up Swagger, OData and API versioning for an ASP.NET Core 5 web API - Part 1</title>
+    <title>Set up Swagger, OData and API versioning for ASP.NET Core 5 web API - Part 1</title>
     <link>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</link>
-    <description></description>
+    <description>API versioning, Swagger and OData goes hand in hand when developing APIs. Learn how to easily set it up.</description>
     <pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate>
     <author> (Nico Botha)</author>
     <category>asp-net-core</category><category>dotnet</category><category>swagger</category><category>odata</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-2</guid>
-    <title>How to set up Swagger, OData and API versioning for an ASP.NET Core 5 web API - Part 2</title>
-    <link>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-2</link>
-    <description></description>
-    <pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>asp-net-core</category><category>dotnet</category><category>swagger</category><category>odata</category>
-  </item>
-
-  <item>
-    <guid>https://nwb.one/blog/introducing-tailwind-nextjs-starter-blog</guid>
-    <title>Introducing Tailwind Nexjs Starter Blog</title>
-    <link>https://nwb.one/blog/introducing-tailwind-nextjs-starter-blog</link>
-    <description>Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.</description>
-    <pubDate>Tue, 12 Jan 2021 00:00:00 GMT</pubDate>
-    <author> (Nico Botha)</author>
-    <category>next-js</category><category>tailwind</category><category>guide</category>
   </item>
 
     </channel>
