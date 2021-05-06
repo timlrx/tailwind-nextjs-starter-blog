@@ -1,0 +1,167 @@
+---
+title: 'Set up Swagger, OData and API versioning for ASP.NET Core 5 web API - Part 1'
+date: '2021-05-06'
+tags: ['asp-net-core', 'dotnet', 'swagger', 'odata']
+draft: false
+summary: 'API versioning, Swagger and OData goes hand in hand when developing APIs. Learn how to easily set it up.'
+---
+
+If you are developing any API, having good documentation and proper versioning is absolutely crucial. In this 2-part blog post I will show how to set up
+API versioning, Swagger and OData for an ASP.NET Core 5 web API. The first part will focus on Swagger and API versioning setup. The second part will
+focus on OData setup. For demo purposes, I have created a new ASP.NET Core 5 API project using Visual Studio.
+The source code can be found here: [github.com/Ngineer101/swagger-odata-api-versioning-dotnet-core](https://github.com/Ngineer101/swagger-odata-api-versioning-dotnet-core).
+
+---
+
+**What is Swagger?**
+
+Swagger is an interface description language used, in combination with other open-sourced tools, to build and document RESTful APIs.
+
+---
+
+### Step 1
+
+To get started with setting up Swagger and API versioning, install the required NuGet packages:
+
+- For API versioning:
+
+  - https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer
+
+- For Swagger:
+  - https://www.nuget.org/packages/Swashbuckle.AspNetCore
+  - https://www.nuget.org/packages/Swashbuckle.AspNetCore.Swagger
+  - https://www.nuget.org/packages/Swashbuckle.AspNetCore.SwaggerUI
+
+### Step 2
+
+To set up API versioning, add the following code in the `ConfigureServices` method in the `Startup.cs` file:
+
+```cs
+    services.AddControllers();
+
+    // Add the code below
+    services.AddApiVersioning(options =>
+    {
+        options.ReportApiVersions = true;
+        options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    });
+
+    services.AddVersionedApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'VVV";
+        options.SubstituteApiVersionInUrl = true;
+    });
+```
+
+The above code adds the versioning service to the application container and sets the default API version to `1.0`.
+
+### Step 3
+
+#### 3.1.
+
+Before configuring Swagger, enable XML documentation for your project. You can do this by navigating to the project properties:
+
+**Solution explorer** > **Right click on the project** > **Properties** > **Build tab**
+
+Click the checkbox to enable XML documentation and add an extra warning code, 1591, in the "Suppress warnings" textbox as shown in the screenshot.
+Suppressing the warning code will prevent the compiler from showing warnings for all undocumented types and properties in the application.
+
+![Enable XML documentation and suppress warning for ASP.NET Core 5 API](/static/images/post1/project-properties.png)
+
+#### 3.2.
+
+To set up Swagger, create a file called, `SwaggerConfigureOptions.cs`. Add the following code to the file:
+
+```cs
+    public class SwaggerConfigureOptions : IConfigureOptions<SwaggerGenOptions>
+    {
+        private readonly IApiVersionDescriptionProvider _provider;
+
+        public SwaggerConfigureOptions(IApiVersionDescriptionProvider provider) => _provider = provider;
+
+        public void Configure(SwaggerGenOptions options)
+        {
+            foreach (var desc in _provider.ApiVersionDescriptions)
+            {
+                options.SwaggerDoc(desc.GroupName, new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "My Test API",
+                    Version = desc.ApiVersion.ToString(),
+                });
+            }
+        }
+    }
+```
+
+This code will ensure that a unique Swagger document is generated for each version of the API.
+
+#### 3.3.
+
+To add the Swagger services to the container, add the following code in the `ConfigureServices` method in the `Startup.cs` file:
+
+```cs
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilePath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
+    services.AddSwaggerGen(options =>
+    {
+        options.IncludeXmlComments(xmlFilePath);
+    });
+```
+
+#### 3.4.
+
+To use Swagger in the HTTP request pipeline, add the following code in the `Configure` method in the `Startup.cs` file:
+
+```cs
+    app.UseSwagger(options =>
+    {
+        options.PreSerializeFilters.Add((swagger, req) =>
+        {
+            swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"https://{req.Host}" } };
+        });
+    });
+
+    app.UseSwaggerUI(options =>
+    {
+        foreach (var desc in apiVersionDescriptionProvider.ApiVersionDescriptions)
+        {
+            options.SwaggerEndpoint($"../swagger/{desc.GroupName}/swagger.json", desc.ApiVersion.ToString());
+            options.DefaultModelsExpandDepth(-1);
+            options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        }
+    });
+```
+
+Once API versioning and Swagger have been set up, you can add the `[ApiVersion]` attribute in your controllers and document API endpoints using XML comments.
+
+An example controller is shown below:
+
+```cs
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/message")]
+    [ApiController]
+    public class MessageController : ControllerBase
+    {
+        /// <summary>
+        /// Gets message by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public ActionResult<List<Message>> Get(int id)
+        {
+            return Ok(new Message
+            {
+                Id = id,
+                Text = "Hello world"
+            });
+        }
+    }
+
+```
+
+If you run the API project and navigate to the URL (`https://localhost:5001/swagger`) you will see the documented API as shown in the screenshot:
+
+![Swagger documentation example](/static/images/post1/swagger.png)
