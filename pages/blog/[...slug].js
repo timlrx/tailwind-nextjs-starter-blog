@@ -1,10 +1,10 @@
+import fs from 'fs'
+import { MDXRemote } from 'next-mdx-remote'
 import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import PostLayout from '@/layouts/PostLayout'
 import generateRss from '@/lib/generate-rss'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
-import fs from 'fs'
-import hydrate from 'next-mdx-remote/hydrate'
 
 export async function getStaticPaths() {
   const posts = getFiles('blog')
@@ -34,15 +34,12 @@ export async function getStaticProps({ params }) {
 
 export default function Blog({ post, prev, next }) {
   const { mdxSource, frontMatter } = post
-  const content = hydrate(mdxSource, {
-    components: MDXComponents,
-  })
 
   return (
     <>
       {frontMatter.draft !== true ? (
         <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
-          {content}
+          <MDXRemote {...mdxSource} components={MDXComponents} />
         </PostLayout>
       ) : (
         <div className="mt-24 text-center">
