@@ -11,13 +11,13 @@
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</guid>
-    <title>Set up Swagger, OData and API versioning for ASP.NET Core 5 web API - Part 1</title>
-    <link>https://nwb.one/blog/swagger-odata-and-api-versioning-dotnet-core-part-1</link>
-    <description>API versioning, Swagger and OData goes hand in hand when developing APIs. Learn how to easily set it up.</description>
+    <guid>https://nwb.one/blog/swagger-api-versioning-dotnet-core</guid>
+    <title>Set up Swagger and API versioning for ASP.NET Core 5 web API</title>
+    <link>https://nwb.one/blog/swagger-api-versioning-dotnet-core</link>
+    <description>API versioning and Swagger goes hand in hand when developing APIs. Learn how to easily set it up.</description>
     <pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate>
     <author> (Nico Botha)</author>
-    <category>asp-net-core</category><category>dotnet</category><category>swagger</category><category>odata</category>
+    <category>asp-net-core</category><category>dotnet</category><category>swagger</category>
   </item>
 
     </channel>
