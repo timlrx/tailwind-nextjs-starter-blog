@@ -1,15 +1,14 @@
 ---
-title: 'Set up Swagger, OData and API versioning for ASP.NET Core 5 web API - Part 1'
+title: 'Set up Swagger and API versioning for ASP.NET Core 5 web API'
 date: '2021-05-06'
-tags: ['asp-net-core', 'dotnet', 'swagger', 'odata']
+tags: ['asp-net-core', 'dotnet', 'swagger']
 draft: false
-summary: 'API versioning, Swagger and OData goes hand in hand when developing APIs. Learn how to easily set it up.'
+summary: 'API versioning and Swagger goes hand in hand when developing APIs. Learn how to easily set it up.'
 ---
 
-If you are developing any API, having good documentation and proper versioning is absolutely crucial. In this 2-part blog post I will show how to set up
-API versioning, Swagger and OData for an ASP.NET Core 5 web API. The first part will focus on Swagger and API versioning setup. The second part will
-focus on OData setup. For demo purposes, I have created a new ASP.NET Core 5 API project using Visual Studio.
-The source code can be found here: [github.com/Ngineer101/swagger-odata-api-versioning-dotnet-core](https://github.com/Ngineer101/swagger-odata-api-versioning-dotnet-core).
+If you are developing any API, having good documentation and proper versioning is absolutely crucial. In this blog post I will show how to set up
+API versioning and Swagger for an ASP.NET Core 5 web API. For demo purposes, I have created a new ASP.NET Core 5 API project using Visual Studio.
+The source code can be found here: [github.com/Ngineer101/swagger-api-versioning-dotnet-core](https://github.com/Ngineer101/swagger-api-versioning-dotnet-core).
 
 ---
 
@@ -93,7 +92,7 @@ To set up Swagger, create a file called, `SwaggerConfigureOptions.cs`. Add the f
     }
 ```
 
-This code will ensure that a unique Swagger document is generated for each version of the API.
+This code will ensure that a unique Swagger document is generated for each API version.
 
 #### 3.3.
 
@@ -134,7 +133,7 @@ To use Swagger in the HTTP request pipeline, add the following code in the `Conf
     });
 ```
 
-Once API versioning and Swagger have been set up, you can add the `[ApiVersion]` attribute in your controllers and document API endpoints using XML comments.
+Once API versioning and Swagger have been set up, you can add the `[ApiVersion]` attribute in your controllers and document the API endpoints using XML comments.
 
 An example controller is shown below:
 
@@ -165,3 +164,5 @@ An example controller is shown below:
 If you run the API project and navigate to the URL (`https://localhost:5001/swagger`) you will see the documented API as shown in the screenshot:
 
 ![Swagger documentation example](/static/images/post1/swagger.png)
+
+Thanks for reading. If you are interested in the source code, check out the repository [here](https://github.com/Ngineer101/swagger-api-versioning-dotnet-core).
