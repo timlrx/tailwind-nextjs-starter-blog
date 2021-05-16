@@ -24,21 +24,23 @@ export async function getStaticProps({ params }) {
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('blog', params.slug)
+  const postAuthor = post.frontMatter.author || 'default'
+  const { frontMatter: authorDetails } = await getFileBySlug('authors', [postAuthor])
 
   // rss
   const rss = generateRss(allPosts)
   fs.writeFileSync('./public/index.xml', rss)
 
-  return { props: { post, prev, next } }
+  return { props: { post, authorDetails, prev, next } }
 }
 
-export default function Blog({ post, prev, next }) {
+export default function Blog({ post, authorDetails, prev, next }) {
   const { mdxSource, frontMatter } = post
 
   return (
     <>
       {frontMatter.draft !== true ? (
-        <PostLayout frontMatter={frontMatter} prev={prev} next={next}>
+        <PostLayout frontMatter={frontMatter} authorDetails={authorDetails} prev={prev} next={next}>
           <MDXRemote {...mdxSource} components={MDXComponents} />
         </PostLayout>
       ) : (
