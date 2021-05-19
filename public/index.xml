@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Thu, 06 May 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Mon, 10 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/entity-framework-query-filters-per-request-configuration</guid>
+    <title>Entity Framework global query filters - per-request configuration</title>
+    <link>https://nwb.one/blog/entity-framework-query-filters-per-request-configuration</link>
+    <description>Learn what Entity Framework global query filters are and how to configure it per request.</description>
+    <pubDate>Mon, 10 May 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>entity-framework</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/swagger-api-versioning-dotnet-core</guid>
     <title>Set up Swagger and API versioning for ASP.NET Core 5 web API</title>

@@ -33,7 +33,7 @@ To get started with setting up Swagger and API versioning, install the required 
 
 ### Step 2
 
-To set up API versioning, add the following code in the `ConfigureServices` method in the `Startup.cs` file:
+To set up API versioning, add the following code in the `ConfigureServices` method in the `Startup.cs` class:
 
 ```cs
     services.AddControllers();
@@ -69,7 +69,7 @@ Suppressing the warning code will prevent the compiler from showing warnings for
 
 #### 3.2.
 
-To set up Swagger, create a file called, `SwaggerConfigureOptions.cs`. Add the following code to the file:
+To set up Swagger, create a class called, `SwaggerConfigureOptions.cs`. Add the following code to the class:
 
 ```cs
     public class SwaggerConfigureOptions : IConfigureOptions<SwaggerGenOptions>
@@ -96,7 +96,7 @@ This code will ensure that a unique Swagger document is generated for each API v
 
 #### 3.3.
 
-To add the Swagger services to the container, add the following code in the `ConfigureServices` method in the `Startup.cs` file:
+To add the Swagger services to the container, add the following code in the `ConfigureServices` method in the `Startup.cs` class:
 
 ```cs
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -111,7 +111,7 @@ To add the Swagger services to the container, add the following code in the `Con
 
 #### 3.4.
 
-To use Swagger in the HTTP request pipeline, add the following code in the `Configure` method in the `Startup.cs` file:
+To use Swagger in the HTTP request pipeline, add the following code in the `Configure` method in the `Startup.cs` class:
 
 ```cs
     app.UseSwagger(options =>

@@ -1,0 +1,263 @@
+---
+title: 'Entity Framework global query filters - per-request configuration'
+date: '2021-05-10'
+tags: ['asp-net-core', 'dotnet', 'entity-framework']
+draft: false
+summary: 'Learn what Entity Framework global query filters are and how to configure it per request.'
+---
+
+## What are Entity Framework global query filters?
+
+A global query filter is a boolean expression that, depending on configuration, will ALWAYS be passed to the LINQ `Where` query operator.
+Global query filters are usually configured in the `OnModelCreating` method of your `DbContext`. These filters are useful when building
+multi-tenanted systems where each tenant only has access to its own resources. Another use case is to only retrieve items
+from the database where, for example, the `IsDeleted` field is false.
+
+Example query filters:
+
+```cs
+// Only messages where `IsDeleted` is false will be selected from the database
+modelBuilder.Entity<Message>().HasQueryFilter(m => !m.IsDeleted);
+
+// Only messages sent by specific user ID will be selected from the database
+modelBuilder.Entity<Message>().HasQueryFilter(m => m.SentByUserId == _userId);
+```
+
+A query filter can easily be disabled by adding the `IgnoreQueryFilters` operator to the LINQ query.
+
+```cs
+// In this case the configured query filters will be ignored
+var messages = db.Messages.IgnoreQueryFilters().ToList();
+```
+
+---
+
+## Per-request configuration
+
+Configuring query filters for static data or constant boolean expressions are quite simple. But, query filters can also be used on a per-request basis. For instance,
+for each API request, the user ID or other user related data can be extracted from the access token and used in a query filter to ensure that a user can
+only query their own data. Configuring query filters on a per-request basis is described in the rest of this post. For demo purposes I created a .NET Core API project -
+check out the repository [here](https://github.com/Ngineer101/entity-framework-query-filters-linq).
+
+### Step 1
+
+To get started with setting up the application, install the required NuGet packages:
+
+- https://www.nuget.org/packages/Microsoft.EntityFrameworkCore
+- https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools
+- https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design
+- https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite (This package will depend on the type of database used - SQL Server, PostgreSQL etc.)
+
+### Step 2
+
+Create a `Message.cs` class that will represent the `dbo.Message` table in the database and add the Entity Framework table mapping attributes.
+
+```cs
+[Table(nameof(Message))]
+public class Message
+{
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
+
+    [Required]
+    public string Content { get; set; }
+
+    public long SentByUserId { get; set; }
+}
+```
+
+### Step 3
+
+Add the `DefaultContext.cs` class with the `Message.cs` class as a table.
+
+```cs
+public class DefaultContext : DbContext
+{
+    public DbSet<Message> Messages { get; set; }
+}
+```
+
+### Step 4
+
+Add an interface, `IDefaultContextFactory.cs`, with a single method, `CreateContext`. The implementation of this method will contain the "per-request" logic for the query filters.
+
+```cs
+public interface IDefaultContextFactory
+{
+    DefaultContext CreateContext();
+}
+```
+
+Add a class, `DefaultContextFactory.cs`, and implement the `IDefaultContextFactory.cs` interface. To access the `HttpContext` for each request in the `DefaultContextFactory.cs` class,
+inject an instance of `HttpContextAccessor` into the class. For accessing application configuration values also inject an instance of `IConfiguration`.
+
+For now, your class should look like this:
+
+```cs
+public class DefaultContextFactory : IDefaultContextFactory
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
+
+    public DefaultContextFactory(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+    {
+        _httpContextAccessor = httpContextAccessor;
+        _configuration = configuration;
+    }
+
+    public DefaultContext CreateContext()
+    {
+        // add logic to retrieve data from HttpContext here...
+
+        return new DefaultContext();
+    }
+}
+```
+
+### Step 5
+
+Add a constructor for the `DefaultContext.cs` class that takes an instance of `DbContextOptions` and whatever other values you want to use in the query filters.
+For the purpose of this blog post, I'm going to retrieve the username of the signed-in user and whether that user is an admin from the `HttpContext` and pass those values
+to the `DefaultContext` constructor as well.
+
+The `DefaultContext.cs` class now looks like this:
+
+```cs
+public class DefaultContext : DbContext
+{
+    private readonly string _username;
+    private readonly bool _userIsAdmin;
+
+    public DbSet<Message> Messages { get; set; }
+
+    public DefaultContext(DbContextOptions<DefaultContext> options, string username, bool userIsAdmin) : base(options)
+    {
+        _username = username;
+        _userIsAdmin = userIsAdmin;
+    }
+}
+```
+
+### Step 6
+
+Modify the `CreateContext` method in the `DefaultContextFactory.cs` class to get the desired values from the `HttpContext` and return
+a new instance of the `DefaultContext.cs` class.
+
+The `CreateContext` method should look like this:
+
+```cs
+public DefaultContext CreateContext()
+{
+    var signedInUser = _httpContextAccessor.HttpContext.User ?? null;
+    var options = new DbContextOptionsBuilder<DefaultContext>()
+            .UseSqlite(_configuration.GetConnectionString("DefaultConnectionString"))
+            .Options;
+
+    return new DefaultContext(options, signedInUser?.Identity?.Name, signedInUser?.IsInRole("admin") ?? false);
+}
+```
+
+### Step 7
+
+Override the `OnModelCreating` method in the `DefaultContext.cs` class and configure your query filters for the `Message` entity.
+
+For example:
+
+```cs
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    // only messages sent by the currently signed-in user will be retrieved from the database
+    modelBuilder.Entity<Message>().HasQueryFilter(m => m.SentByUsername == _username);
+
+    // OR
+
+    // messages sent by the currently signed-in user will be retrieved, but only if that user is admin
+    // (otherwise no messages will be retrieved)
+    modelBuilder.Entity<Message>().HasQueryFilter(m => m.SentByUsername == _username && _userIsAdmin);
+}
+```
+
+### Step 8
+
+Add the `HttpContextAccessor`, `DefaultContextFactory` and `DbContext` to the service container in the `Startup.cs` class.
+
+```cs
+// add the following code
+services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+services.AddSingleton<IDefaultContextFactory, DefaultContextFactory>();
+services.AddScoped(provider =>
+{
+    var factory = provider.GetRequiredService<IDefaultContextFactory>();
+    return factory.CreateContext();
+});
+```
+
+### Step 9
+
+The final step is to create and apply an Entity Framework database migration to create your database. Unfortunately, EF migrations will not work right away with
+the current `DefaultContextFactory` implementation. Small modifications are necessary to be able to run migrations.
+
+#### Step 9.1
+
+Add another constructor for the `DefaultContext.cs` class that only takes an instance of `DbContextOptions`.
+
+```cs
+public DefaultContext(DbContextOptions<DefaultContext> options) : base(options) { }
+```
+
+#### Step 9.2
+
+In the `DefaultContextFactory.cs` class, implement the `IDesignTimeDbContextFactory.cs` interface, and add a parameterless constructor (for `DefaultContextFactory`).
+To read more about design-time DbContext creation check out [this page](https://docs.microsoft.com/en-gb/ef/core/cli/dbcontext-creation?tabs=dotnet-core-cli).
+
+The class should look like this:
+
+```cs
+public class DefaultContextFactory : IDefaultContextFactory, IDesignTimeDbContextFactory<DefaultContext> // implement this interface
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
+
+    // add this line
+    public DefaultContextFactory() { }
+
+    ...
+
+    // existing code
+
+    ...
+
+    // add this code for the IDesignTimeDbContextFactory implementation
+    public DefaultContext CreateDbContext(string[] args)
+    {
+        var options = new DbContextOptionsBuilder<DefaultContext>()
+            .UseSqlite("Data Source=demoDb.db")
+            .Options;
+
+        return new DefaultContext(options);
+    }
+}
+```
+
+#### Step 9.3
+
+Now, you are all set to create and apply database migrations.
+
+Run the following commands in your Visual Studio package manager console to create and apply the first migration:
+
+- `Add-Migration InitialCreate`
+- `Update-Database`
+
+If you are using the DotNet CLI to create and apply migrations, run the following commands:
+
+- `dotnet ef migrations add InitialCreate`
+- `dotnet ef database update`
+
+_Note: don't forget to add your database connection string to the `appsettings.json` config file._
+
+Once you created your database, add your API controllers and proceed with the rest of the implementation (not covered in this blog post).
+
+---
+
+Thanks for reading. To view the source code for this demo application check out [this repository](https://github.com/Ngineer101/entity-framework-query-filters-linq).
