@@ -3,11 +3,11 @@
   "version": "0.3.2",
   "private": true,
   "scripts": {
-    "start": "next-remote-watch ./data",
-    "dev": "next dev",
+    "start": "cross-env TAILWIND_MODE=watch next-remote-watch -p ./data",
+    "dev": "cross-env TAILWIND_MODE=watch next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
-    "analyze": "env ANALYZE=true next build",
+    "analyze": "cross-env ANALYZE=true next build",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "@next/bundle-analyzer": "10.2.0",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/jit": "^0.1.18",
+    "cross-env": "^7.0.3",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
