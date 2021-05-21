@@ -14,7 +14,7 @@ const discussUrl = (slug) =>
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 export default function PostLayout({ children, frontMatter, next, prev }) {
-  const { slug, fileName, date, title, tags } = frontMatter
+  const { slug, fileName, date, title, tags, readingTime } = frontMatter
 
   return (
     <SectionContainer>
@@ -66,6 +66,22 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
                       )}
                     </dl>
                   </li>
+                  <dt className="sr-only">Post stats</dt>
+                  <ul className="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8 xl:border-t xl:border-gray-200 xl:dark:border-gray-700 xl:pt-6">
+                    <li className="flex items-center space-x-2">
+                      <dl className="text-sm font-medium leading-5 whitespace-nowrap">
+                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                          Stats
+                        </h2>
+                        <dt className="sr-only">Word Count</dt>
+                        <dd className="text-gray-900 dark:text-gray-100">
+                          {readingTime.words} words
+                        </dd>
+                        <dt className="sr-only">Reading time</dt>
+                        <dd className="text-gray-900 dark:text-gray-100">{readingTime.text}</dd>
+                      </dl>
+                    </li>
+                  </ul>
                 </ul>
               </dd>
             </dl>
