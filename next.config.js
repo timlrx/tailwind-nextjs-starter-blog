@@ -38,4 +38,13 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog/1',
+        destination: '/blog',
+        statusCode: 301,
+      },
+    ]
+  },
 })

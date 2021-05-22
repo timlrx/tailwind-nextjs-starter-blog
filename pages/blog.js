@@ -1,6 +1,6 @@
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import siteMetadata from '@/data/siteMetadata'
-import BlogLayout from '@/layouts/BlogLayout'
+import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@/components/SEO'
 
 export const POSTS_PER_PAGE = 3
@@ -24,7 +24,7 @@ export default function Blog({ posts, pagination }) {
         description={siteMetadata.description}
         url={`${siteMetadata.siteUrl}/blog`}
       />
-      <BlogLayout posts={posts} pagination={pagination} title="All Posts" />
+      <ListLayout posts={posts} pagination={pagination} title="All Posts" />
     </>
   )
 }

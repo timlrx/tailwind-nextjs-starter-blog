@@ -1,8 +1,8 @@
 import { PageSeo } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import BlogLayout from '@/layouts/BlogLayout'
-import { POSTS_PER_PAGE } from '../../blog'
+import ListLayout from '@/layouts/ListLayout'
+import { POSTS_PER_PAGE } from '../blog'
 
 export async function getStaticPaths() {
   const totalPosts = await getAllFilesFrontMatter('blog')
@@ -48,7 +48,7 @@ export default function PostPage({ postsPerPage, pagination }) {
         description={siteMetadata.description}
         url={siteMetadata.siteUrl}
       />
-      <BlogLayout posts={postsPerPage} pagination={pagination} title="All Posts" />
+      <ListLayout posts={postsPerPage} pagination={pagination} title="All Posts" />
     </>
   )
 }
