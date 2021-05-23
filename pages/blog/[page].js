@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const totalPosts = await getAllFilesFrontMatter('blog')
   const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages - 1 }, (_, i) => ({
-    params: { page: '' + (i + 2) },
+    params: { page: '' + (i + 1) },
   }))
 
   return {
@@ -46,7 +46,7 @@ export default function PostPage({ postsPerPage, pagination }) {
       <PageSeo
         title={siteMetadata.title}
         description={siteMetadata.description}
-        url={siteMetadata.siteUrl}
+        url={`${siteMetadata.siteUrl}/blog/${pagination.currentPage}`}
       />
       <ListLayout posts={postsPerPage} pagination={pagination} title="All Posts" />
     </>
