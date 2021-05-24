@@ -23,7 +23,7 @@ The pagination extension will receive 3 parameters:
 - `take (int)` - The maximum amount of items to query. The `take` value is your page size.
 - `orderBy (string)` - The `orderBy` value, if specified, is a comma-separated list of order-by clauses. Each order-by clause is a
   space-separated string value containing the property name to order by and `asc` (ascending) or `desc` (descending) to indicate the order
-  direction. For example, if you specify `orderBy = "name asc, age desc, height asc"` then the selected entities will be ordered by `name` in
+  direction. For example, if you specify `orderBy = "name asc, age desc, height asc"`, the selected entities will be ordered by `name` in
   ascending order, then by `age` in descending order and then by `height` in ascending order.
 
 The pagination extension will return a `Page<T>` object with a list of items and the total item count.
