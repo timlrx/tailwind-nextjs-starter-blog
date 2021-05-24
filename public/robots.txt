@@ -1,0 +1,6 @@
+Sitemap: https://nwb.one/sitemap.xml
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
