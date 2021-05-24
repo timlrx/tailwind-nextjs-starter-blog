@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Mon, 10 May 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Mon, 17 May 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/linq-extensions-pagination-order-by-property-name</guid>
+    <title>LINQ extensions for pagination and ordering by property name in Entity Framework</title>
+    <link>https://nwb.one/blog/linq-extensions-pagination-order-by-property-name</link>
+    <description>Learn how to create LINQ extensions that will simplify pagination and ordering by property names in Entity Framework.</description>
+    <pubDate>Mon, 17 May 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>linq</category><category>entity-framework</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/entity-framework-query-filters-per-request-configuration</guid>
     <title>Entity Framework global query filters - per-request configuration</title>
