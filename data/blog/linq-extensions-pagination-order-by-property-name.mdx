@@ -1,0 +1,168 @@
+---
+title: 'LINQ extensions for pagination and ordering by property name in Entity Framework'
+date: '2021-05-17'
+tags: ['asp-net-core', 'dotnet', 'linq', 'entity-framework']
+draft: false
+summary: 'Learn how to create LINQ extensions that will simplify pagination and ordering by property names in Entity Framework.'
+---
+
+## Why another extension?
+
+If you are building an API, at some stage, you will need a pagination endpoint to paginate through a list of entities. Pagination
+and ordering by property names can be implemented (with relative ease) using LINQ queries and a few lines of custom code. But, if you
+have to write the same piece of pagination and ordering logic for every controller with a pagination endpoint, it makes sense to
+extract the code into a reusable class. These 2 **opinionated** LINQ extensions will ensure that your pagination and ordering stays simple
+without any external dependencies (except for Entity Framework Core of course).
+
+### Pagination
+
+The pagination extension will receive 3 parameters:
+
+- `skip (int)` - The amount of items to skip when querying data. Usually `skip = pageSize * (pageNumber - 1)` - i.e. if your page size is 10
+  and you are fetching page number 2, `skip` will be 10.
+- `take (int)` - The maximum amount of items to query. The `take` value is your page size.
+- `orderBy (string)` - The `orderBy` value, if specified, is a comma-separated list of order-by clauses. Each order-by clause is a
+  space-separated string value containing the property name to order by and `asc` (ascending) or `desc` (descending) to indicate the order
+  direction. For example, if you specify `orderBy = "name asc, age desc, height asc"` then the selected entities will be ordered by `name` in
+  ascending order, then by `age` in descending order and then by `height` in ascending order.
+
+The pagination extension will return a `Page<T>` object with a list of items and the total item count.
+
+```cs
+public class Page<T> where T : class
+{
+    public IEnumerable<T> Items { get; set; }
+    public int TotalItemCount { get; set; }
+}
+```
+
+The extension method and helper methods look like this:
+
+```cs
+public static async Task<Page<T>> ToPagedAsync<T>(this IQueryable<T> src, int skip, int take, string orderBy = null) where T : class
+{
+    var queryExpression = src.Expression;
+    queryExpression = queryExpression.OrderBy(orderBy);
+
+    if (queryExpression.CanReduce)
+        queryExpression = queryExpression.Reduce();
+
+    src = src.Provider.CreateQuery<T>(queryExpression);
+
+    var results = new Page<T>
+    {
+        TotalItemCount = await src.CountAsync(),
+        Items = await src.Skip(skip).Take(take).ToListAsync()
+    };
+
+    return results;
+}
+
+private static Expression OrderBy(this Expression source, string orderBy)
+{
+    if (!string.IsNullOrWhiteSpace(orderBy))
+    {
+        var orderBys = orderBy.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < orderBys.Length; i++)
+        {
+            source = AddOrderBy(source, orderBys[i], i);
+        }
+    }
+
+    return source;
+}
+
+private static Expression AddOrderBy(Expression source, string orderBy, int index)
+{
+    var orderByParams = orderBy.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+    string orderByMethodName = index == 0 ? "OrderBy" : "ThenBy";
+    string parameterPath = orderByParams[0];
+    if (orderByParams.Length > 1 && orderByParams[1].Equals("desc", StringComparison.OrdinalIgnoreCase))
+        orderByMethodName += "Descending";
+
+    var sourceType = source.Type.GetGenericArguments().First();
+    var parameterExpression = Expression.Parameter(sourceType, "p");
+    var orderByExpression = BuildPropertyPathExpression(parameterExpression, parameterPath);
+    var orderByFuncType = typeof(Func<,>).MakeGenericType(sourceType, orderByExpression.Type);
+    var orderByLambda = Expression.Lambda(orderByFuncType, orderByExpression, new ParameterExpression[] { parameterExpression });
+
+    source = Expression.Call(typeof(Queryable), orderByMethodName, new Type[] { sourceType, orderByExpression.Type }, source, orderByLambda);
+    return source;
+}
+
+private static Expression BuildPropertyPathExpression(this Expression rootExpression, string propertyPath)
+{
+    var parts = propertyPath.Split(new[] { '.' }, 2);
+    var currentProperty = parts[0];
+    var propertyDescription = rootExpression.Type.GetProperty(currentProperty, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+    if (propertyDescription == null)
+        throw new KeyNotFoundException($"Cannot find property {rootExpression.Type.Name}.{currentProperty}. The root expression is {rootExpression} and the full path would be {propertyPath}.");
+
+    var propExpr = Expression.Property(rootExpression, propertyDescription);
+    if (parts.Length > 1)
+        return BuildPropertyPathExpression(propExpr, parts[1]);
+
+    return propExpr;
+}
+```
+
+Finally, the extension can be used like this:
+
+```cs
+/// <summary>
+/// Get messages paged
+/// </summary>
+/// <param name="skip"></param>
+/// <param name="top"></param>
+/// <param name="orderBy"></param>
+/// <returns></returns>
+[HttpGet("paged")]
+public async Task<ActionResult<Page<Message>>> GetPaged(int skip, [Required]int take, string orderBy)
+{
+    var page = await _context.Messages.ToPagedAsync(skip, take, orderBy);
+    return Ok(page);
+}
+```
+
+---
+
+### Ordering by property name
+
+Normally, the LINQ `OrderBy` operator is used like this: `_context.Messages.OrderBy(m => m.Id)`. But, if you have an endpoint
+where the property name can be passed as a parameter, having multiple if-statements to check which property to order by is not optimal.
+With these few lines of code you can create a LINQ extension that uses the string property name to order items:
+
+```cs
+public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName)
+{
+    return source.OrderBy(ToLambda<T>(propertyName));
+}
+
+public static IOrderedQueryable<T> OrderByDescending<T>(this IQueryable<T> source, string propertyName)
+{
+    return source.OrderByDescending(ToLambda<T>(propertyName));
+}
+
+private static Expression<Func<T, object>> ToLambda<T>(string propertyName)
+{
+    var parameter = Expression.Parameter(typeof(T));
+    var property = Expression.Property(parameter, propertyName);
+    var propAsObject = Expression.Convert(property, typeof(object));
+
+    return Expression.Lambda<Func<T, object>>(propAsObject, parameter);
+}
+```
+
+Now, you can write a LINQ query using the `OrderBy` operator like this:
+
+```cs
+_context.Messages.OrderBy("id");
+
+// instead of
+
+_context.Messages.OrderBy(m => m.Id);
+```
+
+---
+
+To view the complete source code for both extensions check out [this file](https://github.com/Ngineer101/entity-framework-query-filters-linq/blob/master/NWBlog.EntityFrameworkDemo.Api/Extensions/Linq.cs).
