@@ -1,9 +1,7 @@
 import fs from 'fs'
-import { MDXRemote } from 'next-mdx-remote'
-import MDXComponents from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
-import PostLayout from '@/layouts/PostLayout'
 import generateRss from '@/lib/generate-rss'
+import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 
 export async function getStaticPaths() {
@@ -44,9 +42,14 @@ export default function Blog({ post, authorDetails, prev, next }) {
   return (
     <>
       {frontMatter.draft !== true ? (
-        <PostLayout frontMatter={frontMatter} authorDetails={authorDetails} prev={prev} next={next}>
-          <MDXRemote {...mdxSource} components={MDXComponents} />
-        </PostLayout>
+        <MDXLayoutRenderer
+          layout={frontMatter.layout || 'PostLayout'}
+          mdxSource={mdxSource}
+          frontMatter={frontMatter}
+          authorDetails={authorDetails}
+          prev={prev}
+          next={next}
+        />
       ) : (
         <div className="mt-24 text-center">
           <PageTitle>
