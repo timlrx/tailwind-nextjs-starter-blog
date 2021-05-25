@@ -3,7 +3,7 @@
   "version": "0.3.3",
   "private": true,
   "scripts": {
-    "start": "next-remote-watch data/blog --root . -p",
+    "start": "cross-env TAILWIND_MODE=watch next-remote-watch ./data",
     "dev": "cross-env TAILWIND_MODE=watch next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
