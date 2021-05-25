@@ -3,7 +3,7 @@
   "version": "0.3.2",
   "private": true,
   "scripts": {
-    "start": "cross-env TAILWIND_MODE=watch next-remote-watch -p ./data",
+    "start": "cross-env TAILWIND_MODE=watch next-remote-watch ./data",
     "dev": "cross-env TAILWIND_MODE=watch next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
@@ -40,7 +40,6 @@
   "devDependencies": {
     "@next/bundle-analyzer": "10.2.0",
     "@svgr/webpack": "^5.5.0",
-    "@tailwindcss/jit": "^0.1.18",
     "cross-env": "^7.0.3",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^8.3.0",
