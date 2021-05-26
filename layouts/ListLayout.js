@@ -2,10 +2,11 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
+import Pagination from '@/components/Pagination'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function ListLayout({ posts, title }) {
+export default function ListLayout({ posts, title, pagination }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
@@ -81,6 +82,9 @@ export default function ListLayout({ posts, title }) {
           })}
         </ul>
       </div>
+      {pagination && (
+        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+      )}
     </>
   )
 }
