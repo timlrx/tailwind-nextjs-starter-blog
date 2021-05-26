@@ -1,6 +1,4 @@
-import { MDXRemote } from 'next-mdx-remote'
-import { MDXComponents } from '@/components/MDXComponents'
-import AuthorLayout from '@/layouts/AuthorLayout'
+import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { getFileBySlug } from '@/lib/mdx'
 
 export async function getStaticProps() {
@@ -12,8 +10,10 @@ export default function About({ authorDetails }) {
   const { mdxSource, frontMatter } = authorDetails
 
   return (
-    <AuthorLayout frontMatter={frontMatter}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
-    </AuthorLayout>
+    <MDXLayoutRenderer
+      layout={frontMatter.layout || 'AuthorLayout'}
+      mdxSource={mdxSource}
+      frontMatter={frontMatter}
+    />
   )
 }
