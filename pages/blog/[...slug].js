@@ -4,6 +4,8 @@ import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 
+const DEFAULT_LAYOUT = 'PostLayout'
+
 export async function getStaticPaths() {
   const posts = getFiles('blog')
   return {
@@ -43,7 +45,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
     <>
       {frontMatter.draft !== true ? (
         <MDXLayoutRenderer
-          layout={frontMatter.layout || 'PostLayout'}
+          layout={frontMatter.layout || DEFAULT_LAYOUT}
           mdxSource={mdxSource}
           frontMatter={frontMatter}
           authorDetails={authorDetails}
