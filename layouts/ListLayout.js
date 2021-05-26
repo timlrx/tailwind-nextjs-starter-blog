@@ -2,13 +2,11 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import Pagination from '@/components/Pagination'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function ListLayout({ posts, title, pagination, prevDisable, nextDisable }) {
-  const router = useRouter()
+export default function ListLayout({ posts, title, pagination }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
@@ -84,16 +82,8 @@ export default function ListLayout({ posts, title, pagination, prevDisable, next
           })}
         </ul>
       </div>
-      {router.pathname.indexOf('/blog') > -1 && (
-        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <Pagination
-            prevDisable={prevDisable}
-            nextDisable={nextDisable}
-            pageNumber={pagination.currentPage}
-            currentPage={pagination.currentPage}
-            totalPages={pagination.totalPages}
-          />
-        </div>
+      {pagination && (
+        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
       )}
     </>
   )
