@@ -1,0 +1,59 @@
+---
+title: 'New features in v1'
+date: '2021-05-26'
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
+layout: PostSimple
+---
+
+## Overview
+
+A brief overview of the new features introduced in v1 of the template.
+
+## Layouts
+
+New layout features - you can map mdx blog content to layout components by configuring the frontmatter field. For example, this post is written with the new `PostSimple` layout!
+
+### Adding new templates
+
+layout templates are stored in the `./layouts` folder. You can add your React components that you want to map to markdown content in the folder. The component file name must match that specified in the markdown frontmatter layout field.
+
+The only required field is `children` which contains the rendered MDX content.
+
+You can configure the template to take in other fields - see `PostLayout` component for an example.
+
+### Configuring blog post frontmatter
+
+Use the layout frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
+
+```
+---
+title: 'New features in v1'
+date: '2021-05-26   '
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'Introducing the new layout features - you can map mdx blog content to layout components by configuring the frontmatter field'
+layout: PostSimple
+---
+```
+
+You can configure the default layout in the respective page section by modifying the `DEFAULT_LAYOUT` variable. The DEFAULT_LAYOUT for the blog post is set to `PostLayout` as the default.
+
+### Extend
+
+The layout mapping is handled by the `MDXLayoutRenderer` component. It's some glue code which picks up the specified layout, processes the MDX content before passing it back to the layout component as children.
+
+```js
+export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+  const LayoutComponent = require(`../layouts/${layout}`).default
+
+  return (
+    <LayoutComponent {...rest}>
+      <MDXRemote {...mdxSource} components={MDXComponents} />
+    </LayoutComponent>
+  )
+}
+```
+
+To use the component, you need to pass it the layout from the layout folder and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.

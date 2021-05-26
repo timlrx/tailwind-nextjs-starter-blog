@@ -15,7 +15,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div>
           <header>
-            <div className="space-y-1 text-center pb-10 border-b border-gray-200 dark:border-gray-700">
+            <div className="pb-10 space-y-1 text-center border-b border-gray-200 dark:border-gray-700">
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
@@ -40,22 +40,26 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </div>
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/blog/${prev.slug}`}
-                    className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                  >
-                    &larr; {prev.title}
-                  </Link>
-                </div>
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/blog/${next.slug}`}
-                    className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                  >
-                    {next.title} &rarr;
-                  </Link>
-                </div>
+                {prev && (
+                  <div className="pt-4 xl:pt-8">
+                    <Link
+                      href={`/blog/${prev.slug}`}
+                      className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                    >
+                      &larr; {prev.title}
+                    </Link>
+                  </div>
+                )}
+                {next && (
+                  <div className="pt-4 xl:pt-8">
+                    <Link
+                      href={`/blog/${next.slug}`}
+                      className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                    >
+                      {next.title} &rarr;
+                    </Link>
+                  </div>
+                )}
               </div>
             </footer>
           </div>
