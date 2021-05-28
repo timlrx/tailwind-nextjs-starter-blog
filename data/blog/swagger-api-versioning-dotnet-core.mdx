@@ -1,5 +1,5 @@
 ---
-title: 'Set up Swagger and API versioning for ASP.NET Core 5 web API'
+title: 'Set up Swagger and API versioning in .NET 5 web API'
 date: '2021-05-06'
 tags: ['asp-net-core', 'dotnet', 'swagger']
 draft: false
@@ -7,12 +7,12 @@ summary: 'API versioning and Swagger goes hand in hand when developing APIs. Lea
 ---
 
 If you are developing any API, having good documentation and proper versioning is absolutely crucial. In this blog post I will show how to set up
-API versioning and Swagger for an ASP.NET Core 5 web API. For demo purposes, I have created a new ASP.NET Core 5 API project using Visual Studio.
+API versioning and Swagger in a .NET 5 web API. For demo purposes, I created a new .NET 5 API project using Visual Studio.
 The source code can be found here: [github.com/Ngineer101/swagger-api-versioning-dotnet-core](https://github.com/Ngineer101/swagger-api-versioning-dotnet-core).
 
 ---
 
-**What is Swagger?**
+## What is Swagger?
 
 Swagger is an interface description language used, in combination with other open-sourced tools, to build and document RESTful APIs.
 
@@ -65,7 +65,7 @@ Before configuring Swagger, enable XML documentation for your project. You can d
 Click the checkbox to enable XML documentation and add an extra warning code, 1591, in the "Suppress warnings" textbox as shown in the screenshot.
 Suppressing the warning code will prevent the compiler from showing warnings for all undocumented types and properties in the application.
 
-![Enable XML documentation and suppress warning for ASP.NET Core 5 API](/static/images/post1/project-properties.png)
+![Enable XML documentation and suppress warning in .NET 5 API](/static/images/post1/project-properties.png)
 
 #### 3.2.
 
