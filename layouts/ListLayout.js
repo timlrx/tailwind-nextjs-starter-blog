@@ -6,12 +6,16 @@ import Pagination from '@/components/Pagination'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function ListLayout({ posts, title, pagination }) {
+export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
+
+  // If initialDisplayPosts exist, display it if no searchValue is specified
+  const displayPosts =
+    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function ListLayout({ posts, title, pagination }) {
         </div>
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
-          {filteredBlogPosts.map((frontMatter) => {
+          {displayPosts.map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <li key={slug} className="py-4">
@@ -82,7 +86,7 @@ export default function ListLayout({ posts, title, pagination }) {
           })}
         </ul>
       </div>
-      {pagination && (
+      {pagination && !searchValue && (
         <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
       )}
     </>

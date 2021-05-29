@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const totalPosts = await getAllFilesFrontMatter('blog')
   const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: '' + (i + 1) },
+    params: { page: (i + 1).toString() },
   }))
 
   return {
@@ -21,26 +21,27 @@ export async function getStaticProps(context) {
   const {
     params: { page },
   } = context
-  const getPosts = await getAllFilesFrontMatter('blog')
+  const posts = await getAllFilesFrontMatter('blog')
   const pageNumber = parseInt(page)
-  const postsPerPage = getPosts.slice(
+  const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber
   )
   const pagination = {
     currentPage: pageNumber,
-    totalPages: Math.ceil(getPosts.length / POSTS_PER_PAGE),
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
   return {
     props: {
-      postsPerPage,
+      posts,
+      initialDisplayPosts,
       pagination,
     },
   }
 }
 
-export default function PostPage({ postsPerPage, pagination }) {
+export default function PostPage({ posts, initialDisplayPosts, pagination }) {
   return (
     <>
       <PageSeo
@@ -48,7 +49,12 @@ export default function PostPage({ postsPerPage, pagination }) {
         description={siteMetadata.description}
         url={`${siteMetadata.siteUrl}/blog/${pagination.currentPage}`}
       />
-      <ListLayout posts={postsPerPage} pagination={pagination} title="All Posts" />
+      <ListLayout
+        posts={posts}
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+        title="All Posts"
+      />
     </>
   )
 }
