@@ -88,7 +88,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
       </div>
       {pagination &&
         pagination.totalPages > 1 &&
-        !searchValue(
+        !searchValue && (
           <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
         )}
     </>
