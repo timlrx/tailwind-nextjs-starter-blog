@@ -12,15 +12,12 @@
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.6.0",
-    "@mdx-js/loader": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "@next/mdx": "10.2.0",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "next": "10.2.0",
+    "next": "10.2.3",
     "next-mdx-remote": "^3.0.1",
     "next-seo": "4.24.0",
     "next-themes": "^0.0.14",
@@ -38,7 +35,7 @@
     "tailwindcss": "^2.1.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "10.2.0",
+    "@next/bundle-analyzer": "10.2.3",
     "@svgr/webpack": "^5.5.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.17.0",
