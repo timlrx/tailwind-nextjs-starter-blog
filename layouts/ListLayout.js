@@ -2,15 +2,20 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
+import Pagination from '@/components/Pagination'
 
 const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function ListLayout({ posts, title }) {
+export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
+
+  // If initialDisplayPosts exist, display it if no searchValue is specified
+  const displayPosts =
+    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
 
   return (
     <>
@@ -45,7 +50,7 @@ export default function ListLayout({ posts, title }) {
         </div>
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
-          {filteredBlogPosts.map((frontMatter) => {
+          {displayPosts.map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <li key={slug} className="py-4">
@@ -81,6 +86,11 @@ export default function ListLayout({ posts, title }) {
           })}
         </ul>
       </div>
+      {pagination &&
+        pagination.totalPages > 1 &&
+        !searchValue(
+          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        )}
     </>
   )
 }
