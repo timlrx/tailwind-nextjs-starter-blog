@@ -1,0 +1,113 @@
+---
+title: 'Simple AutoMapper setup in .NET 5'
+date: '2021-05-24'
+tags: ['asp-net-core', 'dotnet', 'automapper']
+draft: false
+summary: 'Learn one of the simplest ways to configure AutoMapper in .NET 5'
+---
+
+## Why use AutoMapper?
+
+The use of AutoMapper is a heavily debated topic and have divided developer opinions for a long time. It is
+important to know that the use of AutoMapper is not always necessary nor useful, but in some cases it can
+simplify your code. The decision to use AutoMapper should be based on the specific problem you are
+trying to solve. As with all tools/utilities it definitely does not provide a _one-size-fits-all_ solution.
+
+AutoMapper won't be useful when:
+
+- You have a simple data model
+- You don't need data transfer objects (DTOs)
+- Your database entities and DTOs have exactly the same properties
+
+AutoMapper can be useful when:
+
+- You have complex data models and need to return simpler DTOs to the client
+- You have to map a single database entity to different DTOs
+
+When you decide to implement AutoMapper it can also be tedious to write manual mappings for each model (and it kind of defeats the
+purpose of using AutoMapper 🙂). The rest of this blog post will show you how to set up and use AutoMapper without having to
+write unnecessary mapping code.
+
+## Set up AutoMapper in .NET 5
+
+For demo purposes, I created a new .NET 5 API project using Visual Studio.
+The source code can be found here: [https://github.com/Ngineer101/automapper-setup-dotnet-core](https://github.com/Ngineer101/automapper-setup-dotnet-core).
+
+### Step 1
+
+Install the required NuGet package:
+
+- https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection
+
+### Step 2
+
+To add AutoMapper to your service container on application startup, add the following code in the `ConfigureServices` method in the `Startup.cs` class:
+
+```cs
+services.AddAutoMapper(Assembly.GetExecutingAssembly());
+```
+
+### Step 3
+
+Add the `AutoMap` attributes on the models you want to map. For example, if you have a `User.cs` class and a `UserDTO.cs` class, the following code
+can be used to configure a mapping:
+
+```cs
+public class User
+{
+    public long Id { get; set; }
+    public string FirstName { get; set; }
+    public List<Pet> Pets { get; set; }
+}
+
+[AutoMap(typeof(User), ReverseMap = true)]
+// this attribute configures mappings for User -> UserDTO and UserDTO -> User
+public class UserDTO
+{
+    public long Id { get; set; }
+
+    [SourceMember(nameof(User.FirstName))]
+    // this attribute configures a mapping for User.FirstName to UserDTO.Name
+    public string Name { get; set; }
+
+    [IgnoreMap]
+    // this attribute configures a mapping to ignore PetIds when mapping the user classes
+    public List<long> PetIds { get; set; }
+}
+```
+
+### Usage
+
+After completing the above steps AutoMapper can be used like this:
+
+```cs
+[Route("api/[controller]")]
+[ApiController]
+public class TestController : ControllerBase
+{
+    private readonly IMapper _mapper;
+
+    public TestController(IMapper mapper)
+    {
+        _mapper = mapper;
+    }
+
+    /// <summary>
+    /// Get user
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public ActionResult<UserDTO> Get()
+    {
+        User user = ... ; // Get user object from somewhere (database, API, etc.)
+
+        var userDTO = _mapper.Map<UserDTO>(user); // map User to UserDTO
+        return Ok(userDTO);
+    }
+}
+```
+
+This is the simplest configuration required to enable AutoMapper. Naturally, the package also supports more complex configurations, but
+that is beyond the scope of this post. For the complete configuration guide check out the official AutoMapper documentation at
+[docs.automapper.org](https://docs.automapper.org/). To view the complete source code for this demo check out this repository:
+[https://github.com/Ngineer101/automapper-setup-dotnet-core](https://github.com/Ngineer101/automapper-setup-dotnet-core)
