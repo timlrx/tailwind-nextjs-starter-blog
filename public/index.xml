@@ -11,6 +11,16 @@
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
   <item>
+    <guid>https://nwb.one/blog/set-up-automapper-dotnet-core</guid>
+    <title>Simple AutoMapper setup in .NET 5</title>
+    <link>https://nwb.one/blog/set-up-automapper-dotnet-core</link>
+    <description>Learn one of the simplest ways to configure AutoMapper in .NET 5</description>
+    <pubDate>Mon, 24 May 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>automapper</category>
+  </item>
+
+  <item>
     <guid>https://nwb.one/blog/linq-extensions-pagination-order-by-property-name</guid>
     <title>LINQ extensions for pagination and ordering by property name in Entity Framework</title>
     <link>https://nwb.one/blog/linq-extensions-pagination-order-by-property-name</link>
