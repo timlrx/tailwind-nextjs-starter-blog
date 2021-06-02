@@ -21,7 +21,7 @@ const Pre = (props) => {
   }
 
   return (
-    <pre ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
+    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
       {hovered && (
         <button
           aria-label="Copy code"
@@ -62,8 +62,9 @@ const Pre = (props) => {
           </svg>
         </button>
       )}
-      {props.children}
-    </pre>
+
+      <pre>{props.children}</pre>
+    </div>
   )
 }
 
