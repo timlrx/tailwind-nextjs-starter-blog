@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-05-26'
+date: '2021-06-02'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -9,23 +9,44 @@ layout: PostSimple
 
 ## Overview
 
-A brief overview of the new features introduced in v1 of the template.
+A post on the new features introduced in v1.0. New features:
+
+- [Layouts](#layouts)
+- [Multiple authors](#multiple-authors)
+- [Copy button for code blocks](#copy-button-for-code-blocks)
 
 ## Layouts
 
-New layout features - you can map mdx blog content to layout components by configuring the frontmatter field. For example, this post is written with the new `PostSimple` layout!
+You can map mdx blog content to layout components by configuring the frontmatter field. For example, this post is written with the new `PostSimple` layout!
 
 ### Adding new templates
 
-layout templates are stored in the `./layouts` folder. You can add your React components that you want to map to markdown content in the folder. The component file name must match that specified in the markdown frontmatter layout field.
+layout templates are stored in the `./layouts` folder. You can add add your React components that you want to map to markdown content in this folder.
+The component file name must match that specified in the markdown frontmatter `layout` field.
 
-The only required field is `children` which contains the rendered MDX content.
+The only required field is `children` which contains the rendered MDX content, though you would probably want to pass in the frontMatter contents and render it in the template.
 
 You can configure the template to take in other fields - see `PostLayout` component for an example.
 
-### Configuring blog post frontmatter
+Here's an example layout which you can further customise:
 
-Use the layout frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
+```js
+export default function ExampleLayout({ frontMatter, children }) {
+  const { date, title } = frontMatter
+
+  return (
+    <SectionContainer>
+      <div>{date}</div>
+      <h1>{title}</h1>
+      <div>{children}</div>
+    </SectionContainer>
+  )
+}
+```
+
+### Configuring a blog post frontmatter
+
+Use the `layout` frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
 
 ```
 ---
@@ -38,11 +59,13 @@ layout: PostSimple
 ---
 ```
 
-You can configure the default layout in the respective page section by modifying the `DEFAULT_LAYOUT` variable. The DEFAULT_LAYOUT for the blog post is set to `PostLayout` as the default.
+You can configure the default layout in the respective page section by modifying the `DEFAULT_LAYOUT` variable.
+The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
 
 ### Extend
 
-The layout mapping is handled by the `MDXLayoutRenderer` component. It's some glue code which picks up the specified layout, processes the MDX content before passing it back to the layout component as children.
+The layout mapping is handled by the `MDXLayoutRenderer` component.
+It's a glue component which imports the specified layout, processes the MDX content before passing it back to the layout component as children.
 
 ```js
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
@@ -56,4 +79,55 @@ export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
 }
 ```
 
-To use the component, you need to pass it the layout from the layout folder and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.
+Use the component is a page where you want to accept a layout name to map to the desired layout.
+You need to pass the layout name from the layout folder (it has to be an exact match) and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.
+
+## Multiple authors
+
+Information on authors is now split from `siteMetadata.json` and stored in its own `data/authors` folder as a markdown file. Minimally, you will need to have a `default.md` file with authorship information. You can create additional files as required and the file name will be used as the reference to the author.
+
+Here's how an author markdown file might looks like:
+
+```:default.md
+---
+name: Tails Azimuth
+avatar: /static/images/avatar.png
+occupation: Professor of Atmospheric Science
+company: Stanford University
+email: address@yoursite.com
+twitter: https://twitter.com/Twitter
+linkedin: https://www.linkedin.com
+github: https://github.com
+---
+
+A long description of yourself...
+```
+
+You can use this information in multiple places across the template. For example in the about section of the page, we grab the default author information with this line of code:
+
+```
+const authorDetails = await getFileBySlug('authors', ['default'])
+```
+
+This is rendered in the `AuthorLayout` template.
+
+### Multiple authors in blog post
+
+The frontmatter of a blog post accepts an optional `authors` arrray field. If no field is specified, it is assumed that the default author is used. Simply pass in an array of authors to render multiple authors associated with post.
+
+For example, the following frontmatter will display the authors given by `data/authors/default.md` and `data/authors/sparrowhawk.md`
+
+```
+title: 'My first post'
+date: '2021-01-12'
+draft: false
+summary: 'My first post'
+authors: ['default', 'sparrowhawk']
+```
+
+A demo of a multiple author post is shown in the [Introducing Tailwind Nextjs Starter Blog post](/blog/introducing-tailwind-nextjs-starter-blog).
+
+## Copy button for code blocks
+
+Hover over a code block and you will notice a Github inspired copy button! You can modify `./components/Pre.js` to further customise it.
+The component is passed to `MDXComponents` and modifies all `<pre>` blocks.
