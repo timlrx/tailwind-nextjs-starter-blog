@@ -6,7 +6,7 @@
   @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
 }
 
-.remark-code-title + pre {
+.remark-code-title + div > pre {
   @apply mt-0 rounded-t-none;
 }
 
