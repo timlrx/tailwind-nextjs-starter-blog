@@ -50,7 +50,7 @@ To get started with setting up the application, install the required NuGet packa
 
 ### Step 2
 
-Create a `Message.cs` class that will represent the `dbo.Message` table in the database and add the Entity Framework table mapping attributes.
+Create a `Message.cs` class that will map to the `dbo.Message` table in the database and add the Entity Framework table mapping attributes.
 
 ```cs
 [Table(nameof(Message))]
@@ -69,7 +69,7 @@ public class Message
 
 ### Step 3
 
-Add the `DefaultContext.cs` class with the `Message.cs` class as a table.
+Add the `DefaultContext.cs` class with the `Message.cs` class as an entity set.
 
 ```cs
 public class DefaultContext : DbContext
