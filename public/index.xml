@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Mon, 24 May 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 05 Jun 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/openid-connect-dotnet-5</guid>
+    <title>Set up token authentication with OpenIddict in .NET 5</title>
+    <link>https://nwb.one/blog/openid-connect-dotnet-5</link>
+    <description>Learn how to set up an OpenID Connect server using OpenIddict in .NET 5.</description>
+    <pubDate>Sat, 05 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>oidc</category><category>authentication</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/set-up-automapper-dotnet-core</guid>
     <title>Simple AutoMapper setup in .NET 5</title>
