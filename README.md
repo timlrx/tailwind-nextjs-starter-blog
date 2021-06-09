@@ -1,4 +1,4 @@
-![tailwind-nextjs-banner](/public/static/images/twitter-card.jpg)
+![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
 # NWBlog - [nwb.one](https://nwb.one)
 
