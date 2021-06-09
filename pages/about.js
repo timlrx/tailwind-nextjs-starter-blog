@@ -22,9 +22,8 @@ export default function About() {
             <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">
               {siteMetadata.author}
             </h3>
-            <div className="text-gray-500 dark:text-gray-400 text-center">Software engineer</div>
             <div className="text-gray-500 dark:text-gray-400 text-center">
-              Working mainly with .NET and the Microsoft tech stack
+              Self-taught software developer and indie hacker
             </div>
             <div className="flex pt-6 space-x-3">
               <SocialIcon kind="github" href={siteMetadata.github} />
@@ -37,16 +36,27 @@ export default function About() {
             </div>
           </div>
           <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
-            <p>This blog is my personal knowledge base.</p>
             <p>
-              When I learn something new (related to the field of software engineering), I document
-              it here for my future self.
+              I am working full-time as a backend engineer - mainly with .NET and the Microsoft
+              stack.
+            </p>
+            <p>
+              In my free time, I am helping people eat healthier with{' '}
+              <a href="https://skrummy.co" target="_blank" rel="noreferrer">
+                Skrummy (still in development)
+              </a>{' '}
+              - mainly using Flutter, Firebase and NextJS.
+            </p>
+            <p>
+              This blog is my personal knowledge base. When I learn something new (mostly related to
+              the field of software engineering), I document it here for my future self.
             </p>
             <p>
               If you have any questions or feedback feel free to reach out on Twitter{' '}
               <a href="https://twitter.com/nwbotha" target="_blank" rel="noreferrer">
                 @nwbotha
               </a>
+              .
             </p>
           </div>
         </div>
