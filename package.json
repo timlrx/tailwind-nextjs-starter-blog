@@ -18,7 +18,7 @@
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
     "next": "10.2.3",
-    "next-mdx-remote": "^3.0.1",
+    "next-mdx-remote": "^3.0.2",
     "next-seo": "4.24.0",
     "next-themes": "^0.0.14",
     "postcss": "^8.2.15",
