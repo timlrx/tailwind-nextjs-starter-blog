@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Sat, 05 Jun 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Thu, 10 Jun 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/exception-filter-attribute-dotnet</guid>
+    <title>How to configure a custom exception filter in .NET 5 web API</title>
+    <link>https://nwb.one/blog/exception-filter-attribute-dotnet</link>
+    <description>Learn how to handle all unhandled exceptions in an API using a custom exception filter.</description>
+    <pubDate>Thu, 10 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>web-api</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/openid-connect-dotnet-5</guid>
     <title>Set up token authentication with OpenIddict in .NET 5</title>
