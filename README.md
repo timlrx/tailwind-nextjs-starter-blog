@@ -134,15 +134,11 @@ images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.j
 
 `scripts/compose.js` can be used to easily generate a post with pre-filled front matter.
 
-The first argument is the name of the post and the second optional argument is the extension (default to .mdx)
-
-Example code to generate the post called "My First Post" in markdown format
-
+Doing
 ```
 node ./scripts/compose.js "My First Post" .md
 ```
-
-This will generate `./data/blog/my-first-post.md` with pre-filled front matter.
+would open the prompt, enter details accordingly to create a new post.
 
 ## Deploy
 
