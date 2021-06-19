@@ -41,7 +41,7 @@ inquirer
     var tagArray = answers.tags.split(',');
     tagArray.forEach((tag,index) => tagArray[index] = tag.trim());
     const tags = "'" + tagArray.join("','") + "'"
-
+    // No Weird Stuff
     const frontMatter = `---\ntitle: ${answers.title?answers.title:'Untitled'}\ndate: '${date}'\ntags: [${answers.tags?tags:''}]\ndraft: ${answers.draft.toLowerCase() == 'no' ? 'false' : 'true'}\nsummary: \nimages: []\n---`
     fs.writeFile(`data/blog/${fileName?fileName:'untitled'}.${answers.extention?answers.extention:'md'}`, frontMatter, (err) => {
       if (err) throw err
