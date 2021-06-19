@@ -11,9 +11,31 @@ layout: PostSimple
 
 A post on the new features introduced in v1.0. New features:
 
+- [Theme colors](#theme-colors)
 - [Layouts](#layouts)
 - [Multiple authors](#multiple-authors)
 - [Copy button for code blocks](#copy-button-for-code-blocks)
+
+## Theme colors
+
+You can easily modify the theme color by changing the primary attribute in the tailwind config file:
+
+```:tailwind.config.js
+theme: {
+    colors: {
+      primary: colors.teal,
+      gray: colors.trueGray,
+      ...
+    }
+  ...
+}
+```
+
+The primary color attribute should be assigned an object with keys from 50, 100, 200 ... 900 and the corresponding color code values.
+
+Tailwind includes great default color palettes that can be used for theming your own website. Check out [customizing colors documentation page](https://tailwindcss.com/docs/customizing-colors) for the full range of options.
+
+Migrating from v1? You can revert to the previous theme by setting `primary` to `colors.sky` (Tailwind 2.2.2 and above, otherwise `colors.lightBlue`) and changing gray to `colors.coolGray`.
 
 ## Layouts
 
