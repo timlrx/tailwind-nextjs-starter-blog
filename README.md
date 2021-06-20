@@ -135,9 +135,11 @@ images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.j
 `scripts/compose.js` can be used to easily generate a post with pre-filled front matter.
 
 Doing
+
 ```
-node ./scripts/compose.js "My First Post" .md
+node ./scripts/compose.js
 ```
+
 would open the prompt, enter details accordingly to create a new post.
 
 ## Deploy
