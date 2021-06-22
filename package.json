@@ -19,7 +19,6 @@
     "image-size": "1.0.0",
     "next": "10.2.3",
     "next-mdx-remote": "^3.0.1",
-    "next-seo": "4.24.0",
     "next-themes": "^0.0.14",
     "postcss": "^8.2.15",
     "preact": "^10.5.13",
