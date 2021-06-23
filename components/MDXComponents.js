@@ -1,5 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote'
-import Image from 'next/image'
+import Image from './Image'
 import CustomLink from './Link'
 import Pre from './Pre'
 
