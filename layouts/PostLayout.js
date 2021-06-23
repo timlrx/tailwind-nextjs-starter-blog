@@ -2,6 +2,7 @@ import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import { BlogSeo } from '@/components/SEO'
+import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -47,7 +48,13 @@ export default function PostLayout({ children, frontMatter, next, prev }) {
               <dd>
                 <ul className="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8">
                   <li className="flex items-center space-x-2">
-                    <img src={siteMetadata.image} alt="avatar" className="w-10 h-10 rounded-full" />
+                    <Image
+                      src={siteMetadata.image}
+                      width="38px"
+                      height="38px"
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full"
+                    />
                     <dl className="text-sm font-medium leading-5 whitespace-nowrap">
                       <dt className="sr-only">Name</dt>
                       <dd className="text-gray-900 dark:text-gray-100">{siteMetadata.author}</dd>
