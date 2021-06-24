@@ -24,7 +24,7 @@ export const PageSeo = ({ title, description }) => {
   )
 }
 
-export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
+export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -41,6 +41,32 @@ export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
       alt: title,
     }
   })
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    headline: title,
+    image: featuredImages,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
+    author: {
+      '@type': 'Person',
+      name: siteMetadata.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteMetadata.author,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+      },
+    },
+    description: summary,
+  }
 
   return (
     <>
@@ -64,6 +90,10 @@ export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
         <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
+        />
       </Head>
     </>
   )
