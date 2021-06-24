@@ -37,6 +37,7 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => 
 
   const featuredImages = imagesArr.map((img) => {
     return {
+      '@type': 'ImageObject',
       url: `${siteMetadata.siteUrl}${img}`,
       alt: title,
     }
