@@ -39,7 +39,6 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => 
     return {
       '@type': 'ImageObject',
       url: `${siteMetadata.siteUrl}${img}`,
-      alt: title,
     }
   })
 
