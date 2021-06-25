@@ -24,7 +24,7 @@ export const PageSeo = ({ title, description }) => {
   )
 }
 
-export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => {
+export const BlogSeo = ({ authors = [], title, summary, date, lastmod, url, images = [] }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -42,6 +42,14 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => 
     }
   })
 
+  let authorsArr = authors.length === 0 ? [siteMetadata.author] : authors
+  const authorList = authorsArr.map((author) => {
+    return {
+      '@type': 'Person',
+      name: author,
+    }
+  })
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -53,10 +61,7 @@ export const BlogSeo = ({ title, summary, date, lastmod, url, images = [] }) => 
     image: featuredImages,
     datePublished: publishedAt,
     dateModified: modifiedAt,
-    author: {
-      '@type': 'Person',
-      name: siteMetadata.author,
-    },
+    author: authorList,
     publisher: {
       '@type': 'Organization',
       name: siteMetadata.author,
