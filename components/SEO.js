@@ -24,7 +24,7 @@ export const PageSeo = ({ title, description }) => {
   )
 }
 
-export const BlogSeo = ({ authors = [], title, summary, date, lastmod, url, images = [] }) => {
+export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, images = [] }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -42,11 +42,10 @@ export const BlogSeo = ({ authors = [], title, summary, date, lastmod, url, imag
     }
   })
 
-  let authorsArr = authors.length === 0 ? [siteMetadata.author] : authors
-  const authorList = authorsArr.map((author) => {
+  const authorList = authorDetails.map((author) => {
     return {
       '@type': 'Person',
-      name: author,
+      name: author.name,
     }
   })
 
