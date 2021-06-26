@@ -42,12 +42,20 @@ export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, ima
     }
   })
 
-  const authorList = authorDetails.map((author) => {
-    return {
+  let authorList
+  if (authorDetails) {
+    authorList = authorDetails.map((author) => {
+      return {
+        '@type': 'Person',
+        name: author.name,
+      }
+    })
+  } else {
+    authorList = {
       '@type': 'Person',
-      name: author.name,
+      name: siteMetadata.author,
     }
-  })
+  }
 
   const structuredData = {
     '@context': 'https://schema.org',
