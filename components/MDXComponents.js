@@ -1,4 +1,5 @@
-import { MDXRemote } from 'next-mdx-remote'
+import { useMemo } from 'react'
+import { getMDXComponent } from 'mdx-bundler/client'
 import Image from './Image'
 import CustomLink from './Link'
 import Pre from './Pre'
@@ -10,11 +11,12 @@ export const MDXComponents = {
 }
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+  const MDXComponent = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
   const LayoutComponent = require(`../layouts/${layout}`).default
 
   return (
     <LayoutComponent {...rest}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
+      <MDXComponent components={MDXComponents} />
     </LayoutComponent>
   )
 }
