@@ -24,7 +24,7 @@ export const PageSeo = ({ title, description }) => {
   )
 }
 
-export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
+export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, images = [] }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -37,10 +37,48 @@ export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
 
   const featuredImages = imagesArr.map((img) => {
     return {
+      '@type': 'ImageObject',
       url: `${siteMetadata.siteUrl}${img}`,
-      alt: title,
     }
   })
+
+  let authorList
+  if (authorDetails) {
+    authorList = authorDetails.map((author) => {
+      return {
+        '@type': 'Person',
+        name: author.name,
+      }
+    })
+  } else {
+    authorList = {
+      '@type': 'Person',
+      name: siteMetadata.author,
+    }
+  }
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    headline: title,
+    image: featuredImages,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
+    author: authorList,
+    publisher: {
+      '@type': 'Organization',
+      name: siteMetadata.author,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+      },
+    },
+    description: summary,
+  }
 
   return (
     <>
@@ -64,6 +102,10 @@ export const BlogSeo = ({ title, summary, date, lastmod, images = [] }) => {
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
         <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
+        />
       </Head>
     </>
   )
