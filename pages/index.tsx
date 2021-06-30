@@ -16,7 +16,6 @@ export const getStaticProps: GetStaticProps<{ posts: PostFrontMatter[] }> = asyn
 }
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('Home')
   return (
     <>
       <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
