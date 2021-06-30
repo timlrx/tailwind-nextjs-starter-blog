@@ -3,11 +3,14 @@ import siteMetadata from '@/data/siteMetadata.json'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@/components/SEO'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { ComponentProps } from 'react'
 
 export const POSTS_PER_PAGE = 5
 
 export const getStaticProps: GetStaticProps<{
-  initialDisplayPosts
+  posts: ComponentProps<typeof ListLayout>['posts']
+  initialDisplayPosts: ComponentProps<typeof ListLayout>['initialDisplayPosts']
+  pagination: ComponentProps<typeof ListLayout>['pagination']
 }> = async () => {
   const posts = await getAllFilesFrontMatter('blog')
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
