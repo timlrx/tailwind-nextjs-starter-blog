@@ -3,7 +3,7 @@ import siteMetadata from '@/data/siteMetadata.json'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PostFrontMatter } from 'types/PostFrontMatter'
 
 export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
@@ -47,7 +47,11 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-export default function PostPage({ posts, initialDisplayPosts, pagination }) {
+export default function PostPage({
+  posts,
+  initialDisplayPosts,
+  pagination,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
