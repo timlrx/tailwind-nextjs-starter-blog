@@ -1,8 +1,6 @@
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { getFileBySlug } from '@/lib/mdx'
-import { GetStaticProps } from 'next'
-import { ComponentProps } from 'preact'
-import { PostFrontMatter } from 'types/PostFrontMatter'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 const DEFAULT_LAYOUT = 'AuthorLayout'
 
@@ -11,15 +9,14 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { authorDetails } }
 }
 
-interface Props {
-  authorDetails: {
-    mdxSource: ComponentProps<typeof MDXLayoutRenderer>['mdxSource']
-    frontMatter: PostFrontMatter
-  }
-}
-
-export default function About({ authorDetails }: Props) {
+export default function About({ authorDetails }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { mdxSource, frontMatter } = authorDetails
 
-  return <MDXLayoutRenderer layout={frontMatter.layout || DEFAULT_LAYOUT} mdxSource={mdxSource} />
+  return (
+    <MDXLayoutRenderer
+      layout={frontMatter.layout || DEFAULT_LAYOUT}
+      mdxSource={mdxSource}
+      frontMatter={frontMatter}
+    />
+  )
 }
