@@ -212,6 +212,6 @@ private Task OnAfterSaveChangesAsync(List<AuditEntry> auditEntries)
 
 Auditing of your entities is now configured. Whenever you make any changes to an entity of type `IAuditable`, you will see audit entries that reflect those changes. See the example audit entries below:
 
-![Audit entries for vehicle](/static/images/post7/audit-entries.png)
+![Audit entries for vehicle](/static/images/post7/audit-entries.PNG)
 
 To view the complete working example check out this repository: [https://github.com/Ngineer101/auditing-dotnet-entity-framework-core](https://github.com/Ngineer101/auditing-dotnet-entity-framework-core).
