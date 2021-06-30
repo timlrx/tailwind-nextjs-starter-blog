@@ -1,13 +1,13 @@
 import Link from '@/components/Link'
 
 interface Props {
-  totalPages: string
-  currentPage: string
+  totalPages: number
+  currentPage: number
 }
 
 export default function Pagination({ totalPages, currentPage }: Props) {
-  const prevPage = parseInt(currentPage) - 1 > 0
-  const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
+  const prevPage = currentPage - 1 > 0
+  const nextPage = currentPage + 1 <= totalPages
 
   return (
     <div className="pt-6 pb-8 space-y-2 md:space-y-5">
@@ -18,11 +18,7 @@ export default function Pagination({ totalPages, currentPage }: Props) {
           </button>
         )}
         {prevPage && (
-          <Link
-            href={
-              parseInt(currentPage) - 1 === 1 ? `/blog/` : `/blog/page/${parseInt(currentPage) - 1}`
-            }
-          >
+          <Link href={currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`}>
             <button>Previous</button>
           </Link>
         )}
