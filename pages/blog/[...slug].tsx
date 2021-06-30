@@ -5,6 +5,7 @@ import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
+import { PostFrontMatter } from 'types/PostFrontMatter'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
@@ -34,12 +35,12 @@ export const getStaticProps: GetStaticProps<{
   const prev: { slug: string; title: string } = allPosts[postIndex + 1] || null
   const next: { slug: string; title: string } = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('blog', slug)
-  const authorList = post.frontMatter.authors || ['default']
-  const authorPromise = authorList.map(async (author) => {
+  const authorList = (post.frontMatter as PostFrontMatter).authors || ['default']
+  const authorPromise: Promise<AuthorFrontMatter>[] = authorList.map(async (author) => {
     const authorResults = await getFileBySlug('authors', [author])
-    return authorResults.frontMatter
+    return authorResults.frontMatter as AuthorFrontMatter
   })
-  const authorDetails = await Promise.all(authorPromise)
+  const authorDetails: AuthorFrontMatter[] = await Promise.all(authorPromise)
 
   // rss
   const rss = generateRss(allPosts)
@@ -65,7 +66,7 @@ export default function Blog({
 
   return (
     <>
-      {frontMatter.draft !== true ? (
+      {'draft' in frontMatter && frontMatter.draft !== true ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
           mdxSource={mdxSource}
