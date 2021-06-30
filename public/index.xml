@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Thu, 10 Jun 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Sat, 26 Jun 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/auditing-dotnet-entity-framework-core</guid>
+    <title>How to set up auditing in Entity Framework Core</title>
+    <link>https://nwb.one/blog/auditing-dotnet-entity-framework-core</link>
+    <description>Learn how to set up simple entity auditing and track changes in Entity Framework Core.</description>
+    <pubDate>Sat, 26 Jun 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category><category>entity-framework</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/exception-filter-attribute-dotnet</guid>
     <title>How to configure a custom exception filter in .NET 5 web API</title>
