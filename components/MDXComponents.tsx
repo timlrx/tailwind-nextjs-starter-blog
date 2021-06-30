@@ -15,8 +15,8 @@ export const MDXComponents = {
 interface Props extends Omit<ComponentProps<typeof MDXRemote>, 'compiledSource'> {
   layout: string
   mdxSource: ComponentProps<typeof MDXRemote>
-  frontMatter: PostFrontMatter
-  authorDetails: AuthorFrontMatter[]
+  frontMatter?: PostFrontMatter
+  authorDetails?: AuthorFrontMatter[]
   prev?: { slug: string; title: string }
   next?: { slug: string; title: string }
 }
