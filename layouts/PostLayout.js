@@ -55,7 +55,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                     <li className="flex items-center space-x-2" key={author.name}>
                       {author.avatar && (
                         <Image
-                          src={siteMetadata.image}
+                          src={author.avatar}
                           width="38px"
                           height="38px"
                           alt="avatar"

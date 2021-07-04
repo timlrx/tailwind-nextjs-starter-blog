@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-06-02'
+date: '2021-06-29'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -12,15 +12,17 @@ layout: PostSimple
 A post on the new features introduced in v1.0. New features:
 
 - [Theme colors](#theme-colors)
+- [Xdm MDX compiler](#xdm-mdx-compiler)
 - [Layouts](#layouts)
 - [Multiple authors](#multiple-authors)
 - [Copy button for code blocks](#copy-button-for-code-blocks)
+- [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
 
 ## Theme colors
 
 You can easily modify the theme color by changing the primary attribute in the tailwind config file:
 
-```:tailwind.config.js
+```js:tailwind.config.js
 theme: {
     colors: {
       primary: colors.teal,
@@ -36,6 +38,37 @@ The primary color attribute should be assigned an object with keys from 50, 100,
 Tailwind includes great default color palettes that can be used for theming your own website. Check out [customizing colors documentation page](https://tailwindcss.com/docs/customizing-colors) for the full range of options.
 
 Migrating from v1? You can revert to the previous theme by setting `primary` to `colors.sky` (Tailwind 2.2.2 and above, otherwise `colors.lightBlue`) and changing gray to `colors.coolGray`.
+
+## Xdm MDX compiler
+
+We switch the MDX bundler from [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler).
+This uses [xdm](https://github.com/wooorm/xdm) under the hood uses the latest micromark 3 and remark, rehype libraries.
+
+**Warning:** If you were using custom remark or rehype libraries, please upgrade to micromark 3 compatible ones. If you are upgrading, please delete `node_modules` and `package-lock.json` to avoid having past dependencies related issues.
+
+[xdm](https://github.com/wooorm/xdm) contains multiple improvements over [@mdx-js/mdx](https://github.com/mdx-js/mdx), the compiler used internally by next-mdx-remote, but there might be some breaking behaviour changes.
+Please check your markdown output to verify.
+
+Some new possibilities include loading components directly in the mdx file using the import syntax and including js code which could be compiled at the build step.
+
+For example, the following jsx snippet can be used directly in an MDX file to render the page title component:
+
+```js
+import PageTitle from './PageTitle.js'
+
+;<PageTitle> Using JSX components in MDX </PageTitle>
+```
+
+import PageTitle from './PageTitle.js'
+
+<PageTitle> Using JSX components in MDX </PageTitle>
+
+The default configuration resolves all components relative to the `components` directory.
+
+**Note**:
+Components which require external image loaders would require additional esbuild configuration.
+Components which are dependent on global application state on lifecycle like the Nextjs `Link` component would also not work with this setup as each mdx file is built indepedently.
+For such cases, it is better to use component substitution.
 
 ## Layouts
 
@@ -110,7 +143,7 @@ Information on authors is now split from `siteMetadata.json` and stored in its o
 
 Here's how an author markdown file might looks like:
 
-```:default.md
+```md:default.md
 ---
 name: Tails Azimuth
 avatar: /static/images/avatar.png
@@ -153,3 +186,46 @@ A demo of a multiple author post is shown in the [Introducing Tailwind Nextjs St
 
 Hover over a code block and you will notice a Github inspired copy button! You can modify `./components/Pre.js` to further customise it.
 The component is passed to `MDXComponents` and modifies all `<pre>` blocks.
+
+## Line highlighting and line numbers
+
+Line highlighting and line numbers is now supported out of the box thanks to the new [rehype-prism-plus plugin](https://github.com/timlrx/rehype-prism-plus)
+
+The following javascript code block:
+
+````
+```js {1, 3-4} showLineNumbers
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+````
+
+will appear as:
+
+```js {1,3-4} showLineNumbers
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+
+To modify the styles, change the following class selectors in the `tailwind.css` file:
+
+```css
+.code-line {
+  @apply pl-4 -mx-4 border-l-4 border-gray-800;
+}
+
+.highlight-line {
+  @apply -mx-4 bg-gray-700 bg-opacity-50 border-l-4 border-primary-500;
+}
+
+.line-number::before {
+  @apply pr-4 -ml-2 text-gray-400;
+  content: attr(line);
+}
+```
