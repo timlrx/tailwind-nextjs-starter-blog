@@ -1,6 +1,6 @@
 ---
 name: Sparrow Hawk
-avatar: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Accnis_edit.jpg/220px-Accnis_edit.jpg
+avatar: /static/images/sparrowhawk-avatar.jpg
 occupation: Wizard of Earthsea
 company: Earthsea
 twitter: https://twitter.com/sparrowhawk
