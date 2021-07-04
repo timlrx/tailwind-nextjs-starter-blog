@@ -51,6 +51,25 @@ Please check your markdown output to verify.
 
 Some new possibilities include loading components directly in the mdx file using the import syntax and including js code which could be compiled at the build step.
 
+For example, the following jsx snippet can be used directly in an MDX file to render the page title component:
+
+```js
+import PageTitle from './PageTitle.js'
+
+;<PageTitle> Using JSX components in MDX </PageTitle>
+```
+
+import PageTitle from './PageTitle.js'
+
+<PageTitle> Using JSX components in MDX </PageTitle>
+
+The default configuration resolves all components relative to the `components` directory.
+
+**Note**:
+Components which require external image loaders would require additional esbuild configuration.
+Components which are dependent on global application state on lifecycle like the Nextjs `Link` component would also not work with this setup as each mdx file is built indepedently.
+For such cases, it is better to use component substitution.
+
 ## Layouts
 
 You can map mdx blog content to layout components by configuring the frontmatter field. For example, this post is written with the new `PostSimple` layout!
