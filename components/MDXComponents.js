@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import Image from './Image'
@@ -8,15 +9,14 @@ export const MDXComponents = {
   Image,
   a: CustomLink,
   pre: Pre,
+  wrapper: ({ components, layout, ...rest }) => {
+    const Layout = require(`../layouts/${layout}`).default
+    return <Layout {...rest} />
+  },
 }
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
-  const MDXComponent = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
-  const LayoutComponent = require(`../layouts/${layout}`).default
+  const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
 
-  return (
-    <LayoutComponent {...rest}>
-      <MDXComponent components={MDXComponents} />
-    </LayoutComponent>
-  )
+  return <MDXLayout layout={layout} components={MDXComponents} {...rest} />
 }
