@@ -143,17 +143,9 @@ layout: PostLayout
 
 ### Compose
 
-`scripts/compose.js` can be used to easily generate a post with pre-filled front matter.
+Run `node ./scripts/compose.js` to bootstrap a new post.
 
-The first argument is the name of the post and the second optional argument is the extension (default to .mdx)
-
-Example code to generate the post called "My First Post" in markdown format
-
-```
-node ./scripts/compose.js "My First Post" .md
-```
-
-This will generate `./data/blog/my-first-post.md` with pre-filled front matter.
+Follow the interactive prompt to generate a post with pre-filled front matter.
 
 ## Deploy
 
