@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { ComponentMap, getMDXComponent } from 'mdx-bundler/client'
 import Image from './Image'
 import CustomLink from './Link'
@@ -7,18 +7,19 @@ import Pre from './Pre'
 import { PostFrontMatter } from 'types/PostFrontMatter'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 
-export const MDXComponents = {
+const Wrapper: React.ComponentType<{ layout: string }> = ({ layout, ...rest }) => {
+  const Layout = require(`../layouts/${layout}`).default
+  return <Layout {...rest} />
+}
+
+export const MDXComponents: ComponentMap = {
   Image,
   a: CustomLink,
   pre: Pre,
-  wrapper: ({ layout, ...rest }) => {
-    const Layout = require(`../layouts/${layout}`).default
-    return <Layout {...rest} />
-  },
+  wrapper: Wrapper,
 }
 
 interface Props {
-  components: ComponentMap
   layout: string
   mdxSource: string
   frontMatter?: PostFrontMatter
