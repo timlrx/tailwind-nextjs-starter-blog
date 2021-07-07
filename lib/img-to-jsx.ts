@@ -1,4 +1,4 @@
-import { Parent, Node } from 'unist'
+import { Parent, Node, Literal } from 'unist'
 import visit from 'unist-util-visit'
 import sizeOf from 'image-size'
 import fs from 'fs'
@@ -11,7 +11,13 @@ export default function ImgToJsx() {
       (node: Parent): node is Parent =>
         node.type === 'paragraph' && node.children.some((n) => n.type === 'image'),
       (node: Parent) => {
-        const imageNode = node.children.find((n) => n.type === 'image')
+        type ImageNode = Parent & {
+          url: string
+          alt: string
+          name: string
+          attributes: (Literal & { name: string })[]
+        }
+        const imageNode = node.children.find((n) => n.type === 'image') as ImageNode
 
         // only local files
         if (fs.existsSync(`${process.cwd()}/public${imageNode.url}`)) {

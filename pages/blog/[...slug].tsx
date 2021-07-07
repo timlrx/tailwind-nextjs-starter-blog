@@ -21,10 +21,8 @@ export async function getStaticPaths() {
   }
 }
 
-type Unpromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never
-
 export const getStaticProps: GetStaticProps<{
-  post: Unpromise<ReturnType<typeof getFileBySlug>>
+  post: { mdxSource: string; frontMatter: PostFrontMatter }
   authorDetails: AuthorFrontMatter[]
   prev?: { slug: string; title: string }
   next?: { slug: string; title: string }
@@ -34,13 +32,13 @@ export const getStaticProps: GetStaticProps<{
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === slug)
   const prev: { slug: string; title: string } = allPosts[postIndex + 1] || null
   const next: { slug: string; title: string } = allPosts[postIndex - 1] || null
-  const post = await getFileBySlug('blog', slug)
-  const authorList = (post.frontMatter as PostFrontMatter).authors || ['default']
-  const authorPromise: Promise<AuthorFrontMatter>[] = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug('authors', [author])
-    return authorResults.frontMatter as AuthorFrontMatter
+  const post = await getFileBySlug<PostFrontMatter>('blog', slug)
+  const authorList = post.frontMatter.authors || ['default']
+  const authorPromise = authorList.map(async (author) => {
+    const authorResults = await getFileBySlug<AuthorFrontMatter>('authors', [author])
+    return authorResults.frontMatter
   })
-  const authorDetails: AuthorFrontMatter[] = await Promise.all(authorPromise)
+  const authorDetails = await Promise.all(authorPromise)
 
   // rss
   const rss = generateRss(allPosts)
