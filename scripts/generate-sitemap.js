@@ -26,7 +26,7 @@ const siteMetadata = require('../data/siteMetadata')
                   .replace('.js', '')
                   .replace('.mdx', '')
                   .replace('.md', '')
-                  .replace('/index.xml', '')
+                  .replace('/feed.xml', '')
                 const route = path === '/index' ? '' : path
                 if (page === `pages/404.js` || page === `pages/blog/[...slug].js`) {
                   return
