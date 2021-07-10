@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<{
 
   // rss
   const rss = generateRss(allPosts)
-  fs.writeFileSync('./public/index.xml', rss)
+  fs.writeFileSync('./public/feed.xml', rss)
 
   return {
     props: {
