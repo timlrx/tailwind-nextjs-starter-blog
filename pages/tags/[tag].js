@@ -30,10 +30,10 @@ export async function getStaticProps({ params }) {
   )
 
   // rss
-  const rss = generateRss(filteredPosts, `tags/${params.tag}/index.xml`)
+  const rss = generateRss(filteredPosts, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
-  fs.writeFileSync(path.join(rssPath, 'index.xml'), rss)
+  fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
 
   return { props: { posts: filteredPosts, tag: params.tag } }
 }
@@ -46,7 +46,6 @@ export default function Tag({ posts, tag }) {
       <PageSeo
         title={`${tag} - ${siteMetadata.title}`}
         description={`${tag} tags - ${siteMetadata.title}`}
-        url={`${siteMetadata.siteUrl}/tags/${tag}`}
       />
       <ListLayout posts={posts} title={title} />
     </>
