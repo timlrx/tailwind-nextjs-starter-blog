@@ -59,7 +59,7 @@ inquirer
       type: 'input',
     },
     {
-      name: 'extention',
+      name: 'extension',
       message: 'Choose post extension:',
       type: 'list',
       choices: ['mdx', 'md'],
@@ -102,7 +102,7 @@ inquirer
       .replace(/-+/g, '-')
     const frontMatter = genFrontMatter(answers)
     const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${
-      answers.extention ? answers.extention : 'md'
+      answers.extension ? answers.extension : 'md'
     }`
     fs.writeFile(filePath, frontMatter, { flag: 'wx' }, (err) => {
       if (err) {
