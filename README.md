@@ -31,14 +31,14 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 - Easy styling customization with [Tailwind 2.0](https://blog.tailwindcss.com/tailwindcss-v2) and primary color attribute
 - Near perfect lighthouse score - [Lighthouse report](https://www.webpagetest.org/result/210111_DiC1_08f3670c3430bf4a9b76fc3b927716c5/)
-- Lightweight, 43kB first load JS, uses Preact in production build
+- Lightweight, 38kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
 - [MDX - write JSX in markdown documents!](https://mdxjs.com/)
-- Server-side syntax highlighting with [rehype-prism](https://github.com/mapbox/rehype-prism)
+- Server-side syntax highlighting with line numbers and line highlighting via [rehype-prism-plus](https://github.com/timlrx/rehype-prism-plus)
 - Math display supported via [KaTeX](https://katex.org/)
 - Automatic image optimization via [next/image](https://nextjs.org/docs/basic-features/image-optimization)
-- Flexible data retrieval with [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
+- Flexible data retrieval with [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
 - Support for tags - each unique tag will be its own page
 - Support for multiple authors
 - Blog templates
@@ -57,7 +57,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git`
+1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
 2. Personalize `siteMetadata.json` (site related information)
 3. Personalize `authors/default.md` (main author)
 4. Modify `projectsData.js`
