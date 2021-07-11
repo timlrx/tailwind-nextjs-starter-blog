@@ -1,0 +1,267 @@
+---
+title: 'New features in v1'
+date: '2021-07-11'
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
+layout: PostSimple
+---
+
+## Overview
+
+A post on the new features introduced in v1.0. New features:
+
+- [Theme colors](#theme-colors)
+- [Xdm MDX compiler](#xdm-mdx-compiler)
+- [Layouts](#layouts)
+- [Multiple authors](#multiple-authors)
+- [Copy button for code blocks](#copy-button-for-code-blocks)
+- [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
+
+First load JS decreased from 43kB to 38kB despite all the new features added!
+
+See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version of the template.
+
+## Theme colors
+
+You can easily modify the theme color by changing the primary attribute in the tailwind config file:
+
+```js:tailwind.config.js
+theme: {
+    colors: {
+      primary: colors.teal,
+      gray: colors.trueGray,
+      ...
+    }
+  ...
+}
+```
+
+The primary color attribute should be assigned an object with keys from 50, 100, 200 ... 900 and the corresponding color code values.
+
+Tailwind includes great default color palettes that can be used for theming your own website. Check out [customizing colors documentation page](https://tailwindcss.com/docs/customizing-colors) for the full range of options.
+
+Migrating from v1? You can revert to the previous theme by setting `primary` to `colors.sky` (Tailwind 2.2.2 and above, otherwise `colors.lightBlue`) and changing gray to `colors.coolGray`.
+
+## Xdm MDX compiler
+
+We switch the MDX bundler from [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler).
+This uses [xdm](https://github.com/wooorm/xdm) under the hood uses the latest micromark 3 and remark, rehype libraries.
+
+**Warning:** If you were using custom remark or rehype libraries, please upgrade to micromark 3 compatible ones. If you are upgrading, please delete `node_modules` and `package-lock.json` to avoid having past dependencies related issues.
+
+[xdm](https://github.com/wooorm/xdm) contains multiple improvements over [@mdx-js/mdx](https://github.com/mdx-js/mdx), the compiler used internally by next-mdx-remote, but there might be some breaking behaviour changes.
+Please check your markdown output to verify.
+
+Some new possibilities include loading components directly in the mdx file using the import syntax and including js code which could be compiled at the build step.
+
+For example, the following jsx snippet can be used directly in an MDX file to render the page title component:
+
+```js
+import PageTitle from './PageTitle.js'
+;<PageTitle> Using JSX components in MDX </PageTitle>
+```
+
+import PageTitle from './PageTitle.js'
+
+<PageTitle> Using JSX components in MDX </PageTitle>
+
+The default configuration resolves all components relative to the `components` directory.
+
+**Note**:
+Components which require external image loaders would require additional esbuild configuration.
+Components which are dependent on global application state on lifecycle like the Nextjs `Link` component would also not work with this setup as each mdx file is built indepedently.
+For such cases, it is better to use component substitution.
+
+## Layouts
+
+You can map mdx blog content to layout components by configuring the frontmatter field. For example, this post is written with the new `PostSimple` layout!
+
+### Adding new templates
+
+layout templates are stored in the `./layouts` folder. You can add add your React components that you want to map to markdown content in this folder.
+The component file name must match that specified in the markdown frontmatter `layout` field.
+
+The only required field is `children` which contains the rendered MDX content, though you would probably want to pass in the frontMatter contents and render it in the template.
+
+You can configure the template to take in other fields - see `PostLayout` component for an example.
+
+Here's an example layout which you can further customise:
+
+```js
+export default function ExampleLayout({ frontMatter, children }) {
+  const { date, title } = frontMatter
+
+  return (
+    <SectionContainer>
+      <div>{date}</div>
+      <h1>{title}</h1>
+      <div>{children}</div>
+    </SectionContainer>
+  )
+}
+```
+
+### Configuring a blog post frontmatter
+
+Use the `layout` frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
+
+```
+---
+title: 'New features in v1'
+date: '2021-05-26   '
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'Introducing the new layout features - you can map mdx blog content to layout components by configuring the frontmatter field'
+layout: PostSimple
+---
+```
+
+You can configure the default layout in the respective page section by modifying the `DEFAULT_LAYOUT` variable.
+The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
+
+### Extend
+
+The layout mapping is handled by the `MDXLayoutRenderer` component.
+It's a glue component which imports the specified layout, processes the MDX content before passing it back to the layout component as children.
+
+```js
+export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+  const LayoutComponent = require(`../layouts/${layout}`).default
+
+  return (
+    <LayoutComponent {...rest}>
+      <MDXRemote {...mdxSource} components={MDXComponents} />
+    </LayoutComponent>
+  )
+}
+```
+
+Use the component is a page where you want to accept a layout name to map to the desired layout.
+You need to pass the layout name from the layout folder (it has to be an exact match) and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.
+
+## Multiple authors
+
+Information on authors is now split from `siteMetadata.json` and stored in its own `data/authors` folder as a markdown file. Minimally, you will need to have a `default.md` file with authorship information. You can create additional files as required and the file name will be used as the reference to the author.
+
+Here's how an author markdown file might looks like:
+
+```md:default.md
+---
+name: Tails Azimuth
+avatar: /static/images/avatar.png
+occupation: Professor of Atmospheric Science
+company: Stanford University
+email: address@yoursite.com
+twitter: https://twitter.com/Twitter
+linkedin: https://www.linkedin.com
+github: https://github.com
+---
+
+A long description of yourself...
+```
+
+You can use this information in multiple places across the template. For example in the about section of the page, we grab the default author information with this line of code:
+
+```
+const authorDetails = await getFileBySlug('authors', ['default'])
+```
+
+This is rendered in the `AuthorLayout` template.
+
+### Multiple authors in blog post
+
+The frontmatter of a blog post accepts an optional `authors` arrray field. If no field is specified, it is assumed that the default author is used. Simply pass in an array of authors to render multiple authors associated with post.
+
+For example, the following frontmatter will display the authors given by `data/authors/default.md` and `data/authors/sparrowhawk.md`
+
+```
+title: 'My first post'
+date: '2021-01-12'
+draft: false
+summary: 'My first post'
+authors: ['default', 'sparrowhawk']
+```
+
+A demo of a multiple author post is shown in the [Introducing Tailwind Nextjs Starter Blog post](/blog/introducing-tailwind-nextjs-starter-blog).
+
+## Copy button for code blocks
+
+Hover over a code block and you will notice a Github inspired copy button! You can modify `./components/Pre.js` to further customise it.
+The component is passed to `MDXComponents` and modifies all `<pre>` blocks.
+
+## Line highlighting and line numbers
+
+Line highlighting and line numbers is now supported out of the box thanks to the new [rehype-prism-plus plugin](https://github.com/timlrx/rehype-prism-plus)
+
+The following javascript code block:
+
+````
+```js {1, 3-4} showLineNumbers
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+````
+
+will appear as:
+
+```js {1,3-4} showLineNumbers
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+
+To modify the styles, change the following class selectors in the `tailwind.css` file:
+
+```css
+.code-line {
+  @apply pl-4 -mx-4 border-l-4 border-gray-800;
+}
+
+.highlight-line {
+  @apply -mx-4 bg-gray-700 bg-opacity-50 border-l-4 border-primary-500;
+}
+
+.line-number::before {
+  @apply pr-4 -ml-2 text-gray-400;
+  content: attr(line);
+}
+```
+
+## Upgrade guide
+
+There are significant portions of the code that has been changed from v0 to v1 including support for layouts and a new mdx engine.
+
+There's also no real reason to change if the previous one serves your needs and it might be easier to copy
+the component changes you are interested to your existing blog rather than migrating everything over.
+
+Nonetheless if you want to do so and have not changed much of the template, you could clone the new version and copy over the blog post instead.
+
+Another alternative would be to pull the latest tempate version with the following code:
+
+```bash
+git remote add template git@github.com:timlrx/tailwind-nextjs-starter-blog.git
+git pull template v1 --allow-unrelated-histories
+rm -rf node_modules
+```
+
+You can see an example of such a migration in this [commit](https://github.com/timlrx/timlrx.com/commit/bba1c185384fd6d5cdaac15abf802fdcff027286) for my personal blog.
+
+v1 also uses `feed.xml` rather than `index.xml`. If you are migrating you should add a redirect to `next.config.js` like so:
+
+```
+async redirects() {
+  return [
+    {
+      source: '/:path/index.xml',
+      destination: '/:path/feed.xml',
+      permanent: true,
+    }
+  ]
+}
+```
