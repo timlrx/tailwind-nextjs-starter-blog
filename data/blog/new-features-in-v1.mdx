@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-06-29'
+date: '2021-07-11'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -17,6 +17,10 @@ A post on the new features introduced in v1.0. New features:
 - [Multiple authors](#multiple-authors)
 - [Copy button for code blocks](#copy-button-for-code-blocks)
 - [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
+
+First load JS decreased from 43kB to 38kB despite all the new features added!
+
+See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version of the template.
 
 ## Theme colors
 
@@ -226,5 +230,38 @@ To modify the styles, change the following class selectors in the `tailwind.css`
 .line-number::before {
   @apply pr-4 -ml-2 text-gray-400;
   content: attr(line);
+}
+```
+
+## Upgrade guide
+
+There are significant portions of the code that has been changed from v0 to v1 including support for layouts and a new mdx engine.
+
+There's also no real reason to change if the previous one serves your needs and it might be easier to copy
+the component changes you are interested to your existing blog rather than migrating everything over.
+
+Nonetheless if you want to do so and have not changed much of the template, you could clone the new version and copy over the blog post instead.
+
+Another alternative would be to pull the latest tempate version with the following code:
+
+```bash
+git remote add template git@github.com:timlrx/tailwind-nextjs-starter-blog.git
+git pull template v1 --allow-unrelated-histories
+rm -rf node_modules
+```
+
+You can see an example of such a migration in this [commit](https://github.com/timlrx/timlrx.com/commit/bba1c185384fd6d5cdaac15abf802fdcff027286) for my personal blog.
+
+v1 also uses `feed.xml` rather than `index.xml`. If you are migrating you should add a redirect to `next.config.js` like so:
+
+```
+async redirects() {
+  return [
+    {
+      source: '/:path/index.xml',
+      destination: '/:path/feed.xml',
+      permanent: true,
+    }
+  ]
 }
 ```

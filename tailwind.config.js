@@ -31,7 +31,7 @@ module.exports = {
           yellow: '#ffe484',
           purple: '#d9a9ff',
           red: '#ff8383',
-          primary: '#93ddfd',
+          blue: '#93ddfd',
           white: '#fff',
         },
       },
