@@ -20,16 +20,9 @@ const siteMetadata = {
     provider: 'giscus', // supported providers: giscus, utterances, disqus
     giscusConfig: {
       repo: 'timlrx/tailwind-nextjs-starter-blog', // username/repoName
-      // Visit the link below and copy/paste the 'repositoryId', 'category' and 'categoryId'
-      // https://giscus.app/api/discussions/categories?repo={username}%2F{repoName}
+      // Visit the link below, enter your repo in the configuration section and copy the script data parameters
+      // https://giscus.app/
       repositoryId: 'MDEwOlJlcG9zaXRvcnkzMjgxMjEyNjA=',
-      category: [
-        { emoji: '📣', id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYw', name: 'Announcements' },
-        { emoji: '💬', id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYx', name: 'General' },
-        { emoji: '🙏', id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYy', name: 'Q&A' },
-        { emoji: '💡', id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYz', name: 'Ideas' },
-        { emoji: '🙌', id: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDY0', name: 'Show and tell' },
-      ],
       categoryId: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYw',
       mapping: 'pathname', // supported options: pathname, url, title
       reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
