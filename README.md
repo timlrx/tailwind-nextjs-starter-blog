@@ -43,6 +43,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Support for multiple authors
 - Blog templates
 - Support for nested routing of blog posts
+- Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
 - SEO friendly with RSS feed, sitemaps and more!
 
