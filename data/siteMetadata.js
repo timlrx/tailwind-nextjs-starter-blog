@@ -21,9 +21,11 @@ const siteMetadata = {
     giscusConfig: {
       repo: 'timlrx/tailwind-nextjs-starter-blog', // username/repoName
       // Visit the link below, enter your repo in the configuration section and copy the script data parameters
+      // Before that you should create a new Github discussions category with the Announcements type so that new discussions can only be created by maintainers and giscus
       // https://giscus.app/
       repositoryId: 'MDEwOlJlcG9zaXRvcnkzMjgxMjEyNjA=',
-      categoryId: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMzMDM4NDYw',
+      category: 'Blog Comments',
+      categoryId: 'DIC_kwDOE467rM4B-XTQ',
       mapping: 'pathname', // supported options: pathname, url, title
       reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
       // Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
