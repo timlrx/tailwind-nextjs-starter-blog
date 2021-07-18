@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
+import { useTheme } from 'next-themes'
 
 import siteMetadata from '@/data/siteMetadata'
 
 const Giscus = ({ mapping }) => {
   const [enableLoadComments, setEnabledLoadComments] = useState(true)
+  const { theme, resolvedTheme } = useTheme()
+  const commentsTheme =
+    siteMetadata.comment.giscusConfig.themeURL === ''
+      ? theme === 'dark' || resolvedTheme === 'dark'
+        ? siteMetadata.comment.giscusConfig.darkTheme
+        : siteMetadata.comment.giscusConfig.theme
+      : siteMetadata.comment.giscusConfig.themeURL
 
   const COMMENTS_ID = 'comments-container'
 
@@ -18,14 +26,7 @@ const Giscus = ({ mapping }) => {
     script.setAttribute('data-mapping', mapping)
     script.setAttribute('data-reactions-enabled', siteMetadata.comment.giscusConfig.reactions)
     script.setAttribute('data-emit-metadata', siteMetadata.comment.giscusConfig.metadata)
-    script.setAttribute(
-      'data-theme',
-      `${
-        siteMetadata.comment.giscusConfig.themeURL === ''
-          ? siteMetadata.comment.giscusConfig.theme
-          : siteMetadata.comment.giscusConfig.themeURL
-      }`
-    )
+    script.setAttribute('data-theme', commentsTheme)
     script.setAttribute('crossorigin', 'anonymous')
     script.async = true
 
