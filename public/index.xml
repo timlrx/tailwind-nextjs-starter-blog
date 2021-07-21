@@ -7,9 +7,19 @@
       <language>en</language>
       <managingEditor> (Nico Botha)</managingEditor>
       <webMaster> (Nico Botha)</webMaster>
-      <lastBuildDate>Sat, 26 Jun 2021 00:00:00 GMT</lastBuildDate>
+      <lastBuildDate>Tue, 20 Jul 2021 00:00:00 GMT</lastBuildDate>
       <atom:link href="https://nwb.one/index.xml" rel="self" type="application/rss+xml"/>
       
+  <item>
+    <guid>https://nwb.one/blog/difference-between-datetime-now-utcnow</guid>
+    <title>What is the difference between DateTime.UtcNow and DateTime.Now in .NET?</title>
+    <link>https://nwb.one/blog/difference-between-datetime-now-utcnow</link>
+    <description>Learn the difference between DateTime.UtcNow and DateTime.Now and when to use what.</description>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 GMT</pubDate>
+    <author> (Nico Botha)</author>
+    <category>asp-net-core</category><category>dotnet</category>
+  </item>
+
   <item>
     <guid>https://nwb.one/blog/auditing-dotnet-entity-framework-core</guid>
     <title>How to set up auditing in Entity Framework Core</title>
