@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-07-18'
+date: '2021-07-21'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -148,31 +148,34 @@ To enable, simply configure `siteMetadata.js` comments property with the desired
 
 ```js
 comment: {
-    provider: '', // supported providers: giscus, utterances, disqus
+    // Select a provider and use the environment variables associated to it
+    // https://vercel.com/docs/environment-variables
+    provider: 'giscus', // supported providers: giscus, utterances, disqus
     giscusConfig: {
-      repo: '', // username/repoName
-      // Visit the link below, enter your repo in the configuration section and copy the script data parameters
-      // Before that you should create a new Github discussions category with the Announcements type so that new discussions can only be created by maintainers and giscus
+      // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
-      repositoryId: '',
-      category: '',
-      categoryId: '',
-      mapping: '', // supported options: pathname, url, title
-      reactions: '', // Emoji reactions: 1 = enable / 0 = disable
+      repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+      repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
+      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+      mapping: 'pathname', // supported options: pathname, url, title
+      reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
       // Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
-      metadata: '',
+      metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
-      theme: '',
+      theme: 'light',
       // theme when dark mode
-      darkTheme: '',
+      darkTheme: 'transparent_dark',
       // If the theme option above is set to 'custom`
       // please provide a link below to your custom theme css file.
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
     },
     utterancesConfig: {
-      repo: '', // username/repoName
+      // Visit the link below, and follow the steps in the 'configuration' section
+      // https://utteranc.es/
+      repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
       issueTerm: '', // supported options: pathname, url, title
       label: '', // label (optional): Comment 💬
       // theme example: github-light, github-dark, preferred-color-scheme
@@ -183,9 +186,9 @@ comment: {
     },
     disqus: {
       // https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-      shortname: '',
+      shortname: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
     },
-  }
+  },
 ```
 
 ## Multiple authors
