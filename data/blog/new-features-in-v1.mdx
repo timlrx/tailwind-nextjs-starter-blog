@@ -123,23 +123,28 @@ The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
 
 ### Extend
 
-The layout mapping is handled by the `MDXLayoutRenderer` component.
-It's a glue component which imports the specified layout, processes the MDX content before passing it back to the layout component as children.
+`layout` is mapped to wrapper which wraps the entire MDX content.
 
 ```js
-export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
-  const LayoutComponent = require(`../layouts/${layout}`).default
+export const MDXComponents = {
+  Image,
+  a: CustomLink,
+  pre: Pre,
+  wrapper: ({ components, layout, ...rest }) => {
+    const Layout = require(`../layouts/${layout}`).default
+    return <Layout {...rest} />
+  },
+}
 
-  return (
-    <LayoutComponent {...rest}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
-    </LayoutComponent>
-  )
+export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+  const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
+
+  return <MDXLayout layout={layout} components={MDXComponents} {...rest} />
 }
 ```
 
-Use the component is a page where you want to accept a layout name to map to the desired layout.
-You need to pass the layout name from the layout folder (it has to be an exact match) and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.
+Use the `MDXLayoutRenderer` component in a page where you want to accept a layout name to map to the desired layout.
+You need to pass the layout name from the layout folder (it has to be an exact match).
 
 ## Blog comments system
 
