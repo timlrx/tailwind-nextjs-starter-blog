@@ -59,7 +59,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 ## Quick Start Guide
 
 1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
-2. Personalize `siteMetadata.json` (site related information)
+2. Personalize `siteMetadata.js` (site related information)
 3. Personalize `authors/default.md` (main author)
 4. Modify `projectsData.js`
 5. Modify `headerNavLinks.js` to customize navigation links
@@ -82,7 +82,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## Extend / Customize
 
-`data/siteMetadata.json` - contains most of the site related information which should be modified for a user's need.
+`data/siteMetadata.js` - contains most of the site related information which should be modified for a user's need.
 
 `data/authors/default.md` - default author information (required). Additional authors can be added as files in `data/authors`.
 
