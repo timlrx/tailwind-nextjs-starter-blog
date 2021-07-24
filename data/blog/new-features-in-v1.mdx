@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-07-11'
+date: '2021-07-21'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -15,6 +15,7 @@ A post on the new features introduced in v1.0. New features:
 - [Xdm MDX compiler](#xdm-mdx-compiler)
 - [Layouts](#layouts)
 - [Multiple authors](#multiple-authors)
+- [Blog comments system](#blog-comments-system)
 - [Copy button for code blocks](#copy-button-for-code-blocks)
 - [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
 
@@ -122,27 +123,82 @@ The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
 
 ### Extend
 
-The layout mapping is handled by the `MDXLayoutRenderer` component.
-It's a glue component which imports the specified layout, processes the MDX content before passing it back to the layout component as children.
+`layout` is mapped to wrapper which wraps the entire MDX content.
 
 ```js
-export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
-  const LayoutComponent = require(`../layouts/${layout}`).default
+export const MDXComponents = {
+  Image,
+  a: CustomLink,
+  pre: Pre,
+  wrapper: ({ components, layout, ...rest }) => {
+    const Layout = require(`../layouts/${layout}`).default
+    return <Layout {...rest} />
+  },
+}
 
-  return (
-    <LayoutComponent {...rest}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
-    </LayoutComponent>
-  )
+export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+  const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
+
+  return <MDXLayout layout={layout} components={MDXComponents} {...rest} />
 }
 ```
 
-Use the component is a page where you want to accept a layout name to map to the desired layout.
-You need to pass the layout name from the layout folder (it has to be an exact match) and the mdxSource content which is an output of the `seralize` function from the `next-mdx-remote` library.
+Use the `MDXLayoutRenderer` component in a page where you want to accept a layout name to map to the desired layout.
+You need to pass the layout name from the layout folder (it has to be an exact match).
+
+## Blog comments system
+
+We added support for [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus.
+To enable, simply configure `siteMetadata.js` comments property with the desired provider and settings as specified in the config file.
+
+```js
+comment: {
+    // Select a provider and use the environment variables associated to it
+    // https://vercel.com/docs/environment-variables
+    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    giscusConfig: {
+      // Visit the link below, and follow the steps in the 'configuration' section
+      // https://giscus.app/
+      repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+      repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
+      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+      mapping: 'pathname', // supported options: pathname, url, title
+      reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
+      // Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
+      metadata: '0',
+      // theme example: light, dark, dark_dimmed, dark_high_contrast
+      // transparent_dark, preferred_color_scheme, custom
+      theme: 'light',
+      // theme when dark mode
+      darkTheme: 'transparent_dark',
+      // If the theme option above is set to 'custom`
+      // please provide a link below to your custom theme css file.
+      // example: https://giscus.app/themes/custom_example.css
+      themeURL: '',
+    },
+    utterancesConfig: {
+      // Visit the link below, and follow the steps in the 'configuration' section
+      // https://utteranc.es/
+      repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
+      issueTerm: '', // supported options: pathname, url, title
+      label: '', // label (optional): Comment 💬
+      // theme example: github-light, github-dark, preferred-color-scheme
+      // github-dark-orange, icy-dark, dark-blue, photon-dark, boxy-light
+      theme: '',
+      // theme when dark mode
+      darkTheme: '',
+    },
+    disqus: {
+      // https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+      shortname: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
+    },
+  },
+```
 
 ## Multiple authors
 
-Information on authors is now split from `siteMetadata.json` and stored in its own `data/authors` folder as a markdown file. Minimally, you will need to have a `default.md` file with authorship information. You can create additional files as required and the file name will be used as the reference to the author.
+Information on authors is now split from `siteMetadata.js` and stored in its own `data/authors` folder as a markdown file. Minimally, you will need to have a `default.md` file with authorship information. You can create additional files as required and the file name will be used as the reference to the author.
 
 Here's how an author markdown file might looks like:
 
