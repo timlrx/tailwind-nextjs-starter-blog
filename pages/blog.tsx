@@ -1,5 +1,5 @@
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import siteMetadata from '@/data/siteMetadata.json'
+import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSeo } from '@/components/SEO'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
