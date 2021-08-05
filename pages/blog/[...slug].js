@@ -1,5 +1,4 @@
 import fs from 'fs'
-import { useRouter } from 'next/router'
 import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
@@ -21,10 +20,10 @@ export async function getStaticPaths({ locales }) {
     paths: localesPost.map(([p, l]) => ({
       params: {
         slug: formatSlug(p).split('/'),
-        locale: l,
       },
+      locale: l,
     })),
-    fallback: true,
+    fallback: false,
   }
 }
 
@@ -50,12 +49,6 @@ export async function getStaticProps({ locale, params }) {
 }
 
 export default function Blog({ post, authorDetails, prev, next }) {
-  const router = useRouter()
-
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
-
   const { mdxSource, frontMatter } = post
 
   return (
