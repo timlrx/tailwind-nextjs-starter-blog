@@ -7,8 +7,8 @@ import formatDate from '@/lib/utils/formatDate'
 
 const MAX_DISPLAY = 5
 
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog')
+export async function getStaticProps({ locale }) {
+  const posts = await getAllFilesFrontMatter('blog', locale)
 
   return { props: { posts } }
 }

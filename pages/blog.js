@@ -5,8 +5,8 @@ import { PageSeo } from '@/components/SEO'
 
 export const POSTS_PER_PAGE = 5
 
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog')
+export async function getStaticProps({ locale }) {
+  const posts = await getAllFilesFrontMatter('blog', locale)
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
     currentPage: 1,
