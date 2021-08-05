@@ -7,8 +7,6 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
-const zip = (a1, a2) => a1.map((x, i) => [x, a2[i]])
-
 export async function getStaticPaths({ locales }) {
   const posts = getFiles('blog', 'en-US')
 
@@ -31,11 +29,11 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ locale, params }) {
-  const otherLocale = locale !== 'en-US' ? `.${locale}` : ''
   const allPosts = await getAllFilesFrontMatter('blog', 'en-US')
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
+  const otherLocale = locale !== 'en-US' ? `.${locale}` : ''
   const post = await getFileBySlug('blog', params.slug.join('/') + otherLocale)
   const authorList = post.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
