@@ -7,7 +7,7 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 const DEFAULT_LAYOUT = 'PostLayout'
 
 export async function getStaticPaths({ locales }) {
-  const posts = getFiles('blog', 'en-US')
+  const posts = getFiles('blog')
 
   let localesPost = []
   for (var i = 0; i < posts.length; i++) {
