@@ -28,11 +28,11 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ defaultLocale, locale, params }) {
-  const allPosts = await getAllFilesFrontMatter('blog', 'en-US')
+  const otherLocale = locale !== defaultLocale ? locale : ''
+  const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
-  const otherLocale = locale !== defaultLocale ? locale : ''
   const post = await getFileBySlug('blog', params.slug.join('/'), otherLocale)
   const authorList = post.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
