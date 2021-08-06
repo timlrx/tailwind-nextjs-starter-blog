@@ -2,6 +2,7 @@
   "locales": ["en", "fr"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["common", "headerNavLinks"]
+    "*": ["common", "headerNavLinks", "404"],
+    "/projects": ["projects"]
   }
 }

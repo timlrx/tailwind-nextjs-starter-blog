@@ -4,7 +4,6 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
-import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
 const MAX_DISPLAY = 5
@@ -18,7 +17,6 @@ export async function getStaticProps({ locale, defaultLocale }) {
 
 export default function Home({ posts }) {
   const { t } = useTranslation()
-  const router = useRouter()
 
   return (
     <>
