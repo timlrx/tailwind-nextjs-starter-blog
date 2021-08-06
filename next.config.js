@@ -1,12 +1,10 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
+const nextTranslate = require('next-translate')
+const withPlugins = require('next-compose-plugins')
 
-module.exports = withBundleAnalyzer({
-  i18n: {
-    locales: ['en-US', 'fr'],
-    defaultLocale: 'en-US',
-  },
+module.exports = withPlugins([[withBundleAnalyzer], [nextTranslate]], {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   eslint: {

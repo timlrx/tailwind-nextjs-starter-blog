@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 const MAX_DISPLAY = 5
 
@@ -15,6 +16,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function Home({ posts }) {
+  const { t } = useTranslation()
   const router = useRouter()
   const { locale, locales, defaultLocale } = router
   const changeLanguage = (e) => {
@@ -28,10 +30,10 @@ export default function Home({ posts }) {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest
+            {t('common:greeting')}
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
+            {t('common:description')}
           </p>
           <div className="text-gray-500 dark:text-gray-400">
             <h3 className="text-base font-medium">Locales menu:</h3>
