@@ -6,8 +6,11 @@ import Card from '@/components/Card'
 import { PageSeo } from '@/components/SEO'
 import useTranslation from 'next-translate/useTranslation'
 
+import { useRouter } from 'next/router'
+
 export default function Projects() {
   const { t } = useTranslation()
+  const { locale } = useRouter()
   return (
     <>
       <PageSeo title={`Projects - ${siteMetadata.author}`} description={siteMetadata.description} />
@@ -22,7 +25,7 @@ export default function Projects() {
         </div>
         <div className="container py-12">
           <div className="flex flex-wrap -m-4">
-            {projectsData.map((d) => (
+            {projectsData[locale]?.map((d) => (
               <Card
                 key={d.title}
                 title={d.title}

@@ -4,6 +4,8 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
 
+import useTranslation from 'next-translate/useTranslation'
+
 export async function getStaticPaths({ locales }) {
   const totalPosts = await getAllFilesFrontMatter('blog') // don't forget to useotherLocale
   const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
@@ -48,6 +50,7 @@ export async function getStaticProps(context) {
 }
 
 export default function PostPage({ posts, initialDisplayPosts, pagination }) {
+  const { t } = useTranslation()
   return (
     <>
       <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
@@ -55,7 +58,7 @@ export default function PostPage({ posts, initialDisplayPosts, pagination }) {
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}
-        title="All Posts"
+        title={t('common:all')}
       />
     </>
   )
