@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: '2021-07-21'
+date: 2021-07-28T15:32:14Z
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -15,6 +15,7 @@ A post on the new features introduced in v1.0. New features:
 - [Xdm MDX compiler](#xdm-mdx-compiler)
 - [Layouts](#layouts)
 - [Multiple authors](#multiple-authors)
+- [Analytics](#analytics)
 - [Blog comments system](#blog-comments-system)
 - [Copy button for code blocks](#copy-button-for-code-blocks)
 - [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
@@ -146,9 +147,27 @@ export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
 Use the `MDXLayoutRenderer` component in a page where you want to accept a layout name to map to the desired layout.
 You need to pass the layout name from the layout folder (it has to be an exact match).
 
+## Analytics
+
+The template now supports [plausible](https://plausible.io/), [simple analytics](https://simpleanalytics.com/) and google analytics.
+Configure `siteMetadata.js` with the settings that correpond with the desired analytics provider.
+
+```js
+analytics: {
+    // supports plausible, simpleAnalytics or googleAnalytics
+    plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
+    simpleAnalytics: false, // true or false
+    googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
+  },
+```
+
+Custom events are also supported. You can import the `logEvent` function from `@components/analytics/[ANALYTICS-PROVIDER]` file and call it when
+triggering certain events of interest. _Note_: Additional configuration might be required depending on the analytics provider, please check their official
+documentation for more information.
+
 ## Blog comments system
 
-We added support for [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus.
+We have also added support for [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus.
 To enable, simply configure `siteMetadata.js` comments property with the desired provider and settings as specified in the config file.
 
 ```js

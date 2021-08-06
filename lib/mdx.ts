@@ -118,7 +118,8 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
       readingTime: readingTime(code),
       slug: slug || null,
       fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
-      ...(frontmatter as T),
+      ...frontmatter,
+      date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
     },
   }
 }
@@ -139,9 +140,13 @@ export async function getAllFilesFrontMatter(folder: 'blog') {
     }
     const source = fs.readFileSync(file, 'utf8')
     const matterFile = matter(source)
-    const data = matterFile.data as AuthorFrontMatter | PostFrontMatter
-    if ('draft' in data && data.draft !== true) {
-      allFrontMatter.push({ ...data, slug: formatSlug(fileName) })
+    const frontmatter = matterFile.data as AuthorFrontMatter | PostFrontMatter
+    if ('draft' in frontmatter && frontmatter.draft !== true) {
+      allFrontMatter.push({
+        ...frontmatter,
+        slug: formatSlug(fileName),
+        date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
+      })
     }
   })
 
