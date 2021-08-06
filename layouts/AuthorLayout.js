@@ -2,8 +2,11 @@ import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSeo } from '@/components/SEO'
 
+import useTranslation from 'next-translate/useTranslation'
+
 export default function AuthorLayout({ children, frontMatter }) {
   const { name, avatar, occupation, company, email, twitter, linkedin, github } = frontMatter
+  const { t } = useTranslation()
 
   return (
     <>
@@ -11,7 +14,7 @@ export default function AuthorLayout({ children, frontMatter }) {
       <div className="divide-y">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            About
+            {t('headerNavLinks:about')}
           </h1>
         </div>
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">

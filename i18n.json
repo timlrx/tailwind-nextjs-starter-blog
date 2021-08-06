@@ -1,7 +1,8 @@
 {
-  "locales": ["en-US", "fr"],
-  "defaultLocale": "en-US",
+  "locales": ["en", "fr"],
+  "defaultLocale": "en",
   "pages": {
-    "*": ["common"]
+    "*": ["common", "headerNavLinks", "404"],
+    "/projects": ["projects"]
   }
 }
