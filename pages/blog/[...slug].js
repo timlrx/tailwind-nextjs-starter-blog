@@ -39,13 +39,14 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Blog({ post, authorDetails, prev, next }) {
-  const { mdxSource, frontMatter } = post
+  const { mdxSource, toc, frontMatter } = post
 
   return (
     <>
       {frontMatter.draft !== true ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
+          toc={toc}
           mdxSource={mdxSource}
           frontMatter={frontMatter}
           authorDetails={authorDetails}
