@@ -1,0 +1,7 @@
+{
+  "greeting": "Latest",
+  "description": "A blog created with Next.js and Tailwind.css",
+  "more": "Read more",
+  "all": "All Posts",
+  "search": "Search articles"
+}
