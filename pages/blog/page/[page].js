@@ -4,12 +4,18 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const totalPosts = await getAllFilesFrontMatter('blog') // don't forget to useotherLocale
   const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
-  const paths = Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }))
+
+  const paths = locales
+    .map((l) =>
+      Array.from({ length: totalPages }, (_, i) => ({
+        params: { page: (i + 1).toString() },
+        locale: l,
+      }))
+    )
+    .flat()
 
   return {
     paths,
