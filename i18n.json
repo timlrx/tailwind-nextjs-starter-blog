@@ -2,6 +2,6 @@
   "locales": ["en-US", "fr"],
   "defaultLocale": "en-US",
   "pages": {
-    "*": ["common"]
+    "*": ["common", "headerNavLinks"]
   }
 }
