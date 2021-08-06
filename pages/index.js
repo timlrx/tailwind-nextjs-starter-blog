@@ -19,11 +19,6 @@ export async function getStaticProps({ locale, defaultLocale }) {
 export default function Home({ posts }) {
   const { t } = useTranslation()
   const router = useRouter()
-  const { locale, locales, defaultLocale } = router
-  const changeLanguage = (e) => {
-    const locale = e.target.value
-    router.push(router.pathname, router.asPath, { locale })
-  }
 
   return (
     <>
@@ -36,25 +31,6 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {t('common:description')}
           </p>
-          <div className="text-gray-500 dark:text-gray-400">
-            <h3 className="text-base font-medium">Locales menu:</h3>
-            <ul className="text-sm mt-2">
-              <li>Current locale: {locale}</li>
-              <li>Default locale: {defaultLocale}</li>
-              <li>Configured locales: {JSON.stringify(locales)}</li>
-            </ul>
-            <ul className="flex items-center justify-between space-x-4 mt-2">
-              {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-              <select
-                onChange={changeLanguage}
-                defaultValue={locale}
-                className="text-gray-500 dark:text-gray-400 text-shadow-sm text-sm bg-transparent tracking-wide"
-              >
-                <option value="en-US">EN</option>
-                <option value="fr">FR</option>
-              </select>
-            </ul>
-          </div>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
