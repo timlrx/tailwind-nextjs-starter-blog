@@ -6,15 +6,16 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
-export async function getStaticPaths({ locales }) {
-  const posts = getFiles('blog')
+export async function getStaticPaths({ locales, defaultLocale }) {
+  const localesPost = locales
+    .map((locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const posts = getFiles('blog')
+      return posts.map((post) => [post, locale])
+    })
+    .flat()
 
-  let localesPost = []
-  for (var i = 0; i < posts.length; i++) {
-    for (var j = 0; j < locales.length; j++) {
-      localesPost.push([posts[i], locales[j]])
-    }
-  }
+  console.log('locale posts: ', localesPost)
 
   return {
     paths: localesPost.map(([p, l]) => ({
