@@ -27,15 +27,17 @@ export async function getStaticPaths({ locales, defaultLocale }) {
 }
 
 export async function getStaticProps({ defaultLocale, locale, params }) {
+  console.log('params : ', params)
   const otherLocale = locale !== defaultLocale ? locale : ''
   const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('blog', params.slug.join('/'), otherLocale)
+  // console.log('posts : ', post.frontMatter)
   const authorList = post.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug('authors', [author])
+    const authorResults = await getFileBySlug('authors', [author], otherLocale)
     return authorResults.frontMatter
   })
   const authorDetails = await Promise.all(authorPromise)
