@@ -31,7 +31,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 - Easy styling customization with [Tailwind 2.0](https://blog.tailwindcss.com/tailwindcss-v2) and primary color attribute
 - Near perfect lighthouse score - [Lighthouse report](https://www.webpagetest.org/result/210111_DiC1_08f3670c3430bf4a9b76fc3b927716c5/)
-- Lightweight, 38kB first load JS, uses Preact in production build
+- Lightweight, 39kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
 - Supports [plausible](https://plausible.io/), [simple analytics](https://simpleanalytics.com/) and google analytics
@@ -43,6 +43,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Support for tags - each unique tag will be its own page
 - Support for multiple authors
 - Blog templates
+- TOC component
 - Support for nested routing of blog posts
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
