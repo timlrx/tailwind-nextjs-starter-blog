@@ -8,8 +8,11 @@
   "pub": "Publié le",
   "authors": "Authors",
   "name": "Name",
-  "next": "Next Article",
-  "prev": "Previous Article",
+  "nexta": "Next Article",
+  "preva": "Previous Article",
+  "nextp": "Next",
+  "prevp": "Previous",
+  "of": "of",
   "back": "Back to the blog",
   "twitter": "Discuss on Twitter",
   "github": "View on GitHub"
