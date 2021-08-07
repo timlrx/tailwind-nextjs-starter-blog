@@ -12,13 +12,12 @@ const root = process.cwd()
 
 export async function getStaticPaths({ locales, defaultLocale }) {
   let tagsTotal = []
-
-  for (var i = 0; i < locales.length; i++) {
-    const otherLocale = locales[i] !== defaultLocale ? locales[i] : ''
+  await await locales.map(async (locale) => {
+    const otherLocale = locale !== defaultLocale ? locale : ''
     const tags = await getAllTags('blog', otherLocale)
-    const retour = Object.entries(tags).map((k) => [k[0], locales[i]])
+    const retour = Object.entries(tags).map((k) => [k[0], locale])
     tagsTotal.push(retour)
-  }
+  })
 
   return {
     paths: tagsTotal.flat().map(([tag, locale]) => ({
