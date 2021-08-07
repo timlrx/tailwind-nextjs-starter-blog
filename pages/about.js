@@ -5,7 +5,7 @@ const DEFAULT_LAYOUT = 'AuthorLayout'
 
 export async function getStaticProps({ locale, defaultLocale }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
-  const authorDetails = await getFileBySlug('authors', [`default`], otherLocale)
+  const authorDetails = await getFileBySlug('authors', [`sparrowhawk`], otherLocale)
   return { props: { authorDetails } }
 }
 
