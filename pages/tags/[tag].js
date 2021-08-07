@@ -11,16 +11,16 @@ import path from 'path'
 const root = process.cwd()
 
 export async function getStaticPaths({ locales, defaultLocale }) {
-  let tagsTotal = []
-  await await locales.map(async (locale) => {
-    const otherLocale = locale !== defaultLocale ? locale : ''
-    const tags = await getAllTags('blog', otherLocale)
-    const retour = Object.entries(tags).map((k) => [k[0], locale])
-    tagsTotal.push(retour)
-  })
+  const tags = await Promise.all(
+    locales.map(async (locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const tags = await getAllTags('blog', otherLocale)
+      return Object.entries(tags).map((k) => [k[0], locale])
+    })
+  )
 
   return {
-    paths: tagsTotal.flat().map(([tag, locale]) => ({
+    paths: tags.flat().map(([tag, locale]) => ({
       params: {
         tag,
       },

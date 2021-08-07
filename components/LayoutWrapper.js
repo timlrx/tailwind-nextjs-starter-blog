@@ -18,10 +18,7 @@ const LayoutWrapper = ({ children }) => {
 
   const changeLanguage = (e) => {
     const locale = e.target.value
-    // Tags are localized, therefore we must go back to the "/tags" page
-    router.pathname.includes('/tags/')
-      ? router.push('/tags/', '/tags/', { locale })
-      : router.push(router.pathname, router.asPath, { locale })
+    router.push(router.asPath, router.asPath, { locale })
   }
 
   return (

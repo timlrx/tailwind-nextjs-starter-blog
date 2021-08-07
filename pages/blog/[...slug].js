@@ -10,12 +10,10 @@ export async function getStaticPaths({ locales, defaultLocale }) {
   const localesPost = locales
     .map((locale) => {
       const otherLocale = locale !== defaultLocale ? locale : ''
-      const posts = getFiles('blog')
+      const posts = getFiles('blog', otherLocale)
       return posts.map((post) => [post, locale])
     })
     .flat()
-
-  console.log('locale posts: ', localesPost)
 
   return {
     paths: localesPost.map(([p, l]) => ({
