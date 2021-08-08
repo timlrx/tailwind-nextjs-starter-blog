@@ -1,6 +1,6 @@
 {
   "name": "tailwind-nextjs-starter-blog",
-  "version": "1.0.0-canary.2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./data",
