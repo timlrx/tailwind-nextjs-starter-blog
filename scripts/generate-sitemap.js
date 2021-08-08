@@ -18,7 +18,7 @@ const i18nConfig = require('../i18n.json')
 
   const { locales, defaultLocale } = i18nConfig
 
-  const pages2 = pages
+  const pagesWithLoc = pages
     .map((page) => {
       if (page.includes('pages')) {
         return locales.map((locale) => [page, locale])
@@ -37,13 +37,13 @@ const i18nConfig = require('../i18n.json')
     })
     .flat()
 
-  console.log('sitemap pages : ', pages2)
+  // console.log('sitemap pages : ', pagesWithLoc)
 
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            ${pages
-              .map((page) => {
+            ${pagesWithLoc
+              .map(([page, loc]) => {
                 const path = page
                   .replace('pages/', '/')
                   .replace('data/blog', '/blog')
@@ -53,6 +53,7 @@ const i18nConfig = require('../i18n.json')
                   .replace('.md', '')
                   .replace('/feed.xml', '')
                 const route = path === '/index' ? '' : path
+                console.log('test : ', path)
                 if (page === `pages/404.js` || page === `pages/blog/[...slug].js`) {
                   return
                 }
