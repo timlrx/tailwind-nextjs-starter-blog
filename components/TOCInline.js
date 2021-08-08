@@ -34,7 +34,7 @@ const TOCInline = ({
 
   const filteredToc = toc.filter(
     (heading) =>
-      heading.depth >= fromHeading && heading.depth <= toHeading ** !re.test(heading.value)
+      heading.depth >= fromHeading && heading.depth <= toHeading && !re.test(heading.value)
   )
 
   const tocList = (
