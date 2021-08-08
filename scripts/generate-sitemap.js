@@ -2,6 +2,7 @@ const fs = require('fs')
 const globby = require('globby')
 const path = require('path')
 const prettier = require('prettier')
+const { cpuUsage } = require('process')
 const siteMetadata = require('../data/siteMetadata')
 const i18nConfig = require('../i18n.json')
 
@@ -36,39 +37,66 @@ const i18nConfig = require('../i18n.json')
       throw new Error('Sitemap case missing, please check scripts/generate-sitemap.js')
     })
     .flat()
-
-  // console.log('sitemap pages : ', pagesWithLoc)
+    .map(([page, loc]) => [
+      (page =
+        (loc !== defaultLocale ? `/${loc}` : '') +
+        page
+          .replace('pages/', '/')
+          .replace('data/blog', '/blog')
+          .replace('public/', '/')
+          .replace('.js', '')
+          .replace('.mdx', '')
+          .replace('.md', '')
+          .replace(`.${loc}`, '')
+          .replace('/feed', '')
+          .replace('.xml', '')),
+      loc,
+      false, // Indicate if the element is already present or not
+    ])
 
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             ${pagesWithLoc
-              .map(([page, loc]) => {
-                const otherLocale = loc !== defaultLocale ? `/${loc}` : ''
-
-                const path =
-                  otherLocale +
-                  page
-                    .replace('pages/', '/')
-                    .replace('data/blog', '/blog')
-                    .replace('public/', '/')
-                    .replace('.js', '')
-                    .replace('.mdx', '')
-                    .replace('.md', '')
-                    .replace(`.${loc}`, '')
-                    .replace('/feed', '')
-                    .replace('.xml', '')
-
+              .map(([path, loc, alreadyPresent]) => {
+                // @todo: Can you check especially here ?
                 const route = path.includes('/index') ? path.replace('/index', '') : path
-                console.log('test : ', route)
-                if (page.includes(`pages/404.js`) || page.includes(`pages/blog/[...slug].js`)) {
+                if (
+                  path.includes(`/404.js`) ||
+                  path.includes(`/blog/[...slug].js`) ||
+                  alreadyPresent
+                ) {
+                  // Not sure about the [...slug] condition...
                   return
                 }
-                return `
+                const routeMultiLang = pagesWithLoc.filter(
+                  ([ipath, iloc, _]) => ipath.replace(`/${iloc}`, '') == path.replace(`/${loc}`, '')
+                )
+                routeMultiLang.map((e) => (e[2] = true)) //making allreadyPresnt to true
+                if (routeMultiLang.length === 1)
+                  return `
                         <url>
                             <loc>${siteMetadata.siteUrl}${route}</loc>
                         </url>
                     `
+                return `
+                          <url>
+                              <loc>${siteMetadata.siteUrl}${
+                  routeMultiLang.filter(([path, loc]) => (loc === defaultLocale ? path : ''))[0][0]
+                }</loc>
+                  ${routeMultiLang
+                    .filter(([path, loc]) => (loc !== defaultLocale ? path : ''))
+                    .map(
+                      ([xe, xloc]) =>
+                        `
+                               <xhtml:link 
+                               rel="alternate"
+                               hreflang="${xloc}"
+                               href="${siteMetadata.siteUrl}${xe}"/>
+                               `
+                    )}
+                          </url>
+                      `
               })
               .join('')}
         </urlset>
