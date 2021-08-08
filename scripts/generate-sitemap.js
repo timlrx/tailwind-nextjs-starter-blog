@@ -18,27 +18,24 @@ const i18nConfig = require('../i18n.json')
 
   const { locales, defaultLocale } = i18nConfig
 
-  const pages2 = pages.map((page) => {
-    if (page.includes('pages')) {
-      return locales.map((locale) => [page, locale])
-    }
-
-    if (page.includes('data')) {
-      for (let i = 0; i < locales.length; i++) {
-        if (page.includes(`.${locales[i]}.md`)) {
-          return [[page, locales[i]]]
-        }
+  const pages2 = pages
+    .map((page) => {
+      if (page.includes('pages')) {
+        return locales.map((locale) => [page, locale])
       }
-      return [[page, defaultLocale]]
-    }
 
-    if (page.includes('xml')) {
-      console.log(fs.readFileSync(page, 'utf8').match('(?<=<language>).*(?=</language>)')[0])
+      if (page.includes('data') || page.includes('.xml')) {
+        for (let i = 0; i < locales.length; i++) {
+          if (page.includes(`.${locales[i]}.`)) {
+            return [[page, locales[i]]]
+          }
+        }
+        return [[page, defaultLocale]]
+      }
 
-      return [[page, 'tt']]
-    }
-    return [page, 'fr']
-  })
+      throw new Error('Sitemap case missing, please check scripts/generate-sitemap.js')
+    })
+    .flat()
 
   console.log('sitemap pages : ', pages2)
 
