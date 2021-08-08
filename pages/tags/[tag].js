@@ -41,7 +41,10 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
   const rss = generateRss(filteredPosts, locale, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
-  fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
+  fs.writeFileSync(
+    path.join(rssPath, `feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`),
+    rss
+  )
 
   return { props: { posts: filteredPosts, tag: params.tag } }
 }
