@@ -1,7 +1,9 @@
 const fs = require('fs')
 const globby = require('globby')
+const path = require('path')
 const prettier = require('prettier')
 const siteMetadata = require('../data/siteMetadata')
+const i18nConfig = require('../i18n.json')
 
 ;(async () => {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js')
@@ -13,6 +15,32 @@ const siteMetadata = require('../data/siteMetadata')
     '!pages/_*.js',
     '!pages/api',
   ])
+
+  const { locales, defaultLocale } = i18nConfig
+
+  const pages2 = pages.map((page) => {
+    if (page.includes('pages')) {
+      return locales.map((locale) => [page, locale])
+    }
+
+    if (page.includes('data')) {
+      for (let i = 0; i < locales.length; i++) {
+        if (page.includes(`.${locales[i]}.md`)) {
+          return [[page, locales[i]]]
+        }
+      }
+      return [[page, defaultLocale]]
+    }
+
+    if (page.includes('xml')) {
+      console.log(fs.readFileSync(page, 'utf8').match('(?<=<language>).*(?=</language>)')[0])
+
+      return [[page, 'tt']]
+    }
+    return [page, 'fr']
+  })
+
+  console.log('sitemap pages : ', pages2)
 
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
