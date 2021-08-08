@@ -44,17 +44,24 @@ const i18nConfig = require('../i18n.json')
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             ${pagesWithLoc
               .map(([page, loc]) => {
-                const path = page
-                  .replace('pages/', '/')
-                  .replace('data/blog', '/blog')
-                  .replace('public/', '/')
-                  .replace('.js', '')
-                  .replace('.mdx', '')
-                  .replace('.md', '')
-                  .replace('/feed.xml', '')
-                const route = path === '/index' ? '' : path
-                console.log('test : ', path)
-                if (page === `pages/404.js` || page === `pages/blog/[...slug].js`) {
+                const otherLocale = loc !== defaultLocale ? `/${loc}` : ''
+
+                const path =
+                  otherLocale +
+                  page
+                    .replace('pages/', '/')
+                    .replace('data/blog', '/blog')
+                    .replace('public/', '/')
+                    .replace('.js', '')
+                    .replace('.mdx', '')
+                    .replace('.md', '')
+                    .replace(`.${loc}`, '')
+                    .replace('/feed', '')
+                    .replace('.xml', '')
+
+                const route = path.includes('/index') ? path.replace('/index', '') : path
+                console.log('test : ', route)
+                if (page.includes(`pages/404.js`) || page.includes(`pages/blog/[...slug].js`)) {
                   return
                 }
                 return `
