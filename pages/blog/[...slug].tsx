@@ -6,6 +6,7 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 import { PostFrontMatter } from 'types/PostFrontMatter'
+import { Toc } from 'types/Toc'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
@@ -23,7 +24,7 @@ export async function getStaticPaths() {
 
 // @ts-ignore
 export const getStaticProps: GetStaticProps<{
-  post: { mdxSource: string; frontMatter: PostFrontMatter }
+  post: { mdxSource: string; toc: Toc; frontMatter: PostFrontMatter }
   authorDetails: AuthorFrontMatter[]
   prev?: { slug: string; title: string }
   next?: { slug: string; title: string }
@@ -62,13 +63,14 @@ export default function Blog({
   prev,
   next,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { mdxSource, frontMatter } = post
+  const { mdxSource, toc, frontMatter } = post
 
   return (
     <>
       {'draft' in frontMatter && frontMatter.draft !== true ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
+          toc={toc}
           mdxSource={mdxSource}
           frontMatter={frontMatter}
           authorDetails={authorDetails}

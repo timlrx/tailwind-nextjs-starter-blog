@@ -18,7 +18,7 @@ const Pre = ({ children }: Props) => {
   }
   const onCopy = () => {
     setCopied(true)
-    navigator.clipboard.writeText(textInput.current.textContent)
+    navigator.clipboard.writeText(textInput.current.innerText)
     setTimeout(() => {
       setCopied(false)
     }, 2000)

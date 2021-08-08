@@ -6,10 +6,12 @@ import path from 'path'
 import readingTime from 'reading-time'
 import visit from 'unist-util-visit'
 import codeTitles from './remark-code-title'
+import remarkTocHeadings from './remark-toc-headings'
 import imgToJsx from './img-to-jsx'
 import getAllFilesRecursively from './utils/files'
 import { PostFrontMatter } from 'types/PostFrontMatter'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
+import { Toc } from 'types/Toc'
 
 const root = process.cwd()
 
@@ -69,6 +71,8 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
     )
   }
 
+  const toc: Toc = []
+
   const { frontmatter, code } = await bundleMDX(source, {
     // mdx imports can be automatically source from the components directory
     cwd: path.join(process.cwd(), 'components'),
@@ -80,6 +84,7 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
         ...(options.remarkPlugins ?? []),
         require('remark-slug'),
         require('remark-autolink-headings'),
+        [remarkTocHeadings, { exportRef: toc }],
         require('remark-gfm'),
         codeTitles,
         [require('remark-footnotes'), { inlineNotes: true }],
@@ -114,6 +119,7 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
 
   return {
     mdxSource: code,
+    toc,
     frontMatter: {
       readingTime: readingTime(code),
       slug: slug || null,

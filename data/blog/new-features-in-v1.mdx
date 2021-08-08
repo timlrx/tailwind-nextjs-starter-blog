@@ -1,6 +1,6 @@
 ---
 title: 'New features in v1'
-date: 2021-07-28T15:32:14Z
+date: 2021-08-07T15:32:14Z
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -11,16 +11,9 @@ layout: PostSimple
 
 A post on the new features introduced in v1.0. New features:
 
-- [Theme colors](#theme-colors)
-- [Xdm MDX compiler](#xdm-mdx-compiler)
-- [Layouts](#layouts)
-- [Multiple authors](#multiple-authors)
-- [Analytics](#analytics)
-- [Blog comments system](#blog-comments-system)
-- [Copy button for code blocks](#copy-button-for-code-blocks)
-- [Line highlighting and line numbers](#line-highlighting-and-line-numbers)
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
 
-First load JS decreased from 43kB to 38kB despite all the new features added!
+First load JS decreased from 43kB to 39kB despite all the new features added!
 
 See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version of the template.
 
@@ -47,15 +40,15 @@ Migrating from v1? You can revert to the previous theme by setting `primary` to 
 
 ## Xdm MDX compiler
 
-We switch the MDX bundler from [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler).
-This uses [xdm](https://github.com/wooorm/xdm) under the hood uses the latest micromark 3 and remark, rehype libraries.
+We switched the MDX bundler from [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler).
+This uses [xdm](https://github.com/wooorm/xdm) under the hood, the latest micromark 3 and remark, rehype libraries.
 
 **Warning:** If you were using custom remark or rehype libraries, please upgrade to micromark 3 compatible ones. If you are upgrading, please delete `node_modules` and `package-lock.json` to avoid having past dependencies related issues.
 
 [xdm](https://github.com/wooorm/xdm) contains multiple improvements over [@mdx-js/mdx](https://github.com/mdx-js/mdx), the compiler used internally by next-mdx-remote, but there might be some breaking behaviour changes.
 Please check your markdown output to verify.
 
-Some new possibilities include loading components directly in the mdx file using the import syntax and including js code which could be compiled at the build step.
+Some new possibilities include loading components directly in the mdx file using the import syntax and including js code which could be compiled and bundled at the build step.
 
 For example, the following jsx snippet can be used directly in an MDX file to render the page title component:
 
@@ -71,9 +64,33 @@ import PageTitle from './PageTitle.tsx'
 The default configuration resolves all components relative to the `components` directory.
 
 **Note**:
-Components which require external image loaders would require additional esbuild configuration.
+Components which require external image loaders also require additional esbuild configuration.
 Components which are dependent on global application state on lifecycle like the Nextjs `Link` component would also not work with this setup as each mdx file is built indepedently.
 For such cases, it is better to use component substitution.
+
+## Table of contents component
+
+Inspired by [Docusaurus](https://docusaurus.io/docs/next/markdown-features/inline-toc) and Gatsby's [gatsby-remark-table-of-contents](https://www.gatsbyjs.com/plugins/gatsby-remark-table-of-contents/),
+the `toc` variable containing all the top level headings of the document is passed to the MDX file and can be styled accordingly.
+To make generating a table of contents (TOC) simple, you can use the existing `TOCInline` component.
+
+For example, the TOC in this post was generated with the following code:
+
+```js
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+```
+
+You can customise the headings that are displayed by configuring the `fromHeading` and `toHeading` props, or exclude particular headings
+by passing a string or a string array to the `exclude` prop. By default, all headings that are of depth 3 or smaller are indented. This can be configured by changing the `indentDepth` property.
+A `asDisclosure` prop can be used to render the TOC within an expandable disclosure element.
+
+Here's the full TOC rendered in a disclosure element.
+
+```js
+<TOCInline toc={props.toc} asDisclosure />
+```
+
+<TOCInline toc={props.toc} asDisclosure />
 
 ## Layouts
 
@@ -81,7 +98,7 @@ You can map mdx blog content to layout components by configuring the frontmatter
 
 ### Adding new templates
 
-layout templates are stored in the `./layouts` folder. You can add add your React components that you want to map to markdown content in this folder.
+layout templates are stored in the `./layouts` folder. You can add your React components that you want to map to markdown content in this folder.
 The component file name must match that specified in the markdown frontmatter `layout` field.
 
 The only required field is `children` which contains the rendered MDX content, though you would probably want to pass in the frontMatter contents and render it in the template.
@@ -258,7 +275,7 @@ summary: 'My first post'
 authors: ['default', 'sparrowhawk']
 ```
 
-A demo of a multiple author post is shown in the [Introducing Tailwind Nextjs Starter Blog post](/blog/introducing-tailwind-nextjs-starter-blog).
+A demo of a multiple author post is shown in [Introducing Tailwind Nextjs Starter Blog post](/blog/introducing-tailwind-nextjs-starter-blog).
 
 ## Copy button for code blocks
 
@@ -315,7 +332,7 @@ There are significant portions of the code that has been changed from v0 to v1 i
 There's also no real reason to change if the previous one serves your needs and it might be easier to copy
 the component changes you are interested to your existing blog rather than migrating everything over.
 
-Nonetheless if you want to do so and have not changed much of the template, you could clone the new version and copy over the blog post instead.
+Nonetheless, if you want to do so and have not changed much of the template, you could clone the new version and copy over the blog post over to the new template.
 
 Another alternative would be to pull the latest tempate version with the following code:
 
@@ -327,7 +344,7 @@ rm -rf node_modules
 
 You can see an example of such a migration in this [commit](https://github.com/timlrx/timlrx.com/commit/bba1c185384fd6d5cdaac15abf802fdcff027286) for my personal blog.
 
-v1 also uses `feed.xml` rather than `index.xml`. If you are migrating you should add a redirect to `next.config.js` like so:
+v1 also uses `feed.xml` rather than `index.xml`, to avoid some build issues with vercel. If you are migrating you should add a redirect to `next.config.js` like so:
 
 ```
 async redirects() {
