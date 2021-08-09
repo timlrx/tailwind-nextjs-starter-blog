@@ -53,7 +53,6 @@ export const PageSeo = ({ title, description, availableLocales }) => {
 
 export const TagSeo = ({ title, description, availableLocales }) => {
   const router = useRouter()
-  console.log('router : ', router)
   return (
     <Head>
       <title>{`${title}`}</title>

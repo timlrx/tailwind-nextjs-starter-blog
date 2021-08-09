@@ -54,8 +54,6 @@ export async function getStaticProps({ defaultLocale, locales, locale, params })
     })
   })
 
-  // console.log('locales : ', locales)
-
   return { props: { post, authorDetails, prev, next, availableLocales } }
 }
 
