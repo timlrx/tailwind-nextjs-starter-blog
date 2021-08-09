@@ -7,7 +7,7 @@ import useTranslation from 'next-translate/useTranslation'
 
 export const POSTS_PER_PAGE = 5
 
-export async function getStaticProps({ locale, defaultLocale }) {
+export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const posts = await getAllFilesFrontMatter('blog', otherLocale)
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
@@ -16,16 +16,25 @@ export async function getStaticProps({ locale, defaultLocale }) {
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
-  return { props: { initialDisplayPosts, posts, pagination, locale } }
+  return {
+    props: { initialDisplayPosts, posts, pagination, locale, otherAvailableLocales: locales },
+  }
 }
 
-export default function Blog({ posts, initialDisplayPosts, pagination, locale }) {
+export default function Blog({
+  posts,
+  initialDisplayPosts,
+  pagination,
+  locale,
+  otherAvailableLocales,
+}) {
   const { t } = useTranslation()
   return (
     <>
       <PageSeo
         title={`Blog - ${siteMetadata.author}`}
         description={siteMetadata.description[locale]}
+        otherAvailableLocales={otherAvailableLocales}
       />
       <ListLayout
         posts={posts}

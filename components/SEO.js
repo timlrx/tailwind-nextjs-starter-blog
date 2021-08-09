@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 
-export const PageSeo = ({ title, description }) => {
+export const PageSeo = ({ title, description, otherAvailableLocales }) => {
   const router = useRouter()
   return (
     <Head>
@@ -16,6 +16,10 @@ export const PageSeo = ({ title, description }) => {
       <meta property="og:title" content={title} />
       <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
       <meta property="og:locale" content={router.locale} />
+      {otherAvailableLocales &&
+        otherAvailableLocales
+          .filter((locale) => locale !== router.locale)
+          .map((locale) => <meta key={locale} property="og:locale:alternate" content={locale} />)}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
@@ -25,7 +29,7 @@ export const PageSeo = ({ title, description }) => {
   )
 }
 
-export const TagSeo = ({ title, description }) => {
+export const TagSeo = ({ title, description, otherAvailableLocales }) => {
   const router = useRouter()
   return (
     <Head>
@@ -39,6 +43,10 @@ export const TagSeo = ({ title, description }) => {
       <meta property="og:title" content={title} />
       <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
       <meta property="og:locale" content={router.locale} />
+      {otherAvailableLocales &&
+        otherAvailableLocales
+          .filter((locale) => locale !== router.locale)
+          .map((locale) => <meta key={locale} property="og:locale:alternate" content={locale} />)}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
@@ -55,7 +63,16 @@ export const TagSeo = ({ title, description }) => {
   )
 }
 
-export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, images = [] }) => {
+export const BlogSeo = ({
+  authorDetails,
+  title,
+  summary,
+  date,
+  lastmod,
+  url,
+  otherAvailableLocales,
+  images = [],
+}) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -126,6 +143,10 @@ export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, ima
           <meta property="og:image" content={img.url} key={img.url} />
         ))}
         <meta property="og:locale" content={router.locale} />
+        {otherAvailableLocales &&
+          otherAvailableLocales
+            .filter((locale) => locale !== router.locale)
+            .map((locale) => <meta key={locale} property="og:locale:alternate" content={locale} />)}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={siteMetadata.twitter} />
         <meta name="twitter:title" content={title} />

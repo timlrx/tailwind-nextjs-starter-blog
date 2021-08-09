@@ -8,19 +8,23 @@ import useTranslation from 'next-translate/useTranslation'
 
 const MAX_DISPLAY = 5
 
-export async function getStaticProps({ locale, defaultLocale }) {
+export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const posts = await getAllFilesFrontMatter('blog', otherLocale)
 
-  return { props: { posts, locale } }
+  return { props: { posts, locale, otherAvailableLocales: locales } }
 }
 
-export default function Home({ posts, locale }) {
+export default function Home({ posts, locale, otherAvailableLocales }) {
   const { t } = useTranslation()
 
   return (
     <>
-      <PageSeo title={siteMetadata.title[locale]} description={siteMetadata.description[locale]} />
+      <PageSeo
+        title={siteMetadata.title[locale]}
+        description={siteMetadata.description[locale]}
+        otherAvailableLocales={otherAvailableLocales}
+      />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">

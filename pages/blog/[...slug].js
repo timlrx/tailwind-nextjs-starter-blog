@@ -26,7 +26,7 @@ export async function getStaticPaths({ locales, defaultLocale }) {
   }
 }
 
-export async function getStaticProps({ defaultLocale, locale, params }) {
+export async function getStaticProps({ defaultLocale, locales, locale, params }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
@@ -44,12 +44,24 @@ export async function getStaticProps({ defaultLocale, locale, params }) {
   const rss = generateRss(allPosts, locale, defaultLocale)
   fs.writeFileSync(`./public/feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`, rss)
 
-  return { props: { post, authorDetails, prev, next } }
+  // Checking if available in other locale for SEO
+  const otherAvailableLocales = []
+  await locales.forEach(async (ilocal) => {
+    const otherLocale = ilocal !== defaultLocale ? ilocal : ''
+    const iAllPosts = await getAllFilesFrontMatter('blog', otherLocale)
+    iAllPosts.map((ipost) => {
+      if (ipost.slug === post.frontMatter.slug && ipost.slug !== '')
+        otherAvailableLocales.push(ilocal)
+    })
+  })
+
+  // console.log('locales : ', locales)
+
+  return { props: { post, authorDetails, prev, next, otherAvailableLocales } }
 }
 
-export default function Blog({ post, authorDetails, prev, next }) {
+export default function Blog({ post, authorDetails, prev, next, otherAvailableLocales }) {
   const { mdxSource, toc, frontMatter } = post
-
   return (
     <>
       {frontMatter.draft !== true ? (
@@ -61,6 +73,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
           authorDetails={authorDetails}
           prev={prev}
           next={next}
+          otherAvailableLocales={otherAvailableLocales}
         />
       ) : (
         <div className="mt-24 text-center">

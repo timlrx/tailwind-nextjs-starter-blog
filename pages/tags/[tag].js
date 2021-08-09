@@ -30,7 +30,7 @@ export async function getStaticPaths({ locales, defaultLocale }) {
   }
 }
 
-export async function getStaticProps({ params, defaultLocale, locale }) {
+export async function getStaticProps({ params, defaultLocale, locale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const filteredPosts = allPosts.filter(
@@ -46,17 +46,28 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
     rss
   )
 
-  return { props: { posts: filteredPosts, tag: params.tag, locale } }
+  // Checking if available in other locale for SEO
+  const otherAvailableLocales = []
+  await locales.forEach(async (ilocal) => {
+    const otherLocale = ilocal !== defaultLocale ? ilocal : ''
+    const itags = await getAllTags('blog', otherLocale)
+    Object.entries(itags).map((itag) => {
+      console.log('itag : ', itag)
+      if (itag[0] === params.tag) otherAvailableLocales.push(ilocal)
+    })
+  })
+
+  return { props: { posts: filteredPosts, tag: params.tag, locale, otherAvailableLocales } }
 }
 
-export default function Tag({ posts, tag, locale }) {
-  // Capitalize first letter and convert space to dash
+export default function Tag({ posts, tag, locale, otherAvailableLocales }) {
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
       <TagSeo
         title={`${tag} - ${siteMetadata.title[locale]}`}
         description={`${tag} tags - ${siteMetadata.title[locale]}`}
+        otherAvailableLocales={otherAvailableLocales}
       />
       <ListLayout posts={posts} title={title} />
     </>
