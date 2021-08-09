@@ -79,7 +79,9 @@ export const TagSeo = ({ title, description, availableLocales }) => {
         rel="alternate"
         type="application/rss+xml"
         title={`${description} - RSS feed`}
-        href={`/feed${router.locale === router.defaultLocale ? '' : `.${router.locale}`}.xml`}
+        href={`${siteMetadata.siteUrl}${router.asPath}/feed${
+          router.locale === router.defaultLocale ? '' : `.${router.locale}`
+        }.xml`}
       />
       {availableLocales && generateLinks(router, availableLocales)}
     </Head>
