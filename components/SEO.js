@@ -2,6 +2,27 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 
+const generateLinks = (router, availableLocales) =>
+  availableLocales.map((locale) => (
+    <link
+      key={locale}
+      rel={
+        // Here we do as follow: Default langage is canonical
+        // if default langage is not present, we get the first element of the langage array by default
+        // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
+        locale === router.defaultLocale
+          ? 'canonical'
+          : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
+          ? 'canonical'
+          : 'alternate'
+      }
+      hrefLang={locale}
+      href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? '' : `/${locale}`}${
+        router.asPath
+      }`}
+    />
+  ))
+
 export const PageSeo = ({ title, description, availableLocales }) => {
   const router = useRouter()
   return (
@@ -25,13 +46,14 @@ export const PageSeo = ({ title, description, availableLocales }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
+      {availableLocales && generateLinks(router, availableLocales)}
     </Head>
   )
 }
 
 export const TagSeo = ({ title, description, availableLocales }) => {
   const router = useRouter()
-  console.log(availableLocales)
+  console.log('router : ', router)
   return (
     <Head>
       <title>{`${title}`}</title>
@@ -60,6 +82,7 @@ export const TagSeo = ({ title, description, availableLocales }) => {
         title={`${description} - RSS feed`}
         href={`/feed${router.locale === router.defaultLocale ? '' : `.${router.locale}`}.xml`}
       />
+      {availableLocales && generateLinks(router, availableLocales)}
     </Head>
   )
 }
@@ -155,7 +178,7 @@ export const BlogSeo = ({
         <meta name="twitter:image" content={featuredImages[0].url} />
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        {availableLocales && generateLinks(router, availableLocales)}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
