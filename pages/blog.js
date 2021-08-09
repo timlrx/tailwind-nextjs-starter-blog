@@ -17,24 +17,18 @@ export async function getStaticProps({ locale, defaultLocale, locales }) {
   }
 
   return {
-    props: { initialDisplayPosts, posts, pagination, locale, otherAvailableLocales: locales },
+    props: { initialDisplayPosts, posts, pagination, locale, availableLocales: locales },
   }
 }
 
-export default function Blog({
-  posts,
-  initialDisplayPosts,
-  pagination,
-  locale,
-  otherAvailableLocales,
-}) {
+export default function Blog({ posts, initialDisplayPosts, pagination, locale, availableLocales }) {
   const { t } = useTranslation()
   return (
     <>
       <PageSeo
         title={`Blog - ${siteMetadata.author}`}
         description={siteMetadata.description[locale]}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <ListLayout
         posts={posts}

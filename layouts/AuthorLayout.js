@@ -4,7 +4,7 @@ import { PageSeo } from '@/components/SEO'
 
 import useTranslation from 'next-translate/useTranslation'
 
-export default function AuthorLayout({ children, frontMatter, otherAvailableLocales }) {
+export default function AuthorLayout({ children, frontMatter, availableLocales }) {
   const { name, avatar, occupation, company, email, twitter, linkedin, github } = frontMatter
   const { t } = useTranslation()
 
@@ -13,7 +13,7 @@ export default function AuthorLayout({ children, frontMatter, otherAvailableLoca
       <PageSeo
         title={`About - ${name}`}
         description={`About me - ${name}`}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <div className="divide-y">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">

@@ -45,22 +45,21 @@ export async function getStaticProps({ defaultLocale, locales, locale, params })
   fs.writeFileSync(`./public/feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`, rss)
 
   // Checking if available in other locale for SEO
-  const otherAvailableLocales = []
+  const availableLocales = []
   await locales.forEach(async (ilocal) => {
     const otherLocale = ilocal !== defaultLocale ? ilocal : ''
     const iAllPosts = await getAllFilesFrontMatter('blog', otherLocale)
     iAllPosts.map((ipost) => {
-      if (ipost.slug === post.frontMatter.slug && ipost.slug !== '')
-        otherAvailableLocales.push(ilocal)
+      if (ipost.slug === post.frontMatter.slug && ipost.slug !== '') availableLocales.push(ilocal)
     })
   })
 
   // console.log('locales : ', locales)
 
-  return { props: { post, authorDetails, prev, next, otherAvailableLocales } }
+  return { props: { post, authorDetails, prev, next, availableLocales } }
 }
 
-export default function Blog({ post, authorDetails, prev, next, otherAvailableLocales }) {
+export default function Blog({ post, authorDetails, prev, next, availableLocales }) {
   const { mdxSource, toc, frontMatter } = post
   return (
     <>
@@ -73,7 +72,7 @@ export default function Blog({ post, authorDetails, prev, next, otherAvailableLo
           authorDetails={authorDetails}
           prev={prev}
           next={next}
-          otherAvailableLocales={otherAvailableLocales}
+          availableLocales={availableLocales}
         />
       ) : (
         <div className="mt-24 text-center">

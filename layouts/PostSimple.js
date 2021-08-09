@@ -13,7 +13,7 @@ export default function PostLayout({
   authorDetails,
   next,
   prev,
-  otherAvailableLocales,
+  availableLocales,
   children,
 }) {
   const { date, title } = frontMatter
@@ -23,7 +23,7 @@ export default function PostLayout({
   return (
     <SectionContainer>
       <BlogSeo
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
         url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`}
         {...frontMatter}
       />

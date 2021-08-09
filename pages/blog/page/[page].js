@@ -49,16 +49,16 @@ export async function getStaticProps(context) {
   }
 
   // Checking if available in other locale for SEO
-  const otherAvailableLocales = []
+  const availableLocales = []
   await locales.forEach(async (ilocal) => {
     const otherLocale = ilocal !== defaultLocale ? ilocal : ''
     const iAllPosts = await getAllFilesFrontMatter('blog', otherLocale)
     iAllPosts.forEach(() => {
       if (
         pageNumber <= Math.ceil(iAllPosts.length / POSTS_PER_PAGE) &&
-        !otherAvailableLocales.includes(ilocal)
+        !availableLocales.includes(ilocal)
       )
-        otherAvailableLocales.push(ilocal)
+        availableLocales.push(ilocal)
     })
   })
 
@@ -68,7 +68,7 @@ export async function getStaticProps(context) {
       initialDisplayPosts,
       pagination,
       locale,
-      otherAvailableLocales,
+      availableLocales,
     },
   }
 }
@@ -78,7 +78,7 @@ export default function PostPage({
   initialDisplayPosts,
   pagination,
   locale,
-  otherAvailableLocales,
+  availableLocales,
 }) {
   const { t } = useTranslation()
   return (
@@ -86,7 +86,7 @@ export default function PostPage({
       <PageSeo
         title={siteMetadata.title[locale]}
         description={siteMetadata.description[locale]}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <ListLayout
         posts={posts}

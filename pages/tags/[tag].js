@@ -47,27 +47,27 @@ export async function getStaticProps({ params, defaultLocale, locale, locales })
   )
 
   // Checking if available in other locale for SEO
-  const otherAvailableLocales = []
+  const availableLocales = []
   await locales.forEach(async (ilocal) => {
     const otherLocale = ilocal !== defaultLocale ? ilocal : ''
     const itags = await getAllTags('blog', otherLocale)
     Object.entries(itags).map((itag) => {
       console.log('itag : ', itag)
-      if (itag[0] === params.tag) otherAvailableLocales.push(ilocal)
+      if (itag[0] === params.tag) availableLocales.push(ilocal)
     })
   })
 
-  return { props: { posts: filteredPosts, tag: params.tag, locale, otherAvailableLocales } }
+  return { props: { posts: filteredPosts, tag: params.tag, locale, availableLocales } }
 }
 
-export default function Tag({ posts, tag, locale, otherAvailableLocales }) {
+export default function Tag({ posts, tag, locale, availableLocales }) {
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
       <TagSeo
         title={`${tag} - ${siteMetadata.title[locale]}`}
         description={`${tag} tags - ${siteMetadata.title[locale]}`}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <ListLayout posts={posts} title={title} />
     </>

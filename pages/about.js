@@ -6,10 +6,10 @@ const DEFAULT_LAYOUT = 'AuthorLayout'
 export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const authorDetails = await getFileBySlug('authors', [`sparrowhawk`], otherLocale)
-  return { props: { authorDetails, otherAvailableLocales: locales } }
+  return { props: { authorDetails, availableLocales: locales } }
 }
 
-export default function About({ authorDetails, otherAvailableLocales }) {
+export default function About({ authorDetails, availableLocales }) {
   const { mdxSource, frontMatter } = authorDetails
 
   return (
@@ -17,7 +17,7 @@ export default function About({ authorDetails, otherAvailableLocales }) {
       layout={frontMatter.layout || DEFAULT_LAYOUT}
       mdxSource={mdxSource}
       frontMatter={frontMatter}
-      otherAvailableLocales={otherAvailableLocales}
+      availableLocales={availableLocales}
     />
   )
 }

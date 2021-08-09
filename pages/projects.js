@@ -7,17 +7,17 @@ import { PageSeo } from '@/components/SEO'
 import useTranslation from 'next-translate/useTranslation'
 
 export async function getStaticProps({ locale, locales }) {
-  return { props: { locale, otherAvailableLocales: locales } }
+  return { props: { locale, availableLocales: locales } }
 }
 
-export default function Projects({ locale, otherAvailableLocales }) {
+export default function Projects({ locale, availableLocales }) {
   const { t } = useTranslation()
   return (
     <>
       <PageSeo
         title={`Projects - ${siteMetadata.author}`}
         description={siteMetadata.description[locale]}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">

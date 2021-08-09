@@ -23,7 +23,7 @@ export default function PostLayout({
   authorDetails,
   next,
   prev,
-  otherAvailableLocales,
+  availableLocales,
   children,
 }) {
   const { slug, fileName, date, title, tags } = frontMatter
@@ -35,7 +35,7 @@ export default function PostLayout({
       <BlogSeo
         url={`${siteMetadata.siteUrl}/blog/${slug}`}
         authorDetails={authorDetails}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
         {...frontMatter}
       />
       <article>

@@ -12,10 +12,10 @@ export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const posts = await getAllFilesFrontMatter('blog', otherLocale)
 
-  return { props: { posts, locale, otherAvailableLocales: locales } }
+  return { props: { posts, locale, availableLocales: locales } }
 }
 
-export default function Home({ posts, locale, otherAvailableLocales }) {
+export default function Home({ posts, locale, availableLocales }) {
   const { t } = useTranslation()
 
   return (
@@ -23,7 +23,7 @@ export default function Home({ posts, locale, otherAvailableLocales }) {
       <PageSeo
         title={siteMetadata.title[locale]}
         description={siteMetadata.description[locale]}
-        otherAvailableLocales={otherAvailableLocales}
+        availableLocales={availableLocales}
       />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
