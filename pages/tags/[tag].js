@@ -38,7 +38,7 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
   )
 
   // rss
-  const rss = generateRss(filteredPosts, locale, `tags/${params.tag}/feed.xml`)
+  const rss = generateRss(filteredPosts, locale, defaultLocale, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
   fs.writeFileSync(
@@ -46,17 +46,17 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
     rss
   )
 
-  return { props: { posts: filteredPosts, tag: params.tag } }
+  return { props: { posts: filteredPosts, tag: params.tag, locale } }
 }
 
-export default function Tag({ posts, tag }) {
+export default function Tag({ posts, tag, locale }) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
       <PageSeo
-        title={`${tag} - ${siteMetadata.title}`}
-        description={`${tag} tags - ${siteMetadata.title}`}
+        title={`${tag} - ${siteMetadata.title[locale]}`}
+        description={`${tag} tags - ${siteMetadata.title[locale]}`}
       />
       <ListLayout posts={posts} title={title} />
     </>

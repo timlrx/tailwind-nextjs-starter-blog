@@ -16,14 +16,17 @@ export async function getStaticProps({ locale, defaultLocale }) {
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
-  return { props: { initialDisplayPosts, posts, pagination } }
+  return { props: { initialDisplayPosts, posts, pagination, locale } }
 }
 
-export default function Blog({ posts, initialDisplayPosts, pagination }) {
+export default function Blog({ posts, initialDisplayPosts, pagination, locale }) {
   const { t } = useTranslation()
   return (
     <>
-      <PageSeo title={`Blog - ${siteMetadata.author}`} description={siteMetadata.description} />
+      <PageSeo
+        title={`Blog - ${siteMetadata.author}`}
+        description={siteMetadata.description[locale]}
+      />
       <ListLayout
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}

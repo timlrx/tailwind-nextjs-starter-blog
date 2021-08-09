@@ -11,7 +11,7 @@ export const PageSeo = ({ title, description }) => {
       <meta name="description" content={description} />
       <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={siteMetadata.title} />
+      <meta property="og:site_name" content={siteMetadata.title[router.locale]} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
@@ -88,7 +88,7 @@ export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, ima
         <meta name="description" content={summary} />
         <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content={siteMetadata.title} />
+        <meta property="og:site_name" content={siteMetadata.title[router.locale]} />
         <meta property="og:description" content={summary} />
         <meta property="og:title" content={title} />
         {featuredImages.map((img) => (

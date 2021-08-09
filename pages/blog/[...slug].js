@@ -41,7 +41,7 @@ export async function getStaticProps({ defaultLocale, locale, params }) {
   const authorDetails = await Promise.all(authorPromise)
 
   // rss
-  const rss = generateRss(allPosts, locale)
+  const rss = generateRss(allPosts, locale, defaultLocale)
   fs.writeFileSync(`./public/feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`, rss)
 
   return { props: { post, authorDetails, prev, next } }
