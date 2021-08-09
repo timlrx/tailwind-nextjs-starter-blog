@@ -2,7 +2,6 @@ const fs = require('fs')
 const globby = require('globby')
 const path = require('path')
 const prettier = require('prettier')
-const { cpuUsage } = require('process')
 const siteMetadata = require('../data/siteMetadata')
 const i18nConfig = require('../i18n.json')
 
@@ -67,11 +66,7 @@ const i18nConfig = require('../i18n.json')
               .map(([path, loc, alreadyPresent]) => {
                 // @todo: Can you check especially here ?
                 const route = path.includes('/index') ? path.replace('/index', '') : path
-                if (
-                  path.includes(`/404.js`) ||
-                  path.includes(`/blog/[...slug].js`) ||
-                  alreadyPresent
-                ) {
+                if (path.includes(`/404`) || alreadyPresent) {
                   // Not sure about the [...slug] condition...
                   return
                 }
@@ -90,15 +85,17 @@ const i18nConfig = require('../i18n.json')
                               <loc>${siteMetadata.siteUrl}${
                   routeMultiLang.filter(([path, loc]) => (loc === defaultLocale ? path : ''))[0][0]
                 }</loc>
-                  ${routeMultiLang.map(
-                    ([xe, xloc]) =>
-                      `
+                  ${routeMultiLang
+                    .map(
+                      ([xe, xloc]) =>
+                        `
                                <xhtml:link 
                                rel="alternate"
                                hreflang="${xloc}"
                                href="${siteMetadata.siteUrl}${xe}"/>
                                `
-                  )}
+                    )
+                    .join('')}
                           </url>
                       `
               })
