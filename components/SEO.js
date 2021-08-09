@@ -15,6 +15,7 @@ export const PageSeo = ({ title, description }) => {
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
+      <meta property="og:locale" content={router.locale} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
@@ -25,29 +26,30 @@ export const PageSeo = ({ title, description }) => {
 }
 
 export const TagSeo = ({ title, description }) => {
-  const { asPath, locale, defaultLocale } = useRouter()
+  const router = useRouter()
   return (
     <Head>
       <title>{`${title}`}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${asPath}`} />
+      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={siteMetadata.title[locale]} />
+      <meta property="og:site_name" content={siteMetadata.title[router.locale]} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
+      <meta property="og:locale" content={router.locale} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
       <link
-        key={locale}
+        key={router.locale}
         rel="alternate"
         type="application/rss+xml"
         title={`${description} - RSS feed`}
-        href={`/feed${locale === defaultLocale ? '' : `.${locale}`}.xml`}
+        href={`/feed${router.locale === router.defaultLocale ? '' : `.${router.locale}`}.xml`}
       />
     </Head>
   )
@@ -123,6 +125,7 @@ export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, ima
         {featuredImages.map((img) => (
           <meta property="og:image" content={img.url} key={img.url} />
         ))}
+        <meta property="og:locale" content={router.locale} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={siteMetadata.twitter} />
         <meta name="twitter:title" content={title} />
