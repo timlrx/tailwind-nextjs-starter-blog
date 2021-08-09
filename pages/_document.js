@@ -1,8 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+
+const { locales, defaultLocale } = require('../i18n.json')
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html>
         <Head>
           <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
           <link
@@ -21,7 +23,15 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
-          <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+          {locales.map((locale) => (
+            <link
+              key={locale}
+              rel="alternate"
+              type="application/rss+xml"
+              title={`${locale} rss feed`}
+              href={`/feed${locale === defaultLocale ? '' : `.${locale}`}.xml`}
+            />
+          ))}
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
