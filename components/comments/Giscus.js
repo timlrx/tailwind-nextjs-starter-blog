@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useTheme } from 'next-themes'
 
 import siteMetadata from '@/data/siteMetadata'
+import useTranslation from 'next-translate/useTranslation'
 
 const Giscus = ({ mapping }) => {
+  const { t } = useTranslation()
   const [enableLoadComments, setEnabledLoadComments] = useState(true)
   const { theme, resolvedTheme } = useTheme()
   const commentsTheme =
@@ -41,7 +43,7 @@ const Giscus = ({ mapping }) => {
 
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
-      {enableLoadComments && <button onClick={LoadComments}>Load Comments</button>}
+      {enableLoadComments && <button onClick={LoadComments}>{t('common:comment')}</button>}
       <div className="giscus" id={COMMENTS_ID} />
     </div>
   )

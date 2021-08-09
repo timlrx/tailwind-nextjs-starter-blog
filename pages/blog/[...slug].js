@@ -6,15 +6,14 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
-export async function getStaticPaths({ locales }) {
-  const posts = getFiles('blog')
-
-  let localesPost = []
-  for (var i = 0; i < posts.length; i++) {
-    for (var j = 0; j < locales.length; j++) {
-      localesPost.push([posts[i], locales[j]])
-    }
-  }
+export async function getStaticPaths({ locales, defaultLocale }) {
+  const localesPost = locales
+    .map((locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const posts = getFiles('blog', otherLocale)
+      return posts.map((post) => [post, locale])
+    })
+    .flat()
 
   return {
     paths: localesPost.map(([p, l]) => ({
@@ -36,26 +35,27 @@ export async function getStaticProps({ defaultLocale, locale, params }) {
   const post = await getFileBySlug('blog', params.slug.join('/'), otherLocale)
   const authorList = post.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug('authors', [author])
+    const authorResults = await getFileBySlug('authors', [author], otherLocale)
     return authorResults.frontMatter
   })
   const authorDetails = await Promise.all(authorPromise)
 
   // rss
-  const rss = generateRss(allPosts)
-  fs.writeFileSync('./public/feed.xml', rss)
+  const rss = generateRss(allPosts, locale)
+  fs.writeFileSync(`./public/feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`, rss)
 
   return { props: { post, authorDetails, prev, next } }
 }
 
 export default function Blog({ post, authorDetails, prev, next }) {
-  const { mdxSource, frontMatter } = post
+  const { mdxSource, toc, frontMatter } = post
 
   return (
     <>
       {frontMatter.draft !== true ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
+          toc={toc}
           mdxSource={mdxSource}
           frontMatter={frontMatter}
           authorDetails={authorDetails}

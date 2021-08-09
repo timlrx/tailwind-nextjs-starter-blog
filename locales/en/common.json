@@ -3,5 +3,17 @@
   "description": "A blog created with Next.js and Tailwind.css",
   "more": "Read more",
   "all": "All Posts",
-  "search": "Search articles"
+  "search": "Search articles",
+  "comment": "Load Comments",
+  "pub": "Publié le",
+  "authors": "Authors",
+  "name": "Name",
+  "nexta": "Next Article",
+  "preva": "Previous Article",
+  "nextp": "Next",
+  "prevp": "Previous",
+  "of": "of",
+  "back": "Back to the blog",
+  "twitter": "Discuss on Twitter",
+  "github": "View on GitHub"
 }

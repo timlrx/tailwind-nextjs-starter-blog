@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
 import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('')
@@ -14,6 +15,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
   })
 
   const { t } = useTranslation()
+  const { locale } = useRouter()
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
@@ -58,9 +60,9 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
               <li key={slug} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
                   <dl>
-                    <dt className="sr-only">Published on</dt>
+                    <dt className="sr-only">{t('common:pub')}</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
+                      <time dateTime={date}>{formatDate(date, locale)}</time>
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">

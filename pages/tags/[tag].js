@@ -11,17 +11,16 @@ import path from 'path'
 const root = process.cwd()
 
 export async function getStaticPaths({ locales, defaultLocale }) {
-  let tagsTotal = []
-
-  for (var i = 0; i < locales.length; i++) {
-    const otherLocale = locales[i] !== defaultLocale ? locales[i] : ''
-    const tags = await getAllTags('blog', otherLocale)
-    const retour = Object.entries(tags).map((k) => [k[0], locales[i]])
-    tagsTotal.push(retour)
-  }
+  const tags = await Promise.all(
+    locales.map(async (locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const tags = await getAllTags('blog', otherLocale)
+      return Object.entries(tags).map((k) => [k[0], locale])
+    })
+  )
 
   return {
-    paths: tagsTotal.flat().map(([tag, locale]) => ({
+    paths: tags.flat().map(([tag, locale]) => ({
       params: {
         tag,
       },
@@ -39,10 +38,13 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
   )
 
   // rss
-  const rss = generateRss(filteredPosts, `tags/${params.tag}/feed.xml`)
+  const rss = generateRss(filteredPosts, locale, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
-  fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
+  fs.writeFileSync(
+    path.join(rssPath, `feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`),
+    rss
+  )
 
   return { props: { posts: filteredPosts, tag: params.tag } }
 }
