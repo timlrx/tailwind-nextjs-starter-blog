@@ -6,15 +6,14 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
-export async function getStaticPaths({ locales }) {
-  const posts = getFiles('blog', 'en-US')
-
-  let localesPost = []
-  for (var i = 0; i < posts.length; i++) {
-    for (var j = 0; j < locales.length; j++) {
-      localesPost.push([posts[i], locales[j]])
-    }
-  }
+export async function getStaticPaths({ locales, defaultLocale }) {
+  const localesPost = locales
+    .map((locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const posts = getFiles('blog', otherLocale)
+      return posts.map((post) => [post, locale])
+    })
+    .flat()
 
   return {
     paths: localesPost.map(([p, l]) => ({
@@ -27,35 +26,36 @@ export async function getStaticPaths({ locales }) {
   }
 }
 
-export async function getStaticProps({ locale, params }) {
-  const allPosts = await getAllFilesFrontMatter('blog', 'en-US')
+export async function getStaticProps({ defaultLocale, locale, params }) {
+  const otherLocale = locale !== defaultLocale ? locale : ''
+  const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
-  const otherLocale = locale !== 'en-US' ? `.${locale}` : ''
-  const post = await getFileBySlug('blog', params.slug.join('/') + otherLocale)
+  const post = await getFileBySlug('blog', params.slug.join('/'), otherLocale)
   const authorList = post.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug('authors', [author])
+    const authorResults = await getFileBySlug('authors', [author], otherLocale)
     return authorResults.frontMatter
   })
   const authorDetails = await Promise.all(authorPromise)
 
   // rss
-  const rss = generateRss(allPosts)
-  fs.writeFileSync('./public/feed.xml', rss)
+  const rss = generateRss(allPosts, locale)
+  fs.writeFileSync(`./public/feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`, rss)
 
   return { props: { post, authorDetails, prev, next } }
 }
 
 export default function Blog({ post, authorDetails, prev, next }) {
-  const { mdxSource, frontMatter } = post
+  const { mdxSource, toc, frontMatter } = post
 
   return (
     <>
       {frontMatter.draft !== true ? (
         <MDXLayoutRenderer
           layout={frontMatter.layout || DEFAULT_LAYOUT}
+          toc={toc}
           mdxSource={mdxSource}
           frontMatter={frontMatter}
           authorDetails={authorDetails}

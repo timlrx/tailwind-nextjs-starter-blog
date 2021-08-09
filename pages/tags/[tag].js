@@ -10,39 +10,41 @@ import path from 'path'
 
 const root = process.cwd()
 
-export async function getStaticPaths({ locales }) {
-  const tags = await getAllTags('blog')
-  const tagsArray = Object.keys(tags)
-
-  let localesTag = []
-  for (var i = 0; i < tagsArray.length; i++) {
-    for (var j = 0; j < locales.length; j++) {
-      localesTag.push([tagsArray[i], locales[j]])
-    }
-  }
+export async function getStaticPaths({ locales, defaultLocale }) {
+  const tags = await Promise.all(
+    locales.map(async (locale) => {
+      const otherLocale = locale !== defaultLocale ? locale : ''
+      const tags = await getAllTags('blog', otherLocale)
+      return Object.entries(tags).map((k) => [k[0], locale])
+    })
+  )
 
   return {
-    paths: localesTag.map(([tag, l]) => ({
+    paths: tags.flat().map(([tag, locale]) => ({
       params: {
         tag,
       },
-      locale: l,
+      locale,
     })),
     fallback: false,
   }
 }
 
-export async function getStaticProps({ locale, params }) {
-  const allPosts = await getAllFilesFrontMatter('blog', locale)
+export async function getStaticProps({ params, defaultLocale, locale }) {
+  const otherLocale = locale !== defaultLocale ? locale : ''
+  const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
 
   // rss
-  const rss = generateRss(filteredPosts, `tags/${params.tag}/feed.xml`)
+  const rss = generateRss(filteredPosts, locale, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
-  fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
+  fs.writeFileSync(
+    path.join(rssPath, `feed${otherLocale === '' ? '' : `.${otherLocale}`}.xml`),
+    rss
+  )
 
   return { props: { posts: filteredPosts, tag: params.tag } }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
@@ -7,7 +8,19 @@ import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 
+import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
+
 const LayoutWrapper = ({ children }) => {
+  const { t } = useTranslation()
+  const router = useRouter()
+  const { locale, locales, defaultLocale } = router
+
+  const changeLanguage = (e) => {
+    const locale = e.target.value
+    router.push(router.asPath, router.asPath, { locale })
+  }
+
   return (
     <SectionContainer>
       <div className="flex flex-col justify-between h-screen">
@@ -36,10 +49,22 @@ const LayoutWrapper = ({ children }) => {
                   href={link.href}
                   className="p-1 font-medium text-gray-900 sm:p-4 dark:text-gray-100"
                 >
-                  {link.title}
+                  {t(`headerNavLinks:${link.title.toLowerCase()}`)}
                 </Link>
               ))}
             </div>
+            <select
+              onChange={changeLanguage}
+              defaultValue={locale}
+              style={{ textAlignLast: 'center' }}
+              className="text-gray-900 dark:text-gray-100 text-shadow-sm text-sm bg-transparent tracking-wide"
+            >
+              {locales.map((e) => (
+                <option value={e} key={e}>
+                  {e}
+                </option>
+              ))}
+            </select>
             <ThemeSwitch />
             <MobileNav />
           </div>

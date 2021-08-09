@@ -1,6 +1,6 @@
 {
   "name": "tailwind-nextjs-starter-blog",
-  "version": "1.0.0-canary.2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "next-remote-watch ./data",
@@ -21,6 +21,7 @@
     "mdx-bundler": "^5.1.2",
     "next": "11.0.1",
     "next-themes": "^0.0.14",
+    "next-translate": "^1.0.7",
     "postcss": "^8.3.5",
     "preact": "^10.5.13",
     "react": "17.0.2",

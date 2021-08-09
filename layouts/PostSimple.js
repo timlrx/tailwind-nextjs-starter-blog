@@ -5,9 +5,13 @@ import { BlogSeo } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'
 import Comments from '@/components/comments'
+import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { date, title } = frontMatter
+  const { t } = useTranslation()
+  const { locale } = useRouter()
 
   return (
     <SectionContainer>
@@ -18,9 +22,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             <div className="pb-10 space-y-1 text-center border-b border-gray-200 dark:border-gray-700">
               <dl>
                 <div>
-                  <dt className="sr-only">Published on</dt>
+                  <dt className="sr-only">{t('common:pub')}</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date)}</time>
+                    <time dateTime={date}>{formatDate(date, locale)}</time>
                   </dd>
                 </div>
               </dl>
