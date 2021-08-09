@@ -2,6 +2,7 @@ const fs = require('fs')
 const globby = require('globby')
 const path = require('path')
 const prettier = require('prettier')
+const { cpuUsage } = require('process')
 const siteMetadata = require('../data/siteMetadata')
 const i18nConfig = require('../i18n.json')
 
@@ -53,6 +54,12 @@ const i18nConfig = require('../i18n.json')
       false, // Indicate if the element is already present or not
     ])
 
+  // const siteUrl =
+  // siteMetadata.siteUrl[siteMetadata.siteUrl.length - 1] == '/'
+  //   ? siteMetadata.siteUrl.slice(0, siteMetadata.siteUrl.length - 1)
+  //   : siteMetadata.siteUrl
+  const siteUrl = siteMetadata.siteUrl
+
   const sitemap = `
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -66,33 +73,44 @@ const i18nConfig = require('../i18n.json')
               .map(([path, loc, alreadyPresent]) => {
                 // @todo: Can you check especially here ?
                 const route = path.includes('/index') ? path.replace('/index', '') : path
-                if (path.includes(`/404`) || alreadyPresent) {
+                if (
+                  path.includes(`/404.js`) ||
+                  path.includes(`/blog/[...slug].js`) ||
+                  alreadyPresent
+                ) {
                   // Not sure about the [...slug] condition...
                   return
                 }
                 const routeMultiLang = pagesWithLoc.filter(
                   ([ipath, iloc, _]) => ipath.replace(`/${iloc}`, '') == path.replace(`/${loc}`, '')
                 )
+                const test = routeMultiLang.filter(([path, loc]) =>
+                  loc === defaultLocale ? path : ''
+                )
                 routeMultiLang.map((e) => (e[2] = true)) //making allreadyPresnt to true
                 if (routeMultiLang.length === 1)
                   return `
                         <url>
-                            <loc>${siteMetadata.siteUrl}${route}</loc>
+                            <loc>${siteUrl}${route}</loc>
                         </url>
                     `
                 return `
                           <url>
-                              <loc>${siteMetadata.siteUrl}${
-                  routeMultiLang.filter(([path, loc]) => (loc === defaultLocale ? path : ''))[0][0]
+                              <loc>${siteUrl}${
+                  routeMultiLang.filter(([path, loc]) => (loc === defaultLocale ? path : ''))
+                    .length !== 0
+                    ? routeMultiLang.filter(([path, loc]) =>
+                        loc === defaultLocale ? path : ''
+                      )[0][0]
+                    : routeMultiLang[0][0] // Fallaback in a very particular case where there is two local but not default local
                 }</loc>
                   ${routeMultiLang
                     .map(
                       ([xe, xloc]) =>
-                        `
-                               <xhtml:link 
+                        `                               <xhtml:link 
                                rel="alternate"
                                hreflang="${xloc}"
-                               href="${siteMetadata.siteUrl}${xe}"/>
+                               href="${siteUrl}${xe}"/>
                                `
                     )
                     .join('')}
