@@ -2,11 +2,11 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 
-export const PageSeo = ({ title, description }) => {
+export const PageSeo = ({ title, description, taxonomy }) => {
   const router = useRouter()
   return (
     <Head>
-      <title>{`${title}`}</title>
+      <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
       <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
@@ -20,34 +20,14 @@ export const PageSeo = ({ title, description }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
-    </Head>
-  )
-}
-
-export const TagSeo = ({ title, description }) => {
-  const router = useRouter()
-  return (
-    <Head>
-      <title>{`${title}`}</title>
-      <meta name="robots" content="follow, index" />
-      <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={siteMetadata.title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={siteMetadata.twitter} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title={`${description} - RSS feed`}
-        href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
-      />
+      {taxonomy && (
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${description} - RSS feed`}
+          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+        />
+      )}
     </Head>
   )
 }
@@ -111,7 +91,7 @@ export const BlogSeo = ({ authorDetails, title, summary, date, lastmod, url, ima
   return (
     <>
       <Head>
-        <title>{`${title}`}</title>
+        <title>{title}</title>
         <meta name="robots" content="follow, index" />
         <meta name="description" content={summary} />
         <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />

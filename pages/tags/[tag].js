@@ -1,4 +1,4 @@
-import { TagSeo } from '@/components/SEO'
+import { PageSeo } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import generateRss from '@/lib/generate-rss'
@@ -43,9 +43,10 @@ export default function Tag({ posts, tag }) {
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
-      <TagSeo
+      <PageSeo
         title={`${tag} - ${siteMetadata.title}`}
         description={`${tag} tags - ${siteMetadata.title}`}
+        taxonomy
       />
       <ListLayout posts={posts} title={title} />
     </>
