@@ -18,7 +18,14 @@ const discussUrl = (slug) =>
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  next,
+  prev,
+  availableLocales,
+  children,
+}) {
   const { slug, fileName, date, title, tags } = frontMatter
   const { t } = useTranslation()
   const { locale } = useRouter()
@@ -28,6 +35,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <BlogSeo
         url={`${siteMetadata.siteUrl}/blog/${slug}`}
         authorDetails={authorDetails}
+        availableLocales={availableLocales}
         {...frontMatter}
       />
       <article>

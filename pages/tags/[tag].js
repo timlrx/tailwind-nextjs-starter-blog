@@ -1,4 +1,4 @@
-import { PageSeo } from '@/components/SEO'
+import { TagSeo } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import generateRss from '@/lib/generate-rss'
@@ -30,7 +30,7 @@ export async function getStaticPaths({ locales, defaultLocale }) {
   }
 }
 
-export async function getStaticProps({ params, defaultLocale, locale }) {
+export async function getStaticProps({ params, defaultLocale, locale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ''
   const allPosts = await getAllFilesFrontMatter('blog', otherLocale)
   const filteredPosts = allPosts.filter(
@@ -38,7 +38,7 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
   )
 
   // rss
-  const rss = generateRss(filteredPosts, locale, `tags/${params.tag}/feed.xml`)
+  const rss = generateRss(filteredPosts, locale, defaultLocale, `tags/${params.tag}/feed.xml`)
   const rssPath = path.join(root, 'public', 'tags', params.tag)
   fs.mkdirSync(rssPath, { recursive: true })
   fs.writeFileSync(
@@ -46,17 +46,27 @@ export async function getStaticProps({ params, defaultLocale, locale }) {
     rss
   )
 
-  return { props: { posts: filteredPosts, tag: params.tag } }
+  // Checking if available in other locale for SEO
+  const availableLocales = []
+  await locales.forEach(async (ilocal) => {
+    const otherLocale = ilocal !== defaultLocale ? ilocal : ''
+    const itags = await getAllTags('blog', otherLocale)
+    Object.entries(itags).map((itag) => {
+      if (itag[0] === params.tag) availableLocales.push(ilocal)
+    })
+  })
+
+  return { props: { posts: filteredPosts, tag: params.tag, locale, availableLocales } }
 }
 
-export default function Tag({ posts, tag }) {
-  // Capitalize first letter and convert space to dash
+export default function Tag({ posts, tag, locale, availableLocales }) {
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
-      <PageSeo
-        title={`${tag} - ${siteMetadata.title}`}
-        description={`${tag} tags - ${siteMetadata.title}`}
+      <TagSeo
+        title={`${tag} - ${siteMetadata.title[locale]}`}
+        description={`${tag} tags - ${siteMetadata.title[locale]}`}
+        availableLocales={availableLocales}
       />
       <ListLayout posts={posts} title={title} />
     </>

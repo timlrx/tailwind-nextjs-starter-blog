@@ -8,14 +8,25 @@ import Comments from '@/components/comments'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  next,
+  prev,
+  availableLocales,
+  children,
+}) {
   const { date, title } = frontMatter
   const { t } = useTranslation()
   const { locale } = useRouter()
 
   return (
     <SectionContainer>
-      <BlogSeo url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSeo
+        availableLocales={availableLocales}
+        url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`}
+        {...frontMatter}
+      />
       <article>
         <div>
           <header>

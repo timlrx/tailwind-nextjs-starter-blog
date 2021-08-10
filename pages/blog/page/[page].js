@@ -5,6 +5,7 @@ import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
 
 import useTranslation from 'next-translate/useTranslation'
+import { createPortal } from 'react-dom'
 export async function getStaticPaths({ locales, defaultLocale }) {
   const paths = (
     await Promise.all(
@@ -32,6 +33,7 @@ export async function getStaticProps(context) {
   const {
     params: { page },
     defaultLocale,
+    locales,
     locale,
   } = context
   const otherLocale = locale !== defaultLocale ? locale : ''
@@ -46,20 +48,46 @@ export async function getStaticProps(context) {
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
+  // Checking if available in other locale for SEO
+  const availableLocales = []
+  await locales.forEach(async (ilocal) => {
+    const otherLocale = ilocal !== defaultLocale ? ilocal : ''
+    const iAllPosts = await getAllFilesFrontMatter('blog', otherLocale)
+    iAllPosts.forEach(() => {
+      if (
+        pageNumber <= Math.ceil(iAllPosts.length / POSTS_PER_PAGE) &&
+        !availableLocales.includes(ilocal)
+      )
+        availableLocales.push(ilocal)
+    })
+  })
+
   return {
     props: {
       posts,
       initialDisplayPosts,
       pagination,
+      locale,
+      availableLocales,
     },
   }
 }
 
-export default function PostPage({ posts, initialDisplayPosts, pagination }) {
+export default function PostPage({
+  posts,
+  initialDisplayPosts,
+  pagination,
+  locale,
+  availableLocales,
+}) {
   const { t } = useTranslation()
   return (
     <>
-      <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
+      <PageSeo
+        title={siteMetadata.title[locale]}
+        description={siteMetadata.description[locale]}
+        availableLocales={availableLocales}
+      />
       <ListLayout
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}
