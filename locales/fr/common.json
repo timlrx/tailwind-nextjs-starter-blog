@@ -1,6 +1,5 @@
 {
   "greeting": "Les plus récents",
-  "description": "Un blog créé avec Next.js et Tailwind.css",
   "more": "Lire la suite",
   "all": "Tous Les Articles",
   "search": "Recherche",
