@@ -4,30 +4,86 @@ import siteMetadata from '@/data/siteMetadata'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 import { PostFrontMatter } from 'types/PostFrontMatter'
 
-interface PageSeoProps {
+interface CommonSEOProps {
   title: string
   description: string
+  ogType: string
+  ogImage:
+    | string
+    | {
+        '@type': string
+        url: string
+      }[]
+  twImage: string
 }
 
-export const PageSeo = ({ title, description }: PageSeoProps) => {
+const CommonSEO = ({ title, description, ogType, ogImage, twImage }: CommonSEOProps) => {
   const router = useRouter()
   return (
     <Head>
-      <title>{`${title}`}</title>
+      <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
       <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
+      {Array.isArray(ogImage) ? (
+        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
+      ) : (
+        <meta property="og:image" content={ogImage} key={ogImage} />
+      )}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteMetadata.siteUrl}${siteMetadata.socialBanner}`} />
+      <meta name="twitter:image" content={twImage} />
     </Head>
+  )
+}
+
+interface PageSEOProps {
+  title: string
+  description: string
+}
+
+export const PageSEO = ({ title, description }: PageSEOProps) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  return (
+    <CommonSEO
+      title={title}
+      description={description}
+      ogType="website"
+      ogImage={ogImageUrl}
+      twImage={twImageUrl}
+    />
+  )
+}
+
+export const TagSEO = ({ title, description }: PageSEOProps) => {
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const router = useRouter()
+  return (
+    <>
+      <CommonSEO
+        title={title}
+        description={description}
+        ogType="website"
+        ogImage={ogImageUrl}
+        twImage={twImageUrl}
+      />
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${description} - RSS feed`}
+          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+        />
+      </Head>
+    </>
   )
 }
 
@@ -36,7 +92,7 @@ interface BlogSeoProps extends PostFrontMatter {
   url: string
 }
 
-export const BlogSeo = ({
+export const BlogSEO = ({
   authorDetails,
   title,
   summary,
@@ -100,31 +156,26 @@ export const BlogSeo = ({
     description: summary,
   }
 
+  const twImageUrl = featuredImages[0].url
+
   return (
     <>
+      <CommonSEO
+        title={title}
+        description={summary}
+        ogType="article"
+        ogImage={featuredImages}
+        twImage={twImageUrl}
+      />
       <Head>
-        <title>{`${title}`}</title>
-        <meta name="robots" content="follow, index" />
-        <meta name="description" content={summary} />
-        <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content={siteMetadata.title} />
-        <meta property="og:description" content={summary} />
-        <meta property="og:title" content={title} />
-        {featuredImages.map((img) => (
-          <meta property="og:image" content={img.url} key={img.url} />
-        ))}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={siteMetadata.twitter} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={summary} />
-        <meta name="twitter:image" content={featuredImages[0].url} />
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
         <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData, null, 2) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData, null, 2),
+          }}
         />
       </Head>
     </>

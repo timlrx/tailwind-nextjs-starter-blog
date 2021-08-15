@@ -1,4 +1,4 @@
-import { PageSeo } from '@/components/SEO'
+import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import generateRss from '@/lib/generate-rss'
@@ -48,9 +48,9 @@ export default function Tag({ posts, tag }: InferGetStaticPropsType<typeof getSt
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
     <>
-      <PageSeo
+      <TagSEO
         title={`${tag} - ${siteMetadata.title}`}
-        description={`${tag} tags - ${siteMetadata.title}`}
+        description={`${tag} tags - ${siteMetadata.author}`}
       />
       <ListLayout posts={posts} title={title} />
     </>
