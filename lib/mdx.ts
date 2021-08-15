@@ -1,17 +1,26 @@
-import { Node } from 'unist'
 import { bundleMDX } from 'mdx-bundler'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 import readingTime from 'reading-time'
-import visit from 'unist-util-visit'
-import codeTitles from './remark-code-title'
-import remarkTocHeadings from './remark-toc-headings'
-import imgToJsx from './img-to-jsx'
+import { visit } from 'unist-util-visit'
+import type { Pluggable } from 'unified'
 import getAllFilesRecursively from './utils/files'
 import { PostFrontMatter } from 'types/PostFrontMatter'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 import { Toc } from 'types/Toc'
+// Remark packages
+import remarkSlug from 'remark-slug'
+import remarkAutolinkHeadings from 'remark-autolink-headings'
+import remarkGfm from 'remark-gfm'
+import remarkFootnotes from 'remark-footnotes'
+import remarkMath from 'remark-math'
+import remarkCodeTitles from './remark-code-title'
+import remarkTocHeadings from './remark-toc-headings'
+import remarkImgToJsx from './remark-img-to-jsx'
+// Rehype packages
+import rehypeKatex from 'rehype-katex'
+import rehypePrismPlus from 'rehype-prism-plus'
 
 const root = process.cwd()
 
@@ -82,22 +91,22 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
       // plugins in the future.
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        require('remark-slug'),
-        require('remark-autolink-headings'),
+        remarkSlug,
+        remarkAutolinkHeadings,
         [remarkTocHeadings, { exportRef: toc }],
-        require('remark-gfm'),
-        codeTitles,
-        [require('remark-footnotes'), { inlineNotes: true }],
-        require('remark-math'),
-        imgToJsx,
+        remarkGfm,
+        remarkCodeTitles,
+        [remarkFootnotes, { inlineNotes: true }],
+        remarkMath,
+        remarkImgToJsx,
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        require('rehype-katex'),
-        [require('rehype-prism-plus'), { ignoreMissing: true }],
+        rehypeKatex,
+        [rehypePrismPlus, { ignoreMissing: true }] as Pluggable,
         () => {
           return (tree) => {
-            visit<Node & { properties: { className: string[] } }>(tree, 'element', (node) => {
+            visit(tree, 'element', (node) => {
               const [token, type] = node.properties.className || []
               if (token === 'token') {
                 node.properties.className = [tokenClassNames[type]]
