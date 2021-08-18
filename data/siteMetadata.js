@@ -22,6 +22,14 @@ const siteMetadata = {
     simpleAnalytics: false, // true or false
     googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
   },
+  newsletter: {
+    provider: 'mailchimp', // supported providers: mailchimp
+    mailChimpConfig: {
+      apiKey: process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY,
+      apiServer: process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER,
+      audienceId: process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID,
+    },
+  },
   comment: {
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
