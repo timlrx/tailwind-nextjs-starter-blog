@@ -5,6 +5,7 @@ mailchimp.setConfig({
   server: process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER, // E.g. us1
 })
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
   const { email } = req.body
 
