@@ -19,9 +19,11 @@ const FormSuscribe = () => {
       method: 'POST',
     })
 
+    // console.log('resultat : ', res)
     const { error } = await res.json()
-
+    // console.log('error :', error)
     if (error) {
+      console.log('error 2 : ', error)
       setMessage('You are already subscribed!')
       return
     }
