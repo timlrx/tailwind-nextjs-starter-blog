@@ -52,7 +52,7 @@ Some new possibilities include loading components directly in the mdx file using
 
 For example, the following jsx snippet can be used directly in an MDX file to render the page title component:
 
-```js
+```jsx
 import PageTitle from './PageTitle.js'
 ;<PageTitle> Using JSX components in MDX </PageTitle>
 ```
@@ -76,7 +76,7 @@ To make generating a table of contents (TOC) simple, you can use the existing `T
 
 For example, the TOC in this post was generated with the following code:
 
-```js
+```jsx
 <TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
 ```
 
@@ -86,7 +86,7 @@ A `asDisclosure` prop can be used to render the TOC within an expandable disclos
 
 Here's the full TOC rendered in a disclosure element.
 
-```js
+```jsx
 <TOCInline toc={props.toc} asDisclosure />
 ```
 
@@ -107,7 +107,7 @@ You can configure the template to take in other fields - see `PostLayout` compon
 
 Here's an example layout which you can further customise:
 
-```js
+```jsx
 export default function ExampleLayout({ frontMatter, children }) {
   const { date, title } = frontMatter
 
@@ -143,7 +143,7 @@ The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
 
 `layout` is mapped to wrapper which wraps the entire MDX content.
 
-```js
+```jsx
 export const MDXComponents = {
   Image,
   a: CustomLink,
