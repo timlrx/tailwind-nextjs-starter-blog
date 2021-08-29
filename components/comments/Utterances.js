@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 
 import siteMetadata from '@/data/siteMetadata'
@@ -13,7 +13,7 @@ const Utterances = ({ issueTerm }) => {
 
   const COMMENTS_ID = 'comments-container'
 
-  function LoadComments() {
+  const LoadComments = useCallback(() => {
     setEnabledLoadComments(false)
     const script = document.createElement('script')
     script.src = 'https://utteranc.es/client.js'
@@ -31,13 +31,20 @@ const Utterances = ({ issueTerm }) => {
       const comments = document.getElementById(COMMENTS_ID)
       if (comments) comments.innerHTML = ''
     }
-  }
+  }, [commentsTheme, issueTerm])
+
+  // Reload on theme change
+  useEffect(() => {
+    const iframe = document.querySelector('iframe.utterances-frame')
+    if (!iframe) return
+    LoadComments()
+  }, [LoadComments])
 
   // Added `relative` to fix a weird bug with `utterances-frame` position
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
       {enableLoadComments && <button onClick={LoadComments}>Load Comments</button>}
-      <div className="utterances-frame relative" id={COMMENTS_ID} />
+      <div className="relative utterances-frame" id={COMMENTS_ID} />
     </div>
   )
 }
