@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 
 import siteMetadata from '@/data/siteMetadata'
@@ -15,7 +15,7 @@ const Giscus = ({ mapping }) => {
 
   const COMMENTS_ID = 'comments-container'
 
-  function LoadComments() {
+  const LoadComments = useCallback(() => {
     setEnabledLoadComments(false)
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
@@ -37,7 +37,14 @@ const Giscus = ({ mapping }) => {
       const comments = document.getElementById(COMMENTS_ID)
       if (comments) comments.innerHTML = ''
     }
-  }
+  }, [commentsTheme, mapping])
+
+  // Reload on theme change
+  useEffect(() => {
+    const iframe = document.querySelector('iframe.giscus-frame')
+    if (!iframe) return
+    LoadComments()
+  }, [LoadComments])
 
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
