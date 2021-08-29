@@ -18,6 +18,10 @@
   @apply pl-4 -mx-4 border-l-4 border-gray-800;
 }
 
+.code-line > .text-code-white:last-child {
+  @apply pr-4;
+}
+
 .highlight-line {
   @apply -mx-4 bg-gray-700 bg-opacity-50 border-l-4 border-primary-500;
 }
