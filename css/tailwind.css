@@ -18,7 +18,7 @@
   @apply pl-4 -mx-4 border-l-4 border-gray-800;
 }
 
-.code-line > .text-code-white:last-child {
+.code-line > span:last-child {
   @apply pr-4;
 }
 
