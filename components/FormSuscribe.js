@@ -55,7 +55,9 @@ const FormSubscribe = () => {
         </div>
         <div className="mt-2 flex-shrink-0 w-full flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto sm:inline-flex">
           <button
-            className="w-full bg-primary-500 dark:bg-primary-400 px-4 py-2 border border-transparent rounded-md flex items-center justify-center text-base font-medium text-white hover:bg-primary-700 dark:hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700 sm:w-auto sm:inline-flex"
+            className={`w-full bg-primary-500 dark:bg-primary-400 px-4 py-2 border border-transparent rounded-md flex items-center justify-center text-base font-medium text-white ${
+              subscribed ? 'cursor-default' : 'hover:bg-primary-700 dark:hover:bg-primary-300'
+            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700 sm:w-auto sm:inline-flex`}
             type="submit"
             disabled={subscribed}
           >
