@@ -23,13 +23,9 @@ const siteMetadata = {
     googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
-    provider: 'mailchimp', // supported providers: mailchimp, buttondown
-    mailChimpConfig: {
-      apiKey: process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY,
-      apiServer: process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER,
-      audienceId: process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID,
-    },
-    buttondownConfig: process.env.NEXT_PUBLIC_BUTTONDOWN,
+    // supports mailchimp, buttondown, convertkit
+    // Please add  your .env file and modify it according to your selection
+    provider: 'mailchimp',
   },
   comment: {
     // Select a provider and use the environment variables associated to it

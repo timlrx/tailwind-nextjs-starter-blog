@@ -46,7 +46,7 @@ const FormSubscribe = () => {
             className="appearance-none w-full px-4 py-2 border border-neutrals-cool-grey-300 text-base rounded-md text-neutrals-cool-grey-900 bg-white dark:bg-black placeholder-gray-500 focus:outline-none focus:ring-primary-400 dark:focus:border-primary-600 lg:max-w-xs"
             id="email-input"
             name="email"
-            placeholder="Enter your email"
+            placeholder={subscribed ? "You're subscribed !" : 'Enter your email'}
             ref={inputEl}
             required
             type="email"
