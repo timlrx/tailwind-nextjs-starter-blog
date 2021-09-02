@@ -2,9 +2,10 @@ import { useRef, useState } from 'react'
 
 import siteMetadata from '@/data/siteMetadata'
 
-const FormSuscribe = () => {
+const FormSubscribe = () => {
   const inputEl = useRef(null)
   const [message, setMessage] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
 
   const subscribe = async (e) => {
     e.preventDefault()
@@ -19,16 +20,14 @@ const FormSuscribe = () => {
       method: 'POST',
     })
 
-    // console.log('resultat : ', res)
     const { error } = await res.json()
-    // console.log('error :', error)
     if (error) {
-      console.log('error 2 : ', error)
-      setMessage('You are already subscribed!')
+      setMessage('Your e-mail adress is invalid or you are already subscribed!')
       return
     }
 
     inputEl.current.value = ''
+    setSubscribed(true)
     setMessage('Successfully! 🎉 You are now subscribed.')
   }
 
@@ -51,14 +50,16 @@ const FormSuscribe = () => {
             ref={inputEl}
             required
             type="email"
+            disabled={subscribed}
           />
         </div>
         <div className="mt-2 flex-shrink-0 w-full flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto sm:inline-flex">
           <button
             className="w-full bg-primary-500 dark:bg-primary-400 px-4 py-2 border border-transparent rounded-md flex items-center justify-center text-base font-medium text-white hover:bg-primary-700 dark:hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700 sm:w-auto sm:inline-flex"
             type="submit"
+            disabled={subscribed}
           >
-            {message ? 'Thank you!' : 'Sign up'}
+            {subscribed ? 'Thank you!' : 'Sign up'}
           </button>
         </div>
       </form>
@@ -69,4 +70,4 @@ const FormSuscribe = () => {
   )
 }
 
-export { FormSuscribe }
+export { FormSubscribe }
