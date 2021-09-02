@@ -23,13 +23,13 @@ const siteMetadata = {
     googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
-    provider: 'buttondown', // supported providers: mailchimp
+    provider: 'mailchimp', // supported providers: mailchimp, buttondown
     mailChimpConfig: {
       apiKey: process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY,
       apiServer: process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER,
       audienceId: process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID,
     },
-    buttonDown: process.env.NEXT_PUBLIC_BUTTONDOWN,
+    buttondownConfig: process.env.NEXT_PUBLIC_BUTTONDOWN,
   },
   comment: {
     // Select a provider and use the environment variables associated to it
@@ -68,7 +68,7 @@ const siteMetadata = {
       // theme when dark mode
       darkTheme: '',
     },
-    disqus: {
+    disqusConfig: {
       // https://help.disqus.com/en/articles/1717111-what-s-a-shortname
       shortname: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
     },

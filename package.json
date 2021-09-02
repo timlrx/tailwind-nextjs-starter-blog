@@ -19,7 +19,6 @@
     "esbuild": "^0.12.15",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "mailchimp": "^1.2.1",
     "mdx-bundler": "^6.0.1",
     "next": "11.1.0",
     "next-themes": "^0.0.14",
