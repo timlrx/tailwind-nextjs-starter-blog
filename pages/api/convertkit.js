@@ -1,20 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default async (req, res) => {
-  const { email, list } = req.query
+  const { email } = req.body
+  console.log('email : ', email)
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' })
   }
 
-  if (!list) {
-    return res.status(400).json({ error: 'List is required' })
-  }
-
   try {
-    const FORM_ID =
-      list === '12-tips-production-apps'
-        ? process.env.CONVERTKIT_TIPS_FORM_ID
-        : process.env.CONVERTKIT_MONTHLY_FORM_ID
+    const FORM_ID = process.env.CONVERTKIT_FORM_ID
     const API_KEY = process.env.CONVERTKIT_API_KEY
     const API_URL = process.env.CONVERTKIT_API_URL
 
