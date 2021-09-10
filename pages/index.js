@@ -5,7 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 
-import { FormSubscribe } from '@/components/FormSuscribe'
+import { FormSubscribe } from '@/components/FormSubscribe'
 
 const MAX_DISPLAY = 5
 
@@ -19,7 +19,6 @@ export default function Home({ posts }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      {siteMetadata.newsletter.provider !== '' && <FormSubscribe />}
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -90,6 +89,16 @@ export default function Home({ posts }) {
           >
             All Posts &rarr;
           </Link>
+        </div>
+      )}
+      {siteMetadata.newsletter.provider !== '' && (
+        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:text-6xl ">
+              Newsletter
+            </h1>
+            <FormSubscribe />
+          </div>
         </div>
       )}
     </>
