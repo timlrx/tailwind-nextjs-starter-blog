@@ -53,6 +53,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Blog templates
 - TOC component
 - Support for nested routing of blog posts
+- Newsletter component with support for mailchimp, buttondown and convertkit
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
 - SEO friendly with RSS feed, sitemaps and more!
