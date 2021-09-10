@@ -33,18 +33,17 @@ const FormSubscribe = () => {
 
   return (
     <div>
-      <form
-        // className="mt-6 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin"
-        className="flex flex-col sm:flex-row lg:justify-begin"
-        onSubmit={subscribe}
-      >
+      <div className="pb-1 text-lg font-semibold text-gray-800 dark:text-gray-100">
+        Subscribe to the newsletter
+      </div>
+      <form className="flex flex-col sm:flex-row" onSubmit={subscribe}>
         <div>
           <label className="sr-only" htmlFor="email-input">
             Email address
           </label>
           <input
             autoComplete="email"
-            className="appearance-none w-full px-4 py-2 border border-neutrals-cool-grey-300 text-base rounded-md text-neutrals-cool-grey-900 bg-white dark:bg-black placeholder-gray-500 focus:outline-none focus:ring-primary-400 dark:focus:border-primary-600 lg:max-w-xs"
+            className="px-4 py-2 placeholder-gray-500 bg-white border rounded-md appearance-none w-72 border-neutrals-cool-grey-300 text-neutrals-cool-grey-900 dark:bg-black focus:outline-none focus:ring-primary-400 dark:focus:border-primary-600"
             id="email-input"
             name="email"
             placeholder={subscribed ? "You're subscribed !  🎉" : 'Enter your email'}
@@ -54,11 +53,11 @@ const FormSubscribe = () => {
             disabled={subscribed}
           />
         </div>
-        <div className="mt-2 flex-shrink-0 w-full flex rounded-md shadow-sm sm:mt-0 sm:ml-3 sm:w-auto sm:inline-flex">
+        <div className="flex w-full mt-2 rounded-md shadow-sm sm:mt-0 sm:ml-3">
           <button
-            className={`w-full bg-primary-500 dark:bg-primary-400 px-4 py-2 border border-transparent rounded-md flex items-center justify-center text-base font-medium text-white ${
-              subscribed ? 'cursor-default' : 'hover:bg-primary-700 dark:hover:bg-primary-300'
-            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700 sm:w-auto sm:inline-flex`}
+            className={`w-full bg-primary-500 dark:bg-primary-500 px-4 py-2 border border-transparent rounded-md font-medium text-white ${
+              subscribed ? 'cursor-default' : 'hover:bg-primary-700 dark:hover:bg-primary-400'
+            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700`}
             type="submit"
             disabled={subscribed}
           >
@@ -66,9 +65,6 @@ const FormSubscribe = () => {
           </button>
         </div>
       </form>
-      {/* <p className="text-sm text-gray-500 dark:text-gray-400 pt-2 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin">
-        {message ? message : 'Enter your email address to be notified of new posts'}
-      </p> */}
     </div>
   )
 }
