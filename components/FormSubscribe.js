@@ -34,7 +34,8 @@ const FormSubscribe = () => {
   return (
     <div>
       <form
-        className="mt-6 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin"
+        // className="mt-6 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin"
+        className="flex flex-col sm:flex-row lg:justify-begin"
         onSubmit={subscribe}
       >
         <div>
@@ -46,7 +47,7 @@ const FormSubscribe = () => {
             className="appearance-none w-full px-4 py-2 border border-neutrals-cool-grey-300 text-base rounded-md text-neutrals-cool-grey-900 bg-white dark:bg-black placeholder-gray-500 focus:outline-none focus:ring-primary-400 dark:focus:border-primary-600 lg:max-w-xs"
             id="email-input"
             name="email"
-            placeholder={subscribed ? "You're subscribed !" : 'Enter your email'}
+            placeholder={subscribed ? "You're subscribed !  🎉" : 'Enter your email'}
             ref={inputEl}
             required
             type="email"
@@ -65,9 +66,9 @@ const FormSubscribe = () => {
           </button>
         </div>
       </form>
-      <p className="text-sm text-gray-500 dark:text-gray-400 pt-2 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin">
+      {/* <p className="text-sm text-gray-500 dark:text-gray-400 pt-2 flex flex-col sm:flex-row lg:mt-0 lg:justify-begin">
         {message ? message : 'Enter your email address to be notified of new posts'}
-      </p>
+      </p> */}
     </div>
   )
 }
