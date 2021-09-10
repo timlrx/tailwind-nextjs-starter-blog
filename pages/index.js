@@ -92,11 +92,11 @@ export default function Home({ posts }) {
         </div>
       )}
       {siteMetadata.newsletter.provider !== '' && (
-        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:text-6xl ">
-              Newsletter
-            </h1>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl md:text-6xl ">
+            Newsletter
+          </h1>
+          <div className="p-5">
             <FormSubscribe />
           </div>
         </div>
