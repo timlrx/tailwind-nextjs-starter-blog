@@ -24,7 +24,7 @@ const siteMetadata = {
   },
   newsletter: {
     // supports mailchimp, buttondown, convertkit
-    // Please add  your .env file and modify it according to your selection
+    // Please add your .env file and modify it according to your selection
     provider: 'buttondown',
   },
   comment: {
