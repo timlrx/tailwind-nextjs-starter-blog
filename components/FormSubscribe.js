@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 
 const FormSubscribe = () => {
   const inputEl = useRef(null)
+  const [error, setError] = useState(false)
   const [message, setMessage] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
@@ -22,11 +23,13 @@ const FormSubscribe = () => {
 
     const { error } = await res.json()
     if (error) {
+      setError(true)
       setMessage('Your e-mail adress is invalid or you are already subscribed!')
       return
     }
 
     inputEl.current.value = ''
+    setError(false)
     setSubscribed(true)
     setMessage('Successfully! 🎉 You are now subscribed.')
   }
@@ -43,7 +46,7 @@ const FormSubscribe = () => {
           </label>
           <input
             autoComplete="email"
-            className="px-4 py-2 placeholder-gray-500 bg-white border rounded-md appearance-none w-72 border-neutrals-cool-grey-300 text-neutrals-cool-grey-900 dark:bg-black focus:outline-none focus:ring-primary-400 dark:focus:border-primary-600"
+            className="px-4 rounded-md w-72 dark:bg-black focus:outline-none focus:ring-2 focus:border-transparent focus:ring-primary-600"
             id="email-input"
             name="email"
             placeholder={subscribed ? "You're subscribed !  🎉" : 'Enter your email'}
@@ -55,9 +58,9 @@ const FormSubscribe = () => {
         </div>
         <div className="flex w-full mt-2 rounded-md shadow-sm sm:mt-0 sm:ml-3">
           <button
-            className={`w-full bg-primary-500 dark:bg-primary-500 px-4 py-2 border border-transparent rounded-md font-medium text-white ${
+            className={`w-full bg-primary-500 px-4 py-2 rounded-md font-medium text-white ${
               subscribed ? 'cursor-default' : 'hover:bg-primary-700 dark:hover:bg-primary-400'
-            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:primary-700`}
+            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 dark:ring-offset-black`}
             type="submit"
             disabled={subscribed}
           >
@@ -65,6 +68,9 @@ const FormSubscribe = () => {
           </button>
         </div>
       </form>
+      {error && (
+        <p className="pt-2 text-sm text-red-500 w-72 sm:w-96 dark:text-red-400">{message}</p>
+      )}
     </div>
   )
 }
