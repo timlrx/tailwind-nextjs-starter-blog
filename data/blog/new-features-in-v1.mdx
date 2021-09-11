@@ -1,6 +1,7 @@
 ---
 title: 'New features in v1'
-date: 2021-09-08T15:32:14Z
+date: 2021-08-07T15:32:14Z
+lastmod: '2021-09-11'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -327,6 +328,31 @@ To modify the styles, change the following class selectors in the `tailwind.css`
   content: attr(line);
 }
 ```
+
+## Newletter component
+
+Introduced in v1.1.3, the newsletter component gives you a easy way to build an audience. It integrates with the following providers:
+
+- [Mailchimp](https://mailchimp.com/)
+- [Buttondown](https://buttondown.email/)
+- [Convertkit](https://convertkit.com/)
+
+To use it, specify the provider which you are using in the config file and add the necessary environmental variables to the `.env` file.
+For more information on the required variables, check out `.env.sample.`
+
+Two components are exported, a default `NewsletterForm` and a `BlogNewsletterForm` component, which is also passed in as an MDX component
+and can be used in a blog post:
+
+```jsx
+<BlogNewsletterForm title="Like what you are reading?" />
+```
+
+<BlogNewsletterForm title="Like what you are reading?" />
+
+The component relies on nextjs's [API routes](https://nextjs.org/docs/api-routes/introduction) which requires a server-side instance of nextjs to be setup
+and is not compatible with a 100% static site export. Users should either self-host or use a compatible platform like Vercel or Netlify which supports this functionality.
+
+A static site compatible alternative is to substitute the route in the newsletter component with a form API endpoint provider.
 
 ## Upgrade guide
 

@@ -8,7 +8,6 @@ export default async (req, res) => {
   try {
     const API_KEY = process.env.BUTTONDOWN_API_KEY
     const buttondownRoute = `${process.env.BUTTONDOWN_API_URL}subscribers`
-    console.log('route : ', buttondownRoute)
     const response = await fetch(buttondownRoute, {
       body: JSON.stringify({
         email,
