@@ -26,6 +26,7 @@ Feature request? Check the past discussions to see if it has been brough up prev
 - [David Levai's digital garden](https://davidlevai.com/) - customized design and added email subscriptions
 - [Thinh's Corner](https://thinhcorner.com/) - [customized layout](https://github.com/Th1nhNg0/th1nhng0.vercel.app/blob/5e73a420828d82f01e7147512a2c3273c4ec19f8/layouts/PostLayout.js) with sticky side table of contents
 - [Leo's Blog](https://leohuynh.dev) - Tuan Anh Huynh's personal site. Add Snippets Page, Author Profile Card, Image Lightbox, ...
+- [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more. Keep reading at: [Over-engineering thvu.dev](https://www.thvu.dev/blog/over-engineering-thvu-dev)
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
