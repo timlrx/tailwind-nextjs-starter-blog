@@ -2,31 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.remark-code-title {
-  @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
-}
-
-.remark-code-title + div > pre {
-  @apply mt-0 rounded-t-none;
-}
-
 .task-list-item:before {
   @apply hidden;
 }
 
-.code-line {
-  @apply pl-4 -mx-4 border-l-4 border-gray-800;
-}
-
-.highlight-line {
-  @apply -mx-4 bg-gray-700 bg-opacity-50 border-l-4 border-primary-500;
-}
-
-.line-number::before {
-  @apply pr-4 -ml-2 text-gray-400;
-  content: attr(line);
-}
-
 html {
   scroll-behavior: smooth;
+}
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
