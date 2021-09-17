@@ -10,8 +10,6 @@ import { PostFrontMatter } from 'types/PostFrontMatter'
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 import { Toc } from 'types/Toc'
 // Remark packages
-import remarkSlug from 'remark-slug'
-import remarkAutolinkHeadings from 'remark-autolink-headings'
 import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
 import remarkMath from 'remark-math'
@@ -19,24 +17,12 @@ import remarkCodeTitles from './remark-code-title'
 import remarkTocHeadings from './remark-toc-headings'
 import remarkImgToJsx from './remark-img-to-jsx'
 // Rehype packages
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypePrismPlus from 'rehype-prism-plus'
 
 const root = process.cwd()
-
-const tokenClassNames = {
-  tag: 'text-code-red',
-  'attr-name': 'text-code-yellow',
-  'attr-value': 'text-code-green',
-  deleted: 'text-code-red',
-  inserted: 'text-code-green',
-  punctuation: 'text-code-white',
-  keyword: 'text-code-purple',
-  string: 'text-code-green',
-  function: 'text-code-blue',
-  boolean: 'text-code-red',
-  comment: 'text-gray-400 italic',
-}
 
 export function getFiles(type: 'blog' | 'authors') {
   const prefixPaths = path.join(root, 'data', type)
@@ -91,8 +77,6 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
       // plugins in the future.
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        remarkSlug,
-        remarkAutolinkHeadings,
         [remarkTocHeadings, { exportRef: toc }],
         remarkGfm,
         remarkCodeTitles,
@@ -102,18 +86,10 @@ export async function getFileBySlug<T>(type: 'authors' | 'blog', slug: string | 
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
+        rehypeSlug,
+        rehypeAutolinkHeadings,
         rehypeKatex,
         [rehypePrismPlus, { ignoreMissing: true }] as Pluggable,
-        () => {
-          return (tree) => {
-            visit(tree, 'element', (node) => {
-              const [token, type] = node.properties.className || []
-              if (token === 'token') {
-                node.properties.className = [tokenClassNames[type]]
-              }
-            })
-          }
-        },
       ]
       return options
     },

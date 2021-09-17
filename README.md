@@ -23,6 +23,9 @@ Feature request? Check the past discussions to see if it has been brough up prev
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [Aloisdg's cookbook](https://tambouille.vercel.app/) - with pictures and recipes!
 - [GauthierArcin's demo with next translate](https://tailwind-nextjs-starter-blog-seven.vercel.app/) - includes translation of mdx posts, [source code](https://github.com/GautierArcin/tailwind-nextjs-starter-blog/tree/demo/next-translate)
+- [David Levai's digital garden](https://davidlevai.com/) - customized design and added email subscriptions
+- [Thinh's Corner](https://thinhcorner.com/) - [customized layout](https://github.com/Th1nhNg0/th1nhng0.vercel.app/blob/5e73a420828d82f01e7147512a2c3273c4ec19f8/layouts/PostLayout.js) with sticky side table of contents
+- [Leo's Blog](https://leohuynh.dev) - Tuan Anh Huynh's personal site. Add Snippets Page, Author Profile Card, Image Lightbox, ...
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -50,6 +53,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Blog templates
 - TOC component
 - Support for nested routing of blog posts
+- Newsletter component with support for mailchimp, buttondown and convertkit
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
 - SEO friendly with RSS feed, sitemaps and more!
@@ -104,6 +108,8 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 `public/static` - store assets such as images and favicons.
 
 `tailwind.config.js` and `css/tailwind.css` - contain the tailwind stylesheet which can be modified to change the overall look and feel of the site.
+
+`css/prism.css` - controls the styles associated with the code blocks. Feel free to customize it and use your preferred prismjs theme e.g. [prism themes](https://github.com/PrismJS/prism-themes).
 
 `components/social-icons` - to add other icons, simply copy an svg file from [Simple Icons](https://simpleicons.org/) and map them in `index.js`. Other icons uses [heroicons](https://heroicons.com/).
 
@@ -162,6 +168,8 @@ The easiest way to deploy the template is to use the [Vercel Platform](https://v
 
 **Netlify / Github Pages / Firebase etc.**  
 As the template uses `next/image` for image optimization, additional configurations has to be made to deploy on other popular static hosting websites like [Netlify](https://www.netlify.com/) or [Github Pages](https://pages.github.com/). An alternative image optimization provider such as Imgix, Cloudinary or Akamai has to be used. Alternatively, replace the `next/image` component with a standard `<img>` tag. See [`next/image` documentation](https://nextjs.org/docs/basic-features/image-optimization) for more details.
+
+The API routes used in the newsletter component cannot be used in a static site export. You will need to use a form API endpoint provider and substitute the route in the newsletter component accordingly. Other hosting platforms such as Netlify also offer alternative solutions - please refer to their docs for more information.
 
 ## Support
 
