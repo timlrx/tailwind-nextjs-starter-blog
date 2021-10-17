@@ -3,7 +3,7 @@
   "version": "1.1.2",
   "private": true,
   "scripts": {
-    "start": "next-remote-watch ./data",
+    "start": "node ./scripts/next-remote-watch.js ./data",
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
     "serve": "next start",
@@ -56,6 +56,8 @@
     "inquirer": "^8.1.1",
     "lint-staged": "^11.0.0",
     "next-remote-watch": "^1.0.0",
+    "socket.io": "^4.1.3",
+    "socket.io-client": "^4.1.3",
     "prettier": "2.2.1"
   },
   "lint-staged": {
