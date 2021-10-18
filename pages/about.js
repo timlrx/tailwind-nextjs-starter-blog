@@ -41,11 +41,8 @@ export default function About() {
               stack.
             </p>
             <p>
-              In my free time, I am helping people eat healthier with{' '}
-              <a href="https://skrummy.co" target="_blank" rel="noreferrer">
-                Skrummy (still in development)
-              </a>{' '}
-              - mainly using Flutter, Firebase and NextJS.
+              In my free time, I am working on <a href='/projects'>various projects</a> with ReactJS,{' '}
+              Flutter, Supabase and whatever else I feel like.
             </p>
             <p>
               This blog is my personal knowledge base. When I learn something new (mostly related to
