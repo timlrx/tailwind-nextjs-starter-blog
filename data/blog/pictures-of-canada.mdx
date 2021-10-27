@@ -20,16 +20,16 @@ Since we are using mdx, we can create a simple responsive flexbox grid to displa
 
 <div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Maple" src="/static/images/canada/maple.jpg" width={640} height={427} />
+    ![Maple](/static/images/canada/maple.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Lake" src="/static/images/canada/lake.jpg" width={640} height={427} />
+    ![Lake](/static/images/canada/lake.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Mountains" src="/static/images/canada/mountains.jpg" width={640} height={427} />
+    ![Mountains](/static/images/canada/mountains.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Toronto" src="/static/images/canada/toronto.jpg" width={640} height={427} />
+    ![Toronto](/static/images/canada/toronto.jpg)
   </div>
 </div>
 
@@ -38,23 +38,21 @@ Since we are using mdx, we can create a simple responsive flexbox grid to displa
 ```js
 <div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Maple" src="/static/images/canada/maple.jpg" width={640} height={427} />
+    ![Maple](/static/images/canada/maple.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Lake" src="/static/images/canada/lake.jpg" width={640} height={427} />
+    ![Lake](/static/images/canada/lake.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Mountains" src="/static/images/canada/mountains.jpg" width={640} height={427} />
+    ![Mountains](/static/images/canada/mountains.jpg)
   </div>
   <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    <Image alt="Toronto" src="/static/images/canada/toronto.jpg" width={640} height={427} />
+    ![Toronto](/static/images/canada/toronto.jpg)
   </div>
 </div>
 ```
 
-_Note_: Currently, one has to use the `Image` component instead of the markdown syntax between jsx. Thankfully, it's one of the default components passed to the MDX Provider and can be used directly.
-
-When MDX v2 is ready, one could potentially interleave markdown in jsx directly! Follow [MDX v2 issues](https://github.com/mdx-js/mdx/issues/1041) for updates.
+With MDX v2, one can interleave markdown in jsx as shown in the example code.
 
 ### Photo Credits
 
