@@ -1,6 +1,6 @@
 {
   "name": "tailwind-nextjs-starter-blog",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "start": "node ./scripts/next-remote-watch.js ./data",
