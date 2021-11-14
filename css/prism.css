@@ -28,7 +28,7 @@
 }
 
 .line-number::before {
-  @apply mr-4 -ml-2 text-gray-400 inline-block w-4 text-right;
+  @apply inline-block w-4 mr-4 -ml-2 text-right text-gray-400;
   content: attr(line);
 }
 
