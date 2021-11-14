@@ -6,6 +6,7 @@ tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
 layout: PostSimple
+bibliography: references-data.bib
 ---
 
 ## Overview
@@ -21,6 +22,17 @@ See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version o
 ## Theme colors
 
 You can easily modify the theme color by changing the primary attribute in the tailwind config file:
+
+```js:tailwind.config.js showLineNumbers
+theme: {
+    colors: {
+      primary: colors.teal,
+      gray: colors.trueGray,
+      ...
+    }
+  ...
+}
+```
 
 ```js:tailwind.config.js
 theme: {
@@ -329,7 +341,7 @@ To modify the styles, change the following class selectors in the `tailwind.css`
 }
 ```
 
-## Newletter component
+## Newletter component (v1.1.3)
 
 Introduced in v1.1.3, the newsletter component gives you a easy way to build an audience. It integrates with the following providers:
 
@@ -353,6 +365,37 @@ The component relies on nextjs's [API routes](https://nextjs.org/docs/api-routes
 and is not compatible with a 100% static site export. Users should either self-host or use a compatible platform like Vercel or Netlify which supports this functionality.
 
 A static site compatible alternative is to substitute the route in the newsletter component with a form API endpoint provider.
+
+## Bibliography and Citations (v1.2.1)
+
+`rehype-citation` plugin is added to the xdm processing pipeline in v1.2.1. This allows you to easily format citations and insert bibliography from an existing bibtex or CSL-json file.
+
+For example, the following markdown code sample:
+
+```md
+Standard citation [@Nash1950]
+In-text citations e.g. @Nash1951
+Multiple citations [see @Nash1950; @Nash1951, page 50]
+
+**References:**
+
+[^ref]
+```
+
+is rendered to the following:
+
+Standard citation [@Nash1950]  
+In-text citations e.g. @Nash1951  
+Multiple citations [see @Nash1950; @Nash1951, page 50]
+
+**References:**
+
+[^ref]
+
+A bibliography will be inserted at the end of the document, but this can be overwritten by specifying a `[^Ref]` tag at the intended location.
+The plugin uses APA citation formation, but also supports the following CSLs, 'apa', 'vancouver', 'harvard1', 'chicago', 'mla', or a path to a user-specified CSL file.
+
+See [rehype-citation readme](https://github.com/timlrx/rehype-citation) for more information on the configuration options.
 
 ## Upgrade guide
 
