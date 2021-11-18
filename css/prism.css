@@ -20,7 +20,15 @@
 }
 
 .code-line {
-  @apply block pl-4 pr-4 -mx-4 border-l-4 border-gray-800;
+  @apply block pl-4 pr-4 -mx-4 border-l-4 border-opacity-0;
+}
+
+.code-line.inserted {
+  @apply bg-green-500 bg-opacity-20;
+}
+
+.code-line.deleted {
+  @apply bg-red-500 bg-opacity-20;
 }
 
 .highlight-line {
