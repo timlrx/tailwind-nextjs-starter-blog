@@ -24,7 +24,7 @@
     "next": "12.0.3",
     "next-themes": "^0.0.14",
     "postcss": "^8.3.5",
-    "preact": "^10.5.13",
+    "preact": "10.5.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "reading-time": "1.3.0",
