@@ -23,7 +23,7 @@ const siteMetadata = {
     googleAnalyticsId: '', // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
-    // supports mailchimp, buttondown, convertkit
+    // supports mailchimp, buttondown, convertkit, klaviyo
     // Please add your .env file and modify it according to your selection
     provider: 'buttondown',
   },
