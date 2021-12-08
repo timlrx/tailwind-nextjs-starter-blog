@@ -71,7 +71,15 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
+1. JS (official support)
+```bash
+npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
+```
+    or TS (community support)
+```bash
+npx degit timlrx/tailwind-nextjs-starter-blog#typescript
+```
+
 2. Personalize `siteMetadata.js` (site related information)
 3. Personalize `authors/default.md` (main author)
 4. Modify `projectsData.js`
@@ -85,7 +93,9 @@ First, run the development server:
 
 ```bash
 npm start
-# or
+```
+    or
+```bash
 npm run dev
 ```
 
