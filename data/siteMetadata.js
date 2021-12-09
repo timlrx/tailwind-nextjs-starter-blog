@@ -1,20 +1,20 @@
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'NWB.one',
+  author: 'Nico Botha',
+  headerTitle: 'NWB.one',
+  description: 'A blog about software stuff',
   language: 'en-us',
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://nwb.one',
+  siteRepo: 'https://github.com/Ngineer101/nwb-one-blog',
   siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  image: '/static/images/avatar.jpg',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
-  twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
+  email: '',
+  github: 'https://github.com/Ngineer101',
+  twitter: 'https://twitter.com/nwbotha',
+  facebook: '',
+  youtube: '',
+  linkedin: '',
   locale: 'en-US',
   analytics: {
     // supports plausible, simpleAnalytics or googleAnalytics
@@ -25,12 +25,12 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    provider: '',
   },
   comment: {
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
-    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    provider: '', // supported providers: giscus, utterances, disqus
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
