@@ -1,7 +1,7 @@
 ---
 name: Nico Botha
 avatar: /static/images/avatar.jpg
-occupation: Software developer
+occupation: Self-taught software developer and indie hacker
 twitter: https://twitter.com/nwbotha
 github: https://github.com/Ngineer101
 ---
