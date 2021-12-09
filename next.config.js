@@ -5,8 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  future: {
-    webpack5: true,
+  eslint: {
+    dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({
@@ -30,6 +30,7 @@ module.exports = withBundleAnalyzer({
     if (!dev && !isServer) {
       // Replace React with Preact only in client production build
       Object.assign(config.resolve.alias, {
+        'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',

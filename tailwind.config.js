@@ -3,9 +3,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
-  purge: {
-    content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
-  },
+  purge: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -22,26 +20,19 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        blue: colors.lightBlue,
-        code: {
-          green: '#b5f4a5',
-          yellow: '#ffe484',
-          purple: '#d9a9ff',
-          red: '#ff8383',
-          blue: '#93ddfd',
-          white: '#fff',
-        },
+        primary: colors.teal,
+        gray: colors.trueGray,
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
             a: {
-              color: theme('colors.blue.500'),
+              color: theme('colors.primary.500'),
               '&:hover': {
-                color: theme('colors.blue.600'),
+                color: theme('colors.primary.600'),
               },
-              code: { color: theme('colors.blue.400') },
+              code: { color: theme('colors.primary.400') },
             },
             h1: {
               fontWeight: '700',
@@ -75,6 +66,14 @@ module.exports = {
             'code:after': {
               content: 'none',
             },
+            details: {
+              backgroundColor: theme('colors.gray.100'),
+              paddingLeft: '4px',
+              paddingRight: '4px',
+              paddingTop: '2px',
+              paddingBottom: '2px',
+              borderRadius: '0.25rem',
+            },
             hr: { borderColor: theme('colors.gray.200') },
             'ol li:before': {
               fontWeight: '600',
@@ -94,11 +93,11 @@ module.exports = {
           css: {
             color: theme('colors.gray.300'),
             a: {
-              color: theme('colors.blue.500'),
+              color: theme('colors.primary.500'),
               '&:hover': {
-                color: theme('colors.blue.400'),
+                color: theme('colors.primary.400'),
               },
-              code: { color: theme('colors.blue.400') },
+              code: { color: theme('colors.primary.400') },
             },
             h1: {
               fontWeight: '700',
@@ -118,6 +117,9 @@ module.exports = {
               color: theme('colors.gray.100'),
             },
             code: {
+              backgroundColor: theme('colors.gray.800'),
+            },
+            details: {
               backgroundColor: theme('colors.gray.800'),
             },
             hr: { borderColor: theme('colors.gray.700') },

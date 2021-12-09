@@ -1,11 +1,13 @@
 import Link from '@/components/Link'
-import { PageSeo } from '@/components/SEO'
+import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
+import formatDate from '@/lib/utils/formatDate'
+
+import NewsletterForm from '@/components/NewsletterForm'
 
 const MAX_DISPLAY = 5
-const postDateTemplate = { year: 'numeric', month: 'long', day: 'numeric' }
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
@@ -16,7 +18,7 @@ export async function getStaticProps() {
 export default function Home({ posts }) {
   return (
     <>
-      <PageSeo title={'Home'} description={siteMetadata.description} url={siteMetadata.siteUrl} />
+      <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -37,9 +39,7 @@ export default function Home({ posts }) {
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>
-                          {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                        </time>
+                        <time dateTime={date}>{formatDate(date)}</time>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
@@ -66,7 +66,7 @@ export default function Home({ posts }) {
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
@@ -84,11 +84,16 @@ export default function Home({ posts }) {
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
             All Posts &rarr;
           </Link>
+        </div>
+      )}
+      {siteMetadata.newsletter.provider !== '' && (
+        <div className="flex items-center justify-center pt-4">
+          <NewsletterForm />
         </div>
       )}
     </>
