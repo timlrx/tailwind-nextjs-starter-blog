@@ -13,17 +13,17 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.58",
-    "@tailwindcss/forms": "^0.3.2",
-    "@tailwindcss/typography": "^0.4.0",
-    "autoprefixer": "^10.2.5",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "audit": "^0.0.6",
     "esbuild": "^0.13.13",
+    "fix": "^0.0.3",
     "github-slugger": "^1.3.0",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
     "mdx-bundler": "^8.0.0",
     "next": "12.0.7",
     "next-themes": "^0.0.14",
-    "postcss": "^8.3.5",
     "preact": "^10.6.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -38,12 +38,12 @@
     "remark-math": "^5.1.1",
     "sharp": "^0.28.3",
     "smoothscroll-polyfill": "^0.4.4",
-    "tailwindcss": "^2.2.2",
     "unist-util-visit": "^4.0.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "12.0.7",
-    "@svgr/webpack": "^5.5.0",
+    "@svgr/webpack": "^6.1.2",
+    "autoprefixer": "^10.4.0",
     "cross-env": "^7.0.3",
     "dedent": "^0.7.0",
     "eslint": "^7.29.0",
@@ -56,9 +56,11 @@
     "inquirer": "^8.1.1",
     "lint-staged": "^11.0.0",
     "next-remote-watch": "^1.0.0",
+    "postcss": "^8.4.5",
+    "prettier": "2.2.1",
     "socket.io": "^4.1.3",
     "socket.io-client": "^4.1.3",
-    "prettier": "2.2.1"
+    "tailwindcss": "^3.0.2"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
