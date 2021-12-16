@@ -1,11 +1,12 @@
 ---
 title: 'New features in v1'
 date: 2021-08-07T15:32:14Z
-lastmod: '2021-10-27'
+lastmod: '2021-12-15'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
 layout: PostSimple
+bibliography: references-data.bib
 ---
 
 ## Overview
@@ -26,7 +27,7 @@ You can easily modify the theme color by changing the primary attribute in the t
 theme: {
     colors: {
       primary: colors.teal,
-      gray: colors.trueGray,
+      gray: colors.neutral,
       ...
     }
   ...
@@ -37,7 +38,7 @@ The primary color attribute should be assigned an object with keys from 50, 100,
 
 Tailwind includes great default color palettes that can be used for theming your own website. Check out [customizing colors documentation page](https://tailwindcss.com/docs/customizing-colors) for the full range of options.
 
-Migrating from v1? You can revert to the previous theme by setting `primary` to `colors.sky` (Tailwind 2.2.2 and above, otherwise `colors.lightBlue`) and changing gray to `colors.coolGray`.
+Migrating from v1? You can revert to the previous theme by setting `primary` to `colors.sky` (Tailwind 2.2.2 and above, otherwise `colors.lightBlue`) and changing gray to `colors.gray`.
 
 From v1.1.2+, you can also customize the style of your code blocks easily by modifying the `css/prism.css` stylesheet. Token classnames are compatible with prismjs
 so you can copy and adapt token styles from a prismjs stylesheet e.g. [prism themes](https://github.com/PrismJS/prism-themes).
@@ -90,7 +91,7 @@ A `asDisclosure` prop can be used to render the TOC within an expandable disclos
 
 Here's the full TOC rendered in a disclosure element.
 
-```js
+```jsx
 <TOCInline toc={props.toc} asDisclosure />
 ```
 
@@ -312,11 +313,23 @@ sum = parseInt(num1) + parseInt(num2) // "+" means "add"
 alert('Sum = ' + sum) // "+" means combine into a string
 ```
 
-To modify the styles, change the following class selectors in the `tailwind.css` file:
+To modify the styles, change the following class selectors in the `prism.css` file:
 
 ```css
+.code-highlight {
+  @apply float-left min-w-full;
+}
+
 .code-line {
-  @apply pl-4 -mx-4 border-l-4 border-gray-800;
+  @apply block pl-4 pr-4 -mx-4 border-l-4 border-opacity-0;
+}
+
+.code-line.inserted {
+  @apply bg-green-500 bg-opacity-20;
+}
+
+.code-line.deleted {
+  @apply bg-red-500 bg-opacity-20;
 }
 
 .highlight-line {
@@ -324,12 +337,12 @@ To modify the styles, change the following class selectors in the `tailwind.css`
 }
 
 .line-number::before {
-  @apply pr-4 -ml-2 text-gray-400;
+  @apply inline-block w-4 mr-4 -ml-2 text-right text-gray-400;
   content: attr(line);
 }
 ```
 
-## Newletter component
+## Newletter component (v1.1.3)
 
 Introduced in v1.1.3, the newsletter component gives you a easy way to build an audience. It integrates with the following providers:
 
@@ -353,6 +366,37 @@ The component relies on nextjs's [API routes](https://nextjs.org/docs/api-routes
 and is not compatible with a 100% static site export. Users should either self-host or use a compatible platform like Vercel or Netlify which supports this functionality.
 
 A static site compatible alternative is to substitute the route in the newsletter component with a form API endpoint provider.
+
+## Bibliography and Citations (v1.2.1)
+
+`rehype-citation` plugin is added to the xdm processing pipeline in v1.2.1. This allows you to easily format citations and insert bibliography from an existing bibtex or CSL-json file.
+
+For example, the following markdown code sample:
+
+```md
+Standard citation [@Nash1950]
+In-text citations e.g. @Nash1951
+Multiple citations [see @Nash1950; @Nash1951, page 50]
+
+**References:**
+
+[^ref]
+```
+
+is rendered to the following:
+
+Standard citation [@Nash1950]  
+In-text citations e.g. @Nash1951  
+Multiple citations [see @Nash1950; @Nash1951, page 50]
+
+**References:**
+
+[^ref]
+
+A bibliography will be inserted at the end of the document, but this can be overwritten by specifying a `[^Ref]` tag at the intended location.
+The plugin uses APA citation formation, but also supports the following CSLs, 'apa', 'vancouver', 'harvard1', 'chicago', 'mla', or a path to a user-specified CSL file.
+
+See [rehype-citation readme](https://github.com/timlrx/rehype-citation) for more information on the configuration options.
 
 ## Upgrade guide
 

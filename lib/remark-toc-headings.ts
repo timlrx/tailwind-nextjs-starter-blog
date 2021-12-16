@@ -2,7 +2,7 @@
 import { Parent } from 'unist'
 import { visit } from 'unist-util-visit'
 import { slug } from 'github-slugger'
-import { toString } from 'hast-util-to-string'
+import { toString } from 'mdast-util-to-string'
 
 export default function remarkTocHeadings(options) {
   return (tree: Parent) =>
