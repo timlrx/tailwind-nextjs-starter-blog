@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.task-list-item:before {
+.task-list-item::before {
   @apply hidden;
+}
+
+.task-list-item {
+  @apply list-none;
 }
 
 html {
