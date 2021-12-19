@@ -77,16 +77,9 @@ module.exports = {
               borderRadius: '0.25rem',
             },
             hr: { borderColor: theme('colors.gray.200') },
-            'ol li::before': {
-              fontWeight: '600',
-              color: theme('colors.gray.500'),
-            },
             'ol li::marker': {
               fontWeight: '600',
               color: theme('colors.gray.500'),
-            },
-            'ul li::before': {
-              backgroundColor: theme('colors.gray.500'),
             },
             'ul li::marker': {
               backgroundColor: theme('colors.gray.500'),
@@ -135,16 +128,9 @@ module.exports = {
               backgroundColor: theme('colors.gray.800'),
             },
             hr: { borderColor: theme('colors.gray.700') },
-            'ol li::before': {
-              fontWeight: '600',
-              color: theme('colors.gray.400'),
-            },
             'ol li::marker': {
               fontWeight: '600',
               color: theme('colors.gray.400'),
-            },
-            'ul li::before': {
-              backgroundColor: theme('colors.gray.400'),
             },
             'ul li::marker': {
               backgroundColor: theme('colors.gray.400'),
