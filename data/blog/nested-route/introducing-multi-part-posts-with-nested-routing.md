@@ -18,13 +18,13 @@ We use Next.js catch all routes to handle the routing and path creations.
 
 ## Use Cases
 
-Here's some reasons to use nested routes
+Here are some reasons to use nested routes
 
 - More logical content organisation (blogs will still be displayed based on the created date)
 - Multi-part posts
 - Different sub-routes for each author
-- Internationalization (though it would be recommended to use [Next.js built in i8n routing](https://nextjs.org/docs/advanced-features/i18n-routing))
+- Internationalization (though it would be recommended to use [Next.js built-in i8n routing](https://nextjs.org/docs/advanced-features/i18n-routing))
 
 ## Note
 
-- The previous/next post links at bottom of the template is currently sorted by date. One could explore modifying the template to refer the reader to the previous/next post in the series, rather than by date.
+- The previous/next post links at bottom of the template are currently sorted by date. One could explore modifying the template to refer the reader to the previous/next post in the series, rather than by date.

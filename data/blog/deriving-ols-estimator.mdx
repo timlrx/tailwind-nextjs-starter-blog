@@ -9,12 +9,12 @@ summary: 'How to derive the OLS Estimator with matrix notation and a tour of mat
 # Introduction
 
 Parsing and display of math equations is included in this blog template. Parsing of math is enabled by `remark-math` and `rehype-katex`.
-KaTeX and its associated font is included in `_document.js` so feel free to use it in any pages.
+KaTeX and its associated font is included in `_document.js` so feel free to use it on any page.
 ^[For the full list of supported TeX functions, check out the [KaTeX documentation](https://katex.org/docs/supported.html)]
 
 Inline math symbols can be included by enclosing the term between the `$` symbol.
 
-Math code blocks is denoted by `$$`.
+Math code blocks are denoted by `$$`.
 
 The dollar signal displays without issue since only text without space and between two `$` signs are considered as math symbols.[^2]
 
@@ -30,23 +30,23 @@ The vector of outcome variables $\mathbf{Y}$ is a $n \times 1$ matrix,
 
 ```tex
 \mathbf{Y} = \left[\begin{array}
-	{c}
-	y_1 \\
-	. \\
-	. \\
-	. \\
-	y_n
+  {c}
+  y_1 \\
+  . \\
+  . \\
+  . \\
+  y_n
 \end{array}\right]
 ```
 
 $$
 \mathbf{Y} = \left[\begin{array}
-	{c}
-	y_1 \\
-	. \\
-	. \\
-	. \\
-	y_n
+  {c}
+  y_1 \\
+  . \\
+  . \\
+  . \\
+  y_n
 \end{array}\right]
 $$
 
@@ -54,45 +54,45 @@ The matrix of regressors $\mathbf{X}$ is a $n \times k$ matrix (or each row is a
 
 ```latex
 \mathbf{X} = \left[\begin{array}
-	{ccccc}
-	x_{11} & . & . & . & x_{1k} \\
-	. & . & . & . & .  \\
-	. & . & . & . & .  \\
-	. & . & . & . & .  \\
-	x_{n1} & . & . & . & x_{nn}
+  {ccccc}
+  x_{11} & . & . & . & x_{1k} \\
+  . & . & . & . & .  \\
+  . & . & . & . & .  \\
+  . & . & . & . & .  \\
+  x_{n1} & . & . & . & x_{nn}
 \end{array}\right] =
 \left[\begin{array}
-	{c}
-	\mathbf{x}'_1 \\
-	. \\
-	. \\
-	. \\
-	\mathbf{x}'_n
+  {c}
+  \mathbf{x}'_1 \\
+  . \\
+  . \\
+  . \\
+  \mathbf{x}'_n
 \end{array}\right]
 ```
 
 $$
 \mathbf{X} = \left[\begin{array}
-	{ccccc}
-	x_{11} & . & . & . & x_{1k} \\
-	. & . & . & . & .  \\
-	. & . & . & . & .  \\
-	. & . & . & . & .  \\
-	x_{n1} & . & . & . & x_{nn}
+  {ccccc}
+  x_{11} & . & . & . & x_{1k} \\
+  . & . & . & . & .  \\
+  . & . & . & . & .  \\
+  . & . & . & . & .  \\
+  x_{n1} & . & . & . & x_{nn}
 \end{array}\right] =
 \left[\begin{array}
-	{c}
-	\mathbf{x}'_1 \\
-	. \\
-	. \\
-	. \\
-	\mathbf{x}'_n
+  {c}
+  \mathbf{x}'_1 \\
+  . \\
+  . \\
+  . \\
+  \mathbf{x}'_n
 \end{array}\right]
 $$
 
 The vector of error terms $\mathbf{U}$ is also a $n \times 1$ matrix.
 
-At times it might be easier to use vector notation. For consistency I will use the bold small x to denote a vector and capital letters to denote a matrix. Single observations are denoted by the subscript.
+At times it might be easier to use vector notation. For consistency, I will use the bold small x to denote a vector and capital letters to denote a matrix. Single observations are denoted by the subscript.
 
 ## Least Squares
 
@@ -107,7 +107,7 @@ $$y_i = \mathbf{x}'_i \beta + u_i$$
 4. $Var(\mathbf{U}|\mathbf{X}) = \sigma^2 I_n$ (Homoskedascity)
 
 **Aim**:  
-Find $\beta$ that minimises sum of squared errors:
+Find $\beta$ that minimises the sum of squared errors:
 
 $$
 Q = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2} = (Y-X\beta)'(Y-X\beta)
@@ -120,22 +120,22 @@ Take matrix derivative w.r.t $\beta$:
 
 ```tex
 \begin{aligned}
-	\min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-	\beta'\mathbf{X}'\mathbf{X}\beta \\
-	                 & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-	\text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-	\hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-	                 & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
+  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
+  \beta'\mathbf{X}'\mathbf{X}\beta \\
+                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
+  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
+  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
+                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
 \end{aligned}
 ```
 
 $$
 \begin{aligned}
-	\min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-	\beta'\mathbf{X}'\mathbf{X}\beta \\
-	                 & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-	\text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-	\hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-	                 & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
+  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
+  \beta'\mathbf{X}'\mathbf{X}\beta \\
+                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
+  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
+  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
+                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
 \end{aligned}
 $$
