@@ -58,6 +58,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Newsletter component with support for mailchimp, buttondown, convertkit and klaviyo
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
+- Preconfigured security headers
 - SEO friendly with RSS feed, sitemaps and more!
 
 ## Sample posts
@@ -134,7 +135,9 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 `layouts` - main templates used in pages.
 
-`pages` - pages to route to. Read the [Next.js documentation](https://nextjs.org/docs) for more information
+`pages` - pages to route to. Read the [Next.js documentation](https://nextjs.org/docs) for more information.
+
+`next.config.js` - configuration related to Next.js. You need to adapt the Content Security Policy if you want to load scripts, images etc. from other domains.
 
 ## Post
 
