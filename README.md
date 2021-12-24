@@ -93,6 +93,12 @@ npx degit timlrx/tailwind-nextjs-starter-blog#typescript
 6. Add blog posts
 7. Deploy on Vercel
 
+## Installation
+
+```bash
+npm install
+```
+
 ## Development
 
 First, run the development server:
