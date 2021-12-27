@@ -18,10 +18,6 @@
   @apply my-5;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
