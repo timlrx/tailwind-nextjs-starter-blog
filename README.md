@@ -28,6 +28,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [Leo's Blog](https://leohuynh.dev) - Tuan Anh Huynh's personal site. Add Snippets Page, Author Profile Card, Image Lightbox, ...
 - [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more.
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
+- [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
 
 
 Using the template? Feel free to create a PR and add your blog to this list.
