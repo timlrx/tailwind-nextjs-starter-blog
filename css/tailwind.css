@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.task-list-item:before {
+.task-list-item::before {
   @apply hidden;
 }
 
-html {
-  scroll-behavior: smooth;
+.task-list-item {
+  @apply list-none;
+}
+
+.footnotes {
+  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
+}
+
+.csl-entry {
+  @apply my-5;
 }
 
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */

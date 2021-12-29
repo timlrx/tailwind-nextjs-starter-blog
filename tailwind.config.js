@@ -67,10 +67,10 @@ module.exports = {
               paddingBottom: '2px',
               borderRadius: '0.25rem',
             },
-            'code:before': {
+            'code::before': {
               content: 'none',
             },
-            'code:after': {
+            'code::after': {
               content: 'none',
             },
             details: {
@@ -82,11 +82,11 @@ module.exports = {
               borderRadius: '0.25rem',
             },
             hr: { borderColor: theme('colors.gray.200') },
-            'ol li:before': {
+            'ol li::marker': {
               fontWeight: '600',
               color: theme('colors.gray.500'),
             },
-            'ul li:before': {
+            'ul li::marker': {
               backgroundColor: theme('colors.gray.500'),
             },
             strong: { color: theme('colors.gray.600') },
@@ -133,11 +133,11 @@ module.exports = {
               backgroundColor: theme('colors.gray.800'),
             },
             hr: { borderColor: theme('colors.gray.700') },
-            'ol li:before': {
+            'ol li::marker': {
               fontWeight: '600',
               color: theme('colors.gray.400'),
             },
-            'ul li:before': {
+            'ul li::marker': {
               backgroundColor: theme('colors.gray.400'),
             },
             strong: { color: theme('colors.gray.100') },
