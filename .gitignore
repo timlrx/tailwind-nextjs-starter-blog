@@ -34,3 +34,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# pwa
+/public/sw.js
+/public/workbox-*.js
