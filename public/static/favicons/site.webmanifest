@@ -1,14 +1,72 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "TailwindBlog",
+  "short_name": "TailwindBlog",
+	"display": "standalone",
+  "description": "A blog created with Next.js and Tailwind.css",
+  "lang": "en",
+	"theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "start_url": "/",
   "icons": [
     {
-      "src": "/android-chrome-96x96.png",
-      "sizes": "96x96",
+      "src": "/static/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "display": "standalone"
+  "shortcuts": [
+    {
+      "name": "Open Home",
+      "short_name": "Home",
+      "url": "/",
+      "description": "Home page",
+      "icons": [
+        {
+          "src": "/static/favicons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Open Posts",
+      "short_name": "Posts",
+      "url": "/blog",
+      "description": "My posts",
+      "icons": [
+        {
+          "src": "/static/favicons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Open Projects",
+      "short_name": "Projects",
+      "url": "/projects",
+      "description": "My projects",
+      "icons": [
+        {
+          "src": "/static/favicons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Open About",
+      "short_name": "About",
+      "url": "/about",
+      "description": "Know more about me",
+      "icons": [
+        {
+          "src": "/static/favicons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }
