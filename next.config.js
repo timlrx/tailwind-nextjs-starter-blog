@@ -103,7 +103,7 @@ module.exports = withBundleAnalyzer(
     pwa: {
       dest: 'public',
       disable: process.env.NODE_ENV !== 'production',
-      publicExcludes: ['!sitemap.json', '!feed.json'],
+      publicExcludes: ['!sitemap.xml', '!feed.xml', '!tags/**/*'],
     },
   })
 )
