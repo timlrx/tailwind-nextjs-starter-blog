@@ -81,7 +81,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
 ```
 
-    or TS (community support)
+or with TypeScript (community support)
 
 ```bash
 npx degit timlrx/tailwind-nextjs-starter-blog#typescript
@@ -108,7 +108,7 @@ First, run the development server:
 npm start
 ```
 
-    or
+or
 
 ```bash
 npm run dev
