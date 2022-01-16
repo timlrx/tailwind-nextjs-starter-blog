@@ -1,13 +1,12 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { PostFrontMatter } from 'types/PostFrontMatter'
+import { InferGetStaticPropsType } from 'next'
+import { allBlogs } from '.contentlayer/data'
 
-export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
-  const totalPosts = await getAllFilesFrontMatter('blog')
+export const getStaticPaths = async () => {
+  const totalPosts = allBlogs
   const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
   const paths = Array.from({ length: totalPages }, (_, i) => ({
     params: { page: (i + 1).toString() },
@@ -19,15 +18,11 @@ export const getStaticPaths: GetStaticPaths<{ page: string }> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<{
-  posts: PostFrontMatter[]
-  initialDisplayPosts: PostFrontMatter[]
-  pagination: { currentPage: number; totalPages: number }
-}> = async (context) => {
+export const getStaticProps = async (context) => {
   const {
     params: { page },
   } = context
-  const posts = await getAllFilesFrontMatter('blog')
+  const posts = allBlogs
   const pageNumber = parseInt(page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

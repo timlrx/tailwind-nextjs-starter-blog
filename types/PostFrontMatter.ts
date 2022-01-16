@@ -9,5 +9,5 @@ export type PostFrontMatter = {
   authors?: string[]
   layout?: string
   slug: string
-  fileName: string
+  fileName?: string
 }

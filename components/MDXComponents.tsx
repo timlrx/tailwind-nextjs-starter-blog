@@ -1,36 +1,42 @@
 /* eslint-disable react/display-name */
-import React, { useMemo } from 'react'
-import { ComponentMap, getMDXComponent } from 'mdx-bundler/client'
+import React from 'react'
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { ComponentMap } from 'mdx-bundler/client'
 import Image from './Image'
 import CustomLink from './Link'
 import TOCInline from './TOCInline'
 import Pre from './Pre'
 import { BlogNewsletterForm } from './NewsletterForm'
+import type { Blog, Authors } from '.contentlayer/types'
 
-const Wrapper: React.ComponentType<{ layout: string }> = ({ layout, ...rest }) => {
+interface MDXLayout {
+  layout: string
+  content: Blog | Authors
+  [key: string]: unknown
+}
+
+interface Wrapper {
+  layout: string
+  [key: string]: unknown
+}
+
+const Wrapper = ({ layout, content, ...rest }: MDXLayout) => {
   const Layout = require(`../layouts/${layout}`).default
-  return <Layout {...rest} />
+  return <Layout content={content} {...rest} />
 }
 
 export const MDXComponents: ComponentMap = {
   Image,
-  //@ts-ignore
   TOCInline,
   a: CustomLink,
   pre: Pre,
   wrapper: Wrapper,
-  //@ts-ignore
   BlogNewsletterForm,
 }
 
-interface Props {
-  layout: string
-  mdxSource: string
-  [key: string]: unknown
-}
+export const MDXLayoutRenderer = ({ layout, content, ...rest }: MDXLayout) => {
+  const MDXLayout = useMDXComponent(content.body.code)
+  const { _id, _raw, body, ...coreContent } = content
 
-export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }: Props) => {
-  const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
-
-  return <MDXLayout layout={layout} components={MDXComponents} {...rest} />
+  return <MDXLayout layout={layout} content={coreContent} components={MDXComponents} {...rest} />
 }

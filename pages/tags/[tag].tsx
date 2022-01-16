@@ -2,18 +2,36 @@ import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import generateRss from '@/lib/generate-rss'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
-import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 import fs from 'fs'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { InferGetStaticPropsType } from 'next'
 import path from 'path'
-import { PostFrontMatter } from 'types/PostFrontMatter'
+import { allBlogs } from '.contentlayer/data'
 
 const root = process.cwd()
 
+// TODO: refactor into contentlayer once compute over all docs is enabled
+export async function getAllTags() {
+  const tagCount: Record<string, number> = {}
+  // Iterate through each post, putting all found tags into `tags`
+  allBlogs.forEach((file) => {
+    if (file.tags && file.draft !== true) {
+      file.tags.forEach((tag) => {
+        const formattedTag = kebabCase(tag)
+        if (formattedTag in tagCount) {
+          tagCount[formattedTag] += 1
+        } else {
+          tagCount[formattedTag] = 1
+        }
+      })
+    }
+  })
+
+  return tagCount
+}
+
 export async function getStaticPaths() {
-  const tags = await getAllTags('blog')
+  const tags = await getAllTags()
 
   return {
     paths: Object.keys(tags).map((tag) => ({
@@ -25,12 +43,9 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps: GetStaticProps<{ posts: PostFrontMatter[]; tag: string }> = async (
-  context
-) => {
+export const getStaticProps = async (context) => {
   const tag = context.params.tag as string
-  const allPosts = await getAllFilesFrontMatter('blog')
-  const filteredPosts = allPosts.filter(
+  const filteredPosts = allBlogs.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(tag)
   )
 

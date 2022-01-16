@@ -3,18 +3,19 @@ import Tag from '@/components/Tag'
 import { ComponentProps, useState } from 'react'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
-import { PostFrontMatter } from 'types/PostFrontMatter'
+import type { Blog } from '.contentlayer/types'
+
 interface Props {
-  posts: PostFrontMatter[]
+  posts: Blog[]
   title: string
-  initialDisplayPosts?: PostFrontMatter[]
+  initialDisplayPosts?: Blog[]
   pagination?: ComponentProps<typeof Pagination>
 }
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }: Props) {
   const [searchValue, setSearchValue] = useState('')
-  const filteredBlogPosts = posts.filter((frontMatter) => {
-    const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
+  const filteredBlogPosts = posts.filter((post) => {
+    const searchContent = post.title + post.summary + post.tags.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -55,8 +56,8 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
         </div>
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
-          {displayPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+          {displayPosts.map((post) => {
+            const { slug, date, title, summary, tags } = post
             return (
               <li key={slug} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">

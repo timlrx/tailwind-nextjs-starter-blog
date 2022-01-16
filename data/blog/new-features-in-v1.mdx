@@ -13,7 +13,8 @@ bibliography: references-data.bib
 
 A post on the new features introduced in v1.0. New features:
 
-<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+TODO: Fix TOC
+`<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />`
 
 First load JS decreased from 43kB to 39kB despite all the new features added!^[With the new changes in Nextjs 12, first load JS increase to 45kB.]
 
@@ -62,7 +63,7 @@ import PageTitle from './PageTitle.tsx'
 ;<PageTitle> Using JSX components in MDX </PageTitle>
 ```
 
-import PageTitle from './PageTitle.tsx'
+import PageTitle from './components/PageTitle.tsx'
 
 <PageTitle> Using JSX components in MDX </PageTitle>
 
@@ -95,7 +96,7 @@ Here's the full TOC rendered in a disclosure element.
 <TOCInline toc={props.toc} asDisclosure />
 ```
 
-<TOCInline toc={props.toc} asDisclosure />
+`<TOCInline toc={props.toc} asDisclosure />`
 
 ## Layouts
 
