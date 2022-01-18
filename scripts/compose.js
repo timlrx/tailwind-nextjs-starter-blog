@@ -40,7 +40,7 @@ const genFrontMatter = (answers) => {
   summary: ${answers.summary ? answers.summary : ' '}
   images: []
   layout: ${answers.layout}
-  canonical: ${answers.canonical}
+  canonicalUrl: ${answers.canonicalUrl}
   `
 
   if (answers.authors.length > 0) {
@@ -94,7 +94,7 @@ inquirer
       choices: getLayouts,
     },
     {
-      name: 'canonical',
+      name: 'canonicalUrl',
       message: 'Enter canonical url:',
       type: 'input',
     },
