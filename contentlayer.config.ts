@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
 import remarkMath from 'remark-math'
 import remarkCodeTitles from './lib/remark-code-title'
-import remarkTocHeadings from './lib/remark-toc-headings'
+import { extractTocHeadings } from './lib/remark-toc-headings'
 import remarkImgToJsx from './lib/remark-img-to-jsx'
 // Rehype packages
 import rehypeSlug from 'rehype-slug'
@@ -20,6 +20,7 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
   },
+  toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -64,7 +65,6 @@ export default makeSource({
   documentTypes: [Blog, Authors],
   mdx: {
     remarkPlugins: [
-      //   [remarkTocHeadings, { exportRef: toc }],
       remarkGfm,
       remarkCodeTitles,
       [remarkFootnotes, { inlineNotes: true }],
