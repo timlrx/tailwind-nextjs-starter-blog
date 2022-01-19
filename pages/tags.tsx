@@ -2,12 +2,32 @@ import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { allBlogs } from '.contentlayer/data'
+
+// TODO: refactor into contentlayer once compute over all docs is enabled
+export async function getAllTags() {
+  const tagCount: Record<string, number> = {}
+  // Iterate through each post, putting all found tags into `tags`
+  allBlogs.forEach((file) => {
+    if (file.tags && file.draft !== true) {
+      file.tags.forEach((tag) => {
+        const formattedTag = kebabCase(tag)
+        if (formattedTag in tagCount) {
+          tagCount[formattedTag] += 1
+        } else {
+          tagCount[formattedTag] = 1
+        }
+      })
+    }
+  })
+
+  return tagCount
+}
 
 export const getStaticProps: GetStaticProps<{ tags: Record<string, number> }> = async () => {
-  const tags = await getAllTags('blog')
+  const tags = await getAllTags()
 
   return { props: { tags } }
 }
