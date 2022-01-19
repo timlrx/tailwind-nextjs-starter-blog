@@ -6,6 +6,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      letterSpacing: {
+				tight: "-.05em",
+			},
       spacing: {
         '9/16': '56.25%',
       },
