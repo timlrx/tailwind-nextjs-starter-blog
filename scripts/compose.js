@@ -101,6 +101,7 @@ inquirer
       .replace(/ /g, '-')
       .replace(/-+/g, '-')
     const frontMatter = genFrontMatter(answers)
+    if (!fs.existsSync('data/blog', { recursive: true })) fs.mkdirSync('data/blog')
     const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${
       answers.extension ? answers.extension : 'md'
     }`
