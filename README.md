@@ -32,6 +32,8 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [the all JavaScript Blog](https://the-all-javascript-blog.vercel.app/) - a JavaScript enlightenment blog uses this
 - [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
 - [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog 
+- [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
+- [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
