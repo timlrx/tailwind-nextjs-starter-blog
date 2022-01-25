@@ -42,7 +42,7 @@ const Comments = ({ frontMatter }: Props) => {
       break
   }
   return (
-    <>
+    <div id="comment">
       {siteMetadata.comment && siteMetadata.comment.provider === 'giscus' && (
         <GiscusComponent mapping={term} />
       )}
@@ -52,7 +52,7 @@ const Comments = ({ frontMatter }: Props) => {
       {siteMetadata.comment && siteMetadata.comment.provider === 'disqus' && (
         <DisqusComponent frontMatter={frontMatter} />
       )}
-    </>
+    </div>
   )
 }
 
