@@ -1,6 +1,4 @@
-import fs from 'fs'
 import PageTitle from '@/components/PageTitle'
-import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs, allAuthors } from '.contentlayer/data'
@@ -41,11 +39,6 @@ export const getStaticProps = async ({ params }) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
     return authorResults
   })
-  // rss
-  if (sortedPosts.length > 0) {
-    const rss = generateRss(sortedPosts)
-    fs.writeFileSync('./public/feed.xml', rss)
-  }
 
   return {
     props: {
@@ -68,8 +61,7 @@ export default function Blog({
       {'draft' in post && post.draft !== true ? (
         <MDXLayoutRenderer
           layout={post.layout || DEFAULT_LAYOUT}
-          // TODO: Implement TOC
-          // toc={toc}
+          toc={post.toc}
           content={post}
           authorDetails={authorDetails}
           prev={prev}
