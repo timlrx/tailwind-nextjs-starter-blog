@@ -9,9 +9,17 @@ import { allBlogs } from '.contentlayer/data'
 
 const MAX_DISPLAY = 5
 
+export function dateSortDesc(a: string, b: string) {
+  if (a > b) return -1
+  if (a < b) return 1
+  return 0
+}
+
 export const getStaticProps = async () => {
   // TODO: move computation to get only the essential frontmatter to contentlayer.config
-  const posts = allBlogs.map(({ body, _raw, _id, ...rest }) => rest)
+  const posts = allBlogs
+    .map(({ body, _raw, _id, ...rest }) => rest)
+    .sort((a, b) => dateSortDesc(a.date, b.date))
 
   return { props: { posts } }
 }
