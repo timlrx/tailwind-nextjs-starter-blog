@@ -5,7 +5,10 @@
   "scripts": {
     "start": "next dev",
     "dev": "next dev",
-    "build": "next build && node ./scripts/generate-sitemap",
+    "build": "next build",
+    "postbuild": "npm run sitemap && npm run rss",
+    "sitemap": "cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/generate-sitemap.mjs",
+    "rss": "cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/generate-rss.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",

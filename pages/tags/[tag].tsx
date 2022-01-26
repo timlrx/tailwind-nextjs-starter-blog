@@ -1,14 +1,9 @@
 import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
-import generateRss from '@/lib/generate-rss'
 import kebabCase from '@/lib/utils/kebabCase'
-import fs from 'fs'
 import { InferGetStaticPropsType } from 'next'
-import path from 'path'
 import { allBlogs } from '.contentlayer/data'
-
-const root = process.cwd()
 
 // TODO: refactor into contentlayer once compute over all docs is enabled
 export async function getAllTags() {
@@ -48,14 +43,6 @@ export const getStaticProps = async (context) => {
   const filteredPosts = allBlogs.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(tag)
   )
-
-  // rss
-  if (filteredPosts.length > 0) {
-    const rss = generateRss(filteredPosts, `tags/${tag}/feed.xml`)
-    const rssPath = path.join(root, 'public', 'tags', tag)
-    fs.mkdirSync(rssPath, { recursive: true })
-    fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
-  }
 
   return { props: { posts: filteredPosts, tag } }
 }
