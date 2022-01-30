@@ -34,7 +34,8 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog 
 - [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
 - [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
-- [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog 
+- [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
+- [dhanrajsp.me](https://dhanrajsp.me/) - Dhanraj's personal site and blog.  
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
