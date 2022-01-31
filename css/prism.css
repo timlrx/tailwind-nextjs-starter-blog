@@ -20,7 +20,7 @@
 }
 
 .code-line {
-  @apply block pl-4 pr-4 -mx-4 border-l-4 border-opacity-0;
+  @apply block pl-4 pr-4 -mx-4 border-l-4 border-transparent;
 }
 
 .code-line.inserted {
