@@ -37,6 +37,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
 - [dhanrajsp.me](https://dhanrajsp.me/) - Dhanraj's personal site and blog.
 - [blog.r00ks.io](https://blog.r00ks.io/) - Austin Rooks's personal blog ([source code](https://github.com/Austionian/blog.r00ks)).
+- [alfoncode.com](https://alfoncode.com) - Alfonso García's personar website. Customized design ([source code](https://github.com/alfoncode/personal-web))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
