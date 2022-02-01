@@ -6,11 +6,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app;
-  style-src 'self' 'unsafe-inline' *.googleapis.com cdn.jsdelivr.net;
+  style-src 'self' 'unsafe-inline' cdn.jsdelivr.net;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
-  font-src 'self' fonts.gstatic.com cdn.jsdelivr.net;
+  font-src 'self' cdn.jsdelivr.net;
   frame-src giscus.app
 `
 
