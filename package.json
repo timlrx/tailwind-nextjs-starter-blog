@@ -1,6 +1,6 @@
 {
   "name": "tailwind-nextjs-starter-blog",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fontsource/inter": "4.5.2",
     "@mailchimp/mailchimp_marketing": "^3.0.58",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
