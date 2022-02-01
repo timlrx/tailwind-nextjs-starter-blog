@@ -29,6 +29,15 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more.
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
+- [the all JavaScript Blog](https://the-all-javascript-blog.vercel.app/) - a JavaScript enlightenment blog uses this
+- [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
+- [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog
+- [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
+- [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
+- [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
+- [dhanrajsp.me](https://dhanrajsp.me/) - Dhanraj's personal site and blog.
+- [blog.r00ks.io](https://blog.r00ks.io/) - Austin Rooks's personal blog ([source code](https://github.com/Austionian/blog.r00ks)).
+- [alfoncode.com](https://alfoncode.com) - Alfonso García's personar website. Customized design ([source code](https://github.com/alfoncode/personal-web))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -45,6 +54,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Lightweight, 45kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
+- Self-hosted font with [Fontsource](https://fontsource.org/)
 - Supports [plausible](https://plausible.io/), [simple analytics](https://simpleanalytics.com/) and google analytics
 - [MDX - write JSX in markdown documents!](https://mdxjs.com/)
 - Server-side syntax highlighting with line numbers and line highlighting via [rehype-prism-plus](https://github.com/timlrx/rehype-prism-plus)
@@ -80,7 +90,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
 ```
 
-    or TS (community support)
+or with TypeScript (community support)
 
 ```bash
 npx degit timlrx/tailwind-nextjs-starter-blog#typescript
@@ -107,7 +117,7 @@ First, run the development server:
 npm start
 ```
 
-    or
+or
 
 ```bash
 npm run dev

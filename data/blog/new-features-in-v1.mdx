@@ -1,7 +1,7 @@
 ---
 title: 'New features in v1'
 date: 2021-08-07T15:32:14Z
-lastmod: '2021-12-15'
+lastmod: '2021-02-01'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'An overview of the new features released in v1 - code block copy, multiple authors, frontmatter layout and more'
@@ -321,7 +321,7 @@ To modify the styles, change the following class selectors in the `prism.css` fi
 }
 
 .code-line {
-  @apply block pl-4 pr-4 -mx-4 border-l-4 border-opacity-0;
+  @apply -mx-4 block border-l-4 border-opacity-0 pl-4 pr-4;
 }
 
 .code-line.inserted {
@@ -333,11 +333,11 @@ To modify the styles, change the following class selectors in the `prism.css` fi
 }
 
 .highlight-line {
-  @apply -mx-4 bg-gray-700 bg-opacity-50 border-l-4 border-primary-500;
+  @apply -mx-4 border-l-4 border-primary-500 bg-gray-700 bg-opacity-50;
 }
 
 .line-number::before {
-  @apply inline-block w-4 mr-4 -ml-2 text-right text-gray-400;
+  @apply mr-4 -ml-2 inline-block w-4 text-right text-gray-400;
   content: attr(line);
 }
 ```
@@ -397,6 +397,24 @@ A bibliography will be inserted at the end of the document, but this can be over
 The plugin uses APA citation formation, but also supports the following CSLs, 'apa', 'vancouver', 'harvard1', 'chicago', 'mla', or a path to a user-specified CSL file.
 
 See [rehype-citation readme](https://github.com/timlrx/rehype-citation) for more information on the configuration options.
+
+## Self-hosted font (v1.5.0)
+
+Google font has been replaced with self-hosted font from [Fontsource](https://fontsource.org/). This gives the following [advantages](https://fontsource.org/docs/introduction):
+
+> Self-hosting brings significant performance gains as loading fonts from hosted services, such as Google Fonts, lead to an extra (render blocking) network request. To provide perspective, for simple websites it has been seen to double visual load times.
+>
+> Fonts remain version locked. Google often pushes updates to their fonts without notice, which may interfere with your live production projects. Manage your fonts like any other NPM dependency.
+>
+> Commit to privacy. Google does track the usage of their fonts and for those who are extremely privacy concerned, self-hosting is an alternative.
+
+This leads to a smaller font bundle and a 0.1s faster load time ([webpagetest comparison](https://www.webpagetest.org/video/compare.php?tests=220201_AiDcFH_f68a69b758454dd52d8e67493fdef7da,220201_BiDcMC_bf2d53f14483814ba61e794311dfa771)).
+
+To change the default Inter font:
+
+1. Install the preferred [font](https://fontsource.org/fonts) - `npm install -save @fontsource/<font-name>`
+2. Update the import at `pages/_app.js`- `import '@fontsource/<font-name>.css'`
+3. Update the `fontfamily` property in the tailwind css config file
 
 ## Upgrade guide
 
