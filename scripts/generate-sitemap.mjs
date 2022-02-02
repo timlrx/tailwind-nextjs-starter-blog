@@ -8,11 +8,11 @@ async function generate() {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js')
   const contentPages = allBlogs.map((x) => `/${x._raw.flattenedPath}`)
   const pages = await globby([
-    'pages/*.js',
+    'pages/*.{js|tsx}',
     'public/tags/**/*.xml',
-    '!pages/_*.js',
+    '!pages/_*.{js|tsx}',
     '!pages/api',
-    '!pages/404.tsx',
+    '!pages/404.{js|tsx}',
   ])
 
   const sitemap = `

@@ -1,9 +1,11 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer/source-files'
 import readingTime from 'reading-time'
+import path from 'path'
 // Remark packages
 import remarkGfm from 'remark-gfm'
 import remarkFootnotes from 'remark-footnotes'
 import remarkMath from 'remark-math'
+import remarkExtractFrontmatter from './lib/remark-extract-frontmatter'
 import remarkCodeTitles from './lib/remark-code-title'
 import { extractTocHeadings } from './lib/remark-toc-headings'
 import remarkImgToJsx from './lib/remark-img-to-jsx'
@@ -13,6 +15,9 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
+import rehypePresetMinify from 'rehype-preset-minify'
+
+const root = process.cwd()
 
 const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
@@ -65,6 +70,7 @@ export default makeSource({
   documentTypes: [Blog, Authors],
   mdx: {
     remarkPlugins: [
+      remarkExtractFrontmatter,
       remarkGfm,
       remarkCodeTitles,
       [remarkFootnotes, { inlineNotes: true }],
@@ -75,8 +81,9 @@ export default makeSource({
       rehypeSlug,
       rehypeAutolinkHeadings,
       rehypeKatex,
-      //   [rehypeCitation, { bibliography: frontmatter?.bibliography, path: path.join(root, 'data') }],
+      [rehypeCitation, { path: path.join(root, 'data') }],
       [rehypePrismPlus, { ignoreMissing: true }],
+      rehypePresetMinify,
     ],
   },
 })
