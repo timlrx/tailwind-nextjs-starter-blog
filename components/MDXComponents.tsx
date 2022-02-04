@@ -2,6 +2,7 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { ComponentMap } from 'mdx-bundler/client'
+import * as temp from '@/lib/utils/temp'
 import Image from './Image'
 import CustomLink from './Link'
 import TOCInline from './TOCInline'
@@ -36,7 +37,7 @@ export const MDXComponents: ComponentMap = {
 
 export const MDXLayoutRenderer = ({ layout, content, ...rest }: MDXLayout) => {
   const MDXLayout = useMDXComponent(content.body.code)
-  const { _id, _raw, body, ...coreContent } = content
+  const coreContent = temp.omit(content, ['body', '_raw', '_id'])
 
   return <MDXLayout layout={layout} content={coreContent} components={MDXComponents} {...rest} />
 }

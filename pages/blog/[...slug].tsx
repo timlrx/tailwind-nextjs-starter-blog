@@ -1,21 +1,11 @@
 import PageTitle from '@/components/PageTitle'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
+import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs, allAuthors } from '.contentlayer/data'
 import type { Blog } from '.contentlayer/types'
 
 const DEFAULT_LAYOUT = 'PostLayout'
-
-export function dateSortDesc(a: string, b: string) {
-  if (a > b) return -1
-  if (a < b) return 1
-  return 0
-}
-
-export function coreContent(content: Blog) {
-  const { _id, _raw, body, ...rest } = content
-  return rest
-}
 
 export async function getStaticPaths() {
   return {
@@ -26,13 +16,13 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async ({ params }) => {
   const slug = (params.slug as string[]).join('/')
-  const sortedPosts = allBlogs.sort((a, b) => dateSortDesc(a.date, b.date))
+  const sortedPosts = temp.sortedBlogPost(allBlogs)
   const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
   // TODO: Refactor this extraction of coreContent
   const prevContent = sortedPosts[postIndex + 1] || null
-  const prev = prevContent ? coreContent(prevContent) : null
+  const prev = prevContent ? temp.coreBlog(prevContent) : null
   const nextContent = sortedPosts[postIndex - 1] || null
-  const next = nextContent ? coreContent(nextContent) : null
+  const next = nextContent ? temp.coreBlog(nextContent) : null
   const post = sortedPosts.find((p) => p.slug === slug)
   const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {

@@ -2,31 +2,12 @@ import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import kebabCase from '@/lib/utils/kebabCase'
+import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs } from '.contentlayer/data'
 
-// TODO: refactor into contentlayer once compute over all docs is enabled
-export async function getAllTags() {
-  const tagCount: Record<string, number> = {}
-  // Iterate through each post, putting all found tags into `tags`
-  allBlogs.forEach((file) => {
-    if (file.tags && file.draft !== true) {
-      file.tags.forEach((tag) => {
-        const formattedTag = kebabCase(tag)
-        if (formattedTag in tagCount) {
-          tagCount[formattedTag] += 1
-        } else {
-          tagCount[formattedTag] = 1
-        }
-      })
-    }
-  })
-
-  return tagCount
-}
-
 export async function getStaticPaths() {
-  const tags = await getAllTags()
+  const tags = await temp.getAllTags(allBlogs)
 
   return {
     paths: Object.keys(tags).map((tag) => ({
