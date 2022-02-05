@@ -260,7 +260,7 @@ A long description of yourself...
 
 You can use this information in multiple places across the template. For example in the about section of the page, we grab the default author information with this line of code:
 
-```
+```js
 const authorDetails = await getFileBySlug('authors', ['default'])
 ```
 
@@ -272,7 +272,7 @@ The frontmatter of a blog post accepts an optional `authors` array field. If no 
 
 For example, the following frontmatter will display the authors given by `data/authors/default.md` and `data/authors/sparrowhawk.md`
 
-```
+```yaml
 title: 'My first post'
 date: '2021-01-12'
 draft: false
@@ -437,7 +437,7 @@ You can see an example of such a migration in this [commit](https://github.com/t
 
 v1 also uses `feed.xml` rather than `index.xml`, to avoid some build issues with Vercel. If you are migrating you should add a redirect to `next.config.js` like so:
 
-```
+```js
 async redirects() {
   return [
     {
