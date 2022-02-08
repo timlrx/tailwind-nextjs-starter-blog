@@ -70,7 +70,7 @@ export default makeSource({
   documentTypes: [Blog, Authors],
   mdx: {
     remarkPlugins: [
-      remarkExtractFrontmatter,
+      // remarkExtractFrontmatter,
       remarkGfm,
       remarkCodeTitles,
       [remarkFootnotes, { inlineNotes: true }],

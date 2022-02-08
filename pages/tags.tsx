@@ -5,7 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import kebabCase from '@/lib/utils/kebabCase'
 import * as temp from '@/lib/utils/temp'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 // TODO: refactor into contentlayer once compute over all docs is enabled
 

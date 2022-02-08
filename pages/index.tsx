@@ -6,7 +6,7 @@ import formatDate from '@/lib/utils/formatDate'
 import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
 import NewsletterForm from '@/components/NewsletterForm'
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 const MAX_DISPLAY = 5
 

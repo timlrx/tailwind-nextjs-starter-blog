@@ -8,7 +8,7 @@ import CustomLink from './Link'
 import TOCInline from './TOCInline'
 import Pre from './Pre'
 import { BlogNewsletterForm } from './NewsletterForm'
-import type { Blog, Authors } from '.contentlayer/types'
+import type { Blog, Authors } from 'contentlayer/generated'
 
 interface MDXLayout {
   layout: string

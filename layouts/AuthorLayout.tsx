@@ -2,7 +2,7 @@ import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
 import { ReactNode } from 'react'
-import type { Authors } from '.contentlayer/types'
+import type { Authors } from 'contentlayer/generated'
 
 interface Props {
   children: ReactNode

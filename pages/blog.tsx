@@ -3,7 +3,7 @@ import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/SEO'
 import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 export const POSTS_PER_PAGE = 5
 

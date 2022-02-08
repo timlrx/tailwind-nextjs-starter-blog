@@ -3,7 +3,7 @@ import path from 'path'
 import GithubSlugger from 'github-slugger'
 import { escape } from './htmlEscaper.mjs'
 import siteMetadata from '../data/siteMetadata.js'
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 // TODO: refactor into contentlayer once compute over all docs is enabled
 export async function getAllTags() {
