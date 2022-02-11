@@ -178,6 +178,7 @@ summary (optional)
 images (optional, if none provided defaults to socialBanner in siteMetadata config)
 authors (optional list which should correspond to the file names in `data/authors`. Uses `default` if none is specified)
 layout (optional list which should correspond to the file names in `data/layouts`)
+canonicalUrl (optional, canonical url for the post for SEO)
 ```
 
 Here's an example of a post's frontmatter:
@@ -193,6 +194,7 @@ summary: 'Looking for a performant, out of the box template, with all the best i
 images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
 authors: ['default', 'sparrowhawk']
 layout: PostLayout
+canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog
 ---
 ```
 
