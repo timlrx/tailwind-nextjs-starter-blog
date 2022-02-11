@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 
-const CommonSEO = ({ title, description, ogType, ogImage, twImage }) => {
+const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
   const router = useRouter()
   return (
     <Head>
@@ -24,6 +24,10 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
+      <link
+        rel="canonical"
+        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
+      />
     </Head>
   )
 }
@@ -67,7 +71,16 @@ export const TagSEO = ({ title, description }) => {
   )
 }
 
-export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, images = [] }) => {
+export const BlogSEO = ({
+  authorDetails,
+  title,
+  summary,
+  date,
+  lastmod,
+  url,
+  images = [],
+  canonicalUrl,
+}) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -133,11 +146,11 @@ export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, ima
         ogType="article"
         ogImage={featuredImages}
         twImage={twImageUrl}
+        canonicalUrl={canonicalUrl}
       />
       <Head>
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -29,6 +29,9 @@ const siteMetadata = require('../data/siteMetadata')
                   if (fm.data.draft) {
                     return
                   }
+                  if (fm.data.canonicalUrl) {
+                    return
+                  }
                 }
                 const path = page
                   .replace('pages/', '/')
