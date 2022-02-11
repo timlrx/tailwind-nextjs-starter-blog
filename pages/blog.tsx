@@ -15,7 +15,13 @@ export const getStaticProps = async () => {
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
-  return { props: { initialDisplayPosts, posts, pagination } }
+  return {
+    props: {
+      initialDisplayPosts: temp.coreAllBlog(initialDisplayPosts),
+      posts: temp.coreAllBlog(posts),
+      pagination,
+    },
+  }
 }
 
 export default function Blog({
