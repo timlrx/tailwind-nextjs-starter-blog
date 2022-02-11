@@ -3,7 +3,6 @@ import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
-import type { Blog } from 'contentlayer/generated'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
