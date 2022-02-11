@@ -4,7 +4,7 @@ import ListLayout from '@/layouts/ListLayout'
 import * as temp from '@/lib/utils/temp'
 import { POSTS_PER_PAGE } from '../../blog'
 import { InferGetStaticPropsType } from 'next'
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 export const getStaticPaths = async () => {
   const totalPosts = allBlogs

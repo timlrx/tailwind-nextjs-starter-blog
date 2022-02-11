@@ -2,8 +2,7 @@ import PageTitle from '@/components/PageTitle'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import * as temp from '@/lib/utils/temp'
 import { InferGetStaticPropsType } from 'next'
-import { allBlogs, allAuthors } from '.contentlayer/data'
-import type { Blog } from '.contentlayer/types'
+import { allBlogs, allAuthors } from 'contentlayer/generated'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 

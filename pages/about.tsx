@@ -1,6 +1,6 @@
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { InferGetStaticPropsType } from 'next'
-import { allAuthors } from '.contentlayer/data'
+import { allAuthors } from 'contentlayer/generated'
 
 const DEFAULT_LAYOUT = 'AuthorLayout'
 

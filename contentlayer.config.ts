@@ -30,8 +30,8 @@ const computedFields: ComputedFields = {
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: 'blog/**/*.{md,mdx}',
-  bodyType: 'mdx',
+  filePathPattern: 'blog/**/*.mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -49,8 +49,8 @@ export const Blog = defineDocumentType(() => ({
 
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
-  filePathPattern: 'authors/**/*.{md,mdx}',
-  bodyType: 'mdx',
+  filePathPattern: 'authors/**/*.mdx',
+  contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
     avatar: { type: 'string' },
@@ -69,6 +69,7 @@ export default makeSource({
   contentDirPath: 'data',
   documentTypes: [Blog, Authors],
   mdx: {
+    cwd: process.cwd(),
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,

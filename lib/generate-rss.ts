@@ -1,7 +1,7 @@
 import { escape } from '@/lib/utils/htmlEscaper'
 
 import siteMetadata from '@/data/siteMetadata'
-import type { Blog } from '.contentlayer/types'
+import type { Blog } from 'contentlayer/generated'
 
 const generateRssItem = (post: Blog) => `
   <item>
