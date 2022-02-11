@@ -1,3 +1,4 @@
+const { data } = require('autoprefixer')
 const fs = require('fs')
 const globby = require('globby')
 const matter = require('gray-matter')
@@ -27,6 +28,9 @@ const siteMetadata = require('../data/siteMetadata')
                   const source = fs.readFileSync(page, 'utf8')
                   const fm = matter(source)
                   if (fm.data.draft) {
+                    return
+                  }
+                  if (fm.data.canonicalUrl) {
                     return
                   }
                 }
