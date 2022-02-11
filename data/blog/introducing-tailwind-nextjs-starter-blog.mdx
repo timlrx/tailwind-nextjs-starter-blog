@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Tailwind Nextjs Starter Blog'
 date: '2021-01-12'
-lastmod: '2021-12-22'
+lastmod: '2021-02-01'
 tags: ['next-js', 'tailwind', 'guide']
 draft: false
 summary: 'Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.'
@@ -47,6 +47,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Lightweight, 45kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
+- Self-hosted font with [Fontsource](https://fontsource.org/)
 - Supports [plausible](https://plausible.io/), [simple analytics](https://simpleanalytics.com/) and google analytics
 - [MDX - write JSX in markdown documents!](https://mdxjs.com/)
 - Server-side syntax highlighting with line numbers and line highlighting via [rehype-prism-plus](https://github.com/timlrx/rehype-prism-plus)
@@ -78,11 +79,13 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
 2. Personalize `siteMetadata.js` (site related information)
-3. Personalize `authors/default.md` (main author)
-4. Modify `projectsData.js`
-5. Modify `headerNavLinks.js` to customize navigation links
-6. Add blog posts
-7. Deploy on Vercel
+3. Modify the content security policy in `next.config.js` if you want to use
+   any analytics provider or a commenting solution other than giscus.
+4. Personalize `authors/default.md` (main author)
+5. Modify `projectsData.js`
+6. Modify `headerNavLinks.js` to customize navigation links
+7. Add blog posts
+8. Deploy on Vercel
 
 ## Development
 
