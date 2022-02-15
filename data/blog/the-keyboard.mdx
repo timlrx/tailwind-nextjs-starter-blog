@@ -1,0 +1,50 @@
+---
+title: 'The Keyboard Buttons'
+date: '2022-02-15'
+tags: ['keyboard feature', 'blog']
+draft: false
+summary: 'Keyboard enabled blog post'
+keyboard: true
+authors: ['default', '404answernotfound']
+---
+
+export const KeyboardButton = ({ letter }) => {
+  return <button className="kbc-button">{letter}</button>
+}
+
+## Introduction
+
+All you need to do is add the keyboard key in the frontmatter and set its value to true, just like this blogpost.
+
+After that, you will need to create a new Keyboard Button component, that means that your blogpost will need to be an MDX file.
+
+```javascript
+export const KeyboardButton = ({ letter }) => {
+  return <button className="kbc-button">{letter}</button>
+}
+```
+
+And this is how to use it in a Stackoverflow fashion:
+
+<KeyboardButton letter="CMD"></KeyboardButton> + <KeyboardButton letter="C"></KeyboardButton>
+
+<KeyboardButton letter="CMD"></KeyboardButton> + <KeyboardButton letter="V"></KeyboardButton>
+
+## Important notice
+
+This feature requires this configuration in your next.config.js file
+
+```javascript
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app;
+  style-src 'self' 'unsafe-inline' unpkg.com;
+  img-src * blob: data:;
+  media-src 'none';
+  connect-src *;
+  font-src 'self';
+  frame-src giscus.app
+`
+```
+
+unpkg.com was added to use the CDN library for the buttons to work. If you don't want to add that you should save the library locally.

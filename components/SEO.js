@@ -72,6 +72,7 @@ export const TagSEO = ({ title, description }) => {
 }
 
 export const BlogSEO = ({
+  keyboard,
   authorDetails,
   title,
   summary,
@@ -84,6 +85,7 @@ export const BlogSEO = ({
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
+  const hasKeyboard = keyboard
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
@@ -157,6 +159,12 @@ export const BlogSEO = ({
             __html: JSON.stringify(structuredData, null, 2),
           }}
         />
+        {hasKeyboard && (
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/keyboard-css@1.2.2/dist/css/main.min.css"
+          />
+        )}
       </Head>
     </>
   )
