@@ -68,7 +68,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Blog templates
 - TOC component
 - Support for nested routing of blog posts
-- Newsletter component with support for mailchimp, buttondown, convertkit and klaviyo
+- Newsletter component with support for mailchimp, buttondown, convertkit, klaviyo and revue
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
 - Preconfigured security headers

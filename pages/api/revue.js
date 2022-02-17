@@ -10,7 +10,6 @@ export default async (req, res) => {
     const API_KEY = process.env.REVUE_API_KEY
     const revueRoute = `${process.env.REVUE_API_URL}subscribers`
 
-    console.log(JSON.stringify({ email, double_opt_in: false }))
     const response = await fetch(revueRoute, {
       method: 'POST',
       headers: {
@@ -19,9 +18,7 @@ export default async (req, res) => {
       },
       body: JSON.stringify({ email, double_opt_in: false }),
     })
-    console.log(response)
-    console.log(response.status)
-    console.log(await response.json())
+    
     if (response.status >= 400) {
       return res.status(500).json({ error: `There was an error subscribing to the list.` })
     }
