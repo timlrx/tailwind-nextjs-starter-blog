@@ -29,6 +29,15 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more.
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
+- [the all JavaScript Blog](https://the-all-javascript-blog.vercel.app/) - a JavaScript enlightenment blog uses this
+- [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
+- [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog
+- [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
+- [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
+- [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
+- [dhanrajsp.me](https://dhanrajsp.me/) - Dhanraj's personal site and blog.
+- [blog.r00ks.io](https://blog.r00ks.io/) - Austin Rooks's personal blog ([source code](https://github.com/Austionian/blog.r00ks)).
+- [alfoncode.com](https://alfoncode.com) - Alfonso García's personar website. Customized design ([source code](https://github.com/alfoncode/personal-web))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -45,6 +54,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Lightweight, 45kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
+- Self-hosted font with [Fontsource](https://fontsource.org/)
 - Supports [plausible](https://plausible.io/), [simple analytics](https://simpleanalytics.com/) and google analytics
 - [MDX - write JSX in markdown documents!](https://mdxjs.com/)
 - Server-side syntax highlighting with line numbers and line highlighting via [rehype-prism-plus](https://github.com/timlrx/rehype-prism-plus)
@@ -80,18 +90,20 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
 ```
 
-    or TS (community support)
+or with TypeScript (community support)
 
 ```bash
 npx degit timlrx/tailwind-nextjs-starter-blog#typescript
 ```
 
 2. Personalize `siteMetadata.js` (site related information)
-3. Personalize `authors/default.md` (main author)
-4. Modify `projectsData.js`
-5. Modify `headerNavLinks.js` to customize navigation links
-6. Add blog posts
-7. Deploy on Vercel
+3. Modify the content security policy in `next.config.js` if you want to use
+   any analytics provider or a commenting solution other than giscus.
+4. Personalize `authors/default.md` (main author)
+5. Modify `projectsData.js`
+6. Modify `headerNavLinks.js` to customize navigation links
+7. Add blog posts
+8. Deploy on Vercel
 
 ## Installation
 
@@ -107,7 +119,7 @@ First, run the development server:
 npm start
 ```
 
-    or
+or
 
 ```bash
 npm run dev
@@ -153,7 +165,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 Frontmatter follows [Hugo's standards](https://gohugo.io/content-management/front-matter/).
 
-Currently 7 fields are supported.
+Currently 10 fields are supported.
 
 ```
 title (required)
@@ -165,6 +177,7 @@ summary (optional)
 images (optional, if none provided defaults to socialBanner in siteMetadata config)
 authors (optional list which should correspond to the file names in `data/authors`. Uses `default` if none is specified)
 layout (optional list which should correspond to the file names in `data/layouts`)
+canonicalUrl (optional, canonical url for the post for SEO)
 ```
 
 Here's an example of a post's frontmatter:
@@ -180,6 +193,7 @@ summary: 'Looking for a performant, out of the box template, with all the best i
 images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
 authors: ['default', 'sparrowhawk']
 layout: PostLayout
+canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog
 ---
 ```
 

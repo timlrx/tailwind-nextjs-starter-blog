@@ -10,4 +10,5 @@ export type PostFrontMatter = {
   layout?: string
   slug: string
   fileName?: string
+  canonicalUrl?: string
 }

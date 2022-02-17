@@ -6,7 +6,9 @@ import { allBlogs } from '../.contentlayer/generated/index.mjs'
 
 async function generate() {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js')
-  const contentPages = allBlogs.map((x) => `/${x._raw.flattenedPath}`)
+  const contentPages = allBlogs
+    .map((x) => `/${x._raw.flattenedPath}`)
+    .filter((x) => !x.draft && !x.canonicalUrl)
   const pages = await globby([
     'pages/*.{js|tsx}',
     'public/tags/**/*.xml',
