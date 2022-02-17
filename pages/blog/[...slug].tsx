@@ -26,7 +26,7 @@ export const getStaticProps = async ({ params }) => {
   const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return authorResults
+    return temp.coreAuthors(authorResults)
   })
 
   return {

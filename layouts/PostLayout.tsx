@@ -9,7 +9,6 @@ import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import * as temp from '@/lib/utils/temp'
 import { ReactNode } from 'react'
-import { AuthorFrontMatter } from 'types/AuthorFrontMatter'
 
 const editUrl = (slug) => `${siteMetadata.siteRepo}/blob/master/data/blog/${slug}`
 const discussUrl = (slug) =>
@@ -26,7 +25,7 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 
 interface Props {
   content: temp.CoreBlog
-  authorDetails: AuthorFrontMatter[]
+  authorDetails: temp.CoreAuthors[]
   next?: { slug: string; title: string }
   prev?: { slug: string; title: string }
   children: ReactNode
@@ -110,7 +109,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 {` • `}
                 <Link href={editUrl(slug)}>{'View on GitHub'}</Link>
               </div>
-              {/* <Comments frontMatter={frontMatter} /> */}
+              <Comments frontMatter={content} />
             </div>
             <footer>
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">

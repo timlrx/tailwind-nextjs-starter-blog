@@ -1,5 +1,5 @@
 import kebabCase from '@/lib/utils/kebabCase'
-import type { Blog } from 'contentlayer/generated'
+import type { Blog, Authors, DocumentTypes } from 'contentlayer/generated'
 
 export function dateSortDesc(a: string, b: string) {
   if (a > b) return -1
@@ -44,6 +44,13 @@ export function coreBlog(blog: Blog) {
 }
 
 export type CoreBlog = ReturnType<typeof coreBlog>
+
+// Move this to contentlayer when ready
+export function coreAuthors(blog: Authors) {
+  return omit(blog, ['body', '_raw', '_id'])
+}
+
+export type CoreAuthors = ReturnType<typeof coreAuthors>
 
 export function coreAllBlog(allBlogs: Blog[]) {
   return allBlogs.map((blog) => coreBlog(blog))

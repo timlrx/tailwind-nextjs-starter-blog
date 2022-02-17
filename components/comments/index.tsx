@@ -1,9 +1,9 @@
 import siteMetadata from '@/data/siteMetadata'
 import dynamic from 'next/dynamic'
-import { PostFrontMatter } from 'types/PostFrontMatter'
+import * as temp from '@/lib/utils/temp'
 
 interface Props {
-  frontMatter: PostFrontMatter
+  frontMatter: temp.CoreBlog
 }
 
 const UtterancesComponent = dynamic(
