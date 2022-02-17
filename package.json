@@ -1,6 +1,6 @@
 {
   "name": "tailwind-nextjs-starter-blog",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": true,
   "scripts": {
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
@@ -62,11 +62,11 @@
     "inquirer": "^8.1.1",
     "lint-staged": "^11.0.0",
     "next-remote-watch": "^1.0.0",
-    "socket.io": "^4.4.0",
-    "socket.io-client": "^4.4.0",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
-    "typescript": "~4.3.5"
+    "socket.io": "^4.4.0",
+    "socket.io-client": "^4.4.0",
+    "typescript": "^4.6.1-rc"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [

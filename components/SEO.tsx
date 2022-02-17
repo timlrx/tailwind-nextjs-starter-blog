@@ -15,9 +15,17 @@ interface CommonSEOProps {
         url: string
       }[]
   twImage: string
+  canonicalUrl?: string
 }
 
-const CommonSEO = ({ title, description, ogType, ogImage, twImage }: CommonSEOProps) => {
+const CommonSEO = ({
+  title,
+  description,
+  ogType,
+  ogImage,
+  twImage,
+  canonicalUrl,
+}: CommonSEOProps) => {
   const router = useRouter()
   return (
     <Head>
@@ -39,6 +47,10 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage }: CommonSEOPr
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
+      <link
+        rel="canonical"
+        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
+      />
     </Head>
   )
 }
@@ -100,8 +112,8 @@ export const BlogSEO = ({
   lastmod,
   url,
   images = [],
+  canonicalUrl,
 }: BlogSeoProps) => {
-  const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   const imagesArr =
@@ -166,11 +178,11 @@ export const BlogSEO = ({
         ogType="article"
         ogImage={featuredImages}
         twImage={twImageUrl}
+        canonicalUrl={canonicalUrl}
       />
       <Head>
         {date && <meta property="article:published_time" content={publishedAt} />}
         {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
