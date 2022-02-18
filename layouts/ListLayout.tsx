@@ -3,12 +3,13 @@ import Tag from '@/components/Tag'
 import { ComponentProps, useState } from 'react'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
-import * as temp from '@/lib/utils/temp'
+import { CoreContent } from '@/lib/utils/contentlayer'
+import type { Blog } from 'contentlayer/generated'
 
 interface Props {
-  posts: temp.CoreBlog[]
+  posts: CoreContent<Blog>[]
   title: string
-  initialDisplayPosts?: temp.CoreBlog[]
+  initialDisplayPosts?: CoreContent<Blog>[]
   pagination?: ComponentProps<typeof Pagination>
 }
 

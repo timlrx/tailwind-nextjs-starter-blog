@@ -1,10 +1,14 @@
 import kebabCase from '@/lib/utils/kebabCase'
-import type { Blog, Authors, DocumentTypes } from 'contentlayer/generated'
+import type { Blog, DocumentTypes } from 'contentlayer/generated'
 
 export function dateSortDesc(a: string, b: string) {
   if (a > b) return -1
   if (a < b) return 1
   return 0
+}
+
+export function sortedBlogPost(allBlogs: Blog[]) {
+  return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date))
 }
 
 type ConvertUndefined<T> = OrNull<{
@@ -38,26 +42,14 @@ export const omit = <Obj, Keys extends keyof Obj>(obj: Obj, keys: Keys[]): Omit<
   return result
 }
 
-// Move this to contentlayer when ready
-export function coreBlog(blog: Blog) {
-  return omit(blog, ['body', '_raw', '_id'])
+export type CoreContent<T> = Omit<T, 'body' | '_raw' | '_id'>
+
+export function coreContent<T extends DocumentTypes>(content: T) {
+  return omit(content, ['body', '_raw', '_id'])
 }
 
-export type CoreBlog = ReturnType<typeof coreBlog>
-
-// Move this to contentlayer when ready
-export function coreAuthors(blog: Authors) {
-  return omit(blog, ['body', '_raw', '_id'])
-}
-
-export type CoreAuthors = ReturnType<typeof coreAuthors>
-
-export function coreAllBlog(allBlogs: Blog[]) {
-  return allBlogs.map((blog) => coreBlog(blog))
-}
-
-export function sortedBlogPost(allBlogs: Blog[]) {
-  return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date))
+export function allCoreContent<T extends DocumentTypes>(contents: T[]) {
+  return contents.map((c) => coreContent(c))
 }
 
 // TODO: refactor into contentlayer once compute over all docs is enabled

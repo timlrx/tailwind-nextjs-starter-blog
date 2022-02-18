@@ -6,11 +6,12 @@ import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'
 import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import * as temp from '@/lib/utils/temp'
+import { CoreContent } from '@/lib/utils/contentlayer'
 import { ReactNode } from 'react'
+import type { Blog } from 'contentlayer/generated'
 
 interface Props {
-  content: temp.CoreBlog
+  content: CoreContent<Blog>
   children: ReactNode
   next?: { slug: string; title: string }
   prev?: { slug: string; title: string }

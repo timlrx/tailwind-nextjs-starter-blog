@@ -3,14 +3,14 @@ import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import kebabCase from '@/lib/utils/kebabCase'
-import * as temp from '@/lib/utils/temp'
+import { getAllTags } from '@/lib/utils/contentlayer'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { allBlogs } from 'contentlayer/generated'
 
 // TODO: refactor into contentlayer once compute over all docs is enabled
 
 export const getStaticProps: GetStaticProps<{ tags: Record<string, number> }> = async () => {
-  const tags = await temp.getAllTags(allBlogs)
+  const tags = await getAllTags(allBlogs)
 
   return { props: { tags } }
 }

@@ -1,6 +1,6 @@
 import PageTitle from '@/components/PageTitle'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
-import * as temp from '@/lib/utils/temp'
+import { sortedBlogPost, coreContent } from '@/lib/utils/contentlayer'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 
@@ -15,18 +15,18 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async ({ params }) => {
   const slug = (params.slug as string[]).join('/')
-  const sortedPosts = temp.sortedBlogPost(allBlogs)
+  const sortedPosts = sortedBlogPost(allBlogs)
   const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
   // TODO: Refactor this extraction of coreContent
   const prevContent = sortedPosts[postIndex + 1] || null
-  const prev = prevContent ? temp.coreBlog(prevContent) : null
+  const prev = prevContent ? coreContent(prevContent) : null
   const nextContent = sortedPosts[postIndex - 1] || null
-  const next = nextContent ? temp.coreBlog(nextContent) : null
+  const next = nextContent ? coreContent(nextContent) : null
   const post = sortedPosts.find((p) => p.slug === slug)
   const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return temp.coreAuthors(authorResults)
+    return coreContent(authorResults)
   })
 
   return {

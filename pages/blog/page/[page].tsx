@@ -1,7 +1,7 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
-import * as temp from '@/lib/utils/temp'
+import { allCoreContent } from '@/lib/utils/contentlayer'
 import { POSTS_PER_PAGE } from '../../blog'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs } from 'contentlayer/generated'
@@ -23,7 +23,7 @@ export const getStaticProps = async (context) => {
   const {
     params: { page },
   } = context
-  const posts = temp.coreAllBlog(allBlogs)
+  const posts = allCoreContent(allBlogs)
   const pageNumber = parseInt(page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

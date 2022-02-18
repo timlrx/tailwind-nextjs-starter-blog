@@ -2,12 +2,12 @@ import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import kebabCase from '@/lib/utils/kebabCase'
-import * as temp from '@/lib/utils/temp'
+import { getAllTags, allCoreContent } from '@/lib/utils/contentlayer'
 import { InferGetStaticPropsType } from 'next'
 import { allBlogs } from 'contentlayer/generated'
 
 export async function getStaticPaths() {
-  const tags = await temp.getAllTags(allBlogs)
+  const tags = await getAllTags(allBlogs)
 
   return {
     paths: Object.keys(tags).map((tag) => ({
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const tag = context.params.tag as string
-  const filteredPosts = temp.coreAllBlog(
+  const filteredPosts = allCoreContent(
     allBlogs.filter(
       (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(tag)
     )

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
 import siteMetadata from '@/data/siteMetadata'
-import * as temp from '@/lib/utils/temp'
+import { CoreContent } from '@/lib/utils/contentlayer'
+import type { Blog } from 'contentlayer/generated'
 
 interface Props {
-  frontMatter: temp.CoreBlog
+  frontMatter: CoreContent<Blog>
 }
 
 const Disqus = ({ frontMatter }: Props) => {
