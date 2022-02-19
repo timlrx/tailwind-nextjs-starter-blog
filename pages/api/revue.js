@@ -18,7 +18,7 @@ export default async (req, res) => {
       },
       body: JSON.stringify({ email, double_opt_in: false }),
     })
-    
+
     if (response.status >= 400) {
       return res.status(500).json({ error: `There was an error subscribing to the list.` })
     }
