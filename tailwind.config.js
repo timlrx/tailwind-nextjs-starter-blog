@@ -22,7 +22,7 @@ module.exports = {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary: colors.teal,
+        primary: colors.orange,
         gray: colors.neutral,
       },
       typography: (theme) => ({
@@ -53,9 +53,9 @@ module.exports = {
             'h4,h5,h6': {
               color: theme('colors.gray.900'),
             },
-            pre: {
-              backgroundColor: theme('colors.gray.800'),
-            },
+            // pre: {
+            //   backgroundColor: theme('colors.gray.800'),
+            // },
             code: {
               color: theme('colors.pink.500'),
               backgroundColor: theme('colors.gray.100'),

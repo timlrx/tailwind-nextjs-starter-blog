@@ -1,129 +1,113 @@
 /**
- * CSS Styles for code highlighting.
- * Feel free to customize token styles 
- * by copying from a prismjs compatible theme:
- * https://github.com/PrismJS/prism-themes
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
  */
 
-/* Code title styles */
-.remark-code-title {
-  @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200;
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #f8f8f2;
+  background: none;
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
 
-.remark-code-title + div > pre {
-  @apply mt-0 rounded-t-none;
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
 }
 
-/* Code block styles */
-.code-highlight {
-  @apply float-left min-w-full;
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background: #2e3440;
 }
 
-.code-line {
-  @apply -mx-4 block border-l-4 border-transparent pl-4 pr-4;
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
 }
 
-.code-line.inserted {
-  @apply bg-green-500 bg-opacity-20;
-}
-
-.code-line.deleted {
-  @apply bg-red-500 bg-opacity-20;
-}
-
-.highlight-line {
-  @apply -mx-4 border-l-4 border-primary-500  bg-gray-700 bg-opacity-50;
-}
-
-.line-number::before {
-  @apply mr-4 -ml-2 inline-block w-4 text-right text-gray-400;
-  content: attr(line);
-}
-
-/* Token styles */
-/**
- * MIT License
- * Copyright (c) 2018 Sarah Drasner
- * Sarah Drasner's[@sdras] Night Owl
- * Ported by Sara vieria [@SaraVieira]
- * Added by Souvik Mandal [@SimpleIndian]
- */
 .token.comment,
 .token.prolog,
+.token.doctype,
 .token.cdata {
-  color: rgb(99, 119, 119);
-  font-style: italic;
+  color: #636f88;
 }
 
 .token.punctuation {
-  color: rgb(199, 146, 234);
+  color: #81a1c1;
 }
 
 .namespace {
-  color: rgb(178, 204, 214);
+  opacity: 0.7;
 }
 
-.token.deleted {
-  color: rgba(239, 83, 80, 0.56);
-  font-style: italic;
-}
-
-.token.symbol,
-.token.property {
-  color: rgb(128, 203, 196);
-}
-
+.token.property,
 .token.tag,
-.token.operator,
-.token.keyword {
-  color: rgb(127, 219, 202);
-}
-
-.token.boolean {
-  color: rgb(255, 88, 116);
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #81a1c1;
 }
 
 .token.number {
-  color: rgb(247, 140, 108);
+  color: #b48ead;
 }
 
-.token.constant,
-.token.function,
-.token.builtin,
-.token.char {
-  color: rgb(130, 170, 255);
+.token.boolean {
+  color: #81a1c1;
 }
 
 .token.selector,
-.token.doctype {
-  color: rgb(199, 146, 234);
-  font-style: italic;
-}
-
 .token.attr-name,
-.token.inserted {
-  color: rgb(173, 219, 103);
-  font-style: italic;
-}
-
 .token.string,
-.token.url,
-.token.entity,
-.language-css .token.string,
-.style .token.string {
-  color: rgb(173, 219, 103);
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #a3be8c;
 }
 
-.token.class-name,
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #81a1c1;
+}
+
 .token.atrule,
-.token.attr-value {
-  color: rgb(255, 203, 139);
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #88c0d0;
+}
+
+.token.keyword {
+  color: #81a1c1;
 }
 
 .token.regex,
-.token.important,
-.token.variable {
-  color: rgb(214, 222, 235);
+.token.important {
+  color: #ebcb8b;
 }
 
 .token.important,
@@ -135,6 +119,6 @@
   font-style: italic;
 }
 
-.token.table {
-  display: inline;
+.token.entity {
+  cursor: help;
 }

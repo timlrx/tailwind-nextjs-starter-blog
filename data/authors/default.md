@@ -1,16 +1,17 @@
 ---
-name: Tails Azimuth
-avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+name: Stephan Fitzpatrick
+avatar: /static/images/self.png
+occupation: Software Engineer
+company: KNOWSUCHAGENCY CORP
+email: stephan@knowsuchagency.com
+twitter: https://twitter.com/stephan_codes
+linkedin: https://www.linkedin.com/in/fitzpatrickstephan/
+github: https://github.com/knowsuchagency
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+Stephan is a Software Engineer with over 10 years experience, starting during his tenure working at the
+National Security Agency.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+He's worked with large and small enterprises on software projects spanning various business domains.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+When he's not coding, you'll find him exercising or playing with his cat, Peanut 🥜.
