@@ -1,5 +1,6 @@
 {
-  "name": "tailwind-nextjs-starter-blog",
+  "name": "syntactic-sugar",
+  "author": "Amit Barletz",
   "version": "1.5.2",
   "private": true,
   "scripts": {
