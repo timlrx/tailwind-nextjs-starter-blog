@@ -22,6 +22,7 @@ const DisqusComponent = dynamic(
 
 const Comments = ({ frontMatter }) => {
   let term
+  if (!siteMetadata.comment) return <></>
   switch (
     siteMetadata.comment.giscusConfig.mapping ||
     siteMetadata.comment.utterancesConfig.issueTerm
