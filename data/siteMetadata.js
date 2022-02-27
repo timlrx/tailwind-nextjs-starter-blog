@@ -1,8 +1,8 @@
 const siteMetadata = {
-  title: 'Python + AWS + Business',
+  title: 'Software + Cloud Architecture + Business',
   author: 'Stephan Fitzpatrick',
   headerTitle: 'knowsuchagency',
-  description: 'Python + AWS + Business',
+  description: 'Software + Cloud Architecture + Business',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://knowsuchagency.vercel.app',
