@@ -21,6 +21,8 @@ import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 
+type SortOrder = 'date' | 'route'
+
 const root = process.cwd()
 
 export function getFiles(type) {
@@ -34,10 +36,14 @@ export function formatSlug(slug) {
   return slug.replace(/\.(mdx|md)/, '')
 }
 
-export function dateSortDesc(a, b) {
-  if (a > b) return -1
-  if (a < b) return 1
-  return 0
+export function sortFiles(a, b, sortOrder: SortOrder = 'route') {
+  const slugA = a.slug.split('/')[0]
+  const slugB = b.slug.split('/')[0]
+  if (sortOrder === 'date') {
+    return b.ts - a.ts || slugA.localeCompare(slugB)
+  } else {
+    return slugA.localeCompare(slugB) || b.ts - a.ts
+  }
 }
 
 export async function getFileBySlug(type, slug) {
@@ -54,7 +60,7 @@ export async function getFileBySlug(type, slug) {
     process.env.ESBUILD_BINARY_PATH = path.join(root, 'node_modules', 'esbuild', 'bin', 'esbuild')
   }
 
-  let toc = []
+  const toc = []
 
   const { code, frontmatter } = await bundleMDX({
     source,
@@ -107,7 +113,7 @@ export async function getFileBySlug(type, slug) {
   }
 }
 
-export async function getAllFilesFrontMatter(folder) {
+export async function getAllFilesFrontMatter(folder, sortOrder: SortOrder = 'date') {
   const prefixPaths = path.join(root, 'data', folder)
 
   const files = getAllFilesRecursively(prefixPaths)
@@ -128,9 +134,10 @@ export async function getAllFilesFrontMatter(folder) {
         ...frontmatter,
         slug: formatSlug(fileName),
         date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
+        ts: frontmatter.date ? new Date(frontmatter.date).getTime() : 0,
       })
     }
   })
 
-  return allFrontMatter.sort((a, b) => dateSortDesc(a.date, b.date))
+  return allFrontMatter.sort((a, b) => sortFiles(a, b, sortOrder))
 }
