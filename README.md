@@ -42,6 +42,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [marceloformentao.dev](https://marceloformentao.dev) - Marcelo Formentão personal website ([source code](https://github.com/marceloavf/marceloformentao.dev)).
 - [abiraja.com](https://www.abiraja.com/) - with a [runnable JS code snippet component!](https://www.abiraja.com/blog/querying-solana-blockchain)
 - [einargudni.com](https://www.einargudni.com) - with a customized theme, command pallette and more ([source code](https://github.com/einargudnig/einargudni.com))
+- [bpiggin.com](https://www.bpiggin.com) - Ben Piggin's personal blog
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
