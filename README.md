@@ -90,7 +90,13 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. JS (official support)
+1. TypeScript and Contentlayer (alpha)
+
+```
+npx degit timlrx/tailwind-nextjs-starter-blog#contentlayer
+```
+
+or JS (official support)
 
 ```bash
 npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
