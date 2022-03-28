@@ -44,6 +44,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [einargudni.com](https://www.einargudni.com) - with a customized theme, command pallette and more ([source code](https://github.com/einargudnig/einargudni.com))
 - [bpiggin.com](https://www.bpiggin.com) - Ben Piggin's personal blog
 - [maqib.cn](https://maqib.cn) - A blog of Chinese front-end developers 狂奔小马的博客 ([源码](https://github.com/maqi1520/nextjs-tailwind-blog))
+- [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
