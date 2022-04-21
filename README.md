@@ -93,8 +93,8 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 1. TypeScript and Contentlayer (alpha)
 
-```
-npx degit timlrx/tailwind-nextjs-starter-blog#contentlayer
+```bash
+npx degit 'timlrx/tailwind-nextjs-starter-blog#contentlayer'
 ```
 
 or JS (official support)
@@ -106,7 +106,7 @@ npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
 or with TypeScript (community support)
 
 ```bash
-npx degit timlrx/tailwind-nextjs-starter-blog#typescript
+npx degit 'timlrx/tailwind-nextjs-starter-blog#typescript'
 ```
 
 2. Personalize `siteMetadata.js` (site related information)
