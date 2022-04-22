@@ -1,12 +1,10 @@
 import siteMetadata from '@/data/siteMetadata'
 import { useEffect, useState } from 'react'
-import smoothscroll from 'smoothscroll-polyfill'
 
 const ScrollTopAndComment = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    smoothscroll.polyfill()
     const handleWindowScroll = () => {
       if (window.scrollY > 50) setShow(true)
       else setShow(false)
@@ -17,7 +15,7 @@ const ScrollTopAndComment = () => {
   }, [])
 
   const handleScrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0 })
   }
   const handleScrollToComment = () => {
     document.getElementById('comment').scrollIntoView()
