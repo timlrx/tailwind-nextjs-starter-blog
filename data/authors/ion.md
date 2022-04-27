@@ -1,5 +1,5 @@
 ---
-name: not Azimuth
+name: Tails Azimuth
 avatar: /static/images/avatar.png
 occupation: Professor of Atmospheric Science
 company: Stanford University
