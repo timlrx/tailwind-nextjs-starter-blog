@@ -4,18 +4,16 @@ import { getFileBySlug } from '@/lib/mdx'
 const DEFAULT_LAYOUT = 'AuthorLayout'
 
 export async function getStaticProps() {
-  const authorDetails = await getFileBySlug('authors', ['default'])
-  return { props: { authorDetails } }
+  const ionDetails = await getFileBySlug('authors', ['ion'])
+  const iuliaDetails = await getFileBySlug('authors', ['iulia'])
+  return { props: { authors: [ionDetails, iuliaDetails] } }
 }
 
-export default function About({ authorDetails }) {
-  const { mdxSource, frontMatter } = authorDetails
+export default function About({ authors }) {
+  const frontMatters = authors.map(({ mdxSource, frontMatter }) => frontMatter)
+  const mdxSource = authors.map(({ mdxSource, frontMatter }) => mdxSource)[0]
 
   return (
-    <MDXLayoutRenderer
-      layout={frontMatter.layout || DEFAULT_LAYOUT}
-      mdxSource={mdxSource}
-      frontMatter={frontMatter}
-    />
+    <MDXLayoutRenderer layout={DEFAULT_LAYOUT} mdxSource={mdxSource} frontMatters={frontMatters} />
   )
 }
