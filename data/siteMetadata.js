@@ -1,8 +1,8 @@
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
+  title: 'dormenco.net',
+  author: 'Iulia & Ion Dormenco',
   headerTitle: 'dormenco.net',
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'A software development blog from a family of geeks',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
@@ -10,8 +10,9 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
+  email: 'contact@dormenco.net',
+  githubIulia: 'https://github.com/decembrya',
+  githubIon: 'https://github.com/idormenco',
   linkedin: 'https://www.linkedin.com',
   locale: 'en-US',
   analytics: {
