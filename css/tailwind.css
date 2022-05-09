@@ -11,7 +11,7 @@
 }
 
 .footnotes {
-  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
 .csl-entry {
@@ -22,4 +22,31 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.customLayout p,
+.customLayout ol,
+.customLayout ul,
+.customLayout h2,
+.customLayout h3,
+.customLayout h4,
+.customLayout details,
+.customLayout .references,
+.customLayout .prose h1 {
+  @apply mx-auto max-w-3xl;
+}
+
+.customLayout table,
+.customLayout .flex,
+.customLayout .remark-code-title,
+.customLayout .relative pre {
+  @apply mx-auto max-w-4xl;
+}
+
+.customLayout blockquote {
+  @apply mx-auto max-w-4xl border-0 px-0;
+}
+
+.customLayout blockquote p {
+  @apply mx-0 max-w-4xl border-0 px-0;
 }
