@@ -46,6 +46,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [maqib.cn](https://maqib.cn) - A blog of Chinese front-end developers 狂奔小马的博客 ([源码](https://github.com/maqi1520/nextjs-tailwind-blog))
 - [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
 - [kittan.ru](https://www.kittan.ru/) - Kittanb's personal blog about linux ([source code](https://github.com/kittanb/blog))
+- [nchristopher.me](https://nchristopher.me) - Nicholas Christopher's personal website and blog ([source code](https://github.com/nchristopher/blog))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
