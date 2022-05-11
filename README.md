@@ -47,6 +47,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
 - [kittan.ru](https://www.kittan.ru/) - Kittanb's personal blog about linux ([source code](https://github.com/kittanb/blog))
 - [nchristopher.me](https://nchristopher.me) - Nicholas Christopher's personal website and blog ([source code](https://github.com/nchristopher/blog))
+- [rehashly.com](https://rehashly.com) - The website for Rehashly, an AWS cloud consultancy.
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
