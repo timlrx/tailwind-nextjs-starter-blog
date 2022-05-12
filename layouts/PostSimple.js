@@ -17,7 +17,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article className="customLayout">
         <div>
           <header>
-            <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
+            <div className="titleContent">
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
@@ -53,9 +53,10 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 )}
                 {next && (
                   <div className="pt-4 xl:pt-8">
+                    Next post:
                     <Link
                       href={`/blog/${next.slug}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      className="pl-1 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     >
                       {next.title} &rarr;
                     </Link>
