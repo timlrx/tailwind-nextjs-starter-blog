@@ -40,7 +40,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
               <li key={slug} className="py-12">
                 <article>
                   <div className="group space-y-2 xl:items-baseline xl:space-y-0 ">
-                    <div className="relative mb-3 flex overflow-hidden rounded-2xl shadow-xl md:h-72 lg:h-96">
+                    <div className="relative mb-3 flex h-72 overflow-hidden rounded-2xl shadow-xl lg:h-96">
                       <Link href={`/blog/${slug}`}>
                         <Image
                           src={images[0]}

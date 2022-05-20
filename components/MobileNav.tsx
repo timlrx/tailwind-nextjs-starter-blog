@@ -9,7 +9,7 @@ const MobileNav = () => {
     setNavShow((status) => {
       if (status) {
         // document.body.style.overflow = 'auto'
-        document.body.style.overflowX = 'hidden'
+        document.body.style.overflowX = 'auto'
       } else {
         // Prevent scrolling
         document.body.style.overflow = 'hidden'
