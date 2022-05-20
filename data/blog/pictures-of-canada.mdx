@@ -1,9 +1,10 @@
 ---
 title: O Canada
 date: '2017-07-15'
-tags: ['holiday', 'canada', 'images']
+tags: ['holiday']
 draft: false
 summary: The scenic lands of Canada featuring maple leaves, snow-capped mountains, turquoise lakes and Toronto. Take in the sights in this photo gallery exhibition and see how easy it is to replicate with some MDX magic and tailwind classes.
+images: ['/static/images/ocean.jpeg']
 ---
 
 # O Canada
@@ -36,17 +37,17 @@ Since we are using mdx, we can create a simple responsive flexbox grid to displa
 # Implementation
 
 ```js
-<div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+<div className="-mx-2 flex flex-wrap overflow-hidden xl:-mx-2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
     ![Maple](/static/images/canada/maple.jpg)
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
     ![Lake](/static/images/canada/lake.jpg)
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
     ![Mountains](/static/images/canada/mountains.jpg)
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
     ![Toronto](/static/images/canada/toronto.jpg)
   </div>
 </div>

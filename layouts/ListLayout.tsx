@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
 import { CoreContent } from '@/lib/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
+import Image from 'next/image'
 
 interface Props {
   posts: CoreContent<Blog>[]
@@ -55,35 +56,49 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
             </svg>
           </div>
         </div>
-        <ul>
+        <ul className="grid grid-cols-1 sm:grid-cols-3 sm:gap-10">
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { slug, date, title, summary, tags } = post
+            const { slug, date, title, summary, tags, images } = post
             return (
               <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
+                <article className="group space-y-2">
+                  {/* image in nextjs */}
+                  <div className="relative mb-3 flex h-96 overflow-hidden rounded-2xl shadow-xl">
+                    <Link href={`/blog/${slug}`}>
+                      <Image
+                        src={images[0]}
+                        layout="fill"
+                        className="bg-cover bg-center transition duration-500 ease-in-out hover:cursor-pointer group-hover:scale-150"
+                      />
+                    </Link>
+                  </div>
+                  <div className="space-y-5 xl:col-span-3">
+                    <div className="flex flex-wrap justify-between">
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                      <dl>
+                        <dt className="sr-only">Published on</dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 group-hover:text-primary-500 dark:text-gray-400">
+                          <time dateTime={date}>{formatDate(date)}</time>
+                        </dd>
+                      </dl>
+                    </div>
+
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
+                        <Link
+                          href={`/blog/${slug}`}
+                          className="text-gray-900 transition duration-500 ease-in-out group-hover:text-primary-500 dark:text-gray-100"
+                        >
                           {title}
                         </Link>
                       </h3>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
-                      </div>
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                    {/* <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                       {summary}
-                    </div>
+                    </div> */}
                   </div>
                 </article>
               </li>

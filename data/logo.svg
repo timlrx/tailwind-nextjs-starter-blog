@@ -1,3 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="344.5639097744361 330.27819548872174 111.73684210526318 91.21804511278197" width="53.87" height="43.61"><defs><path d="M453.3 331.28L453.3 359.85L388.64 418.5L388.64 388.42L453.3 331.28Z" id="aFZf6T5ED"></path><linearGradient id="gradientb2ThqnP5Op" gradientUnits="userSpaceOnUse" x1="420.97" y1="331.28" x2="420.97" y2="418.5"><stop style="stop-color: #06b6d4;stop-opacity: 1" offset="0%"></stop><stop style="stop-color: #67e8f9;stop-opacity: 1" offset="100%"></stop></linearGradient><path d="M410.23 331.28L410.23 359.85L345.56 418.5L345.56 388.42L410.23 331.28Z" id="a9fehgwfM"></path><linearGradient id="gradientk1wNV9Ostb" gradientUnits="userSpaceOnUse" x1="377.89" y1="331.28" x2="377.89" y2="418.5"><stop style="stop-color: #06b6d4;stop-opacity: 1" offset="0%"></stop><stop style="stop-color: #67e8f9;stop-opacity: 1" offset="100%"></stop></linearGradient></defs><g><g><use xlink:href="#aFZf6T5ED" opacity="1" fill="url(#gradientb2ThqnP5Op)"></use></g><g><use xlink:href="#a9fehgwfM" opacity="1" fill="url(#gradientk1wNV9Ostb)"></use></g></g></svg>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_144_4)">
+<rect width="36" height="36" rx="11" fill="#111111"/>
+<path d="M11.372 27V10.08H18.764C20.62 10.08 22.052 10.52 23.06 11.4C24.084 12.28 24.596 13.504 24.596 15.072C24.596 16.112 24.364 17 23.9 17.736C23.452 18.472 22.804 19.04 21.956 19.44C21.108 19.824 20.108 20.016 18.956 20.016L19.292 19.56H20.108C20.78 19.56 21.38 19.736 21.908 20.088C22.436 20.44 22.868 20.976 23.204 21.696L25.676 27H22.268L19.772 21.504C19.548 20.944 19.204 20.576 18.74 20.4C18.292 20.224 17.748 20.136 17.108 20.136H14.468V27H11.372ZM14.468 17.856H18.26C19.348 17.856 20.172 17.632 20.732 17.184C21.308 16.72 21.596 16.048 21.596 15.168C21.596 14.288 21.308 13.624 20.732 13.176C20.172 12.728 19.348 12.504 18.26 12.504H14.468V17.856Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_144_4">
+<rect width="36" height="36" rx="11" fill="white"/>
+</clipPath>
+</defs>
+</svg>
