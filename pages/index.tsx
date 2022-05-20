@@ -32,7 +32,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
             {siteMetadata.description}
           </p>
         </div>
-        <ul className="grid grid-cols-3 gap-10 dark:divide-gray-700">
+        <ul className="grid grid-cols-1 dark:divide-gray-700 sm:grid-cols-3 sm:gap-10">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags, images } = post
@@ -40,7 +40,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
               <li key={slug} className="py-12">
                 <article>
                   <div className="group space-y-2 xl:items-baseline xl:space-y-0 ">
-                    <div className="relative mb-3 flex h-96 overflow-hidden rounded-2xl shadow-xl">
+                    <div className="relative mb-3 flex overflow-hidden rounded-2xl shadow-xl md:h-72 lg:h-96">
                       <Link href={`/blog/${slug}`}>
                         <Image
                           src={images[0]}

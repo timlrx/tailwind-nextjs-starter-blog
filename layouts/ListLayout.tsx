@@ -29,7 +29,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
     <>
       <div className="divide-y">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="pt-10 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
           <div className="relative max-w-lg">
@@ -56,7 +56,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
             </svg>
           </div>
         </div>
-        <ul className="grid grid-cols-1 sm:grid-cols-3 sm:gap-10">
+        <ul className="grid grid-cols-1 border-t-gray-600 pt-4 sm:grid-cols-3 sm:gap-10">
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
             const { slug, date, title, summary, tags, images } = post
@@ -64,7 +64,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
               <li key={slug} className="py-4">
                 <article className="group space-y-2">
                   {/* image in nextjs */}
-                  <div className="relative mb-3 flex h-96 overflow-hidden rounded-2xl shadow-xl">
+                  <div className="relative mb-3 flex overflow-hidden rounded-2xl shadow-xl md:h-72 lg:h-96">
                     <Link href={`/blog/${slug}`}>
                       <Image
                         src={images[0]}
