@@ -8,7 +8,8 @@ const MobileNav = () => {
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto'
+        // document.body.style.overflow = 'auto'
+        document.body.style.overflowX = 'hidden'
       } else {
         // Prevent scrolling
         document.body.style.overflow = 'hidden'
@@ -47,7 +48,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed top-24 right-0 z-10 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${
+        className={`fixed top-[72px] right-0 z-10 h-[1000px] w-full transform opacity-95 duration-300 ease-in-out dark:bg-gray-800 ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
