@@ -1,0 +1,87 @@
+---
+title: Data In, Predictions Out
+date: '2021-02-23'
+tags: ['Data Science']
+draft: false
+summary: The Lifecycle of a Data Science Project
+images: ['/static/images/8.jpeg']
+layout: PostLayout
+---
+
+![](https://cdn-images-1.medium.com/max/1600/1*3299qooHV_2tAcUzR9b0Ug.jpeg)
+
+It is always advantageous for data scientists to follow a well-defined data science workflow when working with big data. Regardless of whether a data scientist wants to perform analysis with the motive of conveying a story through data visualization or wants to build a data model — the data science workflow process matters. A standard workflow for data science projects ensures that the various teams within an organization are in sync, so that any further delays may be avoided.
+
+The end goal of any data science project is to produce an effective data product. The usable results produced at the end of a data science project is referred to as a data product. A data product can be anything -a dashboard, a recommendation engine or anything that facilitates business decision-making) to solve a business problem. However, to reach the end goal of producing data products, data scientists have to follow a formalized step by step workflow process. A data product should help answer a business question. Similarly, lifecycle of data science projects should not merely focus on the process but should lay more emphasis on data products. This post outlines the standard workflow process of data science projects followed by data scientists. The globally acknowledged structure in solving any analytical problem is called as Cross Industry Standard Process for Data Mining or CRISP-DM framework. Below are the various stages within the Lifecycle of a typical data science project.
+
+![CRISP-DM Architecture](https://cdn-images-1.medium.com/max/1600/1*2UWbE7EiCya2KJ9rH3gPzg.png)
+
+---
+
+# 1. Business Understanding
+
+![](https://cdn-images-1.medium.com/max/1600/1*Fyud3Y4d75m6c_jDIzFC5A.jpeg)
+
+The entire cycle revolves around the business goal. What will you solve if you do not have a precise problem? It is extremely important to understand the business objective clearly because that will be your final goal of the analysis. After proper understanding only we can set the specific goal of analysis that is in sync with the business objective. You need to know if the client wants to reduce credit loss, or if they want to predict the price of a commodity, etc.
+
+---
+
+# 2. Data Understanding
+
+![](https://cdn-images-1.medium.com/max/1600/1*RwUZ48gQGNeHC4Ep_np8Gw.jpeg)
+
+After business understanding, the next step is data understanding. This involves the collection of all the available data. Here you need to closely work with the business team as they are actually aware of what data is present, what data could be used for this business problem and other information. This step involves describing the data, their structure, their relevance, their data type. Explore the data using graphical plots and extracting any information that you can get about the data by just exploring the data.
+
+---
+
+# 3. Data Preparation
+
+![](https://cdn-images-1.medium.com/max/1600/1*AxCW1HBJoiZH77rkPyxJXQ.jpeg)
+
+Next comes the data preparation stage. This includes steps like selecting the relevant data, integrating the data by merging the data sets, cleaning it, treating the missing values by either removing them or imputing them, treating erroneous data by removing them, also check for outliers using box plots and handle them. Constructing new data, derive new features from existing ones. Format the data into the desired structure, remove unwanted columns and features. Data preparation is the most time consuming yet arguably the most important step in the entire life cycle. Your model will be as good as your data.
+
+---
+
+# 4. Exploratory Data Analysis
+
+![](https://cdn-images-1.medium.com/max/1600/1*1zf5z7CYqcMBRnWTgLzFZQ.jpeg)
+
+This step involves getting some idea about the solution and factors affecting it, before building the actual model. Distribution of data within different variables of a feature is explored graphically using bar-graphs, Relations between different features is captured through graphical representations like scatter plots and heat maps. Many other data visualization techniques are extensively used to explore every feature individually, and by combining them with other features.
+
+---
+
+# 5. Data Modeling
+
+![Photo by luis gomes from Pexels](https://cdn-images-1.medium.com/max/1600/1*X1VYmuOpquDPO67ysl9uKg.jpeg)
+
+Data modeling is the heart of data analysis. A model takes the prepared data as input and provides the desired output. This step includes choosing the appropriate type of model, whether the problem is a classification problem, or a regression problem or a clustering problem. After choosing the model family, amongst the various algorithm amongst that family, we need to carefully choose the algorithms to implement and implement them. We need to tune the hyperparameters of each model to achieve the desired performance. We also need to make sure there is a correct balance between performance and generalizability. We do not want the model to learn the data and perform poorly on new data.
+
+---
+
+# 6. Model Evaluation
+
+![](https://cdn-images-1.medium.com/max/1600/1*HL5nlbu3XIEMhw2a5QuMOg.jpeg)
+
+Here the model is evaluated for checking if it is ready to be deployed. The model is tested on an unseen data, evaluated on a carefully thought out set of evaluation metrics. We also need to make sure that the model conforms to reality. If we do not obtain a satisfactory result in the evaluation, we must re-iterate the entire modeling process until the desired level of metrics is achieved. Any data science solution, a [machine learning model](https://www.educba.com/machine-learning-models/), just like a human, should evolve, should be able to improve itself with new data, adapt to a new evaluation metric. We can build multiple models for a certain phenomenon, but a lot of them may be imperfect. Model evaluation helps us choose and build a perfect model.
+
+---
+
+# 7. Model Deployment
+
+![](https://cdn-images-1.medium.com/max/1600/1*jBFdm_g0FTQ_oyhyZfjMbA.jpeg)
+
+The model after a rigorous evaluation is finally deployed in the desired format and channel. This is the final step in the data science life cycle. Each step in the data science life cycle explained above should be worked upon carefully. If any step is executed improperly, it will consequently affect the next step and the entire effort goes to waste. For example, if data is not collected properly, you’ll lose information and you will not be building a perfect model. If data is not cleaned properly, the model will not work. If the model is not evaluated properly, it will fail in the real world. Right from Business understanding to model deployment, each step should be given proper attention, time and effort.
+
+---
+
+People often confuse the lifecycle of a data science project with that of a software engineering project. That should not be the case, as data science is more of science and less of engineering. There is no one-size-fits-all workflow process for all data science projects and data scientists have to determine which workflow best fits the business requirements. The workflow described above is based on one of the oldest and most popular — CRISP DM. It was developed for data mining projects but now is also adopted by most of the data scientists with modifications as per the requirements of the data science project. CRISP-DM remained the top methodology/workflow for data mining and data science projects with 43% of the projects using it.
+
+Every step in the lifecycle of a data science project depends on various data scientist skills and data science tools. It begins with asking an interesting business question that guides the overall workflow of the data science project. The data science project life cycle is an iterative process of research and discovery that provides guidance on the tasks needed to use predictive models. Right from Business understanding to model deployment, each step should be given proper attention, time and effort.
+
+---
+
+Thanks for reading!
+
+If you liked this article, feel free to checkout [Seeking Within](https://seekingwithin.substack.com/)— a weekly newsletter covering a wide range of topics exploring the belief that **Most Answers We Seek Lie Within Us.**
+
+Want to connect with me? Shoot me a message via [Email](http://mailto:reuben3699@gmail.com/), [LinkedIn](https://linkedin.com.in/reubence), or [Twitter](https://twitter.com/reuben_rapose)!
