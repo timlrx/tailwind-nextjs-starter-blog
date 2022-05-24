@@ -48,6 +48,8 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [kittan.ru](https://www.kittan.ru/) - Kittanb's personal blog about linux ([source code](https://github.com/kittanb/blog))
 - [nchristopher.me](https://nchristopher.me) - Nicholas Christopher's personal website and blog ([source code](https://github.com/nchristopher/blog))
 - [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog
+- [devahoy.com](https://devahoy.com) - Chai's personal blog (Thai language)
+- [0xchai.io](https://0xchai.io) - Chai's personal blog
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
