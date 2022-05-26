@@ -23,7 +23,7 @@ export const getStaticProps = async (context) => {
   const {
     params: { page },
   } = context
-  const posts = allCoreContent(allBlogs)
+  const posts = sortedBlogPost(allBlogs)
   const pageNumber = parseInt(page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
@@ -36,8 +36,8 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      posts,
-      initialDisplayPosts,
+      initialDisplayPosts: allCoreContent(initialDisplayPosts),
+      posts: allCoreContent(posts),
       pagination,
     },
   }
