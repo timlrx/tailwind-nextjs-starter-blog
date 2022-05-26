@@ -50,6 +50,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog
 - [devahoy.com](https://devahoy.com) - Chai's personal blog (Thai language)
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
+- [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
