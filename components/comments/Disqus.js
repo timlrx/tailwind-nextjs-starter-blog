@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-import siteMetadata from '@/data/siteMetadata'
+import siteMetadata from "@/data/siteMetadata"
 
 const Disqus = ({ frontMatter }) => {
   const [enableLoadComments, setEnabledLoadComments] = useState(true)
 
-  const COMMENTS_ID = 'disqus_thread'
+  const COMMENTS_ID = "disqus_thread"
 
   function LoadComments() {
     setEnabledLoadComments(false)
@@ -15,10 +15,10 @@ const Disqus = ({ frontMatter }) => {
       this.page.identifier = frontMatter.slug
     }
     if (window.DISQUS === undefined) {
-      const script = document.createElement('script')
-      script.src = 'https://' + siteMetadata.comment.disqusConfig.shortname + '.disqus.com/embed.js'
-      script.setAttribute('data-timestamp', +new Date())
-      script.setAttribute('crossorigin', 'anonymous')
+      const script = document.createElement("script")
+      script.src = "https://" + siteMetadata.comment.disqusConfig.shortname + ".disqus.com/embed.js"
+      script.setAttribute("data-timestamp", +new Date())
+      script.setAttribute("crossorigin", "anonymous")
       script.async = true
       document.body.appendChild(script)
     } else {

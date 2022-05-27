@@ -1,39 +1,36 @@
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const dedent = require("dedent");
+const fs = require("fs")
+const path = require("path")
+const inquirer = require("inquirer")
+const dedent = require("dedent")
 
-const root = process.cwd();
+const root = process.cwd()
 
 const getAuthors = () => {
-  const authorPath = path.join(root, "data", "authors");
-  const authorList = fs
-    .readdirSync(authorPath)
-    .map((filename) => path.parse(filename).name);
-  return authorList;
-};
+  const authorPath = path.join(root, "data", "authors")
+  const authorList = fs.readdirSync(authorPath).map((filename) => path.parse(filename).name)
+  return authorList
+}
 
 const getLayouts = () => {
-  const layoutPath = path.join(root, "layouts");
+  const layoutPath = path.join(root, "layouts")
   const layoutList = fs
     .readdirSync(layoutPath)
     .map((filename) => path.parse(filename).name)
-    .filter((file) => file.toLowerCase().includes("post"));
-  return layoutList;
-};
+    .filter((file) => file.toLowerCase().includes("post"))
+  return layoutList
+}
 
 const genFrontMatter = (answers) => {
-  let d = new Date();
+  let d = new Date()
   const date = [
     d.getFullYear(),
     ("0" + (d.getMonth() + 1)).slice(-2),
     ("0" + d.getDate()).slice(-2),
-  ].join("-");
-  const tagArray = answers.tags.split(",");
-  tagArray.forEach((tag, index) => (tagArray[index] = tag.trim()));
-  const tags = "'" + tagArray.join("','") + "'";
-  const authorArray =
-    answers.authors.length > 0 ? "'" + answers.authors.join("','") + "'" : "";
+  ].join("-")
+  const tagArray = answers.tags.split(",")
+  tagArray.forEach((tag, index) => (tagArray[index] = tag.trim()))
+  const tags = "'" + tagArray.join("','") + "'"
+  const authorArray = answers.authors.length > 0 ? "'" + answers.authors.join("','") + "'" : ""
 
   let frontMatter = dedent`---
   title: ${answers.title ? answers.title : "Untitled"}
@@ -44,16 +41,16 @@ const genFrontMatter = (answers) => {
   images: []
   layout: ${answers.layout}
   canonicalUrl: ${answers.canonicalUrl}
-  `;
+  `
 
   if (answers.authors.length > 0) {
-    frontMatter = frontMatter + "\n" + `authors: [${authorArray}]`;
+    frontMatter = frontMatter + "\n" + `authors: [${authorArray}]`
   }
 
-  frontMatter = frontMatter + "\n---";
+  frontMatter = frontMatter + "\n---"
 
-  return frontMatter;
-};
+  return frontMatter
+}
 
 inquirer
   .prompt([
@@ -108,24 +105,24 @@ inquirer
       .toLowerCase()
       .replace(/[^a-zA-Z0-9 ]/g, "")
       .replace(/ /g, "-")
-      .replace(/-+/g, "-");
-    const frontMatter = genFrontMatter(answers);
-    if (!fs.existsSync("data/p")) fs.mkdirSync("data/p", { recursive: true });
+      .replace(/-+/g, "-")
+    const frontMatter = genFrontMatter(answers)
+    if (!fs.existsSync("data/p")) fs.mkdirSync("data/p", { recursive: true })
     const filePath = `data/p/${fileName ? fileName : "untitled"}.${
       answers.extension ? answers.extension : "md"
-    }`;
+    }`
     fs.writeFile(filePath, frontMatter, { flag: "wx" }, (err) => {
       if (err) {
-        throw err;
+        throw err
       } else {
-        console.log(`Blog post generated successfully at ${filePath}`);
+        console.log(`Blog post generated successfully at ${filePath}`)
       }
-    });
+    })
   })
   .catch((error) => {
     if (error.isTtyError) {
-      console.log("Prompt couldn't be rendered in the current environment");
+      console.log("Prompt couldn't be rendered in the current environment")
     } else {
-      console.log("Something went wrong, sorry!");
+      console.log("Something went wrong, sorry!")
     }
-  });
+  })

@@ -1,6 +1,6 @@
-import Script from 'next/script'
+import Script from "next/script"
 
-import siteMetadata from '@/data/siteMetadata'
+import siteMetadata from "@/data/siteMetadata"
 
 const PlausibleScript = () => {
   return (

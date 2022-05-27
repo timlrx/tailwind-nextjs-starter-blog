@@ -16,24 +16,19 @@ The tailwind starter blog has out of the box support for [Next.js's built-in ima
 To use in a new page route / javascript file, simply import the image component and call it e.g.
 
 ```js
-import Image from "next/image";
+import Image from "next/image"
 
 function Home() {
   return (
     <>
       <h1>My Homepage</h1>
-      <Image
-        src="/me.png"
-        alt="Picture of the author"
-        width={500}
-        height={500}
-      />
+      <Image src="/me.png" alt="Picture of the author" width={500} height={500} />
       <p>Welcome to my homepage!</p>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
 ```
 
 For a markdown file, the default image tag can be used and the default `img` tag gets replaced by the `Image` component in the build process.

@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import axios from "axios";
-const URLBACK = "https://api.axolo.co/";
-const typeformUrl = "https://h7k2b5xbde3.typeform.com/to/dHRjWDvK#email=";
+import React, { useState } from "react"
+import axios from "axios"
+const URLBACK = "https://api.axolo.co/"
+const typeformUrl = "https://h7k2b5xbde3.typeform.com/to/dHRjWDvK#email="
 
 const EnterpriseEmailInput = ({ source }) => {
-  const [email, setEmail] = useState("");
-  const [submitted, setsubmitted] = useState(false);
+  const [email, setEmail] = useState("")
+  const [submitted, setsubmitted] = useState(false)
 
   const subscribe = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (submitted) {
-      setsubmitted(!submitted);
-      return;
+      setsubmitted(!submitted)
+      return
     }
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      alert("Please provide a valid email");
-      return;
+      alert("Please provide a valid email")
+      return
     }
-    window.open(`${typeformUrl}${email}`, "_blank");
+    window.open(`${typeformUrl}${email}`, "_blank")
     axios.post(`${URLBACK}webhooks/email?enterprise=true&source=${source}`, {
       email,
-    });
-    setsubmitted(!submitted);
-  };
+    })
+    setsubmitted(!submitted)
+  }
 
   return (
     <form action="#" className="sm:mx-auto sm:max-w-xl ">
@@ -32,9 +32,7 @@ const EnterpriseEmailInput = ({ source }) => {
             Email address
           </label>
           {submitted ? (
-            <p className="self-center text-gray-800 dark:text-gray-50">
-              Thank you.
-            </p>
+            <p className="self-center text-gray-800 dark:text-gray-50">Thank you.</p>
           ) : (
             <input
               id="email"
@@ -58,7 +56,7 @@ const EnterpriseEmailInput = ({ source }) => {
         Someone will answer shortly.
       </p> */}
     </form>
-  );
-};
+  )
+}
 
-export default EnterpriseEmailInput;
+export default EnterpriseEmailInput

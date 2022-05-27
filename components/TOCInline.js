@@ -26,11 +26,11 @@ const TOCInline = ({
   fromHeading = 1,
   toHeading = 6,
   asDisclosure = false,
-  exclude = '',
+  exclude = "",
 }) => {
   const re = Array.isArray(exclude)
-    ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
-    : new RegExp('^(' + exclude + ')$', 'i')
+    ? new RegExp("^(" + exclude.join("|") + ")$", "i")
+    : new RegExp("^(" + exclude + ")$", "i")
 
   const filteredToc = toc.filter(
     (heading) =>
@@ -40,7 +40,7 @@ const TOCInline = ({
   const tocList = (
     <ul>
       {filteredToc.map((heading) => (
-        <li key={heading.value} className={`${heading.depth >= indentDepth && 'ml-6'}`}>
+        <li key={heading.value} className={`${heading.depth >= indentDepth && "ml-6"}`}>
           <a href={heading.url}>{heading.value}</a>
         </li>
       ))}

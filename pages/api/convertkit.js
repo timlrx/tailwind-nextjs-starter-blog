@@ -3,7 +3,7 @@ export default async (req, res) => {
   const { email } = req.body
 
   if (!email) {
-    return res.status(400).json({ error: 'Email is required' })
+    return res.status(400).json({ error: "Email is required" })
   }
 
   try {
@@ -17,9 +17,9 @@ export default async (req, res) => {
     const response = await fetch(`${API_URL}forms/${FORM_ID}/subscribe`, {
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     })
 
     if (response.status >= 400) {
@@ -28,7 +28,7 @@ export default async (req, res) => {
       })
     }
 
-    return res.status(201).json({ error: '' })
+    return res.status(201).json({ error: "" })
   } catch (error) {
     return res.status(500).json({ error: error.message || error.toString() })
   }

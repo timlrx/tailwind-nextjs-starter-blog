@@ -1,10 +1,10 @@
-const URLBACK = "https://api.axolo.co/";
+const URLBACK = "https://api.axolo.co/"
 
 export default function AddToSlack({ purple = false }) {
   const handleClick = (e) => {
-    e.preventDefault();
-    window.location.assign(`${URLBACK}identify/slack`);
-  };
+    e.preventDefault()
+    window.location.assign(`${URLBACK}identify/slack`)
+  }
   if (purple) {
     return (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -51,7 +51,7 @@ export default function AddToSlack({ purple = false }) {
         </svg>
         Add Axolo to Slack
       </a>
-    );
+    )
   }
   return (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -98,5 +98,5 @@ export default function AddToSlack({ purple = false }) {
       </svg>
       Add Axolo to Slack
     </a>
-  );
+  )
 }

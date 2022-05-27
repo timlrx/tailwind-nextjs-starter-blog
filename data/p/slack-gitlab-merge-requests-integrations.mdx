@@ -29,15 +29,12 @@ Axolo is currently in private early-access for GitLab at the moment. Tell us <a 
 
 <button
   onClick={() => {
-    window.$crisp.push(["do", "chat:open"]);
+    window.$crisp.push(["do", "chat:open"])
     window.$crisp.push([
       "do",
       "message:send",
-      [
-        "text",
-        "Hey, I want to take part in the Axolo Slack/GitLab integration!",
-      ],
-    ]);
+      ["text", "Hey, I want to take part in the Axolo Slack/GitLab integration!"],
+    ])
   }}
   style={{
     backgroundColor: "blue",

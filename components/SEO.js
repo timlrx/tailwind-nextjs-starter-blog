@@ -1,33 +1,21 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
-import siteMetadata from "@/data/siteMetadata";
+import Head from "next/head"
+import { useRouter } from "next/router"
+import siteMetadata from "@/data/siteMetadata"
 
-const CommonSEO = ({
-  title,
-  description,
-  ogType,
-  ogImage,
-  twImage,
-  canonicalUrl,
-}) => {
-  const router = useRouter();
+const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
+  const router = useRouter()
   return (
     <Head>
       <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
-      <meta
-        property="og:url"
-        content={`${siteMetadata.siteUrl}${router.asPath}`}
-      />
+      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
       {ogImage.constructor.name === "Array" ? (
-        ogImage.map(({ url }) => (
-          <meta property="og:image" content={url} key={url} />
-        ))
+        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
       ) : (
         <meta property="og:image" content={ogImage} key={ogImage} />
       )}
@@ -38,19 +26,15 @@ const CommonSEO = ({
       <meta name="twitter:image" content={twImage} />
       <link
         rel="canonical"
-        href={
-          canonicalUrl
-            ? canonicalUrl
-            : `${siteMetadata.siteUrl}${router.asPath}`
-        }
+        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
       />
     </Head>
-  );
-};
+  )
+}
 
 export const PageSEO = ({ title, description }) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   return (
     <CommonSEO
       title={title}
@@ -59,13 +43,13 @@ export const PageSEO = ({ title, description }) => {
       ogImage={ogImageUrl}
       twImage={twImageUrl}
     />
-  );
-};
+  )
+}
 
 export const TagSEO = ({ title, description }) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner;
-  const router = useRouter();
+  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const router = useRouter()
   return (
     <>
       <CommonSEO
@@ -84,8 +68,8 @@ export const TagSEO = ({ title, description }) => {
         />
       </Head>
     </>
-  );
-};
+  )
+}
 
 export const BlogSEO = ({
   authorDetails,
@@ -97,36 +81,36 @@ export const BlogSEO = ({
   images = [],
   canonicalUrl,
 }) => {
-  const router = useRouter();
-  const publishedAt = new Date(date).toISOString();
-  const modifiedAt = new Date(lastmod || date).toISOString();
+  const router = useRouter()
+  const publishedAt = new Date(date).toISOString()
+  const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
       : typeof images === "string"
       ? [images]
-      : images;
+      : images
 
   const featuredImages = imagesArr.map((img) => {
     return {
       "@type": "ImageObject",
       url: `${siteMetadata.siteUrl}${img}`,
-    };
-  });
+    }
+  })
 
-  let authorList;
+  let authorList
   if (authorDetails) {
     authorList = authorDetails.map((author) => {
       return {
         "@type": "Person",
         name: author.name,
-      };
-    });
+      }
+    })
   } else {
     authorList = {
       "@type": "Person",
       name: siteMetadata.author,
-    };
+    }
   }
 
   const structuredData = {
@@ -165,9 +149,9 @@ export const BlogSEO = ({
       { name: "twitter:site", content: "@axolo_co" },
       { name: "twitter:creator", content: "@axolo_co" },
     ],
-  };
+  }
 
-  const twImageUrl = featuredImages[0].url;
+  const twImageUrl = featuredImages[0].url
 
   return (
     <>
@@ -180,12 +164,8 @@ export const BlogSEO = ({
         canonicalUrl={canonicalUrl}
       />
       <Head>
-        {date && (
-          <meta property="article:published_time" content={publishedAt} />
-        )}
-        {lastmod && (
-          <meta property="article:modified_time" content={modifiedAt} />
-        )}
+        {date && <meta property="article:published_time" content={publishedAt} />}
+        {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -194,5 +174,5 @@ export const BlogSEO = ({
         />
       </Head>
     </>
-  );
-};
+  )
+}

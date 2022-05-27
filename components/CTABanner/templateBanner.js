@@ -11,10 +11,10 @@ const data = {
     link: "https://axolo.co",
     textButton: "Learn more",
   },
-};
+}
 
 function CTABanner({ type }) {
-  const element = data[`${type}`];
+  const element = data[`${type}`]
   return (
     <div className="my-4">
       <div
@@ -26,9 +26,7 @@ function CTABanner({ type }) {
           <span className="block text-xl text-secondaryBlack dark:text-textWhite sm:text-2xl">
             {element.firstText}
           </span>
-          <span className="block text-xl text-primaryBlue sm:text-2xl">
-            {element.secondText}
-          </span>
+          <span className="block text-xl text-primaryBlue sm:text-2xl">{element.secondText}</span>
         </h2>
         <div className="mt-0 flex flex-shrink-0 pb-4 sm:pl-4 md:pl-0 md:pb-0">
           <a
@@ -37,14 +35,12 @@ function CTABanner({ type }) {
             target="_blank"
             className="text-sans inline-flex w-full items-center justify-center rounded-md border border-transparent bg-primaryBlue px-5 py-3 font-medium  hover:bg-secondaryBlue sm:w-auto"
           >
-            <div className="inline-flex text-textWhite">
-              {element.textButton}
-            </div>
+            <div className="inline-flex text-textWhite">{element.textButton}</div>
           </a>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CTABanner;
+export default CTABanner

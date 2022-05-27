@@ -1,6 +1,6 @@
-import Script from 'next/script'
+import Script from "next/script"
 
-import siteMetadata from '@/data/siteMetadata'
+import siteMetadata from "@/data/siteMetadata"
 
 const GAScript = () => {
   return (
@@ -28,7 +28,7 @@ export default GAScript
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 export const logEvent = (action, category, label, value) => {
-  window.gtag?.('event', action, {
+  window.gtag?.("event", action, {
     event_category: category,
     event_label: label,
     value: value,
