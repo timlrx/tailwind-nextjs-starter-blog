@@ -1,8 +1,7 @@
 const headerNavLinks = [
-  { href: '/blog', title: 'Blog' },
-  { href: '/tags', title: 'Tags' },
-  { href: '/projects', title: 'Projects' },
-  { href: '/about', title: 'About' },
-]
+  { href: "/p", title: "Blog" },
+  { href: "/tags", title: "Tags" },
+  { href: "https://axolo.co", title: "Axolo" },
+];
 
-export default headerNavLinks
+export default headerNavLinks;

@@ -1,0 +1,90 @@
+---
+title: "Product Update: Reminders, status, analytics and many more new year gifts"
+date: "2022-01-04"
+tags: ["product update"]
+draft: false
+summary: "Axolo will now send reminders to sleeping pull requests, change pull request titles upon their status, send weekly analytics and forward checks messages to Slack! Learn more here."
+---
+
+## Pull request reminders
+
+Do you have pull requests that have been sleeping for too long? Now Axolo can remind you about dangling pull requests right from your channels.
+
+You can activate pull request reminder in your settings in [https://app.axolo.co/settings](https://app.axolo.co/settings)
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/reminders.png"
+    alt="Pull request Axolo reminders in Slack"
+    style={{ width: "600px" }}
+  />
+</div>
+
+## Pull request status
+
+Axolo now updates the name of each Slack pull request channel so you can see what actions to take upon the channel title. You can see how we create those statuses here:
+
+`_pr_draft`: Pull request is in draft mode.
+
+`_pr_wip`: WIP stands for Work In Progress. The creator still has some work to do. The reviewer might have requested changes, or some GitHub checks aren’t passing.
+
+`_pr_tbr`: TBR stands for To Be Reviewed. The pull request is awaiting review from reviewers. Can be one or more depending on your GitHub settings.
+
+`_pr_tbm`: TBM means To Be Merged. The checks are passing and the reviewer(s) approved the pull request.
+
+`_pr_closed`: Pull Request is closed. Doesn’t need your attention anymore.
+
+`_pr_merged`: Pull request is merged, congrats you’ve made it ;).
+
+## Analytics
+
+Every Monday, Axolo sends in the #\_axolo channel the number and the average time of your last week's pull requests.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/analytics.png"
+    alt="Pull request Axolo Analytics in Slack"
+    style={{ width: "600px" }}
+  />
+</div>
+
+## Mergeability and GitHub checks
+
+After each commit and the end of your GitHub checks, we send you a notification if something new happened (could be that we detected a new conflict with the base branch or a check is no longer passing).
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/landing/pr_checks.png"
+    alt="Axolo checks in Slack for pull requests"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## Prevent messages from being sent twice
+
+Because of some idempotency issues, Axolo was sometimes sending messages twice. This is now fixed!
+
+## Jira integration
+
+We started the Jira integration. If you connect Axolo with Jira, we will send the link to the Jira issue at the beginning of your pull request channel.
+
+## Improving notifications
+
+We improved the formatting of issue and code comments in Slack.
+
+<br />
+Want to be the first to receive our news, request a new feature or ask for an improvement?
+Join our Slack!
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://join.slack.com/t/better-software-eng/shared_invite/zt-s2vkbyt2-AACaP6tnQS0adwezMXVlHQ"
+  >
+    <img
+      src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/axolo-community.png"
+      alt="Join Axolo community"
+      style={{ width: "250px" }}
+    />
+  </a>
+</div>

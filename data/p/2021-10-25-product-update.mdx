@@ -1,0 +1,49 @@
+---
+title: "Product Update: Engineer's OAuth, /lgtm command, pull requests checks and Sentry integration"
+date: "2021-10-25"
+tags: ["product update"]
+draft: false
+summary: "This product update will cover GitHub/Slack OAuth, /lgtm command, edit/delete propagation accross your tools, how we handle pull request checks and the Sentry integration."
+---
+
+## Slack & GitHub OAuth
+
+Engineers can now sign in on Axolo with their Slack & GitHub profiles from Axolo's home. This enables Axolo to write comments on GitHub and Slack on your behalf. Now, comments look good, and don't ping you when you're the author of the messages.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/product-update/axolo_oauth.png"
+    alt="Axolo summary of check runs"
+    style={{ maxWidth: "650px" }}
+  />
+</div>
+
+This is especially useful to review pull requests from Slack with the `Review changes` button or the `/lgtm` command in a pull request channel. With the GitHub authentication, pull requests are now approved by the reviewer's profile and comply with branch rules.
+
+## /lgtm (optional) comment
+
+You can now approve a pull request in a flash! Use the `/lgtm` command in a channel to approve the current pull request. Current Slack workspace need to accept the <a target="_blank"
+      rel="noopener noreferrer"
+      href="slack.com/apps/A01RP0R62N7-axolo-for-github">new scope request from the application marketplace.</a>
+
+## Edit and delete propagation across messages
+
+From now on, if you edit or delete a message in Slack or GitHub, Axolo will propagate your changes to the corresponding message in the other application.
+
+## Summary of pull request check runs
+
+When all your pull request checks are completed, Axolo can send you a summary with the status of each check-in in the PR channel.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/docs/all_checks.png"
+    alt="Axolo summary of check runs"
+    style={{ maxWidth: "550px" }}
+  />
+</div>
+
+## Sentry integration
+
+If you enable the Sentry integration, Axolo will query every Sentry issue linked with your pull requests or in GitHub issues referred in your pull requests, and send a direct link to them inside your Axolo channels. You can integrate with Sentry in our <a target="_blank"
+      rel="noopener noreferrer"
+      href="https://app.axolo.co">application.</a> [Learn more](https://axolo.co/docs/guides/integrations)

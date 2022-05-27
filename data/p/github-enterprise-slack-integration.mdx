@@ -1,0 +1,138 @@
+---
+title: "Top 3 GitHub Enterprise Slack Integrations"
+date: "2022-01-05"
+tags: ["software development", "enterprise"]
+draft: false
+summary: "There are three available applications to connect your engineering team in Slack with GitHub Enterprise. Learn more about how they work and how to set them up in our article."
+image: "/blog/static/images/top5.png"
+---
+
+We are going to deep dive in the three ways to connect your engineering team into Slack with GitHub Enterprise and how to do it. The options are:
+
+- Axolo, the collaborative application.
+- GitHub Enterprise Server, the official integration,
+- Toast, the personal notification bot,
+
+## Axolo, the collaborative application
+
+### What is Axolo?
+
+In opposition to the other GitHub integrations, each pull request creates an ephemeral Slack channel. Instead of notifying a whole team, Axolo only invites reviewers and assignees and sends only the information that they need to see (comments, CI/CD, GitHub Action, deployments, checks) to process the pull request in due time.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/landing/pr_checks.png"
+    alt="Axolo pull request checks"
+    style={{ maxWidth: "550px" }}
+  />
+</div>
+
+Then, you will be able to find all of your pull requests in Axolo home in Slack.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.co/images/slack_home_axolo.png"
+    alt="Axolo pull request home"
+    style={{ maxWidth: "450px" }}
+  />
+</div>
+
+Looking for more information on Axolo? Discover our features in our [landing page](https://axolo.co) or in our [documentation](https://axolo.co/docs) and our [security guidelines](https://axolo.co/security).
+
+### How to set up Axolo for Enterprise?
+
+Axolo for Enterprise is only available upon request. If you wish to try Axolo with your company, contact us.
+
+<EnterpriseEmailInput source="top github enterprise slack article" />
+
+## GitHub Enterprise Server
+
+### What is GitHub Enterprise Server
+
+<a
+  href="https://slack.com/apps/A0F7YS2SX-github-enterprise-server?tab=more_info"
+  rel="noopener noreferrer nofollow"
+  target="_blank"
+>
+  GitHub Enterprise Server
+</a> is a copy of the
+<a
+  href="https slack.com/apps/A01BP7R4KNY-github?tab=more_info"
+  rel="noopener noreferrer nofollow"
+  target="_blank"
+>
+  {" "}
+  GitHub app for Slack
+</a> dedicated to Enterprise customers.{" "}
+
+This application will post commits, pull requests, and activity on GitHub Issues to a specific channel.
+
+### How to set up GitHub Enterprise Server?
+
+#### Step 1
+
+In your GitHub account, select the repository you want to follow. Then, click on **Settings** in the navigation bar.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/github_step1.png"
+    alt="GitHub Enterprise set up step 1"
+    style={{ maxWidth: "450px" }}
+  />
+</div>
+
+#### Step 2
+
+In the left navigation, click on **Webhooks**, and press the **Add webhook** button.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/github_step2.png"
+    alt="GitHub Enterprise set up step 1"
+    style={{ maxWidth: "550px" }}
+  />
+</div>
+
+#### Step 3
+
+Paste `https://hooks.slack.com/services/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` as the Payload URL. Make sure that the **Content type** is `application/json` and the **SSL verification** is enabled. You can choose a wide range of events to trigger notifications, but for now, they only support commits, issues, and pull requests. Click on the **Add webhook** button.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/github_step3.png"
+    alt="GitHub Enterprise set up step 1"
+    style={{ maxWidth: "450px" }}
+  />
+</div>
+
+#### Step 4
+
+You can filter on a specific branch, choose which channel you want to send these notifications to, and personalize the label, name, and icon of your integrations.
+
+## Toast, the personnal notification bot
+
+### What is ToastE?
+
+Toast is a Slack notification bot for GitHub. It sends alerts upon new pull request reviews, comments, and issues in your direct messages. ToastE is the enterprise version of Toast.
+
+### How to set up ToastE
+
+First, you need to answer <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeM6_sqr3Rkjm-OlgB-U9513VAi_mVs0kildlHz0wUGqz5k-g/viewform"
+            rel="noopener noreferrer nofollow"
+            target="_blank">a form</a> to be eligible.
+
+This is an overview of the following setup:
+
+- Set up a host.
+- Create a GitHub app.
+- Create Slack app.
+- Deploy ToastE.
+- Expose ToastE API to Slack.
+- Finalize configuration.
+- Use Toast!
+
+If you want to have a detailed overview of the ToastE setup, they have developed <a
+            href="https://toast-enterprise.gitbook.io/toaste/"
+            rel="noopener noreferrer nofollow"
+            target="_blank">a gitbook</a> for that purpose.

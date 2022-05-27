@@ -1,0 +1,82 @@
+---
+title: "Single Responsibility principle for conversations"
+date: "2022-03-28"
+tags: ["software development", "communication"]
+draft: false
+summary: "💭 Have you heard of the Single responsibility principle (SRP)?"
+image: "/blog/static/images/general/SRP.jpg"
+endCTA: "DiveIn"
+---
+
+## What is the Single responsibility principle (SRP)?
+
+SRP is a computer programming principle that states that every module, class, or function in a computer program should have responsibility for a single part of that program's functionality, and it should encapsulate just that part.
+
+## At Axolo we put this principle to its extreme.
+
+When using our messaging tool, Slack, we believe that one channel should only have one specific topic, whether it's a bot or a human conversation.
+
+## Why do we use the Single Responsibility principle for Slack conversations?
+
+### Predictability
+
+When a channel gets highlighted we know what sort of notification to expect. We can decide to handle it now or later if we are busy right now.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={270}
+    height={92}
+    src="/blog/static/images/SRP/block_soon.jpg"
+    alt="Screenshot Channel Slack"
+  />
+  Can you guess what is this channel about?
+</div>
+
+### Control
+
+Large general channels are difficult to follow through if you've missed the beginning of the conversation. It can make you need to check your Slack all day long to be sure you are not missing anything. Separating conversations into smaller channels helps you gain control by deciding when you want to answer during the day. So you can have productive time and time where you focus on communicating.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={279}
+    height={131}
+    src="/blog/static/images/SRP/slack-unreads.png"
+    alt="Slack unreads"
+  />
+  You shouldn't be needing to scan through channels to find the information you need.
+</div>
+
+### Asynchronous conversations
+
+We believe asynchronous communication is fundamental to productive work. By separating concerns (topics) into small chunks we make it easier to follow through a specific topic asynchronously since you can read and react to what is relevant to you.
+
+### How do we use those principles for pull requests with Axolo?
+
+By having specific channels for each pull request, Axolo makes it possible to asynchronously work together and get work done.
+
+The list of benefits for developers:
+
+- Easily batch-reply to pull requests.
+- Get notified of what is relevant and only when an action is required from you.
+- Discussions can happen in Slack channels vs direct message, Zoom calls, or hangouts. Which allows for the documentation to be recorded in GitHub.
+- You don't need to be connected on Slack all day to make sure you are not missing anything.
+- Save precious attention time for developing instead of scrolling through general channels.
+
+> Axolo is an incredible tool for connecting PR's with our everyday engineering discussion on slack. It integrates seamlessly and makes it so as a manager, I never lose track of my engineers' work.
+> For my engineers, it allows them to discuss and collaborate without losing a thread in different contexts. Overall it keeps us moving swiftly throughout the sprint and continuously reviewing and merging code!
+
+- Jacob CTO @HeraldAPI

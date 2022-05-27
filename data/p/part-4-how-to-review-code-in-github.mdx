@@ -1,0 +1,126 @@
+---
+title: "How to review code in GitHub"
+date: "2021-11-05"
+tags: ["pull request guide"]
+draft: false
+summary: "Code review is one of the most important practices engineers should have. Your code will always need to be reviewed, and you will always need to review your coworkers' code. If you approach code reviews as a learning process, everyone wins."
+image: "/blog/static/images/pull-request-guide/how-to-review-code.png"
+endCTA: "DiveIn"
+---
+
+## GitHub code review best practices
+
+Code review is one of the most important practices engineers should have. Your code will always need to be reviewed, and you will always need to review your coworkers' code. If you approach code reviews as a learning process, everyone wins.
+
+### Why is code review important?
+
+#### Perfect for ensuring best practices and educating other developers
+
+Code reviews are one point of contact between engineers during the development process. They are the perfect time to ensure that the team is in sync regarding standards, best practices, and code style.
+
+When done properly, the team will advocate for best practices and share knowledge to raise the average level of the engineering squad. That way, junior developers will be able to quickly learn and reach the maximum of their potential with peer feedback.
+
+#### Mandatory to find defects and opportunities for improvement
+
+Code review ensures that:
+
+- the test code is robust and valid,
+- the design and implementation are consistent across the application.
+
+They are not about finding bugs, that's what tests are for.
+
+<h3 id="principles-of-a-good-code-review">Principles of a good code review</h3>
+
+#### What is not written, does not exist
+
+As Google says, _“technical facts and data overrule opinions and personal preferences.”_ (<a
+            href="https://github.com/google/eng-practices/blob/master/review/reviewer/standard.md#principles-principles"
+            rel="noopener noreferrer"
+            target="_blank">Google principles for code reviews</a>). As a reviewer, if you request changes on the current implementation, provide resources and explain the benefit of your solution with specific pieces of knowledge.
+
+If no resources are found about a specific topic, reach approval and create some documentation for the next time this conflict appears.
+
+#### Keep the team spirit and be kind
+
+You are reviewing a teammate or are being reviewed by one. The goal of a code review is to share knowledge, not to hurt the ego. If you are reviewing or responding, think before sending a derogatory comment.
+
+#### Implement a code review process or ask for a review
+
+Most productive engineering teams have a detailed process for code reviews. In this document, explain who you should be asking for a review (is it in a squad? depending on the updated code?), how many approvals you need (generally from one to three), how to create tests before a code review, and which checks are mandatory to pass before merging the pull request.
+
+If your team has not yet a detailed process, it is ok to ask for a review. Ping the people you think should review your code, do not wait for someone to find it by themselves.
+
+#### Review daily and sessions should last less than one hour
+
+Code reviewing should be a daily habit. As our focus decreases over time, it is best to review code by short sessions and often.
+
+##### Understand what you're reviewing first
+
+You won't be able to provide an effective code review if you do not understand what you're looking at.
+
+Having a brief checklist before looking at the code is a great way to be sure that you fully understand and that the code is ready to be reviewed. Inspired by Hugo Dias in <a
+            href="https://hugodias.substack.com/p/code-review"
+            rel="noopener noreferrer"
+            target="_blank">his code review article</a>, here is a template checklist that we advise you to customize and follow:
+
+- Does the PR have enough tests to cover the update?
+- Does this change require integration tests?
+- Is documentation necessary? If yes, is the new documentation (readme, wiki page, or external documentation) online/ready to be online?
+- Are the product requirements standards met?
+- Does this change updates any library or dependency that may break the system?
+- Is there any extra task the developer needs to do after merging this code?
+- Should someone else review the PR before my review? (ex: security team to validate the changes)
+
+If an item is checked, you should ask for more information before digging into the code.
+
+#### Test the code before looking at it
+
+You don't want to be the reviewer that approved a pull request where the code is not working. Approving without testing is hazardous. No matter the number of lines changed, you should test the code.
+
+#### Code review should be fast
+
+According to <a
+            href="https://google.github.io/eng-practices/review/reviewer/speed.html"
+            rel="noopener noreferrer"
+            target="_blank">Google code review guidelines about speed</a>, a slow code review process has three negative consequences.
+
+- The product development process slows down. Not reviewing someone's code might fasten your work, but you're slowing down the rest of the team.
+- The team starts to protest the code review process. Waiting days for someone to review a few lines of code is frustrating, especially if the review ends by requesting substantial changes.
+- Code health is deteriorating. It's easier to accept refactoring or cleanups when you are not yet working on another issue. Fast code reviews raise the code health level.
+
+If you receive a code review notification and are not working on a focused task, try to review the code as soon as possible. If you did not have the time in your day to review the code, do it first thing the next morning.
+
+#### One pull request should focus on only one task
+
+Separating large task into small pull requests help the team gain in velocity for two reasons:
+
+- Small pull requests are easier to review, so reviewed faster.
+- Small changes to the codebase are easier to dive into and understand. So code reviews are more effective.
+
+The team behind <a
+            href="https://www.amazon.fr/Accelerate-Building-Performing-Technology-Organizations/dp/1942788339"
+            rel="noopener noreferrer"
+            target="_blank">Accelerate: The Science Behind Devops</a> noticed that most efficient engineering teams were working on independent and short-lived branches. That way, every engineer focuses on only one subject at a time, and code reviews are more manageable.
+
+Furthermore, in <a
+            href="https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/"
+            rel="noopener noreferrer"
+            target="_blank">Best Practices for Peer Code Review</a>, SmartBear conducted a study and found out that developers should not review more than 400 lines of codes at a time. Beyond 400 lines, the ability to identify defects diminishes as our brain can not process so much information.
+
+So next time your pull request has more than 400 lines changed, try to separate it into two different pull requests! The best practice is to open [stacked pull requests](/p/part-2-how-to-open-a-pull-request#stacked-pull-request). They are feature branches that are checked out from other feature branches to build small and coherent units to represent changes.
+
+#### Annotate your pull request and code before the review
+
+A good pull request provides content for the reviewer. If the author of the pull request wrote some comments on the code in tricky parts, it will help the reviewers and prevent some avoidable questions to be asked.
+
+Provide screenshots, write comments and help your reviewer better understand your work before requesting a review.
+
+#### Use a pull request template (with a checklist)
+
+A good pull request template will help you better prepare for the review. They are useful to avoid common mistakes, provide clear expectations on what should be ready when requesting a review, and avoid useless back-and-forth during the code review. A checklist inside your pull request template is usually the easiest way to prepare your pull request. You should update your template along the way to customize it to your needs.
+
+You can learn more about [pull request template in our dedicated section](https://axolo.co/blog/p/part-3-github-pull-request-template).
+
+#### Is styling important?
+
+If styling is important for your team, you should create a style guide. As we said in our first point, what is not written does not exist. Develop your style guide with the approval of the whole team and what is not inside it, will be a matter of personal preferences.

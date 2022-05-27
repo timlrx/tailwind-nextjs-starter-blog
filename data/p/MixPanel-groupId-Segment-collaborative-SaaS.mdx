@@ -1,0 +1,151 @@
+---
+title: "How to use Mixpanel group analytics with Segment for your collaborative SaaS?"
+date: "2022-05-23"
+tags: ["software development"]
+draft: false
+summary: "Tutorial on how to use Group Analytics with Mixpanel and Segment."
+image: "/blog/static/images/mixpanel/MixPanel Group id with segment.jpg"
+endCTA: "DiveIn"
+---
+
+## 1. What is group analytics and why do you want to use it?
+
+Group Analytics in Mixpanel allows behavioral data analysis as a group. It's well suited for a collaborative SaaS application that allows multiple users of the same organization to interact with your product.
+
+Axolo is a tool to help engineers' teams be more productive on pull requests. We integrate with GitHub and Slack and create a Slack channel for every GitHub pull request.
+
+Up until the day we added Group Analytics on Mixpanel, I was linking and sending all Mixpanel events to the administrator. This kind of works but it's going to be hard to study who are the super-users within a team, and what makes them super users.
+
+## 2. How do we use Group Analytics at Axolo?
+
+### Customer success
+
+Whenever I talk to an existing client, I usually look up their GroupId in Mixpanel and I will be able to see in a single look how they have been using our product, which features they have been using, and if anything seems abnormal.
+
+### Identifying trends
+
+For companies that are using Axolo in our two weeks trial, it's easy for us to identify trends. Are they using the product like they are supposed to? Will they become customers? I can then prioritize if I need to engage with them to help them use our product in the best possible way.
+It is also a good way to identify if your customers are the ones that could benefit from a plan upgrade.
+
+⚠️ Mixpanel group analytics comes with additional costs. On top of having more MTU (Monthly tracked users), group analytics was an additional 119$/per year.
+
+## 2. Setting it up Mixpanel group analytics
+
+When installing it I found the documentation to be scarce and hard to find. Before I go into more details, here are all the links that helped me set up Group Ids both in Mixpanel and Segment:
+
+**Mixpanel documentation**
+
+- <a
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    href="https://mixpanel.com/group-analytics/"
+  >
+    Mixpanel Group Analytics sales page
+  </a>
+- <a
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    href="https://developer.mixpanel.com/reference/group-set-property"
+  >
+    Mixpanel Group Id documentation
+  </a>
+- <a
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    href="https://help.mixpanel.com/hc/en-us/articles/360025333632-Group-Analytics#implementation"
+  >
+    Mixpanel help article on Group analytics
+  </a>
+
+**Segment documentation:**
+
+- <a
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    href="https://segment.com/docs/connections/sources/catalog/libraries/server/node/#group"
+  >
+    Segment documentation on groups
+  </a>
+- <a
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    href="https://segment.com/docs/connections/spec/group/"
+  >
+    Segment help article on group
+  </a>
+
+1. First things first, make sure add group analytics plan to your Mixpanel account. On this plan builder you should be able to upgrade: https://eu.mixpanel.com/pricing/plan-builder/.
+   <div
+     style={{
+       display: "flex",
+       justifyContent: "center",
+       alignItems: "center",
+       flexDirection: "column",
+     }}
+   >
+     <Image
+       width={1520 * 0.8}
+       height={1100 * 0.8}
+       src="/blog/static/images/mixpanel/pricing.jpg"
+       alt="Mixpanel pricing group analytics"
+     />
+   </div>
+2. When adding Mixpanel to your Segment destinations, in the setting part, look for Group Identifier Traits setting. You should set this one to 'groupId'
+   <div
+     style={{
+       display: "flex",
+       justifyContent: "center",
+       alignItems: "center",
+       flexDirection: "column",
+     }}
+   >
+     <Image
+       width={1766 / 2}
+       height={1228 / 2}
+       src="/blog/static/images/mixpanel/segment group identifier traits.jpg"
+       alt="Segment Group identifier traits"
+     />
+   </div>
+3. In your Mixpanel project setting set up the groupKey to 'groupId', this will help Mixpanel link the Segment event.
+   <div
+     style={{
+       display: "flex",
+       justifyContent: "center",
+       alignItems: "center",
+       flexDirection: "column",
+     }}
+   >
+     <Image
+       width={3012 / 3}
+       height={1028 / 3}
+       src="/blog/static/images/mixpanel/Mix panel group keys.jpg"
+       alt="Mix panel group keys"
+     />
+   </div>
+4. Start identifying and tracking your groups in your code !
+
+## 3. Interacting with Segment group API
+
+Segment has a group property you can use to send this kind of event. You will need to give the groupId and the userId you want to track. You can also add traits, you can add as many traits as you want. Some traits are standards like address, description, email, employees, industry, plan, website etc... More information on <a target="_blank" rel="noopener noreferrer nofollow" href="https://segment.com/docs/connections/spec/group/#traits">the segment documentation </a>.
+
+The way to identify a group (calling it for the first time) and to update a group is done exactly the same in Segment.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={832}
+    height={563}
+    src="/blog/static/images/mixpanel/Segment Group code.png"
+    alt="Segment Group code"
+  />
+</div>
+
+<br />
+<br />
+<br />

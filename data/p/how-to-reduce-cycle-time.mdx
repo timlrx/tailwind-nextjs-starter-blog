@@ -1,0 +1,173 @@
+---
+title: "How to reduce your cycle time and code review time?"
+date: "2022-04-22"
+tags: ["software development", "analytics", "cycle time", "code review"]
+summary: "Cycle time may be measured in its most basic form by adding the time from the first commit to the time when the pull request is merged. In other terms, the rate at which you develop. Discover how to follow your cycle time and to reduce your code review time in our study!"
+image: "/blog/static/images/general/reduce-cycle-time.png"
+---
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderRadius: "0.5rem",
+  }}
+>
+  <Image
+    width={400}
+    height={266}
+    src="/blog/static/images/general/reduce-cycle-time.png"
+    alt="Axolo Accelerate Elite Performers DORA metrics"
+  />
+</div>
+
+## Code review should be fast
+
+When code reviews are slow, numerous things arise, according to <a target="_blank" rel="noopener noreferrer nofollow" href="https://google.github.io/eng-practices/review/reviewer/speed.html">Google Engineering Practices</a>:
+
+- The team's overall velocity was reduced. While you may be able to complete your work without reviewing it, you are slowing down the rest of your team.
+- Developers begin to oppose the code review process since it is too strict or painful for them (reviewing 2000 lines of codes is not like reviewing 200).
+- The health of the code is frequently jeopardized. Code cleanups, refactorings, and further improvements to an existing codebase are discouraged by slow reviews.
+
+## Why should you understand your cycle time to cut down on your code review time?
+
+### What is the Cycle Time?
+
+Cycle time may be measured in its most basic form by adding the time from the first commit to the time when the pull request is merged. In other terms, the rate at which you develop.
+
+Understanding your Cycle Time has two major advantages:
+
+#### 1) To establish a baseline for your engineering team methodology
+
+Cycle time is influenced by a variety of factors, ranging from technical debt to context switching. This gives us a baseline against which we can immediately discover outliers and analyze potential problems.
+
+#### 2) Locate Leaks and Clogs
+
+Your average cycle time serves as a point of comparison to identify when one activity differs from the others (when your cycle time is dramatically increasing or decreasing). This frequently identifies common, easily remediable flaws in your development process.
+
+### What are the advantages of optimizing your Cycle Time?
+
+#### 1) Your team will deliver faster
+
+Speedier cycle times result in faster delivery, allowing teams to better meet client demand. By finding friction that causes high cycle durations, measuring Cycle Time makes it easier to modify present processes. Working to optimize workflows on a regular basis allows you to ship faster and have a healthy push to production cycle.
+
+#### 2) Your team will be more flexible
+
+Teams can be more efficient and flexible with shorter cycle times. This adaptability allows teams to reduce the cost of changing priorities while also improving client responsiveness.
+
+#### 3) Review will require fewer changes
+
+Teams who focus on reducing Cycle Time focus on smaller, more manageable bits of work. This allows developers to spend less time revising code because code review is faster and easier.
+
+#### 4) Reducing the overall work-in-progress
+
+Teams are needed to optimize their current process in order to improve cycle times. Concurrent work and context switching, in most circumstances, significantly lengthens the entire cycle time for each activity. To boost speed, teams automatically limit their work in progress.
+
+#### 5) A stronger codebase
+
+Developers are less likely to make mistakes when improving Cycle Time since modifications are kept modest. As a result, there are fewer defects in production and improved customer satisfaction. This was proved by the study behind <u>_Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations_</u>, we detailed their results in our article [How to implement the Four Key Accelerate DevOps Metrics](https://axolo.co/blog/p/accelerate-four-key-devops-metrics).
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={250}
+    height={250}
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/book_accelerate.jpg"
+    alt="Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations"
+  />
+</div>
+
+### The causes of High Review Time
+
+Extreme review times (too low or too high) can happen for various reasons:
+
+- Too much work in progress
+- Other work has distracted or dragged the team away.
+- There are far too few employees designated to do reviews
+- The review has been lost in time.
+
+#### Too much work in progress
+
+If the team is overburdened, they may choose to neglect Code Reviews in order to keep up with their overworked schedule. As a result, reviews will take longer than desired, or will be shallow or ignored entirely.
+
+#### Engineers are preoccupied with other tasks
+
+When a senior leader or executive asks a developer for special work or to address a specific bug, they are diverted from their regular responsibilities, leading Review Times to increase.
+
+#### There are far too few employees designated to do reviews
+
+Some teams limit the number of persons who can perform code reviews, which might result in a backlog. At Axolo, we think that everyone should participate in code reviews.
+
+#### The review has been lost in time
+
+A review can be forgotten for a variety of reasons, including human error or chance. Pull Requests must be manually tracked through the review process, and supervisors must be on the lookout for incorrect reviews. This is why we developed Axolo in the first place, when each PR creates its temporary channel, it's easier to keep track of the ongoing conversation and to remind the reviewer about it
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <AddToSlack />
+</div>
+
+#### How to shorten your review time
+
+Tracking Review Time and keeping code going through the development pipeline may be a big pain without a metrics solution. Reviews must be manually tracked, emails must be delivered, and engineers must deal with flow-breaking interactions.
+
+You should implement a solution that asynchronously warns the team about new pull requests and remind them when one goes stale. If you’re working on GitHub and Slack, we published an article about [the top 5 integrations to help your engineering flow](https://axolo.co/blog/p/top-5-github-pull-request-slack-integration).
+
+### How to reduce your code review time
+
+- Limit the size of your pull request (< 400 lines).
+- Set reminders on open pull requests
+- Ensure that all completed reviews are merged as soon as possible.
+- Reduce the workload of the team.
+
+#### Limit the size of your pull request
+
+Large Pull Requests necessitate tough and time-consuming code reviews. Developers will be cautious to step in and participate if a Pull request is huge. When they do, the review's size may lead it to take longer than expected. <a target="_blank" rel="noopener noreferrer nofollow" href="https://smartbear.com/resources/ebooks/best-kept-secrets-of-code-review/"> SmartBear conducted a study</a> on engineering teams and found out that 400 lines of code was the limit for an efficient pull request.
+
+#### Set reminders on open pull requests
+
+When a developer receives a review, he or she may ignore it or even forget about it. If The more time it takes to review a PR, the more changes will be needed and the less likely someone will pick it up. This is why we developed a pull request reminder in Axolo.
+
+#### Ensure that all completed reviews are merged as soon as possible
+
+When a review is completed but not merged back into the main branch, it can result in a lengthy review. As a result, you should always monitor your idle completion time (the time between the last approved review and the merge).
+
+#### Reduce the workload of the team
+
+Because the team has a lot of work in progress (WIP), code reviews often take longer because developers believe they don't have time to conduct them. Perhaps the review begins but never ends because team members are under a time constraint as a result of too much WIP.
+
+### How to do it right
+
+Now that you know how to reduce your code review time, let’s list some of the best-in-class advice to ensure that your team will be given the right tools and space to perform. You should try to check all the advice in this list:
+
+- Automate all the basic tasks
+- Break your work into smaller components
+- Analyze the impact of various components.
+- Test different communication tools before settling in
+
+#### Automate all the basic tasks
+
+It is critical for delivery to use CI to automate releases and to invest effort in automating other manual operations. Manual labor is both a drain on morale and a source of errors. Giving engineers a defect to solve via an automated tool is far easier than asking them to do the same thing many times.
+
+#### Break your work into smaller components
+
+Breaking work into smaller parts, iterating regularly, and clearly stating importance within a milestone allows for more predictability in terms of what will ship. Because individual concerns are smaller, planning becomes easier, and it's easier to swap issues around if something unexpected stops other work.
+
+#### Analyze the impact of each component
+
+Measuring effect can assist evaluate whether a method helps out a lot in the end or only helps out occasionally. In each situation, the net benefit may be minor, but the additional suffering (in terms of the additional time spent attempting to ship) makes the total impact negative. If you can't directly quantify the impact, you'll have to experiment. Try things out, see how they work, and then decide whether or not to keep them.
+
+#### Test different communication tools before settling in
+
+Communications tools are a key part in any engineering teams, now that the asynchronous and remote work is becoming a new norm. Automating how others get a finished product before releasing it (e.g. create a package on click) and broadly communicating how to work with a team can result in better decisions and faster discussions.
+
+I hope you've found value in this article and will be able to try and implement a few advice for your engineering team!
+
+<CTABanner type="learn" />

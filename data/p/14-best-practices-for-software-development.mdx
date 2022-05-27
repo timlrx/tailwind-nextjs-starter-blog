@@ -1,0 +1,144 @@
+---
+title: "14 best practices for software development from 100 CTO's"
+date: "2021-07-28"
+tags: ["software development"]
+draft: false
+summary: "Building Axolo we've interviewed 100+ CTO // head of engineering and we’ve asked them what they considered good practice. Here is the list:"
+image: "/blog/static/images/checks_github.png"
+---
+
+Building Axolo we've interviewed 100+ CTO //heads of engineering and we’ve asked them what they considered good practice. Here is the list:
+
+## 1. Pull Requests and code reviews
+
+- PR should be short and to the point
+- Have 1 to 3 people review it
+- Feedback should be friendly and contribute to each other's knowledge
+
+Some of the teams I've interviewed have CTOs who do not have their code reviewed. They push hotfix and create code that nobody sees until they encounter it when building something on top of it. Some other teams apply the "every piece of code should be reviewed by at least one other person in the team" even if that person is more junior, why? A junior person can still ask relevant questions, asks for things that don't seem to be clear, and more importantly, learn from a senior person in the team.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/pullrequestsandcodereviews.png"
+    alt="Pull request and code reviews"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 2. Linter
+
+Linters are a good way to keep a healthy code environment. If everybody respects the same norms and syntax it helps in understanding each other's code. I've also personally learned a lot from linter, when there is an error it explains to me why I should do one way more than another one.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/linter.png"
+    alt="Linter"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 3. Testing
+
+Unit testing + functional testing. Most of the teams I exchanged with consider testing a good practice. It gives them confidence in their code, allows them to share responsibility when something breaks, and avoids errors in production.
+
+One person, I talked to mentioned that he did not felt responsible if anything core breaks in production if the tests pass because the test should be covering all the core services.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/testing.png"
+    alt="Testing screenshot"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 4. Code coverage tools
+
+Code coverage is a metric to evaluate how much of your code is covered in tests. It is usually expressed in %. Some tools like CodeCov allow you to calculate that number for each Pull Request you create.
+
+Some companies like to have high code coverage (> 80%) while some others have a medium policy (~50%). I guess it all depends on how core is your service (is your service a meme generator or a Hospital SaaS ?) and what your company guidelines are. Code coverage tools are great to indicate what sort of expectations you have towards your tech team and how much time should be spending on testing for each feature you develop.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/code-coverage-tools.png"
+    alt="Code coverage tools"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 5. Single Responsibility
+
+Avoid magic code (code that does many things) at all costs and favorise SOLID methodology. One function = one responsibility. The same goes with Pull Requests and files: One Pull Requests should treat one feature, one file should cover only one topic.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/meme-code-magic.jpg"
+    alt="Meme code magic"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 6. Polaris Methodology
+
+Marcel from Meta-Api told me this one. They have 6 weeks sprint (Q&A included) + 2 weeks of rest. The rest is a time for them to go back to what hasn't been finished 'smelling code' he calls it. Those two weeks are an opportunity for them to refactor and rethink their architecture.
+
+I think this makes a lot of sense, sometimes you need to make something work fast to test some hypothesis, and while you do that you need to make some functions that are not completely right and you leave yourself a comment // TODO CHANGE THIS LATER. But you never have time to come back to that comment until something breaks or until you need to change that function. Polaris methods are a great way to overcome that.
+
+## 7. Naming conventions
+
+Many people I talked to mention naming conventions. One of them is the Open API naming convention. Being consistent, logical, and predictable in the way you name your variables, functions, and routes will enable anyone to read, understand and use the code effectively and efficiently.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/naming-convention.png"
+    alt="Screenshot from OpenAPI Specifications by Swagger"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 8. Continuous Integration & Continuous development
+
+Constantly shipping code has many benefits: a smaller development process means it's easier to detect faulty code and is easier to test features that are being shipped. It also has a faster MTTR (Mean time to Resolution), because you are used to continuously ship code, if an error appears you will resolve that error faster.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/continuous integration and development.png"
+    alt="continuous integration and development"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 9. MonoRepo
+
+A few CTO's shared with me their recent transitions to a mono repo (backend + front end in the same repository) rather than multiple ones. They saw a massive improvement in clarity and shared with me that it makes it easier to try out new pull requests.
+
+## 10. Feature Switch
+
+More established companies usually have that. A feature switch that allows you to push a feature on production and enabling it for some of your users before releasing it out there in the wild. This allows you to test to a specific audience and making sure everything works as intended. As a user, you can sometimes ask to be in these audiences. I've for example asked LinkedIn to be a beta user for their new features.
+
+## 11. Launching test on each commit
+
+One of the companies I talked to was launching their complete CI (21000 tests) for every single commit for every single developer. The cost was about 1/2€ per commit. The idea behind this is to improve the developer experience and to make sure that there are no side effects for every single commit launched.
+
+## 12. Clear specifications - involving everyone in the creation of specs
+
+Having clear specifications, spending extra time on that, and getting the developers involved early in the definition of them is something that is helping many companies. If what you need to do is clear then it's 10x easier to make it. I think that involving developers in the definitions of specs makes it more efficient because the developer will be able to say what feature takes more time than another one and explain why.
+
+## 13. MoSCow Methodology
+
+I've heard this framework from a French team, the Moscow framework is here to help lead developers and CTO's prioritize the work to be done. M: Must have, S: Should Have, C: Could Have, Won't have. You need to be careful not to put everything as a must otherwise this methodology doesn't help.
+
+## 14. CREG: Code Review Emoji Guide
+
+The code review emoji guide is a set of guidelines for making comments in Pull Requests. It's an opportunity for the reviewer to convey the intention of his comments. Examples: 🔧 Means I think this needs to be changed. 🌱 Means planting a seed for the future, etc. See the full list on GitHub: https://github.com/ItisChaos/code-review-emoji-guide/blob/master/README.md
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/code review emoji guide.png"
+    alt="code review emoji guide"
+    style={{ width: "500px" }}
+  />
+</div>
+
+There are many good practices out there and I've probably missed a whole lot, is there any good practice that isn't listed here you are doing in your company? Did you discover any through this post?
+
+<CTABanner type="learn" />

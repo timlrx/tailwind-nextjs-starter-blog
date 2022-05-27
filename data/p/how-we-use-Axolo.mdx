@@ -1,0 +1,96 @@
+---
+title: "How we use Axolo (to build Axolo)"
+date: "2021-07-13"
+tags: ["product overview"]
+draft: false
+summary: "Here is a quick dive into our development process and how our team is Axolo (to build Axolo). We initially started Axolo to improve our code review process. Even with a small team, we found that Github notifications and collaboration around pull requests could be improved."
+---
+
+We initially started Axolo to improve our code review process. Even with a small team, we found that Github notifications and collaboration around pull requests could be improved. With that in mind, we wanted to improve our workflow and implement code review features, right in one of our main tools: Slack.
+
+## Our internal process
+
+### Our notification center for code review
+
+The first thing that pops up, when you install Axolo, is its notification features. The most common pattern we identified with other engineering teams is that review requests were often direct messages in Slack: "Hey, I’ve updated my last pull request feature/zoom_integration, do you have time to check it out soon?" or “it’s been two days, do you have time to review feature/user_settings today?”.
+
+This was true because pull request notifications were generally poorly handled and most importantly, the whole team was rarely using the same system (hence, you were not able to know if your reviewer did receive your request).
+
+With Axolo, our team is on the same page.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/axolo_overview.png"
+    alt="Axolo overview"
+    style={{ width: "600px" }}
+  />
+</div>
+
+Slack is now our notification center - every pull request has its dedicated ephemeral channel where all notifications will be sent, as well as our "code review to-do list". Looking at my Slack channels is now enough to know if I have code reviews to do.
+
+### Deployment & Github action alerts
+
+As well as review notifications, deployment & Github actions were the next things we wanted to be implemented.
+
+In our repository, each commit on a pull request triggers a Github action (some tests & linter) - having to check our emails for the action check was a mental load we were happy to leave behind.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/launch/actions.png"
+    alt="Github Action Axolo"
+    style={{ width: "500px" }}
+  />
+</div>
+
+With the same logic in mind, Github actions that concern the whole repository or deployment are sent in the general _"\_axolo"_ channel in your Slack.
+
+### Pull requests settings in Slack
+
+Having our pull request stay top on mind was great, but whenever our pull requests were ready to review, we still had to manually go on Github to request a review and add the specific labels if that was not already done.
+
+Beginning of July, we wanted Axolo to be able to handle settings for our pull requests.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/settings.png"
+    alt="Axolo open settings"
+    style={{ width: "500px" }}
+  />
+</div>
+
+With that in mind, we started adding new features right in pull request channels. When I want someone to review my pull request, I just need to click on **"👋 Request a review"** and select the reviewer or the Github team.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/prsettings.png"
+    alt="Axolo settings menu"
+    style={{ width: "600px" }}
+  />
+</div>
+
+### Saving the Slack conversation in Github as documentation
+
+Did you ever have to go back to a commit because of a specific bug? Didn't you already at least once ask yourselves 'why did I/she/he code this like that?'. Synchronous code reviews (over the phone, live peer reviews) are a good way to share knowledge and experiences, but the worst way to save this information.
+
+As most of our code review conversations now lie in Slack, we wanted to be able to go back at it, without the need to open Slack. This feature is optional, but Axolo saves everything we say in each pull request channel at the end of the code review - upon merging or closing the PR.
+
+### Stay on top of every open pull request in your team
+
+As an engineering manager like Sydney (our CTO), you might often check the current status of your team development cycle. Whenever we want to have a glance at our current team code review state, we click on the Axolo app in Slack and we find where the team is.
+
+Team pull requests, current code reviews, and my pull requests of all of our repositories are displayed on the same page.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/launch/app+home+slack.png"
+    alt="Axolo App Home Beta"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## Conclusion
+
+Thanks for taking the time to discover more about Axolo! If you'd like to set up your free account, [that's right here](https://axolo.co), or if you're looking to contact us, you can write to us directly at hey'@'axolo.co or by joining <a target="_blank"
+      rel="noopener noreferrer"
+      href="https://join.slack.com/t/better-software-eng/shared_invite/zt-s2vkbyt2-AACaP6tnQS0adwezMXVlHQ">
+our Slack community.</a>

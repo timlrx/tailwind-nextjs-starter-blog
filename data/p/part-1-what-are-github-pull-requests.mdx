@@ -1,0 +1,221 @@
+---
+title: "What are GitHub pull requests"
+date: "2021-11-02"
+tags: ["pull request guide"]
+draft: false
+summary: "Pull requests are an opportunity for a software developer to notify team members (or open-source project maintainers) that a feature or fix, developed on a different branch is ready. Learn more about them in our study."
+image: "/blog/static/images/pull-request-guide/what-are-pull-requests.png"
+endCTA: "DiveIn"
+---
+
+From the GitHub docs <a
+            href="https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+            rel="noopener noreferrer"
+            target="_blank">About Pull Requests</a>
+: “Pull requests let you tell others about changes you’ve pushed to a branch in a repository on GitHub“. Pull requests are an opportunity for a software developer to notify team members (or open-source project maintainers) that a feature or fix, developed on a different branch is ready.
+
+## Why do we do pull requests
+
+The biggest advantage of pull requests is that they provide an opportunity for code reviews. It is usually a moment where the person that is responsible for performing the code review can check the code and test it to make sure it meets organization guidelines.
+There is also a list of reasons why pull requests are important that we detail below (in section 4): Finding defects or enhancements, balancing responsibilities, education, and ensuring that the new changes are in line with the vision of the architectural system.
+
+### Why is it called a pull request?
+
+A pull request means that you are requesting the target repository to ‘pull’, hence taking into account your changes.
+
+### GitHub reviewers and assignees
+
+Reviewers are people you want to review the code. It does not need to be a person responsible for merging the pull request. Reviewers are usually team members who have experience on that part of the code or someone you're working closely with within your company. Some teams also choose to select someone randomly.
+
+Assignees can have different meanings. It can be the pull request opener, or someone responsible for that area that should be following the advancements of the pull request.
+
+### Is GitHub Free?
+
+GitHub is a Software as a Service. Like most SaaS, to enable the full functionalities of GitHub, you will need to pay a certain amount per month.
+The free version of GitHub will allow you to do most of the essential things:
+
+- Open personal public and private repositories.
+- Create an organization with unlimited public and private repositories.
+- Create issues, pull requests, and projects inside GitHub.
+- 2,000 automation minutes per month.
+
+## Branches in GitHub
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/Branches+in+GitHub.png"
+    alt="Branches in github screenshot"
+    style={{ maxWidth: "750px" }}
+  />
+</div>
+
+From the GitHub doc:
+
+<a
+  href="https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  GitHub branches documentation
+</a>
+: “Use a branch to isolate development work without affecting other branches in the
+repository”.{" "}
+
+Branches are a neat way to create a space where you can do all your code modifications based on the main branch or any other branches without impacting it. Git and GitHub make it easy to switch between different branches.
+
+In the GitHub user interface this is how you switch between branches or create a new one:
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/branches+in+GitHub+gif.gif"
+    alt="Branches in GitHub Gif"
+    style={{ maxWidth: "650px" }}
+  />
+</div>
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/branches+in+github+3.png"
+    alt="Branches in github"
+    style={{ maxWidth: "650px" }}
+  />
+</div>
+
+Looking at this graph above, `Master`, `Develop`, `Feature(blue)`, and `Feature(Green)` are all branches. This is a common pattern in the way organizations use branches.
+
+Here `master` (or nowadays called main or production) is where the production branch takes place. The code in this branch is usually the code that is client-facing.
+`Develop` is the branch that is in current development and that is being tested before being put into `master`.
+`Feature (blue)` and `Feature (green)` are branches that some developers are working independently to the base branch. When these branches are ready for production, they will usually open a pull request in order to be merged.
+
+Read more from the Git documentation <a
+            href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+            rel="noopener noreferrer"
+            target="_blank">Branches in a Nutshell</a>.
+
+### GitHub merge branches
+
+The best way to merge a branch into another one in GitHub is by opening a pull request. Usually if you commit to a new branch GitHub user interface will ask you if you want to _compare & pull request_. Like so:
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/merge+branches.png"
+    alt="compare & pull request github"
+    style={{ maxWidth: "650px" }}
+  />
+</div>
+
+A more traditional way to open a pull request is by going into your repository and finding the tab **Pull Requests** and clicking on **New pull request**. You will have to choose which branch you want to merge with which.
+
+Here is a gif summarizing:
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/merges+github+branches.gif"
+    alt="creating a pull request with two github branch"
+    style={{ maxWidth: "650px" }}
+  />
+</div>
+
+### GitHub Fork
+
+From the GitHub doc <a
+            href="https://docs.github.com/en/get-started/quickstart/fork-a-repo"
+            rel="noopener noreferrer"
+            target="_blank">fork a repo</a>: “A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project”.
+
+There are different reasons why someone would want to fork a repository:
+
+- You want to have a stable backup of a project should the project evolve in different ways that are currently being used. Or the owner of the project can delete the repository and disappear. (As seen on <a
+            href="https://stackoverflow.com/questions/31209669/github-why-should-i-fork"
+            rel="noopener noreferrer"
+            target="_blank">Stack Overflow, why shoud I fork.</a>)
+- You are looking to make some changes and propose them to someone else's project.
+- You'd like to use someone else's projects as a starting point for your own idea. (This is common with Boilerplate)
+
+On GitHub, a fork is a copy of another GitHub repository, with a reference to the repository it was copied from.
+
+### GitHub fork vs Branch
+
+Aiden Feldman lists the two differences and the pros and cons of each of them in a <a
+            href="https://stackoverflow.com/questions/3611256/forking-vs-branching-in-github"
+            rel="noopener noreferrer"
+            target="_blank">StackOverflow post</a>
+
+If you are not a collaborator on a specific repository, you won’t be able to make any changes. Forking is usually the go-to solution if you want to contribute to an open-source project until you can be added as a collaborator.
+
+#### Forking: Pros and Cons
+
+##### Pros
+
+- Keeps branches separated by user
+- Reduces noise in the primary repository
+- Your team process reflects the external contributor process
+
+##### Cons
+
+- Makes it more difficult to see all of the branches that are active (or inactive, for that matter)
+- Collaborating on a branch is trickier (the fork owner needs to add the person as a collaborator)
+- You need to understand the concept of multiple remotes in Git
+- Requires additional mental bookkeeping
+
+Forking will make the workflow more difficult for people who aren't super comfortable with Git.
+
+#### Branching: Pros and Cons
+
+##### Pros
+
+- Keeps all of the work being done around a project in one place
+- All collaborators can push to the same branch to collaborate on it
+- There's only one Git remote to deal with
+
+##### Cons
+
+- Branches that get abandoned can pile up more easily
+- Your team contribution process doesn't match the external contributor process
+- You need to add team members as contributors before they can branch
+
+### GitHub compare two branches
+
+If you want to compare two branches in GitHub, there is an easy way to do so:
+
+On the page of a repository, you can simply add `/compare` at the end of your URL in order to be able to choose which branch you want to compare with.
+
+If we take this repository as an example: https://github.com/axolo-co/code-review-emoji-guide. Add https://github.com/axolo-co/code-review-emoji-guide/compare and you can compare two branches https://github.com/axolo-co/code-review-emoji-guide/compare/master...new_idea.
+
+This is great if you want to quickly see what are the differences between the two branches.
+
+A second way to do that is by opening a pull request. You will easily be able to see the same interface.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/ultimate-pull-request/compare+two+branches+github.gif"
+    alt="Compare two branches github"
+    style={{ maxWidth: "750px" }}
+  />
+</div>
+
+### GitHub Protected Branches
+
+Protect branch so that only selected collaborators can modify them, and/or set requirements for collaborators to be able to edit them. There is a list of settings available for protected branched::
+
+- **Require pull request reviews before merging** => Ensure one or more people have reviewed the pull request before merging to the protected branch.
+- **Require status checks before merging** => Require that all CI tests are passing.
+- **Require conversation resolution before merging** => Require that all code comments be addressed or acknowledged before merging.
+- **Require signed commits** => Only commits that are being verified can be pushed.
+- **Require linear history** => Any pull request merged into the protected branch must use a squash merge or a rebase merge. It helps teams reverse change more easily.
+- **Require merge queue** => For a repository with a lot of pull requests, requiring a merge queue ensures that all pull requests merge to go through a rigorous process of CI and validation.
+- **Include administrators**
+- **Restrict who can push to matching branches**
+- **Allow force pushes** => By default GitHub blocks force pushes.
+- **Allow deletions** => By default you cannot delete a protected branch.
+
+### GitHub branch name pattern
+
+GitHub uses `fnmatch` to match against any pattern provided to find out the branches to which the rule applies for branch protection.
+
+You can find more information on StackOverflow <a
+            href="https://stackoverflow.com/questions/55053460/github-branch-name-pattern-negation"
+            rel="noopener noreferrer"
+            target="_blank">about GitHub branch name pattern negation.</a>
+
+Continue our pull request study in [Part II: how to open a pull request](https://axolo.co/blog/p/part-2-how-to-open-a-pull-request).

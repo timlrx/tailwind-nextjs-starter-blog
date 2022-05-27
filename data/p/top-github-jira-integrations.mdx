@@ -1,0 +1,152 @@
+---
+title: "Top GitHub and Jira integrations"
+date: "2022-03-17"
+tags: ["software development", "jira"]
+summary: "In this article we will explain how different GitHub and Jira integrations work and how to install the one you need."
+image: "/blog/static/images/general/github-jira-integration.png"
+---
+
+## What is Jira?
+
+Jira is an issue tracking tool that also has many other functions. It's especially well-suited to agile development, and developers regularly use it to manage their projects. It is accessible in a variety of formats. There is a cloud-hosted version available, but if you like, you may also self-host.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={250}
+    height={120}
+    src="/blog/static/images/logo/jira_logo.png"
+    alt="Jira logo"
+  />
+</div>
+
+## What is GitHub?
+
+GitHub allows developers to share a codebase among team members while tracking changes, as well as construct their own branches to work on projects safely. It also keeps track of issues and comments, making it useful for project management.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={150}
+    height={150}
+    className={{ borderRadius: "10px" }}
+    src="/blog/static/images/logo/github_logo.png"
+    alt="GitHub logo"
+  />
+</div>
+
+## What are the best GitHub and Jira integrations?
+
+### The native Atlassian integration
+
+You can find this integration under <a target="_blank" rel="noopener noreferrer nofollow" href="https://marketplace.atlassian.com/apps/1219592/github-for-jira?hosting=cloud&tab=overview">GitHub for Jira in the Atlassian marketplace</a>.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={1080}
+    height={188}
+    className={{ borderRadius: "10px" }}
+    src="/blog/static/images/screenshots/github-for-jira.png"
+    alt="GitHub logo"
+  />
+</div>
+
+#### What does the native GitHub and Jira integration offers?
+
+##### Keep Jira up-to-date with automatic synchronization
+
+See what will happen in Jira:
+
+- Pull requests, deployments, branches, builds, and commits are all tracked in Jira. You won’t need to jump to GitHub to check the latest updates.
+- View and access the project's repositories with ease.
+- Allow the entire team to see what was sent, as well as DevOps performance metrics like deployment frequency, cycle duration, and more.
+
+##### Maintain engineers' attention in GitHub
+
+See what will happen in GitHub:
+
+- In GitHub issues and pull requests display relevant Jira information.
+- Smart Commits can be used to execute activities in Jira such as migrating issues, adding comments, and changing time tracking data.
+
+#### How does the GitHub Jira integration work?
+
+Jira Software starts scanning for commits that reference issue keys as soon as you link an account. The summary displays the synchronization results as well as any faults that may have occurred. Then, the commits will appear in related problems as the synchronization continues. If you want to link your commit with Jira, this is how you should comment on them like:
+
+`git commit -m "DEV-1024 <type here your message>"`
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={727}
+    height={332}
+    src="/blog/static/images/screenshots/commit.png"
+    alt="Commit in GitHub to synchronize with Jira"
+  />
+</div>
+
+Jira associates the commit with an issue using the issue key, allowing the commit to be summarized in the Jira issue's Development panel. DEV-1024 is an example of an issue key.
+
+### Reviews for GitHub and Jira native integration
+
+As you might have seen in the previous screenshot, reviews describe mixed feeling. <a target="_blank" rel="noopener noreferrer nofollow" href="https://marketplace.atlassian.com/apps/1219592/github-for-jira?tab=reviews&hosting=cloud">Latests app reviews</a> show that the two way synchronization might suffer "`I am not able to find a way to go from commit to ticket id. It is a very basic feature which should have been there.`" and that the app might be a bit buggy "`constantly get the something went wrong error when I click get it now.... no bug report filed as others have downloaded successfully`".
+
+Be sure to take the time to fully implement this integration before letting your team use it.
+
+### Using a third-party to integrate GitHub and Jira
+
+Although the native GitHub Jira integration works fine, you might want to consider adding specific features or personal settings over the default ones. To create your own workflow, you will need to try third-party services.
+
+These services will enable you to decide which data is important, where to send it and what to synchronize. If you are already using one of these services, we recommend you to test its GitHub Jira integration, and if not, you can find below a non-exhaustive list:
+
+- Exalate,
+- Hevo Data,
+- automate.io,
+- Zapier,
+- Unito.
+
+They all have a lot of common features but one might be best for your use case!
+
+### Conclusion
+
+I hope this article helped you a bit demystifying the GitHub Jira integration. In our adventure, our customers wanted to be able to find Jira information right in their pull request channel - we’re helping engineering teams review code through Slack. And even if we had already implemented the native integration, we developed our own Jira integration to be able to provide valuable information in our channels.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={600}
+    height={543}
+    src="/blog/static/images/screenshots/axolo-jira-integration.png"
+    alt="Axolo GitHub Jira integration"
+  />
+</div>

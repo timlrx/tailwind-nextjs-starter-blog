@@ -1,0 +1,93 @@
+---
+title: "Product Update: Github Action, weekly leaderboard, home page for open pull requests and many more"
+date: "2021-06-24"
+tags: ["product update"]
+draft: false
+summary: "Hey! This is the second product update of Axolo. Go check what we have been working on in the past two weeks."
+---
+
+### Github Action & deployment notifications
+
+Github Action & deployments notifications are now sent respectively to their pull request channel or in Axolo for repository-wide notification. You can decide if you want to receive notifications in \_axolo for repository update directly from your home.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/launch/actions.png"
+    alt="Github Action Axolo"
+    style={{ width: "500px" }}
+  />
+</div>
+
+### Weekly leaderboard
+
+As you saw in your \_axolo channel (in the topic), you can see your live leaderboard. This is the first step of Axolo analytics (more at the end of this update). Some small features were pushed in production to improve the leaderboard:
+
+#### Select how to compute your score
+
+Admins can decide how to compute the score each week for their leaderboard. Do you want your engineers to do more code reviews? pull requests? commits? The objective of the leaderboard is to incentive good practice, you can decide what should be the best practices in your team.
+
+#### Come back to past weeks analytics
+
+You can now go back in time from your leaderboard to check past results.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/launch/leaderboard.png"
+    alt="Axolo Leaderboard Beta"
+    style={{ width: "500px" }}
+  />
+</div>
+
+### Merged pull request notifications
+
+Merged pull request notifications can now be sent directly in \_axolo. You can set this up from [your home](http://app.axolo.com/home).
+
+### New members & outside collaborators
+
+We identified that Axolo did not save new organization members, that's not the case anymore. New members will be automatically added to your organization and can be selected in your application. We now handle outside collaborators too (people with only access to some repositories within your organizations.
+
+### To save the Slack conversation, or not
+
+Admins can now decide if they want the Slack conversation to be saved as documentation in a closed/merged pull request in Github [from their home](http://app.axolo.co/home).
+
+### A home page in Slack with your team pull requests
+
+Engineers can find information regarding their team development on the Axolo application in Slack. You'll be able to check pull requests that you need to review, your pending pull requests, your draft pull requests and all other open pull requests from your team.
+
+Let us know what you think and tell us what you'd like to find there after our next sprints!
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/launch/app+home+slack.png"
+    alt="Axolo App Home Beta"
+    style={{ width: "500px" }}
+  />
+</div>
+
+### Erratum: No merge functionality from Slack for now
+
+To be transparent, we decided not to push in production the merge functionality from a pull request channel for now. This was a requested feature but we need to have access to your company's code to have this ability. Unfortunately, his is not something we're looking into right now.
+
+### What our next priorities?
+
+Starting this week, I'd like to show you what our upcoming analytics will look like and receive your feedback before development.
+
+#### Analytics for teams
+
+Key statistics and graph we're working on:
+
+- average merged pull requests,
+- merge rate,
+- cycle time (first commit to merged pull request)
+- deployed hotfix through times,
+- review time (average time and composition - development, rework, review, ...)
+
+#### Analytics for each engineer
+
+We want this feature to help managers in their day-to-day regarding the engineering team. Our goal is to help admins handle one-one and set objectives for engineers.
+
+What kind of analytics are you interested in? What data would help you manage one-one with your engineers? How do you set KPI regarding your team?
+
+Let's hope on a call, I'd love to show you what it looks like and receive your feedback. 🎉 Reply to this email or book [a call directly from here](https://calendly.com/arthur-coudouy/20mn)!
+
+Arthur

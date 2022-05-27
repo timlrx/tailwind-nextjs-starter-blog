@@ -1,0 +1,261 @@
+---
+title: "GitHub pull request template"
+date: "2021-11-04"
+tags: ["pull request guide", "template"]
+draft: false
+summary: "Pull request templates allow your organizations to have a default text when you create a pull request on GitHub. It is quite useful to make sure to follow a standard process for every pull request and to have a to-do list for the author to check before requesting a review."
+image: "/blog/static/images/pull-request-guide/github-pr-template.png"
+---
+
+This article was provided by Axolo. Axolo is bi-directionnal Slack-GitHub integration to help tech teams engage and merge pull requests faster. Axolo creates a temporary Slack channel for every pull requests.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <AddToSlack />
+</div>
+
+## Why should you use a pull request template
+
+Pull request templates allow your organizations to have a default text when you create a pull request on GitHub. It is quite useful to make sure to follow a standard process for every pull request and to have a to-do list for the author to check before requesting a review.
+
+The easiest way to add a pull request template to your repository is by adding a file called `pull_request_template.md` in the root of your directory. It’s a markdown file, so you can use any of the markdown that is available to you. More about markdown in the <a
+            href="https://guides.github.com/features/mastering-markdown/"
+            rel="noopener noreferrer"
+            target="_blank">mastering markdown syntax guide.</a>
+
+## 7 GitHub pull request template examples
+
+Below, there are 6 pull request templates we recommend you to test. You can also find them on <a
+            href="https://github.com/axolo-co/pull_request_template"
+            rel="noopener noreferrer"
+            target="_blank">our pull request template repository</a> ready to be copied.
+
+Find more on <a
+            href=" https://github.com/stevemao/github-issue-templates"
+            rel="noopener noreferrer"
+            target="_blank">SteveLao GitHub issue templates</a> and <a href="https://github.com/devspace/awesome-github-templates" rel="noopener noreferrer" target="_blank">Awesome GitHub templates</a>
+
+### Example 1: Simple pull request template with a checklist
+
+```
+## Describe your changes
+
+## Issue ticket number and link
+
+## Checklist before requesting a review
+- [ ] I have performed a self-review of my code
+- [ ] If it is a core feature, I have added thorough tests.
+- [ ] Do we need to implement analytics?
+- [ ] Will this be part of a product update? If yes, please write one phrase about this update.
+
+```
+
+### Example 2: Detailed description pull request template
+
+```
+# Description
+
+Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
+
+Fixes # (issue)
+
+## Type of change
+
+Please delete options that are not relevant.
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
+
+# How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+
+- [ ] Test A
+- [ ] Test B
+
+**Test Configuration**:
+* Firmware version:
+* Hardware:
+* Toolchain:
+* SDK:
+
+# Checklist:
+
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] Any dependent changes have been merged and published in downstream modules
+
+```
+
+### Example 3: Pull request template for external contributions with related issues
+
+```
+THIS PROJECT IS IN MAINTENANCE MODE. We accept pull requests for Bug Fixes **ONLY**. NO NEW FEATURES ACCEPTED!
+
+<!--- Provide a general summary of your changes in the Title above -->
+
+## Description
+<!--- Describe your changes in detail -->
+
+## Related Issue
+<!--- This project only accepts pull requests related to open issues -->
+<!--- If suggesting a new feature or change, please discuss it in an issue first -->
+<!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
+<!--- Please link to the issue here: -->
+
+## Motivation and Context
+<!--- Why is this change required? What problem does it solve? -->
+<!--- If it fixes an open issue, please link to the issue here. -->
+
+## How Has This Been Tested?
+<!--- Please describe in detail how you tested your changes. -->
+<!--- Include details of your testing environment, and the tests you ran to -->
+<!--- see how your change affects other areas of the code, etc. -->
+
+## Screenshots (if appropriate):
+
+```
+
+<CTABanner type="learn" />
+
+### Example 4: Checklist for open-source pull request template
+
+```
+ All Submissions:
+
+* [ ] Have you followed the guidelines in our Contributing document?
+* [ ] Have you checked to ensure there aren't other open [Pull Requests](../../../pulls) for the same update/change?
+
+<!-- You can erase any parts of this template not applicable to your Pull Request. -->
+
+### New Feature Submissions:
+
+1. [ ] Does your submission pass tests?
+2. [ ] Have you lint your code locally before submission?
+
+### Changes to Core Features:
+
+* [ ] Have you added an explanation of what your changes do and why you'd like us to include them?
+* [ ] Have you written new tests for your core changes, as applicable?
+* [ ] Have you successfully run tests with your changes locally?
+
+```
+
+### Example 5: Checklist and detailed description GitHub pull request template
+
+```
+* **Please check if the PR fulfills these requirements**
+- [ ] The commit message follows our guidelines
+- [ ] Tests for the changes have been added (for bug fixes/features)
+- [ ] Docs have been added / updated (for bug fixes / features)
+
+
+* **What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
+
+
+* **What is the current behavior?** (You can also link to an open issue here)
+
+
+* **What is the new behavior (if this is a feature change)?**
+
+
+* **Does this PR introduce a breaking change?** (What changes might users need to make in their application due to this PR?)
+
+
+* **Other information**:
+
+```
+
+### Example 6: Open-source to-do list pull request template for GitHub
+
+```
+## Pull Request template
+Please, go through these steps before you submit a PR.
+
+1. Make sure that your PR is not a duplicate.
+2. If not, then make sure that:
+
+    a. You have done your changes in a separate branch. Branches MUST have descriptive names that start with either the `fix/` or `feature/` prefixes. Good examples are: `fix/signin-issue` or `feature/issue-templates`.
+
+    b. You have a descriptive commit message with a short title (first line).
+
+    c. You have only one commit (if not, squash them into one commit).
+
+    d. `npm test` doesn't throw any error. If it does, fix them first and amend your commit (`git commit --amend`).
+
+3. **After** these steps, you're ready to open a pull request.
+
+    a. Your pull request MUST NOT target the `master` branch on this repository. You probably want to target `staging` instead.
+
+    b. Give a descriptive title to your PR.
+
+    c. Describe your changes.
+
+    d. Put `closes #XXXX` in your comment to auto-close the issue that your PR fixes (if such).
+
+IMPORTANT: Please review the [CONTRIBUTING.md](../CONTRIBUTING.md) file for detailed contributing guidelines.
+
+**PLEASE REMOVE THIS TEMPLATE BEFORE SUBMITTING**
+
+```
+
+We hope you've found your perfect pull request template! Keep on reading and discover our next pull request dive in: [Part IV: How to review code in GitHub](https://axolo.co/blog/p/part-4-how-to-review-code-in-github)
+
+<CTABanner type="try" />
+
+## Bonus: Issue templates for your project
+
+And if you're working with open-source projects, you might need the help of some useful issue templates in your repositories. Recently, GitHub developed <a target="_blank" rel="noopener noreferrer nofollow" href="https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates">multiple issue templates</a>. For example, GitHub users looking to post an issue will face something like this (React example):
+
+<div  style={{display:'flex', justifyContent:'center'}}>
+
+  <img src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/react-issues.png"
+      alt="React template issues in GitHub"
+      style={{width:"850px"}}/>
+      </div>
+
+### Example 1: Simple GitHub issue template
+
+```
+## Expected Behavior
+
+
+## Current Behavior
+
+
+## Possible Solution
+
+
+## How to reproduce (for bugs)
+
+```
+
+### Example 2: Detailed GitHub issue template
+
+```
+## I'm submitting a ...
+
+- [ ] bug report
+- [ ] feature request
+
+## What is the current behavior?
+
+## If the current behavior is a bug, please provide the steps to reproduce and if possible a minimal demo of the problem
+
+## What is the expected behavior?
+
+## What is the motivation / use case for changing the behavior?
+
+## Please tell us about your environment:
+
+Version: 2.0.0-beta.X
+Browser:
+Language:
+
+```

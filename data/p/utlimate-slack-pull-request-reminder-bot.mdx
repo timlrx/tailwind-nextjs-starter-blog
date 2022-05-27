@@ -1,0 +1,67 @@
+---
+title: "The ultimate Slack pull request reminder bot"
+date: "2021-09-27"
+tags: ["software development"]
+summary: "At Axolo, we think that two characteristics are most important for handling pull requests: attention and speed. A great code review should be done within a few hours after a request and be thoroughly processed. "
+image: "/blog/static/images/general/github_slack_sync.png"
+endCTA: "DiveIn"
+---
+
+Do you want reviewers to handle your pull request faster?
+
+Do you think that your code development sessions shouldn’t be disturbed by untimely notifications?
+
+At Axolo, we think two characteristics are most important for handling pull requests: attention and speed. A great code review should be done within a few hours after a request and be thoroughly processed.
+
+## What a Slack pull request reminder bot should provide
+
+In order to use the best tool to organize and remind engineers about code review, the ultimate Slack pull request bot must:
+notify only the right people (not a whole squad when a specific reviewer is requested),
+give context about the code review status, not only the last notification,
+send only the notifications that matter,
+notify at the right time and understand if engineers are available for review or not.
+
+In this article, we will detail how Axolo was built to become the ultimate Slack pull request reminder following the past four principles.
+
+### Notifying the right people
+
+Is your engineering team also divided into squads? If yes (hopefully), most engineers wouldn’t want to be notified by your pull requests if they’re not directly involved. A starting point for Axolo was engineers that complained about unnecessary notifications in Slack. They received notifications in a squad channel about pull requests from other teammates or from the GitHub bot that reminded the whole channel about some dangling code reviews.
+
+We decided to build Axolo focusing on that one specific complaint and create ephemeral channels where we only invite the pull request creator and its reviewers. That way, you only receive notifications that directly concern your work.
+
+### Giving context about the code review status
+
+A constant struggle I faced in my past experiences was to receive countless notifications about pull requests I created or I should review without any context. Meaning: if I asked for changes on a pull request, I would have been notified once for each answer of code review comment and usually the creator pinged me again (in DM vs. the Slack application) saying I could review the pull request again.
+
+For any of these notifications, in order to have the whole context of what my next actions should be, I needed to click on the link and grab some more information directly in GitHub. Context-switching was mentally tiring.
+The main objective of the single-purpose ephemeral channel was to be able to centralize every notification in one dedicated workspace and create the right place to talk about the code. Now, everything can be handled from a pull request channel: have the whole context, the conversation, and even accept the pull request with one click.
+
+### Sending only the notifications that matter
+
+An important aspect regarding notifications is to be able to subscribe to only the ones that matter to you. Regarding GitHub Action, Deployments, and notifications concerning the whole repository, Axolo was built to provide granularity and let engineers decide what notifications they want to receive.
+
+A workflow failed? Did someone cancel your deployment? Receive only your selected notifications concerning your pull request in their specific channel!
+
+### Pushing notifications at the right time
+
+If you sometimes feel that you receive too many unorganized notifications, this will be for you. What matters for a developer is to have dedicated and safe slots to be able to work effectively on his development. Receiving untimely notifications is a distraction and a mental load that we do not recommend.
+
+What we recommend is to have dedicated time for code reviews every day and you should be notified only during these slots, protecting the rest of your time for deep work sessions. With Axolo, you can create your own code reviewing slots and we’ll only invite you to code review workspaces when you’ll be available.
+
+## Axolo vs other Slack integration alternatives
+
+We wrote a dedicated article to highlight the characteristics of the top 5 pull request Slack integrations. But find now the main differences between Axolo and other tools;
+
+### The only collaborative integration
+
+Axolo is the only pull request integration focusing on collaborative features. We want to help engineers work together and have the right place to talk about a code.
+
+### We're protecting your development time
+
+Axolo knows when you're available for reviewing code and does not send untimely notifications to developers during development times. With a five minutes setup, you will be able to think about code review only when you want to!
+
+### Context around pull request, not only code comments
+
+We centralize the whole context around a pull request sending CI/CD and deployment notifications to the right people. You won't need to check your GitHub notifications or email and will receive your pull request notifications in their dedicated channels.
+
+Do you think that your engineering team can beat his historic code review time? Try Axolo for free to create specific code review workplaces and receive only the right notifications at the right time.

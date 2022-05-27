@@ -1,0 +1,94 @@
+---
+title: "Interview of Laurent Perrin, CTO @ Front"
+date: "2021-09-28"
+tags: ["engineering manager interview"]
+draft: false
+summary: "Engineering Manager Interview is a series of interviews launched by Axolo. Discover story behind Front creation, how they scaled their engineering team, and secured their technology."
+image: "/blog/static/images/engineering-manager/laurent_perrin_front.png"
+---
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/laurent_perrin_front.png"
+    alt="Laurent Perrin Front CTO"
+    style={{ maxWidth: "350px" }}
+  />
+</div>
+
+We had the chance to interview Laurent Perrin, co-founder & CTO @ [Front](https://front.com) to tell us the story behind the creation of the company, how to scale their engineering team, and secure their technology.
+
+### Can you tell us a bit about Front?
+
+Front is a communication platform, we help companies build asynchronous communication. For us, asynchronously is the best way to collaborate at scale.
+
+### How did you prioritize your work at the beginning?
+
+My only objective at the beginning was to explore our problem space quickly enough to allow us to remain convinced that this was a good use of our time. I needed to be working on the right things, right away and make our work last. For example, at first, we did not build any attachment features within the product, we were focusing on issues along the way. Then, a customer found out that they needed this specific feature and would churn without it, so that became a priority and we built it.
+
+For the first 5 months, Front did not have any database. Everything was kept in memory and all the data would be lost when you restarted the server. This was good enough for demos and allowed two things: 1. Be fast in getting customer feedback from our users. 2. Be flexible on the data structure since we didn’t have any.
+
+### How did you onboard your first users?
+
+Before our initial launch, we attracted the interest of three thousand potential users. We were letting them know that the waiting time would be long but we told them that if they would give us valuable reasons to use the product they could skip the line. This allowed us to select motivated users that gave us valuable feedback.
+
+We quickly realized that the innovation had stopped in the email sector because new ideas could not find a business model. So we needed to prove that people would be able to pay for our service and gradually implemented a paywall shortly after joining Y Combinator. Our first customer paid without us asking for it.
+
+### Tell us about your architecture at Front
+
+We use about 150 asynchronous microservices. Services can send fire-and-forget tasks to each other: they do not expect a response when sending a task. This is to avoid a problem affecting a service from propagating elsewhere.
+
+We also have a fallback infrastructure for clients receiving a volume higher than usual (like a spam campaign). Imagine one of our customers suddenly gets tons of emails per account, this can affect all of our other clients. So we designed fallback infrastructures so customers remain isolated from each other in all cases.
+
+Collaboration at scale can also get tricky. Because everyone can see what everyone is doing on a specific document. If you have 10 users in an organization, there is an order of 10^2 possible interactions. When you increase the number of clients to 1000 this can get hectic. Even if you increase your server capacity, the application running on users’ computers might not be able to process updates coming from all other users. Our solution analyzes and knows the state of each user in order to predict events we can safely discard. We are able to eliminate 90% of client-to-client chatter. It’s a trade-off of performance vs complexity: we monitor the volume we are comfortable with, and make investments to keep the system as easy as possible to troubleshoot.
+
+### How did you decide on how to prioritize your features?
+
+We built what we felt was right. This is a lot easier when you use your product every day. Even if we had great revenue growth at the end of Y Combinator, we needed a great ending for our batch. We saw that some fellow batchmates were struggling with SMS integration and decided to build the perfect tool in a (long) weekend for them. This was the beginning of larger companies in Front.
+
+### When did you start selling to enterprises?
+
+Early. The product was out for a couple of years already and we noticed that we had a better stickiness with a company with more than 20 team members. We saw that communication was causing employees at large companies to burn out and turnover, which made our system very valuable.
+
+### We've heard that you were fast in getting SOC II compliant, what did you do so well?
+
+We store a lot of sensitive data for our customers. We’ve always understood that we had a big responsibility and made early investments to make sure our system was compartmentalized and had audit trails. This meant that we were too far away from what SOC II requires when we started the process.
+
+Every control point in SOC II comes from a real incident that affected a real business. Once you realize that, it’s easier to create traction to introduce them ASAP.
+
+### When did you hire your first Head of Engineering?
+
+4 years ago, because we needed to separate the engineering teams. Most of our customers were in the US, but our biggest customers were in Europe. I moved back to France to open an office in Paris, so we hired Shane, our Head of Engineering to manage our team in San Francisco.
+
+### What keeps you awake at night around security?
+
+No one can claim that their system is unbreakable: there are more and more state-sponsored actors with almost unlimited resources. However, if a breach happens, you will need to explain exactly what happens to your customers: they'll be as interested in knowing how your system was broken as what data got out. You need to show that you took every reasonable step to make sure the data remained secure. It would be unthinkable today to explain that you forgot to close a port from a firewall while Cloud providers offer solutions like security groups to manage this at scale.
+
+### You have a bug bounty program, can you share a bit?
+
+A bug bounty program is a must today. We do pen-tests regularly, but the reaction time of bug bounty researchers is a lot faster. This is the best way to catch human errors.
+
+### Do you measure any engineering metrics? Are you strong on enforcing eng methodologies, best practices, etc across the company, or each team for its own?
+
+We have a one-week sprint at Front. We need to stay up to date with business priorities and understand current goals.
+
+We've had an independent data team from the beginning. These resources are spent to analyze our product efficiency. Seeing the impact of our work on the customer is rewarding for the whole team.
+
+### How did you hire your first engineers?
+
+One of the first pieces of advice we received at YC was to leverage our unfair advantage. Because of our FR-US structure, we were able to hire French engineers and relocate them to San Francisco. We were looking for engineers that were looking for a big adventure and hired our first 5 engineers that way. This helped get us to a point where we could start hiring from the local market on equal terms with other companies.
+
+At that time, Silicon Valley startups were so afraid to lose their engineers that they would often put them on a pedestal and give them privileges compared to other teams. For example, a product manager could work crazy hours to accommodate a team where some engineers showed up very early while others arrived much later. We’ve always tried to instill that everyone was equally important to the success of the company and rules should apply to everyone. We think now that this helped us grow a very strong sales team early on.
+
+### How did you manage a transatlantic team?
+
+There was some friction at the beginning of course. We had to create rules so everyone would feel included. An example is that everyone needs to have their camera on during Zoom meetings, or things that are not written do not exist. This really strengthened our culture and made us more resilient.
+
+### Could you talk about what your interactions with PMs are like?
+
+I spend a lot of time between product and engineering. You want the product to move in a direction that is supported by a sound architecture while also recognizing when it’s valuable to spend a lot of resources to make sure that your technical solution supports your vision.
+
+I try to hold our organization accountable for working on the right things. For example, users will often express the problems they experience as solutions (“I wish the product could do X”). It takes a lot of discipline to go back to what the problem actually is and sometimes realize that the right solution is something else entirely.
+
+For example, at Front we have rules for categorizing emails. Some of our companies have thousands of rules and will ask for tools to manage them at scale. We’ve realized that a better solution is to make our engine more expressive so they can do everything they need with a lot less.
+
+<CTABanner type="learn" />

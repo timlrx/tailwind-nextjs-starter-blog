@@ -14,9 +14,11 @@
   "dependencies": {
     "@fontsource/inter": "4.5.2",
     "@mailchimp/mailchimp_marketing": "^3.0.58",
+    "@segment/snippet": "^4.15.3",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.0",
+    "axios": "^0.27.2",
     "esbuild": "^0.13.13",
     "github-slugger": "^1.3.0",
     "gray-matter": "^4.0.2",
