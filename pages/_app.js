@@ -18,7 +18,7 @@ import * as snippet from "@segment/snippet"
 
 function renderSnippet() {
   const opts = {
-    apiKey: process.env.SEGMENT_API_KEY, // to do
+    apiKey: process.env.SEGMENT_API_KEY,
     // note: the page option only covers SSR tracking.
     // Page.js is used to track other events using `window.analytics.page()`
     page: true,

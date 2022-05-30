@@ -8,7 +8,6 @@ import siteMetadata from "@/data/siteMetadata"
 import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/ScrollTopAndComment"
 
-// todo
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/p/${fileName}`
 const discussUrl = (slug) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/p/${slug}`)}`

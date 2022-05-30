@@ -33,7 +33,6 @@ function WithImage({ image, date }) {
   )
 }
 
-// to do with image
 export default function Home({ posts }) {
   return (
     <>
