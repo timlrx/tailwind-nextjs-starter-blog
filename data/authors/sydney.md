@@ -1,6 +1,6 @@
 ---
 name: Sydney Cohen
-avatar: /static/images/sparrowhawk-avatar.jpg
+avatar: /blog/static/images/authors/sydney.jpg
 occupation: CTO @ Axolo.co
 company: Axolo
 twitter: https://twitter.com/chnsydney

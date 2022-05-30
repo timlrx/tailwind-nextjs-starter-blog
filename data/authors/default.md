@@ -1,9 +1,9 @@
 ---
 name: Arthur Coudouy
-avatar: /static/images/avatar.png
+avatar: /blog/static/images/authors/arthur.jpg
 occupation: CEO @ Axolo
 company: Axolo
-email: arhtur@axolo.co
+email: arthur@axolo.co
 twitter: https://twitter.com/arthurcoudouy
 linkedin: https://www.linkedin.com/in/arthurcoudouy/
 github: https://github.com/acoudouy
