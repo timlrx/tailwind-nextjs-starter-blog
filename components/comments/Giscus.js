@@ -41,6 +41,8 @@ const Giscus = () => {
     script.setAttribute("data-emit-metadata", metadata)
     script.setAttribute("data-input-position", inputPosition)
     script.setAttribute("data-lang", lang)
+    script.setAttribute("data-loading", "lazy")
+    script.setAttribute("data-input-position", "top")
     script.setAttribute("data-theme", commentsTheme)
     script.setAttribute("crossorigin", "anonymous")
     script.async = true
@@ -56,8 +58,9 @@ const Giscus = () => {
 
   // Reload on theme change
   useEffect(() => {
-    const iframe = document.querySelector("iframe.giscus-frame")
-    if (!iframe) return
+    // commenting these lines enable giscus to load upon page loading instead of clicking on "Load comments"
+    // const iframe = document.querySelector("iframe.giscus-frame")
+    // if (!iframe) return
     LoadComments()
   }, [LoadComments])
 
