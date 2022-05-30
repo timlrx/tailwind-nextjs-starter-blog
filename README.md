@@ -52,6 +52,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
 - [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
 - [reubence.com](https://reubence.com) - Reuben Rapose's Digital Garden
+- [axolo.co/blog](https://axolo.co/blog) - Engineering management news & axolo.co updates (with image preview for article in the home page) 
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
