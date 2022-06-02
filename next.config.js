@@ -66,6 +66,10 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ["pages", "components", "lib", "layouts", "scripts"],
   },
+  env: {
+    CRISP_WEBSITE_ID: process.env.CRISP_WEBSITE_ID,
+    SEGMENT_API_KEY: process.env.SEGMENT_API_KEY,
+  },
   async headers() {
     return [
       {
