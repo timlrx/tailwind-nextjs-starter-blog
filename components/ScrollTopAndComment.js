@@ -22,8 +22,9 @@ const ScrollTopAndComment = () => {
   }
   return (
     <div
-      className={`fixed right-8 bottom-8 mb-[60px] hidden flex-col gap-3 ${show ? "md:flex" : "md:hidden"
-        }`}
+      className={`fixed right-8 bottom-8 mb-[60px] hidden flex-col gap-3 ${
+        show ? "md:flex" : "md:hidden"
+      }`}
     >
       {siteMetadata.comment.provider && (
         <button
