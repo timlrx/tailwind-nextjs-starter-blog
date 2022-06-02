@@ -30,10 +30,6 @@ function renderSnippet() {
   return snippet.min(opts)
 }
 export default function App({ Component, pageProps }) {
-  console.log(
-    "id",
-    `window.$crisp=[];window.CRISP_WEBSITE_ID="${process.env.CRISP_WEBSITE_ID}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`
-  )
   return (
     <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
       <Head>
