@@ -5,13 +5,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *.youtube.com;
-  style-src 'self' 'unsafe-inline';
-  img-src * blob: data:;
-  media-src 'none';
-  connect-src *;
-  font-src 'self';
-  frame-src giscus.app
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *.crisp.chat *.youtube.com *.segment.com;
+  style-src 'unsafe-inline' *.crisp.chat;
+  img-src * blob: data: *.crisp.chat ;
+  media-src *.crisp.chat;
+  connect-src * *.crisp.chat  wss://client.relay.crisp.chat wss://stream.relay.crisp.chat;
+  font-src 'self' *.crisp.chat;
+  frame-src giscus.app  *.crisp.chat ;
 `
 
 const securityHeaders = [
