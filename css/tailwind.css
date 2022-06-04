@@ -33,7 +33,7 @@ a {
 }
 
 .titleContent {
-  @apply space-y-1 border-none border-gray-200 pb-4 text-center dark:border-gray-700;
+  @apply space-y-1 border-none border-gray-200 py-4 dark:border-gray-700;
 }
 
 h1.title {
@@ -53,15 +53,15 @@ h3.title {
 }
 
 .postNavigate a {
-  @apply block h-full rounded-md bg-slate-200 px-4 py-3 text-left;
+  @apply block h-full rounded-md border border-gray-200 px-4 py-3 text-left hover:border-blue-200 hover:bg-blue-50 hover:no-underline dark:bg-gray-800 dark:hover:bg-gray-700;
 }
 
-.postNavigate:last-child a {
+.postNavigate:nth-child(2) a {
   @apply text-right;
 }
 
 .prose a {
-  @apply font-normal no-underline underline-offset-2 hover:underline;
+  @apply font-normal text-blue-600 no-underline underline-offset-2 hover:underline;
 }
 
 .prose h1 {
@@ -81,19 +81,39 @@ h3.title {
 }
 
 .prose p {
-  @apply leading-7;
+  @apply leading-6;
 }
 
 .prose ul {
   @apply my-0;
 }
 
-.prose ul li {
-  @apply leading-7;
+.prose details {
+  @apply px-0;
+}
+
+.prose details ul li {
+  @apply leading-5;
+}
+
+.prose ol {
+}
+
+.prose ul li,
+.prose ol li {
+  @apply leading-5 marker:text-gray-800 dark:marker:text-gray-200;
 }
 
 .prose hr {
   @apply mx-auto max-w-3xl;
+}
+
+.prose code {
+  @apply rounded-md font-medium text-gray-900 dark:text-gray-200;
+}
+
+p > code {
+  @apply px-1.5 py-0.5;
 }
 
 .customLayout {
@@ -128,15 +148,15 @@ h3.title {
   @apply my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2;
 }
 
-.customLayout .static pre,
-.customLayout .remark-code-title {
+/* .customLayout .static pre,
+  .customLayout .remark-code-title {
   @apply negMargin box-content px-4 py-3;
-}
+} */
 
 .customLayout blockquote {
-  @apply negMargin border-l-4 bg-gray-50 font-normal dark:bg-gray-800;
+  @apply font-normal not-italic;
 }
 
 .customLayout blockquote p {
-  @apply border-0 px-0 py-4;
+  @apply border-0 px-0 py-0;
 }

@@ -11,13 +11,13 @@ const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
-        <header className="flex items-center justify-between p-4 xl:p-6">
+        <header className="container mx-auto flex max-w-3xl items-center justify-between py-8 xl:py-10">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle} className="hover:no-underline">
-              <div className="flex items-center justify-between hover:text-blue-700 dark:hover:fill-blue-500">
-                <div className="mr-3">
+              <div className="flex items-center justify-between bg-transparent hover:text-blue-700 dark:hover:fill-blue-500 dark:hover:text-primary-400">
+                {/* <div className="mr-3">
                   <Logo className="w-12 fill-current lg:w-16" />
-                </div>
+                </div> */}
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 text-2xl font-semibold sm:block">
                     {siteMetadata.headerTitle}
@@ -30,15 +30,17 @@ const LayoutWrapper = ({ children }) => {
           </div>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="p-1 font-medium text-gray-900 hover:text-blue-700 dark:text-gray-100 dark:hover:text-blue-500 sm:p-4"
-                >
-                  {link.title}
-                </Link>
-              ))}
+              {headerNavLinks.map((link) => {
+                return (
+                  <Link
+                    key={link.title}
+                    href={link.href}
+                    className="rounded-md p-1 font-medium text-gray-900 hover:bg-blue-50 hover:text-blue-700 hover:no-underline dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-blue-400 sm:p-4"
+                  >
+                    {link.title}
+                  </Link>
+                )
+              })}
             </div>
             <ThemeSwitch />
             <MobileNav />

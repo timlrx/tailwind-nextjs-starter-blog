@@ -18,6 +18,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         <div>
           <header>
             <div className="titleContent">
+              <div>
+                <PageTitle>{title}</PageTitle>
+              </div>
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
@@ -26,28 +29,25 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </dd>
                 </div>
               </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
             </div>
           </header>
           <div
-            className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0 "
+            className="pb-8 dark:divide-gray-700 xl:divide-y-0 "
             style={{ gridTemplateRows: 'auto 1fr' }}
           >
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+            <div className="dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+              <div className="prose max-w-none pt-2 pb-12 dark:prose-dark">{children}</div>
             </div>
-            <Comments frontMatter={frontMatter} />
+            {/* <Comments frontMatter={frontMatter} /> */}
             <footer>
               <div className="flex flex-col gap-2 text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && (
                   <div className="postNavigate">
                     <Link
                       href={`/blog/${prev.slug}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      className="text-primary-500 before:mr-2 before:no-underline before:content-['←'] hover:text-primary-600 dark:hover:text-primary-400"
                     >
-                      &larr; {prev.title}
+                      {prev.title}
                     </Link>
                   </div>
                 )}
@@ -55,9 +55,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   <div className="postNavigate">
                     <Link
                       href={`/blog/${next.slug}`}
-                      className="pl-1 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      className="text-primary-500 after:ml-2 after:no-underline after:content-['→'] hover:text-primary-600 dark:hover:text-primary-400"
                     >
-                      {next.title} &rarr;
+                      {next.title}
                     </Link>
                   </div>
                 )}

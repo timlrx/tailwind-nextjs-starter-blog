@@ -10,7 +10,7 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'say@hi.mg',
+  email: 'mail@galligan.xyz',
   github: 'https://github.com/galligan',
   twitter: 'https://twitter.com/mg',
   // facebook: 'https://facebook.com',

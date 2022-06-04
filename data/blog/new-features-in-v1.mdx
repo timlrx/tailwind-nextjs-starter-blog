@@ -127,6 +127,39 @@ export default function ExampleLayout({ frontMatter, children }) {
 }
 ```
 
+```ts
+const fastify = require('fastify')({ logger: { level: 'trace' } })
+const oauthPlugin = require('@fastify/oauth2')
+
+fastify.register(oauthPlugin, {
+  name: 'facebookOAuth2',
+  credentials: {
+    client: {
+      id: '<CLIENT_ID>',
+      secret: '<CLIENT_SECRET>',
+    },
+    auth: oauthPlugin.FACEBOOK_CONFIGURATION,
+  },
+  // register a fastify url to start the redirect flow
+  startRedirectPath: '/login/facebook',
+  // facebook redirect here after the user login
+  callbackUri: 'http://localhost:3000/login/facebook/callback',
+})
+
+fastify.get('/login/facebook/callback', async function (request, reply) {
+  const token = await this.facebookOAuth2.getAccessTokenFromAuthorizationCodeFlow(request)
+
+  console.log(token.access_token)
+
+  // if later you need to refresh the token you can use
+  // const newToken = await this.getNewAccessTokenUsingRefreshToken(token.refresh_token)
+
+  reply.send({ access_token: token.access_token })
+})
+```
+
+`fastify.facebook.oauth2`
+
 ### Configuring a blog post frontmatter
 
 Use the `layout` frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
@@ -286,6 +319,7 @@ A demo of a multiple authors post is shown in [Introducing Tailwind Nextjs Start
 ## Copy button for code blocks
 
 Hover over a code block and you will notice a GitHub-inspired copy button! You can modify `./components/Pre.js` to further customise it.
+
 The component is passed to `MDXComponents` and modifies all `<pre>` blocks.
 
 ## Line highlighting and line numbers
