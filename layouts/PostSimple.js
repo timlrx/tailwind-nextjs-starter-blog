@@ -40,9 +40,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </div>
             <Comments frontMatter={frontMatter} />
             <footer>
-              <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
+              <div className="flex flex-col gap-2 text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && (
-                  <div className="pt-4 xl:pt-8">
+                  <div className="postNavigate">
                     <Link
                       href={`/blog/${prev.slug}`}
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
@@ -52,8 +52,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </div>
                 )}
                 {next && (
-                  <div className="pt-4 xl:pt-8">
-                    Next post:
+                  <div className="postNavigate">
                     <Link
                       href={`/blog/${next.slug}`}
                       className="pl-1 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"

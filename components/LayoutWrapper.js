@@ -13,7 +13,7 @@ const LayoutWrapper = ({ children }) => {
       <div className="flex h-screen flex-col justify-between">
         <header className="flex items-center justify-between p-4 xl:p-6">
           <div>
-            <Link href="/" aria-label={siteMetadata.headerTitle}>
+            <Link href="/" aria-label={siteMetadata.headerTitle} className="hover:no-underline">
               <div className="flex items-center justify-between hover:text-blue-700 dark:hover:fill-blue-500">
                 <div className="mr-3">
                   <Logo className="w-12 fill-current lg:w-16" />

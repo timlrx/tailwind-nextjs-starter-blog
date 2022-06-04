@@ -14,6 +14,10 @@
   @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
+.footnotes a {
+  @apply no-underline;
+}
+
 .csl-entry {
   @apply my-5;
 }
@@ -24,20 +28,40 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
+a {
+  @apply underline-offset-2 hover:underline;
+}
+
 .titleContent {
   @apply space-y-1 border-none border-gray-200 pb-4 text-center dark:border-gray-700;
 }
 
 h1.title {
-  @apply text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14;
+  @apply text-3xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14;
 }
 
 h2.title {
-  @apply text-2xl font-bold leading-8 tracking-tight;
+  @apply text-2xl font-semibold leading-8 tracking-tight;
 }
 
 h3.title {
-  @apply text-2xl font-bold leading-8 tracking-tight;
+  @apply text-2xl font-semibold leading-8 tracking-tight;
+}
+
+.postNavigate {
+  @apply mt-4 flex-1 xl:mt-8;
+}
+
+.postNavigate a {
+  @apply block h-full rounded-md bg-slate-200 px-4 py-3 text-left;
+}
+
+.postNavigate:last-child a {
+  @apply text-right;
+}
+
+.prose a {
+  @apply font-normal no-underline underline-offset-2 hover:underline;
 }
 
 .prose h1 {
@@ -45,15 +69,19 @@ h3.title {
 }
 
 .prose h2 {
-  @apply mt-7 mb-5 text-4xl;
+  @apply mt-7 mb-5 text-3xl;
 }
 
 .prose h3 {
-  @apply mt-6 mb-3 text-3xl font-bold;
+  @apply mt-6 mb-3 text-2xl font-bold;
 }
 
 .prose h4 {
-  @apply mt-3 mb-2 text-2xl font-semibold;
+  @apply mt-3 mb-2 text-xl font-semibold;
+}
+
+.prose p {
+  @apply leading-7;
 }
 
 .prose ul {
@@ -61,7 +89,7 @@ h3.title {
 }
 
 .prose ul li {
-  @apply my-1;
+  @apply leading-7;
 }
 
 .prose hr {
@@ -92,10 +120,13 @@ h3.title {
   @apply p-0;
 }
 
-/* .customLayout table,
-.customLayout .flex {
-  @apply max-w-3xl;
-} */
+.gallery {
+  @apply -mx-2 flex flex-wrap overflow-hidden xl:-mx-12;
+}
+
+.gallery-2-wide {
+  @apply my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2;
+}
 
 .customLayout .static pre,
 .customLayout .remark-code-title {

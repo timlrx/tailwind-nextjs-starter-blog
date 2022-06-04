@@ -7,7 +7,7 @@ import formatDate from '@/lib/utils/formatDate'
 
 import NewsletterForm from '@/components/NewsletterForm'
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 10
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
@@ -31,25 +31,45 @@ export default function Home({ posts }) {
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
-              <li key={slug} className="relative py-8">
+              <li key={slug} className="py-12">
                 <article>
-                  <div className="space-y-1 xl:grid xl:items-baseline xl:space-y-0">
+                  <div className="space-y-2 xl:grid xl:items-baseline xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-normal leading-6 text-gray-500 dark:text-gray-400">
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date)}</time>
                       </dd>
                     </dl>
-                    <div>
-                      <h2 className="title">
+                    <div className="space-y-5">
+                      <div className="space-y-6">
+                        <div>
+                          <h2 className="title">
+                            <Link
+                              href={`/blog/${slug}`}
+                              className="text-gray-900 dark:text-gray-100"
+                            >
+                              {title}
+                            </Link>
+                          </h2>
+                          <div className="flex flex-wrap">
+                            {tags.map((tag) => (
+                              <Tag key={tag} text={tag} />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                          {summary}
+                        </div>
+                      </div>
+                      <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-400"
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          aria-label={`Read "${title}"`}
                         >
-                          <span className="absolute inset-0" aria-hidden="true"></span>
-                          {title}
+                          Read more &rarr;
                         </Link>
-                      </h2>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -59,14 +79,13 @@ export default function Home({ posts }) {
         </ul>
       </div>
       {posts.length > MAX_DISPLAY && (
-        <div className="relative mx-auto flex max-w-3xl justify-end border-t py-8 text-base font-medium leading-6">
+        <div className="mx-auto flex max-w-3xl justify-end pb-6 text-base font-medium leading-6">
           <Link
             href="/blog"
             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
-            <span className="absolute inset-0" aria-hidden="true"></span>
-            <h2 className="text-xl">All Posts &rarr;</h2>
+            All Posts &rarr;
           </Link>
         </div>
       )}
