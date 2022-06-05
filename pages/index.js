@@ -21,9 +21,58 @@ export default function Home({ posts }) {
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="mx-auto max-w-3xl divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="title">Latest</h1>
+          <h1 className="title">
+            <span>Hi, I'm </span>
+            <span className="block after:content-['_👋🏼'] sm:inline">Matt Galligan</span>
+            <span className="block text-lg font-normal leading-7 tracking-normal text-gray-500 dark:text-gray-400">
+              (spometimes just mg)
+            </span>
+          </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
+            Assorted writings and ramblings. Thoughts, resources, and essays about web3, product
+            design, and more.
+          </p>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            <span className="after:content-['_']">You can find me on </span>
+            <Link
+              rel="me"
+              className="font-semibold text-sky-500 underline"
+              href="https://twitter.com/mg"
+            >
+              Twitter
+            </Link>
+            <span className="after:content-['_']">, </span>
+            <Link
+              rel="me"
+              className="font-semibold text-purple-800 underline"
+              href="https://github.com/galligan"
+            >
+              GitHub
+            </Link>
+            <span className="after:content-['_']">, </span>
+            <Link
+              rel="me"
+              className="font-semibold text-red-500 underline"
+              href="https://reddit.com/u/mg0716"
+            >
+              Reddit
+            </Link>
+            <span className="after:content-['_']">, and </span>
+            <Link
+              rel="me"
+              className="font-semibold text-slate-500 underline"
+              href="https://app.ens.domains/name/galligan.eth/details"
+            >
+              Ethereum
+            </Link>
+            .
+          </p>
+        </div>
+      </div>
+      <div className="mx-auto max-w-3xl divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="-mt-3 pb-8">
+          <p className="text-lg leading-7 text-gray-500 after:content-['_👇🏼'] dark:text-gray-400 ">
+            Here's a few things I've written
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
