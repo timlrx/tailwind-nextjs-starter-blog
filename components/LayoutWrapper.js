@@ -16,7 +16,7 @@ const LayoutWrapper = ({ children }) => {
             <Link
               href="/"
               aria-label={siteMetadata.headerTitle}
-              className="hover:text-blue-600 hover:no-underline dark:hover:fill-blue-500 dark:hover:text-blue-700 dark:hover:text-primary-400"
+              className="hover:text-primary-600 hover:no-underline dark:hover:fill-primary-300 dark:hover:text-primary-700 dark:hover:text-primary-300"
             >
               <div className="flex items-center justify-between bg-transparent">
                 <div className="mr-3">

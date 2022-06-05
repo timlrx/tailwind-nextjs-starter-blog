@@ -32,6 +32,10 @@ a {
   @apply underline-offset-2 hover:underline;
 }
 
+* {
+  @apply border-gray-200 dark:border-gray-700;
+}
+
 .titleContent {
   @apply space-y-1 border-none border-gray-200 py-4 dark:border-gray-700;
 }
@@ -53,7 +57,7 @@ h3.title {
 }
 
 .postNavigate a {
-  @apply block h-full rounded-md border border-gray-200 px-4 py-3 text-left hover:border-blue-200 hover:bg-blue-50 hover:no-underline dark:bg-gray-800 dark:hover:bg-gray-700;
+  @apply block h-full rounded-md border border-gray-200 px-4 py-3 text-left hover:border-blue-200 hover:bg-blue-50 hover:no-underline dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800;
 }
 
 .postNavigate:nth-child(2) a {
@@ -61,7 +65,7 @@ h3.title {
 }
 
 .prose a {
-  @apply font-normal text-blue-600 no-underline underline-offset-2 hover:underline;
+  @apply font-normal text-primary-600 no-underline underline-offset-2 hover:underline;
 }
 
 .prose h1 {
@@ -164,10 +168,10 @@ p > code {
   @apply negMargin box-content px-4 py-3;
 } */
 
-.customLayout blockquote {
+.prose blockquote {
   @apply font-normal not-italic;
 }
 
-.customLayout blockquote p {
+.prose blockquote p {
   @apply border-0 px-0 py-0;
 }
