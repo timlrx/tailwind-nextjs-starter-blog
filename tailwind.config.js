@@ -168,5 +168,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwind-fontawesome'),
+    require('tailwindcss-safe-area'),
   ],
 }
