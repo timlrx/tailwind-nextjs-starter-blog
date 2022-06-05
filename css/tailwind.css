@@ -84,10 +84,6 @@ h3.title {
   @apply leading-6;
 }
 
-.prose ul {
-  @apply my-0;
-}
-
 .prose details {
   @apply px-0;
 }
@@ -96,12 +92,27 @@ h3.title {
   @apply leading-5;
 }
 
-.prose ol {
+.prose ol,
+.prose ul {
+  @apply ml-3 pl-5;
+}
+
+.prose ol > li > ol,
+.prose ul > li > ul {
+  @apply ml-0;
 }
 
 .prose ul li,
 .prose ol li {
-  @apply leading-5 marker:text-gray-800 dark:marker:text-gray-200;
+  @apply pl-1 leading-5 marker:text-gray-800 dark:marker:text-gray-200;
+}
+
+ul.contains-task-list {
+  @apply ml-2;
+}
+
+ul.contains-task-list li input {
+  @apply mr-1 rounded-sm;
 }
 
 .prose hr {
