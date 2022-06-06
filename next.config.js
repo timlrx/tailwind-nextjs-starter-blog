@@ -6,7 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *.crisp.chat *.youtube.com *.segment.com;
-  style-src 'unsafe-inline' *.crisp.chat;
+  style-src 'unsafe-inline' *.crisp.chat *.axolo.co axolo.co ;
   img-src * blob: data: *.crisp.chat ;
   media-src *.crisp.chat;
   connect-src * *.crisp.chat  wss://client.relay.crisp.chat wss://stream.relay.crisp.chat;
