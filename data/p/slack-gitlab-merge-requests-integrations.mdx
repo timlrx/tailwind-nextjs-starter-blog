@@ -25,7 +25,7 @@ Axolo makes a temporary Teams channel for every GitLab merge request, it will in
   />
 </div>
 
-Axolo is currently in private early-access for GitLab at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to take part in the Axolo Slack/GitLab integration!"]]) }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
+Axolo is currently in private early-access for GitLab at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to take part in the Axolo Slack/GitLab integration!"]]); window.$crisp.push(["set", "session:event", ["gitlab_request"]] }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
 
 <button
   onClick={() => {
@@ -35,6 +35,7 @@ Axolo is currently in private early-access for GitLab at the moment. Tell us <a 
       "message:send",
       ["text", "Hey, I want to take part in the Axolo Slack/GitLab integration!"],
     ])
+    window.$crisp.push(["set", "session:event", ["gitlab_request"]]
   }}
   style={{
     backgroundColor: "blue",
