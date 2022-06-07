@@ -11,7 +11,7 @@ const ContentSecurityPolicy = `
   media-src *.crisp.chat;
   connect-src * *.crisp.chat  wss://client.relay.crisp.chat wss://stream.relay.crisp.chat;
   font-src 'self' *.crisp.chat;
-  frame-src giscus.app  *.crisp.chat ;
+  frame-src giscus.app  *.crisp.chat *.youtube.com ;
 `
 
 const securityHeaders = [
