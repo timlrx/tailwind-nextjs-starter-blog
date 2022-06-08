@@ -11,6 +11,12 @@ const data = {
     link: "https://axolo.co",
     textButton: "Learn more",
   },
+  productivity: {
+    firstText: "Help your team be more productive",
+    secondText: "with Axolo.",
+    link: "https://axolo.co",
+    textButton: "Learn more",
+  },
 }
 
 function CTABanner({ type }) {
