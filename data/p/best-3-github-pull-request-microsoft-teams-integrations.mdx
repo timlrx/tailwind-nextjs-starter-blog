@@ -33,7 +33,7 @@ Axolo makes a temporary Teams channel for every GitHub pull request, it will inv
   />
 </div>
 
-Axolo is currently in private early-access for Microsoft Teams at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]); window.$crisp.push(["set", "session:event", ["microsoft_request"]] }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
+Axolo is currently in private early-access for Microsoft Teams at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]); window.$crisp.push(["set", "session:event", ["microsoft_request"]]) }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
 
 <button
   onClick={() => {
@@ -43,7 +43,7 @@ Axolo is currently in private early-access for Microsoft Teams at the moment. Te
       "message:send",
       ["text", "Hey, I want to try the Axolo Microsoft teams integration!"],
     ])
-    window.$crisp.push(["set", "session:event", ["microsoft_request"]]
+    window.$crisp.push(["set", "session:event", ["microsoft_request"]])
   }}
   style={{
     backgroundColor: "blue",
