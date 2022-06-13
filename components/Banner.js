@@ -25,11 +25,56 @@ function Banner() {
       </h1>
       <p className="my-2 text-lg lg:my-4 lg:text-2xl ">
         <TextLoop delay={1000} interval={2000}>
-          <span>CS + DS at UMich</span>
-          <span>SW Intern at Tektronix</span>
-          <span>❤️ Python and JavaScript</span>
-          <span>Interested in Web3</span>
-          <span>Graduating Spring 2023</span>
+          <RoughNotation
+            show
+            type="highlight"
+            animationDelay={500}
+            animationDuration={500}
+            iterations={1}
+            color={'silver'}
+          >
+            CS + DS at UMich
+          </RoughNotation>
+          <RoughNotation
+            show
+            type="highlight"
+            animationDelay={500}
+            animationDuration={500}
+            iterations={1}
+            color={'silver'}
+          >
+            SW Intern at Tektronix
+          </RoughNotation>
+          <RoughNotation
+            show
+            type="highlight"
+            animationDelay={500}
+            animationDuration={500}
+            iterations={1}
+            color={'silver'}
+          >
+            ❤️ Python and JavaScript
+          </RoughNotation>
+          <RoughNotation
+            show
+            type="highlight"
+            animationDelay={500}
+            animationDuration={500}
+            iterations={1}
+            color={'silver'}
+          >
+            Interested in Web3
+          </RoughNotation>
+          <RoughNotation
+            show
+            type="highlight"
+            animationDelay={500}
+            animationDuration={500}
+            iterations={1}
+            color={'silver'}
+          >
+            Graduating Spring 2023
+          </RoughNotation>
         </TextLoop>{' '}
       </p>
       <p className="font-light lg:text-xl">
