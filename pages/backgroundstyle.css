@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400,600') .more-pens
+    position: fixed left: 20px bottom: 20px z-index: 10 font-family: 'Montserrat' font-size: 12px
+    a.white-mode,
+  a.white-mode: link, a.white-mode: visited,
+  a.white-mode: active font-family: 'Montserrat' font-size: 12px text-decoration: none background:
+    #212121 padding: 4px 8px color: #f7f7f7 &: hover background: #edf3f8 color: #212121 body margin:
+    0 padding: 0 overflow: hidden .background position: absolute left: 0 top: 0 width: 100% height:
+    100% background: #edf3f8 background: -moz-radial-gradient(
+      center,
+      ellipse cover,
+      #edf3f8 1%,
+      #dee3e8 100%
+    ) background: -webkit-radial-gradient(center, ellipse cover, #edf3f8 1%, #dee3e8 100%)
+    background: radial-gradient(ellipse at center, #edf3f8 1%, #dee3e8 100%) filter: progid:
+    DXImageTransform.Microsoft.gradient(
+      startColorstr= '#edf3f8',
+      endColorstr= '#dee3e8',
+      GradientType=1
+    )
+    .title z-index: 10 position: absolute left: 50% top: 40% transform: translateX(-50%)
+    translateY(-50%) font-family: 'Montserrat' text-align: center width: 60% h1 position: relative
+    color: #000000 font-weight: 300 font-size: 46px padding: 0 margin: 0 line-height: 1 h2
+    font-weight: 600 font-size: 60px padding: 0 margin: 0 line-height: 1 h3 font-weight: 200
+    font-size: 20px padding: 0 margin: 0 line-height: 2 color: #5e7283 letter-spacing: 2px p
+    font-weight: 200 font-size: 16px color: #5e7283 .pentahedron position: absolute width: 100%
+    height: 100% fill: #3e82f7 .point fill: #8491a3 .rhombus fill: #2da94f stroke: #2da94f .x fill:
+    #fdbd00 .circle fill: #ed412d svg display: block width: 30px height: 30px position: absolute
+    transform: translateZ(0px);

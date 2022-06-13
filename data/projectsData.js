@@ -1,19 +1,15 @@
 const projectsData = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'Personal Website V1',
+    description: `This website! Learn about V1 of my personal website and what exciting features are planned for future releases.`,
+    // imgSrc: '/static/images/google.png',
+    // href: 'https://shouryannikam.me',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'OpenCV Rock-Paper-Scissors',
+    description: `When you really love playing rock-paper-scissors, why not make a game that can run directly in the browser (or locally as a .py script)!`,
+    // imgSrc: '/static/images/time-machine.jpg',
+    // href: '/blog/the-time-machine',
   },
 ]
 
