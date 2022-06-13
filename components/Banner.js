@@ -31,7 +31,7 @@ function Banner() {
             animationDelay={500}
             animationDuration={500}
             iterations={1}
-            color={'silver'}
+            color={'#50C878'}
           >
             CS + DS at UMich
           </RoughNotation>
@@ -41,7 +41,7 @@ function Banner() {
             animationDelay={500}
             animationDuration={500}
             iterations={1}
-            color={'silver'}
+            color={'#50C878'}
           >
             SW Intern at Tektronix
           </RoughNotation>
@@ -51,7 +51,7 @@ function Banner() {
             animationDelay={500}
             animationDuration={500}
             iterations={1}
-            color={'silver'}
+            color={'#50C878'}
           >
             ❤️ Python and JavaScript
           </RoughNotation>
@@ -61,7 +61,7 @@ function Banner() {
             animationDelay={500}
             animationDuration={500}
             iterations={1}
-            color={'silver'}
+            color={'#50C878'}
           >
             Interested in Web3
           </RoughNotation>
@@ -71,7 +71,7 @@ function Banner() {
             animationDelay={500}
             animationDuration={500}
             iterations={1}
-            color={'silver'}
+            color={'#50C878'}
           >
             Graduating Spring 2023
           </RoughNotation>
