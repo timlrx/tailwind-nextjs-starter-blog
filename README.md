@@ -47,7 +47,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
 - [kittan.ru](https://www.kittan.ru/) - Kittanb's personal blog about linux ([source code](https://github.com/kittanb/blog))
 - [nchristopher.me](https://nchristopher.me) - Nicholas Christopher's personal website and blog ([source code](https://github.com/nchristopher/blog))
-- [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog
+- [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog ([source code](https://github.com/dlarroder/dalelarroder))
 - [devahoy.com](https://devahoy.com) - Chai's personal blog (Thai language)
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
 - [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
