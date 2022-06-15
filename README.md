@@ -55,6 +55,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [reubence.com](https://reubence.com) - Reuben Rapose's Digital Garden
 - [axolo.co/blog](https://axolo.co/blog) - Engineering management news & axolo.co updates (with image preview for article in the home page) 
 - [musing.vercel.app](https://musing.vercel.app/) - Parth Desai's personal blog ([source code](https://github.com/pycoder2000/blog))
+- [on-your-mental.vercel.app](https://on-your-mental.vercel.app/) - [Curtis Warcup's](https://github.com/Cwarcup) website for the On Your Mental Podcast ([source code](https://github.com/Cwarcup/on-your-mental))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
