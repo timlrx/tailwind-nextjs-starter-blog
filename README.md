@@ -53,7 +53,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
 - [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
 - [reubence.com](https://reubence.com) - Reuben Rapose's Digital Garden
-- [axolo.co/blog](https://axolo.co/blog) - Engineering management news & axolo.co updates (with image preview for article in the home page) 
+- [axolo.co/blog](https://axolo.co/blog) - Engineering management news & axolo.co updates (with image preview for article in the home page)
 - [musing.vercel.app](https://musing.vercel.app/) - Parth Desai's personal blog ([source code](https://github.com/pycoder2000/blog))
 - [on-your-mental.vercel.app](https://on-your-mental.vercel.app/) - [Curtis Warcup's](https://github.com/Cwarcup) website for the On Your Mental Podcast ([source code](https://github.com/Cwarcup/on-your-mental))
 
@@ -102,7 +102,16 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. TypeScript and Contentlayer (alpha)
+1. Try installing the starter using the new [Pliny project CLI](https://github.com/timlrx/pliny):
+
+```bash
+npm i -g @pliny/cli
+pliny new --template=starter-blog my-blog
+```
+
+It supports the updated version of the blog with Contentlayer, optional choice of TS/JS and different package managers as well as more modularized components which will be the basis of the template going forward.
+
+Alternatively to stick with the current version, TypeScript and Contentlayer:
 
 ```bash
 npx degit 'timlrx/tailwind-nextjs-starter-blog#contentlayer'
@@ -112,12 +121,6 @@ or JS (official support)
 
 ```bash
 npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
-```
-
-or with TypeScript (community support)
-
-```bash
-npx degit 'timlrx/tailwind-nextjs-starter-blog#typescript'
 ```
 
 2. Personalize `siteMetadata.js` (site related information)
