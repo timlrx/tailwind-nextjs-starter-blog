@@ -1,16 +1,16 @@
 ---
-name: Tails Azimuth
+name: Sero
 avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
+occupation: Web3 Software Engineer
+company: Serotonin Designs
+email: admin@yserotonindesigns.com
 twitter: https://twitter.com/Twitter
 linkedin: https://www.linkedin.com
 github: https://github.com
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+I am a Web-3 Software Engineer, podcaster and writer with a working presence in the United States, United Kingdom and Poland. I've had experience working on launching startups, upgrading existing web infrastructure and consulting for Public-Private-relation and social impact organizations.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+I also work with online creators to help protect their public image by removing stolen content, doxxed information and fake accounts from search engines, social media applications and malicious websites.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+When I'm not working on projects I like to educate myself on computer science and blockchain technology, hosting local meetups, working out, and spending time with my family.
