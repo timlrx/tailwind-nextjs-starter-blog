@@ -11,6 +11,8 @@ GitHub bots, sometimes referred to as GitHub Apps, are essentially bots that sup
 
 In this article, we will explain how to create a GitHub bot without using any specific language (you should be able to do it even if you work in Java, who knows?) and using the Probot framework on Node.js. But first, we need to create (or use an existing) Slack app. If you have already your Slack app ready, you can jump to the webhook part.
 
+If you want to develop and maintain your own Slack bots, this is the right place! But if you prefer to use a turnkey solution, you should take a look at [Axolo](https://axolo.co)!
+
 <TOCInline toc={props.toc} toHeading={3} asDisclosure />
 
 ## Creation of your Slack app
@@ -108,9 +110,9 @@ Go on to the "Permissions & events" tab to select which webhooks you would like 
 
 Be sure to have your `/GitHub/webhooks` route open to external parties without authentication. For each action on a pull request, GitHub will now send a webhook there.
 
-We now need to understand which webhook we receive to react appropriately. In Javascript, we can do the following in the controller receiving the webhook:
+We now need to understand which webhook we receive to react appropriately. In Javascript, we can do the following in the controller receiving the webhook (I am using Strapi, an open-source headless CMS):
 
-```
+```Javascript
     const {
       body,
       body: { action },
@@ -140,7 +142,7 @@ We can find the information we need in the body we have received from GitHub. Un
 
 In Javascript, my code looks like this:
 
-```
+```Javascript
   // create your notification text
   const pullRequestSlackLink = `<https://GitHub.com/${organization.login}/${repository.name}/${pullRequest.number}|PR ${pullRequest.number}`
 
@@ -160,22 +162,25 @@ Probot is a framework for creating GitHub Apps in Node.js and may be found at TO
 
 A Node.js module that exports a function is all that a Probot app is:
 
-```
+```Javascript
 //index.js
 module.exports = robot => {
-  // robot is an Express App
-  // our code here
+// robot is an Express App
+// our code here
 }
+
 ```
 
 The robot parameter is an instance of the Application and gives us access to all of the GitHub power.
 
-```
+```Javascript
+
 module.exports = robot => {
-  robot.on('issues.opened', async context => {
-    // A new issue was opened, what should we do with it?
-  })
+robot.on('issues.opened', async context => {
+// A new issue was opened, what should we do with it?
+})
 }
+
 ```
 
 When something interesting occurs on GitHub that our app wishes to be informed about, the robot.on will keep an eye out for any webhook events produced by GitHub and tell us of them.
@@ -199,6 +204,7 @@ Step 4: Enter the command "npx create-probot-app app name" in the console to beg
 Step 5: At this point, respond to the setup-related questions. This configuration is quite straightforward:
 
 ```
+
 This will ask a series of questions about our app, which should look something like this:
 Let's create a Probot app!
 ? App name: my-first-GitHub-app
@@ -209,10 +215,10 @@ Let's create a Probot app!
 ? Repository name: github-slack-bot
 ? Which template would you like to use? (Use arrow keys)
 ❯ basic-js
-  basic-ts (use this one for TypeScript support)
-  checks-js
-  git-data-js
-  deploy-js
+basic-ts (use this one for TypeScript support)
+checks-js
+git-data-js
+deploy-js
 Finished scaffolding files!
 
 Installing dependencies. This may take a few minutes...
@@ -220,18 +226,19 @@ Installing dependencies. This may take a few minutes...
 Successfully created my-first-GitHub-app.
 
 Begin using your app with:
-  cd my-first-GitHub-app
-  npm start
+cd my-first-GitHub-app
+npm start
 
 View your app's README for more usage instructions.
 
 Visit the Probot docs:
-  https://probot.GitHub.io/docs/
+https://probot.GitHub.io/docs/
 
 Get help from the community:
-  https://probot.GitHub.io/community/
+https://probot.GitHub.io/community/
 
 Enjoy building your Probot app!
+
 ```
 
 Here are the most important files we'll use today:
@@ -241,6 +248,8 @@ Here are the most important files we'll use today:
 ⚠ You should never make this file public.
 
 - index.js: This is where the app starts.
+
+<CTABanner type="try" />
 
 ### Making your GitHub app
 
@@ -282,7 +291,7 @@ You could imitate the same event when developing the app so that you can redeliv
 
 So here is the example code to react upon a new review request:
 
-```
+```Javascript
 module.exports = (robot) => {
   robot.on("pull_request.review_requested", async (context) => {
     const {
