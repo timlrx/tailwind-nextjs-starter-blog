@@ -10,12 +10,17 @@ summary: ""
 
 - Created a page for each analytics where we can see each pull requests that were taken into account with specific data.
 - Allowing some bots to send messages in pull request channels.
+- Label manager is now operationnal! Define Axolo behavior upon specific GitHub labels.
 
 ## 🔨 Improvements
 
 - Reminders are now computed upon inactivity of business days only.
 - Added tips in the onboarding Slack message about Axolo home and the `/lgtm` command.
+- Taking into account only merged PR in the PR length graph.
 
 ## 🐞 Fixes
+
+- Bug line number in code review comment where Axolo was using the wrong line number (this line within the review instead of within the entire file)
+- Fixed the invite later using engineers' timeslots for code reviews.
 
 ## 📖 Documentation
