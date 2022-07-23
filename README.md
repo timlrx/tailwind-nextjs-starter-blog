@@ -29,7 +29,6 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more.
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
-- [the all JavaScript Blog](https://the-all-javascript-blog.vercel.app/) - a JavaScript enlightenment blog uses this
 - [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
 - [ghali.dev](https://ghali.dev) - Cyril's Blog
 - [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog
