@@ -29,7 +29,6 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [thvu.dev](https://thvu.dev) - Added `mdx-embed`, view count, reading minutes and more.
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
-- [the all JavaScript Blog](https://the-all-javascript-blog.vercel.app/) - a JavaScript enlightenment blog uses this
 - [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
 - [ghali.dev](https://ghali.dev) - Cyril's Blog
 - [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog
@@ -57,6 +56,9 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [musing.vercel.app](https://musing.vercel.app/) - Parth Desai's personal blog ([source code](https://github.com/pycoder2000/blog))
 - [onyourmental.com](https://www.onyourmental.com/) - [Curtis Warcup's](https://github.com/Cwarcup) website for the On Your Mental Podcast ([source code](https://github.com/Cwarcup/on-your-mental))
 - [cwarcup.com](https://www.cwarcup.com/) - Curtis Warcup's personal website and blog ([source code](https://github.com/Cwarcup/personal-blog).
+- [ondiek-elijah.me](https://www.ondiek-elijah.me/) - Ondiek Elijah's website and blog ([source code](https://github.com/Dev-Elie/ondiek-elijah)).
+- [jmalvarez.dev](https://www.jmalvarez.dev/) - José Miguel Álvarez's personal blog ([source code](https://github.com/josemiguel-alvarez/nextjs-blog))
+- [justingosses.com](https://justingosses.com/) - Justin Gosses's personal website and blog ([source code](https://github.com/JustinGOSSES/justingosses-website))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -247,4 +249,4 @@ Using the template? Support this effort by giving a star on GitHub, sharing your
 
 ## Licence
 
-[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/master/LICENSE) © [Timothy Lin](https://www.timrlx.com)
+[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/master/LICENSE) © [Timothy Lin](https://www.timlrx.com)
