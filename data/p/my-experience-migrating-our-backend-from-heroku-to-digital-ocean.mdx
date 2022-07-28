@@ -132,11 +132,7 @@ I personally was hesitant and decided that I probably won’t change cloud provi
 💡
 **Here is what someone from Digger said about multicloud:**
 
-"_The main diff is that Digger actually generates infra-as-code (Terraform) that can be fully customised and extended if needed. Unlike cloud66 and similar “heroku in your aws account” offerings._
-
-_with Cloud66, Setops, Porter, Qovery, FlightControl, Zeet, RunX, Atomized and other similar products you are constrained by what their UI offers and have no control over your infrastructure. This stops working surprisingly quickly_
-
-_with Digger you are getting a proper DevOps foundation without having to build it by hand. and whenever you reach the limits of a PaaS-like UX you just add your custom bits on top."_
+> The main diff is that Digger actually generates infra-as-code (Terraform) that can be fully customised and extended if needed. Unlike cloud66 and similar “heroku in your aws account” offerings. with Cloud66, Setops, Porter, Qovery, FlightControl, Zeet, RunX, Atomized and other similar products you are constrained by what their UI offers and have no control over your infrastructure. This stops working surprisingly quickly. with Digger you are getting a proper DevOps foundation without having to build it by hand. and whenever you reach the limits of a PaaS-like UX you just add your custom bits on top.
 
 </aside>
 
@@ -197,7 +193,6 @@ It still works but takes longer to set up.
 
 Concerning pipeline, we have two servers now on DO. One who matches the staging branch, one who matches the master branch. So far I haven’t seen an easy way to set up a deployment pipeline for each PR on DO that comes close to what Heroku offers in that regards.
 
-
 ### Heroku vs DO Support? Hatch vs tickets
 
 Heroku has always been very responsive concerning tickets.
@@ -214,6 +209,6 @@ Heroku Preboot feature is by default on DO: <a target="_blank" rel="noopener nor
 
 ### Two other alternatives, that <a target="_blank" rel="noopener noreferrer nofollow" href="https://twitter.com/CabelloMania/"> Cabello Mania </a> mentionned:
 
-“For Heroku like experiences I have been considering Digital Ocean, [Render.com](http://render.com/), [Fly.io](http://fly.io/), none have matched Heroku plug and play, Digital Ocean Apps never built my app using git push and buildpacks, it always crashed. [Render.com](http://render.com/) worked but I had to migrate to Docker, that added a few minutes to build time, trying to keep a Ruby Docker image small is also tricky. [Render.com](http://render.com/) fails to work on SSH for me for a month and I've been going back & forth with support. [Fly.io](http://fly.io/) looks promising but I can't rails console due to my Heroku app having multiple buildpacks.”
+> For Heroku like experiences I have been considering Digital Ocean, [Render.com](http://render.com/), [Fly.io](http://fly.io/), none have matched Heroku plug and play, Digital Ocean Apps never built my app using git push and buildpacks, it always crashed. [Render.com](http://render.com/) worked but I had to migrate to Docker, that added a few minutes to build time, trying to keep a Ruby Docker image small is also tricky. [Render.com](http://render.com/) fails to work on SSH for me for a month and I've been going back & forth with support. [Fly.io](http://fly.io/) looks promising but I can't rails console due to my Heroku app having multiple buildpacks.
 
 Have you experienced a similar migration or are you looking to migrate in a similar way? Feel free to comment or react below in the comment section.
