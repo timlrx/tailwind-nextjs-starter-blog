@@ -1,0 +1,214 @@
+---
+title: My experience migrating our backend from Heroku to Digital Ocean
+date: "2022-07-28"
+tags: ["Software-development", ""]
+draft: false
+summary: "All in all, took us 2 days to migrate from Heroku to Digital Ocean, and we went from spending 560$ to 67$ per month for similar type of servers. We made some trade offs:"
+images: []
+layout: PostLayout
+canonicalUrl: migrating-backend-server-from-heroku-to-digital-ocean
+image: "/blog/static/images/do/herokudo.jpg"
+---
+
+## TLDR:
+
+All in all, took us 2 days to migrate from Heroku to Digital Ocean, and we went from spending 560\$ to 67\$ per month for similar type of servers. We made some trade offs:
+
+- Monitoring server Dashboard UI is not as good
+- Logs are more explicit on Heroku
+- DO Build time is much slower
+- Pipeline for PR reviews will be harder to set up
+- Add ons take more time to set up
+
+<br></br>
+
+## Our setup:
+
+- NodeJS server
+- MongoDB database
+- Redis using Bull
+- 10/20 Cron jobs per day.
+- Sentry for error monitoring
+- Logtail for logs
+
+<br></br>
+
+## Reasons for migrating:
+
+### What we do
+
+Axolo is an app that creates a Slack channel for every GitHub/ Gitlab pull/merge request. We subcribe to webhooks from GitHub, GitLab and Slack. As of today those webhooks represent around 30k http request per day on our server.
+
+### Scaling our servers
+
+We’ve been scaling our servers on Heroku, both vertically (upgrading our server ram) and Horizontally (adding dynos). Every once in a while a new big client comes in and we need to upgrade our server and optimize our code.
+
+Upgrading servers and dyno on Heroku becomes pricey. We’ve been running out of Heroku credits for 6+ months and we can see the servers cost increasing every month as the traffic grows. Here is a summary of our expenses on Heroku just for that one server:
+
+## Our costs on Heroku before the migration
+
+| Items                                                  | Price          |
+| ------------------------------------------------------ | -------------- |
+| 3x Standard-2x dynos (1 Gb ram) at 50\$ each           | 150\$          |
+| Heroku-Redis addon(250Mb memory, 200 connection limit) | 60\$ per month |
+| Logtail (8 day logs/ 5GB)                              | 0\$            |
+| Total                                                  | 210\$          |
+
+Without a database this comes down to 210\$ per month. This isn’t much but as we are growing I know we will have to switch our Heroku server to a Performance-M Dyno with 2.5GB Ram. Those are priced at 250\$ each. So that means that the next time we want to scale vertically our Heroku cost will raise from 210\$ to 560\$ (considering we have 2 dynos at 250\$ + 1 redis addon at 120\$).
+
+So pricing and scaling our server was the main reason we looked out for a migration of our cloud provider.
+
+## Building on Digital ocean
+
+Digital ocean have a whole list of what you can build on top of their cloud providers. Droplet for example allows you to create a virtual machine in a few steps. I wanted to build and migrate my apps on something that was as easy and straight-forward as Heroku so I choosed to build what DO (digital ocean) calls apps, with a fully managed infrastructure, see <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.digitalocean.com/products/app-platform" > Digital Ocean App platform</a>.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderRadius: "0.5rem",
+  }}
+>
+  <Image
+    width={3044 / 5}
+    height={1510 / 5}
+    className="rounded-xl"
+    src="/blog/static/images/do/DropDown.jpg"
+    alt="Dropdown digital ocean"
+  />
+</div>
+
+Creating an app on DO was as easy as building on top of Heroku. I’ve personally linked our GitHub repository and added all of our environment variables.
+
+Our MongoDb connected seamlessly. As for the Redis Database, I’ve decided to create a new one on DO, which was also straight-forward.
+
+### Cron jobs on DO
+
+Unlike Heroku Cron jobs are not natively handled in DO, and I havn’t seen any DO addons doing the job. We’ve considered a few options. Building our own droplet with a Linux server to send out cron jobs or look for a service that provides this service. While searching I found <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.easycron.com">EasyCron</a>.
+
+## Migrating
+
+### Starting our migration with our staging environment
+
+Before migrating fully we migrated our Staging environment and tested all of our core services. This seemed to worked fine and I decided it was time to migrate our production environment.
+
+### Migrating our production server on the weekend
+
+Axolo is a tool teams use mostly on week days. We decided to migrate on a Saturday, this would leave us enough time to check everyting and fix any incoming bugs throughout the week end if anything arises.
+
+Our production app was ready and we just had to change our DNS to point from our Heroku to Digital Ocean. The DNS transfer took about 15 minutes, some of the requests were progressively going to DO until 100% was on them.
+
+### The bugs we encountered:
+
+- We created this production app in a DO project who was meant to be for staging, thus the NODE_ENV environment variable “Staging” was passed and we didn’t get analytics and sentry errors for a full day. It wasn’t completely explicit but thankfully we found soon enough.
+- Cron jobs: we didn’t deleted the Heroku cron jobs even though we turned off the dyno and put the app on maintenance. As we did set up EasyCron we were receiving cron jobs twice for each of them which led to unwanted notifications for our users.
+
+## Impact on costs and servers
+
+We ended up upgrading our servers on DO to two 2GB ram servers (25\$ each) and a 1GB ram 10GB SSD Redis data base (15\$).
+The total costs we are paying now for our production backend server on DO is now 65\$/month. The equivalent on Heroku would have cost us 560\$/month. (With a less performant and less disk space redis server).
+
+| Heroku                          | Digital Ocean                            |
+| ------------------------------- | ---------------------------------------- |
+| **Specifications**              |                                          |
+| 2.5GB Ram (250\$ each) => 500\$ | 2GB Ram Servers x2 (25\$ each) => 50\$   |
+| 250mb Redis Addon => 60\$       | 1GB Ram 10 GB SSD Redis database => 15\$ |
+| **Total Costs**                 |                                          |
+| **560\$/month**                 | **65\$/month**                           |
+
+See the following for some notes and tradeoff we found out through this migration.
+
+## Notes and tradeoffs on Digital Ocean vs Heroku
+
+### Multicloud
+
+While doing my research on migrating and which cloud providers to take, Digital Ocean often came as a reliable cheap cloud providers. But the question to move from Heroku to possibly any cloud arises. Some YC CTO folks (<a target="_blank" rel="noopener noreferrer nofollow" href="https://twitter.com/bryanbeshore?lang=fr">Bryan Beshore</a> and others) mentioned to me Cloud66 and Digger. Those services allow you to have one setup for a list of cloud providers. This could potentially save you a lot of time and money if you are looking to switch from one provider to another. Especially if you have credits from each of them, you could potentially run your server for free for years.
+
+I personally was hesitant and decided that I probably won’t change cloud providers for at least another two years so I will reconsider this option in a while.
+
+<aside>
+💡
+**Here is what someone from Digger said about multicloud:**
+
+> The main diff is that Digger actually generates infra-as-code (Terraform) that can be fully customised and extended if needed. Unlike cloud66 and similar “heroku in your aws account” offerings. with Cloud66, Setops, Porter, Qovery, FlightControl, Zeet, RunX, Atomized and other similar products you are constrained by what their UI offers and have no control over your infrastructure. This stops working surprisingly quickly. with Digger you are getting a proper DevOps foundation without having to build it by hand. and whenever you reach the limits of a PaaS-like UX you just add your custom bits on top.
+
+</aside>
+
+### Dashboard UI with insights
+
+Heroku dashboard is colorful and I find it insightful. It’s easy to see if there is something wrong, if some of your http requests don’t go through for example it’s all red. It’s been more than a week now and I’m having a hard time finding similar information on the DO insight tab. (See screenshots).
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderRadius: "0.5rem",
+  }}
+>
+  <Image
+    width={3534 / 5}
+    height={1762 / 5}
+    className="rounded-xl"
+    src="/blog/static/images/do/insights.jpg"
+    alt="Insights digital ocean vs Heroku"
+  />
+</div>
+
+### Logs
+
+Heroku logs on my CLI come out colorful and are easy to read and understand. For example if a request took anormally long (more than 400ms) it will be highlighted in yellow. Those details makes it easier to read your logs while on the go.
+
+On DO, logs are plain white on black, and make it much harder to understand what’s going on.
+
+We’ve been using both Logtail and Heroku cli logs in the past, but concerning our recent move I believe we will use Logtail more than before now that we are on DO.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderRadius: "0.5rem",
+  }}
+>
+  <Image
+    width={1697 / 3}
+    height={802 / 3}
+    className="rounded-xl"
+    src="/blog/static/images/do/logs.jpg"
+    alt="Logs Cli digital ocean vs Heroku"
+  />
+</div>
+
+### Add ons
+
+Heroku add ons are exhaustive and plug-and-play, they usually work out of the box with no set up required. DO add ons are less exhaustive and the one I had to used I had to create an account separately each time.
+It still works but takes longer to set up.
+
+### Pipeline PR Reviews.
+
+Concerning pipeline, we have two servers now on DO. One who matches the staging branch, one who matches the master branch. So far I haven’t seen an easy way to set up a deployment pipeline for each PR on DO that comes close to what Heroku offers in that regards.
+
+### Heroku vs DO Support? Hatch vs tickets
+
+Heroku has always been very responsive concerning tickets.
+DO: We’ve applied for the Hatch startup program (who offers 15k\$ credits for a year) and it took a whole month to get the credits. Other than that support was responsive and took less than a day to get responses from someone.
+
+### DO Build time
+
+This is something I will need to get used to, DO build time takes an easy 8 minutes where Heroku usually took 2minutes for our build. It isn’t much but feels like an eternity when you are waiting to test your new feature / fixing a bug on production.
+There is an optionnal beta feature that I havn't tried to reduce this time that I havn't tried.
+
+### Preboot:
+
+Heroku Preboot feature is by default on DO: <a target="_blank" rel="noopener noreferrer nofollow" href="https://devcenter.heroku.com/articles/preboot">preboot</a>. Preboot allows you to reduce downtime when updating your server's code to production.
+
+### Two other alternatives, that <a target="_blank" rel="noopener noreferrer nofollow" href="https://twitter.com/CabelloMania/"> Cabello Mania </a> mentionned:
+
+> For Heroku like experiences I have been considering Digital Ocean, [Render.com](http://render.com/), [Fly.io](http://fly.io/), none have matched Heroku plug and play, Digital Ocean Apps never built my app using git push and buildpacks, it always crashed. [Render.com](http://render.com/) worked but I had to migrate to Docker, that added a few minutes to build time, trying to keep a Ruby Docker image small is also tricky. [Render.com](http://render.com/) fails to work on SSH for me for a month and I've been going back & forth with support. [Fly.io](http://fly.io/) looks promising but I can't rails console due to my Heroku app having multiple buildpacks.
+
+Have you experienced a similar migration or are you looking to migrate in a similar way? Feel free to comment or react below in the comment section.
