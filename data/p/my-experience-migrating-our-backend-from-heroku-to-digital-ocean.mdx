@@ -9,7 +9,7 @@ image: "/blog/static/images/do/herokudo.jpg"
 
 ## TLDR:
 
-All in all, took us 2 days to migrate from Heroku to Digital Ocean, and we went from spending 560\$ to 67\$ per month for similar type of servers. We made some trade offs:
+All in all, took us 2 days to migrate from Heroku to Digital Ocean, and we went from spending \$560 to \$67 per month for similar type of servers. We made some trade offs:
 
 - Monitoring server Dashboard UI is not as good
 - Logs are more explicit on Heroku
@@ -46,12 +46,12 @@ Upgrading servers and dyno on Heroku becomes pricey. We’ve been running out of
 
 | Items                                                  | Price          |
 | ------------------------------------------------------ | -------------- |
-| 3x Standard-2x dynos (1 Gb ram) at 50\$ each           | 150\$          |
-| Heroku-Redis addon(250Mb memory, 200 connection limit) | 60\$ per month |
-| Logtail (8 day logs/ 5GB)                              | 0\$            |
-| Total                                                  | 210\$          |
+| 3x Standard-2x dynos (1 Gb ram) at \$50 each           | \$150          |
+| Heroku-Redis addon(250Mb memory, 200 connection limit) | \$60 per month |
+| Logtail (8 day logs/ 5GB)                              | \$0            |
+| Total                                                  | \$210          |
 
-Without a database this comes down to 210\$ per month. This isn’t much but as we are growing I know we will have to switch our Heroku server to a Performance-M Dyno with 2.5GB Ram. Those are priced at 250\$ each. So that means that the next time we want to scale vertically our Heroku cost will raise from 210\$ to 560\$ (considering we have 2 dynos at 250\$ + 1 redis addon at 120\$).
+Without a database this comes down to \$210 per month. This isn’t much but as we are growing I know we will have to switch our Heroku server to a Performance-M Dyno with 2.5GB Ram. Those are priced at \$250 each. So that means that the next time we want to scale vertically our Heroku cost will raise from \$210 to \$560 (considering we have 2 dynos at \$250 + 1 redis addon at \$120).
 
 So pricing and scaling our server was the main reason we looked out for a migration of our cloud provider.
 
@@ -72,7 +72,7 @@ Digital ocean have a whole list of what you can build on top of their cloud prov
     width={3044 / 5}
     height={1510 / 5}
     className="rounded-xl"
-    src="/blog/static/images/do/DropDown.jpg"
+    src="/blog/static/images/do/Dropdown.jpg"
     alt="Dropdown digital ocean"
   />
 </div>
@@ -104,16 +104,16 @@ Our production app was ready and we just had to change our DNS to point from our
 
 ## Impact on costs and servers
 
-We ended up upgrading our servers on DO to two 2GB ram servers (25\$ each) and a 1GB ram 10GB SSD Redis data base (15\$).
-The total costs we are paying now for our production backend server on DO is now 65\$/month. The equivalent on Heroku would have cost us 560\$/month. (With a less performant and less disk space redis server).
+We ended up upgrading our servers on DO to two 2GB ram servers (\$25 each) and a 1GB ram 10GB SSD Redis data base (\$15).
+The total costs we are paying now for our production backend server on DO is now \$65/month. The equivalent on Heroku would have cost us \$560/month. (With a less performant and less disk space redis server).
 
 | Heroku                          | Digital Ocean                            |
 | ------------------------------- | ---------------------------------------- |
 | **Specifications**              |                                          |
-| 2.5GB Ram (250\$ each) => 500\$ | 2GB Ram Servers x2 (25\$ each) => 50\$   |
-| 250mb Redis Addon => 60\$       | 1GB Ram 10 GB SSD Redis database => 15\$ |
+| 2.5GB Ram (\$250 each) => \$500 | 2GB Ram Servers x2 (\$25 each) => \$50   |
+| 250mb Redis Addon => \$60       | 1GB Ram 10 GB SSD Redis database => \$15 |
 | **Total Costs**                 |                                          |
-| **560\$/month**                 | **65\$/month**                           |
+| **\$560/month**                 | **\$65/month**                           |
 
 See the following for some notes and tradeoff we found out through this migration.
 
@@ -193,7 +193,7 @@ Concerning pipeline, we have two servers now on DO. One who matches the staging 
 ### Heroku vs DO Support? Hatch vs tickets
 
 Heroku has always been very responsive concerning tickets.
-DO: We’ve applied for the Hatch startup program (who offers 15k\$ credits for a year) and it took a whole month to get the credits. Other than that support was responsive and took less than a day to get responses from someone.
+DO: We’ve applied for the Hatch startup program (who offers \$15k credits for a year) and it took a whole month to get the credits. Other than that support was responsive and took less than a day to get responses from someone.
 
 ### DO Build time
 
