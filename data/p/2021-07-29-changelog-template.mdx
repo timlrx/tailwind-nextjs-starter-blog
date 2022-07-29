@@ -1,15 +1,25 @@
 ---
-title: "A quick resume of the changelog"
-date: "2022-06-30"
+title: "GitLab integration, new message if commit after an approval, ..."
+date: "2022-07-29"
 tags: ["changelog"]
-draft: true
+draft: false
 summary: ""
 ---
 
 ## ✨ New
 
+- new notification in channel if someone pushed new commits in an already approved PR,
+- release of the GitLab integration
+- possibility to change the number of reviewers maximum to invite while inviting a team as reviewer on GitHub (default: 4)
+
 ## 🔨 Improvements
+
+- do not archive team-specific channel if it was not created by Axolo
+- added a warning in the Axolo home if the engineer is not fully onboarded
+- ability to prevent engineers from onbaording by themselves on the Axolo home
+- using the engineer's GitHub oAuth to delete comments in GitHub
 
 ## 🐞 Fixes
 
-## 📖 Documentation
+- PR reminders were not working for incomplete engineers' Slack profiles
+- incoming webhook optimization
