@@ -100,15 +100,21 @@ inquirer
     },
   ])
   .then((answers) => {
+    const [fileTitle, enclosingFolder = ''] = answers.title.split('/').reverse()
+
     // Remove special characters and replace space with -
-    const fileName = answers.title
+    const fileName = fileTitle
       .toLowerCase()
       .replace(/[^a-zA-Z0-9 ]/g, '')
       .replace(/ /g, '-')
       .replace(/-+/g, '-')
     const frontMatter = genFrontMatter(answers)
-    if (!fs.existsSync('data/blog')) fs.mkdirSync('data/blog', { recursive: true })
-    const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${
+
+    if (!fs.existsSync('data/blog/' + enclosingFolder)) {
+      fs.mkdirSync('data/blog/' + enclosingFolder, { recursive: true })
+    }
+
+    const filePath = `data/blog/${enclosingFolder}/${fileName ? fileName : 'untitled'}.${
       answers.extension ? answers.extension : 'md'
     }`
     fs.writeFile(filePath, frontMatter, { flag: 'wx' }, (err) => {
