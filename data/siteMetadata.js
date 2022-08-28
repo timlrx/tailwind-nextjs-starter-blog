@@ -1,8 +1,9 @@
 const siteMetadata = {
-  title: 'The Blog',
+  title: 'Serotonin Designs',
   author: 'Sero',
-  headerTitle: 'Serotonin Development',
-  description: 'Development made simple.',
+  headerTitle: 'Serotonin Designs',
+  description:
+    'Join me on this journey to learn more about technology, computers and decentralised work.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog.serotonindesigns.com',

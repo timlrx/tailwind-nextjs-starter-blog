@@ -7,14 +7,6 @@ const projectsData = [
     href: 'https://ricochet.exchange',
   },
   {
-    title: 'Crypto Price Scraper - (Production)',
-    description: `Don't spend your time doing things you don't need to. This is a simple web app that automates the scraping and collection of cryptocurrency prices from almost any website.
-    By using Puppeteer to scrape the data, it's easy to get the information you need. for your business and personal use.`,
-    imgSrc: '/static/images/puppeteer.jpg',
-    href: 'https://github.com/Seroxdesign/crypto-price-scraper',
-  },
-
-  {
     title: 'Superfluid Finance - Contract',
     description: `Implementing Etheruem Name Services into the Superfluid Console's search.`,
     imgSrc: '/static/images/superfluid.png',
@@ -25,6 +17,19 @@ const projectsData = [
     description: `Redesigning website frontend to improve user experience and interface.`,
     imgSrc: '/static/images/tellor.png',
     href: 'https://fundafeed.herokuapp.com/',
+  },
+  {
+    title: 'Alluo Finance - Contract',
+    description: `Extending transaction options and interface for Alluo users.`,
+    imgSrc: '/static/images/alluo.jpg',
+    href: 'https://app.alluo.finance/',
+  },
+  {
+    title: 'Crypto Price Scraper - (Production)',
+    description: `Don't spend your time doing things you don't need to. This is a simple web app that automates the scraping and collection of cryptocurrency prices from almost any website.
+    By using Puppeteer to scrape the data, it's easy to get the information you need. for your business and personal use.`,
+    imgSrc: '/static/images/puppeteer.jpg',
+    href: 'https://github.com/Seroxdesign/crypto-price-scraper',
   },
   {
     title: 'Metrodao - (Development)',
