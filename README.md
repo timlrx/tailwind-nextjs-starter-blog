@@ -242,9 +242,9 @@ Follow the interactive prompt to generate a post with pre-filled front matter.
 The easiest way to deploy the template is to use the [Vercel Platform](https://vercel.com) from the creators of Next.js. Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 **Netlify**
-[Netlify](https://www.netlify.com/)’s Next.js Runtime configures your site on Netlify to enable key Next.js functionality without the need for additional configurations. It automatically generates serverless functions that handle server-side rendered (SSR) pages, incremental static regeneration (ISR), `next/images`, and other Next.js features.
+[Netlify](https://www.netlify.com/)’s Next.js runtime configures enables key Next.js functionality on your website without the need for additional configurations. Netlify generates serverless functions that will handle Next.js functionalities such as server-side rendered (SSR) pages, incremental static regeneration (ISR), `next/images`, etc.
 
-See [Next.js on Netlify](https://docs.netlify.com/integrations/frameworks/next-js/overview/?_ga=2.231118303.1534037503.1662410166-867730543.1662410166#next-js-runtime) for suggested configuration values and more details.
+See [Next.js on Netlify](https://docs.netlify.com/integrations/frameworks/next-js/overview/#next-js-runtime) for suggested configuration values and more details.
 
 **GitHub Pages / Firebase etc.**  
 As the template uses `next/image` for image optimization, additional configurations have to be made to deploy on other popular static hosting websites like [Firebase](https://firebase.google.com/) or [GitHub Pages](https://pages.github.com/). An alternative image optimization provider such as Imgix, Cloudinary or Akamai has to be used. Alternatively, replace the `next/image` component with a standard `<img>` tag. See [`next/image` documentation](https://nextjs.org/docs/basic-features/image-optimization) for more details.
