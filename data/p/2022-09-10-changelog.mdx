@@ -1,0 +1,80 @@
+---
+title: "PR summary, stand-ups, personalize reminders, and much more..."
+date: "2022-09-10"
+tags: ["changelog"]
+draft: false
+summary: ""
+---
+
+## ✨ New
+
+- Ability to create PR/MR channels right at the end of the onboarding.
+- Ability to create PR/MR channels from a dedicated page in app.axolo.co.
+
+<ImageContainer
+  src="/blog/static/images/changelog/open-channels.jpg"
+  alt="Axolo Manual Open Channels"
+  width={2488}
+  height={1322}
+/>
+
+- You can now personalize your PR/MR reminders.
+
+<ImageContainer
+  src="/blog/static/images/changelog/message-personalization.png"
+  alt="Reminder personalization for pull requests"
+  width={2994}
+  height={1318}
+/>
+
+- Enabled emoji reactions in team-specific channels for GitLab users.
+
+<ImageContainer
+  src="/blog/static/images/changelog/team-channel-notification.png"
+  alt="Team channel notification"
+  width={2330}
+  height={890}
+/>
+
+- Ask Axolo to send you a PR summary with the /axolo command.
+  1. `/axolo open` to show all open PRs of your organization,
+  2. `/axolo me` for your open PRs,
+  3. `/axolo team [specific-team]` to show all PRs from a specific team.
+
+<ImageContainer
+  src="/blog/static/images/changelog/axolo_command.png"
+  alt="Axolo command for a pull request summary"
+  width={1490}
+  height={1158}
+  classNameDiv="mx-20"
+/>
+
+- Ask Axolo to send you a daily PR summary to organize stand-up with our stand-up feature.
+
+<ImageContainer
+  src="/blog/static/images/changelog/stand-up.png"
+  alt="Axolo pull request summary for stand-ups"
+  width={1992}
+  height={1101}
+/>
+
+## 🔨 Improvements
+
+- For team channels: you can choose to deactivate Axolo or archive the channel altogether.
+- Added emoji for the check bookmark (✅❌🔄).
+- Creating a new view for Axolo Home in Slack and for the /axolo command used by organizations with private PR channels (using PR titles instead of Slack channel links).
+
+## 🐞 Fixes
+
+- Reviewers were not invited when using the manual open channel tool from app.axolo.co.
+- Gitlab: allows import of teams from subgroups. This enables GitLab users to have team channels.
+- GitHub code snippets were a bit out of hand, it’s now showing the correct code location.
+- Solved a bug where the GitLab OAuth was being updated on the organization and not on the admin user. This would cause Axolo not to archive channels or sometimes not create any.
+- On GitHub, pasted images from code review comments weren’t showing nicely on Slack, this has been resolved, thanks to Adar.
+- Solved an error where Axolo was mixing two pull requests from different repositories of the same organization because of identical branch names.
+- Solved an error that prevented PR checks to be sent to specific organizations.
+
+## 📖 Documentation
+
+- Added GitLab to our documentation.
+- Changed the Setting section architecture completely to follow the app settings.

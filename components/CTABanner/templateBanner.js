@@ -1,25 +1,27 @@
-const data = {
-  try: {
-    firstText: "Axolo is a Slack app to help tech",
-    secondText: "teams review pull request seamlessly",
-    link: "https://api.axolo.co/identify/slack",
-    textButton: "Try for free",
-  },
-  learn: {
-    firstText: "Enable your team to merge",
-    secondText: "pull requests faster with Axolo",
-    link: "https://axolo.co",
-    textButton: "Learn more",
-  },
-  productivity: {
-    firstText: "Help your team be more productive",
-    secondText: "with Axolo.",
-    link: "https://axolo.co",
-    textButton: "Learn more",
-  },
-}
+function CTABanner({ type, tool = "github" }) {
+  const pull = tool === "github" ? "pull" : "merge"
+  const verbe = tool === "github" ? "merge" : "review"
+  const data = {
+    try: {
+      firstText: "Axolo is a Slack app to help tech",
+      secondText: `teams review ${pull} request seamlessly`,
+      link: `https://api.axolo.co/identify/slack`,
+      textButton: `Try for free`,
+    },
+    learn: {
+      firstText: `Enable your team to ${verbe}`,
+      secondText: `${pull} requests faster with Axolo`,
+      link: "https://axolo.co",
+      textButton: "Learn more",
+    },
+    productivity: {
+      firstText: "Help your team be more productive",
+      secondText: "with Axolo.",
+      link: "https://axolo.co",
+      textButton: "Learn more",
+    },
+  }
 
-function CTABanner({ type }) {
   const element = data[`${type}`]
   return (
     <div className="my-4">
