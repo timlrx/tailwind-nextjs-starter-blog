@@ -1,0 +1,194 @@
+---
+title: "GitLab code review best practices"
+date: "2022-08-09"
+tags: ["gitlab", "code-review"]
+draft: false
+summary: "xxxx"
+# image: "/blog/static/images/xxxx"
+---
+
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
+## 1. Code review in GitLab
+
+### Why approving a merge request in GitLab is important?
+
+You can set your merge requests to require approval before they can be merged. While all users with Developer or higher permissions in GitLab Free can approve merge requests, these approvals are optional. GitLab Premium and GitLab Ultimate give you even more options:
+
+Before work can be merged, establish the necessary rules regarding the number and type of approvers.
+
+Create a list of users who act as code owners for specific files and require their approval before merging work.
+
+Merge request approvals can be configured per project and at the group level. Administrators of self-managed GitLab Premium and GitLab Ultimate instances can also configure approvals for the entire instance.
+
+#### Merge request approval rules in GitLab
+
+You can set the minimum number of approvals required before code can be merged into your project using merge request approval rules. You can also use these rules to specify which users can approve work. Here are some examples of rules you can write:
+
+- Work can always be approved by users with specific permissions.
+- Code owners can approve work for files that they own.
+- Users with specific permissions can approve work even if they do not have repository merge rights.
+- Overriding approval rules on a specific merge request can be granted or denied to users with specific permissions.
+
+You can also customize your rules to have additional merge request approval settings for greater control over the level of oversight and security your project requires.
+
+#### How to approve a merge request in GitLab?
+
+When an eligible approver visits an open merge request, GitLab displays one of the following buttons after the merge request body:
+
+- Approve: The merge request has not yet received the necessary number of approvals.
+- Approve additionally: The merge request has received the necessary number of approvals.
+- Revoke approval: The user who is viewing the merge request has already approved it.
+
+When adding a comment to a merge request, eligible approvers can also use the /approve quick action. If a user approves a merge request and is listed in the reviewer list in GitLab 13.10 or later, a green check mark () appears next to their name.
+
+A merge request can merge once it has received the number and type of approvals you specify unless it is blocked for another reason. Other issues, such as merge conflicts, pending discussions, or a failed CI/CD pipeline, can block merge requests.
+
+Prevent author approval in your project's settings to prevent merge request authors from approving their own merge requests.
+
+When you enable approval rule overrides, merge requests created before the default approval rules change are unaffected. The only exceptions are changes to the rule's target branch.
+
+You can find more detailed information in the <NoFollowLink url='https://docs.gitlab.com/ee/user/project/merge_requests/approvals'>Merge Request Approval</NoFollowLink> section of the GitLab documentation.
+
+### GitLab reviewers
+
+#### Set up GitLab default reviewers automatically
+
+GitLab does not provide a way to automatically set reviewers on new merge requests, but you can ease this process by implementing code owner rules (next chapter).
+
+#### GitLab code owners for merge request
+
+Create a CODEOWNERS file to specify which users or shared groups are in charge of which files and directories in a repository. Each repository can only have one CODEOWNERS file. To set up your file:
+
+Select the location where you want to save your CODEOWNERS file and create it, you have three possibilities:
+
+- In the root of your repository
+- In the directory .gitlab/
+- In the docs/ folder
+
+Enter commands in the file that follows one of the following patterns:
+
+```
+# Code Owners for a file
+filename-path @username1 @username2
+
+# Code Owners for a directory
+directory-path/ @username1 @username2
+
+# All group members as Code Owners for a file
+filename @groupname
+
+# All group members as Code Owners for a directory
+directoryname/ @groupname
+
+# Set up group members as Code Owners for the entire repository
+* @groupname
+```
+
+<ImageContainer
+  src="/blog/static/images/gitlab/gitlab_codeowner_file.png"
+  alt="GitLab Code Owners File"
+  width={1208}
+  height={1180}
+  classNameDiv="mx-40 "
+/>
+
+After setting up your CODEOWNERS file, you will be able to find any potential reviewers in your eligible reviewer's section. More information about <NoFollowLink url='https://docs.gitlab.com/ee/user/project/code_owners.html'>Code Owner</NoFollowLink> in the dedicated GitLab documentation.
+
+<ImageContainer
+  src="/blog/static/images/gitlab/gitlab_codeowner.png"
+  alt="GitLab Code Owners"
+  width={1994}
+  height={1030}
+  classNameDiv="mx-12 max-w-[650px]"
+/>
+
+{" "}
+
+#### GitLab auto assign reviewers
+
+GitLab does not have a built-in feature to automatically assign reviewers. They tweaked another open-source project to receive recommendations for reviewers inside their merge requests.
+
+They are using the <NoFollowLink url='https://github.com/danger/danger'>Danger</NoFollowLink> bot and applied some personal workflows to it (you can find more information about that in <NoFollowLink url='https://about.gitlab.com/blog/2019/10/23/reviewer-roulette-one-year-on/'>Reviewer roulette one year one</NoFollowLink>).
+
+### Review, approval & comment in GitLab
+
+Most other code versioning or code hosting software has a dedicated review feature within their pull/merge request. GitLab does not.
+
+Inside GitLab, you can either approve a pull request or revoke your approval. If you wish to request changes to another developer, you need to either leave a comment in the `Overview` section of the merge request or comment directly on the code.
+
+<ImageContainer
+  src="/blog/static/images/gitlab/review_comment.png"
+  alt="GitLab Review Comment"
+  width={1760}
+  height={808}
+  classNameDiv="mx-20 "
+
+/>
+
+### GitLab code review workflow
+
+The GitLab code review workflow is simple.
+
+1. Push your changes to GitLab using a terminal or the GitLab interface,
+2. Open a merge request from your terminal or the GitLab interface,
+3. Request reviewers to approve your merge request,
+4. (optional) If you have set up CI/CD automation, wait for the green light before merging,
+5. Reviewers will approve your merge request or request changes, change your code accordingly,
+6. If all required reviewers have approved the merge request, you can now safely merge if there is no conflict with the base branch.
+
+## 2. GitLab review apps
+
+Built-in GitLab review apps have four main characteristics:
+
+- By spinning up a dynamic environment for your merge requests, you can automatically provide a live preview of changes made in a feature branch.
+- Allow designers and product managers to see your changes without having to check out your branch and test them in a sandbox environment.
+- Are completely integrated with GitLab's DevOps LifeCycle.
+- Give you the freedom to deploy your changes wherever you want.
+
+<ImageContainer
+  src="/blog/static/images/gitlab/review_app.png"
+  alt="GitLab Review App"
+  width={2574}
+  height={1398}
+  classNameDiv="mx-20 "
+
+/>
+
+### How do review apps work?
+
+A Review App is a branch-to-environment mapping. Access to the Review App is made available via a link on the branch's merge request.
+
+The following is an example of a merge request with a dynamically set environment. A branch was successfully built in this example and deployed in a dynamic environment accessible by selecting the View app.
+
+Following the addition of Review Apps to your workflow, you follow the branched Git flow. That is, push a branch and let the runner deploy the Review App based on the dynamic environment job's script definition. Then, the runner will build and deploy your web application.
+
+To view the changes live, select the link in the merge request related to the branch. You have now set up a new review environment!
+
+If you're interested, you can learn more in the dedicated <NoFollowLink url='https://docs.gitlab.com/ee/ci/review_apps/'>GitLab Review App Documentation</NoFollowLink> section.
+
+### Why are review apps important?
+
+#### GitLab review apps for developers
+
+Developers can begin collecting feedback much sooner. Submit a merge request and test your changes in real-time. When you push to master, you'll know that your changes have gone through CI testing as well as a live review where the team can ensure that everything works as expected.
+
+#### GitLab review apps for the design, product, and marketing team
+
+Giving feedback to designers, product managers, marketing colleagues, and others has never been easier. To preview changes, you won't need to check out branches or set up a staging environment. With Review Apps, you can see the live changes by clicking a link. Hopefully, this means you'll be able to provide more timely and accurate feedback.
+
+## 3. GitLab CI/CD & automatic deployment
+
+GitLab developed an internal CI/CD tool for software development following the continuous methodologies:
+
+- Continuous Integration (CI)
+- Continuous Delivery (CD)
+- Continuous Deployment (CD)
+
+Continuous Integration works by pushing small changes to your application’s codebase hosted in a Git repository, and, to every push, run a pipeline of scripts to build, test, and validate the code changes before merging them into the main branch.
+
+Continuous Delivery and Deployment consist of a step further CI, deploying your application to production at every push to the default branch of the repository.
+
+These methodologies allow you to catch bugs and errors early in the development cycle, ensuring that all the code deployed to production complies with the code standards you established for your app.
+
+For more detailed information on GitLab CI/CD, you can watch a <NoFollowLink url='https://www.youtube.com/watch?v=1iXFbchozdY'>Demo: CI/CD with GitLab</NoFollowLink> made by the GitLab team or surf through the <NoFollowLink url='https://about.gitlab.com/blog/2016/08/05/continuous-integration-delivery-and-deployment-with-gitlab'>CI/CD Documentation</NoFollowLink>.
