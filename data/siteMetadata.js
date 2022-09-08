@@ -25,7 +25,7 @@ const siteMetadata = {
     googleAnalyticsId: 'UA-169338852-1', // e.g. UA-000000-2 or G-XXXXXXX
   },
   newsletter: {
-    // supports mailchimp, buttondown, convertkit, klaviyo
+    // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
     provider: 'buttondown',
   },
@@ -49,6 +49,10 @@ const siteMetadata = {
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
       theme: 'light',
+      // Place the comment box above the comments. options: bottom, top
+      inputPosition: 'bottom',
+      // Choose the language giscus will be displayed in. options: en, es, zh-CN, zh-TW, ko, ja etc
+      lang: 'en',
       // theme when dark mode
       darkTheme: 'transparent_dark',
       // If the theme option above is set to 'custom`
