@@ -77,7 +77,27 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
+1. Try installing the starter using the new [Pliny project CLI](https://github.com/timlrx/pliny):
+
+```bash
+npm i -g @pliny/cli
+pliny new --template=starter-blog my-blog
+```
+
+It supports the updated version of the blog with Contentlayer, optional choice of TS/JS and different package managers as well as more modularized components which will be the basis of the template going forward.
+
+Alternatively to stick with the current version, TypeScript and Contentlayer:
+
+```bash
+npx degit 'timlrx/tailwind-nextjs-starter-blog#contentlayer'
+```
+
+or JS (official support)
+
+```bash
+npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
+```
+
 2. Personalize `siteMetadata.js` (site related information)
 3. Modify the content security policy in `next.config.js` if you want to use
    any analytics provider or a commenting solution other than giscus.
