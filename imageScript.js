@@ -10,7 +10,7 @@ function printImageComponentWithSize(imgSrc) {
     const { width, height } = dimensions
     const imgAlt = imgSrc.split("/")[imgSrc.split("/").length - 1].split(".")[0]
     console.log(
-      `<Image alt={${imgAlt}} src={imgSrc} className="object-cover object-center md:h-36 lg:h-48" width={${width}} height={${height}} /> `
+      `<ImageContainer alt={${imgAlt}} src={imgSrc} className="" classNameImage='' width={${width}} height={${height}} /> `
     )
   })
 }
