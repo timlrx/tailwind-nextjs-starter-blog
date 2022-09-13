@@ -13,8 +13,8 @@ const siteMetadata = {
   "twitter:data2": "axolo.co/docs",
   theme: "system", // system, dark or light
   siteRepo: "https://github.com/timlrx/tailwind-nextjs-starter-blog",
-  logo: "/blog/images/logo_axolo.png",
-  siteLogo: "/blog/images/logo_axolo.png",
+  logo: "/blog/static/images/logo_axolo.png",
+  siteLogo: "/blog/static/images/logo_axolo.png",
   siteUrl: "https://axolo.co/blog",
   image: "/blog/static/images/axolo_face_square.png",
   socialBanner: "/static/images/twitter_cover.png",

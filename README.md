@@ -1,3 +1,18 @@
+# Readme Blog Axolo
+
+## ImageScript.js
+
+1. Change the file on the top with an image array of path (example:
+   const images = [
+   "public/static/images/do/createappDO.jpg",
+   "public/static/images/general/productivity.png",
+   ]
+   )
+2. call node imageScript.js in the main directory
+3. Copy paste output to your blog article
+
+# Other automated info
+
 ![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
 # Tailwind Nextjs Starter Blog
@@ -223,20 +238,48 @@ Run `node ./scripts/compose.js` to bootstrap a new post.
 
 Follow the interactive prompt to generate a post with pre-filled front matter.
 
-## Deploy
+## Internal Components
 
-**Vercel**  
-The easiest way to deploy the template is to use the [Vercel Platform](https://vercel.com) from the creators of Next.js. Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### classNames
 
-**Netlify / GitHub Pages / Firebase etc.**  
-As the template uses `next/image` for image optimization, additional configurations have to be made to deploy on other popular static hosting websites like [Netlify](https://www.netlify.com/) or [GitHub Pages](https://pages.github.com/). An alternative image optimization provider such as Imgix, Cloudinary or Akamai has to be used. Alternatively, replace the `next/image` component with a standard `<img>` tag. See [`next/image` documentation](https://nextjs.org/docs/basic-features/image-optimization) for more details.
+classNames is a default function given by Tailwind to help add css & conditions.
 
-The API routes used in the newsletter component cannot be used in a static site export. You will need to use a form API endpoint provider and substitute the route in the newsletter component accordingly. Other hosting platforms such as Netlify also offer alternative solutions - please refer to their docs for more information.
+```
+export default function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+```
 
-## Support
+### ImageContainer
 
-Using the template? Support this effort by giving a star on GitHub, sharing your own blog and giving a shoutout on Twitter or becoming a project [sponsor](https://github.com/sponsors/timlrx).
+imageContainer is a Next image inside a div for a rounded, with shadow, and with an approriate margin image component.
 
-## Licence
+classNameDiv & classNameImage are not mandatory.
 
-[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/master/LICENSE) © [Timothy Lin](https://www.timrlx.com)
+```
+export const ImageContainer = ({
+  src,
+  alt,
+  width,
+  height,
+  classNameDiv = '',
+  classNameImage = '',
+}) => {}
+```
+
+### NoFollowLink
+
+```
+export const NoFollowLink = ({ url, className = '', children }) => {
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      href={url}
+      className={className}
+    >
+      {children}
+    </a>
+  )
+}
+```
