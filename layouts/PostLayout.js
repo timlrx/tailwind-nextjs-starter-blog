@@ -20,7 +20,36 @@ const postDateTemplate = {
 }
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, fileName, date, title, tags } = frontMatter
+  const { slug, fileName, date, title, tags, lastmod } = frontMatter
+
+  const DateSection = () => {
+    if (!lastmod) {
+      return (
+        <div>
+          <dt className="sr-only">Published on</dt>
+          <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+            <time dateTime={date}>
+              {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+            </time>
+          </dd>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <dt className="sr-only">
+            Published on {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)},
+            last updated{" "}
+          </dt>
+          <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+            <time dateTime={date}>
+              {new Date(lastmod).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+            </time>
+          </dd>
+        </div>
+      )
+    }
+  }
 
   return (
     <SectionContainer>
@@ -35,14 +64,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
           <header className="pt-6 xl:pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
+                <DateSection />
               </dl>
               <div>
                 <PageTitle>{title}</PageTitle>
