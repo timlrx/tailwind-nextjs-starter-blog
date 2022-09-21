@@ -14,6 +14,26 @@ For the past years, as most engineering teams on GitHub, you must have integrate
 
 In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. The first one is to implement a GitHub Action in your repositories and that will use the Slack API with a OAuth token, the second one is to install an application with a user interface to set up your notifications. We’re going to explain the best of both worlds in this article.
 
+## Axolo, a user interface to receive GitHub Action in Slack and much more
+
+### Pull request GitHub Action and pull request checks
+
+Axolo’s first feature is to create a single-purpose ephemeral channel for each pull request in Slack. Then, we send every notification related to the pull request in this specific channel, so GitHub actions too!
+
+After installation, you will be able to receive every GitHub Action notification in a pull request channel in Slack (notifying only the pull request creators and reviewers).
+
+But it is not only about GitHub Action, you will also passively receive updates for your banch conflict, pull request checks, and deployments in their specific channel. From the app, you can select only the status you'd like to receive (success, error, ...).
+
+<ImageContainer
+  src="/blog/static/images/screenshots/pr_checks.png"
+  alt="Axolo PR checks"
+  width={1732}
+  height={780}
+  classNameDiv="mx-20"
+/>
+
+<CTABanner type="try" />
+
 ## Three GitHub Action for Slack notifications
 
 During our study, we’ve found four applications on the GitHub marketplace to set up GitHub Action notifications to Slack. We decided to focus on the top three that had more than 100 stars at the time of the article.
@@ -105,26 +125,6 @@ Example:
     style={{ maxWidth: "450px", borderRadius: "25px" }}
   />
 </div>
-
-## Axolo, a user interface to receive GitHub Action in Slack and much more
-
-### Pull request GitHub Action and pull request checks
-
-Axolo’s first feature is to create a single-purpose ephemeral channel for each pull request in Slack. Then, we send every notification related to the pull request in this specific channel, so GitHub actions too!
-
-After installation, you will be able to receive every GitHub Action notification in a pull request channel in Slack (notifying only the pull request creators and reviewers).
-
-But it is not only about GitHub Action, you will also passively receive updates for your banch conflict, pull request checks, and deployments in their specific channel. From the app, you can select only the status you'd like to receive (success, error, ...).
-
-<ImageContainer
-  src="/blog/static/images/screenshots/pr_checks.png"
-  alt="Axolo PR checks"
-  width={1732}
-  height={780}
-  classNameDiv="mx-20"
-/>
-
-<CTABanner type="try" />
 
 If you know any other great integrations for GitHub Action in Slack, let us know and we will update the
 article!

@@ -22,10 +22,6 @@ const postDateTemplate = {
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, fileName, date, title, tags, lastmod } = frontMatter
 
-  if (title === "Top 4 GitHub Action Slack integrations") {
-    console.log("date 1:", date, "date 2", "-----", lastmod)
-  }
-
   const DateSection = () => {
     if (!lastmod) {
       return (
