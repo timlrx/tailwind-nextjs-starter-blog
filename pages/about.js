@@ -1,6 +1,6 @@
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { getFileBySlug } from '@/lib/mdx'
-
+import LayoutWrapper from '@/components/LayoutWrapper'
 const DEFAULT_LAYOUT = 'AuthorLayout'
 
 export async function getStaticProps() {
@@ -19,3 +19,4 @@ export default function About({ authorDetails }) {
     />
   )
 }
+About.layout=LayoutWrapper

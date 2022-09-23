@@ -7,7 +7,7 @@ import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 import fs from 'fs'
 import path from 'path'
-
+import LayoutWrapper from '@/components/LayoutWrapper'
 const root = process.cwd()
 
 export async function getStaticPaths() {
@@ -53,3 +53,4 @@ export default function Tag({ posts, tag }) {
     </>
   )
 }
+Tag.layout=LayoutWrapper

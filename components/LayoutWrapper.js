@@ -6,9 +6,12 @@ import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import { ThemeProvider } from 'next-themes'
 
 const LayoutWrapper = ({ children }) => {
   return (
+    <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+    
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
         <header className="flex items-center justify-between py-10">
@@ -34,7 +37,7 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
+                  className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4 sm:mr-4"
                 >
                   {link.title}
                 </Link>
@@ -48,6 +51,7 @@ const LayoutWrapper = ({ children }) => {
         <Footer />
       </div>
     </SectionContainer>
+    </ThemeProvider>
   )
 }
 

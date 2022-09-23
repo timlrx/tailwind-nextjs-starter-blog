@@ -3,7 +3,7 @@ import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
-
+import LayoutWrapper from '@/components/LayoutWrapper'
 const DEFAULT_LAYOUT = 'PostLayout'
 
 export async function getStaticPaths() {
@@ -68,3 +68,4 @@ export default function Blog({ post, authorDetails, prev, next }) {
     </>
   )
 }
+Blog.layout=LayoutWrapper

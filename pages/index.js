@@ -4,20 +4,27 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
-
+import React from 'react'
 import NewsletterForm from '@/components/NewsletterForm'
-
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { getArticle } from './api/article'
+import LayoutWrapper from '@/components/LayoutWrapper'
 const MAX_DISPLAY = 5
-
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
 
   return { props: { posts } }
 }
 
-export default function Home({ posts }) {
+const Home =({ posts }) =>{
+  // const{}
+  // const {data:dataList} = getArticle();
+  // console.log("data là: ",dataList)
+  // const dataPage= dataList?.data
+  console.log(posts)
   return (
-    <>
+    <div> 
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
@@ -31,6 +38,7 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
+          {/* {dataPage?.map((frontMatter) => { */}
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <li key={slug} className="py-12">
@@ -54,7 +62,7 @@ export default function Home({ posts }) {
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags.map((tag) => (
+                            {tags?.map((tag) => (
                               <Tag key={tag} text={tag} />
                             ))}
                           </div>
@@ -96,6 +104,9 @@ export default function Home({ posts }) {
           <NewsletterForm />
         </div>
       )}
-    </>
+    </div>
   )
 }
+Home.layout = LayoutWrapper;
+
+export default Home
