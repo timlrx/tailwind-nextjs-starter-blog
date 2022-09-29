@@ -22,6 +22,7 @@
     "autoprefixer": "10.4.5",
     "axios": "^0.27.2",
     "esbuild": "^0.13.13",
+    "fs": "^0.0.1-security",
     "github-slugger": "^1.3.0",
     "gray-matter": "^4.0.2",
     "image-size": "^1.0.2",
