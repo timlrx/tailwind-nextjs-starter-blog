@@ -2,12 +2,8 @@
 
 ## ImageScript.js
 
-1. Change the file on the top with an image array of path (example:
-   const images = [
-   "public/static/images/do/createappDO.jpg",
-   "public/static/images/general/productivity.png",
-   ]
-   )
+1. Change the folder on the top with an image array of path (example:
+   const folder = "public/static/images/jira/"
 2. call node imageScript.js in the main directory
 3. Copy paste output to your blog article
 
