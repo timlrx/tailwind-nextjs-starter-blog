@@ -29,3 +29,24 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
+
+.rainbow-button {
+  /* font-size: 100px; */
+  position: relative;
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+.rainbow-button:before {
+  content: "";
+  position: absolute;
+  height: 0.1em;
+  width: 100%;
+  color: transparent;
+  background: linear-gradient(to right, #fd004c, #fe9000, #fff020, #3edf4b, #3363ff, #b102b7);
+  background-size: 200% 100%;
+  bottom: -0.05em;
+  transition: 1.5s;
+}
+.rainbow-button:hover:before {
+  background-position: 100% 0;
+}
