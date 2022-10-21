@@ -1,9 +1,9 @@
 // Here put the folder name and it will create a component for each image that he can
-const folder = "public/static/images/bitbucket/"
+const folder = "public/static/images/linear/"
 
 var sizeOf = require("image-size")
 var fs = require("fs")
-var files = fs.readdirSync("public/static/images/bitbucket/")
+var files = fs.readdirSync(folder)
 
 function printImageComponentWithSize(imgSrc) {
   sizeOf(imgSrc, function (err, dimensions) {
