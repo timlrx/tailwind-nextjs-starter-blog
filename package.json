@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@fontsource/inter": "4.5.2",
+    "@heroicons/react": "^2.0.12",
     "@mailchimp/mailchimp_marketing": "^3.0.58",
     "@segment/snippet": "^4.15.3",
     "@tailwindcss/forms": "^0.4.0",

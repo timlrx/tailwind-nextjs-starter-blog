@@ -15,6 +15,23 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: ["group-hover"],
+      // eslint-disable-next-line no-dupe-keys
+      animation: {
+        "bounce-h": "bounce-right 1s infinite",
+      },
+      keyframes: {
+        "bounce-right": {
+          "0%, 100%": {
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+            transform: "translateX(-25%)",
+          },
+          "50%": {
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+            transform: "translateX(0)",
+          },
+        },
+      },
       spacing: {
         "9/16": "56.25%",
       },
