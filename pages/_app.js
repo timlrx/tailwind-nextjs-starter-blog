@@ -11,6 +11,7 @@ import siteMetadata from "@/data/siteMetadata"
 import Analytics from "@/components/analytics"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import { ClientReload } from "@/components/ClientReload"
+import TopBanner from "@/components/topBanner"
 
 const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
@@ -53,6 +54,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
+      {/* <TopBanner /> */}
       <LayoutWrapper>
         <Component {...pageProps} />
       </LayoutWrapper>
