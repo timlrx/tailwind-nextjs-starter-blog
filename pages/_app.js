@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
-      <TopBanner />
+      {/* <TopBanner /> */}
       <LayoutWrapper>
         <Component {...pageProps} />
       </LayoutWrapper>
