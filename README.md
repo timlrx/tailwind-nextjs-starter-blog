@@ -74,7 +74,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 ## Features
 
 - Easy styling customization with [Tailwind 3.0](https://tailwindcss.com/blog/tailwindcss-v3) and primary color attribute
-- Near perfect lighthouse score - [Lighthouse report](https://www.webpagetest.org/result/210111_DiC1_08f3670c3430bf4a9b76fc3b927716c5/)
+- Near perfect lighthouse score - [Lighthouse report](https://www.webpagetest.org/result/221104_AiDc59_4WF/)
 - Lightweight, 45kB first load JS, uses Preact in production build
 - Mobile-friendly view
 - Light and dark theme
