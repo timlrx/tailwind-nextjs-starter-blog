@@ -24,13 +24,16 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
             {title}
           </h1>
           <div className="relative max-w-lg">
-            <input
-              aria-label="Search articles"
-              type="text"
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search articles"
-              className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
-            />
+            <label>
+              <span className="sr-only">Search articles</span>
+              <input
+                aria-label="Search articles"
+                type="text"
+                onChange={(e) => setSearchValue(e.target.value)}
+                placeholder="Search articles"
+                className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+              />
+            </label>
             <svg
               className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
               xmlns="http://www.w3.org/2000/svg"
