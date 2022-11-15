@@ -151,7 +151,7 @@ export const BlogSEO = ({
       { name: "twitter:creator", content: "@axolo_co" },
     ],
   }
-  // SEO image for twitter here
+  // metadata image for twitter here
   const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
   return (
