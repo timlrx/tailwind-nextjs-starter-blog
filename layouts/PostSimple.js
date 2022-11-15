@@ -8,11 +8,15 @@ import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/ScrollTopAndComment"
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { date, title } = frontMatter
+  const { date, title, image: bannerImage } = frontMatter
 
   return (
     <SectionContainer>
-      <BlogSEO url={`${siteMetadata.siteUrl}/p/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSEO
+        url={`${siteMetadata.siteUrl}/p/${frontMatter.slug}`}
+        {...frontMatter}
+        bannerImage={bannerImage}
+      />
       <ScrollTopAndComment />
       <article>
         <div>

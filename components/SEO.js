@@ -80,6 +80,7 @@ export const BlogSEO = ({
   url,
   images = [],
   canonicalUrl,
+  bannerImage,
 }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
@@ -150,8 +151,8 @@ export const BlogSEO = ({
       { name: "twitter:creator", content: "@axolo_co" },
     ],
   }
-
-  const twImageUrl = featuredImages[0].url
+  // SEO image for twitter here
+  const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
   return (
     <>

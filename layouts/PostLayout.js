@@ -20,7 +20,7 @@ const postDateTemplate = {
 }
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, fileName, date, title, tags, lastmod } = frontMatter
+  const { slug, fileName, date, title, tags, lastmod, image: bannerImage } = frontMatter
 
   const DateSection = () => {
     if (!lastmod) {
@@ -57,6 +57,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         url={`${siteMetadata.siteUrl}/p/${slug}`}
         authorDetails={authorDetails}
         {...frontMatter}
+        bannerImage={bannerImage}
       />
       <ScrollTopAndComment />
       <article>
