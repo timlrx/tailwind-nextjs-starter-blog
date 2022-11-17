@@ -1,0 +1,112 @@
+---
+title: "2 Slack and Linear integrations you should check out"
+date: "2022-11-17"
+tags: ["developer-productivity", "slack", "linear"]
+draft: false
+summary: In this blog post, we will compare the top Linear Slack integrations and provide a tutorial on how to install the official Linear Slack integration. We will also discuss the different alternatives you have out there and how they can help improve productivity in your business.
+layout: PostLayout
+canonicalUrl: slack-linear-integration
+image: "/blog/static/images/linear/linear-slack-integrations.jpg"
+---
+
+In this blog post, we will compare the top Linear Slack integrations and provide a tutorial on how to install the official Linear Slack integration. We will also discuss the different alternatives you have out there and how they can help improve productivity in your business.
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## 1. Official Linear Slack integration
+
+### How does the official Linear Slack integration work?
+
+The Linear Slack integration is one of the most popular Slack integrations. It allows you to track and manage your Linear team's progress directly from Slack. With the Linear Slack integration, you can:
+
+- Create and view Linear items
+
+- Assign Linear items to team members
+
+- Set due dates and reminders for Linear items
+
+- View item details and comments
+
+- Get notifications when Linear items are created or updated
+  <ImageContainer
+    alt="linear-official-slack-integration"
+    src="/blog/static/images/linear/linear-official-slack-integration.jpeg"
+    classNameDiv=""
+    classNameImage=""
+    width={679}
+    height={424}
+  />
+
+### How to set up notifications?
+
+Slack notifications are set up in many places around the app. Anyone can configure them as long as the Slack integration is enabled. To set up:
+
+team notifications on either the team's general settings or the integration settings page. Authenticate with Slack and then select which channel to post them in.
+project notifications from the pages of specific projects. Click the bell in the title bar on the top right of the app, sign in to Slack, and then select which channel to post them to.
+
+You can configure personal Slack notifications in the notification settings. Authenticate with Slack and then select which notifications you want to receive.
+
+Once you have installed the Linear Slack integration, you will be able to access all of its features from within your Slack workspace. To get started, simply type '/linear' into the Slack search bar and select the 'Create Item' option. From there, you can create new items, assign them to team members, set due dates, and add comments - all without ever leaving Slack!
+
+If you need any assistance along the way, simply type '/linear help' into Slack and you will be prompted with all the linear possibilities.
+
+## 2. Zapier to integrate Slack and Linear
+
+Zapier has a Linear and Slack integrations. This can add additional granularity to what you would get with the official integration.
+
+For example, you could have a Linear event that automatically creates a reminder. Or you could even create a new channel for every issue.
+
+Follow this link to create your Linear / Slack Zap: https://zapier.com/apps/linear/integrations/slack
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <ImageContainer
+    alt="zapier-slack-linear-integration"
+    src="/blog/static/images/linear/zapier-slack-linear-integration.jpg"
+    classNameImage="contents"
+    width={2224}
+    height={1276}
+  />
+</div>
+
+## Bonus: Axolo for Linear and Slack
+
+Axolo is currently building a two-way integration between Linear and Slack. They have some features not found elsewhere.
+
+For every sprint, Axolo invites the right people and creates a new channel, where each issue is posted inside Slack.
+
+Now every time an issue is being updated from Slack it updates also on Linear and vice versa. On top of that, You can use Slack threads for each issue notification to update an issue on Linear. It's a good way to make sure that each assignee gets notified only about what concerns him.
+
+Axolo is currently looking for early beta users, reach out in the chat below if you want to be one of them.
+
+<button
+  onClick={() => {
+    window.$crisp.push(["do", "chat:open"])
+    window.$crisp.push([
+      "do",
+      "message:send",
+      ["text", "Hey, I want to try the Axolo Linear integration!"],
+    ])
+    window.$crisp.push(["set", "session:event", ["microsoft_request"]])
+  }}
+  style={{
+    backgroundColor: "blue",
+    border: "none",
+    color: "white",
+    fontWeight: 600,
+    padding: "0px 20px",
+    textAlign: "center",
+    textDecoration: "none",
+    display: "inline-block",
+    fontSize: 20,
+  }}
+>
+  Request Axolo-Linear early access
+</button>
+
+## Conslusion
+
+Linear created a useful Slack integration where it would have everything you could expect from an official Slack integration (creating issues, getting notified, etc..).
+
+For a more specific workflow, you can look into Zapier, you will be able to do about anything event-based.
+
+And finally, if you are looking to increase your developer engagements and make your tickets fully synchronized with Slack you can use Axolo.
