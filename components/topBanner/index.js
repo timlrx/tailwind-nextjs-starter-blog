@@ -12,7 +12,10 @@ export default function TopBanner() {
               {/* desktop text */}
               <span className="hidden sm:inline">Big news! We are live on</span>
               <span className="rainbow-button">
-                <a href="#" className="inline-flex items-center font-bold text-white">
+                <a
+                  href="https://www.producthunt.com/posts/axolo-for-gitlab"
+                  className="inline-flex items-center font-bold text-white"
+                >
                   Product Hunt
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </a>

@@ -1,0 +1,54 @@
+---
+title: "Vast GitLab improvements, CI/CD, 12 bugs and much more..."
+date: "2022-11-01"
+tags: ["changelog"]
+draft: false
+summary: ""
+---
+
+## ✨ New
+
+- Axolo adds a bookmark in your PR channel if you have a dedicated deployment environment URL.
+- Enable user reaction in team channels for GitLab.
+- Enable thread discussion mirroring between GitLab and Slack (in the overview section of MR).
+- Handle MR description update for GitLab
+- CI/CD pipeline notification in Axolo for GitLab.
+- Axolo for GitLab Self-hosted is live.
+- Handle reopen MR for GitLab.
+- Organization-wide setting for minimum review per PR (when Axolo can say that a PR is mergeable instead of still waiting for reviews).
+
+## 🔨 Improvements
+
+- Let PR authors request admins to onboard their reviewers.
+- Hide empty PR sections in /axolo and stand-up notifications.
+- Upon GitLab installation, the hook subscription is created before fetching organization information.
+- Sends a message to an engineer if we have a 401 from GitLab.
+- Automatically update PR/MR after unblocking a company.
+- In GitLab, (re)save all projects and groups if there is a missing repo
+- Added mergeability check on merge requests while processing pipeline notifications
+- When clicking on refresh on the home tab, it will sync Axolo DB with GitLab/GitHub (update PR if they are not opened anymore).
+- Improve open channels in app.axolo.com (sorting, links, and more information).
+- Improve the performance of Axolo on GitLab CI/CD hooks
+- Add the commit message in the "new commit after approval" notification (GitHub).
+- Add a button to update engineers in our DB for GitLab users that do not have a group subscription
+
+## 🐞 Fixes
+
+Solved a bug:
+
+- that created duplicate engineers during GitLab onboarding.
+- where we wouldn't react correctly on GitLab webhooks that did not contain a project field in the webhook body.
+- with code fences written in a specific language and when Axolo was adding a new line at the end of the suggestion
+- where Axolo was deleting @ within comments.
+- where a late payment wouldn't unblock a company.
+- where deleted GitHub code comments were not deleting the code corresponding code fence in Slack.
+- when we used author credentials when someone update a PR body.
+- where Axolo was trying to update a channel title with the same name for GitLab.
+- when there were multiple 'direct' links and 'hyperlinks' from Slack.
+- where the first line from Slack was hidden in GitHub & GitLab code fences.
+- on GitLab pipelines that were being sent only if successful the first time
+- Mobile menu was not working in app.axolo
+
+## 📖 Documentation
+
+- [Code owner documentation](https://axolo.co/docs/gettingstarted/best-of-axolo#codeowners-for-github) for GitHub & GitLab, automatically invite reviewers in PR channels.

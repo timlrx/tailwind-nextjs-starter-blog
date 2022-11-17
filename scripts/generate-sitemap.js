@@ -47,7 +47,6 @@ const siteMetadata = require("../data/siteMetadata")
                 if (page.search("pages/404.") > -1 || page.search(`pages/p/[...slug].`) > -1) {
                   return
                 }
-                console.log("siteMetadata", siteMetadata.lastmod, siteMetadata.date)
                 return `
                         <url>
                             <loc>${siteMetadata.siteUrl}${route}</loc>

@@ -1,0 +1,124 @@
+---
+title: "GitLab CI/CD and pipeline Slack notifications"
+date: "2022-11-03"
+tags: ["slack", "gitlab", "notification"]
+draft: false
+summary: "Developers are more productive when they have a continuous integration/continuous delivery (CI/CD) pipeline in place. GitLab CI/CD is a popular tool for managing pipelines, and one of its great features is the ability to send notifications to Slack. With Slack notifications enabled, developers can get real-time updates on the status of their pipeline, so they always know what's happening with their code changes. In addition, Slack notifications can help to improve collaboration among team members by providing a central place for discussion and feedback."
+image: "/blog/static/images/gitlab/gitlab-cicd-notif-slack.jpg"
+---
+
+<ImageContainer
+  alt="Photo by Pankaj Pantel on Unsplash"
+  src="/blog/static/images/gitlab/PankajPantelUnsplash.jpg"
+  classNameDiv="mx-10 sm:mx-28"
+  classNameImage=""
+  width={4470}
+  height={2980}
+/>
+
+Developers are more productive when they have a continuous integration/continuous delivery (CI/CD) pipeline in place. GitLab CI/CD is a popular tool for managing pipelines, and one of its great features is the ability to send notifications to Slack. With Slack notifications enabled, developers can get real-time updates on the status of their pipeline, so they always know what's happening with their code changes.
+
+In addition, Slack notifications can help to improve collaboration among team members by providing a central place for discussion and feedback. Overall, using GitLab CI/CD with Slack notifications is a great way to streamline your development process and improve communication among your team.
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## 1. What are GitLab CI/CD and pipeline Slack notifications?
+
+Before we dive into CI/CD notifications for GitLab in Slack, let's first take a step back and understand what CI/CD is. CI/CD stands for continuous integration and continuous delivery. In the context of software development, CI/CD is the practice of merging code changes into a central repository frequently and automatically building, testing, and deploying code changes. This allows for fast feedback cycles and frequent releases.
+
+GitLab CI/CD is a tool that helps developers implement CI/CD practices. GitLab pipelines are defined in a file called `.gitlab-ci.yml`, which lives in the root directory of your project. This file specifies the pipeline stages and tasks that need to be executed for each stage. When you push code changes to your GitLab repository, GitLabCI will automatically run your pipelines and notify you of the results via Slack.
+
+`Slack notifications provide information about your pipeline status in real-time`, so you can stay on top of your development process and make sure that code changes are being properly built, tested, and deployed. That's why GitLab CI/CD and pipeline Slack notifications are such a powerful combination!
+
+<ImageContainer
+  alt="Slack-notifications"
+  src="/blog/static/images/gitlab/Slack-notifications.webp"
+  classNameDiv="mx-10 sm:mx-28"
+  classNameImage=""
+  width={1051}
+  height={696}
+/>
+
+## 2. How to enable GitLab CI/CD and pipeline Slack notifications using Axolo?
+
+Axolo is a collaboration app for engineering teams in Slack, integrated in GitLab and GitHub. It provides a simple way to receive GitLab CI/CD and pipeline notifications in Slack. Axolo helps engineering teams review merge requests faster by creating ephemeral Slack channels for each merge request. Then it `invites only people that should be (MR author, reviewers, ...) and notifies them about new comments or CI/CD pipelines`.
+
+Axolo is free for teams of up to 5 members and offers a 14-day free trial for larger teams.
+
+<ImageContainer
+  alt="cicd-pipeline-gitlab"
+  src="/blog/static/images/gitlab/cicd-pipeline-gitlab.png"
+  classNameDiv="mx-10 sm:mx-48"
+  classNameImage=""
+  width={1576}
+  height={1418}
+/>
+
+To enable GitLab CI/CD and pipeline notifications in Slack with Axolo, follow these steps:
+
+- Install the Axolo app in your Slack workspace from the Axolo website,
+- Connect your GitLab account to Axolo,
+- Onboard your team.
+
+That's it! From now on, Axolo will send you GitLab CI/CD and pipeline notifications in Slack.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <AddToSlack purple />
+</div>
+
+## 3. How does the official GitLab CI/CD and pipeline Slack notification app work?
+
+<ImageContainer
+  alt="gitlab_logo"
+  src="/blog/static/images/gitlab/gitlab_logo.png"
+  classNameDiv="mx-24 sm:mx-80"
+  classNameImage=""
+  width={512}
+  height={512}
+/>
+
+You can enable GitLab CI/CD and pipeline Slack notifications to stay informed about the progress of your projects. First, visit the `Settings > CI/CD` page for the project you want to receive notifications for. Then, select the Slack notification service from the list of options. Next, enter the webhook URL for your Slack workspace.
+
+You can also `specify which events you would like to receive notifications` for, such as when a pipeline is created or when a job fails. Finally, click Save Changes to confirm your settings. Once you've enabled Slack notifications, you'll always be up-to-date on the latest changes to your GitLab projects.
+
+You can install and try the official <NoFollowLink url="https://getchaos.slack.com/apps/A676ADMV5-gitlab?tab=more_info">GitLab CI/CD and pipeline Slack notifications app</NoFollowLink> for free. However, it only supports a limited number of events, and you can't customize the notifications.
+
+### Benefits of using GitLab CI/CD and pipeline Slack notifications.
+
+As a developer, you know how important it is to have a continuous integration/continuous delivery (CI/CD) pipeline in place. GitLab CI/CD is a popular tool for managing pipelines, and one of its great features is the ability to send notifications to Slack.
+
+With Slack notifications enabled, you can get real-time updates on the status of your pipeline, so you always know what's happening with your code changes. In addition, Slack notifications can help to improve collaboration among team members by providing a central place for discussion and feedback.
+
+But `if you have an engineering team with more than 10 individual contributors`, you will quickly understand that this central place for discussion starts to be too crowded. Sending everything inside a unique place does not help the right information be shared. That is why we built Axolo! Creating ephemeral channels helps in sharing the right information with only the right people.
+
+### How to troubleshoot GitLab CI/CD and pipeline Slack notifications?
+
+If you're using GitLab CI/CD, you may have noticed that pipeline notifications don't always seem to be working properly in Slack. There are a few potential causes for this, and fortunately, there are also a few easy troubleshooting steps you can take to get things back on track.
+
+First, check to make sure that you've properly configured the Slack Notifier settings in your GitLab project. Notifications won't work unless you've correctly entered the webhook URL for your Slack workspace. If you're not sure how to find this, consult the GitLab docs or ask your workspace admin.
+
+Once you've confirmed that your Slack webhook is correctly configured, the next step is to check the permissions for the GitLab user that's sending the notifications. The user must have permission to post messages to the channel where the notifications should be appearing. If you're not sure what permissions are required, again, consult the GitLab docs or ask your workspace admin.
+
+If you've checked both of those things and you're still not seeing notifications appear in Slack, the next step is to check the GitLab CI/CD Settings page in your project. Make sure that "Send notification to Slack" is enabled. If it's disabled, simply click the toggle to enable it, then save your changes. That should do the trick!
+
+## 4. Building your own Slack app to receive GitLab CI/CD and pipeline Slack notifications
+
+If you want to create your own Slack app to receive notifications for GitLab CI/CD and pipeline in Slack, you need to configure the webhook URL for your Slack workspace and make sure that the user sending the notifications has permission to post messages to the channel. I also recently wrote [How to create your first GitHub bot to send notifications in Slack
+](https://axolo.co/blog/p/create-your-first-github-bot) and can find how to set up your Slack app in it.
+
+<ImageContainer
+  alt="gitlab slack bot architecture"
+  src="/blog/static/images/gitlab/gitlab_slack_bot_architecture.png"
+  classNameDiv="mx-2 sm:mx-28"
+  classNameImage=""
+  width={1380}
+  height={1153}
+/>
+
+When your Slack app is ready, create a new webhook URL from the `Incoming Webhooks` section. Then, copy the webhook URL and paste it into the `Webhook` field in the `Slack notifications` section of your GitLab project. Finally, click `Save changes` to confirm your settings.
+
+From now on, you will receive GitLab CI/CD and pipeline notifications in your server and will need to develop an app around these webhooks (how to create a Slack message, how to automate specific workflows upon CI/CD status, ...)
+
+<CTABanner type="learn" />
+
+GitLab CI/CD and pipeline Slack notifications can be a huge help in keeping track of your project's progress, but there are some caveats to using them. Make sure you are aware of these before deciding whether or not to enable notifications. Our team is here to help you troubleshoot any issues that may come up. Thanks for reading!
