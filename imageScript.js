@@ -1,6 +1,6 @@
 // Here put the folder name and it will create a component for each image that he can
 
-const folder = "public/static/images/linear/"
+const folder = "public/static/images/code-quality/"
 
 var sizeOf = require("image-size")
 var fs = require("fs")
@@ -13,7 +13,7 @@ function printImageComponentWithSize(imgSrc) {
       const imgAlt = imgSrc.split("/")[imgSrc.split("/").length - 1].split(".")[0]
       const src = imgSrc.replace("public", "blog")
       console.log(
-        `<ImageContainer alt="${imgAlt}" src="/${src}" classNameDiv="" classNameImage='' width={${width}} height={${height}} /> `
+        `<ImageContainer alt="${imgAlt}" src="/${src}" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={${width}} height={${height}} /> `
       )
     }
   })

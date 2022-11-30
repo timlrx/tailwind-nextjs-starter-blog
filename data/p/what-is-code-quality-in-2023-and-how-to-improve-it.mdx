@@ -1,0 +1,206 @@
+---
+title: "What is Code Quality in 2023 and how to improve it?"
+date: "2022-11-30"
+tags: ["software development", "code quality"]
+draft: false
+summary: "In 2023, code quality will be more about maintainability and reliability than anything else. This is because modern development teams are under more pressure than ever to release high-quality software on schedule. And with the rise of DevOps and continuous delivery, there's simply no room for error."
+image: "/blog/static/images/general/productivity.png"
+---
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/code-quality/sweaty-hands.jpg"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={5184}
+  height={3456}
+/>
+
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  "This code is 100% bug-free. I'm sure of it." said Tommy leaving a mark on my screen with his
+  sweaty finger
+  <br /> - this never happened.
+</SubImageText>
+
+In 2023, code quality will be more about maintainability and reliability than anything else. This is because modern development teams are under more pressure than ever to release high-quality software on schedule. And with the rise of DevOps and continuous delivery, there's simply no room for error.
+
+This post will discuss the significance of developing a high-quality codebase, what metrics to use to continuously improve, and what tools your team can use to do so painlessly.
+
+<span className="rainbow-button text-2xl font-bold hover:cursor-auto">TL;DR:</span>
+
+- your code should be maintanable, reliable, testable, portable, and reusable,
+- you should use code conventions, write helpful comments, use a linter, refactor
+  legacy code and use a code review tool that fits your team,
+- you should use static and dynamic analysis tools, unit tests, and integration tests.
+
+Now, if you want to spend more than 3 minutes reading this post, let's dive in.
+
+## What is code quality and why should you care?
+
+Most engineers define good code as:
+
+- doing what it should,
+- is easy to understand,
+- use a consistent style,
+- testable,
+- well-documented.
+
+But this definition is subjective and will depend on each engineer. You must use **specific metrics if you want to easily explain why a code is good**, or bad. These five factors will help you in developing a code quality policy:
+
+- maintainability,
+- reliability,
+- testability,
+- portability,
+- reusability.
+
+### 1. Your code must be maintainable
+
+The ease with which software can be maintained is measured by its maintainability. It is related to the codebase's size, consistency, structure, and complexity. Maintainable source code is dependent on a variety of characteristics, including testability and understandability.
+
+You cannot ensure maintainability with a single measure. **For constructing maintainable codebases, both automation and human reviewers are required**. Building an engineering knowledge guide helps a lot of team shares good maintainability practice.
+
+### 2. Your code must be reliable
+
+The possibility that a system will operate without failure for a specified period of time is referred to as reliability. It is related to the number of flaws and the software's availability.
+
+A static analysis tool can be used to count the number of flaws. The mean time between failures can be used to assess software availability (MTBF). **Low defect levels are particularly crucial while establishing a dependable codebase.**
+
+### 3. Your code must be portable
+
+The usability of the same software in diverse environments is measured by portability.
+
+Portability is hard to follow. However, there are various techniques to assure portable code. Rather than waiting until the conclusion of development, **it is critical to test code on several platforms** on a regular basis. It's also a good idea to utilize at least two compilers and set your compiler warning levels as high as feasible. Enforcing coding standards also contributes to portability.
+
+### 4. Your code must be reusable
+
+Reusability assesses whether current assets, such as code, can be reused. Assets with qualities like modularity or loose coupling are more easily reused.
+
+The number of interdependencies can be used to calculate reusability. **A static analyzer can assist** you in identifying these interdependencies. It is also a **reviewer's job** to ensure that the code they review will be reusable, or use existing code.
+
+### 5. You must test your code
+
+How well the program supports testing efforts is measured by its testability. It depends, among other things, on how well you can manage, observe, isolate, and automate testing.
+
+How many test cases are required to identify potential system flaws that can be used to evaluate testability? Testability may be impacted by the software's size and complexity. Therefore, applying techniques at the code level can aid in increasing the component's testability.
+
+<ImageContainer
+  alt="sarah-projector"
+  src="/blog/static/images/code-quality/sarah-projector.jpg"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={7330}
+  height={4889}
+/>
+<SubImageText classNameDiv="" classNameText="">
+  No Sarah, projecting code on your face won't improve the code base!
+</SubImageText>
+
+## How to improve code quality in 2023?
+
+### 1. Use code conventions
+
+Coding norms are a list of rules typically created by development teams. They include the suggested etiquette and methods for a particular programming language. Teams may write conventions for the entire organization, or they may only write them for a specific project.
+
+**Everyone writes in the same manner while following a coding standard, making it easier for your coworkers to grasp your code.** Conventions can also make it easier to locate the files and classes in a big project, making it simpler for programmers who aren't as familiar with the code to use them. For instance, Java programmers utilize camel case, in which the initial word is lowercase and the following words are capitalized, as in "employeeLastName".
+
+If you want to go further, you can find two examples with the <a href="https://google.github.io/styleguide/" rel="nofollow noreferrer" target="_blank">Google Style guide</a> and the <a href="https://github.com/airbnb/javascript" rel="nofollow noreferrer" target="_blank">AirBnb Code convention for Javascript</a>.
+
+### 2. Write helpful comments
+
+Sometimes comments made by developers are (sorry for my French) completely useless. Developers may take more time to read through the code if it is cluttered. On the other hand, some programmers write too few comments, forcing programmers to guess what they're reading, which results in low-quality code.
+
+**Your objective should be to strike a balance.** Only add comments when you believe they are worthwhile and will benefit your codebase.
+
+<ImageContainer
+  alt="Some comments are not that useful"
+  src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/cat.png"
+  classNameDiv="mx-10 lg:mx-40"
+  classNameImage=""
+  width={531}
+  height={563}
+/>
+
+<SubImageText classNameDiv="" classNameText="">
+  This is NOT a good comment.
+</SubImageText>
+
+If you're interested in writing better comments than the previous image, you can find a <a href="https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/" rel="nofollow noreferrer" target="_blank" >great commenting guide on StackOverflow</a> written by Ellen Spertus
+
+### 3. Use a linter to analyze your code - before code reviews
+
+A code linter is a program that automatically examines your code to see whether it adheres to the coding standards of your project or business. Linters will display these mistakes as warnings if they don't follow the convention.
+
+These cautions frequently go unheeded during the software development process because developers value speed over quality. But over time, these minor mistakes can add up quickly, creating a heavy workload for your crew. **Linters quickly identify these errors so that your team can quickly fix them, preventing these heavy workloads.**
+
+Linters are dependant on your language and they are a wide variety of them, choose carefully!
+
+### 4. Refactor legacy code when you need to use it and decrease your technical debt
+
+Refactoring is another method for raising the quality of the code. The process of restructuring source code produces clear, less complex code from chaotic, inaccurate, and/or repetitious code. It overcomes the issues with the uniformity that might arise when numerous developers each contribute their own code. The reading and upkeep of refactored code are simplified. It is also simpler to develop and incorporate new features. Coding that is faster and uses less memory can also be produced by eliminating extraneous components like duplicates.
+
+When it comes time to fix it, poorly written code may first seem efficient but can cause a lot of agonies. **The ability to write high-quality code right away has the benefit of lowering technical debt.** Although writing good code may initially take longer, it can lead to fewer bug fixes, less reworking, and a reduction in the long-term discomfort of technical debt. Long-term development and maintainability are made simpler by high-quality
+
+Some developers love refactoring, some others hate it. When you schedule your next projects if you already know that specific features or bugs will involve a lot of old code, maybe ask engineering that loves refactoring to take a look.
+
+### 5. Follow code review best practices <span className="rainbow-button text-base hover:cursor-auto">(please)</span>
+
+Code reviews best practices will help your team review better, and faster and enjoy the activity along the way!
+
+Here are my top 5 advices to get you started with code review best practices:
+
+1. Your code must be tested before any review.
+2. Create a code review checklist. Don't know how to start? Check these [pull request templates](https://axolo.co/blog/p/part-3-github-pull-request-template).
+3. Ensure your knowledge base justifies your feedback. What is not written, does not exist, so if you request changes, use a guide your team already agreed on or defend your position.
+4. 400 lines should be the maximum length of pull requests. Beyond 400 lines, it becomes harder to spot flaws because our brain can only handle so much data.
+5. Review daily and less than one hour per day.
+
+I also wrote a detailed post on [Code review best practices](https://axolo.co/blog/p/part-4-how-to-review-code-in-github) if you feel like you need a refresher.
+
+## Best code quality tools for 2023
+
+### Static analysis tools to improve code quality
+
+Analysis of non-running code is referred to as static analysis. Static analysis' key benefit is that it doesn't require an application to be operating, thus it can happen quickly—often even in real-time.
+
+There are several static analysis tools available, and many of them are based on or totally open source. They often integrate with your CI/CD technologies, such as GitHub Action, GitLab, TeamCity, Bamboo, and Jenkins.
+
+Choosing from so many alternatives might be challenging. The ones I suggest are listed below:
+
+- **SonarQube**: Before submitting a pull request, SonarQube can scan your source code in 29 different languages. The fact that SonarQube validates your code as you write is its main advantage. Both a commercial version and an open-source version are available.
+- **Codacy**: While it does not check while you write, it does check every time you submit a pull request, allowing you to ensure that your code is sound before it is published.
+- **Veracode**: This one is largely promoted as a tool for finding security flaws in software and enhancing application security. It's an extremely thorough tool that will undoubtedly make your code better, but the scans can take some time. As a result, it's advisable to utilize it as a final verification to ensure that no vulnerabilities remain.
+- **DeepSource**: A well-liked tool with certain language restrictions. Since they support my languages, I really appreciate it!
+
+### Dynamic analysis tools to improve code quality
+
+While it is running in a virtual environment, your application is examined by dynamic analysis tools. This can expose problems like never-ending recursion or performance bottlenecks that static analysis was unable to.
+
+The list of dynamic analysis tools is long, but I found an open-source GitHub repository that tries to list all of them. You can find potential <a href="https://github.com/analysis-tools-dev/dynamic-analysis" rel="nofollow noreferrer" target="_blank" >dynamic analysis tools for you in this repository</a>.
+
+<ImageContainer
+  alt="glasses-changes"
+  src="/blog/static/images/code-quality/glasses-changes.jpg"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1920}
+  height={1440}
+/>
+<SubImageText classNameDiv="" classNameText="">
+  There aren't any change requested if you can't see them.
+</SubImageText>
+
+### Code review tools for code quality
+
+Improving code quality is also a reviewer's duty. But as a manager, you must provide your team with the right tools to review code seamlessly. Here is a short list to get you started:
+
+- **[Axolo](https://axolo.co)**, an "Essential App" according to Slack (works on GitHub Cloud and Enterprise Server + GitLab Cloud and Self-Hosted) - I am one of Axolo's cofounder, but if you're on Slack test it and let me know what you think!
+- **CodeApprove**, before a review is merged, CodeApprove makes sure that every discussion has been finished. You can quickly review more code by combining that with a quick, information-dense interface that was created with keyboard shortcuts in mind.
+- **CodeStream**, you can do reviews whenever you want and without ever leaving your IDE. CodeStream allows you to access the entire source tree so you can review code using the same tools you use to write it, as opposed to just looking at a diff.
+
+If you're interested in learning more about code review tools, you can find an extensive list on this article: <a href="https://medium.com/codeapprove/the-best-modern-code-review-tools-2022-468b51751fa" rel="nofollow noreferrer" target="_blank" >The best modern code review tools (2022)</a>.
+
+<span className="rainbow-button text-lg font-bold hover:cursor-auto">So in conclusion:</span>
+
+- Static analysis tools are essential for finding potential problems in your codebase.
+- Utilizing both static and dynamic analysis tools will help you produce high-quality software products.
+- Find the code review tools that best fit your team and implement them.
