@@ -11,6 +11,7 @@ import AddToSlack from "./CTABanner/addToSlack"
 import { ImageContainer } from "./utils/image-article"
 import { NoFollowLink } from "./utils/nofollow-link"
 import EnterpriseEmailInput from "./EnterpriseEmailInput"
+import { SubImageText } from "./utils/subimage-text"
 
 export const MDXComponents = {
   Image,
@@ -26,6 +27,7 @@ export const MDXComponents = {
   CTABanner,
   AddToSlack,
   ImageContainer,
+  SubImageText,
   NoFollowLink,
 }
 
