@@ -28,7 +28,7 @@ This post will discuss the significance of developing a high-quality codebase, w
 
 <span className="rainbow-button text-2xl font-bold hover:cursor-auto">TL;DR:</span>
 
-- your code should be maintanable, reliable, testable, portable, and reusable,
+- your code should be maintainable, reliable, testable, portable, and reusable,
 - you should use code conventions, write helpful comments, use a linter, refactor
   legacy code and use a code review tool that fits your team,
 - you should use static and dynamic analysis tools, unit tests, and integration tests.
@@ -146,17 +146,31 @@ Some developers love refactoring, some others hate it. When you schedule your ne
 
 Code reviews best practices will help your team review better, and faster and enjoy the activity along the way!
 
-Here are my top 5 advices to get you started with code review best practices:
+Here are my top 5 advice to get you started with code review best practices:
 
 1. Your code must be tested before any review.
 2. Create a code review checklist. Don't know how to start? Check these [pull request templates](https://axolo.co/blog/p/part-3-github-pull-request-template).
 3. Ensure your knowledge base justifies your feedback. What is not written, does not exist, so if you request changes, use a guide your team already agreed on or defend your position.
-4. 400 lines should be the maximum length of pull requests. Beyond 400 lines, it becomes harder to spot flaws because our brain can only handle so much data.
+4. 400 lines should be the maximum length of pull requests. Beyond 400 lines, it becomes harder to spot flaws because our brains can only handle so much data.
 5. Review daily and less than one hour per day.
 
 I also wrote a detailed post on [Code review best practices](https://axolo.co/blog/p/part-4-how-to-review-code-in-github) if you feel like you need a refresher.
 
 ## Best code quality tools for 2023
+
+According to <NoFollowLink url="https://survey.stackoverflow.co/2022/#section-developer-experience-developer-experience-processes-tools-and-programs-within-an-organization">StackOverflow 2022 Developer Survey</NoFollowLink>, 69% of developers have implemented CI/CD, 59% DevOps functions and 58% automated testing. This automation is today almost mandatory to improve code quality. Trust me, you don't want to be the one who has to manually test 1000-lines pull requests every day.
+
+<ImageContainer
+  alt="stackoverflow-survey"
+  src="/blog/static/images/code-quality/stackoverflow-survey.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2256}
+  height={1360}
+/>
+<SubImageText classNameDiv="" classNameText="">
+  "Timmy, I told you that reverse engineering Jenkis was a bad idea!"
+</SubImageText>
 
 ### Static analysis tools to improve code quality
 
@@ -166,10 +180,20 @@ There are several static analysis tools available, and many of them are based on
 
 Choosing from so many alternatives might be challenging. The ones I suggest are listed below:
 
-- **SonarQube**: Before submitting a pull request, SonarQube can scan your source code in 29 different languages. The fact that SonarQube validates your code as you write is its main advantage. Both a commercial version and an open-source version are available.
-- **Codacy**: While it does not check while you write, it does check every time you submit a pull request, allowing you to ensure that your code is sound before it is published.
-- **Veracode**: This one is largely promoted as a tool for finding security flaws in software and enhancing application security. It's an extremely thorough tool that will undoubtedly make your code better, but the scans can take some time. As a result, it's advisable to utilize it as a final verification to ensure that no vulnerabilities remain.
-- **DeepSource**: A well-liked tool with certain language restrictions. Since they support my languages, I really appreciate it!
+- <NoFollowLink url="https://www.sonarqube.org/">**SonarQube**</NoFollowLink>: Before submitting a
+  pull request, SonarQube can scan your source code in 29 different languages. The fact that
+  SonarQube validates your code as you write is its main advantage. Both a commercial version and an
+  open-source version are available.
+- <NoFollowLink url="https://www.codacy.com/">**Codacy**</NoFollowLink>: While it does not check
+  while you write, it does check every time you submit a pull request, allowing you to ensure that
+  your code is sound before it is published.
+- <NoFollowLink url="https://www.veracode.com/">**Veracode**</NoFollowLink>: This one is largely
+  promoted as a tool for finding security flaws in software and enhancing application security. It's
+  an extremely thorough tool that will undoubtedly make your code better, but the scans can take
+  some time. As a result, it's advisable to utilize it as a final verification to ensure that no
+  vulnerabilities remain.
+- <NoFollowLink url="https://deepsource.io/">**DeepSource**</NoFollowLink>: A well-liked tool with
+  certain language restrictions. Since they support my languages, I really appreciate it!
 
 ### Dynamic analysis tools to improve code quality
 
@@ -193,9 +217,17 @@ The list of dynamic analysis tools is long, but I found an open-source GitHub re
 
 Improving code quality is also a reviewer's duty. But as a manager, you must provide your team with the right tools to review code seamlessly. Here is a short list to get you started:
 
-- **[Axolo](https://axolo.co)**, an "Essential App" according to Slack (works on GitHub Cloud and Enterprise Server + GitLab Cloud and Self-Hosted) - I am one of Axolo's cofounder, but if you're on Slack test it and let me know what you think!
-- **CodeApprove**, before a review is merged, CodeApprove makes sure that every discussion has been finished. You can quickly review more code by combining that with a quick, information-dense interface that was created with keyboard shortcuts in mind.
-- **CodeStream**, you can do reviews whenever you want and without ever leaving your IDE. CodeStream allows you to access the entire source tree so you can review code using the same tools you use to write it, as opposed to just looking at a diff.
+- <span className="!text-white">**[Axolo](https://axolo.co)**</span>, an "Essential App" according
+  to Slack (works on GitHub Cloud and Enterprise Server + GitLab Cloud and Self-Hosted) - I am one
+  of Axolo's cofounder, but if you're on Slack test it and let me know what you think!
+- <NoFollowLink url="https://codeapprove.com/">**CodeApprove**</NoFollowLink>, before a review is
+  merged, CodeApprove makes sure that every discussion has been finished. You can quickly review
+  more code by combining that with a quick, information-dense interface that was created with
+  keyboard shortcuts in mind.
+- <NoFollowLink url="https://www.codestream.com/">**CodeStream**</NoFollowLink>, you can do reviews
+  whenever you want and without ever leaving your IDE. CodeStream allows you to access the entire
+  source tree so you can review code using the same tools you use to write it, as opposed to just
+  looking at a diff.
 
 If you're interested in learning more about code review tools, you can find an extensive list on this article: <a href="https://medium.com/codeapprove/the-best-modern-code-review-tools-2022-468b51751fa" rel="nofollow noreferrer" target="_blank" >The best modern code review tools (2022)</a>.
 
