@@ -1,15 +1,55 @@
 ---
-title: "A quick resume of the changelog"
-date: "2022-06-30"
+title: "GitHub Enterprise Server, Linear integration, awesome improvements and exciting bug fixes..."
+date: "2022-12-02"
 tags: ["changelog"]
-draft: true
+draft: false
 summary: ""
 ---
 
 ## ✨ New
 
+- GitHub Enterprise Server is live (self-hosted instance of GitHub)
+
+<ImageContainer
+  alt="github-enterprise-server"
+  src="/blog/static/images/changelog/github-enterprise-server.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2962}
+  height={1626}
+/>
+
+- Workflow to auto-leave a channel after approving a merge request in GitLab is live
+- Linear integration: Axolo adds a bookmar to the Linear issue in PR channels
+  <ImageContainer
+    alt="linear-integration"
+    src="/blog/static/images/changelog/linear-integration.jpg"
+    classNameDiv="mx-10 lg:mx-20"
+    classNameImage=""
+    width={2152}
+    height={174}
+  />
+- During the trial period, Axolo will open PR channel for not onboarded author if at least one reviewer is onboarded on Axolo
+
 ## 🔨 Improvements
+
+- We added a button to redirect to app.axolo.co from the Axolo Home in Slack
+- User can now self onboard from logging in from app.axolo.co
+- Standup triggers same day notification from now on too (it was only working for the next day)
+
+### GitLab:
+
+- When suspending a company on GitLab, we revoke its token
+- Axolo was still opening MRs for inactive account in GitLab
+- Axolo tells users whenever we get a 401 from GitLab and ask to re-sign in
+
+### Slack:
+
+- Automatically ask to renew Slack OAuth if we have an outdated or revoked token
 
 ## 🐞 Fixes
 
-## 📖 Documentation
+- Fix bug where new Business users would be assigned to a Professional plan
+- Fix GitLab assignees that were not invited in MR channels
+- Fix bug with quote and new line from Slack where GitHub and GitLab did not understand that the new line was not within the code fence
+- Creating new channels from app.axolo.co was not sending a notification in Axolo team channels (and \_axolo)
