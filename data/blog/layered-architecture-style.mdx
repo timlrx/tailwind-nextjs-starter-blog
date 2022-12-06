@@ -1,0 +1,23 @@
+---
+title: Layered Architecture Style
+summary: Layered Architecture Style is used where you want to have separations of concers.
+date: 2022-12-06
+archive: false
+tags:
+- architecture
+- design
+- pattern
+---
+
+Layered architecture, is an architecture pattern that helps for having a more
+organized and structured codebase.
+
+Each layer has its distinct job and all the layers communicate via well-defined interfaces.
+
+This architecture helps us with maintainability and scalability and is often used on enterprise applications.
+
+You should be strict about not letting these layers have direct dependencies with each other, otherwise, you will lose the benefits of this architectural style.
+
+Usually, the communication or interaction between layers is top-down at higher levels of the application such as user interaction using lower parts of the application such as the Database.
+
+The key idea of this architectural style is to have a clear separation of concerns.
