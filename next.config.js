@@ -84,4 +84,8 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
 })
