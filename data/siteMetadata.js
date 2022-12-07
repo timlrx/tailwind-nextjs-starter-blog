@@ -7,7 +7,7 @@ const siteMetadata = {
   siteUrl: 'https://diarselimi.github.io',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  image: '/static/images/author.jpg',
   socialBanner: '/static/images/twitter-card.png',
   twitter: 'https://twitter.com/@slmdiar',
   linkedin: 'https://www.linkedin.com/in/diarselimi',

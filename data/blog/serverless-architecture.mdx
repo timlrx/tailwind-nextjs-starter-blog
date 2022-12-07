@@ -14,15 +14,16 @@ tags:
 ### What is Serverless
 
 These types of architecture are usually used for fast deployment and efficient scaling.
-There is a Backend as a Service (**BaaS**), which you can use as a normal backend with API or messaging.
-The other type is functions as a service (**FaaS**), in which they have one job, understandably they are smaller since they are doing one job.
+There is a Backend as a Service (**BaaS**), which you can use as a normal backend with API.
+The other type is Functions as a Service (**FaaS**), in which they have one job, understandably they are smaller since they are doing one job.
 It is recommended to keep them as small as possible, you need to avoid growing them large, as you will start facing limitations that will prevent
 you from solving issues and doing special operations.
 
 #### Backend as a service (BaaS)
 
-BaaS is usually larger than Faas, or a group of FaaS make one BaaS, it's a group of functions that are accessible through some API.
-You need to be careful to not make them very big services, if a BaaS took 3 months to develop, you need to assume you will need 9 months to switch it to a microservice.
+BaaS is a pre-built backend with an API so that developers can use it to build their applications.
+BaaS can be larger than Faas, or a group of FaaS make one BaaS, it's a group of functions that are accessible through some API.
+You need to be careful to not add a lot of functionality, if a BaaS took 3 months to develop, you need to assume you will need 9 months to switch it to a microservice.
 
 #### Function as a service (FaaS)
 
@@ -33,7 +34,7 @@ One of the first cloud computing platforms to provide this was amazon with [AWS 
 
 ### Real-world example
 
-At one of my previous jobs, we utilized a FaaS (Function as a Service) to retrieve files from an FTP server, save them, and process them.  
+At one of my previous jobs, we utilized a FaaS to retrieve files from an FTP server, save them, and process them.  
 This helped us because we did not need an extra service just for this functionality, and we did not need any custom steps for this.  
 Another case is to use the BaaS for analytics, authentication, or notifications.
 
@@ -54,7 +55,7 @@ Different platforms have different limits and delay ex: Execution duration and [
 
 ### Conclusion
 
-Serverless architecture is very useful for small functionality in which you don't want any cost in deployment, maintenance, and scalability.
-Cloud services will provide you with the best response time and handle the scaling.
+Serverless architecture is very useful for a small functionality in which you don't want any cost in deployment, maintenance, and scalability.
+Cloud services will provide you with the best response time and handle the scaling.  
 You need to be careful to only expand on them a little, otherwise, you might end up asking something that is not possible.
 Overall, if your project involves writing and deploying small, single-purpose functions, then FaaS could be a good fit.
