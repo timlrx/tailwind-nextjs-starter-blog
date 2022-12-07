@@ -1,0 +1,60 @@
+---
+title: Serverless architecture
+archive: false
+summary: Serverless architecture is used for easy tasks that you don't have to have the whole process of deployement and maintainance.
+date: 2022-12-07
+tags:
+  - architecture
+  - serverless
+  - pattern
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+### What is Serverless
+
+These types of architecture are usually used for fast deployment and efficient scaling.
+There is a Backend as a Service (**BaaS**), which you can use as a normal backend with API or messaging.
+The other type is functions as a service (**FaaS**), in which they have one job, understandably they are smaller since they are doing one job.
+It is recommended to keep them as small as possible, you need to avoid growing them large, as you will start facing limitations that will prevent
+you from solving issues and doing special operations.
+
+#### Backend as a service (BaaS)
+
+BaaS is usually larger than Faas, or a group of FaaS make one BaaS, it's a group of functions that are accessible through some API.
+You need to be careful to not make them very big services, if a BaaS took 3 months to develop, you need to assume you will need 9 months to switch it to a microservice.
+
+#### Function as a service (FaaS)
+
+FaaS are usually small and they do one job.
+This is just a function where it will be executed for you in the cloud, they are called lambda functions.
+You can do anything within this function, the platform itself will handle scaling and library dependencies.
+One of the first cloud computing platforms to provide this was amazon with [AWS lambda](https://aws.amazon.com/lambda/).
+
+### Real-world example
+
+At one of my previous jobs, we utilized a FaaS (Function as a Service) to retrieve files from an FTP server, save them, and process them.  
+This helped us because we did not need an extra service just for this functionality, and we did not need any custom steps for this.  
+Another case is to use the BaaS for analytics, authentication, or notifications.
+
+### Benefits
+
+- One main benefit of this architecture is that you don't need to worry about deployment and scaling servers on demand, this is done automatically.
+- **Simplicity**: You can focus on writing code and not worry about deployment and not worry about infrastructure.
+- Another benefit is that you don't need to worry about libraries and language support.
+- **Cost saving**: Because you don't have to scale up or down manually, everything is done automatically so it is more cost-efficient.
+
+### Drawbacks
+
+BaaS can change unexpectedly, so you need to make sure the versioning is not changing and breaking your functionality.  
+You should be careful of the trap which it allows you to build very easily but usually the
+very special changes you want to do, you will not be allowed.  
+If your company works with sensitive data this type of architecture is not recommended for that.  
+Different platforms have different limits and delay ex: Execution duration and [cold start](https://azure.microsoft.com/de-de/blog/understanding-serverless-cold-start/).
+
+### Conclusion
+
+Serverless architecture is very useful for small functionality in which you don't want any cost in deployment, maintenance, and scalability.
+Cloud services will provide you with the best response time and handle the scaling.
+You need to be careful to only expand on them a little, otherwise, you might end up asking something that is not possible.
+Overall, if your project involves writing and deploying small, single-purpose functions, then FaaS could be a good fit.
