@@ -45,20 +45,31 @@ const ScrollTopAndComment = () => {
       {/* disabledStyle  */}
 
       <TwitterShareButton url={url}>
-        <TwitterIcon size={32} round={true} iconFillColor="#e2e8f0" bgStyle={{ fill: "none" }} />
+        <TwitterIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
       </TwitterShareButton>
 
+
       <RedditShareButton url={url}>
-        <RedditIcon size={32} round={true} iconFillColor="#e2e8f0" bgStyle={{ fill: "none" }} />
+
+        <RedditIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
       </RedditShareButton>
 
+
       <LinkedinShareButton url={url}>
-        <LinkedinIcon size={32} round={true} iconFillColor="#e2e8f0" bgStyle={{ fill: "none" }} />
+
+        <LinkedinIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
       </LinkedinShareButton>
 
+
       <FacebookShareButton url={url}>
-        <FacebookIcon size={32} round={true} iconFillColor="#e2e8f0" bgStyle={{ fill: "none" }} />
+
+        <FacebookIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
       </FacebookShareButton>
+
       {siteMetadata.comment.provider && (
         <button
           aria-label="Scroll To Comment"
