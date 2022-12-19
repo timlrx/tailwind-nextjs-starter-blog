@@ -1,5 +1,15 @@
 import siteMetadata from "@/data/siteMetadata"
 import { useEffect, useState } from "react"
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from "react-share"
 
 const ScrollTopAndComment = () => {
   const [show, setShow] = useState(false)
@@ -20,12 +30,46 @@ const ScrollTopAndComment = () => {
   const handleScrollToComment = () => {
     document.getElementById("comment").scrollIntoView()
   }
+
+  let url
+  if (typeof window !== "undefined") {
+    url = `https://axolo.co${window?.location?.pathname}`
+  }
   return (
     <div
-      className={`fixed right-8 bottom-8 mb-[60px] hidden flex-col gap-3 ${
+      className={`fixed right-8 bottom-8 mb-[60px] hidden flex-col items-center gap-3 ${
         show ? "md:flex" : "md:hidden"
       }`}
     >
+      {/* https://github.com/nygardk/react-share#readme */}
+      {/* disabledStyle  */}
+
+      <TwitterShareButton url={url}>
+        <TwitterIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
+      </TwitterShareButton>
+
+
+      <RedditShareButton url={url}>
+
+        <RedditIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
+      </RedditShareButton>
+
+
+      <LinkedinShareButton url={url}>
+
+        <LinkedinIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
+      </LinkedinShareButton>
+
+
+      <FacebookShareButton url={url}>
+
+        <FacebookIcon size={32} round={true} iconFillColor="grey" bgStyle={{ fill: "none" }} />
+
+      </FacebookShareButton>
+
       {siteMetadata.comment.provider && (
         <button
           aria-label="Scroll To Comment"
