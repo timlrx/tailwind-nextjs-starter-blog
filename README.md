@@ -31,7 +31,6 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
 - [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
 - [ghali.dev](https://ghali.dev) - Cyril's Blog
-- [DevBoy Blog](https://devboy.vercel.app/) - M.Reza's personal blog
 - [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
 - [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
 - [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
@@ -59,8 +58,8 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [ondiek-elijah.me](https://www.ondiek-elijah.me/) - Ondiek Elijah's website and blog ([source code](https://github.com/Dev-Elie/ondiek-elijah)).
 - [jmalvarez.dev](https://www.jmalvarez.dev/) - José Miguel Álvarez's personal blog ([source code](https://github.com/josemiguel-alvarez/nextjs-blog))
 - [justingosses.com](https://justingosses.com/) - Justin Gosses's personal website and blog ([source code](https://github.com/JustinGOSSES/justingosses-website))
-- [sabare.me](https://sabare.me/) - Victor Sabare's personal website and blog ([source code](https://github.com/Sabareh/blog)
-- [https://bitoflearning-9a57.fly.dev/](https://bitoflearning-9a57.fly.dev/) - Sangeet Agarwal's personal blog, replatformed to [remix](https://remix.run/remix) using the [indie stack](https://github.com/remix-run/indie-stack) ([source code](https://github.com/SangeetAgarwal/bitoflearning)) WIP
+- [sabare.me](https://sabare.me/) - Victor Sabare's personal website and blog
+- [https://bitoflearning-9a57.fly.dev/](https://bitoflearning-9a57.fly.dev/) - Sangeet Agarwal's personal blog, replatformed to [remix](https://remix.run/) using the [indie stack](https://github.com/remix-run/indie-stack) ([source code](https://github.com/SangeetAgarwal/bitoflearning)) WIP
 - [raphaelchelly.com](https://www.raphaelchelly.com/) - Raphaël Chelly's personal website and blog ([source code](https://github.com/raphaelchelly/raph_www))
 
 Using the template? Feel free to create a PR and add your blog to this list.
