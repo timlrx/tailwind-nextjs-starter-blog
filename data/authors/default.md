@@ -1,6 +1,6 @@
 ---
 name: Diar
-avatar: /static/images/author.jpg
+avatar: ../../static/images/author.jpg
 occupation: Software Engineer
 company: '@Nordsecurity'
 twitter: https://twitter.com/slmdiar

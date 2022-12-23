@@ -1,0 +1,67 @@
+---
+title: CQRS explained with examples
+summary: CQRS architecture allows for the separation of command and query logic, enabling independent optimization and potentially improving system performance and scalability.
+date: 2022-12-23
+tags:
+  - architecture
+  - CQRS
+  - software
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+### What is CQRS?
+
+CQRS stands for **Command Query Responsibility Segregation**, the idea of this pattern is to have a separation
+of models for updating and reading the data.
+
+This architecture usually works well with event sourcing, as well as **Domain Driven Design** architecture.
+It is fairly common to confuse this pattern with CQS and Event Sourcing, but the following diagrams and conclusion attempt to explain the differences.
+
+Now the following is a simple Controller-service-repository diagram, which will show a simple use-case, fetching data of the order and returning it.
+![Normal crud process](../../static/images/normal_crud_process.jpg)
+
+Next is a transformed model trying to achieve CQRS, notice how the separation extends all the way to storage.
+![Separate storage CQRS](../../static/images/cqrs_separate_storage.jpg)
+
+There are cases where you can apply this pattern but have one storage in that case, it would be **CQS** since we are not segregating Responsibility and just the Command and Query instead.
+A diagram of this would look something like this.
+![Same storage CQRS](../../static/images/cqrs_same_storage.jpg)
+
+### Real-world scenario
+
+Suppose you have an online store where you can browse items, check out, and confirm your order.
+Your system will execute something like in the diagram after you click the purchase button; after the write, the data or the event will trigger a DB sync listener.
+![Order command model](../../static/images/order_command_model.jpg)
+
+### Benefits
+
+- Distinguishing between queries and commands.
+- Easier to make improvements on DB if the read or write slows down.
+- Simplified development: easier for developers to implement complex business logic and data access patterns because it provides a clear and well-defined way of separating read and write operations.
+  This can help reduce the complexity of the code and make it easier to understand and maintain.
+- Better consistency: CQRS can help ensure that data is always consistent because it forces all write operations to be processed through a single, well-defined command interface. This can help prevent conflicting updates and other inconsistencies that can occur when multiple writers are allowed to access the same data.
+
+### Drawbacks
+
+- Increased complexity for simple systems: CQRS may be overkill for simple systems that do not require the additional separation of read and write models.
+- Performance overhead: CQRS architectures may introduce additional overhead when reading and writing data, as the system needs to route requests to the appropriate model and possibly perform additional processing.
+- Lack of consistency: CQRS architectures can make it more difficult to maintain consistency between the read and write models, as changes made through the write model may not be immediately reflected in the read model.
+
+### Conclusion
+
+**CQRS** can be used in any project small or big, usually it provides more benefits like having a full separation of objects, data transformers, services, etc.
+
+Sometimes just **CQS** would do the trick on helping you have a nice separation of commands and queries, this way you would not slow down on having a fully separated system,
+although you should be careful in doing that and start the planning for transitioning to the **CQRS** architecture as soon as you know the business expectations.
+
+**CQRS** is good when you are dealing with a lot of writes and reads, if your application is starting to get traction and grow in terms of users, you should already start considering.
+
+If you are starting a new project and want to implement CQRS, which will be relatively straightforward and easy, the difficult part will be refactoring an existing project to follow a CQRS design.
+
+To successfully refactor an existing project to follow a CQRS design, it is necessary to thoroughly investigate the current system and make careful decisions about the best approach. A plan will need to be developed to guide the refactoring process.
+
+### External links on this architecture
+
+- [From Microsoft](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs?utm_source=pocket_saves)
+- [From Martin Fowler](https://martinfowler.com/bliki/CQRS.html)
