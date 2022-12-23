@@ -15,6 +15,9 @@ linkedin: https://www.linkedin.com/in/diarselimi
 
 ### Currently focused on 🧘🏻
 
-- Architecture patterns
+- Architecture
+- Design
 - Scalability
 - Efficiency
+- Deployablity
+- Testability
