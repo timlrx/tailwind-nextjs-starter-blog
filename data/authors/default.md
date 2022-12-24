@@ -9,9 +9,9 @@ linkedin: https://www.linkedin.com/in/diarselimi
 
 ### My experience 👨🏼‍💻
 
-- Worked mainly with PHP7, PHP8 and Mysql, Symfony 3, Symfony 4, Slim3, Slim4, Unit testing, Functional testing, Docker, AWS services, GO lang, Jenkins, GitHub for code review and deployment.
+- Worked mainly with PHP7, PHP8 and Mysql, Symfony 3, Symfony 4, Slim3, Slim4, Unit testing, Functional testing, Docker, AWS services, GO lang, Jenkins, GitHub and Gitlab for code review and deployment.
 - Using the best coding practices and standards for the projects like SOLID principles, KISS, DDD, DI, Design Patterns.
-- Testing the code based on the testing pyramid, Behat and Phpunit.
+- Testing the code based on the [testing piramid](), Behat and Phpunit.
 
 ### Currently focused on 🧘🏻
 

@@ -24,20 +24,20 @@ Now the following is a simple Controller-service-repository diagram, which will 
 Next is a transformed model trying to achieve CQRS, notice how the separation extends all the way to storage.
 ![Separate storage CQRS](../../static/images/cqrs_separate_storage.jpg)
 
-There are cases where you can apply this pattern but have one storage in that case, it would be **CQS** since we are not segregating Responsibility and just the Command and Query instead.
-A diagram of this would look something like this.
+There are cases where you can apply this pattern, but you have one storage in that case, it would be **CQS** since we are not segregating Responsibility instead just the Command and Query.
+A diagram would look something like this.
 ![Same storage CQRS](../../static/images/cqrs_same_storage.jpg)
 
 ### Real-world scenario
 
-Suppose you have an online store where you can browse items, check out, and confirm your order.
-Your system will execute something like in the diagram after you click the purchase button; after the write, the data or the event will trigger a DB sync listener.
+Suppose you have an online store where you can browse items, select some items, and confirm your order.
+Your system in the background will execute something like in the following diagram, after you click the purchase button.
 ![Order command model](../../static/images/order_command_model.jpg)
+After the write, the data or the event will trigger a DB sync listener.
 
 ### Benefits
 
-- Distinguishing between queries and commands.
-- Easier to make improvements on DB if the read or write slows down.
+- Better visibility: Distinguishing between read and write models.
 - Simplified development: easier for developers to implement complex business logic and data access patterns because it provides a clear and well-defined way of separating read and write operations.
   This can help reduce the complexity of the code and make it easier to understand and maintain.
 - Better consistency: CQRS can help ensure that data is always consistent because it forces all write operations to be processed through a single, well-defined command interface. This can help prevent conflicting updates and other inconsistencies that can occur when multiple writers are allowed to access the same data.
@@ -60,8 +60,3 @@ although you should be careful in doing that and start the planning for transiti
 If you are starting a new project and want to implement CQRS, which will be relatively straightforward and easy, the difficult part will be refactoring an existing project to follow a CQRS design.
 
 To successfully refactor an existing project to follow a CQRS design, it is necessary to thoroughly investigate the current system and make careful decisions about the best approach. A plan will need to be developed to guide the refactoring process.
-
-### External links on this architecture
-
-- [From Microsoft](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs?utm_source=pocket_saves)
-- [From Martin Fowler](https://martinfowler.com/bliki/CQRS.html)
