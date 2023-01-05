@@ -1,0 +1,114 @@
+---
+title: "Top 4 GitLab Integrations for Developers"
+date: "2023-01-05"
+tags: ["software development", "gitlab"]
+draft: false
+summary: "xxxx"
+image: "/blog/static/images/general/top-gitlab-integrations.jpg"
+---
+
+If you are a developer and are looking for GitLab integrations to improve your workflow, you are in the right place!
+
+Even if GitLab is behind GitHub in terms of integrations, there are some great tools that you should implement within your engineering team. In this article, I will share with you the top 4 GitLab integrations that I use daily.
+
+## Issue tracking: Jira & Linear
+
+An issue-tracking tool is an essential part of any software development project, and integrating it with GitLab can greatly improve the efficiency and organization of your team's workflow. I'll explain the two most used issue-tracking tools integrated with GitLab: Jira and Linear.
+
+### Jira
+
+Jira is a tool created by the Australian software firm Atlassian that helps teams monitor and manage projects, track issues, and automate processes. What can you do with the Jira integration in GitLab?
+
+| Capability                                                                                            | Jira integration                                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Mention a Jira issue ID in a GitLab commit or merge request, and a link to the Jira issue is created. | Yes.                                                                                                                                             |
+| Mention a Jira issue ID in GitLab and the Jira issue shows the GitLab issue or merge request.         | Yes. A Jira comment with the GitLab issue or MR title links to GitLab. The first mention is also added to the Jira issue under Web links.        |
+| Mention a Jira issue ID in a GitLab commit message and the Jira issue shows the commit message.       | Yes. The entire commit message is displayed in the Jira issue as a comment and under Web links. Each message links back to the commit in GitLab. |
+| Mention a Jira issue ID in a GitLab branch name and the Jira issue shows the branch name.             | No.                                                                                                                                              |
+| Add Jira time tracking to an issue.                                                                   | No.                                                                                                                                              |
+| Use a Git commit or merge request to transition or close a Jira issue.                                | Yes. Only a single transition type, is typically configured to close the issue by setting it to Done.                                            |
+| Display a list of Jira issues.                                                                        | Yes.                                                                                                                                             |
+| Create a Jira issue from a vulnerability or finding.                                                  | Yes.                                                                                                                                             |
+| Create a GitLab branch from a Jira issue.                                                             | No.                                                                                                                                              |
+
+If you want to learn more or how to set up the Jira integration, please continue <NoFollowLink url="https://docs.gitlab.com/ee/integration/jira/">on the GitLab Documentation.</NoFollowLink>
+
+### Linear
+
+Linear is a modern issue-tracking tool that is integrated with GitLab. It is a great alternative to Jira, and it has a lot of features that can help you improve your workflow.
+
+The Linear integration allows you to link Linear issues to GitLab merge requests. It enables automation of your MR workflow so that issues are updated when MRs are drafted, opened, merged, and when reviews are requested. You can link one or multiple issues to a specific MR.
+
+Learn more about the GitLab and Linear integration in the dedicated <NoFollowLink url="https://linear.app/docs/gitlab">Linear documentation</NoFollowLink>.
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/top-gitlab-integrations/linear-gitlab.webp"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1440}
+  height={884}
+/>
+
+## Code review & CI/CD notifications: Axolo for Slack
+
+We started working on Axolo because we felt that the merge request review flow in GitLab might be improved. There are many reasons why a review may be forgotten, such as human error or circumstance. Merge Requests must be manually monitored throughout the review process, and managers must be vigilant for faulty reviews. This is the reason we created Axolo. When each MR creates its temporary channel, it is easier to keep track of the ongoing conversation and to remind the reviewer about it.
+
+With Axolo, **tech teams collaborate on merge requests seamlessly**. Each merge request creates a temporary Slack channel where all information (deployments, merge request checks, and code comments) will be shared.
+
+Axolo takes all of the normal back-and-forths on GitLab and Slack to centralize the conversation in ephemeral merge request channels. More info on our [landing page](https://axolo.co/gitlab-slack-integration).
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/top-gitlab-integrations/gitlabOldWay.png"
+  classNameDiv="bg-white !mx-0"
+  classNameImage=""
+  width={2486}
+  height={994}
+/>
+
+<CTABanner type="learn" tool="gitlab" />
+
+## Automation: Zapier & Make
+
+If you're willing to use GitLab as the source of a specific workflow or would like an external action to trigger a GitLab action, you can use Zapier or Make. Both of them are well-integrated with GitLab and can help you automate your workflow. I wrote a list of example use cases for Zapier and Make, but you can find many more on the official documentation.
+
+1. Automatically create a new issue in GitLab when a customer submits a support request through a form on your website.
+2. Automatically create a new project in GitLab when a new project is created in your project management tool.
+3. Send an email notification to team members when a GitLab pipeline fails.
+4. Automatically create a new task in your task management tool when a new issue is created in GitLab.
+5. Send a text message to your phone when a new commit is made to a GitLab repository.
+6. Automatically update a Google Sheets spreadsheet with data from GitLab when a new issue is closed.
+7. Automatically create a new calendar event when a new issue is assigned to you in GitLab.
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/top-gitlab-integrations/zapi-gitlab.png"
+  classNameDiv="mx-20 lg:mx-48"
+  classNameImage=""
+  width={562}
+  height={352}
+/>
+
+If you're willing to use <NoFollowLink url="https://zapier.com/apps/gitlab/integrations">Zapier</NoFollowLink> or <NoFollowLink url="https://www.make.com/en/integrations/gitlab">Make</NoFollowLink>, you can find more information on the official documentation.
+
+## Bug tracking: Sentry
+
+At Axolo, we use Sentry every day to track and fix bugs. Sentry is a powerful tool that helps you monitor and fix crashes in real-time. It is integrated with GitLab, and you can use it to track bugs and errors in your code. You can also use it to track performance issues and monitor your application's health.
+
+With the Sentry integration, you will easily follow your issues, which commits are the source of specific bugs, and you will be able to fix them faster. You can also use it to track performance issues and monitor your application's health.
+
+More information on the Sentry integration with GitLab can be found on the <NoFollowLink url="https://docs.sentry.io/product/integrations/source-code-mgmt/gitlab/">official documentation</NoFollowLink>.
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/top-gitlab-integrations/gitlab-overview-sentry.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1200}
+  height={793}
+/>
+
+<span className="rainbow-button text-lg font-bold hover:cursor-auto">Looking for more?</span>
+
+Great! We have also developed the [Unofficiel GitLab Integrations Marketplace](https://gitlabintegrations.com/) and will continue to add more integrations along the way. Join our newsletter to stay up-to-date with the latest integrations.
