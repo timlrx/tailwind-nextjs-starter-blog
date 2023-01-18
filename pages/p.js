@@ -18,7 +18,7 @@ export async function getStaticProps() {
 
 export default function Blog({ posts, initialDisplayPosts, pagination }) {
   // we filter to hide changelog articles
-  posts = posts.filter((post) => !post.tags.includes("changelog"))
+  posts = posts.filter((post) => !post?.tags?.includes("changelog"))
   initialDisplayPosts = initialDisplayPosts.filter((post) => !post.tags.includes("changelog"))
   return (
     <>
