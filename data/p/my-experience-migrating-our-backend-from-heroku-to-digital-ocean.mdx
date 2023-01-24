@@ -205,8 +205,16 @@ There is an optional beta feature that I haven't tried to reduce this time that 
 
 Heroku Preboot feature is by default on DO: <a target="_blank" rel="noopener noreferrer nofollow" href="https://devcenter.heroku.com/articles/preboot">preboot</a>. Preboot allows you to reduce downtime when updating your server's code to production.
 
-### Two other alternatives, that <a target="_blank" rel="noopener noreferrer nofollow" href="https://twitter.com/CabelloMania/"> Cabello Mania </a> mentionned:
+## Three other alternatives
 
-> For Heroku like experiences I have been considering Digital Ocean, [Render.com](http://render.com/), [Fly.io](http://fly.io/), none have matched Heroku plug and play, Digital Ocean Apps never built my app using git push and buildpacks, it always crashed. [Render.com](http://render.com/) worked but I had to migrate to Docker, that added a few minutes to build time, trying to keep a Ruby Docker image small is also tricky. [Render.com](http://render.com/) fails to work on SSH for me for a month and I've been going back & forth with support. [Fly.io](http://fly.io/) looks promising but I can't rails console due to my Heroku app having multiple buildpacks.
+### Render.com & Fly.io mentionned by <a target="_blank" rel="noopener noreferrer nofollow" href="https://twitter.com/CabelloMania/">Cabello Mania</a>
+
+> For Heroku like experiences I have been considering Digital Ocean, <a target="_blank" rel="noopener noreferrer nofollow" href="http://render.com/">Render.com</a>, and <a target="_blank" rel="noopener noreferrer nofollow" href="http://fly.io/">Fly.io</a>. Render worked but I had to migrate to Docker, that added a few minutes to build time, trying to keep a Ruby Docker image small is also tricky. Render fails to work on SSH for me for a month and I've been going back & forth with support. Fly.io looks promising but I can't rails console due to my Heroku app having multiple buildpacks.
+
+### Kinsta, an interesting competitor that is worth taking a look
+
+So we have been recently made aware of a new competitor. <a target="_blank" rel="noopener noreferrer nofollow" href="https://kinsta.com/">Kinsta</a> is a strong competitor in the arena of <a target="_blank" rel="noopener noreferrer nofollow" href="https://kinsta.com/application-hosting">Application Hosting</a> and <a  target="_blank"  rel="noopener noreferrer nofollow"  href="https://kinsta.com/database-hosting/"> Database Hosting</a>. Their infrastructure is built on Google Cloud’s Premium Tier network and backed up by Cloudflare for enhanced DDoS protection and CDN capability. They offer unlimited crons, usage-based pricing, internal database connections, 25+ global data centers, 24/7 expert support, and a custom-built dashboard.
+
+Kinsta looks very promising, we haven't had the chance to try it yet but it’s on our list.
 
 Have you experienced a similar migration or are you looking to migrate similarly? Feel free to comment or react below in the comment section.
