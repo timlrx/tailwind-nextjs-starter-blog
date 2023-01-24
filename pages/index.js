@@ -35,7 +35,7 @@ function WithImage({ image, date }) {
 
 export default function Home({ posts }) {
   // we filter to hide changelog articles
-  posts = posts.filter((post) => !post.tags.includes("changelog"))
+  posts = posts.filter((post) => !post?.tags?.includes("changelog"))
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
