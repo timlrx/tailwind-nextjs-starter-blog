@@ -1,0 +1,109 @@
+---
+title: Loading environment values into go Structs
+summary: Load environment variables with this library into go structs, easy to use and test, you can easily contribute to this open source project, code logic is very small and there is no learning curve.
+tags:
+  - library
+  - go
+  - opensource
+date: 2023-01-25
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+### **The Env library**
+
+The goal of this library is to be able to load Environment values into GO structs.
+
+This library is a simple one where it loads four types of values and does not cover arrays or any other logic except what is explained here.
+
+Supported types are `**string,int,int32,int64,float32,float64,bool**` .
+
+### **Installation**
+
+If you have already set up your project in GO and you want to install the library, then all you need to do is **`go get github.com/diarselimi/dev`** and that's it.
+
+### **Basic usage**
+
+After installing this library you can simply use it by importing it and passing the **struct by reference**.
+
+The following example will show you, how you can use this with a simple struct which contains tags as a reference to the environment variable.
+
+```go filename="main.go"
+package main
+
+import (
+	"fmt"
+	"github.com/Diarselimi/env"
+)
+
+type ClientConfig struct {
+    BaseUrl string `env:"API_BASE_URL"`
+    ClientId string `env:"API_CLIENT_ID"`
+    Secret string `env:"API_SECRET"`
+}
+
+func main() {
+    config := ClientConfig{}
+    env.PopulateWithEnv(&config)
+
+    fmt.Println(config)
+}
+```
+
+### Advanced usage
+
+In this other example you will see how you can use this library by having one central place for all your environment variables, distributed into their own structs.
+
+The most important part here is the tag type inside structs which is named `**obj` .\*\*
+
+```go filename="main.go"
+package main
+
+import (
+	"fmt"
+	"github.com/Diarselimi/env"
+)
+
+type Config struct {
+    SomeApiConfig ClientConfig 'obj:""'
+    MysqlConfig SqlConfig 'obj:""'
+}
+
+type ClientConfig struct {
+    BaseUrl string `env:"API_BASE_URL"`
+    ClientId string `env:"API_CLIENT_ID"`
+    Secret string `env:"API_SECRET"`
+}
+
+type SqlConfig struct {
+    Host string 'env:"MYSQL_HOST"'
+    User string 'env:"MYSQL_USER"'
+}
+
+func main() {
+    config := Config{}
+    env.PopulateWithEnv(&config)
+
+    fmt.Println(config)
+}
+```
+
+Now you can see the tag types in the structs which contain `**env**` and `**obj**` , the library will look and fill them with necessary data.
+
+### Contribution
+
+The library is very new and does not contain much logic, if you are new into GO and want to contribute to this project feel free to create a pull request and I will review your code.
+
+Your chance to start contributing when a project is small are way higher because there is no learning curve there are just three methods that do the job.
+
+You can support by writing test scenarios which also help a lot on making the library more stable on future functionalities.
+
+If you are not ready to contribute then I would appreciate any other support [GitHub repository](https://github.com/diarselimi/env) like give it a star ⭐ if you think it's worth it.
+
+### Conclusion
+
+The env library will provide you with a simple functionality which can help you load your environment values into go structs.
+
+If you were thinking to contribute in open source then this is your chance to do so.
+
+You can use this library for your project or you can contribute by adding support for other types like arrays etc.
