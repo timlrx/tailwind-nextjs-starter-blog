@@ -1,0 +1,57 @@
+---
+title: Loading environment values into go Structs
+summary: You will see how to load environment values into GO structs via tags and Env library which I wrote.
+date: 2023-01-25
+archive: true
+tags:
+  - go
+  - library
+  - opensource
+---
+
+### The Env library
+
+The goal of this library is to be able to load Environment variable values into GO structs.
+There are plenty of go libraries out there which cover a lot of edge cases, this one is a simple one where it loads three types of values
+
+1. String
+2. Int to Int64
+3. Float32 and Float64
+4. Bool
+
+### Installation
+
+If you have already set up your project in GO and you want to install the lib, then all you need to do is
+`go get github.com/diarselimi/dev` and that's it.
+
+### Basic Usage
+
+After installing this library you can simply use it by importing it and passing the struct by reference.
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/Diarselimi/env"
+)
+
+type ClientConfig struct {
+    BaseUrl string `env:"API_BASE_URL"`
+    ClientId string `env:"API_CLIENT_ID"`
+    Secret string `env:"API_SECRET"`
+}
+
+func main() {
+    config := ClientConfig{}
+    env.PopulateWithEnv(&config)
+
+    fmt.Println(config)
+}
+```
+
+Output would look something like the following
+
+```output
+{https://api.example.com/v1/ some_client_id secret}
+```
