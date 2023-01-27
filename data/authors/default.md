@@ -8,16 +8,9 @@ linkedin: https://www.linkedin.com/in/diarselimi
 ---
 
 ### My experience 👨🏼‍💻
+- As a software developer, I have a strong background in working with technologies such as PHP7 and PHP8, MySQL, Symfony 3 and 4, Slim3 and Slim4, and Docker, as well as AWS services, GO lang, Jenkins, and Git for code review and deployment. 
+- I am committed to using best coding practices and standards, such as SOLID principles, KISS, DDD, DI, and design patterns, to ensure high-quality code. 
+- Additionally, I adhere to the testing pyramid and use tools such as Behat and PHPUnit to test my code.
 
-- Worked mainly with PHP7, PHP8 and Mysql, Symfony 3, Symfony 4, Slim3, Slim4, Unit testing, Functional testing, Docker, AWS services, GO lang, Jenkins, GitHub and Gitlab for code review and deployment.
-- Using the best coding practices and standards for the projects like SOLID principles, KISS, DDD, DI, Design Patterns.
-- Testing the code based on the [testing piramid](), Behat and Phpunit.
+Currently, I am focused on improving my skills in areas such as architecture, design, scalability, efficiency, deployability, and testability.
 
-### Currently focused on 🧘🏻
-
-- Architecture
-- Design
-- Scalability
-- Efficiency
-- Deployablity
-- Testability
