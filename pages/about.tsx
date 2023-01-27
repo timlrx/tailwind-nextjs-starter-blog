@@ -9,7 +9,7 @@ const DEFAULT_LAYOUT = 'AuthorLayout'
 export const getStaticProps: GetStaticProps<{
   authorDetails: { mdxSource: string; frontMatter: AuthorFrontMatter }
 }> = async () => {
-  const authorDetails = await getFileBySlug<AuthorFrontMatter>('authors', ['default'])
+  const authorDetails = await getFileBySlug('authors', ['default'])
   const { mdxSource, frontMatter } = authorDetails
   return { props: { authorDetails: { mdxSource, frontMatter } } }
 }
