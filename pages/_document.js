@@ -5,11 +5,7 @@ class MyDocument extends Document {
       <Html lang="en" className="scroll-smooth">
         <Head>
           <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-          <link
-            rel="icon"
-            type="image/png"
-            href="/static/favicons/logo.png"
-          />
+          <link rel="icon" type="image/png" href="/static/favicons/logo.png" />
           <link rel="manifest" href="/static/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#000000" />
