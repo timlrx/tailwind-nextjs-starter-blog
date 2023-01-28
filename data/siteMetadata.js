@@ -4,8 +4,8 @@ const siteMetadata = {
   description: 'Programming lessons and tips, architecture styles.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://diarselimi.github.io',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://diar.dev',
+  siteRepo: 'https://github.com/didslm/diarselimi.github.io',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/author.jpg',
   socialBanner: '/static/images/mountains.jpeg',
