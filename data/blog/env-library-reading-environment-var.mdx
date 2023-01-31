@@ -20,7 +20,11 @@ Supported types are `**string,int,int32,int64,float32,float64,bool**` .
 
 ### **Installation**
 
-If you have already set up your project in GO and you want to install the library, then all you need to do is **`go get github.com/didslm/dev`** and that's it.
+If you have already set up your project in GO and you want to install the library, then all you need to do is execute the following.
+
+```terminal
+go get github.com/didslm/dev
+```
 
 ### **Basic usage**
 
@@ -54,7 +58,7 @@ func main() {
 
 In this other example you will see how you can use this library by having one central place for all your environment variables, distributed into their own structs.
 
-The most important part here is the tag type inside structs which is named `**obj` .\*\*
+The most important part here is the tag type inside structs which is named **`obj`** .
 
 ```go filename="main.go"
 package main
@@ -88,7 +92,7 @@ func main() {
 }
 ```
 
-Now you can see the tag types in the structs which contain `**env**` and `**obj**` , the library will look and fill them with necessary data.
+Now you can see the tag types in the structs which contain **`env`** and **`obj`** , the library will look and fill them with necessary data.
 
 ### Contribution
 
