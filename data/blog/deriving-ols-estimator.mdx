@@ -6,17 +6,66 @@ draft: false
 summary: 'How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.'
 ---
 
-# Background
+## Background
 
-As a solutions architect, I spend most of my days doodling boxes and lines. Sure, I know how to code, but I'm no Tony Stark. However, with the recent buzz around AI/ML models like GPT-3, I thought to myself, "Hey, why not give it a shot?"
+As a solutions architect, I spend most of my days doodling boxes and lines. Sure, I know how to code, but I'm not one of those 10x engineers you hear about. However, with the recent buzz around AI/ML models like GPT-3, I thought to myself, "Hey, why not give it a shot?"
 
 My goal was simple: build a functional proof of concept app in a matter of hours using technologies I'm familiar with architecturally, but have limited hands-on experience with. And so, with digital health as my target, I set out on a wild and wacky journey. Could I do it with just my mad skills and a little help from Stack Overflow? Let's find out!
 
-# The Application
+The source-code to my application is available [here](https://github.com/adendl/DigitalHealth-Edge).
 
-I wanted to build a relatively simple application that I could expand on later. I have a patient data generator.
+## The Application
+
+I wanted to build a relatively simple application that I could expand on later. I landed on a basic, and ultimately pretty useless application that would take in healthcare data from a medical device, stream it through to a Kafka cluster, store it into a database - and then have a frontend application visualise that healthcare data in real time. The application would consist of the following components:
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/architecture1.png?raw=true)
+| Application | Component |
+| --------------------------- | ---------------------------- |
+| Patient Vitals Data Generator | Node.js |
+| Patient Vitals API - Kafka Producer | Node.js + Express |
+| Kafka Cluster | Red Hat OpenShift Streams for Apache Kafka |
+| Kafka Consumer | Python |
+| Database | MongoDB |
+| Data Access API | Node.js + Express |
+| Data Visualisation Frontend | React + Highcharts |
+
+Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly containerise and deploy the code that I had written.
+
+For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly select and deploy these from within OpenShift itself.
+
+## Building the Application
+
+Firstly, I needed some mock healthcare data to feed into my application.
+
+```json:patient_vitals_payload_example.json
+{
+    "patient_id": "123456",
+    "timestamp": "2022-12-01T10:30:00Z",
+    "heart_rate": 72,
+    "blood_pressure": {
+        "systolic": 120,
+        "diastolic": 80
+    },
+    "ecg_reading": {
+        "rr_interval": 800,
+        "p_wave": 0.05,
+        "qrs_complex": 0.1,
+        "t_wave": 0.2
+    },
+    "oxygen_saturation": 96,
+    "heart_rate_variability": {
+        "mean_rr": 792,
+        "sdnn": 24,
+        "rmssd": 36
+    },
+    "blood_chemistry": {
+        "ldl": 130,
+        "hdl": 40,
+        "triglycerides": 150,
+        "total_cholesterol": 220
+    }
+}
+```
 
 Math code blocks are denoted by `$$`.
 
