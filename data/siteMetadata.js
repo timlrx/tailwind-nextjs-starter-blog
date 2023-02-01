@@ -11,6 +11,7 @@ const siteMetadata = {
   socialBanner: '/static/images/mountains.jpeg',
   twitter: 'https://twitter.com/@slmdiar',
   linkedin: 'https://www.linkedin.com/in/diarselimi',
+  github: 'https://github.com/didslm',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
