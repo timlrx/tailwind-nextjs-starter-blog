@@ -13,6 +13,9 @@ const discussUrl = (slug) =>
   `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     `${siteMetadata.siteUrl}/blog/${slug}`
   )}`
+const shareOnLinkedinUrl = (slug) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    `${siteMetadata.siteUrl}/blog/${slug}`
+)}`
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -89,6 +92,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
               <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
                 <SocialIcon href={discussUrl(slug)} kind={'twitter'} rel="nofollow" />
+                <SocialIcon href={shareOnLinkedinUrl(slug)} kind={'linkedin'} rel="nofollow" />
               </div>
             </div>
             <footer>
