@@ -13,9 +13,10 @@ const discussUrl = (slug) =>
   `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     `${siteMetadata.siteUrl}/blog/${slug}`
   )}`
-const shareOnLinkedinUrl = (slug) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+const shareOnLinkedinUrl = (slug) =>
+  `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
     `${siteMetadata.siteUrl}/blog/${slug}`
-)}`
+  )}`
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
