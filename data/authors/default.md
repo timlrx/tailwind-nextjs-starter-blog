@@ -5,6 +5,7 @@ occupation: Software Engineer
 company: '@Nordsecurity'
 twitter: https://twitter.com/slmdiar
 linkedin: https://www.linkedin.com/in/diarselimi
+github: https://github.com/didslm
 ---
 
 ### My experience 👨🏼‍💻
