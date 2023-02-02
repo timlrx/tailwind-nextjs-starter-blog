@@ -7,7 +7,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Twitter from '@/components/social-icons/twitter.svg'
-import SocialIcon from "@/components/social-icons";
+import SocialIcon from '@/components/social-icons'
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
 const discussUrl = (slug) =>
