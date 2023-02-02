@@ -14,7 +14,7 @@ date: 2023-02-01
 
 The goal of this library is to be able to load Environment values into PHP Objects.
 
-This library is a simple one where it loads four types of values and does not cover arrays or any other logic except what is explained here.
+This library is a simple one where it loads basic types of values and does not cover arrays or any other logic except what is explained here.
 
 ### **Installation**
 
@@ -67,8 +67,8 @@ class Config
     #[EnvObj]
     public DbConfig $mysqlConfig;
 
-#[EnvObj]
-public SomeApiClientConfig $apiExampleConfig
+    #[EnvObj]
+    public SomeApiClientConfig $apiExampleConfig
 }
 
 class SomeApiClientConfig
