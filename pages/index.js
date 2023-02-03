@@ -24,7 +24,8 @@ export default function Home({ posts }) {
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             I have started with this blog where I am going to be posting about things related to programming.
-            If you want to leave a suggestion or even just a feedback <Link href={`https://github.com/didslm/diarselimi.github.io/discussions/4`} > click here. </Link>
+            If you want to leave a suggestion or even just a feedback
+            <Link href={`https://github.com/didslm/diarselimi.github.io/discussions/4`} > click here. </Link>
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
