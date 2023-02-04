@@ -20,12 +20,16 @@ export default function Home({ posts }) {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-10 md:text-3xl md:leading-14">
-            Writing about PHP, GO, Architecture, Design and Testing.
+            Mastering the Art of Code: Exploring Programming, Testing, Design, and Architecture
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            I have started with this blog where I am going to be posting about things related to programming.
-            If you want to leave a suggestion or even just a feedback
-            <Link href={`https://github.com/didslm/diarselimi.github.io/discussions/4`} > click here. </Link>
+            Hello and welcome to my blog! I am thrilled to share my thoughts and experiences on the
+            exciting world of programming, testing, design, and architecture. Whether you're a
+            seasoned developer or just starting out, I believe you'll find something valuable here.
+            From the latest trends and techniques in software engineering to the challenges and
+            solutions in building scalable and maintainable systems, I aim to cover a wide range of
+            topics that matter to all of us in the tech industry. So sit back, grab a cup of coffee,
+            and join me on this journey of exploring the best practices in software development!
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
