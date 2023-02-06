@@ -1,45 +1,30 @@
 ---
 title: "5 reasons why your team sucks at reviewing pull requests"
-date: "2023-01-27"
+date: "2023-02-03"
 tags: ["software development", "code review"]
-draft: true
-summary: "xxx"
-image: "/blog/static/images/general/xxx.jpg"
+draft: false
+summary: "Do you think you reviewers leave your pull requests unnoticed on purpose? Is continuously asking for code reviews creating a small but persistent nevrose in your day-to-day? Great! Let's list why your team sucks at reviewing pull requests, and what you can do to improve it (before quitting your job)."
+image: "/blog/static/images/bestpractices/reasons-why.png"
 ---
 
 <ImageContainer
   alt="sweaty-hands"
-  src="/blog/static/images/code-quality/sweaty-hands.jpg"
+  src="/blog/static/images/bestpractices/pr-team.png"
   classNameDiv="mx-10 lg:mx-28"
   classNameImage=""
-  width={5184}
-  height={3456}
+  width={1536}
+  height={1024}
 />
 
-<SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  "This code is 100% bug-free. I'm sure of it." said Tommy leaving a mark on my screen with his
-  sweaty finger
-  <br /> - this never happened.
-</SubImageText>
-
-<span className="rainbow-button text-2xl font-bold hover:cursor-auto">TL;DR:</span>
-
-<NoFollowLink url=""></NoFollowLink>
-
-Link to
-=> https://axolo.co/blog/p/best-6-tools-to-improve-developer-productivity-in-2022
-=> https://axolo.co/blog/p/developer-experience-survey-template
-=> https://axolo.co/blog/p/how-to-reduce-cycle-time
-
-Do you think you reviewers leave your pull requests unnoticed on purpose? Is continuously asking for code reviews creating a small but persistent nevrose in your day-to-day?
+Do you think your reviewers leave your pull requests unnoticed on purpose? Is continuously asking for code reviews creating a small but persistent neurosis in your day-to-day?
 
 <span className="rainbow-button text-2xl font-bold hover:cursor-auto">GREAT!</span>
 
 Let's list why your team sucks at reviewing pull requests, and what you can do to improve it (before quitting your job).
 
-<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
 
-## Everyone is handling code reviews notifications differently
+## I. Everyone is handling code reviews notifications differently
 
 Not having the same notification system for code reviews is usually the #1 reason why your team sucks at reviewing pull requests.
 
@@ -47,30 +32,51 @@ Not having the same notification system for code reviews is usually the #1 reaso
 
 #### Email notification, please stop
 
-"Alex requested your review on her pull request." just hitted my inbox. Only 48 unseen emails to read before I can start my day and review her PR. What a glorious day!
+"Alex requested your review on her pull request." just hit my inbox. Only 48 unseen emails to read before I can start my day and review her PR. What a glorious day!
 
-Email notifications might sound a good idea for some, but this quickly becomes a nightmare. You can't filter them, you can't prioritize them, you can't even know if you already reviewed the PR or not. And they are lost within all the other fantastic emails you receive, like the 14 email from this recruiting agendy you never wrote to, or your last JS newsletter you subscribed to 2 years ago, but never opened.
+Email notifications might seem like a great idea at first, but before you know it, it turns into a chaotic mess. Sifting through them is like trying to find a needle in a haystack, and it's hard to keep track of what you've already looked at. Oh, and let's not forget about all those delightful emails from that recruiter you never contacted, and that JS newsletter you subscribed to years ago but never read. It's a wild ride, let me tell you!
 
 #### GitHub/GitLab notifications are not adapted
 
 I've been working as a developer for a few years now, and I've never seen a developer who felt like GitHub/GitLab notifications were adapted to their needs.
 
-IMAGE GITHUB NOTIF HERE
+<div className="flex justify-center">
+  <ImageContainer
+    alt="GitHub notifications"
+    src="/blog/static/images/bestpractices/github_notif.png"
+    classNameDiv="w-fit"
+    classNameImage=""
+    width={521 / 2}
+    height={331 / 2}
+  />
+</div>
 
-GitLab even called its notification system a "to-do list". Who needs another to-do list? I already have a to-do list for my personal life, and another one for my work life. I don't need a third one for my code reviews.
+GitLab even called its notification system a "to-do list". Who needs another to-do list? I already have enough to-do lists, thank you!
 
 ### Need to manually remind people in direct messages without context
 
 Not knowing how your reviewers are notified about your pull requests often leads you to ... manually remind them in direct messages. All day. Everyday.
 
-// funny gif?
-HEY CHARLIE, THIS IS THE THIRD TIME I'M REMINDING YOU TO REVIEW MY PR. I'M SURE YOU DIDN'T SEE MY LAST 2 REMINDERS.
+<div className="flex justify-center">
+  <ImageContainer
+    alt="me again"
+    src="/blog/static/images/bestpractices/meagain.webp"
+    classNameDiv=""
+    classNameImage=""
+    width={480}
+    height={258}
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  HEY CHARLIE, THIS IS THE THIRD TIME I'M REMINDING YOU TO REVIEW MY PR. I'M SURE YOU DIDN'T SEE MY
+  LAST 2 REMINDERS.
+</SubImageText>
 
 Let's see why a dedicated tool will help you stay sane.
 
-## Lack of a proper tool to help your team collaborate during code reviews
+## II. Lack of a proper tool to help your team collaborate during code reviews
 
-### Official GitHub & GitLab apps are outdated (too noisy) and hard to configure
+### Official GitHub & GitLab notification apps are outdated (too noisy) and hard to configure
 
 Current GitHub & GitLab apps are outdated and hard to configure, they have major issues:
 
@@ -79,50 +85,148 @@ Current GitHub & GitLab apps are outdated and hard to configure, they have major
 
 #### Official apps are too noisy
 
-Not everyone in your team needs to know about your new pull request. You don't want to spam them, and you don't want them to spam your.
+Not everyone on your team needs to know about your new pull request. You don't want to spam them, and you don't want them to spam you.
 
-PR notifications (especially reviews, CI/CD, and code comments) should only concerne the PR author, assignees and reviewers. Sending these notifications to a team channel is a bad idea. Another bad idea? Receiving notifications FOR YOU OWN ACTIONS.
+PR notifications (especially reviews, CI/CD, and code comments) should only concern the PR author, assignees, and reviewers. Sending these notifications to a team channel is a bad idea. Another bad idea? Receiving notifications FOR YOUR OWN ACTIONS.
 
-// image github notification in slack for own comment
-YES I KNOW, THANK YOU GITHUB BOT THIS IS ME WHO WROTE THIS COMMENT.
+<div className="mx-10 flex justify-center lg:mx-28">
+  <ImageContainer
+    alt="me again"
+    src="/blog/static/images/bestpractices/making-notifications.png"
+    classNameDiv=""
+    classNameImage=""
+    width={647}
+    height={288}
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  YES, I KNOW, THANK YOU GITHUB BOT THIS IS ME WHO OPENED THIS ISSUE.
+</SubImageText>
 
 #### Official apps are hard to configure when you start with them
 
 When you start using GitHub or GitLab, you don't know what you need. You don't know what you want. You don't know what you don't know.
 
-"I know that I know nothin" - some bearded wise Greek dude, probably.
+"I know that I know nothing" - some bearded wise Greek dude, probably.
 
-These collaborative features should be easier to configure, and start with an opiniated default configuration.
+These collaborative features should be easier to configure and start with an opinionated default configuration.
 
 ### Implementing a custom solution is time-consuming and costly
 
-// drake meme here
+<div className="mx-10 flex justify-center lg:mx-28">
+  <ImageContainer
+    alt="me again"
+    src="/blog/static/images/bestpractices/drake_wasting_time.png"
+    classNameDiv=""
+    classNameImage=""
+    width={781}
+    height={763}
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  A meme is worth a thousand words.
+</SubImageText>
 
-A meme is worth a thousand words.
+Implementing a custom solution is time-consuming and costly. You need to find a developer in your team that has time to do it, then you need to keep track of API updates, make sure your service stays online, and make sure it's secure.
 
-Implementing a custom solution is time-consuming and costly. You need to find a developer in your team that has time to do it, then you need to keep track of API updates, make sure your service stay online, and make sure it's secure.
+Usually, you think that you have some special needs and requests, but trust me, even if each engineering team is unique, 99% of what you need can be generalized by a dedicated SaaS.
 
-Usually, you think that you have some specials needs and request, but trust me, even if each engineering team is unique, 99% of what you need can be generalized by a dedicated SaaS.
+Using a dedicated tool is always a better option. And if your team is working on Slack, [Axolo](https://axolo.co) is the perfect tool for you.
 
-Using a dedicated tool is often a better option.
+<CTABanner type="learn" />
 
-### You should try dedicated tools to collaborate during code reviews
+## III. Lack of dedicated time set aside for reviews
 
-## Lack of dedicated time set aside for reviews
+Not having dedicated time to review code, usually means that developers do it between two activities, they might rush it, or they might not do it at all. Reviewing code shouldn't be a burden or something we do as quickly as possible.
 
-## Not assigning specific reviewers for each pull request
+If you feel that your team is lacking behind code reviews, maybe implementing dedicated times to review pull requests is a good idea. You should ask developers in your team to dedicate at least 30 minutes a day to review pull requests.
+
+If you'd like to know why reviewing daily is a good idea, check out [this article](https://axolo.co/blog/p/part-4-how-to-review-code-in-github).
+
+## IV. Not assigning specific reviewers for each pull request or assigning the wrong person
 
 ### This creates bottlenecks and delays the review process
 
+Most teams should have a process to assign specific reviewers for each pull request.
+
+If you don't assign reviewers, who are in charge? Who's responsible?
+
+<div className="mx-10 flex justify-center lg:mx-28">
+  <ImageContainer
+    alt="me again"
+    src="/blog/static/images/bestpractices/talkingtome.webp"
+    classNameDiv=""
+    classNameImage=""
+    width={480}
+    height={262}
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  I JUST FINISHED IMPLEMENTING THE 24 CHANGES YOU REQUESTED, AND NOW I SHOULD REVIEW YOUR PR
+  VOLUNTARLY?
+</SubImageText>
+
 ### You should create a process
 
-=> code owners for automatic assignment
-=> automatic reminders if no review, and after review
+#### The code owner strategy to automatically request reviews
 
-## Failing to maintain a culture of open communication and collaboration among team members.
+There are many ways to avoid confusion and confrontation while assigning reviewers.
 
-### This can creates animosity and a low willingness to review each other's code
+The easiest way is to define code owners, they might be based on your team or people that already have an understanding of the code you're changing.
+
+I think that it's important to have someone with experience looking at your code changes, but siloting the knowledge to a few people is not a good idea. What I advise is to implement two processes to assign reviewers for each PR:
+
+- a code owner process dedicated to people with experience in this part of the code,
+- a random process to assign another reviewer to each PR.
+
+With these two reviews, you have the eyes of someone with experience looking at your code, and you help someone else better understand the company codebase.
+
+#### Implementing reminders to wake your reviewers up
+
+With a tool such as [Axolo](https://axolo.co), you can implement daily reminders and let your code reviews continue on auto-pilot.
+
+Reviewers will be alerted that some PR are waiting for their review, and they can review them whenever they have time.
+
+<div className="mx-10 flex justify-center lg:mx-28">
+  <ImageContainer
+    alt="me again"
+    src="/blog/static/images/bestpractices/happynow.webp"
+    classNameDiv=""
+    classNameImage=""
+    width={480}
+    height={263}
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  No more stale PR, happy now.
+</SubImageText>
+
+<CTABanner type="try" />
+
+## V. Failing to maintain a culture of open communication and collaboration among team members.
+
+The last but probably the most important reason is failing to maintain a culture of open communication and collaboration among team members.
 
 ### Code review is a great opportunity to learn from each other
 
-### You should create a culture of open communication and collaboration
+Code review is a time to connect with your team, share knowledge, ask for help, improve yourself, and also help your teammates improve.
+
+If you don't get this idea, you're missing the point of code reviews. Ask your team how they feel about code reviews, and see what you can improve. If you'd like a few ideas on how to ask your team for feedback, I've already worked on a [developer experience survey template](https://axolo.co/blog/p/developer-experience-survey-template).
+
+### This can create animosity and a low willingness to review each other's code
+
+If you don't have a positive experience while reviewing code, nothing else will help your team do it better.
+
+A few points that your team should understand is that:
+
+- Rules that are not written, do not exist (especially styling rules)
+- Keep the team spirit and be kind
+- Review daily and sessions should last less than one hour
+- Understand what you're reviewing first
+- Code review should be fast
+
+If you want to learn more, I have detailed these points in a dedicated article: [How to review code](https://axolo.co/blog/p/part-4-how-to-review-code-in-github).
+
+## Conclusion
+
+If you're struggling with code reviews, I hope that this article will help you improve your process. If you have any questions or any feedback, feel free to reach out to me on <NoFollowLink url="https://twitter.com/ArthurCoudouy">Twitter</NoFollowLink> or <NoFollowLink url="https://www.linkedin.com/in/arthurcoudouy/">LinkedIn</NoFollowLink>, I'd like to keep improving this article.
