@@ -10,7 +10,7 @@ summary: 'How to derive the OLS Estimator with matrix notation and a tour of mat
 
 As a solutions architect, I spend most of my days doodling boxes and lines. Sure, I know how to code, but I'm not one of those 10x engineers you hear about. However, with the recent buzz around AI/ML models like GPT-3, I thought to myself, "Hey, why not give it a shot?"
 
-My goal was simple: build a functional proof of concept app in a matter of hours using technologies I'm familiar with architecturally, but have limited hands-on experience with. And so, with digital health as my target, I set out on a wild and wacky journey. Could I do it with just my mad skills and a little help from Stack Overflow? Let's find out!
+My goal was simple: build a functional proof of concept app in a matter of hours using technologies I'm familiar with architecturally, but have limited hands-on experience with. And so, with digital health as my target, I set out on a wild and wacky journey. Could I do it with just my mad skills and a lot of help from conversational AI? Let's find out!
 
 The source-code to my application is available [here](https://github.com/adendl/DigitalHealth-Edge).
 
@@ -35,7 +35,14 @@ For certain application components, such as my Apache Kafka cluster, and my Mong
 
 ## Building the Application
 
-Firstly, I needed some mock healthcare data to feed into my application.
+### Test JSON Data
+
+Firstly, I needed some mock healthcare data to feed into my application. I asked ChatGPT to
+
+```
+generate a JSON object which includes information
+about a patient's key vitals in an ER scenario.
+```
 
 ```json:patient_vitals_payload_example.json
 {
@@ -67,7 +74,112 @@ Firstly, I needed some mock healthcare data to feed into my application.
 }
 ```
 
-Math code blocks are denoted by `$$`.
+Hmmm...probably not super accurate - but I don't know enough to say otherwise. It will do.
+
+### Node.js - Data Generator Service
+
+Next, in lieu of a medical device to generate this information, I wanted to create a basic node.js application that would create some small variations on this data, and then post it to a REST API endpoint on a regular basis - every 0.5 seconds.
+Copy and pasting the above JSON object, I asked ChatGPT
+
+```
+Based on this JSON payload, create a node.js application that generates
+slightly different randomised values for each of the attributes,
+and then POSTs it to the /vitals endpoint at a regular frequency.
+Use HOSTURL and TIMEOUTTIME as environment variables to set the
+hosturl and the interval.
+```
+
+```js:data_generator.js
+const request = require('request');
+
+const hostUrl = process.env.HOSTURL
+const timeoutTime = process.env.TIMEOUTTIME
+
+    async function sendRequest(interval) {
+        while (true)
+        {
+            const patientData = {
+                "patient_id": "123456",
+                "timestamp": new Date().toISOString(),
+                "heart_rate": Math.floor(Math.random() * 10) + 70,
+                /** Removed for brevity
+                **/
+            await sleep(interval)
+            request.post({
+                url: `${hostUrl}/vitals`,
+                json: patientData
+            }, (error, response, body) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log(response.statusCode, body);
+                }
+            });
+        }
+    }
+
+    function sleep(ms) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, ms);
+        });
+      }
+
+sendRequest(timeoutTime);
+```
+
+### Node.js Express - Vitals API
+
+Next up, to create a Node.js express server which is listening in on the /vitals endpoint to receive the message, and act as a Kafka producer and send it to a local Kafka cluster.
+
+```
+Based on the previous JSON payload, create a node.js express application
+which listens on the /vitals endpoint, and then send that message to
+a Kafka cluster, the Kafka connection string is an environment variable
+called HOSTURL.
+```
+
+```js:vitals_api.js
+const express = require('express');
+const { Kafka } = require('kafkajs');
+const bodyParser = require('body-parser');
+
+const hostUrl = process.env.HOSTURL;
+const app = express();
+app.use(bodyParser.json());
+
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: [hostUrl],
+});
+const producer = kafka.producer();
+
+app.post('/vitals', async (req, res) => {
+  const vitals = req.body;
+  try {
+    await producer.connect();
+    await producer.send({
+        topic: 'vitals',
+        messages: [{ value: JSON.stringify(vitals) }],
+    });
+    res.status(200).send({ message: vitals });
+    console.log("message sent");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err });
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Microservice listening on port 3000!');
+});
+```
+
+Now to stand up a Kafka cluster. To do this, I made use of OpenShift operators to stand up a Kafka cluster. Operators automate the creation, configuration, and management of instances of Kubernetes-native applications.
+
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/operator.png?raw=true)
+
+After installing the operator, I deployed the Red Hat Kafka cluster to my namespace.
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/deployed-operator.png?raw=true)
 
 If you intend to use the `$` sign instead of math, you can escape it (`\$`), or specify the HTML entity (`&dollar;`) [^2]
 
