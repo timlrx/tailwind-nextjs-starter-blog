@@ -18,7 +18,7 @@ The source-code to my application is available [here](https://github.com/adendl/
 
 I wanted to build a relatively simple application that I could expand on later. I landed on a basic, and ultimately pretty useless application that would take in healthcare data from a medical device, stream it through to a Kafka cluster, store it into a database - and then have a frontend application visualise that healthcare data in real time. The application would consist of the following components:
 
-![Image](https://github.com/adendl/adl-blog/blob/master/public/static/architecture1.png?raw=true)
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/architecture.png?raw=true)
 | Application | Component |
 | --------------------------- | ---------------------------- |
 | Patient Vitals Data Generator | Node.js |
@@ -32,6 +32,14 @@ I wanted to build a relatively simple application that I could expand on later. 
 Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly containerise and deploy the code that I had written.
 
 For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly select and deploy these from within OpenShift itself.
+
+### Deploying my Application
+
+Let's talk about deploying your application with OpenShift and containers. OpenShift provides two deployment methods: Source-to-Image (S2I) and direct container deployment, which can make your life a lot easier.
+
+S2I is a great option if you're new to containers. Just point OpenShift to your GitHub repo and let it handle the rest. It detects the runtime and creates a container image, which can be run in your OpenShift cluster.
+
+On the other hand, if you want more control over the containerization process, you can create your own container images using a Containerfile and Podman. This option is perfect for developers who want to customize their container images to their specific needs. And if you need help with the Containerfile, ChatGPT is always here to assist you.
 
 ## Building the Application
 
@@ -174,6 +182,8 @@ app.listen(3000, () => {
 });
 ```
 
+### Kafka
+
 Now to stand up a Kafka cluster. To do this, I made use of OpenShift operators to stand up a Kafka cluster. Operators automate the creation, configuration, and management of instances of Kubernetes-native applications.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/operator.png?raw=true)
@@ -181,7 +191,13 @@ Now to stand up a Kafka cluster. To do this, I made use of OpenShift operators t
 After installing the operator, I deployed the Red Hat Kafka cluster to my namespace.
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/deployed-operator.png?raw=true)
 
-If you intend to use the `$` sign instead of math, you can escape it (`\$`), or specify the HTML entity (`&dollar;`) [^2]
+I then grab the Kafka broker connection and add it as an environment variable to my applications so that they can connect to the Kafka cluster.
+
+```
+my-cluster-kafka-brokers:9092
+```
+
+To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the KAFKA_BROKERCONNECT environment variable and used the same string as above.
 
 Inline or manually enumerated footnotes are also supported. Click on the links above to see them in action.
 
