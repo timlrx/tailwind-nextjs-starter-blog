@@ -30,13 +30,13 @@ I wanted to build a relatively simple application that I could expand on later. 
 | Data Access API | Node.js + Express |
 | Data Visualisation Frontend | React + Highcharts |
 
-Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly build and deploy a cloud-native kubernetes application.
+Using [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly build and deploy a cloud-native kubernetes application.
 
-For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly deploy these from within OpenShift itself.
+For certain application building blocks, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly deploy these from within OpenShift itself.
 
 ### Deploying my Application
 
-OpenShift provides two main deployment methods: Source-to-Image (S2I) and direct container deployment, which can make your life a lot easier.
+OpenShift provides two main deployment methods: Source-to-Image (S2I) and direct container deployment.
 
 S2I is a great option if you're new to containers. Just point OpenShift to your GitHub repo and let it handle the rest. It detects the runtime and creates a container image which can be deployed in your OpenShift cluster.
 
@@ -87,7 +87,7 @@ Hmmm...probably not super accurate - but I don't know enough to say otherwise. I
 
 ### Node.js - Data Generator Service
 
-Next, in lieu of a medical device to generate this information, I wanted to create a basic node.js application that would create some small variations on this data, and then post it to a REST API endpoint on a regular basis - every 0.5 seconds.
+Next, in lieu of a medical device to generate this information, I wanted to create a basic node.js application that would create some small variations on this data, and then post it to a REST API endpoint on a regular basis.
 Copy and pasting the above JSON object, I asked ChatGPT
 
 ```
@@ -138,7 +138,7 @@ sendRequest(timeoutTime);
 
 ### Node.js Express - Vitals API
 
-Next up, to create a Node.js express server which is listening in on the /vitals endpoint to receive the message, and act as a Kafka producer and send it to a local Kafka cluster.
+Next up, to create a Node.js express server which is listening in on the /vitals endpoint to receive the message, and act as a Kafka producer and send it to my cluster.
 
 ```
 Based on the previous JSON payload, create a node.js express application
@@ -185,26 +185,26 @@ app.listen(3000, () => {
 
 ### Kafka
 
-Now to stand up a Kafka cluster. To do this, I made use of OpenShift operators to stand up a Kafka cluster. Operators automate the creation, configuration, and management of instances of Kubernetes-native applications.
+To stand up my Kafka cluster, I made use of OpenShift operators to stand up a Kafka cluster. Operators automate the creation, configuration, and management of instances of Kubernetes-native applications.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/operator.png?raw=true)
 
 After installing the operator, I deployed the Red Hat Kafka cluster to my namespace.
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/deployed-operator.png?raw=true)
 
-I then grab the Kafka broker host name and add it as an environment variable to my applications so that I can establish connectivity to my Kafka cluster.
+I then grab the Kafka broker host name and add it as an environment variable to my applications so that I can establish connectivity.
 
 ```
 my-cluster-kafka-brokers:9092
 ```
 
-To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the `KAFKA_BROKERCONNECT` environment variable and used the same string as above. Kafdrop is awesome, you can manage and visualise topics, partitions, and even set up RBAC controls for your Kafka resources.
+To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) and used the `KAFKA_BROKERCONNECT` environment variable and the same string as above. Kafdrop is pretty neat, you can manage and visualise topics, partitions, and even set up RBAC controls for your Kafka resources.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/kafdrop.png?raw=true)
 
 ### Python - Kafka Consumer
 
-I have my Kafka cluster, and I can verify that messages are flowing through into the cluster, now to create a Kafka consumer that can poll these messages. For this first build of the application, I just want the Kafka consumer to store these messages in a MongoDB instance.
+I can verify that messages are flowing through into Kafka, now to create a Kafka consumer that can poll these messages. For this first build of the application, I just want the Kafka consumer to store these messages in a MongoDB instance.
 
 ```
 Based on the Kafka message above, create a Python application which
@@ -214,14 +214,8 @@ pass the Kafka broker string and the mongodb connection string.
 ```
 
 ```py:main.py
-import os
-from kafka import KafkaConsumer
-from pymongo import MongoClient
-import json
-
-HOSTURL = os.environ["HOSTURL"]
-DATABASE_URL = os.environ["DATABASE_URL"]
-
+//import dependencies
+//set ENV variables
 # Connect to Kafka consumer
 consumer = KafkaConsumer('vitals', bootstrap_servers=HOSTURL)
 
@@ -245,7 +239,7 @@ for msg in consumer:
 
 ### MongoDB
 
-To create a local MongoDB cluster in my OpenShift namespace, I am able to simply select a default MongoDB image from the developer catalogue.
+To create a local MongoDB instance, I select a default MongoDB image from the OpenShift developer catalogue and deploy it next to my application.
 
 ### Node.js Express - Data Access API
 
@@ -258,7 +252,7 @@ and returns this data in JSON format.
 ```
 
 ```js:index.js
-/** Install Dependencies */
+/** Install Dependencies **/
 app.use(cors())
 
 // Connection URL
@@ -292,7 +286,7 @@ app.listen(3005, () => {
 
 To visualise this data, I wanted to create a basic frontend web-app that would query the data access API on a regular interval, and then visualise this data through some basic graphs.
 
-For this, after a few minutes of Googling, I chose the Highcharts library for React.
+For this, after a few minutes of Googling, I chose the Highcharts library for React. As with every time I do anything frontend, I ran into CORS issues that I spent half an hour troubleshooting.
 
 ```
 Create a Highcharts React application that queries the data
@@ -337,16 +331,16 @@ Hey, it works!
 
 ### The Final Product
 
-Now that all of the different application components have been built, I deployed all of these as containers into OpenShift.
+Now that all of the different components have been built, I deployed all of these as containers into OpenShift.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/application.png?raw=true)
 
 ## Learnings
 
-In just a few hours, I was able to create a basic proof of concept. Prior to this, I would have spent a significant amount of time researching various technologies and their implementation. However, it's important to have a solid understanding of software engineering to fully benefit from this. As the following meme illustrates, it's crucial to have a strong foundation:
+In just a few hours, I was able to create a basic proof of concept. Prior to this, I would have spent a significant amount of time researching various technologies and their implementations. The thing is, if I don't have experience in application development, I still will have been pretty lost. I think this meme illustrates it pretty well:
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/meme.png?raw=true)
 
-In comparison to running the project on a developer VM or locally using Docker, utilising OpenShift made a remarkable difference. Troubleshooting container logs and incorporating core components such as Kafka and MongoDB was easy, leading to a straightforward deployment of the application.
+Utilising OpenShift made a remarkable difference. Troubleshooting container logs and incorporating application building blocks such as Kafka and MongoDB was easy, leading to a straightforward deployment of the application. If I were to move this application to a production setting, I would've also found that the inbuilt logging and telemetry provided by OpenShift makes running the application itself a lot easier as well.
 
 ## What's next?
 
