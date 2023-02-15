@@ -332,6 +332,22 @@ class ChartComponent extends Component {
 export default ChartComponent;
 ```
 
-## The Final Product
+Hey, it works!
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/frontend.png?raw=true)
+
+### The Final Product
+
+Now that all of the different application components have been built, I deployed all of these as containers into OpenShift.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/application.png?raw=true)
+
+## Learnings
+
+Overall, I was able to build this basic proof of concept within a couple of hours. It would've taken me a lot longer researching different tehcnologies and how to implement them before, but you still need to be competent at software engineering to get value from this. It is pretty well summed up by this meme:
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/meme.png?raw=true)
+
+I definitely have to say, using OpenShift as opposed to just running this locally using Docker or on a developer VM somewhere made a night and day difference. I was able to easily troubleshoot container logs, add my core components (Kafka, MongoDB) and then deploy my application in such a simple way.
+
+## What's next?
+
+I'm going to dial up the heat by adding more components (for example, Apache CamelK serverless integration framework), machine learning models, and ML Ops to build and deploy my model using Red Hat Openshift Data Science.
