@@ -3,7 +3,7 @@ title: Accelerating PoC Development with ChatGPT and Red Hat OpenShift
 date: '2023-01-30'
 tags: ['Chat GPT', 'Open Source', 'Digital Health', 'Kafka', 'Edge Computing']
 draft: false
-summary: 'How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.'
+summary: 'How to use ChatGPT with OpenShift Application Development Platform to build quick proof of concept applications'
 ---
 
 ## Background
@@ -24,6 +24,7 @@ I wanted to build a relatively simple application that I could expand on later. 
 | Patient Vitals Data Generator | Node.js |
 | Patient Vitals API - Kafka Producer | Node.js + Express |
 | Kafka Cluster | Red Hat OpenShift Streams for Apache Kafka |
+| Kafka Web UI | Kafdrop |
 | Kafka Consumer | Python |
 | Database | MongoDB |
 | Data Access API | Node.js + Express |
@@ -35,11 +36,11 @@ For certain application components, such as my Apache Kafka cluster, and my Mong
 
 ### Deploying my Application
 
-Let's talk about deploying your application with OpenShift and containers. OpenShift provides two deployment methods: Source-to-Image (S2I) and direct container deployment, which can make your life a lot easier.
+OpenShift provides two main deployment methods: Source-to-Image (S2I) and direct container deployment, which can make your life a lot easier.
 
 S2I is a great option if you're new to containers. Just point OpenShift to your GitHub repo and let it handle the rest. It detects the runtime and creates a container image, which can be run in your OpenShift cluster.
 
-On the other hand, if you want more control over the containerization process, you can create your own container images using a Containerfile and Podman. This option is perfect for developers who want to customize their container images to their specific needs. And if you need help with the Containerfile, ChatGPT is always here to assist you.
+On the other hand, if you want more control over the containerization process, you can create your own container images using a Dockerfile and the Docker CLI (or alternatively Podman). This option is perfect for developers who want to customize their container images to their specific needs. And if you need help with the Containerfile, ChatGPT is pretty excellent at this.
 
 ## Building the Application
 
@@ -197,126 +198,140 @@ I then grab the Kafka broker connection and add it as an environment variable to
 my-cluster-kafka-brokers:9092
 ```
 
-To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the KAFKA_BROKERCONNECT environment variable and used the same string as above.
+To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the `KAFKA_BROKERCONNECT` environment variable and used the same string as above.
 
-Inline or manually enumerated footnotes are also supported. Click on the links above to see them in action.
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/kafdrop.png?raw=true)
 
-[^2]: \$10 and &dollar;20.
+### Python - Kafka Consumer
 
-# Deriving the OLS Estimator
+I have my Kafka cluster, and I can verify that messages are flowing through into the cluster, now to create a Kafka consumer that can poll these messages. For this first build of the application, I just want the Kafka consumer to store these messages in a MongoDB instance.
 
-Using matrix notation, let $n$ denote the number of observations and $k$ denote the number of regressors.
-
-The vector of outcome variables $\mathbf{Y}$ is a $n \times 1$ matrix,
-
-```tex
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
+```
+Based on the Kafka message above, create a Python application which
+consumes that message, and writes it to a local MongoDB instance.
+Use two environment variables, HOSTURL and DATABASE_URL to
+pass the Kafka broker string and the mongodb connection string.
 ```
 
-$$
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
-$$
+```py:main.py
+import os
+from kafka import KafkaConsumer
+from pymongo import MongoClient
+import json
 
-The matrix of regressors $\mathbf{X}$ is a $n \times k$ matrix (or each row is a $k \times 1$ vector),
+HOSTURL = os.environ["HOSTURL"]
+DATABASE_URL = os.environ["DATABASE_URL"]
 
-```latex
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
+# Connect to Kafka consumer
+consumer = KafkaConsumer('vitals', bootstrap_servers=HOSTURL)
+
+# Connect to MongoDB
+try:
+    client = MongoClient(DATABASE_URL)
+    db = client.vitals
+    vitals_collection = db.get_collection('vitals')
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")
+    exit()
+
+for msg in consumer:
+    try:
+        msg_value = json.loads(msg.value)
+        vitals_collection.insert_one(msg_value)
+        print("Inserted into MongoDB: ", msg_value)
+    except Exception as e:
+        print(f"Error inserting document into MongoDB: {e}")
 ```
 
-$$
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
-$$
+### MongoDB
 
-The vector of error terms $\mathbf{U}$ is also a $n \times 1$ matrix.
+To create a local MongoDB cluster in my OpenShift namespace, I am able to simply select a default MongoDB image from the developer catalogue.
 
-At times it might be easier to use vector notation. For consistency, I will use the bold small x to denote a vector and capital letters to denote a matrix. Single observations are denoted by the subscript.
+### Node.js Express - Data Access API
 
-## Least Squares
+Nearly there....to expose the data stored in my MongoDB database to my frontend application, I created a simple data access API.
 
-**Start**:  
-$$y_i = \mathbf{x}'_i \beta + u_i$$
-
-**Assumptions**:
-
-1. Linearity (given above)
-2. $E(\mathbf{U}|\mathbf{X}) = 0$ (conditional independence)
-3. rank($\mathbf{X}$) = $k$ (no multi-collinearity i.e. full rank)
-4. $Var(\mathbf{U}|\mathbf{X}) = \sigma^2 I_n$ (Homoskedascity)
-
-**Aim**:  
-Find $\beta$ that minimises the sum of squared errors:
-
-$$
-Q = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2} = (Y-X\beta)'(Y-X\beta)
-$$
-
-**Solution**:  
-Hints: $Q$ is a $1 \times 1$ scalar, by symmetry $\frac{\partial b'Ab}{\partial b} = 2Ab$.
-
-Take matrix derivative w.r.t $\beta$:
-
-```tex
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
+```
+Create a node.js express data access API, that connects to the MongoDB
+cluster, queries the vitals collection for the 100 most recent entries,
+and returns this data in JSON format.
 ```
 
-$$
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
-$$
+```js:index.js
+/** Install Dependencies */
+app.use(cors())
+
+// Connection URL
+const url = process.env.DATABASE_URL;
+// Database Name
+const dbName = 'vitals';
+// Create a new MongoClient
+const client = new MongoClient(url);
+
+// Use connect method to connect to the server
+client.connect(function(err) {
+  console.log("Connected to MongoDB server");
+  const db = client.db(dbName);
+
+  // Routes
+  app.get("/data", (req, res) => {
+    // Find all documents in the "vitals" collection
+    db.collection("vitals").find({}).limit(100).toArray(function(err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
+});
+// Start the server
+app.listen(3005, () => {
+  console.log("Server started on port 3005");
+});
+```
+
+### React + Highcharts - Frontend
+
+To visualise this data, I wanted to create a basic frontend web-app that would query the data access API on a regular interval, and then visualise this data through some basic graphs.
+
+For this, after a few minutes of Googling, I chose the Highcharts library for React.
+
+```
+Create a Highcharts React application that queries the data
+access API I previously created, and then visualises the
+heart rate in a basic time series chart
+```
+
+```js:App.js
+/**Import Dependencies **/
+class ChartComponent extends Component {
+  state = {
+    data: []
+  };
+  componentDidMount() {
+    this.fetchData();
+    setInterval(() => {
+      this.fetchData();
+    }, 1000);
+  }
+  fetchData() {
+    fetch("http://data-access-api-digitalhealth-edge.apps-crc.testing/data")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ data });
+      });
+  }
+  render() {
+    /** render options **/
+    };
+    return (
+      <div>
+        <HighchartsReact highcharts={Highcharts} options={options} />
+      </div>
+    );
+  }
+}
+export default ChartComponent;
+```
+
+## The Final Product
+
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/application.png?raw=true)
