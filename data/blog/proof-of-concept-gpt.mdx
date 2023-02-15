@@ -30,7 +30,7 @@ I wanted to build a relatively simple application that I could expand on later. 
 | Data Access API | Node.js + Express |
 | Data Visualisation Frontend | React + Highcharts |
 
-Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly containerise and deploy the code that I had written.
+Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly build and deploy a cloud-native kubernetes application.
 
 For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly deploy these from within OpenShift itself.
 
@@ -38,7 +38,7 @@ For certain application components, such as my Apache Kafka cluster, and my Mong
 
 OpenShift provides two main deployment methods: Source-to-Image (S2I) and direct container deployment, which can make your life a lot easier.
 
-S2I is a great option if you're new to containers. Just point OpenShift to your GitHub repo and let it handle the rest. It detects the runtime and creates a container image, which can be run in your OpenShift cluster.
+S2I is a great option if you're new to containers. Just point OpenShift to your GitHub repo and let it handle the rest. It detects the runtime and creates a container image which can be deployed in your OpenShift cluster.
 
 On the other hand, if you want more control over the containerization process, you can create your own container images using a Dockerfile and the Docker CLI (or alternatively Podman). This option is perfect for developers who want to customize their container images to their specific needs. And if you need help with the Containerfile, ChatGPT is pretty excellent at this.
 
