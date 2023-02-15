@@ -10,7 +10,7 @@ summary: 'How to use ChatGPT with OpenShift Application Development Platform to 
 
 As a solutions architect, I spend most of my days doodling boxes and lines. Sure, I know how to code, but I'm not one of those 10x engineers you hear about. However, with the recent buzz around AI/ML models like GPT-3, I thought to myself, "Hey, why not give it a shot?"
 
-My goal was simple: build a functional proof of concept app in a matter of hours using technologies I'm familiar with architecturally, but have limited hands-on experience with. And so, with digital health as my target, I set out on a wild and wacky journey. Could I do it with just my mad skills and a lot of help from conversational AI? Let's find out!
+My goal was simple: build a functional proof of concept app in a matter of hours using technologies I'm familiar with architecturally, but have limited hands-on experience with. And so, I set out on a wild and wacky journey. Could I do it with just my mad skills and a lot of help from conversational AI? Let's find out!
 
 The source-code to my application is available [here](https://github.com/adendl/DigitalHealth-Edge).
 
@@ -32,7 +32,7 @@ I wanted to build a relatively simple application that I could expand on later. 
 
 Here is where Red Hat OpenShift comes in. Using [OpenShift Local](https://developers.redhat.com/products/openshift-local/overview), a lightweight distribution of OpenShift made to run on development machines - I could quickly containerise and deploy the code that I had written.
 
-For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly select and deploy these from within OpenShift itself.
+For certain application components, such as my Apache Kafka cluster, and my MongoDB database - I was able to quickly deploy these from within OpenShift itself.
 
 ### Deploying my Application
 
@@ -192,13 +192,13 @@ Now to stand up a Kafka cluster. To do this, I made use of OpenShift operators t
 After installing the operator, I deployed the Red Hat Kafka cluster to my namespace.
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/deployed-operator.png?raw=true)
 
-I then grab the Kafka broker connection and add it as an environment variable to my applications so that they can connect to the Kafka cluster.
+I then grab the Kafka broker host name and add it as an environment variable to my applications so that I can establish connectivity to my Kafka cluster.
 
 ```
 my-cluster-kafka-brokers:9092
 ```
 
-To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the `KAFKA_BROKERCONNECT` environment variable and used the same string as above.
+To provide a WebUI for my Kafka cluster, I used the Open-source project [Kafdrop](https://github.com/obsidiandynamics/kafdrop). I deployed the [Kafdrop Docker image](https://hub.docker.com/r/obsidiandynamics/kafdrop) directly into the cluster, and used the `KAFKA_BROKERCONNECT` environment variable and used the same string as above. Kafdrop is awesome, you can manage and visualise topics, partitions, and even set up RBAC controls for your Kafka resources.
 
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/kafdrop.png?raw=true)
 
@@ -343,11 +343,11 @@ Now that all of the different application components have been built, I deployed
 
 ## Learnings
 
-Overall, I was able to build this basic proof of concept within a couple of hours. It would've taken me a lot longer researching different tehcnologies and how to implement them before, but you still need to be competent at software engineering to get value from this. It is pretty well summed up by this meme:
+In just a few hours, I was able to create a basic proof of concept. Prior to this, I would have spent a significant amount of time researching various technologies and their implementation. However, it's important to have a solid understanding of software engineering to fully benefit from this. As the following meme illustrates, it's crucial to have a strong foundation:
 ![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/chatgpt-poc-development/meme.png?raw=true)
 
-I definitely have to say, using OpenShift as opposed to just running this locally using Docker or on a developer VM somewhere made a night and day difference. I was able to easily troubleshoot container logs, add my core components (Kafka, MongoDB) and then deploy my application in such a simple way.
+In comparison to running the project on a developer VM or locally using Docker, utilizing OpenShift made a remarkable difference. Troubleshooting container logs and incorporating core components such as Kafka and MongoDB was easy, leading to a straightforward deployment of the application.
 
 ## What's next?
 
-I'm going to dial up the heat by adding more components (for example, Apache CamelK serverless integration framework), machine learning models, and ML Ops to build and deploy my model using Red Hat Openshift Data Science.
+I plan on elevating the project by introducing additional components, such as the Apache CamelK serverless integration framework, as well as machine learning models and ML Ops - With the help of Red Hat Openshift Data Science.
