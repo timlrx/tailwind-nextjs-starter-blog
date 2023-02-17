@@ -8,15 +8,17 @@ export default function TopBanner() {
           <p className="font-medium text-white">
             <>
               {/* mobile text */}
-              <span className="sm:hidden">Big news! We are live on</span>
+              <span className="sm:hidden">Big news! Today, we launch the</span>
               {/* desktop text */}
-              <span className="hidden sm:inline">Big news! We are live on</span>
+              <span className="hidden sm:inline">Big news! Today, we launch the</span>
               <span className="rainbow-button">
                 <a
-                  href="https://www.producthunt.com/posts/axolo-for-gitlab"
+                  href="https://www.producthunt.com/posts/gitlab-integration-marketplace"
                   className="inline-flex items-center font-bold text-white"
+                  rel="noopener nofollow noreferrer"
+                  target="_blank"
                 >
-                  Product Hunt
+                  GitLab Integration Marketplace
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </a>
               </span>
