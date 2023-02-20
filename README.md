@@ -3,7 +3,7 @@
 ## ImageScript.js
 
 1. Change the file on the top with an image folder of path (example:
-   const folder = "public/static/images/bitbucket/"
+   const folder = "public/static/images/nameofyourrepo"
 2. call node imageScript.js in the main directory
 3. Copy paste output to your blog article
 
