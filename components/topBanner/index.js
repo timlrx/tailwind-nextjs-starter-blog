@@ -1,28 +1,35 @@
 import { ArrowSmallRightIcon } from "@heroicons/react/24/solid"
+import SlackLogo from "../slackLogo"
 
 export default function TopBanner() {
   return (
-    <div className="relative bg-primaryBlue">
+    <div className="relative bg-white">
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
-        <div className="pr-16 sm:px-16 sm:text-center ">
-          <p className="font-medium text-white">
-            <>
+        <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
+          <p className="font-medium ">
+            <a
+              href="https://axolo.co/blog/p/axolo-joins-slack-future-of-work-incubator"
+              rel="noopener noreferrer"
+              target="_blank"
+              className=" flex place-content-center place-items-center"
+            >
+              <SlackLogo />
               {/* mobile text */}
-              <span className="sm:hidden">Big news! Today, we launch the</span>
+              <span className="sm:hidden">Axolo is now backed by</span>
               {/* desktop text */}
-              <span className="hidden sm:inline">Big news! Today, we launch the</span>
-              <span className="rainbow-button">
-                <a
-                  href="https://www.producthunt.com/posts/gitlab-integration-marketplace"
-                  className="inline-flex items-center font-bold text-white"
-                  rel="noopener nofollow noreferrer"
-                  target="_blank"
+              <span className="hidden sm:inline">Axolo is now backed by </span>
+              <span
+              // className="rainbow-button"
+              >
+                <button
+                  // href="https://www.producthunt.com/posts/axolo-for-gitlab"
+                  className="ml-1 inline-flex items-center font-bold "
                 >
-                  GitLab Integration Marketplace
+                  Slack
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
-                </a>
+                </button>
               </span>
-            </>
+            </a>
           </p>
         </div>
         {/* button to disbale the banner */}
@@ -32,7 +39,7 @@ export default function TopBanner() {
             className="flex rounded-md p-2 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white"
           >
             <span className="sr-only">Dismiss</span>
-            <XCircleIcon className="h-6 w-6 text-white" aria-hidden="true" />
+            <XiCon className="h-6 w-6 " aria-hidden="true" />
           </button>
         </div> */}
       </div>
