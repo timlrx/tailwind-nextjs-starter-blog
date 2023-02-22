@@ -50,3 +50,9 @@ input:-webkit-autofill:focus {
 .rainbow-button:hover:before {
   background-position: 100% 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .hide-mobile {
+    display: none;
+  }
+}
