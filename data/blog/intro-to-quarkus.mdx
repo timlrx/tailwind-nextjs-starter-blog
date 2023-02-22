@@ -60,6 +60,7 @@ In order to run your quarkus app, navigate to the root directory of your project
 ## Car Class - Defining our base object
 
 Now that we have our project with the following structure
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/quarkus-getting-started/file-structure.png?raw=true)
 
 We can start creating our basic Car CRUD application. First, create a Car class with some simple attributes:
 
@@ -216,17 +217,17 @@ INSERT INTO car (id, uuid, carBrand, carModel, yearModel) VALUES
 After running the `quarkus dev` command earlier, your application should be accessible from `localhost:8080`.
 
 Upon accessing `localhost:8080` from your browser, you should be presented with the option to visit the DevUI. Here I can view and control different components of my application - for example the database credentials, the entities stored in my DB, and access SwaggerUI. This functionality can be further augmented by the Quarkus extensions that you download.
-INSERT IMAGE
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/quarkus-getting-started/quarkus-dev.png?raw=true)
 
 To test our API, let's go ahead and select Swagger UI. Here, we can see a list of our API endpoints (one of the extensions we installed at the beginning generates an OpenAPI specification from our code). Let's go ahead and test my endpoints out.
-INSERT IMAGE
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/quarkus-getting-started/swagger-ui.png?raw=true)
 
 First, let's test the /cars GET method:
-INSERT GIF
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/quarkus-getting-started/get_request.gif?raw=true)
 
 Great! It's returning the list of cars imported from `import.sql`.
 
 Next, let's make a POST request to /cars, I want to create a Honda NSX, and make sure that the data has persisted by then calling the GET method again.
-INSERT GIF
+![Image](https://github.com/adendl/adl-blog/blob/master/public/static/images/quarkus-getting-started/post-request.gif?raw=true)
 
 Now if I wanted to deploy this as a native container to a Kubernetes platform, for example - your Quarkus project containers out of the box Dockerfiles at `src/main/docker` that you can use to build your container image, and then push it to a container registry.
