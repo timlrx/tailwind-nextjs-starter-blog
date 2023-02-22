@@ -1,0 +1,232 @@
+---
+title: Developing Lightweight Java Microservices with Quarkus
+date: '2023-02-21'
+tags: ['Java', 'Open Source', 'Quarkus', 'Microservices', 'Cloud Native Development']
+draft: false
+summary: 'How to use the Quarkus framework to build lightweight, cloud-native Java Microservices'
+---
+
+## The State of Java
+
+Java: the programming language that's been around for so long, it's due for a government pension. But, despite its age and popularity, Java still gets a lot of flak from developers. In fact, according to the [Stack Overflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#section-most-loved-dreaded-and-wanted-programming-scripting-and-markup-languages), Java ranked near the bottom for the love/hate ratio, alongside fan-favourites such as PHP and COBOL. Ouch.
+
+Spring Boot and other Java frameworks for API development have been around for a hot minute. But let's face it, when you picture a 2023 microservice that's as sexy as it is scalable, you're probably not thinking of Java. Don't even get me started on trying to run that beast in a serverless function. Let's be honest, Java just isn't cut out for the fast and furious world of modern microservices. Or is it?
+
+## Introducing Quarkus
+
+[Quarkus](http://www.quarkus.io) is an open-source Java framework designed for building lightweight, containerized, and cloud-native applications with fast startup time and low memory usage. Its unique ahead-of-time compilation feature and wide range of extensions make it an efficient and flexible platform for building microservices and serverless applications. Just how fast is Quarkus? I recommend taking a look at [this blog](https://quarkus.io/blog/runtime-performance/) by the Quarkus team on runtime performance.
+
+Today, I want to go over writing a basic CRUD microservice with data persistence in Quarkus. The source code for this application is available on [my Github.](https://github.com/adendl/quarkus-car-microservice)
+
+## Installing Quarkus and Bootstrapping your first project
+
+First, you'll want to make sure you have JDK11+ and Apache Maven installed.
+
+Then, you'll want to install the Quarkus CLI.
+
+For Linux/Mac:
+
+```sh:install.sh
+curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
+```
+
+For Windows:
+
+```sh:install.sh
+iex "& { $(iwr https://ps.jbang.dev) } trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/"
+iex "& { $(iwr https://ps.jbang.dev) } app install --fresh --force quarkus@quarkusio"
+```
+
+Now, use the Quarkus CLI to bootstrap a project.
+
+```sh:bootstrap.sh
+quarkus create app org.acme:car\
+    --extension='resteasy-reactive' --extension='hibernate-orm-panache'\
+    --extension='jdbc-h2'--extension='resteasy-reactive-jsonb'\
+    --extension='smallrye-openapi' && cd car
+```
+
+This creates a basic quarkus project, and installs the following extensions.
+| Extension | Description |
+| --------------------------- | ---------------------------- |
+| Resteasy-reactive | This will help us define our REST endpoints |
+| Resteasy-reactive-jsonb | Helps handle JSON deserialising |
+| Hibernate ORM Panache | This allows us to persist data using a simple Java API|
+| JDBC-H2 | Allows us to connect to an in-memory H2 database to persist data |
+
+In order to run your quarkus app, navigate to the root directory of your project, and use the `quarkus dev` command in your terminal. This will compile your application and start development mode on `localhost:8080`, which is one of the best parts about Quarkus. Every time you save a change in your code, within less than a second the change is reflected.
+
+## Car Class - Defining our base object
+
+Now that we have our project with the following structure
+
+We can start creating our basic Car CRUD application. First, create a Car class with some simple attributes:
+
+```java:Car.java
+package org.acme;
+import java.util.UUID;
+
+public class Car {
+
+    public UUID uuid;
+    public String carBrand;
+    public String carModel;
+    public Integer yearModel;
+
+    public Car() {
+    }
+
+    public Car(String carBrand, String carModel, Integer yearModel) {
+        this(UUID.randomUUID(), carBrand, carModel, yearModel);
+    }
+
+    /** getters and setters**/
+}
+```
+
+This will look familiar if you've ever touched Java. But, what would Java be without some annotations. Let's go ahead and do a few things: Let's make this class extend PanacheEntity (remember the extension we imported?) so that we can make use of the data persistence methods.
+
+1. change the class to `extends PanacheEntity` and annotate it with `@Entity` - so that we can make use of data persistence methods
+2. Add a new contructor `public static Car of(...)` and annotate it with `JsonbCreator` to help with JSON deserialisation.
+
+```java:Car.java
+package org.acme;
+// a bunch of other import statements
+import javax.json.bind.annotation.JsonbCreator;
+import javax.persistence.Entity;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+@Entity
+public class Car extends PanacheEntity {
+
+    public UUID uuid;
+    public String carBrand;
+    public String carModel;
+    public Integer yearModel;
+
+    public Car() {
+    }
+
+    public Car(String carBrand, String carModel, Integer yearModel) {
+        this(UUID.randomUUID(), carBrand, carModel, yearModel);
+    }
+
+    @JsonbCreator
+    public static Car of(String carBrand, String carModel, Integer yearModel) {
+        return new Car(carBrand, carModel, yearModel);
+    }
+
+/** getters and setters **/
+```
+
+You'll also want to go ahead and add the following parameters to your `application.properties` file.
+
+```
+quarkus.swagger-ui.always-include=true
+quarkus.swagger-ui.path=/swagger-ui
+
+quarkus.datasource.db-kind=h2
+quarkus.datasource.jdbc.url = jdbc:h2:mem:default
+quarkus.datasource.username = adminqc
+quarkus.hibernate-orm.database.generation = drop-and-create
+```
+
+This enables SwaggerUI, which we will use when viewing and testing our API, as well as setting the parameters for our in memory h2 database that our application will use to store data.
+
+## CarResource Class - Define API Methods
+
+The next part of building my microservice application is creating the Car Resource class, which defines my REST API methods. Let's go ahead and do the following:
+
+1. Create the CarResource class
+2. Import some of the key methods we'll be using
+3. Define our path to serve up our API `/cars`
+4. Annotate the class with `@Produces` and `@Consumes(MediaType.APPLICATION_JSON)` to specify that the methods in my class expect JSON
+5. Define my `@POST`, `@GET`, `@PUT`, & `@DELETE` methods for my Car Resource. Once I do this, I can use methods such as `car.persist()` to store a created car in my database. The benefit of doing this is I can obstract away my business logic from the underlying database technology.
+6. Any methods that modify the database, annotate with @Transactional
+
+```java:CarResource.java
+package org.acme;
+//import statements
+@Path("/cars")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class CarResource {
+
+    @POST
+    @Transactional
+    public Car create(final Car car)
+    {
+        Car newCar = new Car(car.uuid, car.carBrand, car.carModel, car.yearModel);
+        newCar.persist(); //saves car to database
+        return newCar;
+    }
+
+    @GET
+    public List<Car> list()
+    {
+        return Car.listAll(); //reads list of cars from database
+    }
+
+    @PUT
+    @Transactional
+    public void update( final Car car )
+    {
+        Car.update(car); //calls the update method we define below on the Car class
+    }
+
+    @DELETE
+    @Transactional
+    @Path(" {uuid} ")
+    public void delete(@PathParam( "uuid" ) final UUID uuid){
+        Car.delete("uuid", uuid); //deletes the car with given UUID from database
+    }
+}
+```
+
+We also want to go ahead and add the following update method for our Car class:
+
+```Java:Car.java
+    @Transactional
+    @Consumes
+    public static void update(final Car car) {
+        Optional<Car> previous = Car.findByIdOptional( car.uuid );
+            previous.ifPresent((update) -> {
+                update.uuid = car.uuid;
+                update.carBrand = car.carBrand;
+                update.carModel = car.carModel;
+                update.yearModel = car.yearModel;
+                update.persist();
+            });
+        }
+```
+
+Lastly, I also created an `import.sql` file in the `src/main/resources` directory, to import a list of cars on application start.
+
+```sql:import.sql
+INSERT INTO car (id, uuid, carBrand, carModel, yearModel) VALUES
+(nextval('hibernate_sequence'), random_uuid(), 'Brand A', 'Model A', 2022),
+(nextval('hibernate_sequence'), random_uuid(), 'Brand B', 'Model B', 2021),
+(nextval('hibernate_sequence'), random_uuid(), 'Brand C', 'Model C', 2020),
+(nextval('hibernate_sequence'), random_uuid(), 'Brand C', 'Model D', 2023);
+```
+
+## Running and Testing your Quarkus App
+
+After running the `quarkus dev` command earlier, your application should be accessible from `localhost:8080`.
+
+Upon accessing `localhost:8080` from your browser, you should be presented with the option to visit the DevUI. Here I can view and control different components of my application - for example the database credentials, the entities stored in my DB, and access SwaggerUI. This functionality can be further augmented by the Quarkus extensions that you download.
+INSERT IMAGE
+
+To test our API, let's go ahead and select Swagger UI. Here, we can see a list of our API endpoints (one of the extensions we installed at the beginning generates an OpenAPI specification from our code). Let's go ahead and test my endpoints out.
+INSERT IMAGE
+
+First, let's test the /cars GET method:
+INSERT GIF
+
+Great! It's returning the list of cars imported from `import.sql`.
+
+Next, let's make a POST request to /cars, I want to create a Honda NSX, and make sure that the data has persisted by then calling the GET method again.
+INSERT GIF
+
+Now if I wanted to deploy this as a native container to a Kubernetes platform, for example - your Quarkus project containers out of the box Dockerfiles at `src/main/docker` that you can use to build your container image, and then push it to a container registry.
