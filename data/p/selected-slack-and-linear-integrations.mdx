@@ -78,32 +78,29 @@ Now every time an issue is being updated from Slack it updates also on Linear an
 
 Axolo is currently looking for early beta users, reach out in the chat below if you want to be one of them.
 
-<button
-  onClick={() => {
-    window.$crisp.push(["do", "chat:open"])
-    window.$crisp.push([
-      "do",
-      "message:send",
-      ["text", "Hey, I want to try the Axolo Linear integration!"],
-    ])
-    window.$crisp.push(["set", "session:event", ["microsoft_request"]])
-  }}
-  style={{
-    backgroundColor: "blue",
-    border: "none",
-    color: "white",
-    fontWeight: 600,
-    padding: "0px 20px",
-    textAlign: "center",
-    textDecoration: "none",
-    display: "inline-block",
-    fontSize: 20,
-  }}
+<div 
+    className="flex justify-center bg-primary rounded-sm py-2 px-4 font-bold text-white"
 >
-  Request Axolo-Linear early access
-</button>
+  <button
+    onClick={() => {
+      window.$crisp.push(["do", "chat:open"])
+      window.$crisp.push([
+        "do",
+        "message:send",
+        ["text", "Hey, I want to try the Axolo Linear integration!"],
+      ])
+      window.$crisp.push(["set", "session:event", ["linear-integration"]])
+    }}
+    className="bg-primaryBlue hover:bg-hoverPrimary rounded-lg py-1 px-4 font-bold text-white"
 
-## Conslusion
+>
+
+    Request Axolo-Linear early access
+
+  </button>
+</div>
+
+## Conclusion
 
 Linear created a useful Slack integration where it would have everything you could expect from an official Slack integration (creating issues, getting notified, etc..).
 
