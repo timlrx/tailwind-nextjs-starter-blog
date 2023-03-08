@@ -10,7 +10,7 @@ canonicalUrl: top-code-smells-to-identify-in-pull-request-with-code-examples
 authors: ["sydney"]
 ---
 
-As a developer, few things are more satisfying than reviewing pull requests and catching code smells. It's like finding hidden treasures in your codebase, except instead of gold coins, you get to refactor confusing code and impress your team with your coding wizardry.
+As a developer, few things are more satisfying than reviewing pull requests and catching code smells. It's like finding hidden treasures in your codebase, except instead of gold coins, you get to refactor confusing code you wrote 6 months ago.
 
 Fear not, dear developer, for in this article, we'll explore the top 10 code smells to keep an eye out for in pull requests.By offering examples and useful suggestions on how to address them, you'll develop the ability to efficiently navigate your codebase. This will enable you and your team to create code that is cleaner and more maintainable.
 
@@ -28,12 +28,25 @@ Fear not, dear developer, for in this article, we'll explore the top 10 code sme
 
       ### Here is an example of a large and complex JavaScript method:
       <ImageContainer alt="large-or-complex-methods-example" src="/blog/static/images/codesmells/large-or-complex-methods-example.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1176} height={1028} />
-      This method takes in three parameters: quantity, price, and taxRate, and calculates the total price of an item based on those inputs. It also includes some conditional logic to apply discounts based on the quantity and total price.
+      This code violates the Single Responsibility Principle (SRP) and is difficult to read and maintain. The calculateTotalPrice function is responsible for iterating through the cart array, determining the price of each item, and calculating the total price. This makes the function lengthy, hard to understand, and prone to errors.
 
-One solution to make this method more readable and maintainable is to break it down into smaller, more focused methods that perform specific tasks. For example, we could break down the calculatePrice method into the following methods:
+<ImageContainer
+  alt="large-or-complex-methods-solution"
+  src="/blog/static/images/codesmells/large-or-complex-methods-solution.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1140}
+  height={1254}
+/>
+The solution to this code smell is to extract the item price calculation into a separate function getItemPrice(item)
+that takes an item object as an argument and returns the calculated price. This way, the calculateTotalPrice
+function is responsible only for iterating through the cart and adding up the item prices. The code becomes
+more modular, easier to read, and less error-prone.
 
-<ImageContainer alt="large-or-complex-methods-solution" src="/blog/static/images/codesmells/large-or-complex-methods-solution.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1140} height={1254} />
-By breaking down the original calculatePrice method into smaller methods that perform specific tasks, the code becomes easier to read and understand, and each method can be tested independently. Additionally, if any changes need to be made to the code, it is easier to locate the specific method that needs to be updated.
+Additionally, this solution allows for easier testing and reusability of the getItemPrice function. Now, other functions in the codebase can call getItemPrice with an item object to get the item price, without having to duplicate the price calculation logic.
+
+Overall, this solution improves the code quality by promoting modularity, readability, and maintainability.
+
 </p>
 
     <h2> <li> Long parameter lists </li></h2>
@@ -44,12 +57,12 @@ By breaking down the original calculatePrice method into smaller methods that pe
 
       ### Here is an example of a function with a long parameter list in JavaScript:
       <ImageContainer alt="Long-parameter-lists-example" src="/blog/static/images/codesmells/Long-parameter-lists-example.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1480} height={624} />
-      In this example, the calculatePrice function has six parameters, which can make it hard to use and understand.
+      In this example, the createUser function has eight parameters, which can make it hard to use and understand.
 
 One solution to this problem is to use an object or an array as a parameter instead of individual arguments. This approach is called the "parameter object" pattern. Here is an example of how this can be done:
 
 <ImageContainer alt="Long-parameter-lists-solution" src="/blog/static/images/codesmells/Long-parameter-lists-solution.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1480} height={624} />
-In this example, the calculatePrice function now takes only one argument, which is an object that contains all the necessary parameters. The options object can have default values for some parameters, and the function can destructure the object to access its properties. This approach makes the function more readable, easier to use, and more maintainable.
+In this example, the createUser function now takes only one argument, which is an object that contains all the necessary parameters. The options object can have default values for some parameters, and the function can destructure the object to access its properties. This approach makes the function more readable, easier to use, and more maintainable.
     </p>
 
     <h2> <li> Excessive comments </li></h2>
