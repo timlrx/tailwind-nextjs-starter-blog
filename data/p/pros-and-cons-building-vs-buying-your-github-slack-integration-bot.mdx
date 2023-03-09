@@ -1,10 +1,10 @@
 ---
 title: "Pros and Cons: Building vs Buying Your GitHub Slack Integration Bot"
-date: "2023-03-09"
+date: "2023-03-16"
 tags: ["SOFTWARE-DEVELOPMENT"]
 draft: false
 summary: "Deciding whether to build or buy your GitHub Slack integration bot depends on your needs and resources. Weigh the pros and cons before deciding."
-images: []
+image: "/blog/static/images/buildvsbuy/Build vs buy Axolo.jpg"
 layout: PostLayout
 canonicalUrl: pros-and-cons-building-vs-buying-your-github-slack-integration-bot
 authors: ["sydney"]
@@ -19,15 +19,74 @@ That's where Axolo comes in - it's a Slack-GitHub integration that allows you to
 
 First, let's consider what it would take to build an integration like Axolo internally. At a high level, the integration would need to:
 
-1. Monitor GitHub events: The integration would need to continuously monitor GitHub events, such as new pull requests, issues, comments, and commits.
+## 1. Monitor GitHub events
 
-2. Send notifications to Slack: The integration would need to send notifications to Slack channels based on the GitHub events being monitored.
+The integration would need to continuously monitor GitHub events, such as new pull requests, issues, comments, and commits.
 
-3. Manage user authentication: The integration would need to handle user authentication to ensure that 1. only authorized users can access the integration, 2. developers don't get notified by their own actions from GitHub actions in Slack.
+{" "}
 
-4. Maintain and update the integration: The integration would need to be maintained and updated regularly to keep up with changes to both Slack and GitHub APIs.
+<ImageContainer
+  alt="githubevents"
+  src="/blog/static/images/buildvsbuy/githubevents.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2212}
+  height={1990}
+/>
+**This is a screenshot of the webhooks GitHub sends us every minute. <br /> As of today Axolo handles
+more than 150k events per day between GitHub events (Pull requests, Pull Requests comments, Pull requests
+code comments, Repository updates, CI/CD, GitHub Actions) and Slack events (messages, edit, and reactions).**
 
-These tasks require a significant amount of development effort and expertise in both Slack and GitHub APIs. In addition, building and maintaining an integration like Axolo requires ongoing resources and attention from your development team, which could detract from other high-priority projects.
+## 2. Send notifications to Slack
+
+The integration would need to send notifications to Slack channels based on the GitHub events being monitored.
+
+{" "}
+
+<ImageContainer
+  alt="slackBlockKitBuilder"
+  src="/blog/static/images/buildvsbuy/slackBlockKitBuilder.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3922}
+  height={2128}
+/>
+**Axolo uses the SlackBlockKit Builder to send interactive and user friendly messages, more on [Slack
+Block Kit Builder](https://api.slack.com/tools/block-kit-builder.).**
+
+## 3. Manage user authentication
+
+The integration would need to handle user authentication to ensure that 1. only authorized users can access the integration, 2. developers don't get notified by their own actions from GitHub actions in Slack.
+
+{" "}
+
+<ImageContainer
+  alt="Authentication"
+  src="/blog/static/images/buildvsbuy/Authentication.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3464}
+  height={2176}
+/>
+**Axolo authenticates each user onboarded with GitHub(or GitLab) and Slack using oAuth 2.0 mainly to
+avoid getting notified by their own actions from one tool to the other. More about why we do this in
+the [Axolo documentation](https://axolo.co/docs/guides/howto#pros-and-cons-of-githubgitlab-and-slack-signin).**
+
+## 4. Maintain and update the integration
+
+The integration would need to be maintained and updated regularly to keep up with changes to both Slack and GitHub APIs.
+
+{" "}
+
+<ImageContainer
+  alt="changelog"
+  src="/blog/static/images/buildvsbuy/changelog.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2816}
+  height={2044}
+/>
+**Learn more about [Axolo regular updates and changelog in our blog](https://axolo.co/blog/tags/changelog).**
 
 # Buying Axolo
 
@@ -49,7 +108,7 @@ By buying Axolo, you gain access to expert support from the Axolo team. This can
 
 Axolo is regularly updated to 1. keep up with changes to both Slack and GitHub APIs 2. fits evolving needs of tech teams. This ensures that the integration remains functional and secure, without requiring additional development effort from your team.
 
-Integration with other tools: Axolo can integrate with other tools, such as Jira, Linea and Sentry allowing you to consolidate notifications and updates from multiple platforms into a single Slack channel.
+Integration with other tools: Axolo can and regularly add integratiosn with other tools, such as Jira, Linea and Sentry allowing you to consolidate notifications and updates from multiple platforms into a single Slack channel.
 
 # Save time and money by buying Axolo
 
