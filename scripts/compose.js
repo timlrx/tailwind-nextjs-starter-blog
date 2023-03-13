@@ -33,11 +33,11 @@ const genFrontMatter = (answers) => {
   const authorArray = answers.authors.length > 0 ? "'" + answers.authors.join("','") + "'" : ''
 
   let frontMatter = dedent`---
-  title: ${answers.title ? answers.title : 'Untitled'}
+  title: "${answers.title ? answers.title : 'Untitled'}"
   date: '${date}'
   tags: [${answers.tags ? tags : ''}]
   draft: ${answers.draft === 'yes' ? true : false}
-  summary: ${answers.summary ? answers.summary : ' '}
+  summary: "${answers.summary ? answers.summary : ' '}"
   images: []
   layout: ${answers.layout}
   canonicalUrl: ${answers.canonicalUrl}
