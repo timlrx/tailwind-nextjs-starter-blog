@@ -8,16 +8,20 @@ export default function TopBanner() {
         <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
-              href="https://axolo.co/blog/p/axolo-joins-slack-future-of-work-incubator"
+              href="https://axolo.co/"
               rel="noopener noreferrer"
               target="_blank"
               className=" flex place-content-center place-items-center"
             >
               <SlackLogo />
               {/* mobile text */}
-              <span className="sm:hidden">Axolo is now backed by</span>
+              <span className="sm:hidden">
+                Review pull requests in Slack with a two weeks free trial on Axolo
+              </span>
               {/* desktop text */}
-              <span className="hidden sm:inline">Axolo is now backed by </span>
+              <span className="hidden sm:inline">
+                Review pull requests in Slack with a two weeks free trial on
+              </span>
               <span
               // className="rainbow-button"
               >
@@ -25,7 +29,7 @@ export default function TopBanner() {
                   // href="https://www.producthunt.com/posts/axolo-for-gitlab"
                   className="ml-1 inline-flex items-center font-bold "
                 >
-                  Slack
+                  Axolo
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </button>
               </span>
