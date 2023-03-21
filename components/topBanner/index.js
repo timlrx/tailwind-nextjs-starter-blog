@@ -8,7 +8,7 @@ export default function TopBanner() {
         <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
-              href="https://axolo.co/"
+              href="https://api.axolo.co/identify/slack"
               rel="noopener noreferrer"
               target="_blank"
               className=" flex place-content-center place-items-center"
