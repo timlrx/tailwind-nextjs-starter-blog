@@ -17,6 +17,7 @@ const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
 import * as snippet from "@segment/snippet"
 import ReactGA from "react-ga"
+import { useEffect } from "react"
 
 function renderSnippet() {
   const opts = {
@@ -33,7 +34,10 @@ function renderSnippet() {
 }
 export default function App({ Component, pageProps }) {
   ReactGA.initialize("UA-192871583-1")
-  ReactGA.pageview(window.location.pathname + window.location.search)
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
 
   return (
     <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
