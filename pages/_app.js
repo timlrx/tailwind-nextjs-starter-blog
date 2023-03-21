@@ -16,6 +16,7 @@ import TopBanner from "@/components/topBanner"
 const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
 import * as snippet from "@segment/snippet"
+import ReactGA from "react-ga"
 
 function renderSnippet() {
   const opts = {
@@ -31,6 +32,9 @@ function renderSnippet() {
   return snippet.min(opts)
 }
 export default function App({ Component, pageProps }) {
+  ReactGA.initialize("UA-192871583-1")
+  ReactGA.pageview(window.location.pathname + window.location.search)
+
   return (
     <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
       <Head>
@@ -41,12 +45,12 @@ export default function App({ Component, pageProps }) {
           }}
           defer
         />
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: renderSnippet(),
           }}
           defer
-        />
+        /> */}
         {/* <meta
           httpEquiv="Content-Security-Policy"
           content="img-src data: https://client.crisp.chat https://image.crisp.chat https://storage.crisp.chat; font-src https://client.crisp.chat; media-src https://client.crisp.chat; style-src 'unsafe-inline' https://client.crisp.chat; frame-src https://game.crisp.chat; script-src https://client.crisp.chat https://settings.crisp.chat; connect-src https://client.crisp.chat https://storage.crisp.chat wss://client.relay.crisp.chat wss://stream.relay.crisp.chat"
