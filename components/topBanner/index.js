@@ -8,12 +8,10 @@ export default function TopBanner() {
 
   let text = "Improve your pickup time with a two weeks free trial on"
 
-  if (posthog) {
-    if (posthog.getFeatureFlag("banner") === "problem") {
-      text = "See how Axolo can reduce your pickup time by 50%"
-    } else if (posthog.getFeatureFlag("banner") === "solution") {
-      text = "Review pull requests in Slack with a two weeks free trial on"
-    }
+  if (posthog.getFeatureFlag("banner") === "problem") {
+    text = "See how you can reduce your pickup time by 50% with"
+  } else if (posthog.getFeatureFlag("banner") === "solution") {
+    text = "Review pull requests in Slack with a two weeks free trial on"
   }
 
   return (
