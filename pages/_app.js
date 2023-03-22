@@ -6,18 +6,32 @@ import "@fontsource/inter/variable-full.css"
 
 import { ThemeProvider } from "next-themes"
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 import siteMetadata from "@/data/siteMetadata"
 import Analytics from "@/components/analytics"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import { ClientReload } from "@/components/ClientReload"
 import TopBanner from "@/components/topBanner"
+import posthog from "posthog-js"
+import { PostHogProvider } from "posthog-js/react"
 
 const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
 import * as snippet from "@segment/snippet"
 import ReactGA from "react-ga"
 import { useEffect } from "react"
+const POSTHOG_KEY = "phc_L9f6Uj1bRNHNEBe4QDQkLwzq8iAtzszkwzrvXw90wjV"
+
+if (typeof window !== "undefined") {
+  posthog.init(POSTHOG_KEY, {
+    api_host: "https://app.posthog.com",
+    // Disable in development
+    loaded: (posthog) => {
+      if (process.env.NODE_ENV === "development") posthog.opt_out_capturing()
+    },
+  })
+}
 
 function renderSnippet() {
   const opts = {
@@ -32,40 +46,55 @@ function renderSnippet() {
 
   return snippet.min(opts)
 }
+
 export default function App({ Component, pageProps }) {
   ReactGA.initialize("UA-192871583-1")
+  const router = useRouter()
 
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search)
   }, [])
 
+  useEffect(() => {
+    // Track page views
+    const handleRouteChange = () => posthog?.capture("$pageview")
+    router.events.on("routeChangeComplete", handleRouteChange)
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [])
+
   return (
     <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
-      <Head>
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.$crisp=[];window.CRISP_WEBSITE_ID="${process.env.CRISP_WEBSITE_ID}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`,
-          }}
-          defer
-        />
-        {/* <script
+      <PostHogProvider client={posthog}>
+        <Head>
+          <meta content="width=device-width, initial-scale=1" name="viewport" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.$crisp=[];window.CRISP_WEBSITE_ID="${process.env.CRISP_WEBSITE_ID}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`,
+            }}
+            defer
+          />
+
+          {/* <script
           dangerouslySetInnerHTML={{
             __html: renderSnippet(),
           }}
           defer
         /> */}
-        {/* <meta
+          {/* <meta
           httpEquiv="Content-Security-Policy"
           content="img-src data: https://client.crisp.chat https://image.crisp.chat https://storage.crisp.chat; font-src https://client.crisp.chat; media-src https://client.crisp.chat; style-src 'unsafe-inline' https://client.crisp.chat; frame-src https://game.crisp.chat; script-src https://client.crisp.chat https://settings.crisp.chat; connect-src https://client.crisp.chat https://storage.crisp.chat wss://client.relay.crisp.chat wss://stream.relay.crisp.chat"
         ></meta> */}
-      </Head>
-      {isDevelopment && isSocket && <ClientReload />}
-      <Analytics />
-      <TopBanner />
-      <LayoutWrapper>
-        <Component {...pageProps} />
-      </LayoutWrapper>
+        </Head>
+        {isDevelopment && isSocket && <ClientReload />}
+        <Analytics />
+        <TopBanner />
+        <LayoutWrapper>
+          <Component {...pageProps} />
+        </LayoutWrapper>
+      </PostHogProvider>
     </ThemeProvider>
   )
 }

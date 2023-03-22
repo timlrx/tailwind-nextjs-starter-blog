@@ -1,7 +1,21 @@
 import { ArrowSmallRightIcon } from "@heroicons/react/24/solid"
+import { usePostHog } from "posthog-js/react"
+
 import SlackLogo from "../slackLogo"
 
 export default function TopBanner() {
+  const posthog = usePostHog()
+
+  let text = "Improve your pickup time with a two weeks free trial on"
+
+  if (posthog) {
+    if (posthog.getFeatureFlag("banner") === "problem") {
+      text = "See how Axolo can reduce your pickup time by 50%"
+    } else if (posthog.getFeatureFlag("banner") === "solution") {
+      text = "Review pull requests in Slack with a two weeks free trial on"
+    }
+  }
+
   return (
     <div className="relative bg-white">
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
@@ -15,13 +29,9 @@ export default function TopBanner() {
             >
               <SlackLogo />
               {/* mobile text */}
-              <span className="sm:hidden">
-                Review pull requests in Slack with a two weeks free trial on Axolo
-              </span>
+              <span className="sm:hidden">{text}</span>
               {/* desktop text */}
-              <span className="hidden sm:inline">
-                Review pull requests in Slack with a two weeks free trial on
-              </span>
+              <span className="hidden sm:inline">{text}</span>
               <span
               // className="rainbow-button"
               >
