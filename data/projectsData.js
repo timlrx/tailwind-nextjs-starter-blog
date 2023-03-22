@@ -9,13 +9,25 @@ const projectsData = [
     title: 'Ricochet Exchange - (Production)',
     description: `Dollar Cost Averaging DEX leveraging Superfluid money streams.`,
     imgSrc: '/static/images/ricochetexchange.png',
-    href: 'https://ricochet.exchange',
+    href: 'https://ricochet-exchange.eth.limo',
   },
   {
     title: 'Superfluid Finance - (Production)',
-    description: `Implementing Etheruem Name Services into the Superfluid Console's search.`,
+    description: `Superfluid Console is an explorer meant for developers and advanced users of the Superfluid Protocol.`,
     imgSrc: '/static/images/superfluid.png',
     href: 'https://console.superfluid.finance',
+  },
+  {
+    title: 'Alluo Finance - (Production)',
+    description: `DCA and earn yield while you Hodl your crypto, in our trustless and decentralised dApp.`,
+    imgSrc: '/static/images/alluo.jpg',
+    href: 'https://app.alluo.finance/',
+  },
+  {
+    title: 'Metagame - (Production)',
+    description: `The platform that MetaGame will be played on aka MetaOS - an open source framework for running decentralized societies.`,
+    imgSrc: '/static/images/metagame.png',
+    href: 'https://metagame.wtf/',
   },
   {
     title: 'Tellor Finance - (Production)',
@@ -27,13 +39,7 @@ const projectsData = [
     title: 'DebtDAO - (Production)',
     description: `Revenue based collateralized borrowing and lending on Ethereum Mainnet.`,
     imgSrc: '/static/images/debt-dao.png',
-    href: 'https://debtdao.finance/#/market',
-  },
-  {
-    title: 'Alluo Finance - (Production)',
-    description: `DCA and earn yield while you Hodl your crypto, in our trustless and decentralised dApp.`,
-    imgSrc: '/static/images/alluo.jpg',
-    href: 'https://app.alluo.finance/',
+    href: 'https://debtdao.finance/',
   },
   {
     title: 'Crypto Price Scraper - (Production)',
