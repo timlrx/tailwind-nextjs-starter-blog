@@ -20,8 +20,14 @@ function CTABanner({ type, tool = "github" }) {
       link: "https://axolo.co",
       textButton: "Learn more",
     },
+    dx: {
+      firstText: "Give a voice to your developers",
+      secondText: "with DX by Axolo.",
+      link: "https://axolo.co/developer-experience-survey",
+      textButton: "Learn more",
+    },
   }
-
+  console.log("type", type)
   const element = data[`${type}`]
   return (
     <div className="my-4">
