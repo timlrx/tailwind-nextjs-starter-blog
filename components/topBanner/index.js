@@ -2,17 +2,25 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/solid"
 import { usePostHog } from "posthog-js/react"
 
 import SlackLogo from "../slackLogo"
+import { useEffect, useState } from "react"
 
 export default function TopBanner() {
   const posthog = usePostHog()
 
-  let text = "Improve your pickup time with a two weeks free trial on"
+  let [text, setText] = useState("")
 
-  if (posthog.getFeatureFlag("banner") === "problem") {
-    text = "See how you can reduce your pickup time by 50% with"
-  } else if (posthog.getFeatureFlag("banner") === "solution") {
-    text = "Review pull requests in Slack with a two weeks free trial on"
-  }
+  useEffect(() => {
+    posthog.onFeatureFlags(function () {
+      // feature flags should be available at this point
+      if (posthog.getFeatureFlag("banner") === "problem") {
+        setText("See how you can reduce your pickup time by 50% with")
+      } else if (posthog.getFeatureFlag("banner") === "soltion") {
+        setText("Review pull requests in Slack with a two weeks free trial on")
+      } else {
+        setText("Improve your pickup time with a two weeks free trial on")
+      }
+    })
+  }, [])
 
   return (
     <div className="relative bg-white">
@@ -20,6 +28,7 @@ export default function TopBanner() {
         <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
+              onClick={posthog.capture("banner click")}
               href="https://api.axolo.co/identify/slack"
               rel="noopener noreferrer"
               target="_blank"
