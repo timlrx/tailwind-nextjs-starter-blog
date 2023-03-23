@@ -1,0 +1,50 @@
+---
+title: "GitLab webhook retries, and user search in private conversations, with improvements in security, error handling, and various bug fixes for GitLab, Slack, among others."
+date: "2023-01-31"
+tags: ["changelog"]
+draft: false
+summary: ""
+---
+
+## ✨ New
+
+- Emoji auto-review now in production and bug-free
+- Added a refresh button for pRS
+- GitLab webhooks now resubscribe automatically in case of errors
+- Axolo users can now search through private conversations to create stand-ups or team channels.
+
+## 🔨 Improvements
+
+- Receive alerts for inactive organizations
+- Our database is now cleaned periodically for webhooks and events
+- Teams and Slack channels updated from app.axolo.co
+- Update credentials instead of creating one every time for self-hosted: Improved security and efficiency by updating credentials instead of creating new ones for self-hosted services.
+- Add some fixes to better handle GitLab webhooks: Improved the reliability of GitLab webhooks by fixing some issues.
+- Gestion d'erreur pour un cas précis lorsqu'on envoie une notification de CI/CD pour une channel qui a déjà été archivé pour les clients GitLab: Improved error handling for GitLab clients when sending CI/CD notifications to archived channels.
+- Only tag admin for billing issues in Slack: Improved communication efficiency by tagging only admins for billing issues in Slack.
+- Updated message intro into new team channels with latest features: Provided teams with better information and features by updating the message introduction in new team channels.
+- GitLab webhook now retries automatically to avoid missing events
+- Improved onboarding installation for better performance
+- Users can now request admin permission during GitLab onboarding
+- GitLab onboarding now allows user to request an admin
+
+## 🐞 Fixes
+
+- Automatic message prevention on GitLab
+- Hotfix for code comment greediness
+- Handled error when approving MR without Slack channel ID
+- Fixed disappearing image markdown on GitHub
+- Hotfix for engineers not in team channel
+- Fixed /axolo command error for PRs without author
+- Remove mergeable status emoji reaction when MR is unapproved in GitLab
+- Create PR when receiving note from GitLab without one in DB
+- Resolved error updating non-existent MR in DB
+- Handled errors in incoming GitLab webhook
+- Fixed rate limiting bug with Slack
+- Axolo no longer deletes HTML comments in code fences
+- Fixed regex for images
+- Fixed /lgtm comment bug in GitLab
+- Alert for failed GitLab token refresh
+- Fixed engineer URL in onboarding cron job
+- Improved onboarding message for engineers with error wait time
+- Fixed API leaks and circular dependency-
