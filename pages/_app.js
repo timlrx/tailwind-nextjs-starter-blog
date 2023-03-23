@@ -66,35 +66,37 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   return (
-    <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+    <>
       <PostHogProvider client={posthog}>
-        <Head>
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.$crisp=[];window.CRISP_WEBSITE_ID="${process.env.CRISP_WEBSITE_ID}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`,
-            }}
-            defer
-          />
+        <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+          <Head>
+            <meta content="width=device-width, initial-scale=1" name="viewport" />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.$crisp=[];window.CRISP_WEBSITE_ID="${process.env.CRISP_WEBSITE_ID}";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`,
+              }}
+              defer
+            />
 
-          {/* <script
+            {/* <script
           dangerouslySetInnerHTML={{
             __html: renderSnippet(),
           }}
           defer
         /> */}
-          {/* <meta
+            {/* <meta
           httpEquiv="Content-Security-Policy"
           content="img-src data: https://client.crisp.chat https://image.crisp.chat https://storage.crisp.chat; font-src https://client.crisp.chat; media-src https://client.crisp.chat; style-src 'unsafe-inline' https://client.crisp.chat; frame-src https://game.crisp.chat; script-src https://client.crisp.chat https://settings.crisp.chat; connect-src https://client.crisp.chat https://storage.crisp.chat wss://client.relay.crisp.chat wss://stream.relay.crisp.chat"
         ></meta> */}
-        </Head>
-        {isDevelopment && isSocket && <ClientReload />}
-        <Analytics />
-        <TopBanner />
-        <LayoutWrapper>
-          <Component {...pageProps} />
-        </LayoutWrapper>
+          </Head>
+          {isDevelopment && isSocket && <ClientReload />}
+          <Analytics />
+          <TopBanner />
+          <LayoutWrapper>
+            <Component {...pageProps} />
+          </LayoutWrapper>
+        </ThemeProvider>
       </PostHogProvider>
-    </ThemeProvider>
+    </>
   )
 }
