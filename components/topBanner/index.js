@@ -1,23 +1,35 @@
 import { ArrowSmallRightIcon } from "@heroicons/react/24/solid"
+import { usePostHog } from "posthog-js/react"
+
 import SlackLogo from "../slackLogo"
 
 export default function TopBanner() {
+  const posthog = usePostHog()
+
+  let text = "Improve your pickup time with a two weeks free trial on"
+
+  if (posthog.getFeatureFlag("banner") === "problem") {
+    text = "See how you can reduce your pickup time by 50% with"
+  } else if (posthog.getFeatureFlag("banner") === "solution") {
+    text = "Review pull requests in Slack with a two weeks free trial on"
+  }
+
   return (
     <div className="relative bg-white">
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
         <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
-              href="https://axolo.co/blog/p/axolo-joins-slack-future-of-work-incubator"
+              href="https://api.axolo.co/identify/slack"
               rel="noopener noreferrer"
               target="_blank"
               className=" flex place-content-center place-items-center"
             >
               <SlackLogo />
               {/* mobile text */}
-              <span className="sm:hidden">Axolo is now backed by</span>
+              <span className="sm:hidden">{text}</span>
               {/* desktop text */}
-              <span className="hidden sm:inline">Axolo is now backed by </span>
+              <span className="hidden sm:inline">{text}</span>
               <span
               // className="rainbow-button"
               >
@@ -25,7 +37,7 @@ export default function TopBanner() {
                   // href="https://www.producthunt.com/posts/axolo-for-gitlab"
                   className="ml-1 inline-flex items-center font-bold "
                 >
-                  Slack
+                  Axolo
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </button>
               </span>

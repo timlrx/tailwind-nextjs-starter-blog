@@ -3292,6 +3292,11 @@ fetch-blob@^3.1.2, fetch-blob@^3.1.4:
     node-domexception "^1.0.0"
     web-streams-polyfill "^3.0.3"
 
+fflate@^0.4.1:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/fflate/-/fflate-0.4.8.tgz#f90b82aefbd8ac174213abb338bd7ef848f0f5ae"
+  integrity sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==
+
 figures@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.2.0.tgz#625c18bd293c604dc4a8ddb2febf0c88341746af"
@@ -5630,6 +5635,14 @@ postcss@^8.4.12, postcss@^8.4.5:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+posthog-js@^1.51.4:
+  version "1.51.4"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.51.4.tgz#b841ad7d3724c6ff8271b3bbbd1fc36644b0a27f"
+  integrity sha512-YaozVcVdnsoj7yuwXo8mBHrQCagmZSR799QvaRfwL9EhDWMqCnV1Kh0Dj1GjX9/fLYIHYU4Tl8iKtqGkdt/Nxg==
+  dependencies:
+    fflate "^0.4.1"
+    rrweb-snapshot "^1.1.14"
+
 preact@^10.6.2:
   version "10.7.2"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.7.2.tgz#5c632ba194b87345dcaee6598b3b6529b58e6a12"
@@ -6424,6 +6437,11 @@ rimraf@^3.0.2:
   integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
+
+rrweb-snapshot@^1.1.14:
+  version "1.1.14"
+  resolved "https://registry.yarnpkg.com/rrweb-snapshot/-/rrweb-snapshot-1.1.14.tgz#9d4d9be54a28a893373428ee4393ec7e5bd83fcc"
+  integrity sha512-eP5pirNjP5+GewQfcOQY4uBiDnpqxNRc65yKPW0eSoU1XamDfc4M8oqpXGMyUyvLyxFDB0q0+DChuxxiU2FXBQ==
 
 run-async@^2.4.0:
   version "2.4.1"
