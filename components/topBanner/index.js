@@ -3,12 +3,15 @@ import { usePostHog } from "posthog-js/react"
 
 import SlackLogo from "../slackLogo"
 import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 
 export default function TopBanner() {
   const posthog = usePostHog()
 
   const [text, setText] = useState("")
   const [isVisible, setIsVisible] = useState(false)
+  const { theme, resolvedTheme } = useTheme()
+  const isDark = theme === "dark" || resolvedTheme === "dark"
 
   useEffect(() => {
     posthog.onFeatureFlags(function () {
@@ -27,12 +30,12 @@ export default function TopBanner() {
 
   return (
     <div
-      className={`relative bg-white ${
+      className={`relative ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-700"} ${
         isVisible ? "opacity-100 transition-opacity duration-500" : "opacity-0"
       }`}
     >
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
-        <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
+        <div className="sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
               onClick={posthog.capture("banner click")}
@@ -55,16 +58,6 @@ export default function TopBanner() {
             </a>
           </p>
         </div>
-        {/* button to disbale the banner */}
-        {/* <div className="absolute inset-y-0 right-0 flex items-start pt-1 pr-1 sm:items-start sm:pt-1 sm:pr-2">
-          <button
-            type="button"
-            className="flex rounded-md p-2 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white"
-          >
-            <span className="sr-only">Dismiss</span>
-            <XiCon className="h-6 w-6 " aria-hidden="true" />
-          </button>
-        </div> */}
       </div>
     </div>
   )
