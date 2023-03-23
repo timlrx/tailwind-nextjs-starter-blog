@@ -1,0 +1,37 @@
+---
+title: "Improved onboarding, GitLab handling, and bug fixes, including a new queue system and test account, better error handling, and internal tools for support and analytics."
+date: "2023-01-31"
+tags: ["changelog"]
+draft: false
+summary: ""
+---
+
+## ✨ New
+
+- New onboarding to create the Axolo general channel or a team channel at the end
+- Launched DX by Axolo to help engineering managers receive feedback from their team. More info on the [dedicated landing page for developer experience surveys](https://axolo.co/developer-experience-survey).
+- Add a way to have a test account for DX
+- Merge a merge request with Axolo, `/axolo merge`
+- New billing section for paid customers
+
+## 🔨 Improvements
+
+- Better GitLab token handling for users
+- Propagate edits from bot comments to Slack
+- Filtering bot (renovate, dependabot, etc..) in pull request recap and Axolo standups
+- Write to a user whenever they install Axolo on a personal account
+- Improve MR lifecycle status
+- Improve the emoji mag reaction
+- Add internal actions for better support
+
+## 🐞 Fixes
+
+- Fix error where bots were being taken off the settings
+- Fix bug while fetching Slack workspace conversations
+- Improving the refresh GitLab token error
+- Handle deleted MR for GitLab
+- Patch GitLab organization
+- Make sure we delete hook when we delete a GitLab organization
+- Bug with timeslots on GitLab when you were assigned as assignees
+- Not asking engineers to re-sign in anymore
+- Fix error with GitHub self-hosted duplicated credentials
