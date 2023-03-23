@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 export default function TopBanner() {
   const posthog = usePostHog()
 
-  const [text, setText] = useState("Improve your pickup time with a two weeks free trial on")
+  let [text, setText] = useState("")
 
   useEffect(() => {
     posthog.onFeatureFlags(function () {
@@ -16,15 +16,11 @@ export default function TopBanner() {
         setText("See how you can reduce your pickup time by 50% with")
       } else if (posthog.getFeatureFlag("banner") === "soltion") {
         setText("Review pull requests in Slack with a two weeks free trial on")
+      } else {
+        setText("Improve your pickup time with a two weeks free trial on")
       }
     })
   }, [])
-
-  // if (posthog.getFeatureFlag("banner") === "problem") {
-  //   text = "See how you can reduce your pickup time by 50% with"
-  // } else if (posthog.getFeatureFlag("banner") === "solution") {
-  //   text = "Review pull requests in Slack with a two weeks free trial on"
-  // }
 
   return (
     <div className="relative bg-white">
@@ -32,6 +28,7 @@ export default function TopBanner() {
         <div className="text-gray-700 sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
+              onClick={posthog.capture("banner click")}
               href="https://api.axolo.co/identify/slack"
               rel="noopener noreferrer"
               target="_blank"
