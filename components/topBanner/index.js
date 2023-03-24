@@ -16,9 +16,9 @@ export default function TopBanner() {
   useEffect(() => {
     posthog.onFeatureFlags(function () {
       // feature flags should be available at this point
-      if (posthog.getFeatureFlag("banner") === "problem") {
+      if (posthog.getFeatureFlag("banner2") === "problem") {
         setText("See how you can reduce your pickup time by 50% with")
-      } else if (posthog.getFeatureFlag("banner") === "solution") {
+      } else if (posthog.getFeatureFlag("banner2") === "solution") {
         setText("Review pull requests in Slack with a two weeks free trial on")
       } else {
         setText("Improve your pickup time with a two weeks free trial on")
