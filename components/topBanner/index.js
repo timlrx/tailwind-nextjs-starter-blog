@@ -38,7 +38,7 @@ export default function TopBanner() {
         <div className="sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
-              onClick={posthog.capture("banner click")}
+              onClick={() => posthog.capture("banner click")}
               href="https://api.axolo.co/identify/slack"
               rel="noopener noreferrer"
               target="_blank"
