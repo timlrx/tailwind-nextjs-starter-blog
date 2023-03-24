@@ -18,7 +18,7 @@ export default function TopBanner() {
       // feature flags should be available at this point
       if (posthog.getFeatureFlag("banner") === "problem") {
         setText("See how you can reduce your pickup time by 50% with")
-      } else if (posthog.getFeatureFlag("banner") === "soltion") {
+      } else if (posthog.getFeatureFlag("banner") === "solution") {
         setText("Review pull requests in Slack with a two weeks free trial on")
       } else {
         setText("Improve your pickup time with a two weeks free trial on")
