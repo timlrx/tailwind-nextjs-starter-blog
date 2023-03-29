@@ -58,21 +58,12 @@ export default function App({ Component, pageProps }) {
     // Add listener for route changes and trigger page view
     const handleRouteChange = (url) => {
       ReactGA.pageview(url)
+      posthog?.capture("$pageview")
     }
 
     router.events.on("routeChangeComplete", handleRouteChange)
 
     // Cleanup the listener when the component is unmounted
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange)
-    }
-  }, [router.events])
-
-  useEffect(() => {
-    // Track page views
-    const handleRouteChange = () => posthog?.capture("$pageview")
-    router.events.on("routeChangeComplete", handleRouteChange)
-
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange)
     }
