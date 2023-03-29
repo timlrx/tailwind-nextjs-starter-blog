@@ -52,8 +52,21 @@ export default function App({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
+    // Trigger page view on initial load
     ReactGA.pageview(window.location.pathname + window.location.search)
-  }, [])
+
+    // Add listener for route changes and trigger page view
+    const handleRouteChange = (url) => {
+      ReactGA.pageview(url)
+    }
+
+    router.events.on("routeChangeComplete", handleRouteChange)
+
+    // Cleanup the listener when the component is unmounted
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [router.events])
 
   useEffect(() => {
     // Track page views
