@@ -1,9 +1,13 @@
 const URLBACK = "https://api.axolo.co/"
 
-export default function AddToSlack({ purple = false }) {
+export default function AddToSlack({ purple = false, dx = false }) {
   const handleClick = (e) => {
     e.preventDefault()
-    window.location.assign(`${URLBACK}identify/slack`)
+    if (dx) {
+      window.location.assign(`https://api.dx.axolo.co/api/identify/slack`)
+    } else {
+      window.location.assign(`${URLBACK}identify/slack`)
+    }
   }
   if (purple) {
     return (
