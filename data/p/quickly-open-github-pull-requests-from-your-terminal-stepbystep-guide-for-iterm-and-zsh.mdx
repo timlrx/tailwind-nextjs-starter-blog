@@ -1,0 +1,97 @@
+---
+title: "Open Current GitHub Pull Requests from Your Terminal: Step-by-Step Guide for iTerm and Zsh"
+date: "2023-03-30"
+tags: ["software-development", "developer-productivity", "pull-request-guide"]
+draft: false,
+summary: "Learn how to create a custom Zsh script for iTerm that lets you open your current GitHub pull requests directly from your terminal. Enhance your workflow with this step-by-step guide."
+images: []
+layout: PostLayout
+canonicalUrl: open-github-pull-requests-iterm-zsh
+endCTA: "DiveIn"
+authors: ["sydney"]
+image: "/blog/static/images/openPRTerminal/open-pr-from-terminal.jpg"
+---
+
+You can create a custom script for your zsh terminal to automatically open the current pull request in GitHub for the repository you're working in. Here is a gif on how it will work eventually:
+
+<ImageContainer
+  alt="openCurrentPRFromTerminal"
+  src="/blog/static/images/openPRTerminal/openCurrentPRFromTerminal.gif"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={800}
+  height={286}
+/>
+
+Here's a step-by-step guide:
+
+## 1. Make sure you have jq and hub installed, as they will be required for parsing JSON and interacting with GitHub:
+
+```
+# Install jq
+brew install jq
+```
+
+## 2. Install hub
+
+```
+brew install hub
+```
+
+## 3. Create a new file named open-pr.sh in your preferred scripts directory, for example, ~/.scripts/open-pr.sh.
+
+## 4. Add the following script to the open-pr.sh file:
+
+<ImageContainer
+  alt="script-open-pr-from-terminal"
+  src="/blog/static/images/openPRTerminal/script-open-pr-from-terminal.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1840}
+  height={1388}
+/>{" "}
+
+```
+#!/bin/zsh
+
+# Get the current branch name
+current_branch=$(git symbolic-ref --short HEAD)
+
+# Get the GitHub user and repository name
+github_user_and_repo=$(git config --get remote.origin.url | sed 's/.*:\/\/github.com\///;s/.git$//')
+
+# Get the pull request information
+pr_info=$(hub pr list -f ""%I %H%n"" | grep $current_branch)
+
+if [ -z ""$pr_info"" ]; then
+  echo ""No pull request found for the current branch.""
+else
+  # Get the PR number
+  pr_number=$(echo $pr_info | cut -d ' ' -f 1)
+
+  # Open the pull request in the browser
+  open ""https://github.com/$github_user_and_repo/pull/$pr_number""
+fi
+```
+
+## 5. Make the script executable by running:
+
+```
+chmod +x ~/.scripts/open-pr.sh
+```
+
+## 6. Add the following alias to your ~/.zshrc file:
+
+```
+alias openpr=""~/.scripts/open-pr.sh""
+```
+
+## 7. Reload your zsh configuration:
+
+```
+source ~/.zshrc
+```
+
+Now, whenever you want to open the current pull request in GitHub, simply type openpr in your terminal while in the repository folder. The script will open the pull request in your default browser.
+
+Keep in mind that this script assumes you have proper authentication with GitHub (SSH or token). If not, you might need to set up your credentials with hub or git first.
