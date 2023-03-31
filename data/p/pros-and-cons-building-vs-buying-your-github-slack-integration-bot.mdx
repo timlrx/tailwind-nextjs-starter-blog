@@ -1,0 +1,137 @@
+---
+title: "Pros and Cons: Building vs Buying Your GitHub Slack Integration Bot"
+date: "2023-04-03"
+tags: ["SOFTWARE-DEVELOPMENT"]
+draft: true
+summary: "Deciding whether to build or buy your GitHub Slack integration bot depends on your needs and resources. Weigh the pros and cons before deciding."
+image: "/blog/static/images/buildvsbuy/Build vs buy Axolo.jpg"
+layout: PostLayout
+canonicalUrl: pros-and-cons-building-vs-buying-your-github-slack-integration-bot
+authors: ["sydney"]
+---
+
+# Why Buying Axolo is Better Than Building it Internally
+
+As a company that uses both Slack and GitHub, you understand the value of integrating these tools to streamline your workflow and improve collaboration. Slack is a popular communication platform, while GitHub is a powerful development platform. When combined, these tools can provide a seamless experience for managing software projects and communicating with team members.
+That's where Axolo comes in - it's a Slack-GitHub integration that allows you to create one ephemeral channel for each pull request while receiving GitHub notifications and updates directly in your Slack channels. In this article, we'll explore why it's better to buy Axolo than to build it internally.
+
+# Building a Slack and GitHub integration bot Internally
+
+First, let's consider what it would take to build an integration like Axolo internally. At a high level, the integration would need to:
+
+## 1. Monitor GitHub events
+
+The integration would need to continuously monitor GitHub events, such as new pull requests, issues, comments, and commits.
+
+{" "}
+
+<ImageContainer
+  alt="githubevents"
+  src="/blog/static/images/buildvsbuy/githubevents.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2212}
+  height={1990}
+/>
+**This is a screenshot of the webhooks GitHub sends us every minute. <br /> As of today Axolo handles
+more than 150k events per day between GitHub events (Pull requests, Pull Requests comments, Pull requests
+code comments, Repository updates, CI/CD, GitHub Actions) and Slack events (messages, edit, and reactions).**
+
+## 2. Send notifications to Slack
+
+The integration would need to send notifications to Slack channels based on the GitHub events being monitored.
+
+{" "}
+
+<ImageContainer
+  alt="slackBlockKitBuilder"
+  src="/blog/static/images/buildvsbuy/slackBlockKitBuilder.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3922}
+  height={2128}
+/>
+**Axolo uses the SlackBlockKit Builder to send interactive and user friendly messages, more on [Slack
+Block Kit Builder](https://api.slack.com/tools/block-kit-builder.).**
+
+## 3. Manage user authentication
+
+The integration would need to handle user authentication to ensure that 1. only authorized users can access the integration, 2. developers don't get notified by their own actions from GitHub actions in Slack.
+
+{" "}
+
+<ImageContainer
+  alt="Authentication"
+  src="/blog/static/images/buildvsbuy/Authentication.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3464}
+  height={2176}
+/>
+**Axolo authenticates each user onboarded with GitHub(or GitLab) and Slack using oAuth 2.0 mainly to
+avoid getting notified by their own actions from one tool to the other. More about why we do this in
+the [Axolo documentation](https://axolo.co/docs/guides/howto#pros-and-cons-of-githubgitlab-and-slack-signin).**
+
+## 4. Maintain and update the integration
+
+The integration would need to be maintained and updated regularly to keep up with changes to both Slack and GitHub APIs.
+
+{" "}
+
+<ImageContainer
+  alt="changelog"
+  src="/blog/static/images/buildvsbuy/changelog.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2816}
+  height={2044}
+/>
+**Learn more about [Axolo regular updates and changelog in our blog](https://axolo.co/blog/tags/changelog).**
+
+# Buying Axolo
+
+<a href="https://axolo.co" target="_blank">
+  <ImageContainer
+    alt="axolo"
+    src="/blog/static/images/productivity/axolo.png"
+    classNameDiv=""
+    classNameImage=""
+    width={1172}
+    height={732}
+  />
+</a>
+
+Now, let's consider the benefits of buying Axolo instead of building it internally:
+
+## Time-to-market
+
+Building an integration like Axolo from scratch could take months of development time, delaying your ability to use the integration and realize its benefits. By buying Axolo, you start using a complete integration right away, without any additional development effort.
+
+## Reduced development costs
+
+Buying Axolo saves your company significant development costs, as you won't need to hire additional developers to build and maintain the integration. Additionally, Axolo's pricing is typically lower than the cost of hiring additional developers to build and maintain the integration.
+
+## Expert support
+
+By buying Axolo, you gain access to expert support from the Axolo team. This will save your development team time and resources, as they won't need to troubleshoot and fix integration issues on their own.
+
+## Regular updates
+
+Axolo is regularly updated to 1. keep up with changes to both Slack and GitHub APIs 2. fits evolving needs of tech teams. This ensures that the integration remains functional and secure, without requiring additional development effort from your team.
+
+Integration with other tools: Axolo regularly adds new integrations with other tools, such as Jira, Linea, and Sentry allowing you to consolidate notifications and updates from multiple platforms into a single Slack channel.
+
+[See what our users have to say about Axolo on G2](https://www.g2.com/products/axolo).
+
+<ImageContainer
+  alt="g2"
+  src="/blog/static/images/buildvsbuy/g2.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1840}
+  height={1066}
+/>
+
+# Save time and money by buying Axolo
+
+In conclusion, while building an integration like Axolo internally may seem like a viable option, the development effort, ongoing maintenance, and resource allocation required may not be worth the investment. By buying Axolo, you can start using the integration immediately, save development costs, and gain access to expert support and regular updates. Additionally, Axolo integrates with other tools, further streamlining your workflow and improving collaboration.

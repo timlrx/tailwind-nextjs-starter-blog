@@ -1,22 +1,22 @@
 ---
-title: "Top 4 GitHub Action Slack integrations"
+title: "How to Set Up GitHub Actions Notifications in Slack: A 2023 Guide for Engineers"
 date: "2021-09-30"
-lastmod: "2022-09-14"
+lastmod: "2023-03-29"
 tags: ["notification"]
 draft: false
 image: "/blog/static/images/top5/top4_github_action.png"
 summary: "In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. The first one is to implement a GitHub Action in your repositories and that will use the Slack API with a OAuth token, the second one is to install an application with a user interface to set up your notifications. We’re going to explain the best of both worlds in this article."
 ---
 
-<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+## <span className="rainbow-button text-2xl font-bold hover:cursor-auto">Setting up GitHub Action notifications in Slack</span>
 
-For the past years, as most engineering teams on GitHub, you must have integrated GitHub Actions and workflows in your routine. GitHub Action is great for continuous integration, continuous deployment, and monitoring your workflows.
+For the past years, as most engineering teams on GitHub, you may have integrated GitHub Actions and workflows in your routine. GitHub Actions are great for continuous integration, continuous deployment, and monitoring your workflows.
 
 In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. The first one is to implement a GitHub Action in your repositories and that will use the Slack API with a OAuth token, the second one is to install an application with a user interface to set up your notifications. We’re going to explain the best of both worlds in this article.
 
-Here is a 5 minutes YouTube video recap of this article:
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
 
-<div style={{ display: "flex", justifyContent: "center" }}>
+<div className="mt-4 flex justify-center">
   <iframe
     width="560"
     height="315"
@@ -27,6 +27,9 @@ Here is a 5 minutes YouTube video recap of this article:
     allowFullScreen
   ></iframe>
 </div>
+<SubImageText classNameDiv="mt-4" classNameText="lg:w-80 ">
+  Sydney, CTO @ Axolo, explaining in video how to set up GitHub Action notifications in Slack
+</SubImageText>
 
 ## Axolo, a user interface to receive GitHub Action in Slack and much more
 
@@ -36,7 +39,7 @@ Axolo’s first feature is to create a single-purpose ephemeral channel for each
 
 After installation, you will be able to receive every GitHub Action notification in a pull request channel in Slack (notifying only the pull request creators and reviewers).
 
-But it is not only about GitHub Action, you will also passively receive updates for your banch conflict, pull request checks, and deployments in their specific channel. From the app, you can select only the status you'd like to receive (success, error, ...).
+But it is not only about GitHub Action, you will also passively receive updates for your branch conflict, pull request checks, and deployments in their specific channel. From the app, you can select only the status you'd like to receive (success, error, ...).
 
 <ImageContainer
   src="/blog/static/images/screenshots/pr_checks.png"
@@ -50,11 +53,11 @@ But it is not only about GitHub Action, you will also passively receive updates 
 
 ## Three open-source GitHub Action for Slack notifications
 
-During our study, we’ve found four applications on the GitHub marketplace to set up GitHub Action notifications to Slack. We decided to focus on the top three that had more than 100 stars at the time of the article.
+During our research, we’ve found four applications on the GitHub marketplace to set up GitHub Action notifications to Slack. We decided to focus on the top three that had more than 100 stars at the time of the article.
 
 ### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/slack-notify">Slack notify</a>
 
-This application was created by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/">rtCamp</a> and has 775 stars on GitHub. They developed <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/github-actions-library/">two other applications</a> for GitHub Action: PHPCS Code Review and Deploy WordPress.
+This application was created by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/">rtCamp</a> and has 874 stars on GitHub. They developed <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/github-actions-library/">two other applications</a> for GitHub Action: PHPCS Code Review and Deploy WordPress.
 
 Their API is well-documented and explained. Optionally, Slack notify can support Hashicorp Vault too.
 
@@ -85,7 +88,7 @@ From there, you can easily add this setup to any of your current GitHub Action a
 
 ### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/github-action-for-slack">GitHub Action for Slack</a>
 
-GitHub Action for Slack was developed by Nicolas Coutin and Christoper Lion and has currently 195 stars on GitHub. The API is well documented too but messages are pretty simple and do not fully use Slack attachment API.
+GitHub Action for Slack was developed by Nicolas Coutin and Christoper Lion and has currently 197 stars on GitHub. The API is well documented too but messages are pretty simple and do not fully use Slack attachment API.
 
 How to use it:
 
@@ -101,7 +104,7 @@ How to use it:
     args: 'A new commit has been pushed.' # Optional
 ```
 
-Example:
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -113,11 +116,11 @@ Example:
 
 ### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/action-slack">Action Slack</a>
 
-action-slack was developed by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/8398a7">8398a7</a> and other contributors and has currently 495 stars on GitHub.
+action-slack was developed by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/8398a7">8398a7</a> and other contributors and has currently 530 stars on GitHub.
 
 We love <a target="_blank" rel="noopener noreferrer nofollow" href="https://action-slack.netlify.app/">the online documentation</a> and the overall rich attachment interface, even if a quick design on the default appearance could be beneficial. But this is the only one to provide a way to customize the appearance of the notifications and they support GitHub Enterprise too!
 
-How to use it:
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
 
 ```
 steps:
@@ -130,7 +133,7 @@ steps:
     if: always() # Pick up events even if the job fails or is canceled.
 ```
 
-Example:
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -140,5 +143,6 @@ Example:
   />
 </div>
 
-If you know any other great integrations for GitHub Action in Slack, let us know and we will update the
-article!
+In conclusion, setting up notifications for GitHub Actions in Slack can greatly improve your workflow and keep your team informed of important updates. There are several ways to do this, including using out-of-the-box third-party applications like Axolo or one of the open-source GitHub Actions for Slack notifications that you need to set up. Whether you're a software engineer or a project manager, having timely notifications can help you stay on top of your tasks and make informed decisions. So give it a try and see how it can benefit your team!
+
+If you know any other great integrations for GitHub Action in Slack, let us know and we will update the article!
