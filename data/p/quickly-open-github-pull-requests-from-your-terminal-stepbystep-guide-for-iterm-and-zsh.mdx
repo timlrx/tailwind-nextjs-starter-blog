@@ -48,30 +48,43 @@ brew install hub
   classNameDiv="mx-10 lg:mx-20"
   classNameImage=""
   width={1840}
-  height={1388}
-/>{" "}
+  height={2018}
+/>
 
 ```
 #!/bin/zsh
 
+# Check if we're in a Git repository
+git rev-parse --is-inside-work-tree >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "You are not inside a Git repository. Please navigate to a Git repository and try again."
+  exit 1
+fi
+
 # Get the current branch name
 current_branch=$(git symbolic-ref --short HEAD)
+
+if [ -z "$current_branch" ]; then
+  echo "You are not on a valid Git branch. Please switch to a branch and try again."
+  exit 1
+fi
 
 # Get the GitHub user and repository name
 github_user_and_repo=$(git config --get remote.origin.url | sed 's/.*:\/\/github.com\///;s/.git$//')
 
 # Get the pull request information
-pr_info=$(hub pr list -f ""%I %H%n"" | grep $current_branch)
+pr_info=$(hub pr list -f "%I %H%n" | grep $current_branch)
 
-if [ -z ""$pr_info"" ]; then
-  echo ""No pull request found for the current branch.""
+if [ -z "$pr_info" ]; then
+  open "https://github.com/$github_user_and_repo/compare/$current_branch"
 else
   # Get the PR number
   pr_number=$(echo $pr_info | cut -d ' ' -f 1)
 
   # Open the pull request in the browser
-  open ""https://github.com/$github_user_and_repo/pull/$pr_number""
+  open "https://github.com/$github_user_and_repo/pull/$pr_number"
 fi
+
 ```
 
 ## 5. Make the script executable by running:
@@ -92,6 +105,6 @@ alias openpr=""~/.scripts/open-pr.sh""
 source ~/.zshrc
 ```
 
-Now, whenever you want to open the current pull request in GitHub, simply type **openpr** in your terminal while in the repository folder. The script will open the pull request in your default browser.
+Now, whenever you want to open the current pull request in GitHub, simply type **openpr** in your terminal while in the repository folder. The script will open the pull request in your default browser if there is one or ask you to create one if there is no corresponding pull request.
 
 Keep in mind that this script assumes you have proper authentication with GitHub (SSH or token). If not, you might need to set up your credentials with hub or git first.
