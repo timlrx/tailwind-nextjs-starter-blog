@@ -1,7 +1,7 @@
 ---
 title: "Setup GitLab Slack notifications for self managed instances in 2023"
-date: "2022-11-03"
-lastmod: "2023-02-29"
+date: "2023-04-04"
+lastmod: "2023-04-04"
 tags: ["slack", "gitlab", "notification"]
 draft: false
 summary: "Slack is a popular tool for receiving these notifications in real-time, but setting up this integration can be tricky. In this article, we'll explore two alternative solutions for setting up GitLab Slack notifications for self-managed instances in 2023. Whether you choose to use a third-party tool or manually configure the notifications, we'll guide you through the steps and offer tips and best practices for a successful setup. Let's get started!"
@@ -29,9 +29,34 @@ Slack is a popular tool for receiving these notifications in real-time, but sett
 
 ### What is Axolo?
 
-Axolo is focused on providing [seamless integration between GitLab and Slack](https://axolo.co/gitlab-slack-integration) to help engineering teams improve their code review process and CI/CD pipeline notifications. The integration allows for the creation of temporary Slack channels for each merge request, inviting the author and reviewers to the channel and notifying them of relevant events such as code comments and CI/CD status updates.
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    style={{ borderRadius: "0.5rem", maxWidth: "400px" }}
+    alt="Gitlab Slack Integration Screenshot"
+    src="/blog/static/images/general/gitlabaxolo.jpg"
+  />
+</div>
 
-It allows teams to resolve merge requests faster and engage more effectively around the code. Additionally, Axolo offers search capabilities, daily pull request reminders, and team-specific notifications to further improve the efficiency and productivity of the code review process.
+Axolo is focused on providing a [seamless integration between GitLab and Slack](https://axolo.co/gitlab-slack-integration) to help engineering teams improve their code review process and CI/CD pipeline notifications. The integration allows for the creation of temporary Slack channels for each merge request, inviting the author and reviewers to the channel and notifying them of relevant events such as code comments and CI/CD status updates.
+
+<ImageContainer
+  alt="Axolo code review threads"
+  src="/blog/static/images/gitlab/threads-2.png"
+  classNameDiv="mx-2 sm:mx-28 bg-white"
+  classNameImage=""
+  width={2252}
+  height={2076}
+/>
+
+It allows teams to resolve merge requests faster and engage more effectively around the code. Additionally, Axolo offers
+
+- code review timeslots,
+- daily pull request reminders,
+- daily stand-up notifications,
+- the ability to merge from a Slack channel,
+- and team-specific notifications to further improve the efficiency and productivity of the code review process.
+
+You can find all Axolo feature on the [product page](https://axolo.co/features).
 
 ### How to set up Axolo for a GitLab Self-Managed instance?
 
@@ -51,17 +76,28 @@ Using Axolo for a GitLab self-managed instance offers several benefits, includin
 
 4. **Positive user reviews:** Axolo has received positive user reviews and is a high performer according to G2, indicating that the tool is effective and well-liked by its users.
 
+<G2Banner />
+
 Overall, Axolo offers a range of benefits for teams using GitLab self-managed instances, helping to streamline the code review process, improve communication and collaboration, increase productivity, and hold team members accountable for their work.
 
 ### Cons of using Axolo for a GitLab self-managed instance
 
 Here are a few potential cons of using Axolo:
 
-1. **Cost:** Axolo is not a free tool and requires a subscription for access to its features. This may be a con for smaller teams or those with budget constraints. But as the latest studies has shown, Axolo help developers save two hours per week on code reviews, which is a huge time saver for teams.
+1. **Cost:** Axolo is not a free tool for team with more than 5 developers (it is $8/dev/mo). This may be a con those with budget constraints. But as our latest studies has shown, Axolo help developers save two hours per week on code reviews, which is a huge time saver for teams.
 
 2. **Dependency on Slack:** As Axolo is a Slack integration, it requires a Slack workspace to function. If your team does not use Slack or prefers to use a different communication tool, Axolo may not be the best fit.
 
 ## Manually create a GitLab Slack notification integration for a self-managed instance
+
+<ImageContainer
+  alt="gitlab slack bot architecture"
+  src="/blog/static/images/gitlab/gitlab_slack_bot_architecture.png"
+  classNameDiv="mx-2 sm:mx-28"
+  classNameImage=""
+  width={1380}
+  height={1153}
+/>
 
 You can find here how to create your Slack application to send notifications from your GitLab instance:
 

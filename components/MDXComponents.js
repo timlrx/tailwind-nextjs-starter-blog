@@ -9,6 +9,7 @@ import { BlogNewsletterForm } from "./NewsletterForm"
 import CTABanner from "./CTABanner/templateBanner"
 import AddToSlack from "./CTABanner/addToSlack"
 import { ImageContainer } from "./utils/image-article"
+import G2Banner from "./utils/g2Banner"
 import { NoFollowLink } from "./utils/nofollow-link"
 import EnterpriseEmailInput from "./EnterpriseEmailInput"
 import { SubImageText } from "./utils/subimage-text"
@@ -29,6 +30,7 @@ export const MDXComponents = {
   ImageContainer,
   SubImageText,
   NoFollowLink,
+  G2Banner,
 }
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
