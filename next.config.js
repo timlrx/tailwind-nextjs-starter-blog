@@ -103,6 +103,11 @@ module.exports = withBundleAnalyzer({
         destination: "/p/gitlab-cicd-pipeline-slack-notifications",
         permanent: true,
       },
+      {
+        source: "/blog/p/gitlab-self-managed-slack-integrations",
+        destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
+        permanent: true,
+      },
     ]
   },
 })
