@@ -96,4 +96,13 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: "/p/gitlab-self-managed-slack-integrations",
+        destination: "/p/gitlab-cicd-pipeline-slack-notifications",
+        permanent: true,
+      },
+    ]
+  },
 })
