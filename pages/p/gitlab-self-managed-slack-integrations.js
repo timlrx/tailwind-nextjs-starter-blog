@@ -25,7 +25,7 @@ export default function GitlabSelfManagedSlackIntegrations() {
 
 export async function getServerSideProps({ res }) {
   res.setHeader("Location", "/blog/p/gitlab-cicd-pipeline-slack-notifications")
-  res.statusCode = 301
+  res.statusCode = 308
   res.end()
 
   return {
