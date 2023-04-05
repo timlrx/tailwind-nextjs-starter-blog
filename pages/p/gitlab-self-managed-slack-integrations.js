@@ -4,15 +4,20 @@ export default function GitlabSelfManagedSlackIntegrations() {
   return (
     <>
       <Head>
-        <title>GitLab Self-Managed Slack Integrations</title>
+        <title>Setup GitLab Slack notifications for self managed instances in 2023</title>
         <meta
           name="description"
-          content="Learn how to set up Slack integrations for GitLab self-managed instances"
+          content="Slack is a popular tool for receiving these notifications in real-time, but setting up this integration can be tricky. In this article, we&#x27;ll explore two alternative solutions for setting up GitLab Slack notifications for self-managed instances in 2023. Whether you choose to use a third-party tool or manually configure the notifications, we&#x27;ll guide you through the steps and offer tips and best practices for a successful setup. Let&#x27;s get started!"
         />
       </Head>
-      <h1>GitLab Self-Managed Slack Integrations</h1>
+      <h1>Setup GitLab Slack notifications for self managed instances in 2023</h1>
       <p>
-        This is a tutorial on how to set up Slack integrations for GitLab self-managed instances.
+        Slack is a popular tool for receiving these notifications in real-time, but setting up this
+        integration can be tricky. In this article, we&#x27;ll explore two alternative solutions for
+        setting up GitLab Slack notifications for self-managed instances in 2023. Whether you choose
+        to use a third-party tool or manually configure the notifications, we&#x27;ll guide you
+        through the steps and offer tips and best practices for a successful setup. Let&#x27;s get
+        started!"
       </p>
     </>
   )
