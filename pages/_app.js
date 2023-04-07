@@ -19,7 +19,7 @@ import { PostHogProvider } from "posthog-js/react"
 const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
 import * as snippet from "@segment/snippet"
-import ReactGA from "react-ga"
+// import ReactGA from "react-ga"
 import { useEffect } from "react"
 const POSTHOG_KEY = "phc_L9f6Uj1bRNHNEBe4QDQkLwzq8iAtzszkwzrvXw90wjV"
 
@@ -48,16 +48,15 @@ function renderSnippet() {
 }
 
 export default function App({ Component, pageProps }) {
-  ReactGA.initialize("UA-192871583-1")
   const router = useRouter()
 
   useEffect(() => {
     // Trigger page view on initial load
-    ReactGA.pageview(window.location.pathname + window.location.search)
+    // ReactGA.pageview(window.location.pathname + window.location.search)
 
     // Add listener for route changes and trigger page view
     const handleRouteChange = (url) => {
-      ReactGA.pageview(url)
+      // ReactGA.pageview(url)
       posthog?.capture("$pageview")
     }
 
