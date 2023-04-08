@@ -97,14 +97,14 @@ export default function App({ Component, pageProps }) {
             strategy="afterInteractive"
             src="https://www.googletagmanager.com/gtag/js?id=G-CYL4TTM80D"
           />
-          <Script id="gtag" />
-          {`
+          <Script id="gtag" strategy="afterInteractive">
+            {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-CYL4TTM80D');
         `}
-          <Script />
+          </Script>
           {isDevelopment && isSocket && <ClientReload />}
           <Analytics />
           <TopBanner />
