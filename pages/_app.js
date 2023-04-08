@@ -7,6 +7,7 @@ import "@fontsource/inter/variable-full.css"
 import { ThemeProvider } from "next-themes"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import Script from "next/script"
 
 import siteMetadata from "@/data/siteMetadata"
 import Analytics from "@/components/analytics"
@@ -92,6 +93,18 @@ export default function App({ Component, pageProps }) {
           content="img-src data: https://client.crisp.chat https://image.crisp.chat https://storage.crisp.chat; font-src https://client.crisp.chat; media-src https://client.crisp.chat; style-src 'unsafe-inline' https://client.crisp.chat; frame-src https://game.crisp.chat; script-src https://client.crisp.chat https://settings.crisp.chat; connect-src https://client.crisp.chat https://storage.crisp.chat wss://client.relay.crisp.chat wss://stream.relay.crisp.chat"
         ></meta> */}
           </Head>
+          <Script
+            strategy="afterInteractive"
+            src="https://www.googletagmanager.com/gtag/js?id=G-CYL4TTM80D"
+          />
+          <Script id="gtag" />
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CYL4TTM80D');
+        `}
+          <Script />
           {isDevelopment && isSocket && <ClientReload />}
           <Analytics />
           <TopBanner />
