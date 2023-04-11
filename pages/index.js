@@ -137,6 +137,7 @@ export default function Home({ posts }) {
                   <div className="mb-8 flex items-center">
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
+                        alt="Nord VPN"
                         src="https://media.licdn.com/dms/image/C4E0BAQE7Fs46KFoosw/company-logo_100_100/0/1606975757334?e=1689206400&v=beta&t=PUwK9A592EC1ydFCYGStTgoCmdpDg6W0DKJZjqArdqY"
                         className="rounded-xl"
                       />
@@ -153,6 +154,7 @@ export default function Home({ posts }) {
                   <div className="mb-8 flex items-center">
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
+                        alt="Billie"
                         src="https://media.licdn.com/dms/image/D4E0BAQFSujdc9NkEKg/company-logo_100_100/0/1666246505157?e=1689206400&v=beta&t=blS1I8TvtfIVfIl7xPPZT2jaKyX-5ObropNtfpIZ8OE"
                         className="rounded-xl"
                       />
@@ -168,6 +170,7 @@ export default function Home({ posts }) {
                   <div className="mb-8 flex items-center">
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
+                        alt="Elba Tech"
                         src="https://media.licdn.com/dms/image/C4E0BAQENe9LVbMg7lA/company-logo_100_100/0/1608041272310?e=1689206400&v=beta&t=QFbpM_xU3KokAzp_aEa3qu0xYxLn6eo_Dy3zunEi3us"
                         className="rounded-xl"
                       />
@@ -185,6 +188,7 @@ export default function Home({ posts }) {
                       <Image
                         src="https://www.jaywalker-digital.ch/wp-content/themes/jd/images/logo-jaywalker-digital-single-darkblue.svg"
                         className="rounded-xl"
+                        alt="Jaywalker Digital"
                       />
                     </div>
                     <div className="mb-1">
