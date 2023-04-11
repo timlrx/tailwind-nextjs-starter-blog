@@ -3,7 +3,7 @@ import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
-import Navigation from "./Navigation"
+import Navigation from './Navigation'
 
 const LayoutWrapper = ({ children }) => {
   return (

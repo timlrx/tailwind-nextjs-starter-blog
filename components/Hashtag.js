@@ -1,8 +1,7 @@
-
-export default function Hashtag({value}) {
-    return (
-        <div className="text-xs inline-flex items-center font-bold uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
-            {value}
-        </div>
-    )
+export default function Hashtag({ value }) {
+  return (
+    <div className="inline-flex items-center rounded-full bg-blue-200 px-3 py-1 text-xs font-bold uppercase text-blue-700">
+      {value}
+    </div>
+  )
 }
