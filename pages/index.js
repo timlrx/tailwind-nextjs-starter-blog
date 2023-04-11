@@ -139,8 +139,10 @@ export default function Home({ posts }) {
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
                         alt="Nord VPN"
-                        src="https://media.licdn.com/dms/image/C4E0BAQE7Fs46KFoosw/company-logo_100_100/0/1606975757334?e=1689206400&v=beta&t=PUwK9A592EC1ydFCYGStTgoCmdpDg6W0DKJZjqArdqY"
+                        src="https://res.cloudinary.com/nordsec/image/upload/q_auto,f_auto,c_scale,h_48/v1/nord-security-web/global/favicon.png"
                         className="rounded-xl"
+                        width='20'
+                        height='20'
                       />
                     </div>
                     <div className="mb-1">
@@ -156,8 +158,10 @@ export default function Home({ posts }) {
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
                         alt="Billie"
-                        src="https://media.licdn.com/dms/image/D4E0BAQFSujdc9NkEKg/company-logo_100_100/0/1666246505157?e=1689206400&v=beta&t=blS1I8TvtfIVfIl7xPPZT2jaKyX-5ObropNtfpIZ8OE"
+                        src="https://www.billie.io/images/logo/billie_logo_small.svg"
                         className="rounded-xl"
+                        width='20'
+                        height='20'
                       />
                     </div>
                     <div className="mb-1">
@@ -172,8 +176,10 @@ export default function Home({ posts }) {
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
                         alt="Elba Tech"
-                        src="https://media.licdn.com/dms/image/C4E0BAQENe9LVbMg7lA/company-logo_100_100/0/1608041272310?e=1689206400&v=beta&t=QFbpM_xU3KokAzp_aEa3qu0xYxLn6eo_Dy3zunEi3us"
+                        src="http://www.elba-tech.com/wp-content/uploads/2021/02/Elba-Technologies-Header-Dark-Logo-2021.png"
                         className="rounded-xl"
+                        width='20'
+                        height='20'
                       />
                     </div>
                     <div className="mb-1">
@@ -188,8 +194,10 @@ export default function Home({ posts }) {
                     <div className="mr-2 h-4 w-4 rounded-full bg-gray-300">
                       <Image
                         src="https://www.jaywalker-digital.ch/wp-content/themes/jd/images/logo-jaywalker-digital-single-darkblue.svg"
-                        className="rounded-xl"
+                        className="rounded-xl rounded-full"
                         alt="Jaywalker Digital"
+                        width='20'
+                        height='20'
                       />
                     </div>
                     <div className="mb-1">
