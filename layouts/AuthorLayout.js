@@ -9,16 +9,6 @@ export default function AuthorLayout({ children, frontMatter }) {
   return (
     <>
       <PageSEO title={`About - ${name}`} description={`About me - ${name}`} />
-      
-      {/* create a tailwind row with two column and make them mobile responsive */}
-      <div className='columns-2'>
-        <div className='flex-1'>
-          test
-        </div>
-        <div className='flex-1'>
-          test
-        </div>
-      </div>
 
       <div className="max-w-screen-xl mx-auto px-3 py-12 flex flex-row space-x-10">
         <div className="w-2/3 pr-8 shrink">
