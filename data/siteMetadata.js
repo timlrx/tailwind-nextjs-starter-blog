@@ -4,6 +4,7 @@ const siteMetadata = {
   description: 'Programming lessons and tips, architecture styles.',
   language: 'en-us',
   theme: 'system', // system, dark or light
+  email: 'diarselimi92@gmail.com',
   siteUrl: 'https://diar.dev',
   siteRepo: 'https://github.com/didslm/diarselimi.github.io',
   siteLogo: '/static/images/logo.png',
@@ -12,6 +13,7 @@ const siteMetadata = {
   twitter: 'https://twitter.com/@slmdiar',
   linkedin: 'https://www.linkedin.com/in/diarselimi',
   github: 'https://github.com/didslm',
+  youtube: 'https://youtube.com',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
