@@ -90,7 +90,7 @@ export default function Home({ posts }) {
                   <a
                     key={slug}
                     className="font-size-1 group block rounded-xl p-4 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-                    href="#"
+                    href={`/blog/${slug}`}
                   >
                     <p className="mt-3 mb-3 border-l-2 border-gray-200 p-0 pl-5 text-sm text-gray-500">
                       <time dateTime={date}>{formatDate(date)}</time>
