@@ -88,6 +88,7 @@ export default function Home({ posts }) {
                 const { slug, date, title, summary, tags } = frontMatter
                 return (
                   <a
+                    key={slug}
                     className="font-size-1 group block rounded-xl p-4 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                     href="#"
                   >
