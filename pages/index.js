@@ -141,8 +141,8 @@ export default function Home({ posts }) {
                         alt="Nord VPN"
                         src="https://res.cloudinary.com/nordsec/image/upload/q_auto,f_auto,c_scale,h_48/v1/nord-security-web/global/favicon.png"
                         className="rounded-xl"
-                        width='20'
-                        height='20'
+                        width="20"
+                        height="20"
                       />
                     </div>
                     <div className="mb-1">
@@ -160,8 +160,8 @@ export default function Home({ posts }) {
                         alt="Billie"
                         src="https://www.billie.io/images/logo/billie_logo_small.svg"
                         className="rounded-xl"
-                        width='20'
-                        height='20'
+                        width="20"
+                        height="20"
                       />
                     </div>
                     <div className="mb-1">
@@ -178,8 +178,8 @@ export default function Home({ posts }) {
                         alt="Elba Tech"
                         src="http://www.elba-tech.com/wp-content/uploads/2021/02/Elba-Technologies-Header-Dark-Logo-2021.png"
                         className="rounded-xl"
-                        width='20'
-                        height='20'
+                        width="20"
+                        height="20"
                       />
                     </div>
                     <div className="mb-1">
@@ -196,8 +196,8 @@ export default function Home({ posts }) {
                         src="https://www.jaywalker-digital.ch/wp-content/themes/jd/images/logo-jaywalker-digital-single-darkblue.svg"
                         className="rounded-xl rounded-full"
                         alt="Jaywalker Digital"
-                        width='20'
-                        height='20'
+                        width="20"
+                        height="20"
                       />
                     </div>
                     <div className="mb-1">
