@@ -9,4 +9,4 @@ linkedin: https://www.linkedin.com/in/arthurcoudouy/
 github: https://github.com/acoudouy
 ---
 
-Arthur Coudouy is has been helping engineering teams collaborate during code reviews for two years.
+Arthur Coudouy has been helping engineering teams collaborate during code reviews for the past three years.
