@@ -8,7 +8,7 @@ import Pre from "./Pre"
 import { BlogNewsletterForm } from "./NewsletterForm"
 import CTABanner from "./CTABanner/templateBanner"
 import AddToSlack from "./CTABanner/addToSlack"
-import { ImageContainer } from "./utils/image-article"
+import { ImageContainer, Callout } from "./utils/image-article"
 import G2Banner from "./utils/g2Banner"
 import { NoFollowLink } from "./utils/nofollow-link"
 import EnterpriseEmailInput from "./EnterpriseEmailInput"
@@ -28,6 +28,7 @@ export const MDXComponents = {
   CTABanner,
   AddToSlack,
   ImageContainer,
+  Callout,
   SubImageText,
   NoFollowLink,
   G2Banner,
