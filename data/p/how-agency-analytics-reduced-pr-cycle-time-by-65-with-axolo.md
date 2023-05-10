@@ -9,6 +9,7 @@ I'm not sure who initially suggested using Slack, but once we adopted your app, 
 image: "/blog/static/images/general/AA.jpg"
 layout: PostLayout
 canonicalUrl: how-agency-analytics-reduced-pr-cycle-time-by-65-percent
+authors: ["sydney"]
 ---
 
 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexDirection: "row-reverse" }}>
