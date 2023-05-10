@@ -1,28 +1,35 @@
 import Image from "next/image"
 import classNames from "./classNames"
 
-export const Callout = ({ emoji = "💡", title, subtitle }) => {
+export const Callout = ({ title, subtitle }) => {
   return (
     <div
       style={{
-        backgroundColor: "#fef8f1",
-        border: "1px solid #fdd2a4",
-        padding: "20px",
+        backgroundColor: "#f5f5f5",
+        border: "1px solid #ddd",
+        padding: "30px",
+        borderRadius: "25px",
+        boxShadow: "0px 10px 20px rgba(0,0,0,0.1)",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
+        transition: "all 0.3s ease",
       }}
     >
-      <div style={{ padding: "10px", marginRight: "20px", display: "inline-flex" }}>
-        <span style={{ fontSize: "42px", fontWeight: "bold" }}>{emoji}</span>
-      </div>
-      <div>
-        <p style={{ fontSize: "24px", fontWeight: "bold", margin: "0", color: "#6d4c41" }}>
-          {title}
-        </p>
-        {subtitle && (
-          <p style={{ fontSize: "16px", margin: "10px 0 0 0", color: "#8d6e63" }}>{subtitle}</p>
-        )}
-      </div>
+      <h1
+        style={{
+          fontSize: "32px",
+          fontWeight: "bold",
+          margin: "0",
+          color: "#333",
+        }}
+      >
+        {"“" + title + "”"}
+      </h1>
+      {subtitle && (
+        <p style={{ fontSize: "20px", margin: "20px 0 0 0", color: "#666" }}>{"— " + subtitle}</p>
+      )}
     </div>
   )
 }

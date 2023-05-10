@@ -96,8 +96,14 @@ At the beginning, we tested Axolo with just one of my teams. As they grew comfor
 
 ## How has Axolo changed your code review process ?
 
-<Callout title='" Code reviews used to feel like a chore, but now, with the open communication facilitated by Slack and Axolo, we have created a more collaborative environment for each pull request.' subtitle=' In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication.... This has improved our architectural skills and enabled us to be more discerning before deploying to production"'/>
+<Callout title='Code reviews used to feel like a chore, but now, with the open communication facilitated by Slack and Axolo, we have created a more collaborative environment for each pull request.' subtitle=' In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication.... This has improved our architectural skills and enabled us to be more discerning before deploying to production"'/>
+
+<br></br>
+<br></br>
 
 Now, every pull request creates a Slack channel. The conversations in these channels are different from our previous practices. Code reviews used to feel like a chore, but now, with the open communication facilitated by Slack and Axolo, we have created a more collaborative environment for each pull request. In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication, allowing for more thorough discussions about the changes proposed in each pull request. This has improved our architectural skills and enabled us to be more discerning before deploying to production, leading us to a more thoughtful and communicative approach.
+
+<br></br>
+<br></br>
 
 <CTABanner type="try" />
