@@ -1,11 +1,9 @@
 ---
 title: How Agency Analytics reduced PR cycle time by 65% with Axolo
-date: '2023-05-10'
-tags: ['Customer-stories','software-development','productivity','GitHub']
-draft: true
-summary: "It's been an exciting experience. Currently, we have around 50 to 60 engineers from eight different teams using the application. GitHub's notification system for the code review process is subpar. When we discovered Axolo, it was a game-changer.
-
-I'm not sure who initially suggested using Slack, but once we adopted your app, it significantly improved our operations. The bidirectional communication between GitHub and Slack has transformed our code review process. It's also bolstered our trunk-based development approach. The visibility of code reviews in Slack makes them a top priority for everyone, preventing delays and enabling us to deploy changes to production swiftly. Overall, it's been a fantastic improvement"
+date: "2023-05-10"
+tags: ["Customer-stories", "software-development", "productivity", "GitHub"]
+draft: false
+summary: "It's been an exciting experience. Currently, we have around 50 to 60 engineers from eight different teams using the application. GitHub's notification system for the code review process is subpar. When we discovered Axolo, it was a game-changer. It's also bolstered our trunk-based development approach. The visibility of code reviews in Slack makes them a top priority for everyone, preventing delays and enabling us to deploy changes to production swiftly. Overall, it's been a fantastic improvement"
 image: "/blog/static/images/general/AA.jpg"
 layout: PostLayout
 canonicalUrl: how-agency-analytics-reduced-pr-cycle-time-by-65-percent
