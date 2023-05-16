@@ -1,6 +1,11 @@
 {
   "name": "tailwind-nextjs-starter-blog",
   "version": "1.5.6",
+  "engines": {
+    "node": "18.12",
+    "npm": "9.x",
+    "yarn": "1.22.x"
+  },
   "private": true,
   "scripts": {
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
