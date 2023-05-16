@@ -11,7 +11,7 @@
 }
 
 .footnotes {
-  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
 .csl-entry {
