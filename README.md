@@ -62,6 +62,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [sabare.me](https://sabare.me/) - Victor Sabare's personal website and blog ([source code](https://github.com/Sabareh/blog)
 - [https://bitoflearning-9a57.fly.dev/](https://bitoflearning-9a57.fly.dev/) - Sangeet Agarwal's personal blog, replatformed to [remix](https://remix.run/remix) using the [indie stack](https://github.com/remix-run/indie-stack) ([source code](https://github.com/SangeetAgarwal/bitoflearning)) WIP
 - [raphaelchelly.com](https://www.raphaelchelly.com/) - Raphaël Chelly's personal website and blog ([source code](https://github.com/raphaelchelly/raph_www))
+- [The Samurai Nation](https://thesamuraination.com/) - The Samurai Nation - a Podcast and Blog ([source code](https://github.com/taricov/thesamuraination))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
