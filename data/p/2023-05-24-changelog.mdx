@@ -1,0 +1,58 @@
+---
+title: "Axolo changelog - May 2023"
+date: "2023-05-24"
+tags: ["changelog"]
+draft: false
+summary: "New CI/CD notification system, automated email notifications for failed payments, an easier sign-in process from the home page, improved team channel notifications, fun reminders, proxy support for self-hosted instances behind a VPN, enhanced GitHub branch protection, a search feature for Axolo documentation with SEO support, and much more!"
+---
+
+## ✨ NEW
+
+- Send a new ci cd notification if there are changes within the tests even if the global status is unchanged
+- Email automatic 2 days after failed payment
+- Sign in from Axolo home will get you straight to the dashboard
+- New notification in team channels
+- New notification system for team channels
+- Added some new reminders for more fun
+- Axolo now handle its request via proxy for self hosted instance behind a VPN
+- Added the branch protection feature in the PR statut for github
+- Added search feature on Axolo documentation + SEO support
+- If you invite an Axolo member inside a PR channel, Axolo will ask you if you want to assign them as reviewer/assignee
+- Added support for shared project inside group for GitLab organizations
+
+## 🔨 IMPROVEMENTS
+
+- Refactored some internal scripts
+- Updated code snippet. taking -2 +2 instead of -4
+- Add a function to retry operations when updating GitLab hooks if we get an error
+- Improved onboarding and intial query when signing up/in on app.axolo.co
+- Axolo won't overwrite topics in team channels if there is one
+- Merged emoji is now :large_blue_square: for gitlab and :large_purple_square: for github
+- Sends a message at the end of a trial with activity logs
+- WIP reasons in team channel notification
+- Better error handling when refreshing teams
+- Speed up engineer onboarding
+- GitLab improvement for speed
+- Update current open PR from app and close them in our DB if they are closed in github/gitlab
+- During the onboarding, a gitlab self hosted version can choose to have a fixed IP to whitelist
+- Send notification of team channels to PR channels as well to reflect changes on review, status and assignements
+
+## 🐞 FIXES
+
+- Fixed pull request update bug where it was hiding repository names
+- Solved a bug where Axolo would put undefined for a list of reviewers and/or creator
+- Resolved bug where the magnifier would go into a loop with GitLab and assign/ take off reviewer on a merge request
+- Fixed a bug where we wouldn't fetch all engineers for GitLab
+- Bug where MR did not send notification in team channels when they were ready for review
+- Bug notif reviewers & ready for review team channels
+- Fixed a bug where when you refreshed your teams the slack name would disappears
+- Do not transform markdown link within suggestion from GitHub into Slack link
+- Solve an error when we were missing a repository in GitLab and tried to manually update some MRs
+- Fixed some error for some pull request review comment for better stability
+- Fixed an error when refreshing a GitLab token
+- Fix an error with some GitHub CI/CD setup
+- Handle errors with missing periodic stripe payments
+- Fix error with some subscriptions where our servers blocked some companies
+- Fixed a bug where gitlab teams weren't imported correctly
+- Fix bug where we were downgrading paying customers
+- Fix bug where team channel notification was not updated on merge if the auto archive setting was on

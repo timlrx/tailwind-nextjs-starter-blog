@@ -1,0 +1,51 @@
+---
+title: "Axolo changelog - March 2023 "
+date: "2023-03-31"
+tags: ["changelog"]
+draft: false
+summary: "Axolo has introduced a series of user-focused enhancements including streamlined onboarding with channel creation, user notifications on personal account installations, provision of a test account for api.dx.axolo.co, onboarding bubbles and reminders for DX, backend analytics, and much more!."
+---
+
+## ✨ NEW
+
+- New onboarding to create the Axolo general channel or a team channel at the end
+- Write to a user whenever he installs Axolo on a personal account
+- Test account for api.dx.axolo.co
+- Onboarding bubble for DX
+- Reminders for DX
+- Added analytics for backend
+- Add a way to have a test account for DX
+- Announcing DX by Axolo
+- New billing section for paid customers
+- Redesign of the team management tab in app.axolo.co
+
+## 🔨 IMPROVEMENTS
+
+- Propagate edit from bot comments to slack
+- Better GitLab token handling for users
+- Improve MR lifecycle status
+- Improving the refresh GitLab token error
+- More GitLab iteration
+- Handle deleted MR for GitLab
+- Improve the emoji mag reaction
+- Internal tool to calculate champion score
+- Add A/B testing on blog banner
+- Add internal actions for better support
+- Axolo can now check failing webhooks on GitLab and update them if needed
+- Reminders to take into account creation date
+
+## 🐞 FIXES
+
+- Fix error where bots where being taken off the settings
+- Add a test to be alerted if redis is down for Axolo
+- Fix bug while fetching Slack workspace conversations
+- Fixed a bug where onboarding email was being sent multiple times
+- Emergency script for GitLab
+- Filtering bot (renovate, dependabot, etc..) in pull request recap and Axolo standups
+- Patch GitLab organization
+- Make sure we delete hook when we delete a GitLab organization
+- Bug with timeslots on GitLab when you were assigned as assignees
+- Not asking engineers to re-sign in anymore
+- Fix error with GitHub self-hosted duplicated credentials
+- Bug formatting markdown from Github when the image was also a link
+- Fixed bug where manual channel creation didn't invite reviewers on GitLab
