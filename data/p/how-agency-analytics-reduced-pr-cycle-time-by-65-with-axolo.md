@@ -21,7 +21,7 @@ authors: ["sydney"]
     style={{ maxWidth: "100%", height: "auto", marginLeft: "20px" }}
   />
   <p style={{ flex: 1 }}>
-    Blake Achelson is the CTO and cofounder of Agency Analytics. He's been using
+    Blake Acheson is the CTO and cofounder of Agency Analytics. He's been using
     Axolo for a year. We sat down with him to discuss how Axolo has improved
     their code review process and reduced their pull request cycle time by 65%.
   </p>
