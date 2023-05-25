@@ -1,0 +1,155 @@
+---
+title: How Irwin went from building its own Slack bot to relying on Axolo for their code reviews
+date: "2023-05-29"
+tags: ["Customer-stories", "software-development", "productivity", "gitlab"]
+draft: false
+summary: "We were going to create our Slack bot. Prior to Axolo, the engineers were really just copy/pasting from GitLab to Slack. Obviously that's tedious work to copy and paste like that. As a side-project, we started working on our Slack bot to replace this copy/paste. We though of several other tasks the Slack bot could do.But it's difficult to find enough time in a day to build a Slack bot in addition to your work, and features, and other things that are important to your users. Then we found Axolo."
+image: "/blog/static/images/general/AA.jpg"
+layout: PostLayout
+canonicalUrl: how-agency-analytics-reduced-pr-cycle-time-by-65-percent
+---
+
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row-reverse",
+  }}
+>
+  <ImageContainer
+    alt="richard michael"
+    src="/blog/static/images/irwin/richard.png"
+    classNameDiv="mx-10 lg:mx-20 max-w-[150px]"
+    classNameImage=""
+    width={300}
+    height={300}
+  />
+  <p style={{ flex: 1 }}>
+    Richard Michael is Director of Engineering at Irwin. He has 20 years of background in IT systems
+    all together. We sat down to discuss how Irwin went from building its internal Slackbot to
+    relying on Axolo to automate all their code review tedious tasks.
+  </p>
+</div>
+
+You can find the video recording here or a summary of our conversation below the video.
+
+<div className="flex flex-col content-center items-center self-center">
+  <p className="my-0"></p>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/-g8KGsc8YMw"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
+
+## How did you do before Axolo?
+
+> I remember that you started working on an internal project.
+
+We were going to create our Slack bot. Prior to Axolo, the engineers were really just copying/pasting from GitLab to Slack. There were:
+
+1. going into GitLab,
+2. coping the merge request URL,
+3. going to the specific team channel,
+4. pasting the GitLab URL,
+5. and trying to direct the attention of the team with a bit of description.
+
+Obviously that's tedious work to copy and paste like that. As a side-project, we started working on our Slack bot to replace this copy/paste. We thought of several other tasks the Slack bot could do.
+
+<Callout
+  title="But it's difficult to find enough time in a day to build a Slack bot in addition to your work, and features, and other things that are important to your users."
+  subtitle="Then we found Axolo."
+/>
+
+## What is Irwin?
+
+At Irwin, we're building a better way to manage investor relations through a SaaS platform.
+
+<ImageContainer
+  alt="Irwin platform"
+  src="/blog/static/images/irwin/irwin-platform.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1220}
+  height={600}
+/>
+
+I have been a Director of Engineering at Irwin for more than a year and a half.
+
+## Team structure and roles in our engineering team
+
+<ImageContainer
+  alt="Irwin team"
+  src="/blog/static/images/irwin/irwin-team.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={980}
+  height={500}
+/>
+
+Our engineering team is composed of just under 20 engineers at the moment, I have several colleagues in management of course: we have the CTO and another director of engineering.
+
+## Irwin's engineering approach
+
+Our approach tends to be product-driven while building our SaaS application. Depending on the complexity of the feature the product team is asking for, we would break out upon project teams managed by a product owner to maintain the product perspective.
+
+When there are smaller features or maintenance work, it tends to be more on a individual level. We have a team working on these projects that is able to tackle issues that arise.
+
+We don't tend to work in the sprint but on longer terms. It's a little less fixed, we don't have a rigid system or ideology. We work on our estimates (and try to make them as accurate as possible). Longer projects can take multiple months but most project-oriented work takes a couple of months usually.
+
+## How was the transition to Axolo?
+
+It was good, it was pretty seamless. There were some wrinkles with authentication, I know you have challenges with the GitLab API. But it was much easier and faster than finishing writing our Slack bot. Working with Slack is not super easy either. The new SDK from Slack is better than the old one, but it's still time-consuming.
+
+<Callout
+  title="Everyone on the team adjusted very quickly. Updating the MR status in Slack makes it quick and easy to adapt, they like interacting in the Slack MR channel."
+  subtitle="Conversations take place there now."
+/>
+
+## Can you share a precise use case for using Axolo?
+
+It's a bit difficult for me to say, it's more of a question for a developer that uses Axolo way more than me. Being able to stay in Slack, and assigning yourself as a reviewer, being automatically invited to the channel without going to GitLab, seeing MR status changes of MR where I am not specifically assigned in Slack without going to GitLab as well, it's all these little things that make it useful.
+
+Before we were posting a URL in Slack and a few words, but now of course there is much more information that is automatic:
+
+- mergeable status,
+- who are the reviewers,
+- who are the assignees.
+
+Being able to know all of these things in Slack automatically is what's the best feature: visibility and knowing what's going on.
+
+## Our Code Review Process
+
+On the code review, we don't assign reviewers. With Axolo, each new merge request is sent to our team channel and reviewers assign themselves as reviewer using your 🔎 reaction.
+
+> In an Axolo team channel, if you click on the 🔎 reaction, Axolo will assign you as a reviewer and invite you to the channel.
+
+<ImageContainer
+  alt="team channel notification Axolo"
+  src="/blog/static/images/irwin/mag.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={830}
+  height={379}
+/>
+
+## How much time does Axolo save you every day?
+
+You should probably ask the team that question. Most of what I do is oversight. But I think that Axolo saves each engineer, individually, quite a bit of time.
+
+## What would be missing in Axolo?
+
+We can ask the team!
+
+What's missing for me is news about Axolo! We would like to be notified about what are the new features and how to use Axolo better. If Axolo could notify people in Slack, "Hey, it's now possible to ..." would be helpful.
+
+> Maybe we should send our monthly changelog to our users?
+
+Yes, 100%. You can make it optional but managers would be interested in knowing all the current changes!
+
+<CTABanner type="try" />
