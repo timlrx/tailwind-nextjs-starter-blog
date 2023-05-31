@@ -1,7 +1,7 @@
 ---
 title: Setting up a reverse proxy server for fixed IP address on Digital Ocean
 date: "2023-05-31"
-tags: ["Software", "Engineering", "Digital Ocean", "software-development", "security"]
+tags: ["Digital-Ocean", "software-development", "security"]
 draft: false
 summary: A reverse proxy server can serve as an intermediary between your server and any other third party (for us, it's a GitHub enterprise server). When your server needs to make a request, it prompts the proxy server to initiate the request to the third party, and vice versa.
 image: "/blog/static/images/fixedIP/Fixed IP address.jpg"
