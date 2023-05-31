@@ -1,5 +1,5 @@
 ---
-title: Setting up a reverse proxy server for fixed IP address on digital Ocean
+title: Setting up a reverse proxy server for fixed IP address on Digital Ocean
 date: "2023-05-26"
 tags: ["Software", "Engineering", "Digital Ocean", "software-development", "security"]
 draft: false
@@ -12,7 +12,7 @@ authors: ["sydney"]
 
 Before we begin, I'd like to introduce what we do so that you get some context on why we need a reverse proxy server. Axolo is a seamless integration that helps engineering teams improve their code review process. The integration creates temporary Slack channels for each pull request, inviting the author and reviewers to the channel and notifying them of relevant events such as code comments and CI/CD status updates. This means you can easily manage your pull requests without any hassle.
 
-Our stack used to be on Heroku before we migrated to digital ocean, read more on this article about our migration: https://axolo.co/blog/p/my-experience-migrating-our-backend-from-heroku-to-digital-ocean.
+Our stack used to be on Heroku before we migrated to Digital Ocean, read more on this article about our migration: https://axolo.co/blog/p/my-experience-migrating-our-backend-from-heroku-to-digital-ocean.
 
 Less than a year into our journey with Digital Ocean, we are quite pleased with its performance. One notable improvement has been in build time, a drawback we initially observed. It has proven to be a smooth journey, and it seems likely we'll continue using the Digital Ocean app for some time.
 
@@ -26,7 +26,7 @@ Here are some alternative solutions we considered:
 
 ## Alternative 1: Transition from Digital Ocean App to a Digital Ocean Droplet
 
-The shift from a DigitalOcean App to a Droplet was primarily unappealing due to the increased complexity and maintenance time. With a Droplet, I would have to handle server management, security, updates, and backups. I would also miss the automated features such as auto-scaling, built-in CI/CD pipelines, and automatic deployments that the App platform provides.
+The shift from a Digital Ocean App to a Droplet was primarily unappealing due to the increased complexity and maintenance time. With a Droplet, I would have to handle server management, security, updates, and backups. I would also miss the automated features such as auto-scaling, built-in CI/CD pipelines, and automatic deployments that the App platform provides.
 
 ### Pros / Cons of switching to a Droplet from an app platform
 
