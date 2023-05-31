@@ -10,7 +10,7 @@ canonicalUrl: reverse-proxy-server-fixed-ip-address-digital-ocean
 authors: ["sydney"]
 ---
 
-We are Axolo - Axolo is a seamless integration that helps engineering teams improve their code review process. The integration creates temporary Slack channels for each pull request, inviting the author and reviewers to the channel and notifying them of relevant events such as code comments and CI/CD status updates. This means you can easily manage your pull requests without any hassle.
+Before we begin, I'd like to introduce what we do so that you get some context on why we need a reverse proxy server. Axolo is a seamless integration that helps engineering teams improve their code review process. The integration creates temporary Slack channels for each pull request, inviting the author and reviewers to the channel and notifying them of relevant events such as code comments and CI/CD status updates. This means you can easily manage your pull requests without any hassle.
 
 Our stack used to be on Heroku before we migrated to digital ocean, read more on this article about our migration: https://axolo.co/blog/p/my-experience-migrating-our-backend-from-heroku-to-digital-ocean.
 
@@ -56,13 +56,13 @@ A reverse proxy server can serve as an intermediary between your server and any 
 | Easier to implement than a droplet                     | Resource Consumption: Proxy servers consume system resources.                              |
 |                                                        | Trust and Privacy Concerns: Privacy and data handling may be a concern with third parties. |
 
-While this might be a bit more costly it seemed like an easier and faster way to manage from our perspective.
+While buying an out of the box solution seem to be a bit more costly it seemed like an easier and faster way to manage from our perspective.
 
 So we decided to go and try this out. Below is how we went down this path.
 
-### Self managed proxy server vs Third party
+### Self managed proxy server vs third party
 
-### Setting Up Your Own Reverse Proxy Server
+### Setting up your own reverse proxy server
 
 Crafting a reverse proxy server from scratch involves a process where you're in control of the configuration and optimization, in tune with your requirements. For those looking to adopt this approach, here are a couple of useful resources that could guide your journey:
 
