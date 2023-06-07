@@ -1,0 +1,124 @@
+---
+title: "How to set up GitHub Enterprise Server on Azure (for dummy's)"
+date: "2023-06-08"
+tags: [""]
+draft: false
+summary: "I had so much difficulty to install a GitHub Enterprise Server instance on Azure, that I decided to write how to do it in the most EASIEST way. This article was written in tears and blood, using the official GitHub guide, and a lot of resources on the internet. This article does not aim to give all aspects of the GitHub Enterprise Server installation, but only to give the minimum to get started."
+image: "/blog/static/images/github/GES.jpg"
+---
+
+<ImageContainer
+  alt="GitHub Enterprise Server ports"
+  src="/blog/static/images/github/ges_azure.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1326}
+  height={481}
+/>
+
+I had <span className="rainbow-button font-bold hover:cursor-auto">so much difficulty to install a GitHub Enterprise Server</span> instance on Azure, that I decided to write how to do it in the most EASIEST way. This article was written in tears and blood, using <NoFollowLink url="https://docs.github.com/en/enterprise-server@3.4/admin/installation/setting-up-a-github-enterprise-server-instance/installing-github-enterprise-server-on-azure">the official GitHub guide</NoFollowLink>, and a lot of resources on the internet.
+
+This article does not aim to give all aspects of the GitHub Enterprise Server installation, but only to give the minimum to get started.
+
+⚠️ Do not follow the Azure procedure from the marketplace, I don't know if they changed anything or if it's my fault, but it didn't work for me.
+
+## Step 1: Creating a resource group in Azure
+
+If you already have a resource group, you can skip this step. If you don't, please follow the official Azure documentation.
+
+## Step 2: Creating the GitHub Enterprise Server virtual machine
+
+If you want to dive into all the requirements, you can find them in the official GitHub documentation. I will only give the minimum to get started.
+
+According to my test, even if you're only a team of 5, you will need at least the `Standard_E4_v3` for the VM size. I wasted a lot of time trying to install something less powerful. At first it worked, but you won't be able to open some administration panels (which was the most frustrating part of this whole adventure).
+
+### I. Finding the GitHub Enterprise Server image
+
+Type `$ az vm image list --all -f GitHub-Enterprise | grep '"urn":' | sort -V`, and wait ...
+
+Choose the GES image you want to install, and copy it. For example, I chose `GitHub:GitHub-Enterprise:GitHub-Enterprise:3.8.3`.
+
+### II. Creating the VM
+
+⚠️ Do not forget to create a dedicated resource group in Azure first. My resource group for this article is called "ResourceGroup1".
+
+GitHub now tells us to type the following command and to fill in all the variables:
+
+```
+$ az vm create -n VM_NAME -g RESOURCE_GROUP --size VM_SIZE -l REGION --image APPLIANCE_IMAGE_NAME --storage-sku Premium_LRS
+```
+
+Which did not worked for me that easily. I had to add the `--admin-username` variable, and to remove the `--storage-sku` variable. This is what it looked like (`gitHubenterpriseservertest` is the name of my virtual machine):
+
+```
+az vm create -n gitHubenterpriseservertest -g ResourceGroup1 --size Standard_E4_v3 -l eastus --image GitHub:GitHub-Enterprise:GitHub-Enterprise:3.8.3 --admin-username arthurcoudouy
+```
+
+## Step 3: Opening the ports of your GES virtual machine
+
+Don't try to outsmart the procedure and follow methodically each port you need. If you don't open the required ports, you will face unknown errors in the future, and god, you don't want that.
+
+As I did not want to implement any kind of security, I opened all the ports. I know, it's not the best practice, but I did not want to show you all my security skills here, I just wanted to install a GitHub Enterprise Server instance.
+
+In theory, it looked like this:
+
+```
+$ az vm open-port -n VM_NAME -g RESOURCE_GROUP --port PORT_NUMBER
+```
+
+In practice, Azure asks you to establish some priority starting at 100. Again, as I did not want to dive into these settings, I just added 1 in priority for each port.
+
+<ImageContainer
+  alt="GitHub Enterprise Server ports"
+  src="/blog/static/images/github/ges_port.jpg"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={723}
+  height={735}
+/>
+
+My list of commands looked like this (type each one of them in your terminal):
+
+```
+az vm open-port -n gitHubenterpriseservertest -g ResourceGroup1 --port 22 --priority 100
+az vm open-port -n gitHubenterpriseservertest -g ResourceGroup1 --port 25 --priority 101
+...
+az vm open-port -n gitHubenterpriseservertest -g ResourceGroup1 --port 80 --priority 109
+```
+
+## Step 4: Attaching a new unencrypted data disk to the VM
+
+As before, the theory gives us this:
+
+```
+$ az vm disk attach --vm-name VM_NAME -g RESOURCE_GROUP --sku Premium_LRS --new -z SIZE_IN_GB --name ghe-data.vhd --caching ReadWrite
+```
+
+And the `--sku Premium_LRS` did not work for me as well. My command looked like this:
+
+```
+az vm disk attach --vm-name gitHubenterpriseservertest -g ResourceGroup1 --new -z 150 --name ghe-data.vhd --caching ReadWrite
+```
+
+<CTABanner type="try" />
+
+## Step 5: Configuring the GitHub Enterprise Server virtual machine
+
+1. Check that your virtual machine is ready
+   We now need to wait that your virtual machine is ready through a specific command. This time the given command worked: `az vm list -d -g RESOURCE_GROUP -o table`
+
+Which was for me:
+
+```
+az vm list -d -g ResourceGroup1 -o table
+```
+
+2. Take the public IP of your virtual machine and paste it in your browser
+
+⚠️ If you don't see anything in your explorer, did you really open all the required ports?
+
+3. Upload your license file and set a management console password
+
+4. Set up your GitHub instance setting
+
+Your GitHub instance will restard and you are now ready to go! Contact me if you have any questions.
