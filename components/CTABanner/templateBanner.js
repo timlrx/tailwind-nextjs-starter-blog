@@ -27,7 +27,6 @@ function CTABanner({ type, tool = "github" }) {
       textButton: "Learn more",
     },
   }
-  console.log("type", type)
   const element = data[`${type}`]
   return (
     <div className="my-4">

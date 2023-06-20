@@ -58,6 +58,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         authorDetails={authorDetails}
         {...frontMatter}
         bannerImage={bannerImage}
+        images={bannerImage ? [bannerImage] : []}
       />
       <ScrollTopAndComment />
       <article>
