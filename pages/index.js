@@ -4,7 +4,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
-
+import Script from 'next/script'
 import NewsletterForm from '@/components/NewsletterForm'
 
 const MAX_DISPLAY = 5
@@ -91,6 +91,13 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
+      <div id="buzzsprout-large-player"></div>
+      <Script
+        id=""
+        type="text/javascript"
+        charset="utf-8"
+        src="https://www.buzzsprout.com/1988715.js?container_id=buzzsprout-large-player&player=large"
+      ></Script>
       {siteMetadata.newsletter.provider !== '' && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />
