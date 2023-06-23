@@ -7,6 +7,7 @@ const siteMetadata = {
   theme: 'dark', // system, dark or light
   siteUrl: 'rz.vercel.app',
   siteRepo: '',
+  siteLogo:'/static/image/logo.svg',
   image: '',
   socialBanner: '/static/images/twitter-card.png',
   email: 'address@yoursite.com',
