@@ -7,7 +7,6 @@ const siteMetadata = {
   theme: 'dark', // system, dark or light
   siteUrl: 'rz.vercel.app',
   siteRepo: '',
-  siteLogo: '',
   image: '',
   socialBanner: '/static/images/twitter-card.png',
   email: 'address@yoursite.com',
@@ -68,7 +67,7 @@ const siteMetadata = {
       // https://utteranc.es/
       repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
       issueTerm: '', // supported options: pathname, url, title
-      label: '', // label (optional): Comment 💬
+      label: 'Comment 💬', // label (optional): Comment 💬
       // theme example: github-light, github-dark, preferred-color-scheme
       // github-dark-orange, icy-dark, dark-blue, photon-dark, boxy-light
       theme: '',
