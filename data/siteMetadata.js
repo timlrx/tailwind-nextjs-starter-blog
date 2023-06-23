@@ -1,6 +1,6 @@
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
+  title: '-',
+  author: 'renan',
   headerTitle: '',
   description: '',
   language: 'en-us',
