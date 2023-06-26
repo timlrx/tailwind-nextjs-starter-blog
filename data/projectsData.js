@@ -1,5 +1,17 @@
 const projectsData = [
   {
+    title: 'Decentra',
+    description: `Imbedding Safe in familiar experiences, an online financial management chat app.`,
+    imgSrc: '/static/images/decentra-app.png',
+    href: 'https://app.decentra.so/',
+  },
+  {
+    title: 'Synpress Documentation',
+    description: `Writing documentation for the web3 e2e testing Framework.`,
+    imgSrc: '/static/images/synpress.jpg',
+    href: 'https://docs.synpress.io/',
+  },
+  {
     title: 'Decentra Talks Podcast',
     description: `Join us for conversations about the future of our financial systems.`,
     imgSrc: '/static/images/decentra-talks.png',

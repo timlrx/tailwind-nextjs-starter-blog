@@ -3,10 +3,10 @@ name: Sero
 avatar: /static/images/avatar.png
 occupation: Web3 Software Engineer
 company: Serotonin Designs
-email: admin@yserotonindesigns.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+email: admin@serotonindesigns.com
+twitter: https://twitter.com/seroxdesigns
+linkedin: https://www.linkedin.com/in/sero-346b85202/
+github: https://github.com/seroxdesign
 ---
 
 I am a Web-3 Software Engineer, podcaster and writer with a working presence in the United States, United Kingdom and Poland. I've had experience working on launching startups, upgrading existing web infrastructure and consulting for Public-Private-relation and social impact organizations.
