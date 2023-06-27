@@ -1,12 +1,12 @@
 // Here put the folder name and it will create a component for each image that he can
 
-const folder = "public/static/images/fixedIP/"
+const folder = "public/static/images/rubberstamping/"
 
 var sizeOf = require("image-size")
 var fs = require("fs")
 var files = fs.readdirSync(folder)
 
-function printImageComponentWithSize(imgSrc) {
+async function printImageComponentWithSize(imgSrc) {
   sizeOf(imgSrc, function (err, dimensions) {
     if (dimensions) {
       const { width, height } = dimensions
@@ -19,9 +19,9 @@ function printImageComponentWithSize(imgSrc) {
   })
 }
 
-function main() {
+async function main() {
   for (const image of files) {
-    printImageComponentWithSize(`${folder}${image}`)
+    await printImageComponentWithSize(`${folder}${image}`)
   }
 }
 
