@@ -1,0 +1,40 @@
+---
+title: "Axolo changelog - May 2023"
+date: "2023-07-01"
+tags: ["changelog"]
+draft: false
+summary: "We have rolled out a version of our code review assistant (contact us to be part of the early access) for code review guidelines powered by GPT. The platform now allows Enterprise users to handle multiple organizations, while implementing a notification system to keep them informed. Furthermore, Axolo has expanded its features to include support for GitHub enterprise with proxy, batch import of engineers, the ability to add organization names in PR titles for enterprise customers, PR deletion upon merge, and a service to refresh GitLab tokens in case of failure."
+---
+
+## ✨ NEW
+
+- Enabling a feedback system for code review assistant (beta)
+- Code review guidelines powered by GPT rolled out for beta users
+- Built a notification system to send updates about Axolo to users
+- Handling multiple organizations within Enterprise customers available
+- Support for GitHub enterprise with proxy
+- Ability to import engineers in batch from app.axolo.co
+- Ability to add the organization name in PR title for Enterprise Customers
+- Ability to delete PR in our DB upon merge
+- Created a new service to force a refresh on GitLab token if it fails
+
+## 🔨 IMPROVEMENT
+
+- We mention the Slack username of reviewer when a second review request is sent
+- Ability to refresh Axolo AI
+- Better handling of errors during GitHub Self Hosted onboarding
+- Ability to enforce user to have same emails in Slack and GitHub to avoid impersonation
+- Prevent errors from duplicated conversations upon onboarding
+
+## 🐞 FIX
+
+- Solve bug when the PR status was not updated to reviewable after a second review request
+- Handle bug where trial would last forever
+- Bug fix when Axolo deleted the image preview of GitHub images after an edit
+- Fix bug of a html injection with a > inside a PR title
+- Handle query for engineers for multi orgs accounts
+- Handling same engineers for multiple github organizations
+- Fixed a bug to query pull request
+- Changed the way we handle Stripe webhooks
+- Fixed error where GitHub admin would see an error when accepting installation
+- Fix an error while switching a PR from draft to ready for review in team channels
