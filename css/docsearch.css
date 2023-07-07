@@ -1,0 +1,63 @@
+
+.light .DocSearch {
+    --docsearch-primary-color: theme(colors.primary.600);
+    --docsearch-highlight-color: theme(colors.primary.600);
+    --docsearch-searchbox-shadow: inset 0 0 0 2px theme(colors.primary.600);
+    --docsearch-muted-color: theme(colors.gray.500);
+    --docsearch-container-background: theme(colors.gray.400 / 80%);
+    /* Modal */
+    --docsearch-modal-background: theme(colors.gray.200);
+    /* Search box */
+    --docsearch-searchbox-background: theme(colors.gray.100);
+    --docsearch-searchbox-focus-background: theme(colors.gray.100);
+    /* Hit */
+    --docsearch-hit-color: theme(colors.gray.700);
+    --docsearch-hit-shadow: none;
+    --docsearch-hit-active-color: theme(colors.gray.800);
+    --docsearch-hit-background: theme(colors.gray.100);
+    /* Footer */
+    --docsearch-footer-background: theme(colors.gray.100);
+}
+
+.dark .DocSearch {
+    --docsearch-primary-color: theme(colors.primary.600);
+    --docsearch-highlight-color: theme(colors.primary.600);
+    --docsearch-searchbox-shadow: inset 0 0 0 2px theme(colors.primary.600);
+    --docsearch-text-color: theme(colors.gray.200);
+    --docsearch-muted-color: theme(colors.gray.400);
+    --docsearch-container-background: theme(colors.gray.900 / 80%);
+    /* Modal */
+    --docsearch-modal-background: theme(colors.gray.900);
+    --docsearch-modal-shadow: inset 1px 1px 0 0 rgb(44, 46, 64),
+            0 3px 8px 0 rgb(0, 3, 9);
+    /* Search box */
+    --docsearch-searchbox-background: theme(colors.gray.800);
+    --docsearch-searchbox-focus-background: theme(colors.gray.800);
+    /* Hit */
+    --docsearch-hit-color: theme(colors.gray.200);
+    --docsearch-hit-shadow: none;
+    --docsearch-hit-active-color: theme(colors.gray.100);
+    --docsearch-hit-background: theme(colors.gray.800);
+    /* Footer */
+    --docsearch-footer-background: theme(colors.gray.900);
+    --docsearch-footer-shadow: inset 0 1px 0 0 rgba(73, 76, 106, 0.5),
+            0 -4px 8px 0 rgba(0, 0, 0, 0.2);
+    --docsearch-key-gradient: linear-gradient(-26.5deg,
+            theme(colors.gray.800) 0%,
+            theme(colors.gray.900) 100%);
+    --docsearch-key-shadow: inset 0 -2px 0 0 rgb(40, 45, 85),
+    inset 0 0 1px 1px rgb(81, 87, 125), 0 2px 2px 0 rgba(3, 4, 9, 0.3);
+    --docsearch-logo-color: theme(colors.gray.300);
+}
+
+.light .DocSearch-Input {
+    @apply hover:ring-0 ring-0;
+}
+
+.dark .DocSearch-Input {
+    @apply hover:ring-0 ring-0;
+}
+
+.DocSearch-Container {
+    @apply backdrop-blur;
+}

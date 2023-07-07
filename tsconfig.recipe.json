@@ -1,0 +1,39 @@
+// Needed to resolve path reference to type check recipes
+// Can be deleted if you are cloning the app
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "emitDeclarationOnly": true,
+    "composite": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/data/*": ["data/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/lib/*": ["lib/*"],
+      "@/css/*": ["css/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".contentlayer/generated",
+    ".contentlayer/generated/**/*.json"
+  ],
+  "exclude": ["node_modules"]
+}
