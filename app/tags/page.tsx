@@ -2,9 +2,11 @@ import { getAllTags } from 'pliny/utils/contentlayer'
 import Link from '@/components/Link'
 // import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
 import { kebabCase } from 'pliny/utils/kebabCase'
 import { allBlogs } from 'contentlayer/generated'
+import { genPageMetadata } from 'app/seo'
+
+export const metadata = genPageMetadata({ title: 'Tags', description: 'Things I blog about' })
 
 export default async function Page() {
   const tags = await getAllTags(allBlogs)
