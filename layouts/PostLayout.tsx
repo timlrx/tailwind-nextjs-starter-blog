@@ -9,7 +9,7 @@ import SectionContainer from '@/components/SectionContainer'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+// import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/master/data/${path}`
 const discussUrl = (path) =>
@@ -33,12 +33,12 @@ interface LayoutProps {
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
-  const [loadComments, setLoadComments] = useState(false)
+  // const [loadComments, setLoadComments] = useState(false)
 
   return (
     <SectionContainer>
       {/* <BlogSEO url={`${siteMetadata.siteUrl}/${path}`} authorDetails={authorDetails} {...content} /> */}
-      <ScrollTopAndComment />
+      {/* <ScrollTopAndComment /> */}
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
@@ -108,10 +108,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
                   id="comment"
                 >
-                  {!loadComments && (
+                  {/* {!loadComments && (
                     <button onClick={() => setLoadComments(true)}>Load Comments</button>
                   )}
-                  {loadComments && <Comments commentsConfig={siteMetadata.comments} slug={slug} />}
+                  {loadComments && <Comments commentsConfig={siteMetadata.comments} slug={slug} />} */}
                 </div>
               )}
             </div>
