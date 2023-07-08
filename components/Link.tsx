@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { AnchorHTMLAttributes, DetailedHTMLProps } from 'react'
 
-const CustomLink = ({
+const CustomLink = async ({
   href,
   ...rest
 }: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {

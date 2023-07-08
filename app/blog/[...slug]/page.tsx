@@ -1,8 +1,9 @@
 import PageTitle from '@/components/PageTitle'
+import { Mdx } from '@/components/MDXComponents'
 import { sortedBlogPost, coreContent } from 'pliny/utils/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
-import BlogPage from './Blog'
+import PostLayout from '@/layouts/PostLayout'
 
 export const generateStaticParams = async () => {
   const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
@@ -10,20 +11,19 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-export default function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = params.slug.join('/')
   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
   const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
-  const prevContent = sortedPosts[postIndex + 1] || null
-  const prev = prevContent ? coreContent(prevContent) : null
-  const nextContent = sortedPosts[postIndex - 1] || null
-  const next = nextContent ? coreContent(nextContent) : null
-  const post = sortedPosts.find((p) => p.slug === slug)
+  const prev = coreContent(sortedPosts[postIndex + 1])
+  const next = coreContent(sortedPosts[postIndex - 1])
+  const post = sortedPosts.find((p) => p.slug === slug) as Blog
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
     return coreContent(authorResults as Authors)
   })
+  const mainContent = coreContent(post)
 
   return (
     <>
@@ -37,7 +37,9 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           </PageTitle>
         </div>
       ) : (
-        <BlogPage post={post} authorDetails={authorDetails} prev={prev} next={next} />
+        <PostLayout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+          <Mdx code={post.body.code} toc={post.toc} />
+        </PostLayout>
       )}
     </>
   )
