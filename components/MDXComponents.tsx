@@ -11,6 +11,7 @@ import CustomLink from './Link'
 
 interface MdxProps {
   code: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 

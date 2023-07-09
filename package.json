@@ -5,7 +5,7 @@
   "scripts": {
     "start": "next dev",
     "dev": "cross-env INIT_CWD=$PWD next dev",
-    "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node -r esbuild-register ./scripts/postbuild.mjs",
+    "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts"
@@ -48,7 +48,6 @@
     "@typescript-eslint/parser": "^5.61.0",
     "cross-env": "^7.0.3",
     "dedent": "^0.7.0",
-    "esbuild-register": "3.4.2",
     "eslint": "^8.43.0",
     "eslint-config-next": "13.4.7",
     "eslint-config-prettier": "^8.8.0",
@@ -78,5 +77,6 @@
     "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }
