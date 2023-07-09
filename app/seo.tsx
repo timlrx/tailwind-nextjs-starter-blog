@@ -5,9 +5,11 @@ interface PageSEOProps {
   title: string
   description?: string
   image?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
 }
 
-export function genPageMetadata({ title, description, image }: PageSEOProps): Metadata {
+export function genPageMetadata({ title, description, image, ...rest }: PageSEOProps): Metadata {
   return {
     title,
     openGraph: {
@@ -24,5 +26,6 @@ export function genPageMetadata({ title, description, image }: PageSEOProps): Me
       card: 'summary_large_image',
       images: image ? [image] : [siteMetadata.socialBanner],
     },
+    ...rest,
   }
 }
