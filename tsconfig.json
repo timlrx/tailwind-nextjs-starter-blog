@@ -2,11 +2,7 @@
   "compilerOptions": {
     "incremental": true,
     "target": "ES6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,24 +17,11 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/data/*": [
-        "data/*"
-      ],
-      "@/layouts/*": [
-        "layouts/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/css/*": [
-        "css/*"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
-      ]
+      "@/components/*": ["components/*"],
+      "@/data/*": ["data/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/css/*": ["css/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [
       {
@@ -56,7 +39,5 @@
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
