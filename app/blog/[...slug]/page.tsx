@@ -79,6 +79,13 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     return coreContent(authorResults as Authors)
   })
   const mainContent = coreContent(post)
+  const jsonLd = post.structuredData
+  jsonLd['author'] = authorDetails.map((author) => {
+    return {
+      '@type': 'Person',
+      name: author.name,
+    }
+  })
 
   return (
     <>
@@ -92,9 +99,14 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           </PageTitle>
         </div>
       ) : (
-        <PostLayout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-          <Mdx code={post.body.code} toc={post.toc} />
-        </PostLayout>
+        <>
+          <script type="application/ld+json" suppressHydrationWarning>
+            {JSON.stringify(jsonLd)}
+          </script>
+          <PostLayout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+            <Mdx code={post.body.code} toc={post.toc} />
+          </PostLayout>
+        </>
       )}
     </>
   )
