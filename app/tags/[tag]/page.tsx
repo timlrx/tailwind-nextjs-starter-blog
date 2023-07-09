@@ -8,7 +8,16 @@ import { Metadata } from 'next'
 
 export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
   const tag = params.tag
-  return genPageMetadata({ title: tag, description: `${siteMetadata.title} ${tag} tagged content` })
+  return genPageMetadata({
+    title: tag,
+    description: `${siteMetadata.title} ${tag} tagged content`,
+    alternates: {
+      canonical: './',
+      types: {
+        'application/rss+xml': `${siteMetadata.siteUrl}/tags/${tag}/feed.xml`,
+      },
+    },
+  })
 }
 
 export const generateStaticParams = async () => {
