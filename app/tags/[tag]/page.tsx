@@ -1,8 +1,9 @@
 import { slug } from 'github-slugger'
-import { getAllTags, allCoreContent } from 'pliny/utils/contentlayer'
+import { allCoreContent } from 'pliny/utils/contentlayer'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { allBlogs } from 'contentlayer/generated'
+import tagData from 'app/tag-data.json'
 import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 
@@ -21,8 +22,9 @@ export async function generateMetadata({ params }: { params: { tag: string } }):
 }
 
 export const generateStaticParams = async () => {
-  const tags = await getAllTags(allBlogs)
-  const paths = Object.keys(tags).map((tag) => ({
+  const tagCounts = tagData as Record<string, number>
+  const tagKeys = Object.keys(tagCounts)
+  const paths = tagKeys.map((tag) => ({
     tag: tag,
   }))
   return paths
