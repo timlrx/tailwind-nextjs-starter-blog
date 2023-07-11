@@ -35,6 +35,7 @@
     "**/*.js",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.json",
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
