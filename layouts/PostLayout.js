@@ -7,6 +7,7 @@ import Tag from "@/components/Tag"
 import siteMetadata from "@/data/siteMetadata"
 import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/ScrollTopAndComment"
+import SideBannerForArticle from "@/components/sideBannerArticle"
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/p/${fileName}`
 const discussUrl = (slug) =>
@@ -162,6 +163,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </div>
                 )}
               </div>
+              <SideBannerForArticle />
               <div className="pt-4 xl:pt-8">
                 <Link
                   href="/p"
