@@ -1,12 +1,12 @@
 ---
-title: Deriving the OLS Estimator
-date: '2020-12-21'
-tags: ['next js', 'math', 'ols']
+title: TinyML
+date: '2023-07-12'
+tags: ['tinyml', 'ML', 'AI']
 draft: false
 summary: 'How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.'
 ---
 
-***Welcome to Shankar's POV***
+**_Welcome to Shankar's POV_**
 
 I embark on an exciting blogging adventure into the world of Technology. I'm thrilled to have you join me on this journey as we explore the possibilities and potential of TinyML. This blog is a space for me to share my thoughts, experiences, and deep passion for TinyML, and I'm delighted to connect with you through these articles.
 
@@ -32,7 +32,7 @@ These examples demonstrate the vast potential of TinyML, with current deployment
 
 Tiny Machine learning refers to running machine learning models directly on edge devices, such as microcontrollers and IoT devices, rather than relying on cloud-based processing. This approach brings the power of machine learning algorithms closer to the data source, enabling real-time and low-latency inference on resource-constrained devices. **'Edge Impulse,'** an embedded ML medium, enables the implementation of these strategies.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687440976960/87e7c2cf-4338-4cd6-a2f0-9dbb1de89dba.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687440976960/87e7c2cf-4338-4cd6-a2f0-9dbb1de89dba.png)
 
 To achieve these feats, developers can rely on a unique embedded ML platform called "Edge Impulse." This open-source solution empowers developers by streamlining the collection and processing of sensor data, training machine learning models, and deploying them seamlessly onto microcontrollers. With support for a wide range of sensors and a rich library of pre-built signal processing blocks and machine learning algorithms, Edge Impulse accelerates the prototyping and iteration of models, unlocking new realms of possibilities for developers in the TinyML domain.
 
@@ -44,11 +44,11 @@ We here aim to classify **fire alarm sounds based on their audio characteristics
 
 To kickstart our journey with EI Studio, we require a TinyML-supported device. The studio officially supports a variety of MCUs, ensuring compatibility with popular development boards. However, don't fret if you lack a development board; a mobile phone can suffice for data acquisition and model testing. In the upcoming section, we will delve into the process of data acquisition and impulse design, unraveling the potential of EI Studio.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687428711826/df888f77-ccb3-4b64-931d-d10142a82ed9.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687428711826/df888f77-ccb3-4b64-931d-d10142a82ed9.png)
 
 To construct this model, the initial step involves collecting audio data for training the machine learning model. The primary objective is to train the model to distinguish the distinct sound of a Fire Alarm from ambient noise. Alarm and Noise audio samples are gathered in the Data Acquisition tab. The dataset follows a 90:10 ratio, with 90% allocated for training and 10% for testing. Once the setup is completed, we can design the impulse, which will be discussed in detail below.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687430850982/435c1b65-7da8-42c6-9757-970e899c690d.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687430850982/435c1b65-7da8-42c6-9757-970e899c690d.png)
 
 Once you have prepared the training set, the next step is to create an impulse. An impulse takes the raw data and divides it into smaller windows. In each window, signal processing blocks are applied to extract relevant features. In this case, we can include processing and learning blocks.
 
@@ -58,7 +58,7 @@ On the other hand, for the learning block, we have chosen Classifier. This learn
 
 By combining the MFE processing block and the Classifier learning block, we create a powerful impulse that can effectively process and classify audio data.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431017018/fc31f9f2-d4e4-4630-a212-cc7edbc43c57.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431017018/fc31f9f2-d4e4-4630-a212-cc7edbc43c57.png)
 
 In this feature, you can configure the MFE (Mel-filterbank energy) block and preview the resulting data transformation. The purpose of the MFE block is to convert a window of audio into a tabular format, where each row corresponds to a different frequency range, and each column represents a specific time interval. Within this table, each cell represents a specific frequency range during a particular period and contains the corresponding amplitude value.
 
@@ -66,9 +66,9 @@ The spectrogram is generated to provide a visual representation of this tabular 
 
 The spectrograms of the alarm and noise samples derived from the MFE feature are shown below for reference and better understanding. These visual representations provide a helpful visual reference to analyze the characteristics of the audio signals and their corresponding amplitude values.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431850598/b9a7bf70-5eed-41d4-9228-15e8f0cb5a3e.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431850598/b9a7bf70-5eed-41d4-9228-15e8f0cb5a3e.png)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431860398/26d96ccf-0556-41e7-a740-8f4ed47dccb3.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431860398/26d96ccf-0556-41e7-a740-8f4ed47dccb3.png)
 
 The spectrograms generated by the MFE block play a crucial role in training a robust neural network architecture that excels at recognizing patterns in tabular data. Before preparing the neural network, generating MFE blocks for all the audio windows is essential, which may take some time due to the processing involved.
 
@@ -119,7 +119,7 @@ disable_per_channel_quantization = False
 
 The Confusion matrix provides a comprehensive visual representation of the accuracy and distribution of classified windows. It offers valuable insights into the balance between correctly and incorrectly classified instances. The accompanying screenshot shows that all the alarm and noise audio windows have been accurately classified without misclassifying. This outcome showcases the model's impressive performance and indicates a favorable result.
 
-![Accuracy of the Model](https://cdn.hashnode.com/res/hashnode/image/upload/v1687433717863/49fb3cb1-c416-46a3-9411-74b46afee28f.png align="center")
+![Accuracy of the Model](https://cdn.hashnode.com/res/hashnode/image/upload/v1687433717863/49fb3cb1-c416-46a3-9411-74b46afee28f.png)
 
 Edge Impulse provides valuable tools for evaluating and testing our model, ensuring its accuracy and effectiveness. One handy feature is capturing real-time data directly from our device and promptly classifying it. This feature allows us to connect our mobile phones to gather accurate data for testing purposes. This ensures that our model is evaluated with real-world data, enhancing its reliability and performance.
 
@@ -127,7 +127,7 @@ The testing phase results, specifically for the Alarm class, are presented below
 
 We can assess the model's ability to effectively recognize and classify real-time data through the testing process, ensuring its reliability and suitability for practical applications. By leveraging Edge Impulse's robust testing capabilities, we can fine-tune our model and improve its overall performance based on the results.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687434564158/67c4339f-e31d-421e-9269-ec3b939ee7c3.jpeg align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687434564158/67c4339f-e31d-421e-9269-ec3b939ee7c3.jpeg)
 
 After designing, training, and validating the impulse, We can deploy the model back to my device. This enables the model to run offline, reducing latency and minimizing power consumption. Edge Impulse provides a convenient solution by packaging the complete impulse, including the MFE algorithm, neural network weights, and classification code, into a single C++ library. We can easily include this library in any embedded software for seamless integration.
 
