@@ -6,136 +6,143 @@ draft: false
 summary: 'How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.'
 ---
 
-# Introduction
+***Welcome to Shankar's POV***
 
-Parsing and display of math equations is included in this blog template. Parsing of math is enabled by `remark-math` and `rehype-katex`.
-KaTeX and its associated font is included in `_document.js` so feel free to use it on any page.
-^[For the full list of supported TeX functions, check out the [KaTeX documentation](https://katex.org/docs/supported.html)]
+I embark on an exciting blogging adventure into the world of Technology. I'm thrilled to have you join me on this journey as we explore the possibilities and potential of TinyML. This blog is a space for me to share my thoughts, experiences, and deep passion for TinyML, and I'm delighted to connect with you through these articles.
 
-Inline math symbols can be included by enclosing the term between the `$` symbol.
+In this blog post, I'll provide detailed instructions to help you start with TinyML. By the time you finish reading, you'll have the knowledge and skills to create a simple project using an embedded ML platform. It's an exciting opportunity to dive into the world of TinyML and witness firsthand the incredible things you can achieve with this cutting-edge technology. So, let's dive right in and unlock the power of TinyML together. Get ready to embark on an adventure that will expand your horizons and open up a world of possibilities in embedded machine learning. Let's get started!
 
-Math code blocks are denoted by `$$`.
+### **What is TinyML?**
 
-If you intend to use the `$` sign instead of math, you can escape it (`\$`), or specify the HTML entity (`&dollar;`) [^2]
+Tiny Machine Learning is an exciting convergence of two cutting-edge fields: machine learning and embedded systems. It involves equipping small computing devices with the remarkable capability of machine learning. What sets TinyML apart is its excellent power efficiency, operating at deficient power levels, typically in the range of milliwatts. This efficiency enables always-on machine learning on battery-powered devices, opening up a world of possibilities.
 
-Inline or manually enumerated footnotes are also supported. Click on the links above to see them in action.
+To truly grasp the potential of TinyML, let's explore some familiar examples. Take a moment to think about popular voice assistants like "OK, Google," "Hey, Siri," or "Alexa." These intelligent voice assistants showcase the practical application of TinyML, particularly in keyword spotting and hot word detection. However, it's worth noting that these devices typically rely on a continuous power source or frequent charging. The future of TinyML, on the other hand, is poised to go beyond these limitations by deploying machine learning models directly on small, battery-powered devices. This advancement allows for self-contained and highly efficient computing, revolutionizing our interactions with technology.
 
-[^2]: \$10 and &dollar;20.
+### **Where does TinyML is used?**
 
-# Deriving the OLS Estimator
+TinyML shows excellent promise in industrial predictive maintenance, enabling proactive issue prediction and maintenance in machinery. Ping Services has developed an IoT device that autonomously inspects wind turbines, identifying and alerting potential problems in real-time. This approach leads to cost savings, reduced downtime, improved reliability, and better service quality.
 
-Using matrix notation, let $n$ denote the number of observations and $k$ denote the number of regressors.
+Healthcare benefits from TinyML through the Solar Scare Mosquito project. Small IoT robotic platforms disrupt mosquito breeding cycles, combating Malaria, Dengue, and Zika. These solar-powered devices communicate through low-power protocols, providing smart statistics and alerts for widespread mosquito prevention.
 
-The vector of outcome variables $\mathbf{Y}$ is a $n \times 1$ matrix,
+TinyML contributes to wildlife conservation by enabling environmental monitoring. Innovative acoustic and thermal sensor systems powered by solar energy prevent collisions between trains and elephants in India. Similar systems prevent whale strikes in busy waterways.
 
-```tex
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
+These examples demonstrate the vast potential of TinyML, with current deployments and future opportunities for developers to create their applications.
+
+### **Empowering Edge Devices: Exploring the Potential of TinyML with Edge Impulse**
+
+Tiny Machine learning refers to running machine learning models directly on edge devices, such as microcontrollers and IoT devices, rather than relying on cloud-based processing. This approach brings the power of machine learning algorithms closer to the data source, enabling real-time and low-latency inference on resource-constrained devices. **'Edge Impulse,'** an embedded ML medium, enables the implementation of these strategies.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687440976960/87e7c2cf-4338-4cd6-a2f0-9dbb1de89dba.png align="center")
+
+To achieve these feats, developers can rely on a unique embedded ML platform called "Edge Impulse." This open-source solution empowers developers by streamlining the collection and processing of sensor data, training machine learning models, and deploying them seamlessly onto microcontrollers. With support for a wide range of sensors and a rich library of pre-built signal processing blocks and machine learning algorithms, Edge Impulse accelerates the prototyping and iteration of models, unlocking new realms of possibilities for developers in the TinyML domain.
+
+### **Embarking on the Edge Impulse studio**
+
+Learning through examples enhances our understanding and simplifies complex concepts. To grasp the fundamentals of EI Studio, let's delve into a real-time project developed using this platform.
+
+We here aim to classify **fire alarm sounds based on their audio characteristics**. This project will serve as our guide to exploring the capabilities of EI Studio.
+
+To kickstart our journey with EI Studio, we require a TinyML-supported device. The studio officially supports a variety of MCUs, ensuring compatibility with popular development boards. However, don't fret if you lack a development board; a mobile phone can suffice for data acquisition and model testing. In the upcoming section, we will delve into the process of data acquisition and impulse design, unraveling the potential of EI Studio.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687428711826/df888f77-ccb3-4b64-931d-d10142a82ed9.png align="center")
+
+To construct this model, the initial step involves collecting audio data for training the machine learning model. The primary objective is to train the model to distinguish the distinct sound of a Fire Alarm from ambient noise. Alarm and Noise audio samples are gathered in the Data Acquisition tab. The dataset follows a 90:10 ratio, with 90% allocated for training and 10% for testing. Once the setup is completed, we can design the impulse, which will be discussed in detail below.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687430850982/435c1b65-7da8-42c6-9757-970e899c690d.png align="center")
+
+Once you have prepared the training set, the next step is to create an impulse. An impulse takes the raw data and divides it into smaller windows. In each window, signal processing blocks are applied to extract relevant features. In this case, we can include processing and learning blocks.
+
+For the processing block, we have opted for MFE (Mel-filterbank energy), which is highly effective in extracting spectrograms from audio signals. It utilizes Mel-filterbank energy features, making it particularly useful for non-voice audio. This processing block enables us to capture essential characteristics of the audio data.
+
+On the other hand, for the learning block, we have chosen Classifier. This learning block can learn patterns from the training data and apply this knowledge to recognize audio in new data accurately. It plays a crucial role in the classification process, ensuring that our model can make precise predictions based on the learned patterns.
+
+By combining the MFE processing block and the Classifier learning block, we create a powerful impulse that can effectively process and classify audio data.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431017018/fc31f9f2-d4e4-4630-a212-cc7edbc43c57.png align="center")
+
+In this feature, you can configure the MFE (Mel-filterbank energy) block and preview the resulting data transformation. The purpose of the MFE block is to convert a window of audio into a tabular format, where each row corresponds to a different frequency range, and each column represents a specific time interval. Within this table, each cell represents a specific frequency range during a particular period and contains the corresponding amplitude value.
+
+The spectrogram is generated to provide a visual representation of this tabular data. The spectrogram uses colored blocks to represent the amplitude values within the table. The intensity of each colored block corresponds to the amplitude value it represents. By observing the spectrogram, you can gain insights into the frequency distribution and power of the audio signal.
+
+The spectrograms of the alarm and noise samples derived from the MFE feature are shown below for reference and better understanding. These visual representations provide a helpful visual reference to analyze the characteristics of the audio signals and their corresponding amplitude values.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431850598/b9a7bf70-5eed-41d4-9228-15e8f0cb5a3e.png align="center")
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687431860398/26d96ccf-0556-41e7-a740-8f4ed47dccb3.png align="center")
+
+The spectrograms generated by the MFE block play a crucial role in training a robust neural network architecture that excels at recognizing patterns in tabular data. Before preparing the neural network, generating MFE blocks for all the audio windows is essential, which may take some time due to the processing involved.
+
+Neural networks are advanced algorithms inspired by the intricate workings of the human brain. They possess the remarkable ability to learn and identify patterns within their training data. In our case, the specific neural network we are training takes the MFE spectrogram as input and aims to classify it into one of two classes: Noise or Alarm.
+
+As the MFE spectrogram is fed into the neural network, it enters the first layer of neurons. Each neuron in this layer processes and modifies the information based on its internal state. The output from the first layer is then passed to the subsequent layers, where further transformations occur. This sequential process continues until the final layers of the neural network, resulting in a highly refined and distinctive output.
+
+Python is the programming language to develop and customize the NN classifier. Python offers many libraries and tools specifically designed for neural network development, making it a flexible and powerful platform.
+
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, InputLayer, Dropout, Conv1D, Conv2D, Flatten, Reshape, MaxPooling1D, MaxPooling2D, AveragePooling2D, BatchNormalization, TimeDistributed, Permute, ReLU, Softmax
+from tensorflow.keras.optimizers import Adam
+EPOCHS = args.epochs or 100
+LEARNING_RATE = args.learning_rate or 0.005
+
+# this controls the batch size, or you can manipulate the tf.data.Dataset objects yourself
+BATCH_SIZE = 32
+train_dataset = train_dataset.batch(BATCH_SIZE, drop_remainder=False)
+validation_dataset = validation_dataset.batch(BATCH_SIZE, drop_remainder=False)
+
+# model architecture
+model = Sequential()
+model.add(Reshape((int(input_length / 40), 40), input_shape=(input_length, )))
+model.add(Conv1D(8, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=2, strides=2, padding='same'))
+model.add(Dropout(0.25))
+model.add(Conv1D(16, kernel_size=3, padding='same', activation='relu'))
+model.add(MaxPooling1D(pool_size=2, strides=2, padding='same'))
+model.add(Dropout(0.25))
+model.add(Flatten())
+model.add(Dense(classes, name='y_pred', activation='softmax'))
+
+# this controls the learning rate
+opt = Adam(learning_rate=LEARNING_RATE, beta_1=0.9, beta_2=0.999)
+callbacks.append(BatchLoggerCallback(BATCH_SIZE, train_sample_count, epochs=EPOCHS))
+
+# train the neural network
+model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+model.fit(train_dataset, epochs=EPOCHS, validation_data=validation_dataset, verbose=2, callbacks=callbacks)
+
+# Use this flag to disable per-channel quantization for a model.
+# This can reduce RAM usage for convolutional models, but may have
+# an impact on accuracy.
+disable_per_channel_quantization = False
 ```
 
-$$
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
-$$
+The Confusion matrix provides a comprehensive visual representation of the accuracy and distribution of classified windows. It offers valuable insights into the balance between correctly and incorrectly classified instances. The accompanying screenshot shows that all the alarm and noise audio windows have been accurately classified without misclassifying. This outcome showcases the model's impressive performance and indicates a favorable result.
 
-The matrix of regressors $\mathbf{X}$ is a $n \times k$ matrix (or each row is a $k \times 1$ vector),
+![Accuracy of the Model](https://cdn.hashnode.com/res/hashnode/image/upload/v1687433717863/49fb3cb1-c416-46a3-9411-74b46afee28f.png align="center")
 
-```latex
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
-```
+Edge Impulse provides valuable tools for evaluating and testing our model, ensuring its accuracy and effectiveness. One handy feature is capturing real-time data directly from our device and promptly classifying it. This feature allows us to connect our mobile phones to gather accurate data for testing purposes. This ensures that our model is evaluated with real-world data, enhancing its reliability and performance.
 
-$$
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
-$$
+The testing phase results, specifically for the Alarm class, are presented below. These results provide valuable insights into the model's classification performance, highlighting its ability to distinguish and classify instances of the Alarm sound accurately.
 
-The vector of error terms $\mathbf{U}$ is also a $n \times 1$ matrix.
+We can assess the model's ability to effectively recognize and classify real-time data through the testing process, ensuring its reliability and suitability for practical applications. By leveraging Edge Impulse's robust testing capabilities, we can fine-tune our model and improve its overall performance based on the results.
 
-At times it might be easier to use vector notation. For consistency, I will use the bold small x to denote a vector and capital letters to denote a matrix. Single observations are denoted by the subscript.
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1687434564158/67c4339f-e31d-421e-9269-ec3b939ee7c3.jpeg align="center")
 
-## Least Squares
+After designing, training, and validating the impulse, We can deploy the model back to my device. This enables the model to run offline, reducing latency and minimizing power consumption. Edge Impulse provides a convenient solution by packaging the complete impulse, including the MFE algorithm, neural network weights, and classification code, into a single C++ library. We can easily include this library in any embedded software for seamless integration.
 
-**Start**:  
-$$y_i = \mathbf{x}'_i \beta + u_i$$
+Alright!, You now know to acquire data, design Impulse and utilize Edge Impulse to train a neural network model that can recognize a specific sound. The applications for such a model are limitless, ranging from monitoring industrial machinery to identifying voice commands. Once you have completed the model training process, you can seamlessly integrate your Impulse into the firmware of your own embedded device.
 
-**Assumptions**:
+### **Conclusion**
 
-1. Linearity (given above)
-2. $E(\mathbf{U}|\mathbf{X}) = 0$ (conditional independence)
-3. rank($\mathbf{X}$) = $k$ (no multi-collinearity i.e. full rank)
-4. $Var(\mathbf{U}|\mathbf{X}) = \sigma^2 I_n$ (Homoskedascity)
+To summarize, Tiny Machine Learning (TinyML) represents an exciting intersection of machine learning and embedded systems, enabling small computing devices to possess powerful machine learning capabilities. We also discussed the essential steps in creating a TinyML project using Edge Impulse. From gathering and preparing the training data to designing the impulse and configuring the necessary blocks, we explored the intricacies of the process. The ability to generate spectrograms using the MFE block and train a neural network for accurate audio recognition showcased the power of TinyML in practical applications.
 
-**Aim**:  
-Find $\beta$ that minimises the sum of squared errors:
+So, why wait? Start exploring the world of TinyML today and witness the transformative impact it can have on smart embedded devices. Let's unlock the potential of this exciting technology and shape the future of intelligence.
 
-$$
-Q = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2} = (Y-X\beta)'(Y-X\beta)
-$$
+### **References**
 
-**Solution**:  
-Hints: $Q$ is a $1 \times 1$ scalar, by symmetry $\frac{\partial b'Ab}{\partial b} = 2Ab$.
+[TinyML foundation](https://www.tinyml.org/)
 
-Take matrix derivative w.r.t $\beta$:
+[Edge Impulse documentation](https://docs.edgeimpulse.com/docs/)
 
-```tex
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
-```
-
-$$
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
-$$
+[Edge Impulse Github](https://github.com/edgeimpulse)
