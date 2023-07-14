@@ -13,6 +13,7 @@ import G2Banner from "./utils/g2Banner"
 import { NoFollowLink } from "./utils/nofollow-link"
 import EnterpriseEmailInput from "./EnterpriseEmailInput"
 import { SubImageText } from "./utils/subimage-text"
+import UserReview from "./userReviews/index"
 
 export const MDXComponents = {
   Image,
@@ -32,6 +33,7 @@ export const MDXComponents = {
   SubImageText,
   NoFollowLink,
   G2Banner,
+  UserReview,
 }
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
