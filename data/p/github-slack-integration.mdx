@@ -15,7 +15,7 @@ authors: ["sydney"]
 
 ### 1.1 What is Slack?
 
-Alright, we're at 'What is Slack?' If you're on this page, it's safe to say you're probably not a stranger to this platform. However, let's ensure everyone is on the same level and start with the basics.
+If you're on this page, it's safe to say you're probably not a stranger to Slack. However, let's ensure everyone is on the same level and start with the basics.
 
 According to a <NoFollowLink url="https://www.businessinsider.com/where-did-slack-get-its-name-2016-9?r=US&IR=T#:~:text=In%20a%20Twitter%20thread%20from,of%20All%20Conversation%20and%20Knowledge.%22">Business Insider article</NoFollowLink>, Slack stands for 'Searchable Log of All Conversation and Knowledge.' It's an enterprise software platform that was first introduced to the world in 2013 by Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov.
 
@@ -29,6 +29,8 @@ Interestingly, the journey of Slack is intertwined with a gaming company. <NoFol
   width={1744}
   height={1014}
 />{" "}
+
+According to Cal (CTO of Slack), Slack was initially designed for teams of 5 to 50 people maximum. It quickly spread and team that were much bigger asked to use the platform, they had to spend a significant amount of time redesigning their software just to accept larger teams.
 
 Fast forward to the present day, and Slack is no longer just a messaging platform. It's a comprehensive ecosystem for integrations, with the ability to consolidate numerous services — from GitHub to Google Drive to Trello, and so much more, as outlined on the <NoFollowLink url="https://slack.com/apps">Slack's official apps </NoFollowLink>page. For developers, Slack is an invaluable tool, transforming casual chats into productive development discussions, complete with code snippets, issue tracking, and even executing commands via Slack apps.
 
@@ -312,7 +314,7 @@ This list has been defined from the article "Coordinating pull requests and code
 
 ## 6. Axolo as a Slack and GitHub Integration
 
-Axolo is an alternative to the official Slack and GitHub integration. It was born to help tech teams be more effective and productive in the way they communicate about pull requests.
+Axolo is an alternative to the official Slack and GitHub integration. It was born to go a step further in helping tech teams be more effective and productive in the way they communicate about pull requests.
 
 ### 6.1 Axolo Methodology
 
@@ -323,7 +325,13 @@ Axolo is an alternative to the official Slack and GitHub integration. It was bor
   width="1028"
 />
 
-Axolo is a unique integration tool designed to streamline the process of reviewing pull requests by creating a temporary Slack channel for every GitHub pull request or GitLab merge request. The tool invites the author and reviewers to the channel and notifies them of relevant events such as code comments, GitHub Actions, Deployments, PR checks, or GitLab CI/CD. Once the pull request is closed or merged, Axolo archives the channel. This methodology provides a high-level view of the current sprint and allows for easy searching through open pull requests from any team-specific channel or with the /axolo command.
+Axolo is unique in its methodology. Unlike most Slack - GitHub bots, Axolo is designed to streamline the process of reviewing pull requests by creating a temporary Slack channel for every GitHub pull request or GitLab merge request. It invites the author and reviewers to the channel and notifies them of relevant events such as code comments, GitHub Actions, Deployments, PR checks, or GitLab CI/CD. Once the pull request is closed or merged, Axolo archives the channel.
+
+This methodology has three main benefits:
+
+1. **Faster Pull Request Merging:** By notifying the right people with the most important event (CI/CD, GitHub actions, code comments and comments) in a dedicated channel, Axolo makes reviewing pull request top of mind for the whole team.
+2. **Improved Codebase Quality:** Axolo facilitates comprehensive code reviews by fostering open communication around pull requests, leading to a more refined codebase.
+3. **Document conversations:** Before Axolo, discussions happenning in Slack on a specific pull requests were lost. Axolo, with it's two way synch, makes sure that all the conversations are documented in GitHub pull request.
 
 ### 6.2 Axolo integration guide
 
