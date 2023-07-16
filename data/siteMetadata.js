@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Next.js Starter Blog',
