@@ -1,5 +1,3 @@
-// import { PageSEO } from '@/components/SEO'
-import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { allCoreContent, sortedBlogPost } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
@@ -28,14 +26,11 @@ export default function Page({ params }: { params: { page: string } }) {
   }
 
   return (
-    <>
-      {/* <PageSEO title={siteMetadata.title} description={siteMetadata.description} /> */}
-      <ListLayout
-        posts={allCoreContent(posts)}
-        initialDisplayPosts={allCoreContent(initialDisplayPosts)}
-        pagination={pagination}
-        title="All Posts"
-      />
-    </>
+    <ListLayout
+      posts={allCoreContent(posts)}
+      initialDisplayPosts={allCoreContent(initialDisplayPosts)}
+      pagination={pagination}
+      title="All Posts"
+    />
   )
 }

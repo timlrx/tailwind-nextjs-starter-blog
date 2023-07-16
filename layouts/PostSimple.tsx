@@ -1,8 +1,8 @@
-import { useState, ReactNode } from 'react'
-import { Comments } from 'pliny/comments'
+import { ReactNode } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
+import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
@@ -17,8 +17,6 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const [loadComments, setLoadComments] = useState(false)
-
   const { path, slug, date, title } = content
 
   return (
@@ -47,10 +45,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             </div>
             {siteMetadata.comments && (
               <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                {!loadComments && (
-                  <button onClick={() => setLoadComments(true)}>Load Comments</button>
-                )}
-                {loadComments && <Comments commentsConfig={siteMetadata.comments} slug={slug} />}
+                <Comments slug={slug} />
               </div>
             )}
             <footer>

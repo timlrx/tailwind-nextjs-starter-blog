@@ -1,5 +1,6 @@
 import PageTitle from '@/components/PageTitle'
-import { Mdx } from '@/components/MDXComponents'
+import { components } from '@/components/MDXComponents'
+import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { sortedBlogPost, coreContent } from 'pliny/utils/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
@@ -104,7 +105,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
             {JSON.stringify(jsonLd)}
           </script>
           <PostLayout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-            <Mdx code={post.body.code} toc={post.toc} />
+            <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
           </PostLayout>
         </>
       )}
