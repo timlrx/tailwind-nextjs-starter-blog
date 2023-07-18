@@ -13,12 +13,12 @@ const Analytics = () => {
       {isProduction && siteMetadata.analytics.plausibleDataDomain && <Plausible />}
       {isProduction && siteMetadata.analytics.simpleAnalytics && <SimpleAnalytics />}
       {isProduction && siteMetadata.analytics.umamiWebsiteId && <Umami />}
-      {siteMetadata.analytics.googleAnalyticsId && (
+      {/* {siteMetadata.analytics.googleAnalyticsId && (
         <GoogleAnalytics
           trackPageViews
           gaMeasurementId={siteMetadata.analytics.googleAnalyticsId}
         />
-      )}
+      )} */}
     </>
   )
 }
