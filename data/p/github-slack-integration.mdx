@@ -1,0 +1,425 @@
+---
+title: "GitHub Slack Integration"
+date: "2023-07-17"
+lastmod: "2023-07-17"
+tags: ["GITHUB", "SOFTWARE-DEVELOPMENT", "Slack"]
+draft: false
+summary: "GitHub and Slack Integration Guide. From setup and key features to effective communication and security best practices. Explore customization options, including webhooks and custom Slack bots."
+image: "/blog/static/images/github-slack-integration/github slack integration.jpg"
+authors: ["sydney"]
+---
+
+## 1. Introduction to Slack and GitHub Integration
+
+<TOCInline toc={props.toc} toHeading={4} asDisclosure />
+
+### 1.1 What is Slack?
+
+If you're on this page, it's safe to say you're probably not a stranger to Slack. However, let's ensure everyone is on the same level and start with the basics.
+
+According to a <NoFollowLink url="https://www.businessinsider.com/where-did-slack-get-its-name-2016-9?r=US&IR=T#:~:text=In%20a%20Twitter%20thread%20from,of%20All%20Conversation%20and%20Knowledge.%22">Business Insider article</NoFollowLink>, Slack stands for 'Searchable Log of All Conversation and Knowledge.' It's an enterprise software platform that was first introduced to the world in 2013 by Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov.
+
+Interestingly, the journey of Slack is intertwined with a gaming company. <NoFollowLink url="https://techcrunch.com/2019/05/30/the-slack-origin-story/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAL-IdxmGuwrQtLal33eG33j7JHOA0q4rrPZZCgOQbldqVUC3gMe2zM5cUH4bcqHqePxLBmk85KlV-tnILz0i0lzT9tZCsgRERuEew1duVZhjVQzosK_7SXBA8sryjKwftCX4Z3e6QkhiaN7Q6K4axY1LnNVVrDDDhGd4Eqff8jXC">TechCrunch's article</NoFollowLink> narrates how Slack was originally a communication tool developed for a team working on an online game named 'Glitch.' When the game failed to make a mark, the team realized the tool they'd developed had a much broader appeal and could meet the communication needs of teams worldwide. Thus, Slack, as we know it, was born.
+
+<ImageContainer
+  alt="glitch"
+  src="/blog/static/images/github-slack-integration/glitch.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1744}
+  height={1014}
+/>{" "}
+
+According to Cal (CTO of Slack), Slack was initially designed for teams of 5 to 50 people maximum. It quickly spread and team that were much bigger asked to use the platform, they had to spend a significant amount of time redesigning their software just to accept larger teams.
+
+Fast forward to the present day, and Slack is no longer just a messaging platform. It's a comprehensive ecosystem for integrations, with the ability to consolidate numerous services — from GitHub to Google Drive to Trello, and so much more, as outlined on the <NoFollowLink url="https://slack.com/apps">Slack's official apps </NoFollowLink>page. For developers, Slack is an invaluable tool, transforming casual chats into productive development discussions, complete with code snippets, issue tracking, and even executing commands via Slack apps.
+
+In essence, Slack is far more than a platform for chatting. It's a central hub designed to streamline your development workflow. And if you didn't know what Slack was... well, we promise we won't spill the beans to your fellow developers.
+
+### 1.2 What is GitHub?
+
+There are very high changes you also know what GitHub is. But let's take this opportunity to give you some fun facts and history about GitHub.
+GitHub is a web-based hosting service for version control using Git. It's the haven where developers store their projects and network with like minds. (<NoFollowLink url="https://en.wikipedia.org/wiki/GitHub">Source Wikipedia</NoFollowLink>)
+
+Launched in 2008 by Tom Preston-Werner, Chris Wanstrath, and PJ Hyett, GitHub was not just another project hosting service. It was conceived with a mission to simplify collaboration among developers, foster innovation, and create a platform where developers could showcase their work to the world.
+
+The inception of GitHub ushered in a new era of social coding. It transformed Git, a powerful but complex command-line tool, into a user-friendly platform that enabled developers to collaborate on projects irrespective of their geographical location.
+
+With its commitment to fostering open-source projects, GitHub quickly became a popular platform among developers. Over time, it has grown into a vast repository of code with contributions from millions of users worldwide.
+
+And here's an interesting tidbit: The octocat, GitHub's adorable mascot, was selected via a Twitter logo contest. A graphic designer named Simon Oxley submitted the winning design, which has since become one of the most recognizable symbols in the developer community. <NoFollowLink url="https://www.mend.io/blog/the-hidden-stories-behind-the-open-source-logos-we-all-love/">"The hidden stories behind the open-source logos we all love." Mend.io</NoFollowLink>
+
+<ImageContainer
+  alt="github Logosvg"
+  src="/blog/static/images/github-slack-integration/github Logosvg.svg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={246}
+  height={250}
+/>
+
+In a nutshell, GitHub is more than just a website for hosting code. It's a platform where developers learn, collaborate, contribute, and shape the future of software. And if you weren't quite familiar with GitHub before... well, we hope this makes up for lost time!"
+
+### 1.3 Purpose a of Slack and GitHub Integration
+
+The integration of Slack and GitHub bridges the gap between communication and code management, streamlining workflows and enhancing productivity within developer teams. It brings together the strengths of both platforms, fostering an environment where code and conversation coexist, enhancing transparency, efficiency, and collaboration.
+
+<br />
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/4jNY3UyWpGw"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+#### Purpose of Slack and GitHub Integration
+
+The main purpose of integrating Slack with GitHub is to ensure seamless and efficient communication within a development team about code updates, issues, pull requests, deployments, and more, without needing to switch context between these two critical platforms.
+
+1. **Real-time Updates**: By integrating Slack with GitHub, you can receive real-time notifications in your Slack workspace about activities in your GitHub repositories, such as commits, pull requests, issues, and more. This enables your team to stay informed and respond promptly to changes.
+
+2. **Collaboration**: When GitHub is connected with Slack, it becomes possible to discuss code changes, review pull requests, and troubleshoot issues directly from your Slack channels. This helps foster a collaborative environment where team members can contribute their ideas and feedback more easily.
+
+3. **Workflow Automation**: With Slack-GitHub integration, you can use Slack commands to perform actions on GitHub, such as closing an issue, merging a pull request, or even triggering a new build. This reduces context switching and improves your team's efficiency.
+
+<UserReview />
+
+### 1.4 Notable Benefits of Slack and GitHub Integration
+
+Integrating Slack with GitHub presents an array of notable benefits that significantly improve team dynamics, streamline workflows, and enhance overall productivity. Here are some of the key advantages of this integration:
+
+1. **Productivity Boost**: By funneling real-time notifications about GitHub activities directly into Slack, developers can focus more on coding and less on manually tracking project updates. This seamless flow of information reduces context switching, minimizes distraction, and improves overall productivity.
+
+2. **Enhanced Transparency**: Slack and GitHub integration improves transparency within development teams. GitHub activities and updates are brought into the relevant Slack channels, making every team member privy to the project's progress. This shared understanding promotes better alignment within the team and ensures everyone is on the same page.
+
+3. **Accelerated Problem-Solving**: By bringing together GitHub's code hosting and version control capabilities with Slack's communication features, problem-solving becomes significantly faster. Developers can discuss, review, and resolve code changes and issues directly within Slack, leading to quicker resolutions and a more efficient development process.
+
+4. **Fostering a Learning Environment**: Besides operational efficiency, the integration of Slack and GitHub fosters a culture of continuous learning and engagement. Developers can learn from each other by observing and participating in code discussions and reviews directly within Slack, contributing to shared knowledge and enhancing individual and team skills.
+
+In summary, the Slack and GitHub integration is a potent tool for any development team. It not only optimizes workflows but also promotes a transparent, engaged, and continuously learning development environment.
+
+## 2. Setting Up Slack and GitHub Integration
+
+Setting up an integration between Slack and GitHub requires a few key steps. Here we'll walk you through each step of the process, from the prerequisites to the detailed configuration settings.
+
+### 2.1 Essential Prerequisites for Integration
+
+Before starting the integration process, ensure that you have the following:
+
+1. **GitHub Account**: You need a GitHub account with admin access to the repositories you wish to connect to Slack.
+2. **Slack Workspace**: You need access to a Slack workspace where you can install apps and send notifications.
+3. **Admin Permissions**: You need the appropriate administrative permissions on both platforms to install and configure apps.
+
+### 2.2 Guide to Creating a Slack Workspace
+
+If you don't already have a Slack workspace or if you want to create one for testing purposes, here is the fastest way to create one:
+
+1. Visit the Slack 'Create a new workspace' page: [Get Started with Slack](https://slack.com/get-started#/createnew).
+2. Enter your email address and click 'Next'.
+3. You will receive a confirmation code in your email. Enter this code in the provided field and click 'Next'.
+4. Now, enter the name of your company or team and click 'Next'.
+5. Next, enter a project that you're working on. This could be anything from 'Website Redesign' to 'Annual Budget'. Click 'Next'.
+6. Your workspace is now ready to use.
+
+### 2.3 How to Install the GitHub App on Slack
+
+1. Install the GitHub app from the Slack directory here: [GitHub App](https://slack.com/apps/A01BP7R4KNY-github)
+2. Click on 'Add to Slack'.
+3. Choose a Slack workspace where you want to install the GitHub app.
+4. Authorize the app to access your workspace.
+
+### 2.4 Configuring the Integration Settings in Detail
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    style={{ borderRadius: "0.5rem", maxWidth: "400px" }}
+    alt="GitHub Slack Integration Screenshot"
+    src="/blog/static/images/top5/slackgithub.png"
+  />
+</div>
+
+We wrote a detailed guide on 4 differents ways to subscribe to pull requests here: [Github: 4 ways to subscribe to pull requests](https://axolo.co/blog/p/Github-4-ways-to-subscribe-to-pull-requests).
+
+Below is a simpliest way to configure but you'll find the official documentation here: [Official GitHub Slack documentation](https://github.com/integrations/slack#installing-the-github-integration-for-slack).
+
+Once you've installed the GitHub app on your Slack workspace, you'll need to configure the integration settings.
+
+1. **Connect a GitHub repository to a Slack channel**: To connect a repository with a channel, go to the channel and type `/github subscribe [owner]/[repo]`, replacing `[owner]` and `[repo]` with the owner's username and the repository name respectively.
+2. **Set up notifications**: You can customize what notifications you receive in Slack by typing `/github subscribe [owner]/[repo] [feature]`, where `[feature]` is the type of notification like issues, pulls, etc.
+3. **Link GitHub and Slack accounts**: To link your GitHub and Slack accounts, type `/github signin` in Slack.
+
+Remember, all these commands should be typed directly in the message box in your Slack channel.
+
+With this setup complete, you're ready to start harnessing the power of the Slack and GitHub integration!
+
+## 3. Exploring Collaboration Features: A Deep Dive into GitHub and Slack Integration
+
+### 3.1 Understanding Notifications and Activity Feeds
+
+One of the key benefits of the Slack and GitHub integration is the ability to receive real-time notifications about various GitHub activities. These notifications can be customized to include various activities like commits, pull requests, and issues. Activity feeds provide a comprehensive view of repository activity, allowing your team to stay up-to-date without having to leave Slack.
+
+### 3.2 Strategy for Creating and Managing Slack Channels for Different Repositories
+
+A recommended strategy for managing GitHub notifications in Slack is to create individual Slack channels for different repositories. This way, team members can join channels relevant to their work, reducing notification noise and improving focus. Commands like `/github subscribe [owner]/[repo]` can be used to link a GitHub repository to a specific Slack channel.
+
+### 3.3 Methodology to Link Pull Requests and Issues to Slack Conversations
+
+You can discuss GitHub pull requests and issues directly in Slack. When a new pull request or issue is created, a notification is sent to the linked Slack channel. These notifications include a link that allows you to view the issue or pull request in GitHub. By clicking on 'Open in GitHub', you can seamlessly move to GitHub for more detailed actions or view, keeping the conversation flowing in Slack.
+
+### 3.4 Deep Dive into Commit Messages and Their Implications
+
+Commit messages are crucial for understanding code changes in any development workflow. With Slack and GitHub integration, commit messages are shared in the linked Slack channel. These messages include the commit author, the files changed, and the commit message, providing context and clarity about each change made.
+
+### 3.5 A Comprehensive Guide to Managing GitHub Actions with Slack
+
+GitHub Actions help automate software workflows. By integrating GitHub Actions with Slack, you can receive notifications about the status of your actions, monitor workflows, and quickly react if something goes wrong. For instance, you can get notified when a build fails or when a new deployment is initiated, all within your Slack channels.
+
+We wrote a detailed guide on how to use Slack with GitHub Actions here: [How to use Slack with GitHub Actions](https://axolo.co/blog/p/top-4-github-action-slack-integration).
+
+### 3.6 Harnessing the Power of Slack Commands for GitHub Actions
+
+Slack commands are a powerful tool for managing GitHub Actions. You can use commands like `/github run [workflow]` to manually trigger a GitHub Action. By harnessing these commands, you can automate workflows directly from Slack, further enhancing productivity and efficiency.
+
+### 3.7 Tracking Your Build's Progress: A Look at Deployment Status on Slack
+
+Keeping track of your build's progress is essential to ensure smooth and successful deployments. By integrating Slack with GitHub, you can receive updates about your deployment status right in your Slack channels. From the start of a deployment to its successful completion or any potential issues, every update can be promptly communicated, allowing for faster responses and efficient troubleshooting.
+
+## 4. Customization and Extensibility
+
+The power of Slack's GitHub integration lies in its customization and extensibility. In this section, we delve deeper into various methods of tailoring Slack and GitHub to achieve a robust, advanced integration.
+
+### 4.1 Exploring the Integration of Slack Bots with GitHub
+
+Slack bots offer a great potential in customizing the interaction with GitHub. By developing and integrating custom Slack bots, you can automate a variety of tasks, receive alerts about specific events, and even command these bots to execute GitHub operations directly from Slack.
+
+For example, a Slack bot can be programmed to respond to a particular command, say "/merge," which could be used by team members to merge a specified GitHub pull request. This not only saves time but also streamlines workflow by avoiding the need to switch between platforms.
+
+Moreover, these bots can also monitor GitHub for changes like new commits, pull requests, or comments, and then alert the team members in the Slack channels.
+
+### 4.2 Building Custom Slack Apps for Advanced GitHub Integration
+
+<ImageContainer
+  alt="slackBlockKitBuilder"
+  src="/blog/static/images/buildvsbuy/slackBlockKitBuilder.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3922}
+  height={2128}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  The Slack Block Kit builder helps you make rich and interactive notifications.
+</SubImageText>
+
+Custom Slack apps offer a step further in integrating GitHub with Slack. They can be built to deliver sophisticated functionalities beyond the scope of bots. Custom Slack apps can integrate deeply with both Slack and GitHub, offering a rich palette of features.
+
+For example, a custom Slack app could be developed to analyze your team's GitHub activities. The app could report on the most active contributors, the number of commits per day, and even predict the project's completion date based on past productivity rates.
+
+Moreover, custom apps can be used to create workflows that cross the boundaries of both platforms. Imagine triggering a complex CI/CD pipeline on GitHub with a simple slash command in Slack. These types of interactions can truly revolutionize the way teams work together.
+
+We wrote a detailed Guide on how to create your first [GitHub bot to send notifications in Slack](https://axolo.co/blog/p/create-your-first-github-bot)
+
+### 4.3 Employing Webhooks for Sophisticated Automation
+
+<ImageContainer
+  alt="githubevents"
+  src="/blog/static/images/buildvsbuy/githubevents.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2212}
+  height={1990}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  GitHub webhooks dashboard overview.
+</SubImageText>
+
+Webhooks are a powerful way to create sophisticated automation between Slack and GitHub. They allow real-time communication between different servers - in this case, Slack and GitHub.
+
+For instance, a webhook can be created on GitHub that triggers when a new issue is opened. This could instantly notify a specific Slack channel about the issue, complete with a link to it. This instant, automated communication ensures that important updates are not lost in the fray of daily work.
+
+On the other hand, Slack can also send outgoing webhooks to GitHub. For example, an outgoing webhook can be set up in Slack to create a new GitHub issue whenever a particular keyword is mentioned in a Slack channel. This kind of cross-platform automation can greatly increase efficiency and ensure that important discussions are documented as GitHub issues.
+
+### 4.4 Profiling Third-party Slack and GitHub Integrations
+
+Beyond building your own custom bots and apps, there are numerous third-party Slack apps that integrate with GitHub. These apps can extend the capabilities of Slack and GitHub, providing functionalities that can fit any team's unique requirements.
+
+We wrote about the [top 5 GitHub Slack integration for pull requests here](https://axolo.co/blog/p/top-5-github-pull-request-slack-integration). Here is a quick table recap and a video to summarize them all:
+
+<div className='hide-mobile'>
+| Integration           | Collaborative (channel per PR) | CI/CD notifications | Access to code | PR Reminders | Standup Recap | Enterprise Ready | Pricing    | Note           |
+| --------------------- | ------------------------------ | ------------------- | -------------- | ------------ | ------------- | ---------------- | ---------- | -------------- |
+| Axolo                 | ✅                             | ✅                  | 🔴             | ✅           | ✅            | ✅               | 0-8\$/user | Best for teams |
+| Official GitHub Slack | 🔴                             | ✅                  | ✅             | ✅           | 🔴            | ✅               | Free       |                |
+| Toast.Ninja           | 🔴                             | 🔴                  | 🔴             | ✅           | 🔴            | ✅               | 4$/user    | Analytics      |
+| CodeKickBot           | 🔴                             | ❓                  | 🔴             | ✅           | 🔴            | 🔴               | 29$/Month  |                |
+| PR Chat               | 🔴                             | 🔴                  | 🔴             | 🔴           | 🔴            | 🔴               | Free       |                |
+
+</div>
+
+<br />
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/lzC-UX0v0q8"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+## 5. Best Practices for Slack and GitHub Integration
+
+Successfully integrating Slack and GitHub can significantly boost the productivity of your team. However, it's important to adhere to best practices to make the most of this integration.
+
+### 5.1 Effective Communication Guidelines for Integration
+
+This list has been defined from the article "Coordinating pull requests and code reviews in Slack" (<NoFollowLink url="https://slack.com/blog/collaboration/coordinating-pull-requests-and-code-reviews-in-slack">Source Slack</NoFollowLink>)
+
+1. **Define clear rules:** Establish protocols for communication to prevent Slack channels from becoming cluttered. For example, define when to use @channel, @here, or @everyone.
+2. **Use thread replies:** For GitHub notifications, encourage team members to use thread replies in Slack to keep conversations organized.
+3. **Leverage emojis:** Emojis can act as a status indicator for tasks. For instance, a thumbs-up emoji could mean that a pull request has been reviewed.
+4. **Automate reminders:** Use Slack bots to send automatic reminders for due dates, pending reviews, and open pull requests.
+
+### 5.2 Best Practices for Repository and Channel Management
+
+1. **Channel per repository:** For larger teams, consider having a Slack channel for each GitHub repository. This keeps notifications and discussions focused.
+2. **User access management:** Ensure proper user access management both on Slack and GitHub. Regularly review and update user permissions to maintain security.
+3. **Clean up inactive channels and repositories:** To prevent clutter, regularly archive inactive Slack channels and GitHub repositories.
+
+### 5.3 Critical Security Considerations
+
+1. **Manage tokens and credentials carefully:** Never share tokens or credentials in Slack channels. Always use secure methods for sharing sensitive data.
+2. **Monitor third-party apps:** Ensure third-party apps are from trusted sources and review their access permissions regularly.
+3. **Encourage 2FA:** Two-factor authentication provides an extra layer of security. Encourage its use on both Slack and GitHub.
+4. **Regular audits:** Regularly audit user access, app permissions, and repositories for any possible security risks.
+
+### 5.4 Troubleshooting Common Issues
+
+1. **Update regularly:** Ensure both your Slack and GitHub applications are up-to-date. Many issues are often resolved through updates.
+2. **Reach out to support:** Both Slack and GitHub have robust support channels. If you're stuck, don't hesitate to reach out to them.
+3. **Consult the community:** There's a vast community of Slack and GitHub users. Many common issues have already been resolved within these communities, so they can be a valuable resource. Check this out here:
+
+<NoFollowLink url="https://github.com/integrations/slack/issues">
+  **GitHub Slack Issues**
+</NoFollowLink>
+
+## 6. Axolo as a Slack and GitHub Integration
+
+Axolo is an alternative to the official Slack and GitHub integration. It was born to go a step further in helping tech teams be more effective and productive in the way they communicate about pull requests.
+
+### 6.1 Axolo Methodology
+
+<Image
+  alt="Axolo Screenshot"
+  src="/blog/static/images/top5/axolo_screenshot.png"
+  height="637"
+  width="1028"
+/>
+
+Axolo is unique in its methodology. Unlike most Slack - GitHub bots, Axolo is designed to streamline the process of reviewing pull requests by creating a temporary Slack channel for every GitHub pull request or GitLab merge request. It invites the author and reviewers to the channel and notifies them of relevant events such as code comments, GitHub Actions, Deployments, PR checks, or GitLab CI/CD. Once the pull request is closed or merged, Axolo archives the channel.
+
+This methodology has three main benefits:
+
+1. **Faster Pull Request Merging:** By notifying the right people with the most important event (CI/CD, GitHub actions, code comments and comments) in a dedicated channel, Axolo makes reviewing pull request top of mind for the whole team.
+2. **Improved Codebase Quality:** Axolo facilitates comprehensive code reviews by fostering open communication around pull requests, leading to a more refined codebase.
+3. **Document conversations:** Before Axolo, discussions happenning in Slack on a specific pull requests were lost. Axolo, with it's two way synch, makes sure that all the conversations are documented in GitHub pull request.
+
+### 6.2 Axolo integration guide
+
+Installing Axolo on a workspace and on GitHub is plug and play but need some admin access both on Slack and GitHub. The best way to do it is to:
+
+1. **Install Axolo on Slack**: You can do that from https://axolo.co
+2. **Follow the Onboarding process**: Axolo will guide you through the process of installing Axolo on your GitHub organization.
+3. **Invite your teammates**: Axolo will ask you which team member you want to onboard and will send them an invitation on Slack.
+
+For more information you can check out our [documentation getting started page](https://axolo.co/docs/gettingstarted/installation).
+
+### 6.3 Axolo Features
+
+Axolo offers a range of features designed to streamline the code review process. These include:
+
+- **1 PR = 1 Channel**: Axolo creates a Slack channel for each PR, enabling teams to handle code reviews seamlessly.
+- **Two-way sync Slack and GitHub**: Axolo syncs code review discussions in Slack, helping to avoid context-switching.
+- **Daily pull request reminders**: Axolo sends reminders to the right people based on the status of your pull request.
+- **Team Notification Channels**: Axolo sends new pull request notifications in team channels and updates its content based on different actions such as a reviewer adding a review, or the pull request status changing.
+- **CI/CD Notifications in Slack**: Axolo sends CI/CD notifications automatically and passively in Slack in each pull request channel.
+- **Stand-ups**: Axolo can send daily PR recaps to specific channels to organize your stand-ups and keep your team in the loop and accountable.
+- **/axolo for pull requests recaps**: Axolo provides a simple command to find all your open PRs.
+- **Code review timeslots**: Axolo allows developers to specify when they are available for code review.
+
+### 6.4 Axolo for Enterprise
+
+Axolo is specifically tailored to meet the needs of Enterprise customers, offering a suite of features that make it an ideal choice for larger organizations:
+
+1. **Security**: Axolo prioritizes the security of your data. [Learn more about our security measures](https://axolo.co/security).
+2. **GDPR Compliance**: Axolo is fully compliant with GDPR regulations. [Read more about Axolo privacy policy](https://axolo.co/privacy).
+3. **Compatibility with Self-Hosted Instances**: Axolo can be integrated with self-hosted instances. For more information, refer to our [documentation guide on installing Axolo on GitHub enterprise server.](https://axolo.co/docs/gettingstarted/installation-github-enterprise-server).
+4. **Demo and Quote**: Interested in Axolo for your enterprise? [Contact us for a demo and a quote](https://axolo.co/axolo-for-business).
+
+### 6.5 Axolo community
+
+Axolo wouldn't be what it is today without its community. We have a dedicated Slack for our community composed of 200 engineers (as of July 14 2023). We actively seek feedback to improve the product daily. If you want to join our community, you can do it here: [Axolo Slack Community](https://join.slack.com/t/axolo-community/shared_invite/zt-s2vkbyt2-AACaP6tnQS0adwezMXVlHQ)
+
+<ImageContainer
+  alt="Axolo community"
+  src="/blog/static/images/github-slack-integration/Axolo community.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2882}
+  height={1756}
+/>{" "}
+
+## 7. Success Stories: Companies Excelling with Axolo as a Slack and GitHub Integration
+
+### 7.1 Case Study 1: Axolo and the Development Workflow at Prepared
+
+<ImageContainer
+  alt="preparedScreenshot"
+  src="/blog/static/images/prepared/preparedScreenshot.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3042}
+  height={1614}
+/>{" "}
+
+Prepared, a company whose primary mission is to bring lifesaving technology to 911 centers across the U.S., has found Axolo to be a game-changer in their software development workflow. Amirata, a senior software engineer at Prepared, shared his experience with Axolo, highlighting how it has transformed their software development workflow.
+
+Before Axolo, the team struggled with the notorious 'bad notifications' of GitHub, which often resulted in delays and unnecessary back-and-forth conversations on Slack or Huddle. Axolo addressed these issues by consolidating the notification process, routing all critical information to Slack, where developers naturally spend most of their time.
+
+With Axolo, the team at Prepared has been able to stay nimble and responsive to all challenges. The journey from feature ideation to implementation involves various stakeholders, including product managers, designers, and developers. PR reviews play a significant role in this process. With Axolo, the problems of chasing colleagues for a PR review or a reply on a comment have become a thing of the past.
+
+Axolo has proven to be a game-changer for software development teams, bringing cohesion and reducing unnecessary context switches. As Amirata's experience at Prepared demonstrates, Axolo can be instrumental in enhancing workflow, boosting productivity, and ensuring that teams can focus on what truly matters - the code. [Read more](https://axolo.co/blog/p/how-axolo-saves-lives)
+
+### 7.2 Case Study 2: Reducing Pull Request cycle time by 65% with Agency Analytics
+
+Blake Acheson, the CTO and cofounder of Agency Analytics, has been using Axolo for a year. He shared how Axolo has improved their code review process and reduced their pull request cycle time by 65%.
+
+Before Axolo, the main issue was the inefficient code review process in GitHub. It was quite burdensome and their notification system was far from intuitive. Given the high volume of activity, it was challenging to manage without a user-friendly Slack integration.
+
+After adopting Axolo, the bidirectional communication between GitHub and Slack has transformed their code review process. It has also bolstered their trunk-based development approach. The visibility of code reviews in Slack makes them a top priority for everyone, preventing delays and enabling them to deploy changes to production swiftly.
+
+The transition to using Axolo was smooth. At the beginning, they tested Axolo with just one team. As they grew comfortable with it, it became clear that there was no going back - it was simply a superior way to work. Gradually, they introduced it to the rest of the company.
+
+With Axolo, Agency Analytics has created a more collaborative environment for each pull request. The integration with Axolo has enhanced their communication, allowing for more thorough discussions about the changes proposed in each pull request. This has improved their architectural skills and enabled them to be more discerning before deploying to production. [Read more](https://axolo.co/blog/p/how-agency-analytics-reduced-pr-cycle-time-by-65-with-axolo)
+
+<div className="flex flex-col content-center items-center self-center">
+  <p className="my-0"></p>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/-g8KGsc8YMw"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<CTABanner type="try" />
