@@ -1,6 +1,7 @@
 import 'css/tailwind.css'
 import 'css/prism.css'
 import 'pliny/search/algolia.css'
+import 'katex/dist/katex.css'
 
 import { Inter } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
