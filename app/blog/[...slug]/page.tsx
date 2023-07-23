@@ -69,12 +69,15 @@ export const generateStaticParams = async () => {
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = params.slug.join('/')
-  console.log('begin generate for slug: %o', slug)
   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-  const postIndex = sortedPosts.findIndex((p) => encodeURIComponent(p.slug) === slug)
+  const postIndex = sortedPosts.findIndex(
+    (p) => encodeURIComponent(p.slug) === encodeURIComponent(slug)
+  )
   const prev = coreContent(sortedPosts[postIndex + 1])
   const next = coreContent(sortedPosts[postIndex - 1])
-  const post = sortedPosts.find((p) => encodeURIComponent(p.slug) === slug) as Blog
+  const post = sortedPosts.find(
+    (p) => encodeURIComponent(p.slug) === encodeURIComponent(slug)
+  ) as Blog
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
