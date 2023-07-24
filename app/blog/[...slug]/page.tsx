@@ -13,8 +13,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string[] }
 }): Promise<Metadata | undefined> {
-  const slug = params.slug.join('/')
-  const post = allBlogs.find((p) => encodeURIComponent(p.slug) === slug)
+  const slug = decodeURI(params.slug.join('/'))
+  const post = allBlogs.find((p) => p.slug === slug)
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
@@ -68,16 +68,12 @@ export const generateStaticParams = async () => {
 }
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
-  const slug = params.slug.join('/')
+  const slug = decodeURI(params.slug.join('/'))
   const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
-  const postIndex = sortedPosts.findIndex(
-    (p) => encodeURIComponent(p.slug) === encodeURIComponent(slug)
-  )
+  const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
   const prev = coreContent(sortedPosts[postIndex + 1])
   const next = coreContent(sortedPosts[postIndex - 1])
-  const post = sortedPosts.find(
-    (p) => encodeURIComponent(p.slug) === encodeURIComponent(slug)
-  ) as Blog
+  const post = sortedPosts.find((p) => p.slug === slug) as Blog
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
