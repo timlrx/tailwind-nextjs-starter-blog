@@ -1,12 +1,20 @@
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { sortedBlogPost, coreContent } from 'pliny/utils/contentlayer'
+import { sortPosts, coreContent } from 'pliny/utils/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
+import PostSimple from '@/layouts/PostSimple'
 import PostLayout from '@/layouts/PostLayout'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+
+const isProduction = process.env.NODE_ENV === 'production'
+const defaultLayout = 'PostLayout'
+const layouts = {
+  PostSimple,
+  PostLayout,
+}
 
 export async function generateMetadata({
   params,
@@ -69,7 +77,7 @@ export const generateStaticParams = async () => {
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = decodeURI(params.slug.join('/'))
-  const sortedPosts = sortedBlogPost(allBlogs) as Blog[]
+  const sortedPosts = sortPosts(allBlogs) as Blog[]
   const postIndex = sortedPosts.findIndex((p) => p.slug === slug)
   const prev = coreContent(sortedPosts[postIndex + 1])
   const next = coreContent(sortedPosts[postIndex - 1])
@@ -88,9 +96,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     }
   })
 
+  const Layout = layouts[post.layout || defaultLayout]
+
   return (
     <>
-      {post && 'draft' in post && post.draft === true ? (
+      {isProduction && post && 'draft' in post && post.draft === true ? (
         <div className="mt-24 text-center">
           <PageTitle>
             Under Construction{' '}
@@ -104,9 +114,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           <script type="application/ld+json" suppressHydrationWarning>
             {JSON.stringify(jsonLd)}
           </script>
-          <PostLayout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+          <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
             <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
-          </PostLayout>
+          </Layout>
         </>
       )}
     </>
