@@ -65,6 +65,9 @@ module.exports = () => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
+    images: {
+      domains: ['picsum.photos'],
+    },
     experimental: {
       appDir: true,
     },
