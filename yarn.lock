@@ -8951,9 +8951,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pliny@npm:0.1.0-beta.13":
-  version: 0.1.0-beta.13
-  resolution: "pliny@npm:0.1.0-beta.13"
+"pliny@npm:0.1.0":
+  version: 0.1.0
+  resolution: "pliny@npm:0.1.0"
   dependencies:
     "@docsearch/react": ^3.5.0
     "@giscus/react": ^2.3.0
@@ -8972,7 +8972,7 @@ __metadata:
     next: ">=13.0.0"
     react: ^17.0.2 || ^18.0.0
     react-dom: ^17.0.2 || ^18.0.0
-  checksum: 2fe4b10bb9b753de765eefcd8a1c9d7abebe941266bf18315a0156aaa2f096886df7743f1b3eadb64faf553cdae3b8c5733b74e8067cfb48972576fd92cf8c7a
+  checksum: 73b121459a512f75e54160f40d4054685e9ddf134915ecd96a08babe98bfe66eec447abdf93ee8f1d2c3c5b205a0426c44534509e7a51858503703cef3f7f49d
   languageName: node
   linkType: hard
 
@@ -10728,7 +10728,7 @@ __metadata:
     next: 13.4.12
     next-contentlayer: 0.3.4
     next-themes: ^0.2.1
-    pliny: 0.1.0-beta.13
+    pliny: 0.1.0
     postcss: ^8.4.24
     prettier: ^3.0.0
     prettier-plugin-tailwindcss: ^0.4.1
