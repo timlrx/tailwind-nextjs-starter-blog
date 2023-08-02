@@ -1,0 +1,143 @@
+---
+title: How Irwin went from building its own Slack bot to relying on Axolo for their code reviews
+date: "2023-08-02"
+tags: ["Customer-stories", "software-development", "productivity", "gitlab"]
+draft: false
+summary: "We were going to create our Slack bot. Prior to Axolo, the engineers were really just copy/pasting from GitLab to Slack. Obviously that's tedious work to copy and paste like that. As a side-project, we started working on our Slack bot to replace this copy/paste. We though of several other tasks the Slack bot could do.But it's difficult to find enough time in a day to build a Slack bot in addition to your work, and features, and other things that are important to your users. Then we found Axolo."
+image: "/blog/static/images/general/Irwin.jpg"
+layout: PostLayout
+canonicalUrl: irwin-shift-from-slackbot-to-axolo
+---
+
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row-reverse",
+  }}
+>
+  <ImageContainer
+    alt="richard michael"
+    src="/blog/static/images/irwin/richard.png"
+    classNameDiv="mx-10 lg:mx-20 max-w-[150px]"
+    classNameImage=""
+    width={300}
+    height={300}
+  />
+  <p style={{ flex: 1 }}>
+    Richard Michael is Director of Engineering at Irwin. He has 20 years of background in IT systems
+    all together. We sat down to discuss how Irwin went from building its internal Slackbot to
+    relying on Axolo to automate all their code review tedious tasks.
+  </p>
+</div>
+
+Struggling with a tedious code review process, Irwin, a SaaS platform builder for managing investor relations, found solace in Axolo. Richard Michael, the Director of Engineering at Irwin, shares how they made the successful transition.
+
+## The Old Routine: A Time-consuming Process
+
+Before Axolo, the code review process at Irwin was cumbersome. Engineers would copy the merge request URL from GitLab, then navigate to their specific team channel on Slack to paste the URL. To draw the team's attention, they'd add a brief description. Richard recalls, "It was a lot of repetitive work that took away valuable time from our engineers."
+
+To address this, the team started working on building an internal Slackbot, aiming to automate these tasks. However, juggling this with their regular responsibilities proved challenging.
+
+<Callout
+  title="It's difficult to find enough time in a day to build a Slack bot in addition to your work, and features, and other things that are important to your users."
+  subtitle="Then we found Axolo."
+/>
+
+## Irwin: Empowering Investor Relations
+
+Crafted by a dedicated team of entrepreneurial visionaries, Irwin is more than just a software solution - it's a revolution in investor relations and capital markets. Our platform serves as an indispensable tool for forward-thinking public companies and their advisors navigating the intricate investment landscape.
+
+Irwin is equipped with state-of-the-art technology and backed by robust industry data, award-winning support, and insightful content. We're proud to support thousands of Investor Relations Officers (IROs) across the globe, enhancing their relationship management capabilities.
+
+<ImageContainer
+  alt="Irwin platform"
+  src="/blog/static/images/irwin/irwin-platform.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1220}
+  height={600}
+/>
+
+I've had the privilege of steering Irwin's engineering endeavours as Director for over a year and a half. The journey continues to be a fulfilling exploration of cutting-edge solutions and innovative strategies.
+
+## Team structure and roles in our engineering team at Irwin
+
+<ImageContainer
+  alt="Irwin team"
+  src="/blog/static/images/irwin/irwin-team.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={980}
+  height={500}
+/>
+
+At Irwin, we're a compact, efficient team of around 20 engineers. Each of us brings unique skills and perspectives to the table, contributing to the rich diversity of our engineering approach.
+
+In terms of leadership, there's a small group managing our direction: our CTO, another Director of Engineering, and myself. Our main role is to ensure smooth coordination across the team and to provide strategic input when needed.
+
+## Engineering the Irwin Way: A Product-Driven Approach
+
+At Irwin, our engineering philosophy is rooted in a product-centric approach. We design our SaaS application with the end user in mind, breaking down complex features into manageable project teams. Each team is led by a product owner who ensures a relentless focus on the product vision and user needs.
+
+Smaller features and maintenance work are handled more individually. We have a dedicated team that excels at resolving any arising issues, ensuring that our product continues to deliver high performance and meet user expectations.
+
+Instead of adhering strictly to sprint-based workflows, we lean towards a more flexible, long-term approach. Our system is dynamic rather than rigid, allowing us to adapt to changing needs and circumstances. We emphasize accurate estimation, striving to predict project timelines as precisely as possible. While larger projects may span several months, most of our work is usually accomplished within a couple of months.
+
+This blend of flexibility and focus is central to our engineering ethos at Irwin, and it has served us well as we continue to build and improve our SaaS platform.
+
+## Enter Axolo: Streamlining Code Reviews
+
+When Axolo came onto the scene, it was a game-changer for the Irwin team. The transition was seamless, barring a few minor authentication issues. Richard says, "It was much faster and easier than completing our Slack bot. The team adapted quickly, and the conversation moved to the Slack MR channel."
+
+<a href="https://axolo.co" target="_blank">
+  <ImageContainer
+    alt="axolo"
+    src="/blog/static/images/productivity/axolo.png"
+    classNameDiv=""
+    classNameImage=""
+    width={1172}
+    height={732}
+  />
+</a>
+
+With Axolo, the code review process became far more streamlined. Axolo automatically provided crucial details in Slack:
+
+- Mergeable status,
+- The reviewers,
+- The assignees.
+
+<br />
+<Callout
+  title="Everyone on the team adjusted very quickly. Updating the MR status in Slack makes it quick and easy to adapt, they like interacting in the Slack MR channel."
+  subtitle="Conversations take place there now."
+/>
+
+## The Impact: Increased Visibility and Efficiency
+
+The introduction of Axolo into the Irwin team's workflow brought visibility and transparency.
+
+**"Being able to stay in Slack, assign yourself as a reviewer, get automatic updates on MR status changes - these little things have made a huge difference,"Richard elaborates.**
+
+According to Richard, Axolo has saved significant time for the engineers. As a director of engineering, Richard also appreciated the regular updates about Axolo's new features and capabilities.
+
+One specific use case on how Axolo has helped Irwin's team is the ability to assign reviewers:
+When creating the Merge Request on GitLab, we don't assign reviewers. With Axolo, each new merge request is sent to our team channel and reviewers assign themselves as reviewer using your 🔎 reaction.
+
+> In an Axolo team channel, if you click on the 🔎 reaction, Axolo will assign you as a reviewer and invite you to the channel.
+
+<ImageContainer
+  alt="team channel notification Axolo"
+  src="/blog/static/images/irwin/mag.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={830}
+  height={379}
+/>
+
+## Looking Ahead: More Axolo, Less Hassle
+
+For Richard and his team, Axolo has filled a crucial gap in their engineering process. As they look ahead, they hope to continue leveraging Axolo's features and updates to further streamline their workflow.
+
+<CTABanner type="try" />
