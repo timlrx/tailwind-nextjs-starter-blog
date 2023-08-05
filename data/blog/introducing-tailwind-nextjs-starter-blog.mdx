@@ -60,7 +60,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Blog templates
 - TOC component
 - Support for nested routing of blog posts
-- Newsletter component with support for mailchimp, buttondown, convertkit, klaviyo, revue, and emailoctopus
+- Newsletter component with support for mailchimp, buttondown and convertkit
 - Supports [giscus](https://github.com/laymonage/giscus), [utterances](https://github.com/utterance/utterances) or disqus
 - Projects page
 - Preconfigured security headers
@@ -77,27 +77,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 
 ## Quick Start Guide
 
-1. Try installing the starter using the new [Pliny project CLI](https://github.com/timlrx/pliny):
-
-```bash
-npm i -g @pliny/cli
-pliny new --template=starter-blog my-blog
-```
-
-It supports the updated version of the blog with Contentlayer, optional choice of TS/JS and different package managers as well as more modularized components which will be the basis of the template going forward.
-
-Alternatively to stick with the current version, TypeScript and Contentlayer:
-
-```bash
-npx degit 'timlrx/tailwind-nextjs-starter-blog#contentlayer'
-```
-
-or JS (official support)
-
-```bash
-npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git
-```
-
+1. JS (official support) - `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git` or TS (community support) - `npx degit timlrx/tailwind-nextjs-starter-blog#typescript`
 2. Personalize `siteMetadata.js` (site related information)
 3. Modify the content security policy in `next.config.js` if you want to use
    any analytics provider or a commenting solution other than giscus.
@@ -157,7 +137,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 Frontmatter follows [Hugo's standards](https://gohugo.io/content-management/front-matter/).
 
-Currently 7 fields are supported.
+Currently 10 fields are supported.
 
 ```
 title (required)
@@ -211,4 +191,4 @@ Using the template? Support this effort by giving a star on GitHub, sharing your
 
 ## Licence
 
-[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/master/LICENSE) © [Timothy Lin](https://www.timrlx.com)
+[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/LICENSE) © [Timothy Lin](https://www.timrlx.com)
