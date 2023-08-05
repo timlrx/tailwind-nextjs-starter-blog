@@ -27,7 +27,9 @@ Using the template? Feel free to create a PR and add your blog to this list.
 
 ## Examples V1
 
-Many thanks to the community for sharing their blogs and contributing to the template in various ways. If you have updated from version 1 to version 2, feel free to remove your blog from this list and add it to the above one.
+[v1-blogs-showcase.webm](https://github.com/timlrx/tailwind-nextjs-starter-blog/assets/28362229/2124c81f-b99d-4431-839c-347e01a2616c)
+
+Thanks to the community of users and contributers to the template! We are no longer accepting new blog listings over here. If you have updated from version 1 to version 2, feel free to remove your blog from this list and add it to the above one.
 
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [Aloisdg's cookbook](https://tambouille.vercel.app/) - with pictures and recipes!
