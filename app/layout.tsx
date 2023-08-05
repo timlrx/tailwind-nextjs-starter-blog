@@ -1,7 +1,5 @@
 import 'css/tailwind.css'
-import 'css/prism.css'
 import 'pliny/search/algolia.css'
-import 'katex/dist/katex.css'
 
 import { Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
