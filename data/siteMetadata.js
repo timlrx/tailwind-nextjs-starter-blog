@@ -80,10 +80,10 @@ const siteMetadata = {
      provider: 'algolia',
      algoliaConfig: {
     //   // The application ID provided by Algolia
-       appId: 'RVUT1GVJ4T',
+       appId: 'UBSXAW54FU',
     //   // Public API key: it is safe to commit it
-       apiKey: 'f9c7fa0697af049a990ea775f991ebc0',
-       indexName: 'docsearch',
+       apiKey: 'fd2b0f2982a656a2dfc70b2f1f28bc1ba',
+       indexName: ' ',
      },
   },
 }
