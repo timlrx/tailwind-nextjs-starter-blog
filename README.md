@@ -38,7 +38,6 @@ Many thanks to the community for sharing their blogs and contributing to the tem
 - [fiqrychoerudin.dev](https://www.fiqrychoerudin.dev/) - simple portfolio.
 - [irvin.dev](https://www.irvin.dev/) - Irvin Lin's personal site. Added YouTube embedding.
 - [KirillSo.com](https://www.kirillso.com/) - Personal blog & website.
-- [ghali.dev](https://ghali.dev) - Cyril's Blog
 - [slightlysharpe.com](https://slightlysharpe.com) - [Tincre's](https://tincre.com) main company blog
 - [blog.b00st.com](https://blog.b00st.com) - [b00st.com's](https://b00st.com) main music promotion blog
 - [astrosaurus.me](https://astrosaurus.me/) - Ephraim Atta-Duncan's Personal Blog
@@ -47,11 +46,9 @@ Many thanks to the community for sharing their blogs and contributing to the tem
 - [honghong.me](https://honghong.me) - Tszhong's personal website ([source code](https://github.com/tszhong0411/home))
 - [marceloformentao.dev](https://marceloformentao.dev) - Marcelo Formentão personal website ([source code](https://github.com/marceloavf/marceloformentao.dev)).
 - [abiraja.com](https://www.abiraja.com/) - with a [runnable JS code snippet component!](https://www.abiraja.com/blog/querying-solana-blockchain)
-- [einargudni.com](https://www.einargudni.com) - with a customized theme, command pallette and more ([source code](https://github.com/einargudnig/einargudni.com))
 - [bpiggin.com](https://www.bpiggin.com) - Ben Piggin's personal blog
 - [maqib.cn](https://maqib.cn) - A blog of Chinese front-end developers 狂奔小马的博客 ([源码](https://github.com/maqi1520/nextjs-tailwind-blog))
 - [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
-- [kittan.ru](https://www.kittan.ru/) - Kittanb's personal blog about linux ([source code](https://github.com/kittanb/blog))
 - [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog ([source code](https://github.com/dlarroder/dalelarroder))
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
 - [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
