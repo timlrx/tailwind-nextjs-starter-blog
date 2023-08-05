@@ -82,7 +82,7 @@ const siteMetadata = {
     //   // The application ID provided by Algolia
        appId: 'UBSXAW54FU',
     //   // Public API key: it is safe to commit it
-       apiKey: 'fd2b0f2982a656a2dfc70b2f1f28bc1ba',
+       apiKey: 'd2b0f2982a656a2dfc70b2f1f28bc1ba',
        indexName: 'docsearch',
      },
   },
