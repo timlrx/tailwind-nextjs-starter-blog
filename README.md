@@ -22,6 +22,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 ## Examples V2
 
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
+- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -31,7 +32,6 @@ Using the template? Feel free to create a PR and add your blog to this list.
 
 Thanks to the community of users and contributers to the template! We are no longer accepting new blog listings over here. If you have updated from version 1 to version 2, feel free to remove your blog from this list and add it to the one above.
 
-- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [Aloisdg's cookbook](https://tambouille.vercel.app/) - with pictures and recipes!
 - [GautierArcin's demo with next translate](https://tailwind-nextjs-starter-blog-seven.vercel.app/) - includes translation of mdx posts, [source code](https://github.com/GautierArcin/tailwind-nextjs-starter-blog/tree/demo/next-translate)
 - [David Levai's digital garden](https://davidlevai.com/) - customized design and added email subscriptions
