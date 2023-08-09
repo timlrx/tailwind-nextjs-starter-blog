@@ -36,7 +36,7 @@ You can find the video recording here or a summary of our conversation below the
 <br></br>
 <br></br>
 
-# How has been using Axolo so far?
+## How has been using Axolo so far?
 
 It's been an exciting experience. Currently, we have around 50 to 60 engineers from eight different teams using the application. GitHub's notification system for the code review process is subpar. When we discovered Axolo, it was a game-changer.
 
@@ -44,7 +44,7 @@ I'm not sure who initially suggested using Slack, but once we adopted your app, 
 
 <br></br>
 
-# What is Agency Analytics ?
+## What is Agency Analytics ?
 
 <ImageContainer alt="AgencyAnalytics" src="/blog/static/images/agencyanalytics/AgencyAnalytics.webp" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1200} height={794} />
 
