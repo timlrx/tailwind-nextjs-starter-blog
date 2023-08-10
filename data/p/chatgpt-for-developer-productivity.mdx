@@ -1,15 +1,17 @@
 ---
-title: "10 Ways to use chatGPT for developer productivity"
-date: "2023-06-27"
-lastmod: "2023-06-27"
+title: "8 ways ChatGPT will make you a more productive developer"
+date: "2023-08-10"
 tags: ["SOFTWARE-DEVELOPMENT", "DEVELOPER-PRODUCTIVITY", "CODE-REVIEW", "GITHUB"]
-draft: true
-summary: ""
+draft: false
+summary: "Beyond simple chat interactions, ChatGPT can understand code, suggest improvements, and even troubleshoot errors. With natural language processing at its core, it provides meaningful interactions that can be beneficial to developers."
 image: "/blog/static/images/general/code-quality.jpg"
 authors: ["sydney"]
 ---
 
-# ChatGPT for developer productivity and its limitation
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+<br />
+
+# ChatGPT for developer productivity
 
 Beyond simple chat interactions, ChatGPT can understand code, suggest improvements, and even troubleshoot errors. With natural language processing at its core, it provides meaningful interactions that can be beneficial to developers.
 
@@ -19,18 +21,24 @@ Beyond simple chat interactions, ChatGPT can understand code, suggest improvemen
 
 # 8 ways ChatGPT can help developer productivity
 
-1. Refactoring and suggestions
-   ChatGPT Is surprisingly good at refactoring code and giving suggestions on code smells and bad practices.
-   Here is the prompt I usually like to use for asking ChatGPT to refactor and give me suggestions:
+## 1. Refactoring and suggestions
+
+ChatGPT Is surprisingly good at refactoring code and giving suggestions on code smells and bad practices.
+
+Here is the prompt I usually like to use for asking ChatGPT to refactor and give me suggestions:
 
 ```
-Please review the following code snippet. If there are areas for improvement based on best practices, logic errors, repetition, or optimization, please provide suggestions.
+Please review the following code snippet. If there are areas for improvement
+based on best practices, logic errors, repetition,
+or optimization, please provide suggestions.
 ```
 
 Here is an example of how I use that:
 
-```
-Please review the following code snippet. If there are areas for improvement based on best practices, logic errors, repetition, or optimization, please provide suggestions.
+```javascript
+Please review the following code snippet.
+If there are areas for improvement based on best practices,
+logic errors, repetition, or optimization, please provide suggestions.
 
 function factorial(n) {
 	if (n < 0) {
@@ -44,6 +52,45 @@ function factorial(n) {
 }
 ```
 
+ChatGPT was able to give me a better version while explaining why it was better:
+
+Here is the better version:
+
+```javascript
+function factorial(n) {
+  if (n < 0 || !Number.isInteger(n)) {
+    throw new Error("Please provide a non-negative integer.")
+  }
+
+  let result = 1
+  for (let i = 2; i <= n; i++) {
+    result *= i
+  }
+  return result
+}
+```
+
+And the comments that ChatGPT made:
+
+```
+Your code snippet for calculating the factorial of a number looks good and will produce correct results for non-negative integers. However, there are a few points I'd like to touch upon:
+
+# Input validation:
+If n is not an integer, your function will still try to calculate the factorial. For instance, factorial(5.5) will run without error but produce an unexpected result. It might be a good idea to validate if n is an integer.
+
+# Recursive approach:
+Some might argue that a recursive approach is more "elegant" or intuitive for factorials. However, be aware that the recursive approach will hit a stack limit with larger values of n. Your iterative approach doesn't have this problem, so it's often more efficient and can handle bigger numbers. Still, if you'd like a sample of the recursive approach:
+
+# Handling larger numbers:
+JavaScript numbers can get imprecise with very large values. If you want to handle larger factorials, you might want to use a library like BigInteger to handle the arithmetic operations.
+
+# Input validation for integers:
+
+You can add a condition to check if n is an integer.
+```
+
+Here is a screenshot of the whole conversation:
+
 <ImageContainer
   alt="chatGPTsuggestions"
   src="/blog/static/images/chatGPT/chatGPTsuggestions.jpg"
@@ -53,9 +100,12 @@ function factorial(n) {
   height={3632}
 />{" "}
 
-3. Create PR summaries - with GitHub actions
-   You can have an automatic pull requestion description for each pull requests that you create on GitHub.
-   I suggest that it should not replace a human description but it can come as an addition to it. ChatGPT is good at summarizing facts and will help you make your PR history more readables.
+<UserReview />
+
+## 2. Create PR summaries - with GitHub actions
+
+You can have an automatic pull requestion description for each pull requests that you create on GitHub.
+I suggest that it should not replace a human description but it can come as an addition to it. ChatGPT is good at summarizing facts and will help you make your PR history more readables.
 
 This is the open source project I used to set up a GitHub actions to create automatic pull request descriptions: https://github.com/jbrocher/auto-pr-body-generator.
 
@@ -70,21 +120,27 @@ Here is an example of one our pull request body generated using ChatGPT and Chat
   height={1692}
 />{" "}
 
-5. Documentation - Explain a piece of code
-   Documentation is often overlooked by developers because it takes additional precious time. But the more time you spend writing good documentation the less time you'll spend figuring out for your future self, or the less time the next person will need to figure it out.
+## 3. Documentation - Explain a piece of code
+
+Documentation is often overlooked by developers because it takes additional precious time. But the more time you spend writing good documentation the less time you'll spend figuring out for your future self, or the less time the next person will need to figure it out.
 
 ChatGPT can come to the rescue, here is the prompt I like to use to generate documentation:
 
 ```
-You are a specialized code documentation assistant. Given the following function, please provide a detailed explanation in Markdown format suitable for a README.md file. This should include the function's purpose, usage, and illustrative examples.
+You are a specialized code documentation assistant. Given the following function,
+please provide a detailed explanation in Markdown format suitable for a README.md file.
+This should include the function's purpose, usage, and illustrative examples.
 ```
 
 Here is an example of the documentation that has been created for the Factorial function we used earlier:
 
+````markdown
 ### factorial Function
 
-Purpose
-The factorial function calculates the factorial of a given non-negative integer. In mathematics, the factorial of a non-negative integer n is the product of all positive integers less than or equal to n. It is denoted by n!.
+**Purpose**
+The factorial function calculates the factorial of a given non-negative integer.
+In mathematics, the factorial of a non-negative integer n is the product of all
+positive integers less than or equal to n. It is denoted by n!.
 
 ### Usage
 
@@ -122,12 +178,15 @@ try {
 ### Implementation Details
 
 The function starts by checking if the provided number n is negative or not an integer. If either of these conditions is true, it throws an error. Otherwise, it initializes a result variable to 1 and then multiplies it by every integer from 2 to n using a for loop. The final result is then returned.
+````
 
-## 6. Code reviews with GitHub Actions
+## 4. Code reviews with GitHub Actions
 
 You can have ChatGPT make code review and code suggestions for every new pull requests or every updated pull requests.
 
-Here is two open source tools I would recommend:
+I highly recommend using GPT 4, it's a little more pricey but still cheaper than developer time and the time that you earn by using GPT 4 instead of GPT 3.
+
+Here is two open source tools I recommend:
 
 | Feature/Aspect as 10th of august 2024 | [ChatGPT-CodeReview](https://github.com/anc95/ChatGPT-CodeReview) | [CodiumAI PR-Agent](https://github.com/Codium-ai/pr-agent)                                                                                                                                                 |
 | ------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -135,12 +194,14 @@ Here is two open source tools I would recommend:
 | **Stars**                             | 2.8k                                                              | 1.5k                                                                                                                                                                                                       |
 | **Forks**                             | 249                                                               | 88                                                                                                                                                                                                         |
 | **Issues**                            | 36                                                                | 14                                                                                                                                                                                                         |
-| **Main Features**                     | - GitHub Action integration<br>- Code review automation           | - Auto-Description<br>- PR Review<br>- Question Answering<br>- Code Suggestions<br>- Update Changelog                                                                                                      |
+| **Main Features**                     | - GitHub Action integration<br/>- Code review automation          | - Auto-Description<br/>- PR Review<br/>- Question Answering<br/>- Code Suggestions<br/>- Update Changelog                                                                                                  |
 | **Languages Used**                    | JavaScript (99.8%)                                                | Python (99.8%)                                                                                                                                                                                             |
 | **License**                           | ISC                                                               | Apache-2.0                                                                                                                                                                                                 |
 | **Contributors**                      | 26                                                                | 20                                                                                                                                                                                                         |
 | **Supported Git Providers**           | GitHub                                                            | GitHub, Gitlab, Bitbucket                                                                                                                                                                                  |
 | **Installation Methods**              | GitHub actions                                                    | Docker, GitHub Action, Run from source, Polling server, GitHub App                                                                                                                                         |
+
+And here is an example of how the code review suggestions appears in your pull requests.
 
 <ImageContainer
   alt="codereview-suggestions"
@@ -151,14 +212,17 @@ Here is two open source tools I would recommend:
   height={1450}
 />{" "}
 
-## 7. Generate tests
+## 5. Generate tests
 
 ChatGPT can help you generate basic tests for your code. I usually ask it to generate unit tests for a functions so that it gives me a good template to start with.
 
 Here is the prompt I use:
 
 ```
-You are a Jest testing expert. Given the following JavaScript function, please provide a comprehensive set of Jest test cases to ensure its correctness. Include necessary imports, describe blocks, and test cases.
+
+You are a Jest testing expert. Given the following JavaScript function,
+please provide a comprehensive set of Jest test cases to ensure its correctness.
+Include necessary imports, describe blocks, and test cases.
 ```
 
 Here is what the test it came up with for the factorial function we used earlier:
@@ -205,7 +269,7 @@ describe("factorial", () => {
 })
 ```
 
-## 8. Variable names
+## 6. Variable names
 
 This one comes in handy when I can think of a good variable name. I usually give some code and try to say in a few words what I'm trying to do with the variable or the function.
 
@@ -224,20 +288,23 @@ let factorialResult = factorial(5);
 This name clearly indicates that the variable holds the result of a factorial computation.
 ```
 
-9. Error explanation
-   Sometimes I'm too lazy to type my error in Google and look for a Stackoverflow answer, so I just copy paste my error and ask ChatGPT to tell me what it means and how to remediate it.
+## 7. Error explanation
+
+Sometimes I'm too lazy to type my error in Google and look for a Stackoverflow answer, so I just copy paste my error and ask ChatGPT to tell me what it means and how to remediate it.
 
 Here is the prompt I usually use:
 
 ```
-You are a troubleshooting expert. I've encountered the following error while working on my codebase. Here's the error message and context:
+You are a troubleshooting expert. I've encountered the following error while working on my codebase.
+Here's the error message and context:
 
 *********[Error message and any relevant code or logs]*********
 
-Can you provide an explanation, a solution and suggest steps to resolve this issue?
+Can you provide an 1. an explanation
+and 2. a solution or suggest steps to resolve this issue?
 ```
 
-10. AICommits
+## 8. AICommits
 
 Last but not least! AICommits is a helpfull cli tools for writing descriptive commits messages based on the staged files. It works great for smaller commits, and I use it when I'm not in the mood to spend too much time thinking about a description. It will give you a suggestion you can choose to use or not.
 
@@ -259,21 +326,4 @@ Last but not least! AICommits is a helpfull cli tools for writing descriptive co
   height={3456}
 />
 
-<SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  "This code is 100% bug-free. I'm sure of it." said Tommy leaving a mark on my screen with his
-  sweaty finger
-  <br /> - this never happened.
-</SubImageText>
-
-<span className="rainbow-button text-2xl font-bold hover:cursor-auto"></span>
-
-<NoFollowLink url=""></NoFollowLink>
-
 <CTABanner type="try" />
-
-<Callout
-  title="Collaborative environment for each pull request."
-  subtitle=' In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication.... This has improved our architectural skills and enabled us to be more discerning before deploying to production"'
-/>
-
-<UserReview />
