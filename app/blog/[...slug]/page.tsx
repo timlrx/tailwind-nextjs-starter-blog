@@ -116,9 +116,10 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         </div>
       ) : (
         <>
-          <script type="application/ld+json" suppressHydrationWarning>
-            {JSON.stringify(jsonLd)}
-          </script>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
             <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
           </Layout>
