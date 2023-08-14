@@ -1,0 +1,337 @@
+---
+title: "8 ways you can integrate ChatGPT 4 in your workflow to increase developer productivity"
+date: "2023-08-17"
+tags: ["SOFTWARE-DEVELOPMENT", "DEVELOPER-PRODUCTIVITY", "CODE-REVIEW", "GITHUB"]
+draft: true
+summary: "Beyond simple chat interactions, ChatGPT can understand code, suggest improvements, and even troubleshoot errors. With natural language processing at its core, it provides meaningful interactions that can be beneficial to developers."
+image: "/blog/static/images/general/ChatGPT.jpg"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+<br />
+
+# ChatGPT 4 for developer productivity
+
+Beyond simple chat interactions, ChatGPT can understand code, suggest improvements, and even troubleshoot errors. With natural language processing at its core, it provides meaningful interactions that can be beneficial to developers.
+
+## ChatGPT 4 Prompts for developer productivity
+
+The five prompts we mention in this article are listed here: [GitHub repository](https://github.com/axolo-co/prompt-developer-productivity)
+
+<YellowCalloutBox emoji="⚠️" title="Limitations">
+  While ChatGPT is a powerful tool, developers should be aware of its limitations. Over-relying on
+  its suggestions without understanding the reasoning can lead to sub-optimal code. It's vital to
+  ensure human oversight in the development process. It doesn't always understand context in the way
+  a human does. For instance, in complex projects where there are multiple intertwined systems, a
+  solution that might seem apt in isolation might not be the best fit for the broader system.
+</YellowCalloutBox>
+
+# 8 ways ChatGPT can help developer productivity
+
+## 1. Refactoring and suggestions
+
+ChatGPT Is surprisingly good at refactoring code and giving suggestions on code smells and bad practices.
+
+Here is the prompt I usually like to use for asking ChatGPT to refactor and give me suggestions:
+
+```
+Please review the following code snippet. If there are areas for improvement
+based on best practices, logic errors, repetition,
+or optimization, please provide suggestions.
+```
+
+Here is an example of how I use that:
+
+```javascript
+Please review the following code snippet.
+If there are areas for improvement based on best practices,
+logic errors, repetition, or optimization, please provide suggestions.
+
+function factorial(n) {
+	if (n < 0) {
+		throw new Error("Factorial is not defined for negative numbers.");
+	}
+	let result = 1;
+	for (let i = 2; i <= n; i++) {
+		result *= i;
+	}
+	return result;
+}
+```
+
+ChatGPT was able to give me a better version while explaining why it was better:
+
+Here is the better version:
+
+```javascript
+function factorial(n) {
+  if (n < 0 || !Number.isInteger(n)) {
+    throw new Error("Please provide a non-negative integer.")
+  }
+
+  let result = 1
+  for (let i = 2; i <= n; i++) {
+    result *= i
+  }
+  return result
+}
+```
+
+And the comments that ChatGPT made:
+
+```
+Your code snippet for calculating the factorial of a number looks good and will produce correct results for non-negative integers. However, there are a few points I'd like to touch upon:
+
+# Input validation:
+If n is not an integer, your function will still try to calculate the factorial. For instance, factorial(5.5) will run without error but produce an unexpected result. It might be a good idea to validate if n is an integer.
+
+# Recursive approach:
+Some might argue that a recursive approach is more "elegant" or intuitive for factorials. However, be aware that the recursive approach will hit a stack limit with larger values of n. Your iterative approach doesn't have this problem, so it's often more efficient and can handle bigger numbers. Still, if you'd like a sample of the recursive approach:
+
+# Handling larger numbers:
+JavaScript numbers can get imprecise with very large values. If you want to handle larger factorials, you might want to use a library like BigInteger to handle the arithmetic operations.
+
+# Input validation for integers:
+
+You can add a condition to check if n is an integer.
+```
+
+Here is a screenshot of the whole conversation:
+
+<ImageContainer
+  alt="chatGPTsuggestions"
+  src="/blog/static/images/chatGPT/chatGPTsuggestions.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2240}
+  height={3632}
+/>{" "}
+
+<UserReview />
+
+## 2. Create PR summaries - with GitHub actions
+
+You can have an automatic pull requestion description for each pull requests that you create on GitHub.
+I suggest that it should not replace a human description but it can come as an addition to it. ChatGPT is good at summarizing facts and will help you make your PR history more readables.
+
+This is the open source project I used to set up a GitHub actions to create automatic pull request descriptions: https://github.com/jbrocher/auto-pr-body-generator.
+
+Here is an example of one our pull request body generated using ChatGPT and ChatGPT-CodeReview
+
+<ImageContainer
+  alt="auto-pr-body"
+  src="/blog/static/images/chatGPT/auto-pr-body.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2232}
+  height={1692}
+/>{" "}
+
+## 3. Documentation - Explain a piece of code
+
+Documentation is often overlooked by developers because it takes additional precious time. But the more time you spend writing good documentation the less time you'll spend figuring out for your future self, or the less time the next person will need to figure it out.
+
+ChatGPT can come to the rescue, here is the prompt I like to use to generate documentation:
+
+```
+You are a specialized code documentation assistant. Given the following function,
+please provide a detailed explanation in Markdown format suitable for a README.md file.
+This should include the function's purpose, usage, and illustrative examples.
+```
+
+Here is an example of the documentation that has been created for the Factorial function we used earlier:
+
+````markdown
+### factorial Function
+
+**Purpose**
+The factorial function calculates the factorial of a given non-negative integer.
+In mathematics, the factorial of a non-negative integer n is the product of all
+positive integers less than or equal to n. It is denoted by n!.
+
+### Usage
+
+#### Parameters
+
+- n (Number): The non-negative integer for which the factorial is to be calculated.
+  Returns
+- (Number): The factorial of the given number n.
+  Throws
+- Error: If the provided number n is negative or not an integer.
+  **Example: **
+
+```javascript
+// Using the factorial function
+const result = factorial(5) // Returns 120 because 5! = 5 x 4 x 3 x 2 x 1 = 120
+console.log(result) // Outputs: 120
+
+const anotherResult = factorial(0) // Returns 1 because 0! is defined as 1
+console.log(anotherResult) // Outputs: 1
+
+// Providing a negative number or a non-integer will throw an error
+try {
+  const errorResult = factorial(-5)
+} catch (error) {
+  console.error(error.message) // Outputs: "Please provide a non-negative integer."
+}
+
+try {
+  const errorResult = factorial(5.5)
+} catch (error) {
+  console.error(error.message) // Outputs: "Please provide a non-negative integer."
+}
+```
+
+### Implementation Details
+
+The function starts by checking if the provided number n is negative or not an integer. If either of these conditions is true, it throws an error. Otherwise, it initializes a result variable to 1 and then multiplies it by every integer from 2 to n using a for loop. The final result is then returned.
+````
+
+## 4. Code reviews with GitHub Actions
+
+You can have ChatGPT make code review and code suggestions for every new pull requests or every updated pull requests.
+
+I highly recommend using GPT 4, it's a little more pricey but still cheaper than developer time and the time that you earn by using GPT 4 instead of GPT 3.
+
+Here is two open source tools I recommend:
+
+| Feature/Aspect as 10th of august 2024 | [ChatGPT-CodeReview](https://github.com/anc95/ChatGPT-CodeReview) | [CodiumAI PR-Agent](https://github.com/Codium-ai/pr-agent)                                                                                                                                                 |
+| ------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Description**                       | A simple code review bot powered by ChatGPT                       | CodiumAI PR-Agent is an open-source tool aiming to help developers review pull requests faster and more efficiently. It automatically analyzes the pull request and can provide several types of feedback. |
+| **Stars**                             | 2.8k                                                              | 1.5k                                                                                                                                                                                                       |
+| **Forks**                             | 249                                                               | 88                                                                                                                                                                                                         |
+| **Issues**                            | 36                                                                | 14                                                                                                                                                                                                         |
+| **Main Features**                     | - GitHub Action integration<br/>- Code review automation          | - Auto-Description<br/>- PR Review<br/>- Question Answering<br/>- Code Suggestions<br/>- Update Changelog                                                                                                  |
+| **Languages Used**                    | JavaScript (99.8%)                                                | Python (99.8%)                                                                                                                                                                                             |
+| **License**                           | ISC                                                               | Apache-2.0                                                                                                                                                                                                 |
+| **Contributors**                      | 26                                                                | 20                                                                                                                                                                                                         |
+| **Supported Git Providers**           | GitHub                                                            | GitHub, Gitlab, Bitbucket                                                                                                                                                                                  |
+| **Installation Methods**              | GitHub actions                                                    | Docker, GitHub Action, Run from source, Polling server, GitHub App                                                                                                                                         |
+
+And here is an example of how the code review suggestions appears in your pull requests.
+
+<ImageContainer
+  alt="codereview-suggestions"
+  src="/blog/static/images/chatGPT/codereview-suggestions.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1960}
+  height={1450}
+/>{" "}
+
+## 5. Generate tests
+
+ChatGPT can help you generate basic tests for your code. I usually ask it to generate unit tests for a functions so that it gives me a good template to start with.
+
+Here is the prompt I use:
+
+```
+
+You are a Jest testing expert. Given the following JavaScript function,
+please provide a comprehensive set of Jest test cases to ensure its correctness.
+Include necessary imports, describe blocks, and test cases.
+```
+
+Here is what the test it came up with for the factorial function we used earlier:
+
+```javascript
+// Test suite for the factorial function
+describe("factorial", () => {
+  // Test cases for valid inputs
+  it("should return 1 for n=0", () => {
+    expect(factorial(0)).toBe(1)
+  })
+
+  it("should return 1 for n=1", () => {
+    expect(factorial(1)).toBe(1)
+  })
+
+  it("should return 2 for n=2", () => {
+    expect(factorial(2)).toBe(2)
+  })
+
+  it("should return 6 for n=3", () => {
+    expect(factorial(3)).toBe(6)
+  })
+
+  it("should return 24 for n=4", () => {
+    expect(factorial(4)).toBe(24)
+  })
+
+  // Test cases for invalid inputs
+  it("should throw an error for negative numbers", () => {
+    expect(() => factorial(-1)).toThrow("Please provide a non-negative integer.")
+  })
+
+  it("should throw an error for non-integer numbers", () => {
+    expect(() => factorial(2.5)).toThrow("Please provide a non-negative integer.")
+  })
+
+  it("should throw an error for non-number types", () => {
+    expect(() => factorial("string")).toThrow("Please provide a non-negative integer.")
+    expect(() => factorial({})).toThrow("Please provide a non-negative integer.")
+    expect(() => factorial([])).toThrow("Please provide a non-negative integer.")
+    expect(() => factorial(true)).toThrow("Please provide a non-negative integer.")
+  })
+})
+```
+
+## 6. Variable names
+
+This one comes in handy when I can think of a good variable name. I usually give some code and try to say in a few words what I'm trying to do with the variable or the function.
+
+Here is the prompt I use:
+
+```
+You are a naming expert. Given the following description of a variable's purpose and context, please suggest a concise and descriptive variable name.
+```
+
+Here is what it gave me for saving the result in a variable name for our factorial function earlier:
+
+```
+Given the context and purpose of the variable, which is to store the result of the factorial function, a more descriptive name for the variable would be:
+
+let factorialResult = factorial(5);
+This name clearly indicates that the variable holds the result of a factorial computation.
+```
+
+## 7. Error explanation
+
+Sometimes I'm too lazy to type my error in Google and look for a Stackoverflow answer, so I just copy paste my error and ask ChatGPT to tell me what it means and how to remediate it.
+
+Here is the prompt I usually use:
+
+```
+You are a troubleshooting expert. I've encountered the following error while working on my codebase.
+Here's the error message and context:
+
+*********[Error message and any relevant code or logs]*********
+
+Can you provide an 1. an explanation
+and 2. a solution or suggest steps to resolve this issue?
+```
+
+## 8. AICommits
+
+Last but not least! AICommits is a helpfull cli tools for writing descriptive commits messages based on the staged files. It works great for smaller commits, and I use it when I'm not in the mood to spend too much time thinking about a description. It will give you a suggestion you can choose to use or not.
+
+<ImageContainer
+  alt="aicommits"
+  src="/blog/static/images/chatGPT/aicommits.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1645}
+  height={1022}
+/>{" "}
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/code-quality/sweaty-hands.jpg"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={5184}
+  height={3456}
+/>
+
+<CTABanner type="try" />
