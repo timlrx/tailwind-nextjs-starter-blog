@@ -25,6 +25,7 @@
     "next-themes": "^0.2.1",
     "pliny": "0.1.1",
     "postcss": "^8.4.24",
+    "preact": "^10.17.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "reading-time": "1.5.0",
