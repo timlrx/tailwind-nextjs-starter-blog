@@ -70,6 +70,7 @@ module.exports = () => {
     },
     experimental: {
       appDir: true,
+      esmExternals: false,
     },
     async headers() {
       return [
