@@ -32,10 +32,12 @@ export const YellowCalloutBox = ({ emoji, title, children }) => {
           font-size: 20px;
           margin-bottom: 10px;
           margin-top: 15px;
+          color: #333;
         }
         .description {
           font-size: 16px;
           line-height: 1.5;
+          color: #666;
         }
       `}</style>
     </div>
