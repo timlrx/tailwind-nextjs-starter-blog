@@ -23,6 +23,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
+- [ben.codes blog](https://ben.codes) - Benoit's personal blog about software development ([source code](https://github.com/bendotcodes/bendotcodes))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
