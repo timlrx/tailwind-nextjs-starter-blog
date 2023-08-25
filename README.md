@@ -25,6 +25,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [ben.codes blog](https://ben.codes) - Benoit's personal blog about software development ([source code](https://github.com/bendotcodes/bendotcodes))
 - [tsix blog](https://tsix.top) - A front-end engineer is used to record some knowledge points in work and study _中文_
+- [SOTO's Blog](https://www.atksoto.com/) - A more personalized personal website upgraded from V1 ([source code](https://github.com/acsoto/soto-blog-nextjs))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
