@@ -24,7 +24,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [ben.codes blog](https://ben.codes) - Benoit's personal blog about software development ([source code](https://github.com/bendotcodes/bendotcodes))
-- [tsix blog](https://tsix.top) - A front-end engineer is used to record some knowledge points in work and study *中文*
+- [tsix blog](https://tsix.top) - A front-end engineer is used to record some knowledge points in work and study _中文_
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -251,6 +251,66 @@ See [Next.js on Netlify](https://docs.netlify.com/integrations/frameworks/next-j
 4. Remove `api` folder and components which call the server-side function such as the Newsletter component. Not technically required and the site will build successfully, but the APIs cannot be used as they are server-side functions.
 5. Run `yarn build`. The generated static content is in the `out` folder.
 6. Deploy the `out` folder to your hosting service of choice or run `npx serve out` to view the website locally.
+
+## Frequently Asked Questions
+
+### How can I customize the `kbar` search?
+
+Add a `SearchProvider` component such as the one shown below and use it in place of the default `SearchProvider` component in `app/layout.tsx`.
+
+`defaultActions` are the initial list of actions.
+
+`onSearchDocumentsLoad` is a callback function that is called when the documents specified by `searchDocumentsPath` are loaded. Set `searchDocumentsPath` to `false` to disable the dynamically loaded search feature.
+
+```tsx
+'use client'
+
+import { KBarSearchProvider } from 'pliny/search/KBar'
+import { useRouter } from 'next/navigation'
+import { CoreContent } from 'pliny/utils/contentlayer'
+import { Blog } from 'contentlayer/generated'
+
+export const SearchProvider = ({ children }) => {
+  const router = useRouter()
+  return (
+    <KBarSearchProvider
+      kbarConfig={{
+        searchDocumentsPath: 'search.json',
+        defaultActions: [
+          {
+            id: 'homepage',
+            name: 'Homepage',
+            keywords: '',
+            shortcut: ['h', 'h'],
+            section: 'Home',
+            perform: () => router.push('/'),
+          },
+          {
+            id: 'projects',
+            name: 'Projects',
+            keywords: '',
+            shortcut: ['p'],
+            section: 'Home',
+            perform: () => router.push('/projects'),
+          },
+        ],
+        onSearchDocumentsLoad(json) {
+          return json.map((post: CoreContent<Blog>) => ({
+            id: post.path,
+            name: post.title,
+            keywords: post?.summary || '',
+            section: 'Blog',
+            subtitle: post.tags.join(', '),
+            perform: () => router.push(post.path),
+          }))
+        },
+      }}
+    >
+      {children}
+    </KBarSearchProvider>
+  )
+}
+```
 
 ## Support
 
