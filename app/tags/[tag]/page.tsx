@@ -35,9 +35,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   const filteredPosts = allCoreContent(
-    allBlogs.filter(
-      (post) => post.draft !== true && post.tags && post.tags.map((t) => slug(t)).includes(tag)
-    )
+    allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag))
   )
   return <ListLayout posts={filteredPosts} title={title} />
 }
