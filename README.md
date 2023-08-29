@@ -26,6 +26,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [ben.codes blog](https://ben.codes) - Benoit's personal blog about software development ([source code](https://github.com/bendotcodes/bendotcodes))
 - [tsix blog](https://tsix.top) - A front-end engineer is used to record some knowledge points in work and study _中文_
 - [SOTO's Blog](https://www.atksoto.com/) - A more personalized personal website upgraded from V1 ([source code](https://github.com/acsoto/soto-blog-nextjs))
+- [Prabhu's Blog](https://prabhukirankonda.vercel.app) - Prabhu's Personal website with blog ([source code](https://github.com/prabhukiran8790/prabhukirankonda))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
