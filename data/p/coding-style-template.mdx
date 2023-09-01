@@ -1,0 +1,494 @@
+---
+title: "Coding style template for developers in 2023"
+date: "2023-10-01"
+lastmod: "2023-10-01"
+tags: ["DEVELOPER-PRODUCTIVITY", "DEVELOPER-EXPERIENCE"]
+draft: false
+summary: "Looking to create your coding style documentation? You're at the right place! Crafting a clear and consistent coding style guide is essential for maintaining code quality, ensuring team collaboration, and facilitating smoother onboarding for new team members. This guide will walk you through the key components of a robust coding style documentation, from project structure to deprecated code management."
+image: "/blog/static/images/code-quality/coding-style.jpg"
+---
+
+<ImageContainer
+  alt="snippet"
+  src="/blog/static/images/code-quality/snippet.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={6016}
+  height={4016}
+/>
+
+Looking to create your coding style documentation? You're at the right place! Crafting a clear and consistent coding style guide is essential for maintaining code quality, ensuring team collaboration, and facilitating smoother onboarding for new team members. This guide will walk you through the key components of a robust coding style documentation, from project structure to deprecated code management. By addressing the questions asked under each section, you'll be well on your way to establishing a strong foundation for your engineering team's coding practices.
+
+You can start simple with only a few sections, but if you answer everything, you should have a great start, let's dive in!
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## 1. Project Structure:
+
+### Directory layout and file organization:
+
+- How should directories be structured for different types of files?
+
+  **Example:** All source files should reside in a `src/` directory, and all test files should be in a `tests/` directory.
+
+- What naming conventions should be followed for directories and files?
+
+  **Example:** Use camelCase for filenames and directories. For instance, `userProfile.js`.
+
+### Module organization:
+
+- How should modules be organized within the project?
+
+  **Example:** Group related functionalities into modules. For instance, all user-related functions can be in a `userModule.js`.
+
+- What naming conventions should be followed for modules?
+
+  **Example:** Modules should be named in camelCase with the word 'Module' appended, like `paymentModule.js`.
+
+## 2. Error Handling:
+
+### Standard approaches to catching and throwing errors:
+
+- What are the preferred methods for catching errors in the codebase?
+
+  **Example:** Use try-catch blocks for synchronous code and `.catch()` for promises.
+
+- How should errors be thrown or propagated?
+
+  **Example:** Use the `throw` keyword for custom errors and always propagate them to a central error handler.
+
+### Custom error classes:
+
+- Should custom error classes be used?
+
+  **Example:** Yes, for better categorization and handling of domain-specific errors.
+
+- If so, what naming conventions and structure should they follow?
+
+  **Example:** Extend the base `Error` class and name the custom error as `SpecificError`, like `DatabaseConnectionError`.
+
+## 3. Logging:
+
+### What to log and how to log it:
+
+- What information should always be logged?
+
+  **Example:** Always log API requests, database operations, and error messages.
+
+- What logging methods or libraries should be used?
+
+  **Example:** Use `winston` for logging in Node.js applications.
+
+### Log levels (debug, info, warning, error):
+
+- How should different log levels be used?
+
+  **Example:** Use `debug` for development details, `info` for general information, `warning` for potential issues, and `error` for critical issues.
+
+- What constitutes each log level?
+
+  **Example:** `debug` - internal system details, `info` - successful operations, `warning` - recoverable issues, `error` - critical failures.
+
+### Logging formats and standards:
+
+- What format should logs follow?
+
+  **Example:** Logs should be in JSON format for easy parsing.
+
+- Are there any standards or best practices for logging?
+
+  **Example:** Include a timestamp, log level, and context in every log entry.
+
+## 4. Version Control:
+
+### Commit message formats:
+
+- What format should commit messages follow?
+
+  **Example:** Use the format: `[type]: [short description]`. For instance, `fix: resolve login bug`.
+
+- Are there any specific keywords or tags to include?
+
+  **Example:** Use keywords like `fix`, `feat`, `chore`, or `docs` at the beginning of commit messages.
+
+### Branching strategies:
+
+- What branching strategy should be followed?
+
+  **Example:** Follow the Git Flow strategy with `feature/`, `hotfix/`, and `release/` branches.
+
+- How should branches be named?
+
+  **Example:** Prefix branches with their type, like `feature/user-authentication`.
+
+### Merge vs. Rebase:
+
+- When should merging be used over rebasing, and vice versa?
+
+  **Example:** Use `merge` for combining features into the main branch and `rebase` to keep feature branches up-to-date with the main branch.
+
+- Are there any specific guidelines for merging or rebasing?
+
+  **Example:** Always pull the latest changes before rebasing and resolve conflicts locally.
+
+<CTABanner type="learn" />
+## 5. Testing:
+
+### Unit testing conventions:
+
+- What libraries or frameworks should be used for unit testing?
+
+  **Example:** Use `Jest` for JavaScript-based projects.
+
+- How should unit tests be structured and named?
+
+  **Example:** Group tests by functionality in separate files, like `login.test.js`.
+
+### Acceptance testing, integration testing:
+
+- How should acceptance and integration tests be organized?
+
+  **Example:** Place them in a separate `integrationTests/` directory at the root level.
+
+- What tools or frameworks should be used?
+
+  **Example:** Use `Cypress` for end-to-end acceptance testing.
+
+### Mocking guidelines:
+
+- When and how should mocking be used in tests?
+
+  **Example:** Mock external services or APIs to isolate the unit of code being tested.
+
+- Are there any preferred libraries for mocking?
+
+  **Example:** Use `sinon` for mocking in JavaScript tests.
+
+### Test naming conventions:
+
+- How should tests be named for clarity and consistency?
+
+  **Example:** Use a descriptive name followed by the word 'test', like `loginFunctionalityTest`.
+
+- Are there any specific prefixes or suffixes to use?
+
+  **Example:** Prefix with `test_`or suffix with`_test`, such as `test_loginFunctionality`.
+
+## 6. Dependency Management:
+
+### When and how to add new libraries or tools:
+
+- What criteria should be considered before adding a new library or tool?
+
+  **Example:** Consider the library's community support, maintenance frequency, and compatibility with the current stack.
+
+- How should new dependencies be introduced and documented?
+
+  **Example:** Document in the `README.md` and ensure it's added to the project's `package.json` or equivalent.
+
+### Version locking:
+
+- Should versions of dependencies be locked?
+
+  **Example:** Yes, to ensure consistent behavior across environments.
+
+- How should version locking be managed?
+
+  **Example:** Use a `yarn.lock` or `package-lock.json` file to lock dependency versions.
+
+### Vulnerability checks:
+
+- How should vulnerabilities in dependencies be checked and managed?
+
+  **Example:** Regularly run tools like `npm audit` to check for known vulnerabilities.
+
+- Are there any preferred tools or practices for this?
+
+  **Example:** Use `Dependabot` for automated dependency checks and updates.
+
+## 7. API Design Guidelines:
+
+### Endpoint naming:
+
+- How should API endpoints be named for consistency?
+
+  **Example:** Use RESTful naming conventions, like `/users` for a user resource.
+
+- Are there any specific patterns or conventions to follow?
+
+  **Example:** Use plural nouns for resources and avoid verbs, like `/orders` instead of `/getOrders`.
+
+### Request-response formats:
+
+- What formats should be used for API requests and responses (e.g., JSON, XML)?
+
+  **Example:** Use JSON for both requests and responses due to its widespread adoption and readability.
+
+- Are there any standards for structuring the data?
+
+  **Example:** Follow a consistent structure like `{ "data": {}, "meta": {} }` for responses.
+
+### Error response formats:
+
+- How should API errors be returned to the client?
+
+  **Example:** Return errors in a consistent format with an error code and message.
+
+- What structure or format should error responses follow?
+
+  **Example:** `{ "error": { "code": 404, "message": "Resource not found" } }`.
+
+## 8. Documentation:
+
+### Guidelines for writing and updating:
+
+- What style and tone should documentation follow?
+
+  **Example:** Use a friendly and informative tone with clear headings and bullet points.
+
+- How often should documentation be reviewed and updated?
+
+  **Example:** Review documentation at the end of each sprint or release cycle.
+
+### Toolchains for auto-generating documentation:
+
+- Are there any preferred tools for auto-generating documentation?
+
+  **Example:** Use `Swagger` for API documentation.
+
+- How should these tools be configured and used?
+
+  **Example:** Integrate `Swagger` with your API codebase to auto-generate docs based on code comments.
+
+## 9. Performance Guidelines:
+
+### Best practices for performance:
+
+- What are the key performance best practices for the codebase?
+
+  **Example:** Optimize database queries, use caching mechanisms, and minimize third-party library dependencies.
+
+- How should performance bottlenecks be identified and addressed?
+
+  **Example:** Use performance monitoring tools to identify slow areas, then refactor or optimize the problematic code.
+
+### Profiling:
+
+- What tools or methods should be used for profiling code?
+
+  **Example:** Use tools like `Chrome DevTools` for frontend profiling and `New Relic` for backend profiling.
+
+- How often should profiling be done?
+
+  **Example:** Profile after major releases or when performance issues are reported.
+
+## 10. Concurrency and Parallelism:
+
+### Threading or multiprocessing:
+
+- When should threading be used over multiprocessing, and vice versa?
+
+  **Example:** Use threading for I/O-bound tasks and multiprocessing for CPU-bound tasks.
+
+- What libraries or tools should be used for concurrency?
+
+  **Example:** In Python, use `threading` for threads and `multiprocessing` for processes.
+
+### Handling race conditions:
+
+- How should race conditions be identified and prevented?
+
+  **Example:** Use locks or semaphores to ensure only one thread accesses a resource at a time.
+
+- Are there any best practices or patterns to follow?
+
+  **Example:** Always lock shared resources and avoid long-held locks to prevent deadlocks.
+
+## 11. Security Guidelines:
+
+### Common security practices:
+
+- What are the standard security practices to follow in the codebase?
+
+  **Example:** Sanitize user inputs, use HTTPS, and regularly update dependencies.
+
+- How should sensitive data be handled and stored?
+
+  **Example:** Encrypt sensitive data and use environment variables for storing secrets.
+
+### Avoiding vulnerabilities:
+
+- How can common vulnerabilities be identified and avoided?
+
+  **Example:** Regularly conduct security audits and use tools like `OWASP Dependency-Check`.
+
+- Are there any tools or practices recommended for this?
+
+  **Example:** Use static code analysis tools like `SonarQube` to identify potential vulnerabilities.
+
+## 12. CI/CD:
+
+### Build pipeline specifications:
+
+- What steps should be included in the build pipeline?
+
+  **Example:** Code linting, unit tests, integration tests, and deployment.
+
+- How should the pipeline be configured and managed?
+
+  **Example:** Use CI/CD platforms like `Jenkins` or `CircleCI` with configuration files stored in the repository.
+
+### Deployment practices:
+
+- What are the best practices for deploying code?
+
+  **Example:** Use blue-green deployments to minimize downtime.
+
+- How should deployments be monitored and rolled back if necessary?
+
+  **Example:** Monitor application health with tools like `Datadog` and have rollback procedures in place.
+
+## 13. Code Review:
+
+### Expectations during code reviews:
+
+- What should reviewers look for during a code review?
+
+  **Example:** Check for code clarity, adherence to coding standards, and potential bugs.
+
+- How thorough should code reviews be?
+
+  **Example:** Every line of code should be reviewed, and critical sections should have multiple reviewers.
+
+### Providing feedback:
+
+- How should feedback be provided during a code review?
+
+  **Example:** Use inline comments for specific code sections and a summary comment for overall feedback. Keep the conversation in [Axolo](https://axolo.co) channel to review faster and save as documentation.
+
+- What tone and style should be used when giving feedback?
+
+  **Example:** Be constructive and specific, avoiding personal or negative remarks.
+
+If reducing your code review time by 60% is something you're interested in, you can try out [Axolo](https://axolo.co) for free. And if you're not convinced, look at our last user story where a [60-developer team reduced it pickup time by 65%](/p/how-agency-analytics-reduced-pr-cycle-time-by-65-with-axolo).
+
+<UserReview />
+## 14. Tooling:
+
+### Recommended tools for various purposes:
+
+- What tools are recommended for different tasks in the development process?
+
+  **Example:** Use `Webpack` for bundling, `ESLint` for linting, and `Prettier` for code formatting in JavaScript projects.
+
+- How should these tools be configured and integrated?
+
+  **Example:** Use configuration files at the root of the project, like `.eslintrc` for ESLint, and integrate them into the CI/CD pipeline.
+
+### Configuration files for tools:
+
+- How should configuration files for tools be structured and stored?
+
+  **Example:** Store configuration files in the project root and use a consistent naming convention like `.toolnameconfig`.
+
+- Are there any standards or best practices to follow?
+
+  **Example:** Keep configuration files version-controlled and document any custom configurations in the project's README.
+
+## 15. Database Practices:
+
+### Naming conventions:
+
+- How should database tables, columns, and indexes be named?
+
+  **Example:** Use snake_case for table and column names, like `user_profiles`.
+
+- Are there any specific patterns or conventions to follow?
+
+  **Example:** Prefix indexes with `idx_`and foreign keys with`fk*`.\*
+
+### Normalization guidelines:
+
+- What level of normalization should be aimed for in the database?
+
+  **Example:** Aim for 3NF (Third Normal Form) for most use cases.
+
+- How should denormalization be handled, if necessary?
+
+  **Example:** Denormalize for specific performance needs, and document the reasons for doing so.
+
+## 16. Environment-Specific Guidelines:
+
+### Coding for development, staging, production:
+
+- How should code differ between development, staging, and production environments?
+
+  **Example:** Use mock data in development, partial real data in staging, and full real data in production.
+
+- Are there any specific configurations or practices for each environment?
+
+  **Example:** Ensure error details are hidden in production but visible in development for debugging.
+
+## 17. UI/UX Guidelines:
+
+### Styling, theme consistency:
+
+- What styling guidelines should be followed for UI consistency?
+
+  **Example:** Follow a design system or framework like Material Design.
+
+- How should themes be managed and applied?
+
+  **Example:** Use CSS variables or SCSS mixins for consistent theming across components.
+
+### Component organization:
+
+- How should UI components be organized and structured?
+
+  **Example:** Group by functionality in folders, like `components/user/` and `components/dashboard/`.
+
+- Are there any naming conventions for components?
+
+  **Example:** Use PascalCase for component filenames, like `UserProfile.vue` or `DashboardWidget.jsx`.
+
+<CTABanner type="try" />
+## 18. Localization and Internationalization:
+
+### Guidelines for multiple languages support:
+
+- How should multiple languages be supported in the application?
+
+  **Example:** Use a combination of language files (e.g., `en.json`, `fr.json`) and a dynamic loader to switch between languages based on user preferences.
+
+- What tools or libraries are recommended for localization and internationalization?
+
+  **Example:** For JavaScript projects, consider using libraries like `i18next` or `react-intl` for seamless integration of translations.
+
+## 19. Deprecated Code:
+
+### Handling old or unused parts of the codebase:
+
+- How should deprecated or unused code be managed?
+
+  **Example:** Mark deprecated code with comments (e.g., `// DEPRECATED: ...`) and provide an alternative or reason for deprecation.
+
+- When and how should old code be removed from the codebase?
+
+  **Example:** Remove deprecated code after two major versions or after ensuring no dependencies. Always document the removal in changelogs or release notes.
+
+## Wrapping Up
+
+Hey, you made it to the end! I hope you found this coding style documentation guide useful.
+
+If you're curious about other ways to make things smoother, you might like our [pull request template](/p/part-3-github-pull-request-template). It's a handy tool for those code review moments. And if you're ever wondering how your fellow developers feel about the coding environment, our [developer experience survey](/p/developer-experience-survey-template) is an easy way to gather some thoughts.
+
+Keep in mind, it's always a good idea to revisit this guide from time to time. Code evolves, and so should our guidelines.
+
+<ImageContainer
+  alt="How to build your coding style documentation"
+  src="/blog/static/images/code-quality/build-coding-style-documentation.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2576}
+  height={2802}
+/>
