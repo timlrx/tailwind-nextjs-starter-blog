@@ -1,0 +1,112 @@
+---
+title: "Allow subscribing to new/merged/closed PRs separately #519 (Solved)"
+date: "2023-10-12"
+tags: [""]
+draft: false
+summary: ""
+image: "/blog/static/images/notifications/closed PRs separately.png"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+<ImageContainer
+  alt="closed PRs separately"
+  src="/blog/static/images/notifications/closed PRs separately.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3174}
+  height={1680}
+/>{" "}
+
+## The Problem Stated by RichardNias:
+
+"Apologies first of all if this issue already exists. And also thanks for this integration, really enjoying it so far.
+
+I think it would be quire nice if we could configure which pull request events we can subscribe to. Something like:
+
+pulls:all - Opened, closed and merged PRs
+pulls:new - Opened PRs
+pulls:closed - Closed PRs
+pulls:merged - Merged PRs
+pulls - same as pulls:all, default (keeping current behaviour).
+The use case for this is we have a channel where we like to post PRs that are ready for review, but is mainly used as a discussion channel which we don't want to be full of unneeded messages. We have another channel where we subscribe to all activity for reference.
+
+I'm happy to give this a go, will look at opening a PR in the next few days unless someone is already working on something similar."
+
+## State as of September 2023
+
+With 363 👍 reactions and 122 💬 comments, this issue ranks as the second-highest on the GitHub / Slack Repository, highlighting its relevance and urgency.
+
+## Problem Identified with this Issue:
+
+1. It's hard to know what is the state of a pull request.
+2. Notification clutter leading to a disorganized Slack workspace and decreased team engagement.
+
+## 1 Channel, 1 State: Proposed Solution by RichardNias
+
+RichardNias proposes creating separate Slack channels for different states of pull requests, such as:
+
+- `#merged-pull-requests`
+- `#closed-pull-requests`
+- `#new-pull-requests`
+
+## Updated Notifications and 1 Channel per Pull Request: Proposed Solution by Axolo
+
+Axolo addresses this issue in a three-fold manner:
+
+1.  A general channel notifies the team about new pull requests.
+
+        {" "}
+
+        {" "}
+
+        <ImageContainer
+          alt="notifications status"
+          src="/blog/static/images/notifications/notifications status.jpg"
+          classNameDiv="mx-10 lg:mx-20"
+          classNameImage=""
+          width={3266}
+          height={1962}
+        />
+
+              <SubImageText classNameDiv="" classNameText="lg:w-80 ">
+
+        In this screenshot you can see new pull request create a notification. Then this notification is automatically updated with
+
+    1)The status of the pull request (open, closed, merged, draft, waiting for review, WIP) and 2) The
+    status of the reviewers and assignees
+
+            </SubImageText>
+
+1.  Real-time updates are provided for each pull request, indicating its current status—be it WIP, waiting for review, draft, merged, or closed.
+1.  A dedicated Slack channel is created for each pull request, involving only the relevant engineers—assignees, creators, and reviewers—for focused discussion and updates.
+    <ImageContainer
+      alt="1 channel 1 pr"
+      src="/blog/static/images/notifications/1 channel 1 pr.jpg"
+      classNameDiv="mx-10 lg:mx-20"
+      classNameImage=""
+      width={2936}
+      height={2112}
+    />
+    <SubImageText classNameDiv="" classNameText="lg:w-80 ">
+      Each pull request creates a channel. Reviewers are automatically invited and all the
+      discussions is mirrored from Slack to GitHub and vice versa. You'll also find all relevant
+      information about your PR (CI/CD etc..)
+    </SubImageText>
+
+## How to Get Started with Axolo
+
+Ready to streamline your PR management? Here's how:
+
+1. Brief your team about Axolo's methodology.
+2. Follow the onboarding steps at [Axolo's App](https://app.axolo.co).
+3. Begin managing your pull requests efficiently through Slack.
+
+<CTABanner type="try" />
+<br />
+<UserReview />
+
+## Feedback
+
+We value your input! Share your thoughts on this feature and suggest improvements to make Axolo even better. Join our community or leave your comments below!
