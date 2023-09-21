@@ -36,6 +36,7 @@ jobs:
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
+            # YARN_ENABLE_IMMUTABLE_INSTALLS=false, handles error The lockfile would have been modified by this install, which is explicitly forbidden 
             echo "command=install --no-immutable" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             exit 0
@@ -78,7 +79,7 @@ jobs:
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./out
 
