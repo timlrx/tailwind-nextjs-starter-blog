@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "curl -fsSL https://bun.sh/install | bash && ~/.bun/bin/bun install --production",
+  "installCommand": "curl -fsSL https://bun.sh/install | bash && ~/.bun/bin/bun install -g --production",
   "buildCommand": "~/.bun/bin/bun run build"
 }
