@@ -1,8 +1,8 @@
 ---
-title: "Top 5 GitHub pull request Slack Integrations in 2023"
+title: "Top 5 GitHub Slack Integrations in 2023"
 date: "2022-01-04"
-lastmod: "2023-02-22"
-tags: ["software development"]
+lastmod: "2023-09-20"
+tags: ["software development", "github", "slack"]
 draft: false
 summary: "We've tried and tested the top 5 GitHub pull request Slack integrations. Read our short study to understand the value of each integration."
 image: "/blog/static/images/top5.png"
@@ -10,9 +10,11 @@ endCTA: "DiveIn"
 authors: ["sydney"]
 ---
 
-# A list of 5 Slack GitHub integrations
+Managing code reviews and pull requests can often feel like a juggling act for engineering teams. The need for a streamlined process has never been greater, especially with remote work becoming the norm. That's where GitHub Slack integrations come into play.
 
-You probably know the official GitHub Slack integration but there are other options to get notified about GitHub pull requests in Slack.
+While you may be familiar with the official GitHub Slack integration, there are several other options that offer unique features to enhance your team's productivity. In this article, we'll dive deep into the top 5 GitHub Slack integrations that can revolutionize the way your engineering team collaborates.
+
+From real-time notifications to creating dedicated Slack channels for each pull request, these integrations offer a range of functionalities that cater to different team needs. Read on to find the perfect GitHub Slack integration for your team.
 
 We've summarized our research into an article and a table for you to easily compare:
 
@@ -26,7 +28,10 @@ We've summarized our research into an article and a table for you to easily comp
 | PR Chat               | 🔴                             | 🔴                  | 🔴             | 🔴           | 🔴            | 🔴               | Free       |                |
 
 </div>
-Here is a 10 minutes YouTube video recap of this article:
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+If you prefer watching a video, here is a 10 minutes YouTube video recap of this article:
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <iframe
@@ -40,11 +45,47 @@ Here is a 10 minutes YouTube video recap of this article:
   ></iframe>
 </div>
 
-## **1. [Axolo](https://www.axolo.co/)**
+## **1. <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/integrations/slack">Official GitHub Slack integrations</a>.**
+
+Since this is an official integration there are cool features you will not see in another type of reminder bots, such as displaying code directly in Slack.
+
+### 😍 What we like:
+
+Code can be displayed directly in Slack.
+It's highly customizable, you can choose which repository you can subscribe to, deactivate some notifications. The integration is well documented.
+It's also maintained by the GitHub team, and if you have questions you might be able to ask them directly.
+
+Axolo has more than 1k installations on the official GitHub marketplace and offers a free tier.
+
+### 🤔 What we don't like:
+
+It takes time to set it up and can be confusing as well.
+In order to have it work, you will need to subscribe manually to each of the repositories using Slack slash commands.
 
 <div style={{ display: "flex", justifyContent: "center" }}>
-  <AddToSlack purple />
+  <img
+    style={{ borderRadius: "0.5rem", maxWidth: "400px" }}
+    alt="GitHub Slack Integration Screenshot"
+    src="/blog/static/images/top5/slackgithub.png"
+  />
 </div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  GitHub Slack Integration Screenshot
+</SubImageText>
+
+## **2. [Axolo](https://www.axolo.co/)**
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <Image
+    alt="Axolo Screenshot"
+    src="/blog/static/images/top5/axolo_screenshot.png"
+    height="637"
+    width="1028"
+  />
+</div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Axolo screenshot
+</SubImageText>
 
 Focusing on collaboration across the whole engineering team, Axolo is not another pull request notification bot. It is engineered to optimize code review and streamline the pull request resolution process by fostering collaboration across the entire engineering team. The platform is designed to enable seamless discussions about code, ensuring that all team members have access to the information and tools they need to resolve pull requests efficiently.
 
@@ -56,43 +97,20 @@ Axolo makes a temporary Slack channel for every GitHub pull request, it will inv
 
 Some teams have shared that it used to be too noisy. The Axolo team introduced code reviewing timeslots in September 2021. Developers can choose the time in the day when they want to be invited to review a new pull request. It's a good way to keep the focus on coding and having dedicated time for code reviews during the day.
 
-##### **Axolo screenshot**
+### ✨ Features:
 
-<div style={{ display: "flex", justifyContent: "center" }}>
-  <Image
-    alt="Axolo Screenshot"
-    src="/blog/static/images/top5/axolo_screenshot.png"
-    height="637"
-    width="1028"
-  />
-</div>
+- 💭 **An ephemeral Slack channel for each pull request**: Axolo opens a Slack channel each time one of your collaborators opens a pull request. Only people that should be invited (reviewers & assignees) are invited.
+- ⏰ **PRs reminders**: Set up Axolo to send daily reminders in stale PRs.
+- 💻 **A complete synch for code reviews**: Each Github code review comment creates a new Slack thread. Then, the following comments from GitHub or Slack are sent to the other tool.
+- 👀 **High-level view on your team's PRs**: With team-specific notifications, Axolo will send new pull request notifications in team channels and react upon the status of the PR (awaiting review, work in progress, mergeable, ...).
+- 🤖 **Approve pull requests with /lgtm**: Developers can use `/lgtm` to approve a pull request directly in PR channels!
+- 🏀 **All your PRs are a command away**: Ask `/axolo open` to show all open PR of your organization, `/axolo me` for your open PRs, and `/axolo team [name of your team]` to show all PRs from a specific team.
+- 🕵️‍♂️ **Organize your stand-ups with daily PR recap**: You can set up Axolo to send daily PR recap to specific channels to organize your stand-ups.
+- ⏳ **Dedicated times for code review**: Organize your time with code review time slots and let Axolo notify you only when you're available. Save your development sessions from distractions.
+
+And you can [see more features here](https://axolo.co/features)!
 
 <UserReview />
-
-## **2. <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/integrations/slack">Official GitHub Slack integrations</a>.**
-
-Since this is an official integration there are cool features you will not see in another type of reminder bots, such as displaying code directly in Slack.
-
-### 😍 What we like:
-
-Code can be displayed directly in Slack.
-It's highly customizable, you can choose which repository you can subscribe to, deactivate some notifications. The integration is well documented.
-It's also maintained by the GitHub team, and if you have questions you might be able to ask them directly.
-
-### 🤔 What we don't like:
-
-It takes time to set it up and can be confusing as well.
-In order to have it work, you will need to subscribe manually to each of the repositories using Slack slash commands.
-
-##### **GitHub Slack Integration Screenshot**
-
-<div style={{ display: "flex", justifyContent: "center" }}>
-  <img
-    style={{ borderRadius: "0.5rem", maxWidth: "400px" }}
-    alt="GitHub Slack Integration Screenshot"
-    src="/blog/static/images/top5/slackgithub.png"
-  />
-</div>
 
 ## **3. <a target="_blank" rel="noopener noreferrer nofollow" href="https://toast.ninja/">Toast.Ninja</a>**
 
@@ -105,10 +123,9 @@ They recently added analytics that are sent directly into Slack as well.
 
 ### 🤔 What we don't like:
 
-The lack of GitHub actions and deployments notifications.
-We didn't find any collaborative aspect to this app. It could easily be used by just one person in the team.
+The lack of GitHub actions and deployments notifications. We didn't find any collaborative aspect to this app. It could easily be used by just one person in the team.
 
-##### **Toast Ninja Screenshot**
+Toast is not visible on the GitHub marketplace.
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -119,6 +136,10 @@ We didn't find any collaborative aspect to this app. It could easily be used by 
     width="539"
   />
 </div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Toast Ninja Screenshot
+</SubImageText>
+<CTABanner type="try" />
 
 ## 4. <a target="_blank" rel="noopener noreferrer nofollow" href="https://codekickbot.com">CodeKickBot</a>
 
@@ -132,8 +153,6 @@ We are not sure whether it's been updated last.
 
 They do not have GitHub actions notifications, either deployment notifications.
 
-##### **CodeKickBot Screenshot**
-
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
     style={{ borderRadius: "0.5rem" }}
@@ -143,6 +162,9 @@ They do not have GitHub actions notifications, either deployment notifications.
     width="444"
   />
 </div>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  CodeKickBot Screenshot
+</SubImageText>
 
 ## 5 <a target="_blank" rel="noopener noreferrer nofollow" href="https://pr.chat/">PR Chat</a>:
 
@@ -152,29 +174,28 @@ You get updates from GitHub in a thread in Slack.
 
 ### 🤔 What we don't like:
 
-You don't get CI/CD. Cannot follow code comments vs PR comments easily.
+You don't get CI/CD. Cannot follow code comments vs PR comments easily. PR Chat has only 112 installations on the GitHub marketplace.
 
-<br></br>
-<br></br>
-
-# Conclusion
+## Conclusion
 
 We looked at 5 different GitHub and Slack integrations. Those 5 integrations take a different approach in trying to make pull requests last shorter.
 
 We see two types of GitHub and Slack integrations:
 
-## 1. The one that are simple notifications based on events:
+### 1. The one that are simple notifications based on events:
 
 Those bots, like Toast.ninja, the official GitHub Slack integration will notify either you personally or a channel that a Pull Request is ready to be reviewed.
 
-### Downside:
+#### Downside:
 
 One place for all pull requests notifications is good for smaller teams but can become a nightmare for larger teams. It can easily be ignored after a while.
 
-## 2. The truly collaborative apps:
+### 2. The truly collaborative apps:
 
 Axolo is the best in this category. On top of enabling the right notifications (like CI/CD, GitHub actions, deployment and checks), Axolo creates contextual channels for each Pull Request.
 
 Companies that use Axolo found that creating those spaces to talk about a specific pull request makes it easier to collaborate during code reviews and resolve pull requests quickly.
+
+If you'd like to see more use cases about Axolo the collaboration app, you can discover [our Agency Analytics user story](https://axolo.co/blog/p/how-agency-analytics-reduced-pr-cycle-time-by-65-with-axolo), and how Axolo reduced the average pickup time by 65%! Also, if you're interested in more ways to improve developer productivity, I wrote an article on [the best 6 apps to improve your tech team productivity.](https://axolo.co/blog/p/best-6-tools-to-improve-developer-productivity-in-2022)
 
 <CTABanner type="try" />
