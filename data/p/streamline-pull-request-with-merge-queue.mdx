@@ -20,8 +20,8 @@ Pull requests are a cornerstone of collaborative software development for many r
   src="/blog/static/images/mergify/pull-request-journey-mergify.jpg"
   classNameDiv="mx-10 lg:mx-20"
   classNameImage=""
-  width={860}
-  height={1136}
+  width={860 / 2}
+  height={1136 / 2}
 />{" "}
 
 Some steps can be longer than others. For instance, the time taken for a pull request to merge can range from a few hours to days. The entire life cycle of a PR—from its creation to merge—often averages between one to two weeks. That's why, akin to mastering any art form, understanding and adopting best practices in PR management is crucial.
@@ -64,19 +64,28 @@ In the vast realm of software development, certain tools have emerged as game-ch
 
 Axolo revolutionizes the pull request (PR) review process by offering a Slack-integrated experience that's not only collaborative but also highly efficient. Here's how Axolo enriches your PR management:
 
-#### 1 PR, 1 Channel: Streamlined Reviews
+<a href="https://axolo.co" target="_blank">
+  <ImageContainer
+    alt="axolo"
+    src="/blog/static/images/productivity/axolo.png"
+    classNameDiv=""
+    classNameImage=""
+    width={1172}
+    height={732}
+  />
+</a>
 
-Axolo adopts a '1 PR, 1 Channel' methodology, creating a dedicated Slack channel for each GitHub or GitLab pull request. This channel invites the PR author and reviewers, keeping them updated with real-time notifications on code comments, GitHub Actions, Deployments, PR checks, or GitLab CI/CD. Once the PR is closed or merged, the channel is archived, ensuring a clutter-free workspace.
+- **1 PR, 1 Channel: Streamlined Reviews**: Axolo adopts a '1 PR, 1 Channel' methodology, creating a dedicated Slack channel for each GitHub or GitLab pull request. This channel invites the PR author and reviewers, keeping them updated with real-time notifications on code comments, GitHub Actions, Deployments, PR checks, or GitLab CI/CD. Once the PR is closed or merged, the channel is archived, ensuring a clutter-free workspace.
 
-#### Two-Way Sync: GitHub/GitLab and Slack
+- **Two-Way Sync: GitHub/GitLab and Slack**: Say goodbye to constant tab-switching. Axolo offers a two-way sync between your GitHub or GitLab and Slack, allowing for contextual and efficient discussions right within your Slack channels.
 
-Say goodbye to constant tab-switching. Axolo offers a two-way sync between your GitHub or GitLab and Slack, allowing for contextual and efficient discussions right within your Slack channels.
-
-#### Comprehensive Team Management Tools
-
-Axolo goes beyond just PR management by offering a suite of tools designed to keep your team on track. From daily pull request reminders to organizing stand-ups and setting code review timeslots, Axolo ensures that your team is always in sync and productive.
+- **Comprehensive Team Management Tools**: Axolo goes beyond just PR management by offering a suite of tools designed to keep your team on track. From daily pull request reminders to organizing stand-ups and setting code review timeslots, Axolo ensures that your team is always in sync and productive.
 
 [Get rid of the lack of communication and struggling with your reviews! Try Axolo for free.](https://axolo.co)
+
+<CTABanner type="try" />
+
+<UserReview />
 
 ### Mergify
 
@@ -120,8 +129,8 @@ Through the combined prowess of Axolo and Mergify, Croissant manages to foster a
   src="/blog/static/images/mergify/croissant-use-case-mergify.jpg"
   classNameDiv="mx-10 lg:mx-20"
   classNameImage=""
-  width={1014}
-  height={1348}
+  width={1014 / 2}
+  height={1348 / 2}
 />{" "}
 
 ## Making a Merge Queue work for you
@@ -145,39 +154,3 @@ Measure and Iterate: After implementation, monitor key metrics such as time-to-m
 By making a Merge Queue work for you, you're not just optimizing a single aspect of software development but elevating your entire workflow.
 
 Give Mergify a Try and avoid pull request frustration. [Check out our docs.](https://docs.mergify.com/)
-
-<ImageContainer
-  alt="sweaty-hands"
-  src="/blog/static/images/code-quality/sweaty-hands.jpg"
-  classNameDiv="mx-10 lg:mx-28"
-  classNameImage=""
-  width={5184}
-  height={3456}
-/>
-
-<SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  "This code is 100% bug-free. I'm sure of it." said Tommy leaving a mark on my screen with his
-  sweaty finger
-  <br /> - this never happened.
-</SubImageText>
-
-<span className="rainbow-button text-2xl font-bold hover:cursor-auto"></span>
-
-<NoFollowLink url=""></NoFollowLink>
-
-<CTABanner type="try" />
-
-<Callout
-  title="Collaborative environment for each pull request."
-  subtitle=' In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication.... This has improved our architectural skills and enabled us to be more discerning before deploying to production"'
-/>
-
-<YellowCalloutBox emoji="⚠️" title="Limitations">
-  While ChatGPT is a powerful tool, developers should be aware of its limitations. Over-relying on
-  its suggestions without understanding the reasoning can lead to sub-optimal code. It's vital to
-  ensure human oversight in the development process. It doesn't always understand context in the way
-  a human does. For instance, in complex projects where there are multiple intertwined systems, a
-  solution that might seem apt in isolation might not be the best fit for the broader system.
-</YellowCalloutBox>
-
-<UserReview />

@@ -20,7 +20,10 @@ const ReviewCard = ({ testimonial }) => {
       </div>
       <p className="mb-4 mt-0 text-sm text-gray-700 dark:text-gray-400">{testimonial.text}</p>
       <div className="flex justify-end">
-        <a href="#" className="text-xs text-blue-500 hover:underline">
+        <a
+          href="https://www.g2.com/products/axolo/reviews"
+          className="text-xs text-blue-500 hover:underline"
+        >
           Read more Axolo reviews -{">"}
         </a>
       </div>
