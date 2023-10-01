@@ -28,6 +28,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 - [SOTO's Blog](https://www.atksoto.com/) - A more personalized personal website upgraded from V1 ([source code](https://github.com/acsoto/soto-blog-nextjs))
 - [Prabhu's Blog](https://prabhukirankonda.vercel.app) - Prabhu's Personal website with blog ([source code](https://github.com/prabhukiran8790/prabhukirankonda))
 - [Rabby Hasan's Blog](https://blog.rabbyhasan.com.bd/) - Rabby Hasan's personal blog about full stack development with cloud ([source code](https://github.com/rabbyalone/myblog))
+- [enscribe.dev](https://enscribe.dev) - enscribe's personal blog; cybersecurity shenanigans, frontend webdev, etc. ([source code](https://github.com/jktrn/enscribe.dev))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
