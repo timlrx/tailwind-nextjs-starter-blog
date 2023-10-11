@@ -1,14 +1,17 @@
 ---
 title: "Best three GitHub pull request Microsoft Teams Integration"
 date: "2022-05-10"
-tags: ["software development"]
+lastmod: "2023-10-10"
+tags: ["software development", "teams", "github"]
 draft: false
-summary: "We've tried and tested the best 3 GitHub pull request Microsoft Teams integrations. Read our short study to understand the value of each integration."
+summary: "Seamless collaboration is more crucial than ever. One way to achieve this is through GitHub pull request Microsoft Teams integration. This integration not only streamlines your code review process but also enhances team communication. In this article, we'll explore the top solutions that offer GitHub PR integration with Microsoft Teams, focusing on features, ease of setup, and overall value."
 image: "/blog/static/images/teams/GitHub Microsoft Teams integrations.jpg"
 authors: ["sydney"]
 ---
 
-Here are 3 different types of GitHub pull request Microsoft Teams integration:
+Seamless collaboration is more crucial than ever. One way to achieve this is through GitHub pull request Microsoft Teams integration. This integration not only streamlines your code review process but also enhances team communication. In this article, we'll explore the top solutions that offer GitHub PR integration with Microsoft Teams, focusing on features, ease of setup, and overall value.
+
+Here are 3 different types of GitHub pull request Microsoft Teams integration that we are going to study in this article:
 
 | Integration                       | Collaborative (channel per PR) | GitHub actions & checks | High PR level view | Access to code | PR Reminders | Notifications for each PR |  Pricing           | Note           |
 | --------------------------------- | ------------------------------ | ----------------------- | ------------------ | -------------- | ------------ | ------------------------- | ------------------ | -------------- |
@@ -18,11 +21,11 @@ Here are 3 different types of GitHub pull request Microsoft Teams integration:
 
 ## **1. Axolo**
 
-Focusing on collaboration across the whole engineering team, Axolo is not another pull request notification bot. It's been designed to engage about code easily and resolve pull requests in the most efficient way possible.
+When it comes to fostering collaboration across your engineering team, Axolo stands out as more than just another pull request notification bot. Designed to facilitate efficient code reviews, Axolo offers a comprehensive suite of features tailored for Microsoft Teams.
 
 ### 😍 What we like:
 
-Axolo makes a temporary Teams channel for every GitHub pull request, it will invite reviewers and assignees to the channel, notify them of relevant events like code comments, comments, GitHub actions, deployments and finally it will archive the channel once you close or merge pull request.
+Axolo creates a temporary Microsoft Teams channel for every GitHub pull request, inviting reviewers and assignees to join. This channel serves as a hub for all relevant notifications, including code comments, GitHub actions, and deployments. Once the pull request is closed or merged, the channel is automatically archived, ensuring a clutter-free workspace.
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <Image
@@ -34,49 +37,74 @@ Axolo makes a temporary Teams channel for every GitHub pull request, it will inv
   />
 </div>
 
-Axolo is currently in private early-access for Microsoft Teams at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]); window.$crisp.push(["set", "session:event", ["microsoft_request"]]) }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
+Axolo is currently in private early-access for Microsoft Teams at the moment. Tell us <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]) }}>here</a> if you would like to take part in the early-access with your email and we will get back to you.
 
-<button
-  onClick={() => {
-    window.$crisp.push(["do", "chat:open"])
-    window.$crisp.push([
-      "do",
-      "message:send",
-      ["text", "Hey, I want to try the Axolo Microsoft teams integration!"],
-    ])
-    window.$crisp.push(["set", "session:event", ["microsoft_request"]])
-  }}
-  style={{
-    backgroundColor: "blue",
-    border: "none",
-    color: "white",
-    fontWeight: 600,
-    padding: "15px 32px",
-    textAlign: "center",
-    textDecoration: "none",
-    display: "inline-block",
-    fontSize: 16,
-  }}
->
-  Request Axolo early access
-</button>
+<div className="flex justify-center">
+  <button
+    onClick={() => {
+      window.$crisp.push(["do", "chat:open"])
+      window.$crisp.push([
+        "do",
+        "message:send",
+        ["text", "Hey, I want to try the Axolo Microsoft teams integration!"],
+      ])
+    }}
+    className="rounded bg-[#0049ff] py-2 px-4 font-bold text-white hover:bg-blue-700"
+  >
+    <p className="!m-0">Request Axolo Teams early access</p>
+  </button>
+</div>
+
+### Axolo's Technical Edge: How It Integrates with Microsoft Teams
+
+When it comes to GitHub pull request Microsoft Teams integration, Axolo goes beyond the basics to offer a technically robust solution. Here's a closer look at the technical aspects that set Axolo apart:
+
+#### API Functionalities
+
+Axolo leverages Microsoft Teams' and GitHub's APIs to create a seamless integration. This allows for real-time synchronization between your GitHub repositories and Microsoft Teams channels, ensuring that all stakeholders are on the same page.
+
+#### Security Features
+
+Security is a top priority for Axolo. The integration is built with enterprise-level security protocols, including OAuth for authentication and end-to-end encryption, to protect your code and communications.
+
+#### Handling GitHub Actions and Checks
+
+One of Axolo's standout features is its ability to handle GitHub actions and checks efficiently. Whenever a GitHub action is triggered or a code check is completed, Axolo sends a notification to the relevant Microsoft Teams channel. This ensures that your team can react promptly to any changes, making the code review process faster and more efficient.
+
+<UserReview />
 
 ## **2. <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/integrations/microsoft-teams">Official GitHub Microsoft integrations</a>.**
 
-Since this is an official integration there are cool features you will not see in another type of reminder bots, such as displaying code directly in Teams.
+For those already familiar with GitHub's native integration with Microsoft Teams, you'll find that it offers a robust set of features designed to enhance team communication and collaboration.
 
 ### 😍 What we like:
 
-Code can be displayed directly in Teams.
-It's highly customizable, you have to choose which repository you want to subscribe to, deactivate some notifications. The integration is well documented.
-It's also maintained by the GitHub team, and if you have questions you might be able to ask them directly.
+- Direct code display in Teams enhances real-time collaboration.
+- High customization options let you tailor notifications to your needs, and the well-documented integration simplifies this process.
+- Direct support from the GitHub team adds an extra layer of reliability.
 
 ### 🤔 What we don't like:
 
-It takes time to set it up and can be confusing as well.
-In order to have it work, you will need to subscribe manually to each of the repositories using Teams slash commands.
+- Initial setup can be time-consuming and somewhat confusing.
+- Manual subscription to each repository is required, which can be cumbersome for teams managing multiple repositories.
+- No collaborative feature in this integration, it's a notification bot.
 
-##### **GitHub Teams Integration Screenshot**
+### Main Features of the Official GitHub Microsoft Teams Integration
+
+#### Stay Updated on the Latest in One Repository Channel
+
+By using the @github subscribe [repository name] command within Microsoft Teams, you can receive real-time updates on various GitHub activities such as new commits, pull requests, issues, status updates, comments, and code reviews. This eliminates the need for constant context-switching between GitHub and Microsoft Teams, allowing you to focus more on your work.
+
+#### Move from Conversation to Next Steps
+
+One of the standout features is the ability to turn Microsoft Teams discussions into actionable GitHub tasks. With threading support for pull request and issue notifications, the context is retained, making collaboration more efficient. Supported actions include opening a new issue, closing and reopening existing issues, and commenting on issues and pull requests.
+
+#### Unfurl GitHub Links
+
+When you share GitHub links in your Microsoft Teams channel, detailed previews are automatically generated. This feature supports a variety of GitHub activities and properties, including pull requests, issues, comments, code snippets, repositories, and even accounts or organizations.
+Since this is an official integration there are cool features you will not see in another type of reminder bots, such as displaying code directly in Teams.
+
+### **GitHub Teams Integration Screenshot**
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <Image
@@ -111,23 +139,18 @@ Also the integration are basic and probably won't be enough to fit all your need
   />
 </div>
 
-<br></br>
-<br></br>
+## Conclusion
 
-# Conclusion
+We've explored three distinct GitHub and Microsoft Teams integrations, each offering unique approaches to streamlining pull requests and enhancing team engagement. Broadly, these integrations fall into two categories:
 
-We looked at 3 different GitHub and Teams integrations. Those 3 integrations take a different approach in trying to make pull requests last shorter and more engaging.
+### 1. Event-Driven Notification Bots:
 
-We see two types of GitHub and Teams integrations:
+Solutions like Zapier and the official GitHub Teams integration primarily serve as notification bots, alerting you or a designated channel when a pull request is up for review.
 
-## 1. The one that are simple notifications based on events:
+### 2. Comprehensive Collaboration Platforms:
 
-Those bots, like Zapier, the official GitHub Teams integration will notify either you personally or a channel that a Pull Request is ready to be reviewed.
+Axolo leads the pack here. Beyond just notifications, Axolo establishes dedicated channels for each pull request, facilitating focused discussions and quicker resolutions during code reviews.
 
-## 2. The truly collaborative apps:
+Companies leveraging Axolo have reported more efficient collaboration and faster pull request closures. Interested? Click <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]) }}>here</a> to try the Axolo GitHub Microsoft Teams integration.
 
-Axolo is the best in this category. On top of enabling the right notifications (like CI/CD, GitHub actions, deployment and checks), Axolo creates contextual channels for each Pull Request.
-
-Companies that use Axolo found that creating those spaces to talk about a specific pull request makes it easier to collaborate during code reviews and resolve pull requests quickly.
-
-Let us know <a onClick={() => { window.$crisp.push(['do', 'chat:open']); window.$crisp.push(["do", "message:send", ["text", "Hey, I want to try the Axolo Microsoft teams integration!"]]) }}>here</a> if you want to try out the Axolo GitHub Microsoft Teams integration.
+And if you want to learn more how Axolo could improve your review time, see [how Agency Analytics reduced their review time by 64% with Axolo](https://axolo.co/blog/p/how-agency-analytics-reduced-pr-cycle-time-by-65-with-axolo).
