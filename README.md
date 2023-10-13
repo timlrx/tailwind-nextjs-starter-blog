@@ -19,6 +19,8 @@ Facing issues? Check the [FAQ page](https://github.com/timlrx/tailwind-nextjs-st
 
 Feature request? Check the past discussions to see if it has been brought up previously. Otherwise, feel free to start a new discussion thread. All ideas are welcomed!
 
+Looking for an Astro alternative? Check out the unofficial [Tailwind Astro Template](https://github.com/wanoo21/tailwind-astro-starting-blog).
+
 ## Examples V2
 
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
