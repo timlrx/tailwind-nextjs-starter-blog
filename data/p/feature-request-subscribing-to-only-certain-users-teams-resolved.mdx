@@ -1,0 +1,94 @@
+---
+title: "Streamline PR Management with Axolo: Notification Channels and PR-Specific Channels"
+date: "2023-10-18"
+tags: ["GitHub", "Slack", "Axolo"]
+draft: false
+summary: "Axolo offers a unique approach to PR management by creating a notification channel per team and a dedicated Slack channel for each PR, inviting only the relevant team members."
+image: "/blog/static/images/notifications/teamchannel.jpg"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+<ImageContainer
+  alt="Axolo Team Channels "
+  src="/blog/static/images/notifications/teamchannel.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3174}
+  height={1680}
+/>{" "}
+
+## The Problem Stated by the Community:
+
+Problem stated by Jamie Kyle, @[jamiebuilds](https://github.com/jamiebuilds) on [GitHub](https://github.com/integrations/slack/issues/390):
+
+"Within a "monorepo" there can be dozens of teams working in the same codebase.
+
+Subscribing to all of these notifications would get super noisy for a single room. It would be really great if you could subscribe to just a few @users or a @org/team."
+
+## State as of October 2023
+
+Dating from Feb 2018, this issue is 4 years old has 174 👍 reactions and 57 💬 comments. This issue ranks as the seven-highest on the GitHub / Slack Repository, highlighting its relevance and urgency.
+
+## Problem Identified with Traditional Methods:
+
+1. Lack of targeted notifications.
+2. Inefficient communication among reviewers and assignees.
+
+## One Notification Channel Per Team: Proposed Solution by Axolo
+
+Axolo allows for the creation of a notification channel per team, ensuring that only relevant updates are sent to the right team members.
+Each notifications is then automatically updated depending on:
+
+- It's state (draft, work in progress, closed, merged, etc.)
+- The team members involved (reviewers, assignees, etc.)
+
+Learn more about team channels on Axolo: [Team Channels](https://axolo.co/features/slack-github-gitlab-team-channels).
+
+<ImageContainer
+  alt="teamchannelnotif"
+  src="/blog/static/images/notifications/teamchannelnotif.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1362}
+  height={1272}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  In this screenshot, you can see how Axolo creates a dedicated notification channel for each team,
+  keeping everyone in the loop without overwhelming them.
+</SubImageText>
+
+## Channel per PR: Proposed Solution by Axolo
+
+Axolo takes it a step further by creating a dedicated Slack channel for each PR, inviting only the relevant team members—reviewers and/or assignees—for focused discussion and updates.
+
+Learn more about PR-specific channels on Axolo: [PR-Specific Channels](https://axolo.co/features/slack-github-gitlab-team-channels).
+
+<ImageContainer
+  alt="1 channel 1 pr"
+  src="/blog/static/images/notifications/1 channel 1 pr.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1227}
+  height={1278}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Each PR creates its own Slack channel, where discussions are mirrored from Slack to GitHub and
+  vice versa. This channel also includes all relevant information about the PR, such as CI/CD
+  status.
+</SubImageText>
+
+## How to Get Started with Axolo
+
+1. Brief your team about Axolo's innovative approach.
+2. Follow the onboarding steps at [Axolo's App](https://app.axolo.co).
+3. Start managing your PRs more efficiently through Slack.
+
+<CTABanner type="try" />
+<br />
+<UserReview />
+
+## Feedback
+
+We value your input! Share your thoughts on these features and suggest improvements to make Axolo even better. Join our community or leave your comments below!
