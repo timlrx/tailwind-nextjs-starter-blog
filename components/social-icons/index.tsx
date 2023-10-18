@@ -1,4 +1,16 @@
-import { Mail, Github, Facebook, Youtube, Linkedin, Twitter, Mastodon, Instagram, GoodReads, StackOverflow, StackExchange, } from './icons'
+import {
+  Mail,
+  Github,
+  Facebook,
+  Youtube,
+  Linkedin,
+  Twitter,
+  Mastodon,
+  Instagram,
+  GoodReads,
+  StackOverflow,
+  StackExchange,
+} from './icons'
 
 const components = {
   mail: Mail,
