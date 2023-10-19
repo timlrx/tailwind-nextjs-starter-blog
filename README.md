@@ -21,6 +21,8 @@ Feature request? Check the past discussions to see if it has been brought up pre
 
 Looking for an Astro alternative? Check out the unofficial [Tailwind Astro Template](https://github.com/wanoo21/tailwind-astro-starting-blog).
 
+Looking for a Remix-run alternative? Check out the unofficial [Tailwind Remix-run Starter Blog Template](https://github.com/SangeetAgarwal/tailwind-remix-run-mdxjs-typescript-starter-blog).
+
 ## Examples V2
 
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
