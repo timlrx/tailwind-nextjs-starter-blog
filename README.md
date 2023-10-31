@@ -33,7 +33,8 @@ Looking for a Remix-run alternative? Check out the unofficial [Tailwind Remix-ru
 - [Prabhu's Blog](https://prabhukirankonda.vercel.app) - Prabhu's Personal website with blog ([source code](https://github.com/prabhukiran8790/prabhukirankonda))
 - [Rabby Hasan's Blog](https://blog.rabbyhasan.com.bd/) - Rabby Hasan's personal blog about full stack development with cloud ([source code](https://github.com/rabbyalone/myblog))
 - [enscribe.dev](https://enscribe.dev) - enscribe's personal blog; cybersecurity shenanigans, frontend webdev, etc. ([source code](https://github.com/jktrn/enscribe.dev))
-
+- [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website upgraded from V1 ([source code](https://github.com/dlarroder/dalelarroder))
+  
 Using the template? Feel free to create a PR and add your blog to this list.
 
 ## Examples V1
@@ -60,7 +61,6 @@ Thanks to the community of users and contributors to the template! We are no lon
 - [bpiggin.com](https://www.bpiggin.com) - Ben Piggin's personal blog
 - [maqib.cn](https://maqib.cn) - A blog of Chinese front-end developers 狂奔小马的博客 ([源码](https://github.com/maqi1520/nextjs-tailwind-blog))
 - [ambilena.com](https://ambilena.com/) - Electronic Music Blog & imprint for upcoming musicians.
-- [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website and blog ([source code](https://github.com/dlarroder/dalelarroder))
 - [0xchai.io](https://0xchai.io) - Chai's personal blog
 - [techipedia](https://techipedia.vercel.app) - Simple blogging progressive web app with custom installation button and top progress bar
 - [reubence.com](https://reubence.com) - Reuben Rapose's Digital Garden
