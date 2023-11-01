@@ -99,8 +99,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       Tags
                     </h2>
-                    <div style={{display: 'block'}}>
-                      {tags.sort().map((tag, index) => [<Tag key={tag} text={tag} />, <br key={index} />])}
+                    <div style={{ display: 'block' }}>
+                      {tags
+                        .sort()
+                        .map((tag, index) => [<Tag key={tag} text={tag} />, <br key={index} />])}
                     </div>
                   </div>
                 )}
