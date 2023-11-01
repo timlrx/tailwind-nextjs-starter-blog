@@ -7,7 +7,7 @@ import tagData from '../app/tag-data.json' assert { type: 'json' }
 import { allBlogs } from '../.contentlayer/generated/index.mjs'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 
-const slugger = new GithubSlugger()
+const slugger = new GithubSlugger();
 
 const generateRssItem = (config, post) => `
   <item>
