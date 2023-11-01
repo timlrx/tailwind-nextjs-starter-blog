@@ -32,12 +32,12 @@ Drogi Czytelniku! Jeśli powyższy akapit nie jest dla Ciebie do końca jasny, n
 
 Ta i pozostałe różnice zostały podane w poniższej tabeli:
 
-| Zagadnienie | Test jednostkowy | Test integracyjny |
-|-------------|------------------|-------------------|
-| **Zależności** | Testowany **jednostkowy element (klasa, metoda) w izolacji**. | Testowana **więcej niż jedna wewnętrzna lub zewnętrzna zależność.** |
-| **Punkt awarii (_failure point_)** | Tylko **jeden potencjalny punkt awarii** (jedna logiczna asercja per test*). | **Wiele potencjalnych punktów awarii.** |
-| **Szybkość działania** | **Bardzo szybko**, dużo poniżej 1 sekundy. | **Może trwać długo**, ze względu na czasochłonne operacje np. dostęp do bazy danych, I/O, operacje na sesji.
-| **Konfiguracja** | Test musi działać na każdej maszynie **bez dodatkowej konfiguracji.** | Test **może być zależny od konfiguracji**, np. machine.config (login/hasło) do bazy danych.
+| Zagadnienie                        | Test jednostkowy                                                             | Test integracyjny                                                                                            |
+|------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Zależności**                     | Testowany **jednostkowy element (klasa, metoda) w izolacji**.                | Testowana **więcej niż jedna wewnętrzna lub zewnętrzna zależność.**                                          |
+| **Punkt awarii (_failure point_)** | Tylko **jeden potencjalny punkt awarii** (jedna logiczna asercja per test*). | **Wiele potencjalnych punktów awarii.**                                                                      |
+| **Szybkość działania**             | **Bardzo szybko**, dużo poniżej 1 sekundy.                                   | **Może trwać długo**, ze względu na czasochłonne operacje np. dostęp do bazy danych, I/O, operacje na sesji. |
+| **Konfiguracja**                   | Test musi działać na każdej maszynie **bez dodatkowej konfiguracji.**        | Test **może być zależny od konfiguracji**, np. machine.config (login/hasło) do bazy danych.                  |
 
 \* — Test jednostkowy może zawierać więcej niż jeden Assert pod warunkiem, że wszystkie testują jeden element. Czytaj więcej: [http://ayende.com/blog/2684/what-is-one-assert](http://ayende.com/blog/2684/what-is-one-assert "http://ayende.com/blog/2684/what-is-one-assert").
 
