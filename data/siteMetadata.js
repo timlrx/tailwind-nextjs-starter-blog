@@ -11,7 +11,7 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: '',
-  email: 'dariusz.wozniak@gmail.com',
+  email: '',
   github: 'https://github.com/dariusz-wozniak',
   twitter: 'https://twitter.com/dwozn',
   facebook: '',
