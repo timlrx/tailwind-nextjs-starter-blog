@@ -100,10 +100,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       Tags
                     </h2>
                     <div style={{display: 'block'}}>
-                      {tags.sort().map((tag) => [
-                        <Tag key={tag} text={tag} />,
-                        <br />
-                      ])}
+                      {tags.sort().map((tag, index) => [<Tag key={tag} text={tag} />, <br key={index} />])}
                     </div>
                   </div>
                 )}
