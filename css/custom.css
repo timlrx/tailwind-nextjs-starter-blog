@@ -1,0 +1,9 @@
+code::before,
+code::after {
+    content: none !important;
+}
+
+code {
+    font-size: 1em !important;
+    font-weight: 500 !important;
+}

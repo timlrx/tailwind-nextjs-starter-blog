@@ -1,4 +1,5 @@
 import 'css/tailwind.css'
+import 'css/custom.css'
 import 'pliny/search/algolia.css'
 
 import { Inter } from 'next/font/google'
