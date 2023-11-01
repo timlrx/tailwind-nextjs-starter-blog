@@ -1,0 +1,148 @@
+---
+title: "Managing Stacked PRs"
+date: "2023-11-01"
+lastmod: "2023-11-01"
+tags: ["Stacked PRs", "Code Review", "GitHub", "Development Tools"]
+draft: false
+summary: "A detailed guide on managing Stacked PRs for efficient code reviews, featuring popular tools like Ghstack, Git Town, Sapling, Spr, and Graphite."
+image: "/blog/static/images/general/Managing Stacked PRs.jpg"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
+## 1. What is a Stacked PR? A Strategy for Sequential and Manageable Code Reviews
+
+<ImageContainer
+  alt="stacked pr illustration"
+  src="/blog/static/images/stacked-pr/stacked pr illustration.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>
+
+A Stacked Pull Request (PR) is a development workflow strategy where multiple smaller PRs are opened in a specific sequence, each one building upon the previous. This approach allows for easier code review, as each PR contains a manageable chunk of changes, making it simpler for reviewers to understand the context and impact. Stacked PRs are particularly useful in larger projects where a single PR could become overwhelming to review.
+
+## 2. The Importance of Stacked PRs in Streamlined Code Reviews
+
+<ImageContainer
+  alt="stacked pr is efficient"
+  src="/blog/static/images/stacked-pr/stacked pr is efficient.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>{" "}
+
+Stacked PRs align well with the best practices of having small, manageable changes in each pull request, as advocated by [Google's engineering practices](https://google.github.io/eng-practices/review/developer/small-cls.html). Here are some key reasons why this is important:
+
+- **Quick Reviews**: Smaller PRs are reviewed more quickly, making it easier for both developers and reviewers to allocate time.
+- **Thorough Reviews**: The limited scope of smaller PRs allows for more thorough and focused code reviews, reducing the chances of overlooking critical issues.
+- **Reduced Bug Risk**: With fewer changes to consider, it's easier to assess the impact of the code, thereby minimizing the risk of introducing bugs.
+- **Less Wasted Work**: In case a PR is rejected, smaller changes result in less wasted effort on both sides.
+- **Easier Merging**: Smaller PRs are less likely to result in merge conflicts, simplifying the integration process.
+- **Better Design**: The manageable size of small PRs makes it easier to maintain good design and code health.
+- **Unblocked Progress**: The self-contained nature of small PRs allows developers to continue working on other tasks while awaiting reviews.
+
+By aligning with the principle of making small, focused changes, Stacked PRs inherently incorporate these best practices into your development workflow.
+
+## 3. Stacked PR in GitHub: How to Manage Stacked PRs
+
+<ImageContainer
+  alt="github workflow for stacked pr"
+  src="/blog/static/images/stacked-pr/github workflow for stacked pr.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>{" "}
+
+Managing Stacked PRs in GitHub can be a game-changer for your development workflow. According to a [LogRocket blog post](https://blog.logrocket.com/using-stacked-pull-requests-in-github/), here's a simplified guide on how to manage Stacked PRs in GitHub:
+
+### Creating a Stacked PR
+
+1. **Checkout the Base Branch**: Start by checking out the base branch, usually `master` or `develop`.
+   ```bash
+   git checkout master
+   git checkout -b feature-branch
+   ```
+2. **Make Changes and Commit**: Make your changes and commit them.
+   ```bash
+   echo "Hello, World!" > hello.txt
+   git add hello.txt
+   git commit -m 'Add hello.txt'
+   ```
+3. **Push and Create PR**: Push the changes and create a PR against the base branch.
+   ```bash
+   git push -u origin feature-branch
+   ```
+
+### Creating a Dependent PR
+
+1. **Checkout the First Branch**: Make sure you are on the first branch.
+   ```bash
+   git checkout feature-branch
+   git checkout -b feature-branch-2
+   ```
+2. **Make Changes and Commit**: Make additional changes and commit them.
+   ```bash
+   echo "Hello, again!" > hello2.txt
+   git add hello2.txt
+   git commit -m 'Add hello2.txt'
+   ```
+3. **Push and Create PR**: Push the changes and create a PR. This PR will be dependent on the first one.
+   ```bash
+   git push -u origin feature-branch-2
+   ```
+
+### Merging Stacked PRs
+
+- **Direct Merge**: Use the "Merge" option to maintain the commit history.
+
+### Best Practices
+
+- **Labeling**: Label the PR as 'Stacked' to avoid confusion.
+- **Order of Merging**: Merge the base PR first to simplify subsequent merges.
+
+By following these simplified steps, you can manage Stacked PRs in GitHub more effectively, making your development process more organized and efficient.
+
+## 4. Stacked PR Tools Tools available for managing Stacked PRs
+
+<ImageContainer
+  alt="stacked pr tools list"
+  src="/blog/static/images/stacked-pr/stacked pr tools list.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>{" "}
+
+Managing Stacked PRs can be made even more efficient with specialized tools. Below is a table summarizing some of the popular tools and their features:
+
+| Tool                                                                          | Features                                                                                                                        |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| <NoFollowLink url="https://github.com/ezyang/ghstack">ghstack </NoFollowLink> | - Submit stacks of diffs as separate PRs<br/>- Supports Python 3.8+<br/>- Easy setup with GitHub Personal Access Tokens         |
+| <NoFollowLink url="https://www.git-town.com/">Git Town</NoFollowLink>         | - High-level CLI for Git<br/>- Supports common branching models like GitHub Flow, Git Flow<br/>- Simplifies Git commands        |
+| <NoFollowLink url="https://sapling-scm.com/">Sapling </NoFollowLink>          | - Intuitive UI<br/>- Git integration<br/>- Methods for stacking, iterating, and submitting work                                 |
+| <NoFollowLink url="https://ejoffe.github.io/spr/">Spr </NoFollowLink>         | - Client-side script integrated into Git<br/>- Simplifies branch and PR management<br/>- No special server-side software needed |
+| <NoFollowLink url="https://graphite.dev/">Graphite.dev</NoFollowLink>         | - GitHub sync<br/>- Pull request inbox<br/>- CLI with stacking & simplified commands<br/>- VS Code extension                    |
+
+<CTABanner type="try" />
+
+## 5. Conclusion: Summary and Key Takeaways
+
+<ImageContainer
+  alt="conclusion stacked pr vs traditional"
+  src="/blog/static/images/stacked-pr/conclusion stacked pr vs traditional.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>{" "}
+
+Stacked PRs offer a more organized and efficient approach to code reviews, especially for larger projects. They align well with best practices for small, manageable changes, making the review process quicker and more thorough. Various tools like ghstack, Git Town, Sapling, spr, and Graphite can further streamline this workflow, each offering unique features to manage your Stacked PRs effectively.
+
+By incorporating Stacked PRs and these tools into your development process, you can significantly improve code quality, reduce review time, and ultimately, deliver better software.
+
+<UserReview />
