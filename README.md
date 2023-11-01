@@ -34,6 +34,7 @@ Looking for a Remix-run alternative? Check out the unofficial [Tailwind Remix-ru
 - [Rabby Hasan's Blog](https://blog.rabbyhasan.com.bd/) - Rabby Hasan's personal blog about full stack development with cloud ([source code](https://github.com/rabbyalone/myblog))
 - [enscribe.dev](https://enscribe.dev) - enscribe's personal blog; cybersecurity shenanigans, frontend webdev, etc. ([source code](https://github.com/jktrn/enscribe.dev))
 - [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website upgraded from V1 ([source code](https://github.com/dlarroder/dalelarroder))
+- [hauhau.cn](https://www.hauhau.cn) - Homing's personal blog about the stuff he's learning ([source code](https://github.com/hominsu/blog))
   
 Using the template? Feel free to create a PR and add your blog to this list.
 
