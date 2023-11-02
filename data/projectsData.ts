@@ -1,19 +1,16 @@
 const projectsData = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'Blog about programming (in Polish)',
+    description: `Previous version of blog about programming, written in Polish. Features the Test-Driven Development course.
+    Now, the blog is inactive but the mirror is still available.`,
+    imgSrc: '/static/images/projects/blogv1.png',
+    href: 'https://dariuszwozniak.netlify.app/',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'The TDD Book',
+    description: `The best-selling book about Test-Driven Development in Poland. Published by Helion, the biggest Polish IT books publisher.`,
+    imgSrc: '/static/images/projects/cover.jpg',
+    href: 'https://helion.pl/ksiazki/tdd-techniki-programowania-sterowanego-testami-dariusz-wozniak,tddppr.htm',
   },
 ]
 
