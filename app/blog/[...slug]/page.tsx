@@ -12,6 +12,7 @@ import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+import { notFound } from 'next/navigation'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -85,16 +86,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
-    return (
-      <div className="mt-24 text-center">
-        <PageTitle>
-          Under Construction{' '}
-          <span role="img" aria-label="roadwork sign">
-            🚧
-          </span>
-        </PageTitle>
-      </div>
-    )
+    return notFound()
   }
 
   const prev = sortedCoreContents[postIndex + 1]
