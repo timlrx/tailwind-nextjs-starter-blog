@@ -1,0 +1,77 @@
+
+---
+title: Deploying Smart Contracts and Creating a Web3 React App
+date: '2023-11-07'
+tags: ['smart contracts', 'deploy', 'ethereum', 'react', 'web3', 'hardhat', 'solidity']
+draft: false
+summary: This post covers the process of creating and deploying a smart contract to an Ethereum network and setting up a React app with an integrated Web3 wallet to connect to the deployed smart contract.
+---
+
+# Deploying Smart Contracts and Creating a Web3 React App
+
+The process of creating and deploying a smart contract on a blockchain like Ethereum, and then integrating it into your React web application with a web3 wallet can be a challenging process. However, with the right tools and a step-by-step guide, you will be able to implement this smoothly.
+
+## Step 1: Create Your Smart Contract
+
+First, let's use Solidity to write our smart contract.
+
+Here's a simple smart contract example:
+
+```solidity
+pragma solidity ^0.5.16;
+
+contract SimpleContract {
+    string public message;
+
+    constructor(string memory initialMessage) public {
+        message = initialMessage;
+    }
+
+    function updateMessage(string memory newMessage) public {
+        message = newMessage;
+    }
+}
+```
+
+## Step 2: Compilation & Deployment with Hardhat
+
+After the smart contract is written, we'll compile it using the Hardhat and then deploy it to an Ethereum testnet network.
+
+```bash
+npx hardhat compile
+npx hardhat run scripts/deploy.js --network rinkeby
+```
+
+Ensure you have your `hardhat.config.js` setup properly with the correct network configurations and private key.
+
+## Step 3: Create & Configure Your React App
+
+Next, let's start building our React app. First let's install `web3` library to enable communication with the Ethereum network:
+
+```bash
+npx create-react-app my-app
+cd my-app
+npm install web3
+```
+
+### Connecting to Web3
+
+In your React app, you can now connect to your web3 provider and access the deployed smart contract:
+
+```javascript
+import Web3 from 'web3';
+
+let web3 = new Web3(window.ethereum);
+
+await window.ethereum.enable();
+
+const contractAddress = '0x0'; // Deployed contract address
+const contractABI = [...]; // ABI of the contract
+
+let contract = new web3.eth.Contract(contractABI, contractAddress);
+let message = await contract.methods.message().call();
+```
+
+And there you have it! This is just the beginning of what you can do with web3.js, React and Ethereum smart contracts. The decentralized web opens up a whole new world of possibilities for developers and users alike.
+```
+Note: You may replace the '0x0' for contract address with the deployed contract's address. Also, replace [...] with your contract's ABI.
