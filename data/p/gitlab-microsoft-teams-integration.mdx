@@ -1,15 +1,15 @@
 ---
-title: ""
-date: "2023-06-27"
-lastmod: "2023-06-27"
-tags: [""]
-draft: true
-summary: ""
+title: "How to integrate GitLab with Microsoft Teams"
+date: "2023-11-21"
+lastmod: "2023-11-21"
+tags: ["gitlab", "teams"]
+draft: false
+summary: "We will focus on the integration of GitLab, a popular tool for version control, with Microsoft Teams, a widely-used platform for team communication. Currently, there is a notable gap in the market: GitLab has not yet developed an official integration for Microsoft Teams."
 image: "/blog/static/images/general/code-quality.jpg"
 authors: ["sydney"]
 ---
 
-This article focuses on the integration of GitLab, a popular tool for code management and version control, with Microsoft Teams, a widely-used platform for team communication and collaboration. Currently, there is a notable gap in the market: GitLab has not yet developed an official integration for Microsoft Teams.
+We will focus on the integration of GitLab, a popular tool for version control, with Microsoft Teams, a widely-used platform for team communication. Currently, there is a notable gap in the market: GitLab has not yet developed an official integration for Microsoft Teams.
 
 Axolo steps in to address this need by providing a solution that connects GitLab with Microsoft Teams. This integration facilitates better communication and coordination within development teams by linking GitLab's repository management capabilities with the collaborative features of Microsoft Teams. In the following sections, we will explore the technical aspects of this integration and how it can benefit teams in their development processes.
 
@@ -18,6 +18,15 @@ Axolo steps in to address this need by providing a solution that connects GitLab
 ## Understanding GitLab and Microsoft Teams
 
 ### Overview of GitLab: Key Features and Benefits
+
+<ImageContainer
+  alt="gitlab"
+  src="/blog/static/images/gitlab-teams/gitlab.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={362}
+  height={139}
+/>
 
 GitLab is a comprehensive DevOps platform that offers a range of features for software development, from project planning and source code management to CI/CD, monitoring, and security. Key features of GitLab include:
 
@@ -29,6 +38,15 @@ GitLab is a comprehensive DevOps platform that offers a range of features for so
 
 ### Overview of Microsoft Teams: Key Features and Benefits
 
+<ImageContainer
+  alt="teams"
+  src="/blog/static/images/gitlab-teams/teams.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1200}
+  height={630}
+/>{" "}
+
 Microsoft Teams is a collaboration platform that integrates chat, video meetings, file storage, and application integration. Its key features include:
 
 - Communication Tools: Teams offers chat and video conferencing capabilities, allowing for real-time communication among team members.
@@ -38,7 +56,18 @@ Microsoft Teams is a collaboration platform that integrates chat, video meetings
 
 The primary benefits of Microsoft Teams are improved communication, better collaboration, and increased productivity through the integration of various tools in a single platform.
 
+<CTABanner type="learn" />
+
 ### The Importance of Integration Between Code Management and Team Collaboration Tools
+
+<ImageContainer
+  alt="collaboration"
+  src="/blog/static/images/gitlab-teams/collaboration.webp"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>
 
 Integrating code management tools like GitLab with team collaboration platforms like Microsoft Teams is crucial in modern software development. Such integration:
 
@@ -63,7 +92,27 @@ Using GitLab and Microsoft Teams separately presents several challenges for tech
 | **Information Silos**         | Information trapped in either GitLab or Teams, making it hard to access complete project views. | Centralized information access, reducing the risk of information silos.           |
 | **Manual Notifications**      | Time-consuming manual updates and notifications across platforms.                               | Automated notifications, saving time and reducing manual effort.                  |
 
+<ImageContainer
+  alt="challenges"
+  src="/blog/static/images/gitlab-teams/challenges.webp"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>
+
 Integrating GitLab with Microsoft Teams addresses these challenges, leading to more efficient, streamlined, and collaborative workflows in tech teams.
+
+### Alternative Integration Method: Using Webhooks
+
+While it is technically possible to integrate GitLab with Microsoft Teams using webhooks, this method presents its own set of challenges. Webhooks allow for sending real-time notifications from GitLab to Teams, but this approach has limitations:
+
+- **Complex Setup:** Configuring webhooks requires technical know-how and can be time-consuming.
+- **Limited Functionality:** Webhooks typically offer basic notification services without the depth of integration features provided by dedicated solutions like Axolo.
+- **Maintenance Overhead:** Webhooks need regular maintenance and updates, especially when there are changes in either of the platforms.
+- **Lack of Contextual Integration:** Notifications via webhooks often lack the context and integration depth, making it difficult for teams to have cohesive and informed discussions.
+
+In contrast, a dedicated integration solution like Axolo is designed to overcome these limitations, offering a more seamless, efficient, and user-friendly experience.
 
 ## Axolo: Bridging the Gap
 
@@ -76,6 +125,15 @@ Axolo emerges as a pivotal solution in integrating GitLab with Microsoft Teams, 
 - **Threaded Discussions:** Axolo organizes GitLab event discussions into threads in Teams, keeping conversations organized and contextual.
 - **Code Review Management:** Simplifies the code review process by linking GitLab merge requests with Teams discussions.
 - **Customizable Notifications:** Teams can customize notifications to avoid overload and ensure relevance.
+
+<ImageContainer
+  alt="axolo-helper"
+  src="/blog/static/images/gitlab-teams/axolo-helper.webp"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1024}
+  height={1024}
+/>
 
 ### Benefits of Using Axolo for Teams
 
@@ -100,29 +158,20 @@ Key points to remember:
 - **Automated Notifications:** Axolo keeps teams updated with real-time notifications, improving response times and decision-making.
 - **Enhanced Project Management:** The integration provides a clearer overview of project statuses, aiding in effective management.
 
+<div className="flex justify-center">
+  <button
+    onClick={() => {
+      window.$crisp.push(["do", "chat:open"])
+      window.$crisp.push([
+        "do",
+        "message:send",
+        ["text", "Hey, I want to try the Axolo Microsoft teams integration!"],
+      ])
+    }}
+    className="rounded bg-[#0049ff] py-2 px-4 font-bold text-white hover:bg-blue-700"
+  >
+    <p className="!m-0">Request Axolo Teams early access</p>
+  </button>
+</div>
+
 We encourage teams looking to optimize their development and collaboration processes to consider Axolo for their GitLab Microsoft Teams integration needs. Axolo not only bridges the gap between code management and team communication but also enhances overall team productivity and project transparency.
-
-<SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  "This code is 100% bug-free. I'm sure of it." said Tommy leaving a mark on my screen with his
-  sweaty finger
-  <br /> - this never happened.
-</SubImageText>
-
-<span className="rainbow-button text-2xl font-bold hover:cursor-auto"></span>
-
-<NoFollowLink url=""></NoFollowLink>
-
-<CTABanner type="try" />
-
-<Callout
-  title="Collaborative environment for each pull request."
-  subtitle=' In the past, certain issues might have made it into production without sufficient scrutiny. But now, the integration with Axolo has enhanced our communication.... This has improved our architectural skills and enabled us to be more discerning before deploying to production"'
-/>
-
-<YellowCalloutBox emoji="⚠️" title="Limitations">
-  While ChatGPT is a powerful tool, developers should be aware of its limitations. Over-relying on
-  its suggestions without understanding the reasoning can lead to sub-optimal code. It's vital to
-  ensure human oversight in the development process. It doesn't always understand context in the way
-  a human does. For instance, in complex projects where there are multiple intertwined systems, a
-  solution that might seem apt in isolation might not be the best fit for the broader system.
-</YellowCalloutBox>
