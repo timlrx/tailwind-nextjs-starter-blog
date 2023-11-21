@@ -4,7 +4,13 @@
 #
 name: Deploy Next.js site to Pages
 
-on: push
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ['test-gh-pages-static']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -31,14 +37,6 @@ jobs:
         with:
           node-version: '18'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
       - name: Install dependencies
         run: yarn install
       - name: Build project assets
