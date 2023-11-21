@@ -40,7 +40,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Build project assets
-        run: yarn build
+        run: |
+          yarn build
+          touch out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
