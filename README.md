@@ -265,7 +265,7 @@ __Note__: Deploying on Github pages require addition modifications to the base p
 
 - [How can I add a custom MDX component?](/faq/custom-mdx-component.md)
 - [How can I customize the `kbar` search?](/faq/customize-kbar-search.md)
-- [How do I deploy on Github pages](/faq/github-pages-deployment.md)
+- [How do I deploy on Github pages?](/faq/github-pages-deployment.md)
 
 ## Support
 
