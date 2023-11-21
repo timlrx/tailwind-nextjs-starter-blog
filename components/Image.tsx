@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 import NextImage, { ImageProps } from 'next/image'
 
-// @ts-ignore
-const Image = ({ ...rest }: ImageProps) => <img {...rest} />
+const Image = ({ src, ...rest }: ImageProps) => (
+  <NextImage src={`/tailwind-nextjs-starter-blog${src}`} {...rest} />
+)
 
 export default Image
