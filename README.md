@@ -21,7 +21,7 @@ Feature request? Check the past discussions to see if it has been brought up pre
 
 ## Variations
 
-__Note__: These are community contributed forks using different frameworks or with significant changes to the codebase - not officially supported.
+**Note**: These are community contributed forks using different frameworks or with significant changes to the codebase - not officially supported.
 
 Astro alternative - [Tailwind Astro Template](https://github.com/wanoo21/tailwind-astro-starting-blog).
 
@@ -40,12 +40,12 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Rabby Hasan's Blog](https://blog.rabbyhasan.com.bd/) - Rabby Hasan's personal blog about full stack development with cloud ([source code](https://github.com/rabbyalone/myblog))
 - [enscribe.dev](https://enscribe.dev) - enscribe's personal blog; cybersecurity shenanigans, frontend webdev, etc. ([source code](https://github.com/jktrn/enscribe.dev))
 - [dalelarroder.com](https://dalelarroder.com) - Dale Larroder's personal website upgraded from V1 ([source code](https://github.com/dlarroder/dalelarroder))
-- [thetalhatahir.com](https://www.thetalhatahir.com)  - Talha Tahir's personal blog. Added article thumbnails, linkedIn card, Beautiful hero content, technology emoticons.
+- [thetalhatahir.com](https://www.thetalhatahir.com) - Talha Tahir's personal blog. Added article thumbnails, linkedIn card, Beautiful hero content, technology emoticons.
 - [hauhau.cn](https://www.hauhau.cn) - Homing's personal blog about the stuff he's learning ([source code](https://github.com/hominsu/blog))
 - [zS1m's Blog](https://contrails.space) - zS1m's personal blog for recording and sharing daily learning technical content _中文_
 - [dariuszwozniak.net](https://dariuszwozniak.net/) - Software development blog
 - [Terminals.run](https://terminals.run) - Blog site for some thoughts and records for life and technology.
-  
+
 Using the template? Feel free to create a PR and add your blog to this list.
 
 ## Examples V1
@@ -260,7 +260,7 @@ See [Next.js on Netlify](https://docs.netlify.com/integrations/frameworks/next-j
 5. Run `yarn build`. The generated static content is in the `out` folder.
 6. Deploy the `out` folder to your hosting service of choice or run `npx serve out` to view the website locally.
 
-__Note__: Deploying on Github pages require addition modifications to the base path. Please refer to the FAQ for more information.
+**Note**: Deploying on Github pages require addition modifications to the base path. Please refer to the FAQ for more information.
 
 ## Frequently Asked Questions
 
