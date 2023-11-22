@@ -1,6 +1,8 @@
 // Here put the folder name and it will create a component for each image that he can
 
-const folder = "public/static/images/gitlab-teams/"
+
+const folder = "public/static/images/stacked-pr/"
+
 
 var sizeOf = require("image-size")
 var fs = require("fs")
