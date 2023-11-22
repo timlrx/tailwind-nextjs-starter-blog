@@ -14,50 +14,7 @@ Axolo steps in to address this need by providing a solution that connects GitLab
 
 <TOCInline toc={props.toc} toHeading={3} asDisclosure />
 
-## Understanding GitLab and Microsoft Teams
-
-### Overview of GitLab: Key Features and Benefits
-
-<ImageContainer
-  alt="gitlab"
-  src="/blog/static/images/gitlab-teams/gitlab.png"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={362}
-  height={139}
-/>
-
-GitLab is a comprehensive DevOps platform that offers a range of features for software development, from project planning and source code management to CI/CD, monitoring, and security. Key features of GitLab include:
-
-- Source Code Management (SCM): GitLab provides a robust platform for version control and source code collaboration, supporting both private and public repositories.
-  -\* Continuous Integration and Delivery (CI/CD): It offers powerful CI/CD pipelines that automate the testing and deployment of code, enhancing the efficiency of the development process.
-- Issue Tracking and Project Management: GitLab includes tools for tracking issues and managing projects, allowing teams to plan, organize, and track work in a single application.
-- Security and Compliance: It integrates security features to identify vulnerabilities in code and ensures compliance with various standards.
-- The benefits of GitLab are its ability to streamline the software development lifecycle, improve collaboration among team members, and enhance the overall efficiency and quality of software development.
-
-### Overview of Microsoft Teams: Key Features and Benefits
-
-<ImageContainer
-  alt="teams"
-  src="/blog/static/images/gitlab-teams/teams.png"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={1200}
-  height={630}
-/>{" "}
-
-Microsoft Teams is a collaboration platform that integrates chat, video meetings, file storage, and application integration. Its key features include:
-
-- Communication Tools: Teams offers chat and video conferencing capabilities, allowing for real-time communication among team members.
-- Collaboration Features: It enables document sharing and collaborative editing, particularly useful for teams working on shared documents or projects.
-- Integration with Microsoft 365: Teams is seamlessly integrated with Microsoft 365 applications like Word, Excel, PowerPoint, and OneNote.
-- Customizable Workspaces: Teams allows users to customize their workspace with tabs, connectors, and bots to integrate various tools and services.
-
-The primary benefits of Microsoft Teams are improved communication, better collaboration, and increased productivity through the integration of various tools in a single platform.
-
-<CTABanner type="learn" />
-
-### The Importance of Integration Between Code Management and Team Collaboration Tools
+## The Importance of Integration Between Code Management and Team Collaboration Tools
 
 <ImageContainer
   alt="collaboration"
@@ -76,7 +33,7 @@ Integrating code management tools like GitLab with team collaboration platforms 
 
 _Key Takeaway:_ Integration is vital in agile environments for quick decision-making and efficient communication.
 
-## The Need for Integration
+## The Need for Integration between GitLab & Microsot Teams
 
 ### Challenges faced by teams using GitLab and Microsoft Teams separately
 
@@ -102,7 +59,11 @@ Using GitLab and Microsoft Teams separately presents several challenges for tech
 
 Integrating GitLab with Microsoft Teams addresses these challenges, leading to more efficient, streamlined, and collaborative workflows in tech teams.
 
+<CTABanner type="learn" />
+
 ### Alternative Integration Method: Using Webhooks
+
+#### The Downfall of Integrating Using Webhooks
 
 While it is technically possible to integrate GitLab with Microsoft Teams using webhooks, this method presents its own set of challenges. Webhooks allow for sending real-time notifications from GitLab to Teams, but this approach has limitations:
 
@@ -113,7 +74,62 @@ While it is technically possible to integrate GitLab with Microsoft Teams using 
 
 In contrast, a dedicated integration solution like Axolo is designed to overcome these limitations, offering a more seamless, efficient, and user-friendly experience.
 
-## Axolo: Bridging the Gap
+#### How to Integrate GitLab & Microsoft Teams Using Webhooks
+
+**Steps to Configure Microsoft Teams:**
+
+1. In Microsoft Teams, search for "incoming webhook" and select Incoming Webhook.
+2. Click on 'Add to a team'.
+3. Select the appropriate team and channel for the integration.
+4. Name the webhook. This name will be displayed alongside each message received through the webhook.
+5. Copy the webhook URL, we'll need it later.
+
+**Steps to Configure GitLab for Sending Notifications to Microsoft Teams:**
+
+1. Log in to GitLab with an administrator account.
+
+2. Navigate to your project using the left sidebar or the 'Search or go to' option.
+
+3. Go to Settings > Integrations.
+
+4. Choose Microsoft Teams notifications.
+
+5. Activate the integration by selecting 'Active'.
+
+6. In the Trigger section, enable desired events by checking the boxes next to:
+
+   - Push
+   - Issue
+   - Confidential issue
+   - Merge request
+   - Note
+   - Confidential note
+   - Tag push
+   - Pipeline
+   - Wiki page
+
+7. In the Webhook field, input the URL copied from the Microsoft Teams configuration.
+
+8. (Optional) For the pipeline trigger, select 'Notify only broken pipelines' to receive alerts only for failed pipelines.
+
+9. Specify the branches for which you want to receive notifications.
+
+10. Click 'Save changes' to finalize the configuration.
+
+This step-by-step guide was written according to the <NoFollowLink url="https://docs.gitlab.com/ee/user/project/integrations/microsoft_teams.html">official documentation</NoFollowLink>. Also, if you're following the Mono Repo trend, using the webhook integration will be super noizy. You will receive notifications from all the projects in your organization.
+
+If you're looking for a more robust solution, you can use Axolo.
+
+## Axolo: The fully integrated GitLab Microsoft Teams app
+
+<ImageContainer
+  alt="gitlabOldWay"
+  src="/blog/static/images/gitlab-teams/gitlabOldWay.png"
+  classNameDiv="bg-white lg:-mx-20"
+  classNameImage=""
+  width={2486}
+  height={994}
+/>
 
 Axolo emerges as a pivotal solution in integrating GitLab with Microsoft Teams, effectively bridging the gap between code management and team collaboration.
 
