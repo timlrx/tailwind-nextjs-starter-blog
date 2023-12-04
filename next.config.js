@@ -57,15 +57,19 @@ const securityHeaders = [
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
+
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
+    output: 'export',
+    basePath: "/stephondoestech_personal_blog",
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
     images: {
+      unoptimized: true,
       remotePatterns: [
         {
           protocol: 'https',
@@ -73,20 +77,19 @@ module.exports = () => {
         },
       ],
     },
-    async headers() {
+/*     async headers() {
       return [
         {
           source: '/(.*)',
           headers: securityHeaders,
         },
       ]
-    },
+    }, */
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       })
-
       return config
     },
   })
