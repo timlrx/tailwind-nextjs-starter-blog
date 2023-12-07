@@ -1,22 +1,5 @@
 ## Features
-
-    
-          
-            
-    
-
-          
-          Expand Down
-          
-            
-    
-
-          
-          Expand Up
-    
-    @@ -42,8 +133,8 @@ npx degit 'timlrx/tailwind-nextjs-starter-blog'
-  
-- Next.js with Typescript
+  - Next.js with Typescript
 - [Contentlayer](https://www.contentlayer.dev/) to manage content logic
 - Easy styling customization with [Tailwind 3.0](https://tailwindcss.com/blog/tailwindcss-v3) and primary color attribute
 - [MDX - write JSX in markdown documents!](https://mdxjs.com/)
@@ -42,6 +25,7 @@
 - Projects page
 - Preconfigured security headers
 - SEO friendly with RSS feed, sitemaps and more!
+
 ## Quick Start Guide
 1. Clone the repo
 ```bash
