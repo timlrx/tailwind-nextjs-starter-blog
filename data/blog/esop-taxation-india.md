@@ -1,5 +1,5 @@
 ---
-title: ESOP Taxation in India - 2023 and its impact 
+title: ESOP Taxation in India and its impact 
 tags: [esop, tax, india, tax-impact, esop-tax]
 date: 2023-12-06
 draft: false
@@ -24,7 +24,7 @@ ESOPs when exercised can be beneficial to the employee as company grows and can 
 
 However, there are few caveats with respect to ESOP taxation in India. As per the [latest ESOP policy amended by Finance Act, 2023](https://incometaxindia.gov.in/tutorials/50.taxation-of-esops.pdf), you need to pay 30% tax per below computation 
 ````
-FMV(Fair Market Value) - Share Price(if paid by employee) * No of Shares Exercised
+(FMV(Fair Market Value) - Share Price(if paid by employee)) * No of Shares Exercised
 ````
 
 The above tax is applicable on whichever event happens first, post ESOP exercise
@@ -35,20 +35,21 @@ allotted under ESOPs;
 
 ## Outcome and Impact
 
-Of many startups that exist, very few succeed of which even very few make it to third list - a liquidation event which can either be a buy-back/IPO/Secondary sale/acquisition/merger.
-Most will fall in first or second i.e. either you exceed the 48 months period (no liquidation in 48 months) or you are not with the company anymore (things change rapidly with startups) and that means outgoing tax is actual and incoming gain is notional(on paper). 
+Of many startups that exist, very few succeed of which even very few make it to an exit - a liquidation event which can either be a buy-back/IPO/Secondary sale/acquisition/merger.
+Most of the employees exercising ESOP will fall under first 2 events i.e. either you exceed the 48 months period (no liquidation in 48 months) or you are not with the company anymore (things change rapidly with startups) and that means outgoing tax is actual and incoming gain is notional(on paper). 
 And in the worst case if the liquidation fails or liquidation value is less than tax paid - you can only adjust tax paid against capital gains(short or long term).
-In short, you may not end up getting much basis your situation. In the best case you save all tax paid by offsetting against capital gains which is much lesser than the growth due to compounding in any investment option of the same amount.
+In short, you may not end up getting much basis your situation. In the best case, you may be able to save all tax paid by offsetting against capital gains which is much lesser than the growth due to compounding by investing the same amount in safer/better yielding options.
 
-And in most cases, the effective taxation from gains are in the range of 35-42%, where as LTCG(Long Term Captial Gain) would be ~20%
+If you are senior enough/have worked for sometime - effective taxation from gains are in the range of 35-42%, where as LTCG(Long Term Captial Gain) that is generally applicable to MF's/equities, et al. would be ~20%
 
-Due to the above reasons, most employees inspite of being awarded high ESOP's ending up passing. High taxation needs to be paid out of pocket without any real gain at that point in time.
+Due to the above reasons, most employees inspite of being awarded high ESOP's ending up passing it up. High taxation needs to be paid out of pocket without any real gain at that point in time.
 
 ## Change Needed 🥺🙋🏼
 
-Considering the above issues, ESOP taxation in India needs to change so that the employees taking risk and backing themselves may get benefitted in the truest sense. 
+In order to solve the above problem, ESOP taxation in India needs to change so that the employees taking risk with startups and backing themselves may get benefitted in the truest sense. 
+
 Following are 2 suggestions
-1. ESOP should be taxed on sale, not anytime before like exercise
+1. ESOP should be taxed on liquidation event, not anytime before like exercise
 2. ESOP gains should be treated and taxed as other LTCG(20%)
 
 Its my humble request to Finance Ministry to change this so more deserving employees can experience the possible finanical upside.
