@@ -4,7 +4,7 @@ tags: [esop, tax, india, tax-impact, esop-tax]
 date: 2023-12-06
 draft: false
 summary: ESOP Taxation reforms need change to let employees benefit in the truest sense
-canonicalUrl: https://vinayakg.dev/esop-taxation-impact-india
+canonicalUrl: https://vinayakg.dev/esop-taxation-india-2023
 ---
 
 ## Introduction
@@ -45,6 +45,10 @@ If you are senior enough/have worked for sometime - effective taxation from gain
 Due to the above reasons, most employees inspite of being awarded high ESOP's ending up passing it up. High taxation needs to be paid out of pocket without any real gain at that point in time.
 
 
+
+![mint-esop-summary.png](../static/images/mint-esop-summary.png)
+
+Image Courtsery: livemint.com (HT Media Ltd)
 
 ## Change Needed 🥺🙋🏼
 
