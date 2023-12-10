@@ -46,7 +46,7 @@ Due to the above reasons, most employees inspite of being awarded high ESOP's en
 
 
 
-![mint-esop-summary.png](/Users/vinayak/src/vg-nextjs-starter-blog/public/static/images/mint-esop-summary.png)
+![mint-esop-summary.png](../static/images/mint-esop-summary.png)
 
 Image Courtsery: livemint.com (HT Media Ltd)
 
