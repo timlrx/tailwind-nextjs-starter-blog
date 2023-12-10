@@ -15,7 +15,7 @@ const siteMetadata = {
   email: 'vinayakkg-dis@yahoo.com',
   github: 'https://github.com/vinayakg',
   twitter: 'https://twitter.com/vinayakkg',
-  linkedin: 'https://www.linkedin.com/vinayak-g',
+  linkedin: 'https://www.linkedin.com/in/vinayak-g',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
