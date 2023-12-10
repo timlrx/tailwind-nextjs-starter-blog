@@ -44,8 +44,6 @@ If you are senior enough/have worked for sometime - effective taxation from gain
 
 Due to the above reasons, most employees inspite of being awarded high ESOP's ending up passing it up. High taxation needs to be paid out of pocket without any real gain at that point in time.
 
-<img og:image:height="" src="https://vinayakg.dev/static/images/mint-esop-summary.png" />
-
 ![mint-esop-summary.png](../static/images/mint-esop-summary.png)
 
 Image Courtsery: livemint.com (HT Media Ltd)
