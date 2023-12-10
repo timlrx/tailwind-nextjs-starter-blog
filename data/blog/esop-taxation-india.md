@@ -44,6 +44,12 @@ If you are senior enough/have worked for sometime - effective taxation from gain
 
 Due to the above reasons, most employees inspite of being awarded high ESOP's ending up passing it up. High taxation needs to be paid out of pocket without any real gain at that point in time.
 
+
+
+![mint-esop-summary.png](/Users/vinayak/src/vg-nextjs-starter-blog/public/static/images/mint-esop-summary.png)
+
+Image Courtsery: livemint.com (HT Media Ltd)
+
 ## Change Needed 🥺🙋🏼
 
 In order to solve the above problem, ESOP taxation in India needs to change so that the employees taking risk with startups and backing themselves may get benefitted in the truest sense. 
