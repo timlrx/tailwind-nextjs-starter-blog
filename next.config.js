@@ -105,7 +105,7 @@ module.exports = () => {
         {
           source: '/:slug',
           destination: '/blog/:slug',
-        },
+        }
       ]
     },
     async redirects() {
@@ -127,6 +127,11 @@ module.exports = () => {
             },
           ],
         },
+        {
+          source: '/esop-taxation-india', // The original URL
+          destination: '/esop-taxation-impact-india', // The destination URL you want to redirect to
+          permanent: true
+        }
       ]
     },
     webpack: (config, options) => {
