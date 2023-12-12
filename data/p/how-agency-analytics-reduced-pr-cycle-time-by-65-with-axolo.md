@@ -31,7 +31,7 @@ You can find the video recording here or a summary of our conversation below the
 
 <div className="flex flex-col content-center items-center self-center">
   <p className="my-0"></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-g8KGsc8YMw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-g8KGsc8YMw" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 </div>
 <br></br>
 <br></br>
