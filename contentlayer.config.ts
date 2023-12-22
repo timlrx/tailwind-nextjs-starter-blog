@@ -45,9 +45,10 @@ const computedFields: ComputedFields = {
 /**
  * Count the occurrences of all tags across blog posts and write to json file
  */
-function createTagCount(allBlogs) {
-  const tagCount: Record<string, number> = {}
-  allBlogs.forEach((file) => {
+// Function to count tags for a specific content type
+function createTagCount(files, fileName) {
+  const tagCount = {}
+  files.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
         const formattedTag = GithubSlugger.slug(tag)
@@ -59,7 +60,7 @@ function createTagCount(allBlogs) {
       })
     }
   })
-  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
+  writeFileSync(`./app/${fileName}-tag-data.json`, JSON.stringify(tagCount))
 }
 
 function createSearchIndex(allBlogs) {
@@ -128,9 +129,82 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
+// Define the Review document type
+export const Review = defineDocumentType(() => ({
+  name: 'Review',
+  filePathPattern: 'reviews/**/*.mdx', // Path to your review files
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    tags: { type: 'list', of: { type: 'string' }, default: [] },
+    lastmod: { type: 'date' },
+    draft: { type: 'boolean' },
+    summary: { type: 'string' },
+    images: { type: 'json' }, // Use JSON type for arrays
+    animeTitle: { type: 'string', required: true },
+    rating: { type: 'number', required: true },
+    season: { type: 'string' },
+    authors: { type: 'list', of: { type: 'string' } },
+    layout: { type: 'string' },
+
+    // Add any other fields you need
+  },
+  computedFields: {
+    ...computedFields,
+    structuredData: {
+      type: 'json',
+      resolve: (doc) => ({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: doc.title,
+        datePublished: doc.date,
+        dateModified: doc.lastmod || doc.date,
+        description: doc.summary,
+        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+      }),
+    },
+  },
+}))
+
+// Define the News document type
+export const News = defineDocumentType(() => ({
+  name: 'News',
+  filePathPattern: 'news/**/*.mdx', // Path to your news files
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    tags: { type: 'list', of: { type: 'string' }, default: [] },
+    summary: { type: 'string', required: true },
+    images: { type: 'json' }, // Use JSON type for arrays
+    authors: { type: 'list', of: { type: 'string' } },
+    layout: { type: 'string', default: 'NewsLayout' }, // Default layout for news articles
+    lastmod: { type: 'date' },
+    // Add any other fields specific to your news content
+  },
+  computedFields: {
+    ...computedFields,
+    structuredData: {
+      type: 'json',
+      resolve: (doc) => ({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: doc.title,
+        datePublished: doc.date,
+        dateModified: doc.lastmod || doc.date,
+        description: doc.summary,
+        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+      }),
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Blog, Authors, Review, News],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
@@ -150,8 +224,10 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
-    const { allBlogs } = await importData()
-    createTagCount(allBlogs)
+    const { allBlogs, allReviews, allNews } = await importData()
+    createTagCount(allBlogs, 'blog')
+    createTagCount(allReviews, 'reviews')
+    createTagCount(allNews, 'news')
     createSearchIndex(allBlogs)
   },
 })
