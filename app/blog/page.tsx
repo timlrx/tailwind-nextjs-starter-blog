@@ -25,7 +25,7 @@ export default function BlogPage() {
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title="All Posts"
-      basePath="blog"
+      tagType="blog"
     />
   )
 }

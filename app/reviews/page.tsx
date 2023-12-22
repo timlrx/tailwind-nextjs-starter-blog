@@ -25,7 +25,7 @@ export default function ReviewPage() {
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title="All Reviews"
-      basePath="reviews"
+      tagType="reviews"
     />
   )
 }

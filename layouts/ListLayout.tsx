@@ -18,6 +18,7 @@ interface ListLayoutProps {
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
   pagination?: PaginationProps
+  tagType: string
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
@@ -65,6 +66,7 @@ export default function ListLayout({
   title,
   initialDisplayPosts = [],
   pagination,
+  tagType,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((post) => {
@@ -131,7 +133,7 @@ export default function ListLayout({
                         </Link>
                       </h3>
                       <div className="flex flex-wrap">
-                        {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                        {tags?.map((tag) => <Tag key={tag} text={tag} tagType={tagType} />)}
                       </div>
                     </div>
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">

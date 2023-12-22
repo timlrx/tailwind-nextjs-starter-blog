@@ -28,6 +28,7 @@ interface LayoutProps<T> {
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
+  tagType: string
 }
 
 export default function PostLayout<T extends BasePost>({
@@ -36,6 +37,7 @@ export default function PostLayout<T extends BasePost>({
   next,
   prev,
   children,
+  tagType,
 }: LayoutProps<T>) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
@@ -125,7 +127,7 @@ export default function PostLayout<T extends BasePost>({
                     </h2>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
+                        <Tag key={tag} text={tag} tagType={tagType} />
                       ))}
                     </div>
                   </div>

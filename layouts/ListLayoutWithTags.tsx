@@ -19,7 +19,7 @@ interface ListLayoutProps<T> {
   title: string
   initialDisplayPosts?: CoreContent<T>[]
   pagination?: PaginationProps
-  basePath: string
+  tagType: string
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
@@ -67,13 +67,13 @@ export default function ListLayoutWithTags<T extends BasePost>({
   title,
   initialDisplayPosts = [],
   pagination,
-  basePath = 'blog',
+  tagType,
 }: ListLayoutProps<T>) {
   const pathname = usePathname()
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
-  const tagDataFile = require(`app/${basePath}-tag-data.json`)
+  const tagDataFile = require(`app/${tagType}-tag-data.json`)
   const tagCounts = tagDataFile as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
@@ -90,9 +90,9 @@ export default function ListLayoutWithTags<T extends BasePost>({
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               <Link
-                href={`/${basePath}`}
+                href={`/${tagType}`}
                 className={`font-bold uppercase ${
-                  pathname === `/${basePath}`
+                  pathname === `/${tagType}`
                     ? 'text-primary-500'
                     : 'text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500'
                 }`}
@@ -101,7 +101,7 @@ export default function ListLayoutWithTags<T extends BasePost>({
               </Link>
               <ul>
                 {sortedTags.map((t) => {
-                  const tagHref = `/tags/${basePath}/${slug(t)}`
+                  const tagHref = `/tags/${tagType}/${slug(t)}`
                   return (
                     <li key={t} className="my-3">
                       <Link
@@ -111,7 +111,7 @@ export default function ListLayoutWithTags<T extends BasePost>({
                             ? 'text-primary-500'
                             : 'text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500'
                         }`}
-                        aria-label={`View ${basePath} tagged ${t}`}
+                        aria-label={`View ${tagType} tagged ${t}`}
                       >
                         {`${t} (${tagCounts[t]})`}
                       </Link>
@@ -142,7 +142,7 @@ export default function ListLayoutWithTags<T extends BasePost>({
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                            {tags?.map((tag) => <Tag key={tag} text={tag} tagType={tagType} />)}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
