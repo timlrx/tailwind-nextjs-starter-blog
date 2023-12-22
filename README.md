@@ -154,6 +154,12 @@ npx degit 'timlrx/tailwind-nextjs-starter-blog'
 yarn
 ```
 
+Please note, that if you are using Windows, you may need to run:
+
+```bash
+set PWD="$(pwd)"
+```
+
 ## Development
 
 First, run the development server:
