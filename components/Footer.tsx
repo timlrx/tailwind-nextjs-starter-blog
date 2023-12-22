@@ -22,7 +22,7 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
           <div>{` • `}</div>
-          <Link href="https://github.com/johnnyvaz/ppa-trilha/blob/main/CHANGELOG.md">
+          <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/CHANGELOG.md">
           version {version}
           </Link>
         </div>
