@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Stephon Parker Blog',
   author: 'Stephon Parker',
-  headerTitle: 'TailwindBlog',
+  headerTitle: 'StephonDoesTech',
   description: 'Welcome to the blog of an unapologetically Black Engineering Manager, helping to make the tech field more equitable. I build high performing teams by leading with a nurturing, but demanding style. I care more about the impact of actions than the intention behind them. Follow me as I share my path to becoming a better leader and what is exciting in my life.',
   language: 'en-us',
   theme: 'system', // system, dark or light
@@ -17,7 +17,8 @@ const siteMetadata = {
   facebook: '',
   youtube: 'https://youtube.com/channel/UCwwWc-5s7GqH8nV9bOMeI1g',
   linkedin: 'https://www.linkedin.com/in/stephondoestech',
-  threads: '',
+  threads: 'https://www.threads.net/@stephondoestech',
+  instagram: '', 
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
