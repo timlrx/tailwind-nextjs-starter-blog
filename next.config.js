@@ -68,7 +68,7 @@ module.exports = () => {
         {
           source: '/',
           destination: '/stephondoestech_personal_blog',
-          permanent: true,
+          permanent: false,
           basePath: false,
         },
       ]
