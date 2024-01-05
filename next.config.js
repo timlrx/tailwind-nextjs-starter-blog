@@ -62,7 +62,17 @@ module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
     output: 'export',
-    basePath: "/.",
+    basePath: "/stephondoestech_personal_blog",
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/stephondoestech_personal_blog',
+          permanent: true,
+          basePath: false,
+        },
+      ]
+    },
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
