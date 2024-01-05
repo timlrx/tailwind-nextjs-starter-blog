@@ -18,7 +18,7 @@ const siteMetadata = {
   youtube: 'https://youtube.com/channel/UCwwWc-5s7GqH8nV9bOMeI1g',
   linkedin: 'https://www.linkedin.com/in/stephondoestech',
   threads: 'https://www.threads.net/@stephondoestech',
-  instagram: '', 
+  instagram: 'https://www.instagram.com/stephondoestech', 
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
