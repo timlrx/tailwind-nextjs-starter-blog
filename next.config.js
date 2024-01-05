@@ -73,6 +73,14 @@ module.exports = () => {
         },
       ]
     },
+    async rewrites() {
+      return [
+        {
+          source: '/stephondoestech_personal_blog',
+          destination: '/',
+        },
+      ]
+    },
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
