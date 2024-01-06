@@ -86,6 +86,7 @@ module.exports = () => {
     // eslint: {
     //   dirs: ['app', 'components', 'layouts', 'scripts'],
     // },
+    assetPrefix: process.env.NODE_ENV === "production" ? "/" : undefined,
     images: {
       unoptimized: true,
       remotePatterns: [
