@@ -47,6 +47,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Terminals.run](https://terminals.run) - Blog site for some thoughts and records for life and technology.
 - [markpitblado.me](https://markpitblado.me) - Mark's personal blog about the internet, privacy, and books ([source code](https://github.com/mark-pitblado/personal-website))
 - [Min71 Dev Blog](https://min71.dev) - Personal blog about Blockchain, Development and etc. ([source code](https://github.com/mingi3442/blog))
+- [Bryce Yu's Blog](https://earayu.github.io/) - Bryce Yu's personal Blog about distributed system, database, and web development. ([source code](https://github.com/earayu/earayu.github.io))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -153,6 +154,12 @@ npx degit 'timlrx/tailwind-nextjs-starter-blog'
 
 ```bash
 yarn
+```
+
+Please note, that if you are using Windows, you may need to run:
+
+```bash
+set PWD="$(pwd)"
 ```
 
 ## Development
