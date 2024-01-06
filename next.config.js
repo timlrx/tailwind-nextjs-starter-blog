@@ -63,29 +63,29 @@ module.exports = () => {
   return plugins.reduce((acc, next) => next(acc), {
     output: 'export',
     basePath: "/stephondoestech_personal_blog",
-    async redirects() {
-      return [
-        {
-          source: '/',
-          destination: '/stephondoestech_personal_blog',
-          permanent: false,
-          basePath: false,
-        },
-      ]
-    },
-    async rewrites() {
-      return [
-        {
-          source: '/stephondoestech_personal_blog',
-          destination: '/',
-        },
-      ]
-    },
-    reactStrictMode: true,
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
+    // async redirects() {
+    //   return [
+    //     {
+    //       source: '/',
+    //       destination: '/stephondoestech_personal_blog',
+    //       permanent: false,
+    //       basePath: false,
+    //     },
+    //   ]
+    // },
+    // async rewrites() {
+    //   return [
+    //     {
+    //       source: '/stephondoestech_personal_blog',
+    //       destination: '/',
+    //     },
+    //   ]
+    // },
+    // reactStrictMode: true,
+    // pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    // eslint: {
+    //   dirs: ['app', 'components', 'layouts', 'scripts'],
+    // },
     images: {
       unoptimized: true,
       remotePatterns: [
