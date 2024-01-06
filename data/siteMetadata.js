@@ -8,7 +8,7 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://stephondoestech.com',
   siteRepo: 'https://github.com/stephondoestech/stephondoestech_personal_blog',
-  siteLogo: '/static/images/avatar2.png',
+  siteLogo: './static/images/avatar2.png',
   socialBanner: '',
   mastodon: '',
   email: 'me@stephondoestech.dev',
