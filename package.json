@@ -12,7 +12,7 @@
     "tsc_watch": "tsc -w"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "14.0.3",
+    "@next/bundle-analyzer": "^14.0.3",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
@@ -21,8 +21,8 @@
     "github-slugger": "^1.4.0",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "next": "14.0.3",
-    "next-contentlayer": "0.3.4",
+    "next": "14.0.4",
+    "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
     "pliny": "0.1.6",
     "postcss": "^8.4.24",

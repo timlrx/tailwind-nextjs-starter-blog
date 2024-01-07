@@ -86,7 +86,7 @@ module.exports = () => {
     // eslint: {
     //   dirs: ['app', 'components', 'layouts', 'scripts'],
     // },
-    // assetPrefix: "/stephondoestech_personal_blog/",
+    assetPrefix: "/stephondoestech_personal_blog/",
     images: {
       unoptimized: true,
       remotePatterns: [
