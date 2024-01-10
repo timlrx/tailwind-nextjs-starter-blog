@@ -1,5 +1,5 @@
 const headerNavLinks = [
-  { href: 'https://stephondoestech.com', title: 'Home' },
+  { href: '//', title: 'Home' },
   { href: '/about', title: 'About' },
   { href: '/blog', title: 'Blog' },
   { href: '/tags', title: 'Tags' },
