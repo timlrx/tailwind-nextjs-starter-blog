@@ -6,7 +6,7 @@ import Divider from '@/components/Divider'
 import { Post } from 'contentlayer/generated'
 
 export default function Blog({ tags, posts }) {
-  const MAX_DISPLAY = 6
+  const MAX_DISPLAY = 4
   const showingPosts = posts.slice(0, MAX_DISPLAY)
 
   const tagKeys = Object.keys(tags)

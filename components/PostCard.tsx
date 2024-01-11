@@ -12,8 +12,8 @@ const PostCard = ({ post }: { post: CoreContent<Post> }) => {
         <Image
           src={image}
           className="aspect-video w-full object-cover"
-          width={1600}
-          height={900}
+          width={356}
+          height={200}
           alt=""
         />
         <div className="p-3">
