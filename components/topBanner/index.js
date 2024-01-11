@@ -49,7 +49,7 @@ export default function TopBanner() {
               {/* desktop text */}
               <span className="hidden sm:inline">{text}</span>
               <span>
-                <button className="ml-1 inline-flex items-center font-bold ">
+                <button className="rainbow-button ml-1 inline-flex items-center font-bold ">
                   on Product Hunt
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </button>
