@@ -5,8 +5,8 @@
       "@/components/*": ["components/*"],
       "@/data/*": ["data/*"],
       "@/layouts/*": ["layouts/*"],
-      "@/css/*": ["css/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/lib/*": ["lib/*"],
+      "@/css/*": ["css/*"]
     }
   }
 }

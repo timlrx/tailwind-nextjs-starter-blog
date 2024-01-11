@@ -11,11 +11,7 @@
 }
 
 .footnotes {
-  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
-}
-
-.data-footnote-backref {
-  @apply no-underline;
+  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
 }
 
 .csl-entry {
@@ -25,11 +21,5 @@
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition:
-    background-color 600000s 0s,
-    color 600000s 0s;
-}
-
-.katex-display {
-  overflow: auto hidden;
+  transition: background-color 600000s 0s, color 600000s 0s;
 }

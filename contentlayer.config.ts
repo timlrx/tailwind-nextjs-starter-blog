@@ -1,16 +1,15 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer/source-files'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
 import { writeFileSync } from 'fs'
-import readingTime from 'reading-time'
-import GithubSlugger from 'github-slugger'
 import path from 'path'
 // Remark packages
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
+import remarkFootnotes from 'remark-footnotes'
 import {
-  remarkExtractFrontmatter,
-  remarkCodeTitles,
-  remarkImgToJsx,
   extractTocHeadings,
+  remarkCodeTitles,
+  remarkExtractFrontmatter,
+  remarkImgToJsx,
 } from 'pliny/mdx-plugins/index.js'
 // Rehype packages
 import rehypeSlug from 'rehype-slug'
@@ -23,10 +22,8 @@ import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 
 const root = process.cwd()
-const isProduction = process.env.NODE_ENV === 'production'
 
 const computedFields: ComputedFields = {
-  readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
@@ -43,14 +40,14 @@ const computedFields: ComputedFields = {
 }
 
 /**
- * Count the occurrences of all tags across blog posts and write to json file
+ * Count the occurrences of all tags across posts posts and write to json file
  */
-function createTagCount(allBlogs) {
+function createTagCount(allPosts) {
   const tagCount: Record<string, number> = {}
-  allBlogs.forEach((file) => {
-    if (file.tags && (!isProduction || file.draft !== true)) {
+  allPosts.forEach((file) => {
+    if (file.tags && file.draft !== true) {
       file.tags.forEach((tag) => {
-        const formattedTag = GithubSlugger.slug(tag)
+        const formattedTag = tag
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1
         } else {
@@ -62,35 +59,38 @@ function createTagCount(allBlogs) {
   writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
 }
 
-function createSearchIndex(allBlogs) {
+function createSearchIndex(allPosts) {
   if (
     siteMetadata?.search?.provider === 'kbar' &&
     siteMetadata.search.kbarConfig.searchDocumentsPath
   ) {
     writeFileSync(
       `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
-      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+      JSON.stringify(allCoreContent(sortPosts(allPosts)))
     )
     console.log('Local search index generated...')
   }
 }
 
-export const Blog = defineDocumentType(() => ({
-  name: 'Blog',
-  filePathPattern: 'blog/**/*.mdx',
+export const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: 'posts/**/*.md',
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
+    date: { type: 'string', required: true },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
     summary: { type: 'string' },
-    images: { type: 'json' },
+    image: { type: 'string', required: true },
+    images: { type: 'list', of: { type: 'string' } },
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
+    categories: { type: 'list', of: { type: 'string' } },
+    slug: { type: 'string' },
   },
   computedFields: {
     ...computedFields,
@@ -105,40 +105,25 @@ export const Blog = defineDocumentType(() => ({
         description: doc.summary,
         image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
         url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+        author: doc.authors,
       }),
     },
   },
 }))
 
-export const Authors = defineDocumentType(() => ({
-  name: 'Authors',
-  filePathPattern: 'authors/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    name: { type: 'string', required: true },
-    avatar: { type: 'string' },
-    occupation: { type: 'string' },
-    company: { type: 'string' },
-    email: { type: 'string' },
-    twitter: { type: 'string' },
-    linkedin: { type: 'string' },
-    github: { type: 'string' },
-    layout: { type: 'string' },
-  },
-  computedFields,
-}))
-
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  contentDirExclude: ['tofu.json'],
+  documentTypes: [Post],
   mdx: {
-    cwd: process.cwd(),
+    // cwd: process.cwd(),
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,
+      remarkFootnotes,
     ],
     rehypePlugins: [
       rehypeSlug,
@@ -150,8 +135,8 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
-    const { allBlogs } = await importData()
-    createTagCount(allBlogs)
-    createSearchIndex(allBlogs)
+    const { allPosts } = await importData()
+    createTagCount(allPosts)
+    createSearchIndex(allPosts)
   },
 })
