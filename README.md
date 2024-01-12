@@ -13,7 +13,7 @@
 
 **开始写第一个笔记吧~**
 
-> <a href="[https://www.baidu.com](https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024)"><img src=https://www.hansking.cn/button/add.svg alt="New Blog" width=103 height=32 /></a>
+> <a href="https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024"><img src=https://www.hansking.cn/button/add.svg alt="New Blog" width=103 height=32 /></a>
 > 
 
 Personal blog based on NextJS and TailwindCSS, which is rebuilt from my [legacy gatsby version](https://github.com/HansKing98/hans-blog).
