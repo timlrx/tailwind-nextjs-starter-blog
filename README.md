@@ -22,4 +22,4 @@ Thanks to [timlrx's starter](https://github.com/timlrx/tailwind-nextjs-starter-b
 
 ## Licence
 
-[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/LICENSE) © [Timothy Lin](https://www.timlrx.com)
+[MIT](https://github.com/HansKing98/hans-nextjs-blog/blob/main/LICENSE) © [hansking](https://www.hansking.cn)
