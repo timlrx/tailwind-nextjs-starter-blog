@@ -32,7 +32,7 @@ const getbg = (str: string): string => {
 }
 
 export default function PostLayout({ content, children }) {
-  const { date, title, image, tags } = content
+  const { date, title, image, tags, filePath } = content
 
   return (
     <SectionContainer>
@@ -88,6 +88,14 @@ export default function PostLayout({ content, children }) {
             {children}
           </div>
         </div>
+        {/* Edit This Bolg */}
+        <Link
+          className="fixed bottom-20 right-8 cursor-pointer"
+          target="_blank"
+          href={`https://github.com/HansKing98/hans-nextjs-blog/edit/main/data/${filePath}`}
+        >
+          <Image src="/button/edit.svg" alt="" width={140} height={30} />
+        </Link>
       </article>
     </SectionContainer>
   )
