@@ -62,9 +62,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   const sortedPosts = sortPosts(allPosts) as Post[]
   const post = sortedPosts.find((p) => p.slug === slug) as Post
   const mainContent = coreContent(post)
-  // console.log('--hans',JSON.stringify(post))
-  // console.log('---hans',JSON.stringify(mainContent))
-  console.log('---hans')
+
   return (
     <>
       {post.draft !== true ? (

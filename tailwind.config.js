@@ -109,6 +109,22 @@ module.exports = {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),
             },
+            '.content-header-link-placeholder': {
+              opacity: 0,
+              marginLeft: '-20px',
+              paddingRight: '4px',
+            },
+            '.content-header-link-placeholder:hover': {
+              opacity: 100,
+            },
+            '.content-header:hover .content-header-link-placeholder': {
+              opacity: 100,
+            },
+            '.octicon': {
+              display: 'inline',
+              verticalAlign: 'middle',
+              overflow: 'visible',
+            },
           },
         },
         dark: {

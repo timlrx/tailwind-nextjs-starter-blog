@@ -20,6 +20,8 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
+import octicons from '@primer/octicons'
 
 const root = process.cwd()
 
@@ -134,6 +136,15 @@ export const Post = defineDocumentType(() => ({
   },
 }))
 
+const icon = fromHtmlIsomorphic(
+  `
+  <span class="content-header-link-placeholder">
+    ${octicons.link.toSVG()}
+  </span>
+  `,
+  { fragment: true }
+)
+
 export default makeSource({
   contentDirPath: 'data',
   contentDirExclude: ['tofu.json'],
@@ -150,7 +161,16 @@ export default makeSource({
     ],
     rehypePlugins: [
       rehypeSlug,
-      rehypeAutolinkHeadings,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'prepend',
+          headingProperties: {
+            className: ['content-header'],
+          },
+          content: icon,
+        },
+      ],
       rehypeKatex,
       [rehypeCitation, { path: path.join(root, 'data') }],
       [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
