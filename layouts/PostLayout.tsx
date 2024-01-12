@@ -5,6 +5,32 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
 
+const blueBg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsvvyqHgAGwgK5q3enYQAAAABJRU5ErkJggg=='
+const GreenBg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNc+G5vPQAHUQLNdIrxpAAAAABJRU5ErkJggg=='
+const yellowBg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP89v1IPQAIzgMyJDClsAAAAABJRU5ErkJggg=='
+const pinkBg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8du1aPQAIjwMj1XfeNgAAAABJRU5ErkJggg=='
+const purpleBg =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPsW/6yHgAGiAKf/Hg8WgAAAABJRU5ErkJggg=='
+
+const rangeColors = [blueBg, GreenBg, yellowBg, pinkBg, purpleBg]
+
+const getbg = (str: string): string => {
+  // 计算str的hash,选取rangeColors中的任一个
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = (hash << 5) - hash + char
+    hash = hash & hash // Convert to 32bit integer
+  }
+  hash = Math.abs(hash) // Ensure hash is non-negative
+  const index = hash % rangeColors.length // Get index within the range of available colors
+  return rangeColors[index]
+}
+
 export default function PostLayout({ content, children }) {
   const { date, title, image, tags } = content
 
@@ -45,7 +71,16 @@ export default function PostLayout({ content, children }) {
                     ))}
                 </div>
               </dl>
-              <Image className="rounded-xl" src={image} width={1600} height={900} alt="" />
+              {image && (
+                <Image
+                  className="rounded-xl"
+                  src={image}
+                  width={1600}
+                  height={900}
+                  alt=""
+                  placeholder={getbg(image)}
+                />
+              )}
             </div>
           </header>
           <div className="prose max-w-none py-8 dark:prose-dark lg:prose-lg prose-img:rounded-xl">

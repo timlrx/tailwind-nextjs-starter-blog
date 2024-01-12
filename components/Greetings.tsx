@@ -12,7 +12,7 @@ const Greetings = () => {
   React.useEffect(() => {
     const options = {
       strings: [
-        '🧑🏻‍💻 Like Web from 2018.',
+        'Like Web from 2018.',
         'I was raised in Tianjin.',
         'I like 🏊‍♂️ / 🏃 / 🏸.',
         'I like G·E·M. 🎤',
