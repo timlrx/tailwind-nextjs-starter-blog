@@ -1,3 +1,4 @@
+import 'css/app.css'
 import 'css/tailwind.css'
 import type { Metadata } from 'next'
 import React from 'react'

@@ -78,7 +78,8 @@ export default function PostLayout({ content, children }) {
                   width={1600}
                   height={900}
                   alt=""
-                  placeholder={getbg(image)}
+                  placeholder="blur"
+                  blurDataURL={getbg(image)}
                 />
               )}
             </div>

@@ -37,7 +37,7 @@ export default function Blog({ tags, posts }) {
               const { slug } = post
               return (
                 <li key={slug}>
-                  <PostCard post={post} />
+                  <PostCard post={post} tag="plog" />
                 </li>
               )
             })}

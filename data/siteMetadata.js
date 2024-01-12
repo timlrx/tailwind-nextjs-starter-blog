@@ -10,7 +10,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/logo.png',
-  socialBanner: '/static/images/twitter-card.jpg',
+  socialBanner: '/static/images/hansking-loading.svg',
   email: 'admin@hansking.cn',
   github: 'https://github.com/hansking98',
   twitter: 'https://twitter.com/Twitter',

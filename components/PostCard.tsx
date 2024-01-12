@@ -4,19 +4,26 @@ import { Post } from 'contentlayer/generated'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import siteMetadata from '@/data/siteMetadata'
 
-const PostCard = ({ post }: { post: CoreContent<Post> }) => {
+const PostCard = ({ post, tag }: { post: CoreContent<Post>; tag?: 'plog' }) => {
   const { slug, date, title, summary, tags, image } = post
   return (
     <Link href={`/blog/${slug}`}>
-      <article className="mx-auto overflow-hidden rounded-xl shadow-md duration-300 hover:scale-105 dark:bg-dark-100">
-        <Image
-          src={image || post.structuredData.image}
-          className="aspect-video w-full object-cover"
-          width={356}
-          height={200}
-          alt=""
-        />
-        <div className="p-3">
+      <article
+        className={`mx-auto overflow-hidden rounded-xl shadow-md duration-300 hover:scale-105 dark:bg-dark-100
+        ${tag !== 'plog' ? 'flex flex-row-reverse items-center justify-between' : ''}`}
+      >
+        {(tag === 'plog' || image) && (
+          <Image
+            src={image || post.structuredData.image}
+            className={`${
+              tag !== 'plog' ? 'aspect-square h-24 w-24' : 'aspect-video w-full object-cover'
+            }`}
+            width={356}
+            height={200}
+            alt=""
+          />
+        )}
+        <div className="flex-1 p-3">
           <h2 className="text-xl font-extrabold">{title || slug}</h2>
           <section className="text-gray-500">
             <p>{summary}</p>
