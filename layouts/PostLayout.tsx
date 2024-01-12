@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
+import { Tooltip } from 'antd'
 
 const blueBg =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsvvyqHgAGwgK5q3enYQAAAABJRU5ErkJggg=='
@@ -89,13 +90,15 @@ export default function PostLayout({ content, children }) {
           </div>
         </div>
         {/* Edit This Bolg */}
-        <Link
-          className="fixed bottom-20 right-8 cursor-pointer"
-          target="_blank"
-          href={`https://github.com/HansKing98/hans-nextjs-blog/edit/main/data/${filePath}`}
-        >
-          <Image src="/button/edit.svg" alt="" width={140} height={30} />
-        </Link>
+        <Tooltip title="在 GitHub 上编辑此页！" trigger="hover">
+          <Link
+            className="fixed bottom-20 right-8 cursor-pointer"
+            target="_blank"
+            href={`https://github.com/HansKing98/hans-nextjs-blog/edit/main/data/${filePath}`}
+          >
+            <Image src="/button/edit.svg" alt="" width={140} height={30} />
+          </Link>
+        </Tooltip>
       </article>
     </SectionContainer>
   )

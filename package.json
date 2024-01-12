@@ -15,6 +15,7 @@
     "@primer/octicons": "^19.8.0",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
+    "antd": "^5.12.8",
     "autoprefixer": "^10.4.13",
     "contentlayer": "0.3.4",
     "esbuild": "0.18.11",

@@ -3,6 +3,7 @@ import Typed from 'typed.js'
 import Emoji from '@/components/twemoji'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Tooltip } from 'antd'
 
 const Greetings = () => {
   // Create reference to store the DOM element containing the animation
@@ -56,15 +57,17 @@ const Greetings = () => {
             <Link href="/about"> get to know me better.</Link>
           </p>
         </div>
-        {/* NewBlogButton */}
+      </div>
+      {/* NewBlogButton */}
+      <Tooltip title="新的一天~ 记录一下." trigger="hover">
         <Link
-          className="fixed bottom-12 right-8 cursor-pointer"
+          className="fixed bottom-20 right-8 cursor-pointer"
           target="_blank"
           href={`https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024`}
         >
           <Image src="/button/add.svg" alt="" width={140} height={30} />
         </Link>
-      </div>
+      </Tooltip>
     </div>
   )
 }
