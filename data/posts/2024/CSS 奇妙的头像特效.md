@@ -9,7 +9,6 @@ tags:
  ![截屏2024-01-14 03.39.32](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-14%2003.39.32.png)
 
 <iframe src="https://codesandbox.io/embed/669pyd?view=Editor+%2B+Preview"
-     style="width:100%; height: 500px; border:0; border-radius: 4px; overflow:hidden;"
      title="css 奇妙的头像特效"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
