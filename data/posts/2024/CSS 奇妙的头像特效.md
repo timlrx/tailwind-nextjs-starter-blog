@@ -17,7 +17,7 @@ tags:
 
 ## 流程
 
-1. sd生图 SDMAI3D卡通+3DIP人物
+1. sd生图 SDMAI3D卡通+3DIP人物 [tusiart 一键做同款](https://tusiart.com/images/682449150647959800?post_id=682449150643765498&source_id=nzyypV7lk0Ozo_MoYH3z8BEk)
 2. ai抠图 抠出人物 https://www.remove.bg/zh/upload
     ![a cute avatar](http://image.hansking.cn/picgo/a%20cute%20avatar.png)
 3. 这个特效用CSS可以实现，但是机器复杂。
