@@ -61,7 +61,7 @@ const Greetings = () => {
       {/* NewBlogButton */}
       <Tooltip title="新的一天~ 记录一下." trigger="hover">
         <Link
-          className="fixed bottom-20 right-8 cursor-pointer"
+          className="fixed bottom-20 right-8 cursor-pointer hover:shadow-lg hover:brightness-125"
           target="_blank"
           href={`https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024`}
         >
