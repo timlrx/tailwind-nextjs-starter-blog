@@ -91,7 +91,7 @@ export default function PostLayout({ content, children }) {
             <>
               {' '}
               Last updated in:{' '}
-              {new Date(lastmod).toLocaleString('zh', siteMetadata.updateTimeTemplate)} by
+              {new Date(lastmod).toLocaleString('zh', siteMetadata.updateTimeTemplate)} by{' '}
               {siteMetadata.author}
             </>
           )}
