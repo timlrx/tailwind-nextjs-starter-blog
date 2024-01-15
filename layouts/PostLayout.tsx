@@ -48,12 +48,16 @@ export default function PostLayout({ content, children }) {
                 <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(
-                        siteMetadata.locale,
-                        siteMetadata.postDateTemplate
-                      )}
-                    </time>
+                    {date === '2018-01-01 22:00:00' ? (
+                      'unset Date'
+                    ) : (
+                      <time dateTime={date}>
+                        {new Date(date).toLocaleDateString(
+                          siteMetadata.locale,
+                          siteMetadata.postDateTemplate
+                        )}
+                      </time>
+                    )}
                   </dd>
                 </div>
                 <div className="flex flex-row justify-center space-x-3">
