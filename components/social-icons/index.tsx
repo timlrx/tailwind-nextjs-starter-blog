@@ -5,6 +5,7 @@ import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
 import Twitter from './twitter.svg'
 import Instagram from './instagram.svg'
+import Juejin from './juejin.svg'
 import Rss from './rss.svg'
 
 // Icons taken from: https://simpleicons.org/
@@ -17,6 +18,7 @@ const components = {
   linkedin: Linkedin,
   twitter: Twitter,
   instagram: Instagram,
+  juejin: Juejin,
   rss: Rss,
 }
 

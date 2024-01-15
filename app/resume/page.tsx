@@ -17,9 +17,10 @@ export default function Page() {
       <div className="prose max-w-none dark:prose-dark lg:prose-lg">
         <h2 className="text-center font-extrabold">🥳 hansking</h2>
         <hr />
-
-        <h2>Skills</h2>
         <div>
+          <p className="text-[#bd93f9] font-semibold text-lg font-mono">
+            `React` `Next.js` `Vue` `Serverless` `Python` `uni-app`
+          </p>
           <p>
             <b>Programming Languages:</b> JavaScript, Python.
           </p>

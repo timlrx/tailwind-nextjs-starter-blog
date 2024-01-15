@@ -13,6 +13,7 @@ const siteMetadata = {
   socialBanner: '/static/images/hansking-loading.svg',
   email: 'admin@hansking.cn',
   github: 'https://github.com/hansking98',
+  juejin: 'https://juejin.cn/user/1978776661535880/posts',
   twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',
