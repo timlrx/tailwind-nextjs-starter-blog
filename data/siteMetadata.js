@@ -1,7 +1,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'HANS',
-  author: 'HANS',
+  author: 'hans',
   headerTitle: 'HANS',
   description: 'A posts created with Next.js and Tailwind.css',
   language: 'en-us',
@@ -25,6 +25,15 @@ const siteMetadata = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+  },
+  updateTimeTemplate: {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: 'numeric',
+    // second: 'numeric',
+    hour12: false,
   },
   blur64:
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=',

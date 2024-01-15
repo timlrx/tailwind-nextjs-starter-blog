@@ -32,7 +32,7 @@ const getbg = (str: string): string => {
 }
 
 export default function PostLayout({ content, children }) {
-  const { date, title, image, tags, filePath } = content
+  const { date, title, image, tags, filePath, lastmod } = content
 
   return (
     <SectionContainer>
@@ -87,6 +87,14 @@ export default function PostLayout({ content, children }) {
           <div className="prose max-w-none py-8 dark:prose-dark lg:prose-lg prose-img:rounded-xl">
             {children}
           </div>
+          {lastmod && (
+            <>
+              {' '}
+              Last updated in:{' '}
+              {new Date(lastmod).toLocaleString('zh', siteMetadata.updateTimeTemplate)} by
+              {siteMetadata.author}
+            </>
+          )}
         </div>
       </article>
     </SectionContainer>
