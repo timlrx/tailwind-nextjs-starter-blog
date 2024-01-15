@@ -2,14 +2,25 @@
 title: CSS 奇妙的头像特效
 date: 2024-01-14 01:04:34
 tags:
-  [CSS]
+  [CSS,码上掘金]
 ---
 
-#奇妙的头像特效
+# 奇妙的头像特效
 
-## CodeSandBox
-<iframe src="https://codesandbox.io/embed/669pyd?view=Editor+%2B+Preview"
+- Power By 码上掘金
+
+<iframe src="https://code.juejin.cn/pen/7323658737799921715"
   style={{width:'100%', height: '500px', border:0, borderRadius: '4px', overflow:'hidden'}}
+  title="CSS 奇妙的头像特效"
+></iframe>
+
+- Power By CodeSandBox
+
+  [https://codesandbox.io 👉](https://codesandbox.io/embed/669pyd?view=Editor+%2B+Preview)
+  > 2024年1月24号 codesandbox 将开始收费，沙箱随时会失效。
+
+<iframe src="https://codesandbox.io/embed/669pyd?view=Editor+%2B+Preview"
+  style={{ display: 'none', width:'100%', height: '500px', border:0, borderRadius: '4px', overflow:'hidden'}}
   title="css 奇妙的头像特效"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
