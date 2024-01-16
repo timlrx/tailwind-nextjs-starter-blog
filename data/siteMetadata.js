@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Data Engineering Blog',
   author: 'Jonah Oliver',
-  headerTitle: 'Data Mentor',
+  headerTitle: 'Data Deep Dive',
   description: 'All things Data Engineering',
   language: 'en-us',
   theme: 'system', // system, dark or light

@@ -85,7 +85,7 @@ services:
 Running docker compose up after configuring your docker-compose.yml file should result in two containers, one with PostgreSQL and the other with pgAdmin, that are now able to communicate. For example, you should now be able to query your database via the pgAdmin GUI.
 
 <div className="image-container">
-  ![docker compose](/de-zc/w1/docker-compose.png)
+  ![docker compose](/static/images/de-zc/w1/docker-compose.png)
 </div>
 
 ## Docker Network Considerations
@@ -114,15 +114,15 @@ Next, you'll open up your web browser and go to `localhost:8080/` and use the cr
 defined in our docker-compose.yml file to login. Remember, `8080` is the port we defined for pgAdmin to run on.
 
 <div className="image-container">
-  ![pgadmin-login](/de-zc/w1/pgadmin-login.png)
+  ![pgadmin-login](/static/images/de-zc/w1/pgadmin-login.png)
 </div>
 
 <div className="image-container">
-![pgadmin-resgster](/de-zc/w1/pgadmin-register.png)
+![pgadmin-resgster](/static/images/de-zc/w1/pgadmin-register.png)
 </div>
 
 <div className="image-container">
-![pgadmin-resgster](/de-zc/w1/pgadmin-connection.png)
+![pgadmin-resgster](/static/images/de-zc/w1/pgadmin-connection.png)
 </div>
 
 Now that we've registered our server, we can demonstrate how our connection details remain after we exit our docker container.
@@ -130,7 +130,7 @@ Now that we've registered our server, we can demonstrate how our connection deta
 In you're terminal where you last ran `docker compose up`, use the command `CTRL + C` to exit the container. Now run the container again, and you should notice a slight difference. We are now being prompted to enter our password for our previously defined connection. This shows how our previously saved connection details remained across container runs. This is because we enabled a pgAdmin volume in our `docker-compose.yml` file.
 
 <div className="image-container">
-![pgadmin-resgster](/de-zc/w1/pgadmin-connection-persistent.png)
+![pgadmin-resgster](/static/images/de-zc/w1/pgadmin-connection-persistent.png)
 </div>
 
 # Building a Python Ingestion Script
@@ -293,11 +293,11 @@ taxi_ingest:v001 \
 After running these commands, you should see some logs in the terminal. These are the print statements we defined in our ingestion script.
 
 <div className="image-container">
-![ingest-data](/de-zc/w1/ingest-data.png)
+![ingest-data](/static/images/de-zc/w1/ingest-data.png)
 </div>
 
 With pgAdmin up in the browser, be sure to refresh the page and you should now see the `yellow_taxi_data` and `taxi_zone_data` under `Tables` in the `ny_taxi` database.
 
 <div className="image-container">
-![ingest-data](/de-zc/w1/pgadmin-sql.png)
+![ingest-data](/static/images/de-zc/w1/pgadmin-sql.png)
 </div>
