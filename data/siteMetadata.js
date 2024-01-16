@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://jonahboliver.com',
   siteRepo: 'https://github.com/jboliv01/next-js-blog',
   siteLogo: '/static/images/code.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/data-mentor.png',
   email: 'jboliv01@gmail.com',
   github: 'https://github.com',
   twitter: 'https://twitter.com/Twitter',
