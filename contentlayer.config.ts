@@ -26,17 +26,6 @@ import octicons from '@primer/octicons'
 const root = process.cwd()
 
 const computedFields: ComputedFields = {
-  title: {
-    type: 'string',
-    resolve: (doc) => doc.title || doc._raw.sourceFileName.replace(/\.md(?![^.]*\.)/i, ''),
-  },
-  date: {
-    type: 'string',
-    resolve: (doc) => {
-      // console.log('==hans', doc)
-      return doc.date || '2018-01-01 22:00:00'
-    },
-  },
   slug: {
     type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
@@ -113,8 +102,8 @@ export const Post = defineDocumentType(() => ({
   filePathPattern: 'posts/**/*.md',
   contentType: 'mdx',
   fields: {
-    title: { type: 'string' },
-    date: { type: 'string' },
+    title: { type: 'string', required: true },
+    date: { type: 'string', required: true },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },

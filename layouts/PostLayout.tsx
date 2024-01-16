@@ -32,7 +32,7 @@ const getbg = (str: string): string => {
 }
 
 export default function PostLayout({ content, children }) {
-  const { date, title, image, tags, filePath, lastmod } = content
+  const { date, title, image, tags, filePath } = content
 
   return (
     <SectionContainer>
@@ -48,16 +48,12 @@ export default function PostLayout({ content, children }) {
                 <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    {date === '2018-01-01 22:00:00' ? (
-                      'unset Date'
-                    ) : (
-                      <time dateTime={date}>
-                        {new Date(date).toLocaleDateString(
-                          siteMetadata.locale,
-                          siteMetadata.postDateTemplate
-                        )}
-                      </time>
-                    )}
+                    <time dateTime={date}>
+                      {new Date(date).toLocaleDateString(
+                        siteMetadata.locale,
+                        siteMetadata.postDateTemplate
+                      )}
+                    </time>
                   </dd>
                 </div>
                 <div className="flex flex-row justify-center space-x-3">
@@ -91,14 +87,6 @@ export default function PostLayout({ content, children }) {
           <div className="prose max-w-none py-8 dark:prose-dark lg:prose-lg prose-img:rounded-xl">
             {children}
           </div>
-          {lastmod && (
-            <>
-              {' '}
-              Last updated in:{' '}
-              {new Date(lastmod).toLocaleString('zh', siteMetadata.updateTimeTemplate)} by{' '}
-              {siteMetadata.author}
-            </>
-          )}
         </div>
       </article>
     </SectionContainer>
