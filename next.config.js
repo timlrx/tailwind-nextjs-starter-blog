@@ -66,7 +66,8 @@ module.exports = () => {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
     images: {
-      domains: ['image.hansking.cn', 'opengraph.githubassets.com'],
+      dangerouslyAllowSVG: true,
+      domains: ['image.hansking.cn', 'opengraph.githubassets.com', 'komarev.com'],
       remotePatterns: [
         {
           protocol: 'https',
