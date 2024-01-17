@@ -84,3 +84,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+      # Log the deployment output
+      - name: Log Deployment Output
+        run: echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
