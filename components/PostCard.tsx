@@ -16,7 +16,9 @@ const PostCard = ({ post, tag }: { post: CoreContent<Post>; tag?: 'plog' }) => {
           <Image
             src={image || post.structuredData.image}
             className={`${
-              tag !== 'plog' ? 'aspect-square h-24 w-24' : 'aspect-video w-full object-cover'
+              tag !== 'plog'
+                ? 'aspect-square h-24 w-24 rounded-md	mr-1'
+                : 'aspect-video w-full object-cover'
             }`}
             width={356}
             height={200}
