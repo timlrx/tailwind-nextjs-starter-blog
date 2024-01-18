@@ -30,7 +30,7 @@ const ScrollTopAndComment = ({ filePath }) => {
         ${show ? 'md:flex' : 'md:hidden'} items-end`}
     >
       {/* Edit This Bolg */}
-      <Tooltip title="在 GitHub 上编辑此页！" trigger="hover">
+      <Tooltip title="🤪 您也可以编辑此页！" trigger="hover">
         <Link
           className="cursor-pointer hover:shadow-lg hover:brightness-125"
           target="_blank"
