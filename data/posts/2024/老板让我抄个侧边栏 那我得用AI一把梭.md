@@ -3,6 +3,7 @@ title: 老板让我抄个侧边栏 那我得用AI一把梭
 date: 2024-01-15 15:59:04
 tags:
   [AI,效率工具]
+image: http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.07.04.png
 ---
 
 # 前端多摸鱼，指使AI干了吧。
