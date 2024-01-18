@@ -26,7 +26,7 @@ export default function Footer() {
             height={20}
           />
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="text-sm text-gray-500 dark:text-gray-400">
           Powered by{` `}
           <a className={'underline'} href="https://nextjs.org">
             NextJS
@@ -35,6 +35,13 @@ export default function Footer() {
           <a className={'underline'} href="https://tailwindcss.com">
             TailwindCSS
           </a>
+        </div>
+        <div className="mb-8 flex items-center">
+          本站由
+          <Link href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
+            <Image src="/static/images/upyun.png" alt="upyun" width={70} height={24} />
+          </Link>
+          提供CDN加速/云存储服务
         </div>
       </div>
     </footer>
