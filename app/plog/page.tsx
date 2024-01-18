@@ -5,7 +5,7 @@ import tagData from 'app/tag-plog-data.json'
 import BlogPage from './blog-page'
 import { genPageMetadata } from '../seo'
 
-export const metadata = genPageMetadata({ title: 'Blog' })
+export const metadata = genPageMetadata({ title: 'Plog' })
 export default async function Page() {
   const sortedPosts = sortPosts(allPosts)
   const posts = allCoreContent(sortedPosts)
