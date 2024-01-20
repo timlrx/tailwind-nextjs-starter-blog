@@ -30,7 +30,7 @@ npm install -g dts-gen
 
 如果是三方包 ... 那就没什么好办法
 
-如果是自己写的库 可以将window替换为<any>window (这个没有测试过)
+如果是自己写的库 可以将window替换为`<any>`window (这个没有测试过)
 
  
 
