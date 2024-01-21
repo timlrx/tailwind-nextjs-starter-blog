@@ -1,6 +1,6 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Juan Carlos Candela Blog',
+  title: 'Candela Blog',
   author: 'Juan Carlos Candela',
   headerTitle: 'Candela Blog',
   description: 'A blog to talk about programming, technology and other things.',
