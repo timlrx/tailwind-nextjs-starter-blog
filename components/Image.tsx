@@ -1,7 +1,5 @@
 import NextImage, { ImageProps } from 'next/image'
 
-const Image = ({ src, ...rest }: ImageProps) => (
-  <NextImage src={`/jcarloscandela-blog${src}`} {...rest} />
-)
+const Image = ({ ...rest }: ImageProps) => <NextImage {...rest} />
 
 export default Image

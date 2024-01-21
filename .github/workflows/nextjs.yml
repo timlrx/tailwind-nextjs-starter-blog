@@ -7,7 +7,7 @@ name: Deploy Next.js site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ['release']
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,6 +32,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: choose nextjs config file
+        run: |
+          cp next.config.js next.config.js.backup
+          cat next.config.js.static > next.config.js
       - name: Detect package manager
         id: detect-package-manager
         run: |
