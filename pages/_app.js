@@ -13,7 +13,7 @@ import siteMetadata from "@/data/siteMetadata"
 import Analytics from "@/components/analytics"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import { ClientReload } from "@/components/ClientReload"
-// import TopBanner from "@/components/topBanner"
+import TopBanner from "@/components/topBanner"
 import posthog from "posthog-js"
 import { PostHogProvider } from "posthog-js/react"
 
@@ -98,7 +98,7 @@ export default function App({ Component, pageProps }) {
 
           {isDevelopment && isSocket && <ClientReload />}
           <Analytics />
-          {/* <TopBanner /> */}
+          <TopBanner />
           <LayoutWrapper>
             <Component {...pageProps} />
           </LayoutWrapper>

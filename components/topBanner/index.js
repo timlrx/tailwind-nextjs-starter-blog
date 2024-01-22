@@ -6,26 +6,10 @@ import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 
 export default function TopBanner() {
-  // const posthog = usePostHog()
-
-  const [text, setText] = useState("Our Chrome extension Emoji Reactions for GitHub is live")
-  const [isVisible, setIsVisible] = useState(false)
+  const [text, setText] = useState("Never wait for a code review again")
+  const [isVisible, setIsVisible] = useState(true)
   const { theme, resolvedTheme } = useTheme()
   const isDark = theme === "dark" || resolvedTheme === "dark"
-
-  useEffect(() => {
-    // posthog.onFeatureFlags(function () {
-    //   // feature flags should be available at this point
-    //   if (posthog.getFeatureFlag("banner2") === "problem") {
-    //     setText("See how you can reduce your pickup time by 50% with")
-    //   } else if (posthog.getFeatureFlag("banner2") === "solution") {
-    //     setText("Review pull requests in Slack with a two weeks free trial on")
-    //   } else {
-    //     setText("Improve your pickup time with a two weeks free trial on")
-    //   }
-    // })
-    setIsVisible(true) // set the banner to be visible
-  }, [])
 
   return (
     <div
@@ -37,8 +21,7 @@ export default function TopBanner() {
         <div className="sm:px-16 sm:text-center md:pr-16">
           <p className="font-medium ">
             <a
-              // onClick={() => posthog.capture("banner click")}
-              href="https://www.producthunt.com/posts/emoji-reactions-for-github"
+              href="https://axolo.co"
               rel="noopener noreferrer"
               target="_blank"
               className=" flex place-content-center place-items-center"
@@ -50,7 +33,7 @@ export default function TopBanner() {
               <span className="hidden sm:inline">{text}</span>
               <span>
                 <button className="rainbow-button ml-1 inline-flex items-center font-bold ">
-                  on Product Hunt
+                  with Axolo
                   <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
                 </button>
               </span>
