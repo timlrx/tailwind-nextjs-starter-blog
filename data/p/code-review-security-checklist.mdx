@@ -5,7 +5,7 @@ lastmod: "2024-01-23"
 tags: ["CODE-REVIEW", "SECURITY", "OWASP"]
 draft: false
 summary: "Code Review Security Checklist: Implement OWASP Standards, Identify Vulnerabilities, Enhance SDLC. Essential Guide for Robust Software Security."
-image: "/blog/static/images/general/code-quality.jpg"
+image: "/blog/static/images/general/Code-review-security.jpg"
 authors: ["sydney"]
 ---
 
@@ -40,7 +40,7 @@ A pivotal resource within the OWASP framework is the OWASP Top 10, a regularly u
 
 Security in software development transcends beyond being a mere best practice; it's an integral necessity. It's not just the domain of developers but a collective responsibility shared across all roles involved in the software creation process. This holistic approach ensures that security permeates every aspect of the product's lifecycle.
 
-- **Designers:** They lay the foundation by considering security in the design phase, ensuring that the architecture is robust against potential threats.
+- **Designers:** They can help focus on minimizing user errors that could lead to security breaches, ensuring intuitive and safe user interactions. By considering aspects like secure user authentication, data privacy, and access controls in their designs, they lay a foundation that supports robust security measures throughout the application.
 - **Product Managers:** Responsible for defining the product's roadmap, they prioritize security features and requirements, making sure these considerations are embedded from the outset.
 - **Developers:** Their role is critical in implementing secure coding practices, adhering to OWASP guidelines, and actively seeking to mitigate vulnerabilities during code development.
 - **Quality Assurance (QA):** QA teams play a pivotal role in identifying security loopholes during testing phases, ensuring that the software not only functions as intended but also remains resilient against security breaches.
@@ -131,14 +131,14 @@ In code reviews, both automated and manual approaches play critical roles. Autom
 
 ### List of Tools to Automate Code Review and Security Checks
 
-| Tool Name                                                                         | Description                                                                          | Pros                                                    | Cons                                           | Price                                               |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- |
-| [SonarQube](https://www.sonarqube.org/)                                           | Continuous inspection of code quality to detect bugs and vulnerabilities.            | Comprehensive analysis, supports multiple languages.    | Can be complex to set up.                      | Free Community Edition; Paid plans available.       |
-| [ESLint](https://eslint.org/)                                                     | Pluggable JavaScript linter that identifies and reports on patterns.                 | Highly configurable, great for JavaScript.              | Mainly for JavaScript; requires configuration. | Free.                                               |
-| [Veracode](https://www.veracode.com/)                                             | Automated security testing for application codebases.                                | Wide language support, integrates with CI/CD.           | Can be costly for small teams.                 | Pricing upon request.                               |
-| [Checkmarx](https://www.checkmarx.com/)                                           | Static Application Security Testing (SAST) tool for security vulnerability scanning. | Comprehensive SAST tool, good CI integration.           | Expensive for smaller projects.                | Pricing upon request.                               |
-| [Fortify](https://www.microfocus.com/en-us/cyberres/application-security/fortify) | Static and dynamic security testing of applications.                                 | Robust feature set, supports a wide range of languages. | High cost and complexity.                      | Pricing upon request.                               |
-| [CodeClimate](https://codeclimate.com/)                                           | Analyzes source code for performance issues, vulnerabilities, and complex patterns.  | Easy to integrate, good for code quality tracking.      | May lack depth in security analysis.           | Free for open source; Paid plans for private repos. |
+| Tool Name                                                                                                         | Description                                                                          | Pros                                                    | Cons                                           | Price                                               |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- |
+| <NoFollowLink url="https://www.sonarqube.org">SonarQube</NoFollowLink>                                            | Continuous inspection of code quality to detect bugs and vulnerabilities.            | Comprehensive analysis, supports multiple languages.    | Can be complex to set up.                      | Free Community Edition; Paid plans available.       |
+| <NoFollowLink url="https://eslint.org">ESLint</NoFollowLink>                                                      | Pluggable JavaScript linter that identifies and reports on patterns.                 | Highly configurable, great for JavaScript.              | Mainly for JavaScript; requires configuration. | Free.                                               |
+| <NoFollowLink url="https://www.veracode.com">Veracode</NoFollowLink>                                              | Automated security testing for application codebases.                                | Wide language support, integrates with CI/CD.           | Can be costly for small teams.                 | Pricing upon request.                               |
+| <NoFollowLink url="https://www.checkmarx.com">Checkmarx</NoFollowLink>                                            | Static Application Security Testing (SAST) tool for security vulnerability scanning. | Comprehensive SAST tool, good CI integration.           | Expensive for smaller projects.                | Pricing upon request.                               |
+| <NoFollowLink url="https://www.microfocus.com/en-us/cyberres/application-security/fortify">Fortify</NoFollowLink> | Static and dynamic security testing of applications.                                 | Robust feature set, supports a wide range of languages. | High cost and complexity.                      | Pricing upon request.                               |
+| <NoFollowLink url="https://codeclimate.com">CodeClimate</NoFollowLink>                                            | Analyzes source code for performance issues, vulnerabilities, and complex patterns.  | Easy to integrate, good for code quality tracking.      | May lack depth in security analysis.           | Free for open source; Paid plans for private repos. |
 
 ### How About Human Code Reviews in Detecting Complex Vulnerabilities?
 
