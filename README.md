@@ -50,6 +50,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [francisaguilar.co blog](https://francisaguilar.co) - Francis Aguilar's personal blog that talks about tech, fitness, and personal development.
 - [Min71 Dev Blog](https://min71.dev) - Personal blog about Blockchain, Development and etc. ([source code](https://github.com/mingi3442/blog))
 - [Bryce Yu's Blog](https://earayu.github.io/) - Bryce Yu's personal Blog about distributed system, database, and web development. ([source code](https://github.com/earayu/earayu.github.io))
+- [Zsebinformatikus](https://www.zsebinformatikus.hu/) - The information superhighway guide blog.
 - [Anton Morgunov's Blog](https://blog.ischemist.com/) - talking about science without oversimplifications or why theoretical and computational chemistry is cool.
 
 Using the template? Feel free to create a PR and add your blog to this list.
