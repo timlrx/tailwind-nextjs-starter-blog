@@ -3,18 +3,19 @@
 ## vercel
 > 将模板一键 `Deploy` 到 `vercel`
 >  
-> [![Deploy](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/HansKing98/hans-nextjs-blog)
+> [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Tailwind+Nextjs+Starter+Blog&demo-description=Store+photos+with+original+camera+data&demo-url=https://www.hansking.cn&demo-image=http://image.hansking.cn/picgo/hansking.cn2.png&project-name=Next+Blog&repository-name=hans-nextjs-blog&repository-url=https://github.com/hansking98/hans-nextjs-blog&from=templates&skippable-integrations=1&teamCreateStatus=hidden)
 
+Features：
+
+> 1. Add two buttons, which is to write a `new blog` and an `editorial blog` of the blog page.
+> 2. Distinguish a plog menu with a tag to display travel notes.
+
+![hansking.cn](http://image.hansking.cn/picgo/hansking.cn.png)
 
 ## Examples V2
 
 [v1-blogs-showcase.webm](https://github.com/timlrx/tailwind-nextjs-starter-blog/assets/28362229/2124c81f-b99d-4431-839c-347e01a2616c)
 
-
-**开始写第一个笔记吧~**
-
-> <a href="https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024"><img src=https://www.hansking.cn/button/add.svg alt="New Blog" width=103 height=32 /></a>
-> 
 
 Personal blog based on NextJS and TailwindCSS, which is rebuilt from my [legacy gatsby version](https://github.com/HansKing98/hans-blog).
 
