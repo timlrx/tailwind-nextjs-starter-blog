@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.0" id="katman_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 440 312" style="enable-background:new 0 0 440 312;" xml:space="preserve">
+<style type="text/css">
+	.st0{filter:url(#Adobe_OpacityMaskFilter);}
+	.st1{fill:#FFFFFF;}
+	.st2{mask:url(#mask-2_00000011712862621112014060000004681409511743882135_);}
+	.st3{fill:url(#SVGID_1_);}
+	.st4{fill:url(#SVGID_00000030487188734980939430000014510370791660140472_);}
+</style>
+<g>
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="92" y="28" width="256" height="256">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	
+		<mask maskUnits="userSpaceOnUse" x="92" y="28" width="256" height="256" id="mask-2_00000011712862621112014060000004681409511743882135_">
+		<g class="st0">
+			<circle id="path-1_00000121974283267827894410000012896267732457332139_" class="st1" cx="220" cy="156" r="128"/>
+		</g>
+	</mask>
+	<g class="st2">
+		<circle cx="220" cy="156" r="128"/>
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-371.1504" y1="574.3668" x2="-370.8744" y2="573.9698" gradientTransform="matrix(135.8336 0 0 -157.6462 50639.4023 90756.3047)">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		<path class="st3" d="M304.63,252.03L190.34,104.8H168.8v102.36h17.23v-80.48l105.08,135.77
+			C295.85,259.27,300.37,255.79,304.63,252.03z"/>
+		
+			<linearGradient id="SVGID_00000141450593947928411570000005336396235809311886_" gradientUnits="userSpaceOnUse" x1="-347.1364" y1="574.0288" x2="-347.1369" y2="573.2944" gradientTransform="matrix(17.0667 0 0 -102.4 6188.5557 58885.3203)">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</linearGradient>
+		
+			<rect x="255.56" y="104.8" style="fill:url(#SVGID_00000141450593947928411570000005336396235809311886_);" width="17.07" height="102.4"/>
+	</g>
+</g>
+</svg>

@@ -26,22 +26,25 @@ export default function Footer() {
             height={20}
           />
         </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center mb-8 text-sm text-gray-500 dark:text-gray-400">
           Powered by{` `}
           <a className={'underline'} href="https://nextjs.org">
-            NextJS
+            <Image src="/static/images/Next.js.svg" alt="upyun" width={32} height={32} />
           </a>
+          Next
           {` `}&{` `}
-          <a className={'underline'} href="https://tailwindcss.com">
-            TailwindCSS
+          <a className={'underline mx-2'} href="https://tailwindcss.com">
+            <Image src="/static/images/tailwindcss.svg" alt="upyun" width={20} height={20} />
           </a>
-        </div>
-        <div className="mb-8 flex items-center">
-          本站由
-          <Link href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">
-            <Image src="/static/images/upyun.png" alt="upyun" width={70} height={24} />
-          </Link>
-          提供CDN加速/云存储服务
+          tailwind
+          {` `}&{` `}
+          <a
+            className={'underline mx-1'}
+            href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
+          >
+            <Image src="/static/images/upyun.png" alt="upyun" width={50} height={20} />
+          </a>
+          CDN
         </div>
       </div>
     </footer>
