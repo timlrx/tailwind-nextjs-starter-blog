@@ -5,7 +5,7 @@ import Link from '@/components/Link'
 import Divider from '@/components/Divider'
 import { Post } from 'contentlayer/generated'
 
-export default function Blog({ tags, posts }) {
+export default function Blog({ tags, posts, plogTag = false }) {
   const MAX_DISPLAY = 4
   const showingPosts = posts.slice(0, MAX_DISPLAY)
 
@@ -37,7 +37,7 @@ export default function Blog({ tags, posts }) {
               const { slug } = post
               return (
                 <li key={slug}>
-                  <PostCard post={post} />
+                  <PostCard post={post} tag={plogTag ? 'plog' : undefined} />
                 </li>
               )
             })}

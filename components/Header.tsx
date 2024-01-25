@@ -5,6 +5,7 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import Image from 'next/image'
 import Logo from '../public/static/images/logo.png'
+import SearchButton from './SearchButton'
 
 const Header = () => {
   return (
@@ -35,6 +36,7 @@ const Header = () => {
             </Link>
           ))}
         </div>
+        <SearchButton />
         <ThemeSwitch />
         <MobileNav />
       </div>

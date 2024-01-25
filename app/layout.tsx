@@ -1,12 +1,16 @@
 import 'css/app.css'
 import 'css/tailwind.css'
+import 'pliny/search/algolia.css'
+
 import type { Metadata } from 'next'
 import React from 'react'
 import { Analytics } from '@vercel/analytics/react'
+import { SearchProvider, SearchConfig } from 'pliny/search'
 import { ThemeProviders } from './theme-providers'
 import SectionContainer from '@/components/SectionContainer'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import siteMetadata from '@/data/siteMetadata'
 
 export const metadata: Metadata = {
   title: 'HANS',
@@ -28,8 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviders>
           <SectionContainer>
             <div className="flex h-screen flex-col justify-between">
-              <Header />
-              <main className="mb-auto">{children}</main>
+              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                <Header />
+                <main className="mb-auto">{children}</main>
+              </SearchProvider>
               <Footer />
             </div>
           </SectionContainer>
