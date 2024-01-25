@@ -11,6 +11,7 @@
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
+    "@headlessui/react": "1.7.17",
     "@next/bundle-analyzer": "14.0.3",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
