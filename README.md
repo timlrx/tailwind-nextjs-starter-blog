@@ -54,6 +54,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Secret Base](https://www.jachsu.com/) - Jac Hsu's personal Blog.talks about tech, thought, and life in general.
 - [Zsebinformatikus](https://www.zsebinformatikus.hu/) - The information superhighway guide blog.
 - [Anton Morgunov's Blog](https://blog.ischemist.com/) - talking about science without oversimplifications or why theoretical and computational chemistry is cool.
+- [Hans Blog](https://www.hansking.cn/) - Hans' personal blog, front-end technology, gallery and travel diary 中文. ([source code](https://github.com/hansking98/hans-nextjs-blog))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
