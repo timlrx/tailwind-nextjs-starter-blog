@@ -37,7 +37,7 @@ const Greetings = () => {
 
   return (
     <div className="lg:mb-10 lg:mt-10">
-      <h1 className="bg-gradient-to-r from-lime-500 to-yellow-400 bg-clip-text text-7xl font-extrabold text-transparent dark:to-blue-500">
+      <h1 className="clip  text-7xl font-extrabold text-transparent dark:to-blue-500">
         Hi Friends,
       </h1>
       <div className="prose dark:prose-dark lg:prose-lg">

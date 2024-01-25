@@ -35,6 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                 <Header />
                 <main className="mb-auto">{children}</main>
+                <div className="bg-image-container bg-image-container-one"></div>
+                <div className="bg-image-container bg-image-container-two w-3/6 h-3/6 md:w-3/6 md:h-3/6 "></div>
+                {/* <div className="bg-image-container bg-image-container-three"></div> */}
               </SearchProvider>
               <Footer />
             </div>

@@ -1,0 +1,41 @@
+@import "rainbow.css"; 
+:root{
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: -webkit-linear-gradient( 120deg, var(--vp-c-brand-1) 30%, var(--vp-c-brand-next) );
+    --vp-home-hero-image-background-image: linear-gradient( -45deg, var(--vp-c-brand-1) 30%, var(--vp-c-brand-next) );
+    --vp-home-hero-image-filter: blur(80px);
+}
+
+.bg-image-container{
+    width: 220px;
+    height: 220px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background-image: var(--vp-home-hero-image-background-image);
+    filter:var(--vp-home-hero-image-filter);
+    opacity: 0.5;
+    transition: opacity 1s ease;
+}
+.bg-image-container.bg-image-container-one{
+    left: unset;
+    right: 10px;
+    top: 100px
+}
+.bg-image-container.bg-image-container-two{
+    left: -100px;
+    top: unset;
+    bottom: -100px;
+    opacity: 0.2;
+}
+.bg-image-container.bg-image-container-three{
+    right: 100px;
+    top: unset;
+    bottom: 100px;
+}
+
+.clip{
+    background: var(--vp-home-hero-name-background);
+    background-clip: text;
+}
