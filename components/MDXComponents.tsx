@@ -5,11 +5,9 @@ import type { MDXComponents } from 'mdx/types'
 import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
-import ToggleGif from './ToggleGif'
 
 export const components: MDXComponents = {
   Image,
-  ToggleGif,
   TOCInline,
   a: CustomLink,
   pre: Pre,
