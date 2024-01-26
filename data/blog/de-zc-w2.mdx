@@ -9,7 +9,7 @@ summary: Detailed insights from Week 2 of the Data Engineering Zoomcamp. Coverin
 Week 2 of the DTC Data Engineering Zoomcamp is all about workflow orchesteration utilizing Mage.  
 
 Orchestration is defined as an important undercurrent of Data Engineering in ***Fundamentals of Data Engineering: Plan and Build Robust Data Systems***
-by Joe Reis, Matt Housley, et al. Orchestration tools such as Mage helps us define task dependencies and schedule workflows. A simple analogy is cooking. Depending on the recipe, there are a few steps or tasks involved that are dependent on each others completion before you can proceed to the next task or step.
+by Joe Reis, Matt Housley, et al. Orchestration tools such as Mage helps us define task dependencies and schedule workflows. You can liken data orchestration to cooking. Depending on the recipe, there are a few steps or tasks involved that are dependent on each others completion before you can proceed to the next task or step.
 
 For example, let's look at the steps involved in cooking my favorite pasta recipe, [Penne alla Vodka](https://www.delish.com/cooking/recipe-ideas/a26556220/penne-alla-vodka-recipe/):
 
@@ -18,7 +18,9 @@ For example, let's look at the steps involved in cooking my favorite pasta recip
 3. Mix Pasta with one of our favorite sauces 
 4. Top with parmesan & basil prior to serving
 
-Each task is dependent on the completion of the previous task and Workflow Orchestration is essentially the same thing. In the Data Talks Club Week 2 module, [Workflow Orchestration](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/02-workflow-orchestration), this is demosntrated via an ETL pipeline with Mage and the steps involved are as follows:
+Each task is dependent on the completion of the previous task and workflow orchestration is very similair. In the Data Talks Club Week 2 module, [Workflow Orchestration](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/02-workflow-orchestration), [Matt Palmer](https://www.linkedin.com/in/matt-palmer/), an Author and Relations Developer at Mage, demonstrates how we can implement ETL pipelines with Mage, a data orchestration framework. You can find the links to the original videos for the module in the readme [here](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/02-workflow-orchestration/README.md). Matt does a great job with this module, so I recommend you start there.
+
+At a high level, this module covers the following steps:
 
 1. Extract data (New York Taxi data in our case) using a `Data Loader` with `Mage` from an remote endpoint
 2. Transform data using a `Transformation` block (perform any desired filtering or data cleansing)
