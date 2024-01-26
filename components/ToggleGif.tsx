@@ -1,20 +1,39 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { PlayCircleIcon, PlayIcon, PlayPauseIcon } from '@heroicons/react/24/solid'
+import { PlayCircleIcon } from '@heroicons/react/24/solid'
 
 const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    // Indicate that we're now in the browser environment
+    setIsClient(true)
+  }, [])
 
   const toggleGif = () => {
-    setIsPlaying(!isPlaying)
+    if (isClient) {
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      toggleGif()
+    }
   }
 
   return (
     <div
       onClick={toggleGif}
+      onKeyDown={handleKeyPress}
+      role="button"
+      tabIndex={0}
       className="relative h-full w-full cursor-pointer"
       onMouseEnter={() => !isPlaying && setIsPlaying(false)}
+      aria-label="Toggle GIF"
     >
       {!isPlaying ? (
         <>
@@ -28,16 +47,4 @@ const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
   )
 }
 
-const ClientToggleGif = (props) => {
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    // Set isClient to true once we know we're in the browser
-    setIsClient(true)
-  }, [])
-
-  // Only render the ToggleGif component on the client-side
-  return isClient ? <ToggleGif {...props} /> : null
-}
-
-export default ClientToggleGif
+export default ToggleGif
