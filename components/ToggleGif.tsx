@@ -1,6 +1,6 @@
 'use client'
-// components/ToggleGif.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { PlayCircleIcon, PlayIcon, PlayPauseIcon } from '@heroicons/react/24/solid';
 
 const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
@@ -10,7 +10,6 @@ const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
     setIsPlaying(!isPlaying);
   };
 
-  
   return (
     <div 
       onClick={toggleGif} 
@@ -19,7 +18,7 @@ const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
     >
       {!isPlaying ? (
         <>
-          <img src={staticSrc} alt={alt} className="w-full h-full" />
+          <Image src={staticSrc} alt={alt} layout="responsive" width={16} height={9}/>
           <PlayCircleIcon
             className="absolute top-1/2 left-1/2 w-12 h-12 text-teal-500 opacity-75 transform -translate-x-1/2 -translate-y-1/2"
           />
@@ -31,9 +30,16 @@ const ToggleGif = ({ gifSrc, staticSrc, alt }) => {
   );
 };
 
-export default function ClientToggleGif(props) {
-  if (typeof window !== 'undefined') {
-    return <ToggleGif {...props} />;
-  }
-  return null;
-}
+const ClientToggleGif = (props) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Set isClient to true once we know we're in the browser
+    setIsClient(true);
+  }, []);
+
+  // Only render the ToggleGif component on the client-side
+  return isClient ? <ToggleGif {...props} /> : null;
+};
+
+export default ClientToggleGif;
