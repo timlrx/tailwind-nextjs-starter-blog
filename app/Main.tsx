@@ -3,6 +3,7 @@ import Tag from '@/components/Tag';
 import siteMetadata from '@/data/siteMetadata';
 import { formatDate } from 'pliny/utils/formatDate';
 import NewsletterForm from 'pliny/ui/NewsletterForm';
+import Image from '@/components/Image';
 
 const MAX_DISPLAY = 5;
 
@@ -11,11 +12,28 @@ export default function Home({ posts }) {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
-          </p>
+          <div className="grid grid-cols-2">
+            <div className="flex items-center justify-end">
+              <div className="my-6 flex-1 rounded-lg bg-pink-500 p-4">
+                <p className="text-white-500 dark:text-white-400 text-lg leading-7">
+                  {siteMetadata.description}
+                </p>
+              </div>
+              <div className="w-3 overflow-hidden">
+                <div className="h-4 origin-top-left rotate-45 transform rounded-sm bg-pink-500"></div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/static/images/mascot.png"
+                alt="avatar"
+                width={150}
+                height={355}
+              />
+            </div>
+          </div>
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Recent Posts
+            Recently Published
           </h1>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
