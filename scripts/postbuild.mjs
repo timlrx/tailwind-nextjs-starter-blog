@@ -1,7 +1,7 @@
-import rss from './rss.mjs'
+import rss from './rss.mjs';
 
 async function postbuild() {
-  await rss()
+  await rss();
 }
 
-postbuild()
+postbuild();

@@ -1,4 +1,4 @@
-import Link from '@/components/Link'
+import Link from '@/components/Link';
 
 export default function NotFound() {
   return (
@@ -12,7 +12,9 @@ export default function NotFound() {
         <p className="mb-4 text-xl font-bold leading-normal md:text-2xl">
           Sorry we couldn't find this page.
         </p>
-        <p className="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
+        <p className="mb-8">
+          But dont worry, you can find plenty of other things on our homepage.
+        </p>
         <Link
           href="/"
           className="focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500"
@@ -21,5 +23,5 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
-  )
+  );
 }
