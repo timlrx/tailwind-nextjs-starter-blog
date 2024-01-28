@@ -1,0 +1,180 @@
+---
+title: 'Leading a Digital Transformation with IAM and Microservices'
+date: '2018-03-10'
+lastmod: '2018-03-10'
+tags: ['work', 'microservices', 'monolith', 'iam', 'oauth', 'openid']
+draft: false
+summary: "Discussing migrating from a monolith to microservices and how to achieve it"
+authors: ['default']
+images: ['/content/images/2018/03/tux-android.jpg']
+---
+
+![Leading a Digital Transformation with IAM and Microservices](/content/images/2018/03/tux-android.jpg)
+
+Back in June 2016 when I became a 'hands on' [Lead Software Developer at Lumina Learning](/2017/11/11/becoming-a-tech-lead/) I started by putting forward a roadmap for us to ditch our monolithic approach and create distributed microservices for new digital apps and services. Who doesn't like a challenge?! (aside: was the first approach [MonolithFirst](https://martinfowler.com/bliki/MonolithFirst.html) or just uncontrolled organic growth?)
+
+Working with CEO Stewart Desson, I've since changed the whole company's business mindset from building 'the online system' to building 'services and apps for our platform'. This was part inspired by me reading [The Age of the Platform: How Amazon, Apple, Facebook, and Google Have Redefined Business](https://www.goodreads.com/book/show/12961283-the-age-of-the-platform) on my train journeys, and discussing the idea at our strategy meetings. Providing a platform means you not only create and sell your own products, you also allow Third parties to create their own products which consume your APIs. Third parties can then build their own custom solutions with your building blocks and sell them via your platform.
+
+Switching over to a new Microservices approach and re-engineering how we handle Identity and Access Management (IAM) to support a distributed platform rather than a single monolithic service was a big undertaking with lots to learn. It has taken a couple of years' worth of thinking and doing to get to this point. In this post I share some of the details behind this.
+
+* * * * *
+
+The business case
+-----------------
+
+Lumina already had a stable monolithic system used by thousands of users around the world. You can't radically break up a monolith which is working fine in production without a business case. Using the most modern technology techniques isn't a good enough reason.
+
+I explained business benefits such as:
+
+-   Say 'yes' more to innovative ideas which can be created as brand-new apps alongside the existing rather than hacking the existing to do something extra
+-   Speed up onboarding new developers to create higher quality apps with their preferred tools and be more language agnostic
+-   Fewer bugs and constraints caused by spaghetti code with overlapping concerns affecting something unexpected
+-   Use the latest tools and techniques which inspires developers to keep learning, and new developers see it as an attractive place to work
+
+We also discussed the cons such as:
+
+-   Change of infrastructure requirements
+-   Changes needed to the way we authenticate users
+-   New infrastructure comes with new costs
+-   The need for better automation of scaling, monitoring and logging
+-   Lack of internal knowledge of cloud platforms
+-   It's a tough ask to become an identity expert AND host all the underlying infrastructure AND keep it all secure, while leading the creation of new products AND keeping the existing legacy running all at the same time.
+
+Thankfully there's two really innovative companies [Auth0](https://auth0.com/) and [Heroku](https://heroku.com/) who are experts in the IDaaS and PaaS fields. They provided us with the really important pieces of the jigsaw we needed to get right first time so we can focus on our application specific code instead.
+
+* * * * *
+
+Prove the approach works
+------------------------
+
+I proved the approach before I became lead, which made putting forward the roadmap easier. To avoid disrupting the existing system I first created standalone services with Node.js and an AngularJS frontend to support our new [Splash Mobile App for iOS and Android](/2017/12/18/securely-augmenting-paper-based-psychometric-reports-with-native-apps-for-ios-and-android/). This proved to everyone that by removing the legacy constraints it's possible to *'say yes'* to creating the innovative products previously thought impossible due to *'the way the system works'*.
+
+At this point I didn't have a modern identity system to use, and the monolith contained the user store (bit of a nightmare). This meant the first apps won't be able to authenticate in a scalable long-term way at this point. We also don't have enough internal capacity to use our preferred IaaS platform [AWS](https://aws.amazon.com/), which is why we started off with [Heroku](https://www.heroku.com/).
+
+Proving the approach really helped show everyone the way forwards.
+
+* * * * *
+
+Implement Modern IAM
+--------------------
+
+As previously mentioned, we also had one more hurdle to get over - our user store was inside the monolith, and sign in was handled from bespoke legacy PHP code! We needed all users to convert to using modern Identity and Access Management before we could allow our existing users to sign into any of our new apps, so this was a major blocker.
+
+In order to support microservices you need to put in place modern Identity and Access Management with Single Sign On. This is to avoid registering with and signing into each independent app separately with multiple credentials. You also need to be able to handle social OAuth2 providers if you want to support signing in with Google, Facebook etc. - also, if you are going to allow federated identity from your third-party clients you'll want to be able to support the latest standards to do the integration securely.
+
+Our new apps aren't going to have a single stateful PHP session any more, the new apps need to be scalable and stateless. After a *lot* of learning about the various identity protocols we now know what we wanted to do was:
+
+OAuth2 plus OpenID - OAuth2 allows delegate access by granting *authorization* to limited resources on your behalf, with an access_token without sharing credentials, and OpenID adds user *authentication* to OAuth, verifies identity of the user and access basic profile information via id_token encoded as JWT without sharing credentials
+
+Signed JWT - Avoiding round trips for authorization (auth'z) by encoding profile metadata in the token's payload. Tokens are signed to verify authenticity (sender is our trusted server) and integrity (data hasn't changed in transit). Short lived (hours) in case transport security is compromised.
+
+HTTPS for everything - Leaky "referer" headers and always using HTTPS for all services to avoid leaking data from JWT callback redirections
+
+Which is why we chose an IDaaS provider [Auth0](https://auth0.com/). They solve all of these modern identity problems for us and we don't need to be experts in all of this, we just need to understand how to use it securely in the right way and deal with any changes and deprecations over time as Auth0 keeps us up to date.
+
+We looked into other options including [Forgerock](https://www.forgerock.com/), [Okta](https://www.okta.com/), [Globalsign](https://www.globalsign.com/en/identity-and-access-management/) and deploying our own open source options including [WSO2](https://wso2.com/identity-and-access-management). I'm sure these are great options for some businesses, but for us none of these options really focussed on serving our external B2C and B2B customers and mainly focussed on internal users, in addition at the time they all charged based on number of users rather than number of active users like Auth0 did, so we had a clear winner.
+
+* * * * *
+
+Mapping legacy user store identities to new Auth0 identities
+------------------------------------------------------------
+
+Using Auth0 as the modern IAM provider was the easy bit. The much harder part to solve is our need to retain the existing legacy identities. We had to ensure each modern identity is then mapped to our legacy user store, now everyone has one single identity which has access to all their new and old services via a portal seamlessly. This was no easy task, and it's very important to do it the right way - we needed to come up with a migration strategy.
+
+Migration strategy - Identify if user store is *clean* or if new credentials (such as emails and passwords) required. Decide whether to map or migrate - in our case we needed a fresh start and could not simply migrate due to users having multiple logins of multiple types without verified emails. If we could simply migrate we could have used Auth0's support for this, but this was not possible for our use case.
+
+From the login page we guided users through the process upgrading to the new experience by creating a new clean identity and then mapping their old accounts seamlessly based on verified emails and email+password knowledge.
+
+Handle old login forms, password reset forms - We switched to new forms which do serverside HMAC checks on our legacy system before the modern clientside flows kick in so we can support both from one form. For example from reset password we can make a clientside sign in API call to the legacy sign on system to see if an account with that email exists over there and then redirect to the legacy system where appropriate to continue to support those who have not yet migrated.
+
+Mapping to legacy session based app - We stored the mappings and roles in a field in Auth0's `app_metadata`. We automatically enriched this field, plus profile data in `user_metadata` from an Auth0 enrichment rule which makes a HMAC secured call to our existing store each time the user signs in. We include these fields as custom namespaced claims in our JWT provided by Auth0. This allows our apps to know which profiles the account is mapped to, retaining all their previous services.
+
+Once the new identity is mapped we can sign into the legacy apps by calling a clientside API with our new JWT+userId+type (and [withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)), the legacy system can then check they are mapped and setup the session as it did previously.
+
+Delegation Bonus - This extra layer on top opens up the possibility of a new delegation feature to allow multiple users to be delegated access to a profile without sharing passwords, as we can map more than one account to the same profile and allocate roles and permissions as required.
+
+* * * * *
+
+First we proved our business approach with new Node.js microservices with an AngularJS frontend. Next we have everyone migrating to using modern identities provided by Auth0 which are mapped to their existing profiles.
+
+* * * * *
+
+Deconstruct the monolith
+------------------------
+
+I put forward an achievable incremental approach to avoid a big bang approach. I've seen other people suggest building the 'dream system' in one go which ironically is all it will ever be! This approach was incremental, we gradually build new and improved products and features from scratch as new microservices then replace the old links once ready. Edit April 2018, this also matches strategy outlined by [How to break a Monolith into Microservices](https://martinfowler.com/articles/break-monolith-into-microservices.html) which recommends always decommissioning the original once all migrated to the new service.
+
+I created high level infrastructure diagrams of how the different services should be split and the API calls between them to help visualise how to deconstruct our monolith. [OmniGraffle](https://www.omnigroup.com/omnigraffle) is great for this.
+
+We then started to break apart our Monolith into Microservices which do one job, and do it well and modern JavaScript single page apps which consume these APIs to provide a far more interactive experience compared to the sluggish legacy serverside templates from the monolith.
+
+* * * * *
+
+Encapsulating the legacy
+------------------------
+
+We also take an incremental approach to decommissioning the legacy. It doesn't need to be done all in one go, specific areas of code can be deleted once replaced by the new apps and services.
+
+Not all the legacy necessarily needs to be deleted. In our case our monolithic system is still the source of truth for user profiles and types which are mapped to our new identity profiles. Our remaining legacy data lives on and is accessed behind the scenes via tightly controlled HMAC secured private API endpoints.
+
+One alternative is instead of encapsulating via APIs, to access the database directly. However it is neater to have one database per app to control which tables of data can be accessed from which systems, plus changing the original data structure would mean changing all apps rather than just the API.
+
+This is a similar approach to the one taken by [SoundCloud -  Building Products at SoundCloud ---Part I: Dealing with the Monolith](https://developers.soundcloud.com/blog/building-products-at-soundcloud-part-1-dealing-with-the-monolith).
+
+* * * * *
+
+Login flows
+-----------
+
+Here's a summary of our new login flows now we have Auth0 and microservices.
+
+Secure login flow for each app - Each app redirects to the Auth0 identity provider which checks for single sign on session cookie (lasts for 7 days), the provider then redirects back with a (short lived) signed JWT which has the user's profile encoded. If no single sign on session is found then the user is redirected to our custom  sign on page. We have implemented the sign on page as part of our new portal app so we only implement the sign on page once. Each app can then simply assume it will be provided with a JWT and only implement the callback and logout pages.
+
+Preserving state when redirecting - Modern identity requires a lot of redirecting to providers, login pages, verification pages etc. We need to redirect users back to the page they tried to access before the flow was triggered. You can do this several ways and use a combination of the following:
+
+You can pass state to the identity provider to give back to you in the callback flow.
+
+You can set state values in localstorage for same domain single page clientside apps.
+
+You can set state in cookies for cross domain or serverside session based apps.
+
+You can pass in returnUrl in the get params of the URL itself.
+
+Secure logout flow - distributed single log out of each microservice. The problem with each app having its own session is each needs to be told when a logout is triggered. The trick we use is by using iFrames to clear the JWT from the localstorage of each domain (as you can't modify localstorage cross domain), this means each app should implement a logout page which performs local logout (deletes the localstorage JWT). For serverside sessions a clientside API call can be made which sends the cookie across for the server to delete the session ([withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)). Once all apps have signed out locally, single log out can be performed at the identity provider which then deletes the single sign on session cookie.
+
+SSO Cookies vs Refresh Tokens - Longer lived than JWT. To achieve browser based Single Sign On across all apps by only signing in once, and to prevent users from signing in every few hours, a Cookie is set at the provider which is reasonably long lived (multiple days). For client mobile apps which aren't browser based, rather than using single sign on cookies, a Refresh Token can be used to keep the user signed in which must be stored securely. When the JWT expires the Refresh Token can be used to get a new one without needing the user to resubmit their credentials. Refresh Tokens can be revoked at the authorization server to blacklist it from creating new JWTs.
+
+* * * * *
+
+Third Party integrations
+------------------------
+
+Last year it was a good challenge to do our first federated OAuth2 integration with a third party so their job applicants can take a psychometric test by seamlessly using their existing identity.
+
+Thanks to using Auth0 all I had to do was use [Auth0's custom social connections extension](https://auth0.com/docs/extensions/custom-social-extensions) to set up a connection to their production and beta identity providers. We plugged in their Client ID, Client Secret, Authorization URL, Token URL, Scope and wrote a Fetch User Profile Script which calls their whoami/me API endpoint to fetch their name and email to put into their new Auth0 profile. Once set up it behaves seamlessly in the same way as the other OAuth2 providers.
+
+We were then able to focus on providing the third party with an API secured by HMAC to fetch the results behind the scenes when they return. The candidate never feels like they left the third party site and both businesses benefit from each other's strengths.
+
+* * * * *
+
+Seeing the benefits
+-------------------
+
+We now have a growing team of computer scientists working for us, they're able to get on with creating our products without worrying about legacy constraints - perfect!
+
+-   Reduced cost when developing new features, no need to understand an entire monolithic codebase or the login system to get started, so we can bring on new developers quickly
+-   Increased flexibility thanks to no legacy monolithic constraints, ability to use the right language and tool for the job and deploy a new service without affecting existing services.
+-   Increased revenue as we can say 'yes' more often and open the door to third party integrations
+-   Added agility, we can try out something new and quickly see results by spinning up a new service and thanks to it being stateless scaling it horizontally when required
+-   Increased consolidation by accessing all services from a single portal with a single identity and allowing services to talk to each other
+
+* * * * *
+
+What's next
+-----------
+
+Our monolith is still running on a dedicated server, we need to bring it in line with the new services and reduce the single point of failure issue we have with this setup by making it scale horizontally.
+
+Heroku has served us well up to now, but we now need to consolidate and streamline how we have deployed all these different services to avoid creating a maintenance nightmare and containerise our apps in a standard way with Docker.
+
+We have decided we want to go down the route of managed AWS DevOps as a Service so our internal team can focus on the product still instead of the infrastructure. We want all the benefits of Heroku but with more flexibility and support for our more complicated apps including the monolith.
