@@ -36,8 +36,8 @@ export default function PostLayout({
   prev,
   children,
 }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content;
-  const basePath = path.split('/')[0];
+  const { filePath, slug, date, title, tags } = content;
+  const basePath = '/';
 
   return (
     <SectionContainer>
@@ -169,7 +169,7 @@ export default function PostLayout({
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                   aria-label="Back to the blog"
                 >
-                  &larr; Back to the blog
+                  &larr; Back to homepage
                 </Link>
               </div>
             </footer>
