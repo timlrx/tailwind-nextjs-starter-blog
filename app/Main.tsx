@@ -47,18 +47,20 @@ export default function Home({ posts }) {
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>
-                          {formatDate(date, siteMetadata.locale)}
-                        </time>
-                        {images?.length > 0 && (
-                          <Image
-                            className="mt-2.5"
-                            alt=""
-                            src={images[0]}
-                            width={200}
-                            height={200}
-                          />
-                        )}
+                        <Link href={`/${slug}`}>
+                          <time dateTime={date}>
+                            {formatDate(date, siteMetadata.locale)}
+                          </time>
+                          {images?.length > 0 && (
+                            <Image
+                              className="mt-2.5"
+                              alt=""
+                              src={images[0]}
+                              width={200}
+                              height={200}
+                            />
+                          )}
+                        </Link>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">

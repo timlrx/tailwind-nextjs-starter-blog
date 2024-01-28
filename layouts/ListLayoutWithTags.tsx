@@ -143,18 +143,20 @@ export default function ListLayoutWithTags({
                       <dl>
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                          <time dateTime={date}>
-                            {formatDate(date, siteMetadata.locale)}
-                          </time>
-                          {images?.length > 0 && (
-                            <Image
-                              className="my-2.5"
-                              alt=""
-                              src={images[0]}
-                              width={200}
-                              height={200}
-                            />
-                          )}
+                          <Link href={`/${path}`}>
+                            <time dateTime={date}>
+                              {formatDate(date, siteMetadata.locale)}
+                            </time>
+                            {images?.length > 0 && (
+                              <Image
+                                className="my-2.5"
+                                alt=""
+                                src={images[0]}
+                                width={200}
+                                height={200}
+                              />
+                            )}
+                          </Link>
                         </dd>
                       </dl>
                       <div className="space-y-3">
@@ -173,6 +175,15 @@ export default function ListLayoutWithTags({
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
+                        </div>
+                        <div className="text-base font-medium leading-6">
+                          <Link
+                            href={`/${slug}`}
+                            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                            aria-label={`Read more: "${title}"`}
+                          >
+                            Read more &rarr;
+                          </Link>
                         </div>
                       </div>
                     </article>
