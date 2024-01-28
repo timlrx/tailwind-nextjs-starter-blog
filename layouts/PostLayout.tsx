@@ -11,8 +11,6 @@ import siteMetadata from '@/data/siteMetadata';
 import ScrollTopAndComment from '@/components/ScrollTopAndComment';
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`;
-const discussUrl = (path) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}`;
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -36,7 +34,7 @@ export default function PostLayout({
   prev,
   children,
 }: LayoutProps) {
-  const { filePath, slug, date, title, tags } = content;
+  const { filePath, slug, date, title, tags, readingTime } = content;
   const basePath = '/';
 
   return (
@@ -62,6 +60,11 @@ export default function PostLayout({
               <div>
                 <PageTitle>{title}</PageTitle>
               </div>
+              {readingTime?.text && (
+                <p className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  {readingTime.text}
+                </p>
+              )}
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
