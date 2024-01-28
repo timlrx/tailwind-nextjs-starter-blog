@@ -136,7 +136,15 @@ export default function ListLayoutWithTags({
           <div>
             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
               {displayPosts.map((post) => {
-                const { path, date, title, summary, tags, images } = post;
+                const {
+                  path,
+                  date,
+                  title,
+                  summary,
+                  tags,
+                  images,
+                  readingTime,
+                } = post;
                 return (
                   <li key={path} className="py-5">
                     <article className="flex flex-col space-y-2 xl:space-y-0">
@@ -178,11 +186,16 @@ export default function ListLayoutWithTags({
                         </div>
                         <div className="text-base font-medium leading-6">
                           <Link
-                            href={`/${slug}`}
+                            href={`/${path}`}
                             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             aria-label={`Read more: "${title}"`}
                           >
-                            Read more &rarr;
+                            {readingTime?.text ? (
+                              <>{readingTime.text}</>
+                            ) : (
+                              'Read more'
+                            )}{' '}
+                            &rarr;
                           </Link>
                         </div>
                       </div>

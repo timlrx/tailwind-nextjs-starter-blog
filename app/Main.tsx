@@ -33,7 +33,8 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags, images } = post;
+            const { slug, date, title, summary, tags, images, readingTime } =
+              post;
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -84,7 +85,12 @@ export default function Home({ posts }) {
                           className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read more: "${title}"`}
                         >
-                          Read more &rarr;
+                          {readingTime?.text ? (
+                            <>{readingTime.text}</>
+                          ) : (
+                            'Read more'
+                          )}{' '}
+                          &rarr;
                         </Link>
                       </div>
                     </div>
