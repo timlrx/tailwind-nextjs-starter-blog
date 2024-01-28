@@ -39,7 +39,7 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags } = post;
+            const { slug, date, title, summary, tags, images } = post;
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -50,6 +50,15 @@ export default function Home({ posts }) {
                         <time dateTime={date}>
                           {formatDate(date, siteMetadata.locale)}
                         </time>
+                        {images?.length > 0 && (
+                          <Image
+                            className="mt-2.5"
+                            alt=""
+                            src={images[0]}
+                            width={200}
+                            height={200}
+                          />
+                        )}
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
