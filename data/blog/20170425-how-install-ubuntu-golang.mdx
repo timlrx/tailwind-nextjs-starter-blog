@@ -1,0 +1,73 @@
+---
+title: '如何在 ubuntu 16.04 安裝 Go 語言'
+summary:  
+slug:  ubuntu-with-golang
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2017-04-25'
+
+tags: ['golang']
+---
+# 下載並解壓縮
+
+```
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo curl -O https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+sudo tar -xvf go1.8.linux-amd64.tar.gz
+```
+
+
+# 設定 Go Paths
+首先，開啟 profile
+
+`sudo nano ~/.profile`
+
+# 編輯 profile
+```
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin
+```
+
+儲存後，輸入以下更新
+
+`source ~/.profile`
+
+建立檔案路徑
+
+```
+mkdir $HOME/go_projects
+mkdir $HOME/go_projects/src
+mkdir $HOME/go_projects/src/hello
+```
+
+# 設定Paths
+```
+export GOPATH="$HOME/go_projects"
+export GOBIN="$GOPATH/bin
+```
+
+# 編輯第一個檔案
+`nano $HOME/go_projects/src/hello/hello.go`
+
+# 編寫第一個程式
+```
+package main
+import "fmt"
+func main() {
+    fmt.Printf("hello, world\n")
+}
+```
+
+# 執行程式
+```
+go install $GOPATH/src/hello/hello.go
+$GOBIN/hello
+```
+
+成功的話會出現
+
+`hello, world`
+
+參考來源
+[如何在Linux中安装GoLang（Go Programming Language）](https://www.howtoing.com/install-go-in-linux)
+[How to: Install Go 1.8 on Ubuntu 16.04](https://medium.com/@patdhlk/how-to-install-go-1-8-on-ubuntu-16-04-710967aa53c9)

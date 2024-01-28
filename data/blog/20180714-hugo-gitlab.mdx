@@ -1,0 +1,57 @@
+---
+title: '使用 Hugo 及 GitLab Pages 建立部落格'
+summary:  GitLab 有針對許多 static site generators 做範例頁面
+slug:  hugo-gitlab
+images:  ['https://img.kaixsean.com/2018/28382740417.png']
+date: '2018-07-14'
+tags: ['StaticSiteGenerator']
+---
+不久前，GitHub 被 Microsoft 收購的新聞甚囂塵上，我也跟著搬遷到了 GitLab。 此前是用 Jekyll 架設，搬到 GitLab 後，基於 GitLab 也搬到 GCP(Google Cloud Platform)，並已轉用 Go 語言，讓我也想要嘗試以 Go 語言為基底的 Hugo。
+
+GitLab 有針對許多 static site generators 做範例頁面，可以先到 [Hugo 的頁面](https://gitlab.com/pages/hugo)
+
+![](https://img.kaixsean.com/2018/28382740417.png)
+
+直接 fork 這個專案
+
+![](https://img.kaixsean.com/2018/41442041260.png)
+
+Project name 中將 xxx.gitlab.io 中的 xxx 改成你想要的名字這樣完成後你的網站名稱就會是 `http://xxx.gitlab.io`
+
+![](https://img.kaixsean.com/2018/41442041260.png)
+
+其實到這邊幾乎就已經完成了但我們還是要做點收尾，先去設定的地方斷開與原先被 fork 專案的連結關係展開 Advanced settings
+
+![](https://img.kaixsean.com/2018/28382740567.png)
+
+移除 fork 連結關係
+
+![](https://img.kaixsean.com/2018/41442041330.png)
+
+因為我們改過 Project name，所以路徑名稱也要定位到。
+
+將預設的 hugo 改成後來命名的 xxx.gitlab.io
+
+![](https://img.kaixsean.com/2018/28382740717.png)
+
+然後要去設定 “config.toml” 中的 baseurl，改成你名字的 xxx.gitlab.io
+
+![](https://img.kaixsean.com/2018/41442041700.png)
+
+然後等待 GitLab CI 部署你的變更
+
+![](https://img.kaixsean.com/2018/28382741267.png)
+
+這樣就大功告成了！
+
+![](https://img.kaixsean.com/2018/28382740927.png)
+
+如果事後不想要把專案變成 page ， 可以去 設定/Page 的地方移除 Page，這樣就會回歸回檔案的形式了。
+
+![](https://img.kaixsean.com/2018/41442041810.png)
+
+參考資料
+
+[使用Gitlab Pages建立个人博客](https://menglei.tk/2016/12/12/gitlab-pages/)
+
+[基于GitLab的Pages服务构建静态博客](https://xdays.me/%E5%9F%BA%E4%BA%8EGitLab%E7%9A%84Pages%E6%9C%8D%E5%8A%A1%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2.html)

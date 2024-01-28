@@ -1,0 +1,25 @@
+---
+title: ' DFP 注意事項'
+summary:  最近工作因為導入了 Google DFP 廣告系統，弄得有點煩躁。因為 DFP 廣告常常不知道為什麼會無法顯示出來。
+slug:  dfp
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2016-11-27'
+
+tags: ['DFP']
+---
+
+最近工作因為導入了 Google DFP 廣告系統，弄得有點煩躁。因為 DFP 廣告常常不知道為什麼會無法顯示出來。
+
+後來，在詢問過 Google 的服務人員之後，大概了解了以下事項。
+
+defineslot 要放在 Head 的位置，然後於 body 中透過 div 去呼叫
+
+理想的建議是把 defineslots 都放在同一個 script 之下
+
+有這樣做的話，跑起來還滿順利的，幾乎都有乖乖出現。
+
+不過我也發現，似乎在有限制訪問的內網測試機上，是比較容易會有卡住的現象。
+
+所以，如果你也遇到了，或許不必那麼緊張，推送到正式機時應該就會出現了。
+
+然後這樣就搞了我快一個禮拜啊～～～

@@ -1,0 +1,71 @@
+---
+title: '利用 Laravel Sail 轉移 Laravel Project 到 Docker'
+summary:  最近發現了 Laravel Sail 可以幫助我簡易無痛地在 Docker 上使用 Laravel，於是立馬嘗試。
+slug:  laravel-docker
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2021-05-29'
+
+tags: ['Laravel']
+---
+
+最近發現了 Laravel Sail 可以幫助我簡易無痛地在 Docker 上使用 Laravel，於是立馬嘗試。
+
+## 安裝
+
+首先，安裝並執行 Docker  
+[Docker Desktop for Mac and Windows | Docker](https://www.docker.com/products/docker-desktop)
+
+若是全新的專案，那非常簡單，依照官網的指示即可。  
+[Installation - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/8.x/installation#your-first-laravel-project)
+
+但我的需求是把原本在 Vagrant 上開發的專案換成 Docker 環境。
+因此先用 git 把 GitHub 上的專案給拉下來。  
+這邊提醒一下，要記得搬移原本的 .env 檔
+
+完成後，切換到該目錄下並執行以下指令
+
+``` Command
+docker run --rm \
+-u "$(id -u):$(id -g)" \
+-v $(pwd):/opt \
+-w /opt \
+laravelsail/php80-composer:latest \
+composer install --ignore-platform-reqs
+
+```
+
+安裝 Laravel sail 之後，執行以下指令
+
+`php artisan sail:install`
+
+接著將會問你想要安裝哪些服務
+
+![laravel sail install services](https://img.kaixsean.com/2021/install-services.png)
+
+我大略地選了幾個，之後就會配置在 docker-compose.yml 檔案。這個檔案會告訴 docker 要安裝哪些服務，並如何設定。  
+基於個人喜好，我也另外手動加入了 phpmyadmin
+
+![laravel sail docker-compose file](https://img.kaixsean.com/2021/docker-compose.png)
+注意資料夾會自動新增 docker-compose.yml 檔案
+
+## 執行
+
+接著繼續執行
+
+`./vendor/bin/sail up`
+
+就會啟動了
+
+![laravel installed screenshot](https://img.kaixsean.com/2021/laravel-installed.png)
+
+運行完畢即大功告成
+
+另外，若要關閉的話，則使用 Control + C 或者是
+
+`./vendor/bin/sail down`
+
+若是要切換成背景開啟則是加上 -d
+
+`./vendor/bin/sail up -d`
+
+就是如此簡單而快速，整體體驗變得很好，有興趣的人也快來嘗試看看吧！

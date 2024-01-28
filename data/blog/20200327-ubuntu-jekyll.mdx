@@ -1,0 +1,132 @@
+---
+title: 'Ubuntu 18.04 安裝 Jekyll 輕鬆上手'
+summary:  演示如何在 Ubuntu 下安裝 Jekyll
+slug:  ubuntu-jekyll
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2020-03-27'
+
+tags: ['StaticSiteGenerator']
+---
+
+## 前言
+前陣子的文章提到，因為 Jekyll 對我來說比較易用，因此把轉回使用 Jekyll。今天就來演示如何在 Ubuntu 下安裝 Jekyll
+
+## 安裝 Jekyll
+基本上這個部分，官網就已經很清楚了，照做而已。
+
+首先，安裝 Ruby 和相依的開發工具
+
+```shell:Command
+sudo apt-get install ruby-full build-essential zlib1g-dev
+```
+
+由於要避免以 root 身份安裝 Ruby Gems，因此需要設置一個 gem 安裝目錄，並配置環境變數。
+
+```shell:Command
+echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+```
+
+```shell:Command
+echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
+```
+
+```shell:Command
+echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+```
+
+```shell:Command
+source ~/.bashrc
+```
+
+最後，安裝 Jekyll，這樣就完成了。
+
+```shell:Command
+gem install jekyll bundler
+```
+
+## 建立 Blog
+接下來，可以新建或複製一個 Jekyll website 或 Blog。
+
+若是要新建立一個 Jekyll 網站，輸入以下，就會新增一個命名為 myblog 的資料夾。
+
+```shell:Command
+jekyll new myblog
+```
+
+切換到資料夾下，運行 Jekyll
+
+```shell:Command
+bundle exec jekyll serve
+```
+
+以上是官方的正統做法。
+
+## 調整及設置外掛
+而我 Git clone 了我部落格使用的主題，並在本機運行，接下來將會因為使用的主題不同，而多少有所差異，以下經驗分享。
+
+![notFindGithubPage](https://img.kaixsean.com/2020/notFindGithubPage.png)
+
+顯示 Could not find gem ‘GitHub-pages’ ，表示找不到 GitHub-pages 這個外掛。
+
+於是安裝 GitHub-pages 這個外掛，並再運行一次
+
+```shell:Command
+gem install github-pages
+```
+
+![bundleExec](https://img.kaixsean.com/2020/bundleExec.png)
+
+You have already activated i18n 1.8.2, but your Gemfile requires i18n 0.9.5. Prepending `bundle exec` to your command may solve this.
+
+因為我一開始是輸入 jekyll serve --host=0.0.0.0 ，而新版已經改為 bundle exec jekyll serve，所以應該加入 bundle exec 才對。
+
+```shell:Command
+bundle exec jekyll serve --host=0.0.0.0
+```
+
+至於後面會多加上 --host=0.0.0.0 ，是因為我在虛擬機（Vagrant）建立測試環境，必須監聽 0.0.0.0.。
+
+![bundleExec](https://img.kaixsean.com/2020/previewSite.png)
+
+雖然運行成功，但也有收到這個錯誤訊息。
+
+Deprecation: The 'gems' configuration option has been renamed to 'plugins'. Please update your config file accordingly.
+這是因為，原本我的 _config.yml 中的外掛設定使用以下這樣舊版的寫法
+
+```shell:Command
+gems: [jekyll-paginate]
+```
+
+新版寫法，只要改為plugins 就可以了。
+
+```shell:Command
+# gems: [jekyll-paginate]
+plugins:
+- jekyll-paginate
+```
+
+接下來，由於我想要產生 sitemap，因此安裝 jekyll-sitemap 這一個外掛。
+
+```shell:Command
+gem install jekyll-sitemap
+```
+
+安裝後，並在 _config.yml 設定，就大功完成了。
+
+```
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+# make sure you have this gem installed
+# `$ gem install jekyll-paginate`
+plugins:
+- jekyll-paginate
+- jekyll-sitemap
+```
+
+實際在網頁後面輸入 sitemap.xml 就可以看到 sitemap 了。
+
+![bundleExec](https://img.kaixsean.com/2020/previewSitemap.png)
+
+參考資料  
+[Jekyll on Ubuntu](https://jekyllrb.com/docs/installation/ubuntu/)  
+[Jekyll Sitemap Generator Plugin使用指南](https://jaceykan.github.io/2018/09/28/Jekyll-Sitemap-Generator-Plugin%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/)

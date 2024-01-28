@@ -1,0 +1,90 @@
+---
+title: '我又搬回了 Jekyll'
+summary:  由於在使用 Gatsby 的自訂化設定，屢屢遇到難題，始終無法達成心目中的想像，最後決定換回 Jekyll。
+slug:  jekyll
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2020-03-01'
+
+tags: ['StaticSiteGenerator']
+--- 
+
+## 前言
+經過一些時日，對於這個部落格還是有許多不滿意的地方，後來還是搬回了 Jekyll。
+
+對於這個部落格的架構，從一開始使用 Github page 而認識 Static Site Generator (SSG) 後，因微軟收購 Github 而跟風轉移到 Gitlab page 並改而使用 Hugo。再到把 Host 轉移到 Netlify 。沒多久後，又因為看到了林之晨及星箭廣播的推薦，而嘗試使用 GatsbyJS，一路走來也是搞了好久(笑)。
+
+![gitlab page](https://img.kaixsean.com/2020/gitlab.png)
+使用 Gitlab page 搭配 Hugo (July, 2018) 
+
+![hugo theme](https://img.kaixsean.com/2020/hugoIndex.png)
+改使用 Netlify 搭配 Hugo，主題則使用 Clean White，並且把圖片寄放在  Google Cloud Storage (August, 2019)
+
+![gatsby theme novela](https://img.kaixsean.com/2020/novelaGatsby.png)
+SSG 轉成採用 GatsbyJS，主題則選用 Novela  (December, 2019)
+
+不過，由於在使用 Gatsby 的自訂化設定，屢屢遇到難題，始終無法達成心目中的想像，最後決定換回 Jekyll。
+
+以下就記錄與分析這過程中的心得。
+
+## Host
+
+### Github page
+Github page 由 Github 提供，Github page 的 SSG 限定以 Ruby 語言為基礎的 Jekyll，這同時也是 Github 所開發出來的。也是我認識 SSG 家族的開端。
+
+### Gitlab page  
+Gitlab 與 Github 提供相同的服務，但其後來轉用 Go 語言。因此，我在轉用 Gitlab page 時，就想說採用同樣為 Go 語言且很有成為後起之秀的 Hugo 試試。Gitlab page 本身並沒有限制只能使用哪一個 SSG，比起 Github page 會更自由些。
+
+### Netlify
+與 Github 及 Gitlab 比較不同，Netlify 是專為靜態網頁提供託管服務，並且免費提供了 CI/CD  功能，允許你介接 Github 、Gitlab 或 Bitbucket，只要更新儲存庫，就能自動 Deploy 到 Netlify 更新網站內容。Netlify 本身也沒有限制只能使用哪一個 SSG。
+
+我會選擇 Netlify 的主要原因是，Github page 必須把儲存庫設為公開，雖然 Gitlab page 允許設定私有，但 Gitlab page 的反應速度偏慢，而 Netlify 可以滿足我這兩項需求。  
+我曾針對這三個服務 Ping 過測試，反應速度依次為 GitHub > Netlify > Gitlab  
+此外，Netlify 還可以結合 Netlify CMS，把 SSG 化做像是 Wordpress 般那樣操作，但仍舊無需自租主機。但我用起來不習慣，因此不再深究。
+
+依照目前最新的狀態，不論是 Github page  還是 Gitlab page、Netlify 三者的免費帳戶均是  
+**都可以自訂域名**  
+**檔案容量上限 1GB**  
+**流量限制每月 100GB**  
+對部落格、個人官網或是許多中小型企業來說應該都很足夠。
+
+## Static Site Generator - SSG
+
+### Jekyll  
+Jekyll 是以 Ruby 為基礎所開發。
+由 Github 推出，且由於 Github page 的關係，是目前第二多人採用的 SSG。在實際使用上，我覺得是主題最豐富也最好調整的 SSG。  
+優點
+1. 簡單，基本上有 HTML 及Javascript 基礎即可
+2. 在 2019 年之前都是最多人關注、最多人使用，所以要找到教學是相對最容易
+3. 大量外掛
+
+### Hugo  
+Hugo 以 Go 語言為基礎的 SSG。 建立網站時非常快速，幾乎是無需等待。是目前排行第三使用的SSG。內建許多功能，對部落格來說很足夠。  
+但我選擇的主題並不支援 PWA，若要 PWA 勢必得自行建置。  
+優點
+1. 速度、速度、速度，飛快的速度，無人能敵的速度
+2. 簡單，與 Jekyll 一樣，基本上無須多學習其他技術
+3. 官方文件清楚易懂
+
+### Gatsby 
+Gatsby 以 Node.js 為基礎，並以 React.js 為前端架構的 SSG，是目前第一大。在去年年底時，還是排行第三，速度竄升之快。
+其支持 GraphQL，外掛生態非常豐富，從官網到部落格都能夠應付。內容也不限 Markdown，甚至也可以介接 Wordpress。
+不過，我試用了 Novela 及 gatsby-starter-minimal-blog 這兩個主題，都遇到了困難。Gatsby 並不像上述兩個 SSG 如此容易，我甚至認為應該要有 ReactJS 基礎才有辦法調整成符合自己的想望。而 Gatsby 網站建置速度也蠻慢的，低於 Jekyll 及 Hugo。
+雖說如此，但也千萬別忽略了 Gatsby，因為其內建支援 PWA ( Progress Web App )，如此重點的網頁發展項目，對 SEO 也可以加分不少。  
+優點
+1. 支援 PWA，不需要特別地設定
+2. 支持 GraphQL
+3. 大量外掛，生態豐富
+4. 官方文件清楚，官網也很豐富
+5. 目前最熱門
+
+### Hexo
+第四大 SSG，同樣以 Nodejs 為基礎，由台灣人開發，所以中文文件較多。Hexo 的教學及採用也多集中在華文世界。 但我實際上未曾嘗試 Hexo，只有評估過，因此沒辦法有更詳細地評價。我覺得 Hexo 在主題上也相當豐富，也有大量的外掛。惟發展狀態沒有像 Gatsby 來得蓬勃與具備企圖心。  
+優點
+1. 大量外掛
+2. 中文文件最多，官網原生支援中文
+3. 也有外掛可以支援 PWA
+
+以上是我所評估與試用過的 SSG，在此之外還有很多很多，但都相對不太熱門。若想要開始著手接觸 SSG，以上心得提供參考。
+
+**附註**  
+排行資料來源根據 [Wappalyzer - Static site generator](https://www.wappalyzer.com/categories/static-site-generator)

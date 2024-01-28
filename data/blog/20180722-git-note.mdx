@@ -1,0 +1,35 @@
+---
+title: 'Git 筆記'
+summary:  git 一直是工作過程中，每天要碰的東西。有時候一些比較不常用的指令會忘記，所以記下來要查也比較好查。
+slug:  git-note
+images:  ['https://img.kaixsean.com/2022/ilya-pavlov-unsplash.jpeg']
+date: '2018-07-22'
+
+tags: ['Git']
+---
+git 一直是工作過程中，每天要碰的東西。有時候一些比較不常用的指令會忘記，所以記下來要查也比較好查。
+這份文件會隨著我的學習不段更新。
+
+# 本地操作相關
+
+`git reset //放棄 add，但保留修改`
+
+`git reset --hard //放棄所有修改，回到上個 commit 完成後的狀態`
+
+`git branch -d newbranch //刪除 newbranch，若砍不掉就用 -D`
+
+# Git Stash 暫存相關
+
+`git stash //對目前的變更做暫存，好切換到其他branch去做其他的工作`
+
+`git stash list //看看stash list 有哪些暫存`
+
+`git stash pop //將目前stash list 中的任務倒出來，繼續上次暫存的工作`
+
+# 遠端操作相關
+
+`git branch -r //看遠端有什麼 branch`
+
+`git checkout origin newbranch -b newbranch //建立 local new_branch 並與遠端連接`
+
+`git push origin --delete new_branch //刪除遠端的 branch`

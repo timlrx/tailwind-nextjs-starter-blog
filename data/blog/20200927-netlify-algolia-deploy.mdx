@@ -1,0 +1,34 @@
+---
+title: '使用 Netlify 自動 deploy Algolia'
+summary:  由於太懶惰了，想要節省掉這樣的重複性動作與時間，因此搜尋了一些方式。
+slug:  algolia-by-netlify
+date: '2020-09-27'
+
+images:  ['https://img.kaixsean.com/2020/netlifySettingAlgolia.png']
+tags: ['StaticSiteGenerator']
+--- 
+之前說過本站搜尋使用 algolia 的服務，但每次產生文章之後，就必須跑一次 algolia 的指令，才能上傳資料到 algolia 建檔。  
+由於太懶惰了，想要節省掉這樣的重複性動作與時間，因此搜尋了一些方式。一開始是找到可以透過 [Travis CI - Test and Deploy with Confidence](https://travis-ci.com/)，後來發現 Netlify 本身就有包含這樣的工具了，而且做法也不難，如下說明：
+
+首先，在根目錄下配置 Netlify.toml 這個檔案，這邊以 Jekyll 為例。  
+設定好後，下次 Netlify 在 build & deploy 時就會照這個設定執行。
+
+**Netlify.toml**
+
+```
+[build]
+publish = "_site"
+command = "jekyll build & jekyll algolia"
+```
+
+根目錄設定好 Netlify.toml 設定檔後，在 Netlify 設定中，Build & deploy 這邊可以設定環境變數。  
+在這邊把 Algolia API Key 的值輸入設定。
+
+**Deploy setting**
+
+![Netlify Setting Algolia](https://img.kaixsean.com/2020/netlifySettingAlgolia.png)
+
+儲存後，再把 Netlify.toml 上傳。  
+這樣，下次再發表新文章上傳後，Netlify 的 Deploy 就會執行 algolia 的指令，將新資料傳給 algolia，就不用怕忘記執行algolia 的命令，而沒有建置新文章的搜尋資料了。
+
+![Netlify Environment Variables](https://img.kaixsean.com/2020/netlifyEnvironmentVar.png)

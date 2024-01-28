@@ -1,0 +1,59 @@
+---
+title: '部落格搬遷 第 N 次開站'
+summary:  這次一樣採用 Hugo 來架站 ，但在整體架構上做了一些調整 ，不使用 Gitlab Page 或 Github Page，而是選擇了 Netlify 做 Host。
+slug:  hugo-netlify
+images:  ['https://img.kaixsean.com/2019/blog_index.png']
+date: '2019-08-01'
+
+tags: ['StaticSiteGenerator']
+--- 
+
+![首頁](https://img.kaixsean.com/2019/blog_index.png)
+
+不知道這是第幾次搬家、重新開站了。
+
+在去年搬回 Google Cloud Platform 自架 wordpress 後 ，再度改回 Static Site Generator （暫譯：靜態網頁產生器）的方式。
+
+這次一樣採用 Hugo 來架站 ，但在整體架構上做了一些調整 ，不使用 Gitlab Page 或 Github Page，而是選擇了 Netlify 做 Host。
+
+建立過程大概都跟過去  [使用 Hugo 建立 GitLab page](https://kaixsean.com/blog/hugo-gitlab) 所述大同小異。
+
+在本地端建立好 Hugo 後，上傳到 Github 或 Gitlab，再透過 Netlify 連結，Netlify 會自動 Deploy 到站上。
+
+![netlify](https://img.kaixsean.com/2019/blog_netlify.png)
+
+Netlify 設定也很簡單，註冊登入後，只要綁定 Github 或 Gitlab 帳戶，並選擇 你 Ｈugo （或其他靜態網站語言) 的 repository 就可以了。
+
+![new site](https://img.kaixsean.com/2019/create_new_site.png)
+
+![setting](https://img.kaixsean.com/2019/setting.png)
+
+基本上 Netlify 都會自動偵測並設定好，只要下一步即可。
+
+![getting start](https://img.kaixsean.com/2019/getting_start.png)
+
+Netlify 將會自動部署，並分配一個網址給您。若想要使用自有網域，則可以再自行設定。並且，也可以自動分配與設定 HTTPS，真的是方便又快速，輕鬆許多。
+
+![custom domain](https://img.kaixsean.com/2019/custom.png)
+
+另外，這次圖片改放在 Google Cloud Storage。
+
+使用 Google Cloud Storage 的好處是，有免費方案可以使用，而且也可以使用自己的網域。
+
+限制是，免費方案的主機需選擇美國主機。
+
+但是在 Netlify CDN 始終設定不了圖片網址的 HTTPS。所以只好把部落格子網域連同圖片子網域一併改放 Cloudflare 處理。
+
+簡而言之，整體架構會是如下所示
+
+Github &rArr; Netlify &rArr; Cloudflare
+
+這樣的配置比使用 Google Cloud Platform 節省許多開銷，也不困難並且省時間。對於功能極為輕量級，需求不高的部落格而言，是相當推薦的方式。唯靜態網頁的寫作方式需要懂得使用 git，尚不適合一般大眾。
+
+不過話又說回來，其實像 Netlify 也有推出 CMS 服務，可以直接線上編輯、管理內容，有興趣的人，也可以去嘗試嘗試。
+
+參考資料  
+[Blog 從Wordpress 移動到 Hugo](https://minayu.site/2019/01/from-wordpress-to-hugo/)  
+[部落格搬遷記錄~部落格建置(hugo+github) · 小卷的胡言亂語](https://salu099.github.io/blog/2017/11/blog-newsite-build-record/)  
+[第一次在 GCP Storage 放置靜態網頁就上手 – 碼人日誌](https://coder.tw/?p=7626)  
+[How to Setup a SSL for Google Cloud Storage hosted Site?](https://geekflare.com/gcs-site-over-https/)

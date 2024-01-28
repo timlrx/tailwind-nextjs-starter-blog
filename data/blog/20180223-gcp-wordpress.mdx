@@ -1,0 +1,78 @@
+---
+title: '使用 Google Cloud Platform 簡單建立 Wordpress'
+summary:  許多人都會使用 Wordpress 來架部落格，甚至有很多商業網站也都直接用 Wordpress 來架設。現在，Google 旗下的 Google Cloud Platform (以下簡稱 GCP) 也有提供這樣的方式。
+slug:  gcp-wordpress
+images:  ['https://img.kaixsean.com/2018/36460755133.jpg']
+date: '2018-02-23'
+
+tags: ['GCP']
+---
+許多人都會使用 Wordpress 來架部落格，甚至有很多商業網站也都直接用 Wordpress 來架設。
+
+以前要架 Wordpress 得先架好伺服器然後再安裝 Wordpress。
+
+後來演進到，有些伺服器廠商（如 Godaddy）提供 Wordpress 主機服務，讓你一鍵安裝即可擁有。
+
+現在，Google 旗下的 Google Cloud Platform (以下簡稱 GCP) 也有提供這樣的方式。
+
+對於想要使用 GCP 強大速度與服務支援的部落客們，相信可以省下許多金錢與時間。
+
+首先，進入 GCP 控制台後，點入 Cloud Launcher。
+
+![](https://img.kaixsean.com/2018/36460755133.jpg)
+
+即可看到 Wordpress。如果沒有，也可以點擊 「網誌和CMS」或透過搜尋尋找。
+
+Google 有提供多種方式，有 Multisite 字樣指的是可以向痞客邦那樣建立多個部落格，一般只要選擇普通的即可。
+
+另外，還分成 Google Click to Deploy 跟 Bitnami 這兩種部署方式。
+
+![](https://img.kaixsean.com/2018/37084797086.png)
+
+![](https://img.kaixsean.com/2018/37103014942.png)
+
+兩者的差別在於安裝的內容物有差，以 Google Click to Deploy 為最精簡。
+
+在此我們是選擇 Bitnami 為範例。
+
+選擇後，下一步會需要調整伺服器的配備。
+
+不管是 Google Click to Deploy 還是 Bitnami 都是一樣的。
+
+只是我感到比較奇怪的是，Bitnami 能夠根據選擇的主機配備即時計算費用，但 Google Click to Deploy 卻沒有相同的顯示。
+
+![](https://img.kaixsean.com/2018/37084796986.png)
+
+首先，先為你的主機命名，並且選擇主機欲落腳的機房。
+
+![](https://img.kaixsean.com/2018/37103014802.png)
+
+接下來，則選擇你的主機配備，CPU 及記憶體那些，這將影響到你的主機效能以及荷包。
+
+磁碟機的部分，我個人習慣選擇 SSD，因為與傳統標準硬碟來說，價格相差無幾。
+
+磁碟大小的部分則 10GB 就夠用了，請再依個人習慣調整。
+
+其他預設即可。
+
+![](https://img.kaixsean.com/2018/37103014732.jpg)
+
+接著即部署完成，記下密碼後，就可以到 Computer Engine 查看你的 Wordpress 主機了。
+
+![](https://img.kaixsean.com/2018/36460754983.jpg)
+
+複製並於瀏覽器貼上你的外部 IP。
+
+![](https://img.kaixsean.com/2018/37103014562.png)
+
+登愣！你的 Wordpress 就架好了！
+
+![](https://img.kaixsean.com/2018/37084796786.png)
+
+使用 user 及部署完成時所提供的密碼，就可以進入 Wordpress 後台了。
+
+![](https://img.kaixsean.com/2018/37103014102.png)
+
+進入之後，就可以開始針對自己的需要而設定。
+
+特別是，為了安全，建議最好趕快建立一組新身份，使用自己記得住的帳號及密碼。

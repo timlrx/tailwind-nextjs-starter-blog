@@ -1,0 +1,59 @@
+---
+title: '解決 macOS SSH 連線中文亂碼的問題'
+summary:  前陣子連線到遠端的 Linux Server 要 commit 時發現中文都是亂碼，找了好久，終於找出解答。 問題出在LANG的設定。
+slug:  macos-ssh-chinese
+images:  ['https://img.kaixsean.com/2018/42199701335.jpg']
+date: '2018-06-30'
+
+tags: ['MacOS']
+---
+
+前陣子連線到遠端的 Linux Server 要 commit 時發現中文都是亂碼，找了好久，終於找出解答。 問題出在LANG的設定。
+
+以我自己的設定來說 我習慣使用 台灣地區/英文
+
+![台灣地區/英文](https://img.kaixsean.com/2018/42199701335.jpg)
+
+這樣之下，SSH 連到 linux 伺服器就會有中文亂碼的問題。 在本機的 Terminal 輸入 "locale" LC_CTYPE 是 UTF-8。 
+
+![](https://img.kaixsean.com/2018/42199701425.jpg)
+
+那假如換成 台灣地區/繁體中文 
+
+![](https://img.kaixsean.com/2018/29232072838.jpg)
+
+則會變成 zh_TW.UTF-8
+
+![](https://img.kaixsean.com/2018/42199701145.jpg)
+
+那如果再換成 美國地區/英文 呢 
+
+![](https://img.kaixsean.com/2018/42199701135.jpg)
+
+就變成 en_US.UTF-8 
+
+![](https://img.kaixsean.com/2018/42199701385.jpg)
+
+在 zh<em>TW.UTF8 及 en</em>US.UTF8 之下都能正常顯示 所以會有亂碼的問題，是因為本機的 UTF-8 對不上 Server 的設定 有幾個方式可以解決這個問題
+
+如果只想解決 SSH 連線到 Server 後，在 Server 上的亂碼問題。那就只要把「啟動時設定地區環境變數」那個勾勾取消即可。
+
+![](https://img.kaixsean.com/2018/42199700945.jpg)
+
+因為本機的 terminal 中文也有亂碼的問題，如果也想解決這個問題，那就必須修改本機的 "locale"。於此之下，第一個方法可以直接忽略。
+
+修改方式是 編輯 ~/.bash_profile
+
+`nano ~/.bash_profile`
+
+然後輸入
+
+```
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+```
+
+這樣就可以本機下中文亂碼的問題了! 
+
+// 2018.07.07 更新
+PS. 提醒一下，如果採用 台灣地區/繁體中文 或是 美國地區/英文 的話，「啟動時設定地區環境變數」就必須打勾，這樣才能使用所設定的地區變數。不然找不到地區變數，也會變成亂碼。

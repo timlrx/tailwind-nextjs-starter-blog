@@ -1,0 +1,76 @@
+---
+title: '用 algolia 為 jekyll 加上搜尋'
+summary:  algolia 是一個提供搜尋功能的服務，之所以沒有使用 google custom search 的原因，是想要有比較不同的樣式，同時也嘗試看看非 google 的服務。
+slug:  algolia-jekyll
+images:  ['https://img.kaixsean.com/2020/searchPage.png']
+date: '2020-06-17'
+
+tags: ['StaticSiteGenerator']
+--- 
+
+## 前言
+前陣子幫部落格補完搜尋功能，由於之前所使用的 [Hugo - Clean White](https://themes.gohugo.io/hugo-theme-cleanwhite/) 作者[赵化冰](https://zhaohuabing.com/)選用 [algolia](https://www.algolia.com/)，我還滿喜歡的，因此繼續將它使用在 jekyll。
+
+algolia 是一個提供搜尋功能的服務，之所以沒有使用 google custom search 的原因，是想要有比較不同的樣式，同時也嘗試看看非 google 的服務。
+
+![search page](https://img.kaixsean.com/2020/searchPage.png)
+
+由於之前是 Hugo 主題，與 Jekyll 還是不太一樣。所幸，algolia 有提供官方 jekyll 外掛，做法相當簡單，只要照著官方文件 [Add fast and relevant search to your Jekyll site](https://community.algolia.com/jekyll-algolia/getting-started.html) 做就可以了。
+
+一次就成功，輕鬆無負擔！
+
+## 實作
+首先，在 algolia 新增好帳號，並且建立項目（application）之後，algolia 會給你介接時需要的 ID 與 API Key。
+
+![algolia search](https://img.kaixsean.com/2020/algolia.png)
+
+之後，回到 Jekyll ，在 Gemfile 加入 jekyll-algolia ，並設定為 :jekyll-plugins 的一部分。
+
+```
+group :jekyll_plugins do
+  gem *’jekyll-algolia’*
+end
+```
+
+接著執行安裝，更新相依套件。
+
+`bundle install`{lang="bash"}
+
+然後，設定 Jekyll 的 config 檔，依序填入相對應資料。這些資料就是剛剛 algolia Dashboard 給的那些 API Keys。
+
+```
+# _config.yml
+
+algolia:
+  application_id: your_application_id
+  index_name: jekyll # You can replace that with whatever name you want
+  search_only_api_key: your search only api key
+```
+
+之後，執行下面這行命令，記得要修改 your_admin_api_key 為自己的。
+
+`ALGOLIA_API_KEY='your_admin_api_key' bundle exec jekyll algolia`{lang="bash"}
+
+這樣後端的部分就設定完畢了，但要讓使用者能有搜尋 bar 可以輸入，還需要加上前端頁面的部分。
+
+這邊由於主題的關係，會比較容易有所變化，端看你如何設計。我選擇比照之前 Hugo - Clean White 主題的方式，新增一個搜尋頁面，然後再嵌入新頁面的樣板。
+
+怎麼做呢？
+
+首先，在 _includes 資料夾中，新增 algolia.html 頁面，直接複製貼上官方文件 [Add fast and relevant search to your Jekyll site](https://community.algolia.com/jekyll-algolia/blog.html#final-code) 給的原始碼，這一部分提供了搜尋 bar 的 CSS 樣式及 Javascript 程式碼。
+
+然後，也同樣複製貼上官方文件 [Add fast and relevant search to your Jekyll site](https://community.algolia.com/jekyll-algolia/blog.html#extending-the-theme) 的另一組原始碼，將此部分與主題的頁面結合。
+
+其中
+
+```
+{% raw %}{% include algolia.html %}{% endraw %}
+```
+這段為把剛剛新增的 algolia.html 頁面引入。
+
+這樣就大功告成了！再一次執行 Jekyll，設定好頁面連結，就能看到搜尋頁面。有可能比較困難的部分，主要在與主題結合及設計，這邊就只好多嘗試。
+
+## 心得
+algolia 的搜尋速度很快，不用送出，就能即時回饋。且其作為一個收費服務，自然是沒有廣告，很喜歡這樣的體驗。
+
+所以也推薦給大家嘗試看看，希望它能繼續下去囉～
