@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata';
 import { formatDate } from 'pliny/utils/formatDate';
 import NewsletterForm from 'pliny/ui/NewsletterForm';
 import Image from '@/components/Image';
+import SpeechBubble from '@/components/SpeechBubble';
 
 const MAX_DISPLAY = 5;
 
@@ -12,18 +13,11 @@ export default function Home({ posts }) {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <div className="grid grid-cols-2">
-            <div className="flex items-center justify-end">
-              <div className="my-6 flex-1 rounded-lg bg-pink-500 p-4">
-                <p className="text-white-500 dark:text-white-400 text-lg leading-7">
-                  {siteMetadata.description}
-                </p>
-              </div>
-              <div className="w-3 overflow-hidden">
-                <div className="h-4 origin-top-left rotate-45 transform rounded-sm bg-pink-500"></div>
-              </div>
+          <div className="flex flex-row">
+            <div className="mt-16 basis-3/4">
+              <SpeechBubble>{siteMetadata.description}</SpeechBubble>
             </div>
-            <div className="flex justify-center">
+            <div className="basis-1/4">
               <Image
                 src="/static/images/mascot.png"
                 alt="avatar"
