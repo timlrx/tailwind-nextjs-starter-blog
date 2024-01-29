@@ -14,8 +14,10 @@ export default function Projects() {
             Projects
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            This page lists my side projects out of work. You can also read
-            about what I'm currently up to at work on my{' '}
+            This page lists my side projects worked on in my own time. I have
+            more on the way soon!
+            <br />
+            You can also read about what I'm currently up to at work on my{' '}
             <Link
               href="/about"
               className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
