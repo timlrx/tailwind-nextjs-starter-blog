@@ -48,17 +48,17 @@ const convertToItems = (inputArray: InputItem[]): AnchorArray[] => {
       // Subsection within a section
       let parent: AnchorArray | null = currentChapter || currentPart
       for (let i = 3; i < item.depth; i++) {
-        let subsection: AnchorArray | undefined = parent.children?.[parent.children.length - 1]
+        let subsection: AnchorArray | undefined = parent!.children?.[parent!.children.length - 1]
         if (!subsection || subsection.title.trim() !== '') {
           subsection = {
-            key: `${parent.key}-${parent.children ? parent.children.length + 1 : 1}`,
+            key: `${parent!.key}-${parent!.children ? parent!.children.length + 1 : 1}`,
             href: '#', // Assuming a default href for empty subsections
             title: '',
           }
-          if (!parent.children) {
-            parent.children = []
+          if (!parent!.children) {
+            parent!.children = []
           }
-          parent.children.push(subsection)
+          parent!.children.push(subsection)
         }
         parent = subsection
       }
