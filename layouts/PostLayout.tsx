@@ -33,11 +33,11 @@ const getbg = (str: string): string => {
 }
 
 export default function PostLayout({ content, children }) {
-  const { date, title, image, tags, filePath } = content
+  const { date, title, image, tags, filePath, toc } = content
 
   return (
     <SectionContainer>
-      <ScrollTopAndComment filePath={filePath} />
+      <ScrollTopAndComment filePath={filePath} toc={toc} />
       <article>
         <div className="mx-auto xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">

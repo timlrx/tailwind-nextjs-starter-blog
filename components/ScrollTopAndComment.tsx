@@ -1,12 +1,68 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Tooltip } from 'antd'
+import { Tooltip, Anchor } from 'antd'
 import Link from '@/components/Link'
 import Image from 'next/image'
+interface AnchorArray {
+  key: string
+  href: string
+  title: string
+  children?: AnchorArray[]
+}
 
-const ScrollTopAndComment = ({ filePath }) => {
+interface InputItem {
+  value: string
+  url: string
+  depth: number
+}
+
+const convertToItems = (inputArray: InputItem[]): AnchorArray[] => {
+  const items: AnchorArray[] = []
+  let currentPart: AnchorArray | null = null
+  let currentChapter: AnchorArray | null = null
+
+  for (const item of inputArray) {
+    const newItem: AnchorArray = {
+      key: `${currentPart ? currentPart.key : 'part'}-${items.length + 1}`,
+      href: item.url,
+      title: item.value,
+    }
+
+    if (!currentPart || item.depth <= 1) {
+      // New part
+      currentPart = newItem
+      items.push(currentPart)
+    } else if (item.depth === 2) {
+      // New chapter
+      currentChapter = newItem
+      if (!currentPart.children) {
+        currentPart.children = []
+      }
+      currentPart.children.push(currentChapter)
+    } else if (item.depth >= 3) {
+      // Section within a chapter
+      const section: AnchorArray = {
+        key: `${currentChapter!.key}-${
+          currentChapter!.children ? currentChapter!.children.length + 1 : 1
+        }`,
+        href: item.url,
+        title: item.value,
+      }
+      if (!currentChapter!.children) {
+        currentChapter!.children = []
+      }
+      currentChapter!.children.push(section)
+    }
+  }
+
+  return items
+}
+
+const ScrollTopAndComment = ({ filePath, toc }) => {
   const [show, setShow] = useState(false)
+
+  const anchorList: AnchorArray[] = convertToItems(toc)
 
   useEffect(() => {
     const handleWindowScroll = () => {
@@ -66,6 +122,12 @@ const ScrollTopAndComment = ({ filePath }) => {
           />
         </svg>
       </button>
+      <Anchor
+        className="fixed overflow-scroll top-8 right-6 md:w-0 xl:w-40 2xl:w-72"
+        style={{ height: 'calc(100vh - 200px)' }}
+        replace
+        items={anchorList}
+      />
     </div>
   )
 }
