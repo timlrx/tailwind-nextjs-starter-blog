@@ -7,7 +7,7 @@ import Image from 'next/image'
 interface AnchorArray {
   key: string
   href: string
-  title: string
+  title: React.ReactNode
   children?: AnchorArray[]
 }
 
@@ -18,64 +18,22 @@ interface InputItem {
 }
 
 const convertToItems = (inputArray: InputItem[]): AnchorArray[] => {
-  const items: AnchorArray[] = []
-  let currentPart: AnchorArray | null = null
-  let currentChapter: AnchorArray | null = null
-
-  for (const item of inputArray) {
-    if (item.value.trim() === '') {
-      continue // Skip items with empty titles
+  return inputArray.map((el, index) => {
+    return {
+      href: el.url,
+      title: (
+        <>
+          {Array(el.depth - 1)
+            .fill('')
+            .map((e) => (
+              <span key={`part-${index}`} className="ml-3" />
+            ))}
+          <span>{el.value}</span>
+        </>
+      ),
+      key: `part-${index}`,
     }
-
-    const newItem: AnchorArray = {
-      key: `part-${items.length + 1}`,
-      href: item.url,
-      title: item.value,
-    }
-
-    if (item.depth === 2) {
-      // New chapter
-      currentPart = newItem
-      items.push(currentPart)
-    } else if (item.depth === 3) {
-      // Section within a chapter
-      currentChapter = newItem
-      if (!currentPart!.children) {
-        currentPart!.children = []
-      }
-      currentPart!.children.push(currentChapter)
-    } else if (item.depth >= 4) {
-      // Subsection within a section
-      let parent: AnchorArray | null = currentChapter || currentPart
-      for (let i = 3; i < item.depth; i++) {
-        let subsection: AnchorArray | undefined = parent!.children?.[parent!.children.length - 1]
-        if (!subsection || subsection.title.trim() !== '') {
-          subsection = {
-            key: `${parent!.key}-${parent!.children ? parent!.children.length + 1 : 1}`,
-            href: '#', // Assuming a default href for empty subsections
-            title: '',
-          }
-          if (!parent!.children) {
-            parent!.children = []
-          }
-          parent!.children.push(subsection)
-        }
-        parent = subsection
-      }
-
-      const subsection: AnchorArray = {
-        key: `${parent!.key}-${parent!.children ? parent!.children.length + 1 : 1}`,
-        href: item.url,
-        title: item.value,
-      }
-      if (!parent!.children) {
-        parent!.children = []
-      }
-      parent!.children.push(subsection)
-    }
-  }
-
-  return items
+  })
 }
 
 const ScrollTopAndComment = ({ filePath, toc }) => {
