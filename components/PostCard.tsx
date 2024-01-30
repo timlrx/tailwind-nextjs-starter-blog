@@ -9,7 +9,7 @@ const PostCard = ({ post, tag }: { post: CoreContent<Post>; tag?: 'plog' }) => {
   return (
     <Link href={`/blog/${slug}`}>
       <article
-        className={`mx-auto overflow-hidden rounded-xl shadow-md duration-300 hover:scale-105 dark:bg-dark-100
+        className={`mx-auto overflow-hidden rounded-xl shadow-md duration-300 hover:scale-105 bg-white dark:bg-dark-100
         ${tag !== 'plog' ? 'flex flex-row-reverse items-center justify-between' : ''}`}
       >
         {(tag === 'plog' || image) && (
