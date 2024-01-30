@@ -10,8 +10,7 @@ Features：
 > 1. Add two buttons, which is to write a `new blog` and an `editorial blog` of the blog page.
 > 2. Distinguish a plog menu with a tag to display travel notes.
 
-![hansking.cn](http://image.hansking.cn/picgo/hansking.cn.png)
-
+![hansking.cn](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-30%2015.37.04.png)
 ## Examples V2
 
 [v1-blogs-showcase.webm](https://github.com/timlrx/tailwind-nextjs-starter-blog/assets/28362229/2124c81f-b99d-4431-839c-347e01a2616c)
