@@ -23,36 +23,55 @@ const convertToItems = (inputArray: InputItem[]): AnchorArray[] => {
   let currentChapter: AnchorArray | null = null
 
   for (const item of inputArray) {
+    if (item.value.trim() === '') {
+      continue // Skip items with empty titles
+    }
+
     const newItem: AnchorArray = {
-      key: `${currentPart ? currentPart.key : 'part'}-${items.length + 1}`,
+      key: `part-${items.length + 1}`,
       href: item.url,
       title: item.value,
     }
 
-    if (!currentPart || item.depth <= 1) {
-      // New part
+    if (item.depth === 2) {
+      // New chapter
       currentPart = newItem
       items.push(currentPart)
-    } else if (item.depth === 2) {
-      // New chapter
-      currentChapter = newItem
-      if (!currentPart.children) {
-        currentPart.children = []
-      }
-      currentPart.children.push(currentChapter)
-    } else if (item.depth >= 3) {
+    } else if (item.depth === 3) {
       // Section within a chapter
-      const section: AnchorArray = {
-        key: `${currentChapter!.key}-${
-          currentChapter!.children ? currentChapter!.children.length + 1 : 1
-        }`,
+      currentChapter = newItem
+      if (!currentPart!.children) {
+        currentPart!.children = []
+      }
+      currentPart!.children.push(currentChapter)
+    } else if (item.depth >= 4) {
+      // Subsection within a section
+      let parent: AnchorArray | null = currentChapter || currentPart
+      for (let i = 3; i < item.depth; i++) {
+        let subsection: AnchorArray | undefined = parent.children?.[parent.children.length - 1]
+        if (!subsection || subsection.title.trim() !== '') {
+          subsection = {
+            key: `${parent.key}-${parent.children ? parent.children.length + 1 : 1}`,
+            href: '#', // Assuming a default href for empty subsections
+            title: '',
+          }
+          if (!parent.children) {
+            parent.children = []
+          }
+          parent.children.push(subsection)
+        }
+        parent = subsection
+      }
+
+      const subsection: AnchorArray = {
+        key: `${parent!.key}-${parent!.children ? parent!.children.length + 1 : 1}`,
         href: item.url,
         title: item.value,
       }
-      if (!currentChapter!.children) {
-        currentChapter!.children = []
+      if (!parent!.children) {
+        parent!.children = []
       }
-      currentChapter!.children.push(section)
+      parent!.children.push(subsection)
     }
   }
 
