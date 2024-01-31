@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'LearnCloudComputing Blog',
   author: 'Ly Tran',
-  headerTitle: 'CongLy Blog',
+  headerTitle: 'LearnCloudComputing',
   description: 'Blog created by LyTran',
   language: 'en-us',
   theme: 'system', // system, dark or light
