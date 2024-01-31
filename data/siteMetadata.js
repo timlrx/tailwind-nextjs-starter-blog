@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'LearnCloudComputing Blog',
+  author: 'Ly Tran',
+  headerTitle: 'CongLy Blog',
+  description: 'Blog created by LyTran',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
@@ -11,10 +11,10 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
+  email: 'congly.work@gmail.com',
+  github: 'https://github.com/conglytran0301',
   twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
+  facebook: 'https://www.facebook.com/profile.php?id=100065053263739',
   youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com',
   threads: 'https://www.threads.net',
