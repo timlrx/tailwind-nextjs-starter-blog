@@ -2,8 +2,7 @@
 title: 使用lodash再次起飞
 date: 2021-02-01 21:15:15
 tags:
-  [JS,🙅🏻‍♀️bu造轮子]
-image: https://www.lodashjs.com/img/logo.png
+  [JS]
 ---
 
 # 使用lodash再次起飞

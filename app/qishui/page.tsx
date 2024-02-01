@@ -40,23 +40,26 @@ export default function Page() {
 
   return (
     <div className="">
-      <div className="fixed flex flex-row-reverse mt-96 rotate-[-30deg]">
+      <div className="fixed flex flex-row-reverse mt-[600px] rotate-[-30deg]">
         {albumList.map((album, index) => (
-          <div
-            onMouseEnter={() => getLyrics()}
-            key={index}
-            className={`shrink-0 w-12 h-12 relative transform cursor-pointer -translate-x-1/2 -translate-y-1/2
-            rotate-[30deg] scale-[4] transition-transform ease-in-out duration-300
-            skew-x-[0deg] skew-y-[10deg] origin-[200%_200%] 
-            hover:rotate-[50deg] hover:skew-x-[0] hover:skew-y-[0]
-           `}
-          >
-            <img
-              src={album.url}
-              alt={`Album ${index}`}
-              className="w-full h-full object-cover rounded-sm"
-            />
-          </div>
+          <>
+            <div
+              onMouseEnter={() => getLyrics()}
+              key={index}
+              className={`shrink-0 w-6 h-6 relative transform cursor-pointer -translate-x-1/2 -translate-y-1/2
+                rotate-[30deg] scale-[8] transition-transform ease-in-out duration-300
+                skew-x-[0deg] skew-y-[10deg] origin-[200%_200%] 
+                hover:rotate-[50deg] hover:skew-x-[0] hover:skew-y-[0]
+              `}
+              style={{ marginTop: albumList.length > 30 && index % 2 === 0 ? '300px' : '' }}
+            >
+              <img
+                src={album.url}
+                alt={`Album ${index}`}
+                className="w-full h-full object-cover rounded-sm"
+              />
+            </div>
+          </>
         ))}
       </div>
       <div className="lyrics-bg"></div>
