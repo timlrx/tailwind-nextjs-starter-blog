@@ -1,0 +1,36 @@
+.lyrics-bg{
+    z-index: -1;
+    width: 50%;
+    height: 70%;
+    border-radius: 100px;
+    background-color: rgb(101 85 171 / 43%);
+    filter: blur(40px);
+    /*  */
+    position: fixed;
+    bottom:150px;
+    right: 30px;
+    padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
+.lyrics{
+    z-index: -1;
+    width: 50%;
+    height: 70%;
+    /*  */
+    position: fixed;
+    bottom:150px;
+    right: 30px;
+    padding-top: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    overflow: scroll;
+}

@@ -36,7 +36,7 @@ export default function About() {
           I listen to music all the time.
           <br />
           You can see what I'm listening recently at{` `}
-          <Link href="/music">Music Page.</Link>
+          <Link href="/qishui">Music Page.</Link>
         </p>
 
         <h2>About This Site</h2>
