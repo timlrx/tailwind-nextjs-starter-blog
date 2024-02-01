@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'LearnCloudComputing Blog',
+  title: 'CloudLearningHub',
   author: 'Ly Tran',
-  headerTitle: 'LearnCloudComputing',
+  headerTitle: 'CloudLearningHub',
   description: 'Blog created by LyTran',
   language: 'en-us',
   theme: 'system', // system, dark or light
