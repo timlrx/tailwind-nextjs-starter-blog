@@ -2,9 +2,9 @@ import projectsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
 
-export const metadata = genPageMetadata({ title: 'Projects' })
+export const metadata = genPageMetadata({ title: 'Series' })
 
-export default function Projects() {
+export default function Series() {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
