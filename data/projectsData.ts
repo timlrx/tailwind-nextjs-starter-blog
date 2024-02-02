@@ -18,7 +18,7 @@ const projectsData: Series[] = [
     title: 'Amazon Web Service',
     description: `Các bài viết về AWS`,
     imgSrc: '/static/images/derivong-ols.jpg',
-    href: '/blog/nested-route/introducing-multi-part-posts-with-nested-routing/introducing-multi-part-posts-with-nested-routing-copy',
+    href: '/blog/nested-route/introducing-multi-part-posts-with-nested-routing',
   },
 ]
 
