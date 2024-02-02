@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'CloudLearningHub',
   author: 'Ly Tran',
   headerTitle: 'CloudLearningHub',
-  description: 'Chào mừng đến CloudLearningHub Blog 👨‍💻👩‍💻',
+  description: 'Chào mừng đến CloudLearningHub Blog 👨‍💻',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://aws-amplify-with-github.vercel.app',
