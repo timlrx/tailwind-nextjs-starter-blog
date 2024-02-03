@@ -7,6 +7,10 @@ summary: Bước đầu tiên để lên mây thì mọi người phải biết 
 images: ['/static/images/cloud-computing.png']
 ---
 
+# Overview
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
 # Giới thiệu về Cloud Computing
 
 **Cloud Computing** được xem như là cuộc cách mạng hoá trong thế giới Internet hiện nay. Với những lợi ích mà nó mang lại, `Cloud Computing` đang ngày càng được sử dụng bởi nhiều tổ chức và doanh nghiệp.
@@ -17,9 +21,9 @@ images: ['/static/images/cloud-computing.png']
 
 **Cloud Computing** là một mô hình cung cấp các dịch vụ tính toán, lưu trữ, mạng và ứng dụng thông qua mạng Internet. Thay vi phải tự quản lí và vận hành cơ sở hạ tầng máy chủ và hệ thống lưu trữ dữ liệu, người dùng có thể thuê tài nguyên máy chủ và lưu trữ từ các nhà cung cấp dịch vụ đám mây (`Cloud Service Provider`) và truy cập chúng thông qua Internet.
 
-Mô hình đám mây cung cấp cho người dùng sự linh hoạt và khả năng mở rộng dễ dàng, do đó giúp họ tiết kiệm chi phí và tối đa hoa hiệu quả hoạt động. Ngoài ra, đám mây cũng cung cấp các dịch vụ bảo mật, sao lưu dữ liệu và khôi phục dữ liệu trong trường hợp sự cố. Các ví dụ đại diện bao gồm `Amazon Web Service`, `Microsoft Azure` và `Google Cloud Platform`.
+Mô hình đám mây cung cấp cho người dùng sự linh hoạt và khả năng mở rộng dễ dàng, do đó giúp họ tiết kiệm chi phí và tối đa hoa hiệu quả hoạt động. Ngoài ra, đám mây cũng cung cấp các dịch vụ bảo mật, sao lưu dữ liệu và khôi phục dữ liệu trong trường hợp sự cố. Các ví dụ đại diện bao gồm [Amazon Web Service](https://aws.amazon.com/vi/?nc2=h_lg), [Microsoft Azure](https://azure.microsoft.com/en-us) và [Google Cloud Platform](https://cloud.google.com/).
 
-# Mô hình Cloud Provider
+## Mô hình Cloud Provider
 
 ![Cloud Provider](/static/images/mo-hinh-cloud-provider.png)
 
@@ -27,11 +31,15 @@ Mô hình đám mây cung cấp cho người dùng sự linh hoạt và khả n�
 
 Chúng ta không sở hữu hạ tầng mà chúng ta sử dụng dịch vụ của họ thông qua Internet. Dịch vụ đó có thể là lưu trữ, có thể là Computing và cũng có thể là một số dịch vụ khác (VD: Machine Learning, internet of things,...).
 
-# Một số Cloud Provider tiêu biểu
+## Một số Cloud Provider tiêu biểu
 
 ![Cloud Provider](/static/images/cloud-provider-tieu-bieu.png)
 
 # Phân biệt các loại hình Cloud
+
+## Phân biệt On-Preise, Public Cloud, Pravite Cloud, Hybrid Cloud, Multi Cloud
+
+![Cloud](/static/images/loai-hinh-cloud.png)
 
 **On-Premise**: Hệ thống mà được cài đặt và vận hành trên nền tảng
 phần cứng và hạ tầng mạng nội bộ của tổ chức hoặc doanh nghiệp.
@@ -84,3 +92,61 @@ hơn một provider sẽ giúp khai thác tối đa thế mạnh của các clou
 
 - _Ví dụ Google mạnh về data, Amazon mạnh về application, Azure mạnh về Machine Learning thì khi chúng ta kết hợp cả 3 cloud này lại thì chúng ta sẽ tận dụng được sức mạnh tối đa của các `Cloud Provider`
 giúp hệ thống có thể đạt được hiệu suất tối đa._
+
+## Phân biệt IaaS, Paas, SaaS
+
+![Cloud](/static/images/IaaS-PaaS-SaaS.png)
+
+**Infrastructure as a Service (IaaS)** - Cơ sở hạ tầng như dịch vụ: `IaaS` cung cấp tài nguyên
+cơ bản của máy chủ và mạng để khách hàng có thể tự quản lý các ứng dụng và dữ liệu
+của họ trên đó. Khách hàng sử dụng IaaS để thuê các tài nguyên như Server, Storage,
+Networking, Security và quản lý nó như một nền tảng hạ tầng của riêng mình.
+
+- _Tuy nhiên những tài nguyên này là tài nguyên ảo, các bạn phải chịu trách nhiệm cho các con Server, Storage, Networking về mặt cấu hình.
+Các hạ tầng ở bên dưới đảm bảo về phần cứng và những tầng về ảo hóa thì nhà cung cấp Provider người ta sẽ đảm nhận.
+Nó sẽ có các sự phân chia trác nhiệm khi chúng ta dùng IaaS._ 
+
+**Platform as a Service (PaaS)** - Nền tảng dịch vụ: `PaaS` cung cấp một môi trường thực thi
+ứng dụng đầy đủ, bao gồm các dịch vụ phát triển ứng dụng, cơ sở dữ liệu và hệ thống
+mạng. PaaS cho phép khách hàng xây dựng, phát triển và triển khai các ứng dụng của họ
+trên nền tảng của một nhà cung cấp dịch vụ đám mây. Ví dụ cho PaaS bao gồm Microsoft
+Azure App Service, Google App Engine và Heroku.
+
+- _Ví dụ trên là những Platform cho phép chúng ta nhanh chóng triển khai được ứng dụng, chúng ta có thể viết các đoạn code, chúng ta deploy ứng dụng trên đó và nó gọi là Platform, nên hầu hết các khái niệm
+về ảo hóa như là service database thì đã được họ apptrack lên hết, nên chúng ta chỉ tập trung vào việc phát triển ứng dụng thôi._
+
+**Software as a Service (SaaS)** - Phần mềm dưới dạng dịch vụ: `SaaS` cung cấp các ứng dụng
+đã được xây dựng và triển khai sẵn trên đám mây để khách hàng sử dụng thông qua
+Internet. Người dùng không cần phải quản lý hoặc bảo trì các ứng dụng đó, mà chỉ cần
+truy cập vào chúng thông qua một giao diện web hoặc ứng dụng di động. Ví dụ cho SaaS
+bao gồm Google Workspace, Microsoft Office 365, Salesforce CRM, Jira.
+
+- _Ví dụ trên đều là các nền tảng Software Service, tức là chúng ta chỉ xài thôi, chúng ta không quan tâm đến các việc bảo trì và vận hành ở bên dưới. Nó đã cung cấp dưới dạng phần mềm rồi._
+
+**Về cơ bản AWS được coi như một IaaS tuy nhiên một số dịch vụ đặc
+thù hoạt động như PaaS hoặc SaaS.** Ví dụ:
+> EC2, S3, VPC được coi như IaaS
+> Elastic Beanstalk, Lambda được coi như PaaS
+> Simple Email Service (SES) và Amazon WorkMail được coi như SaaS
+
+# So sánh Cloud và các dịch vụ Hosting
+
+| **Tiêu chí so sánh**         |                          **Cloud Provider**                                         |                                    **Hosting Service**                                       |
+|------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **Pricing Model**            | On-demand. Bạn chỉ trả tiền cho những gì mình sử dụng. Không cần cam kết trả trước. | Cần hợp đồng thuê trước server theo cấu hình. VD thuê 1 server 1 CPU, 2GB RAM trong 3 tháng. |
+| **Linh hoạt trong cấu hình** | Thay đổi cấu hình tài nguyên một cách dễ dàng và nhanh chóng.                       | Cần có sự can thiệp của bên provider, có thể cần thay đổi hợp đồng.                          |
+| **Khả năng scale**           | Dễ dàng tăng/giảm số lượng tài nguyên khi cần để đáp ứng nhu cầu workload.          | Gần như không thể tăng/giảm tài nguyên một cách tuỳ ý.                                       |
+| **Số lượng các dịch vụ**     | Đa dạng nhiều dịch vụ.                                                              | Cung cấp các dịch vụ cơ bản như Virtual server, Database, Storage, Firewall.                 |
+
+- Các bạn chắc là ít nhiều cũng đã tiếp cận với một số dịch vụ mà chúng ta thuê Hosting hoặc là VPS của các Cloud Provider
+ở Việt Nam. Xem qua các tiêu chí so sánh ở trên thì các bạn có thể thấy được để mà thật sự là Cloud Provider thì nó sẽ phải đáp ứng một số tiêu
+chí nên là không phải chúng ta chỉ cung cấp dịch vụ là đủ nha.
+
+# Kết Luận
+
+Sau khi đọc bài viết trên thì chắc các bạn cũng đã hiểu Cloud Computing là gì rồi nhỉ?
+Trong đó còn có các mô hình Cloud Provider và các loại hình cloud mà mình đã nói ở trên. Mong rằng các bạn có thể hiểu được và chuẩn bị hành trang cho
+hành trình lần đầu tiên lên mây nhé! 🤣
+
+
+
