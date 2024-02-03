@@ -81,7 +81,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               href={author.facebook}
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             >
-                              {author.facebook.replace('https://www.facebook.com/', '@')}
+                              {author.facebook.replace('https://fb.me/', '@')}
                             </Link>
                           )}
                         </dd>
