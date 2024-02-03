@@ -9,15 +9,15 @@ images: ['/static/images/cloud-computing.png']
 
 # Giới thiệu về Cloud Computing
 
-`**Cloud Computing**` được xem như là cuộc cách mạng hoá trong thế giới Internet hiện nay. Với những lợi ích mà nó mang lại, Cloud Computing đang ngày càng được sử dụng bởi nhiều tổ chức và doanh nghiệp.
+**Cloud Computing** được xem như là cuộc cách mạng hoá trong thế giới Internet hiện nay. Với những lợi ích mà nó mang lại, `Cloud Computing` đang ngày càng được sử dụng bởi nhiều tổ chức và doanh nghiệp.
 
 # Vậy Cloud Computing là gì?
 
 ![Cloud Computing](/static/images/cloud-computing.png)
 
-Cloud Computing là một mô hình cung cấp các dịch vụ tính toán, lưu trữ, mạng và ứng dụng thông qua mạng Internet. Thay vi phải tự quản lí và vận hành cơ sở hạ tầng máy chủ và hệ thống lưu trữ dữ liệu, người dùng có thể thuê tài nguyên máy chủ và lưu trữ từ các nhà cung cấp dịch vụ đám mây (Cloud Service Provider) và truy cập chúng thông qua Internet.
+**Cloud Computing** là một mô hình cung cấp các dịch vụ tính toán, lưu trữ, mạng và ứng dụng thông qua mạng Internet. Thay vi phải tự quản lí và vận hành cơ sở hạ tầng máy chủ và hệ thống lưu trữ dữ liệu, người dùng có thể thuê tài nguyên máy chủ và lưu trữ từ các nhà cung cấp dịch vụ đám mây (`Cloud Service Provider`) và truy cập chúng thông qua Internet.
 
-Mô hình đám mây cung cấp cho người dùng sự linh hoạt và khả năng mở rộng dễ dàng, do đó giúp họ tiết kiệm chi phí và tối đa hoa hiệu quả hoạt động. Ngoài ra, đám mây cũng cung cấp các dịch vụ bảo mật, sao lưu dữ liệu và khôi phục dữ liệu trong trường hợp sự cố. Các ví dụ đại diện bao gồm Amazon Web Service, Microsoft Azure và Google Cloud Platform.
+Mô hình đám mây cung cấp cho người dùng sự linh hoạt và khả năng mở rộng dễ dàng, do đó giúp họ tiết kiệm chi phí và tối đa hoa hiệu quả hoạt động. Ngoài ra, đám mây cũng cung cấp các dịch vụ bảo mật, sao lưu dữ liệu và khôi phục dữ liệu trong trường hợp sự cố. Các ví dụ đại diện bao gồm `Amazon Web Service`, `Microsoft Azure` và `Google Cloud Platform`.
 
 # Mô hình Cloud Provider
 
@@ -33,13 +33,54 @@ Chúng ta không sở hữu hạ tầng mà chúng ta sử dụng dịch vụ c�
 
 # Phân biệt các loại hình Cloud
 
-`**On-Premise**`: Hệ thống mà được cài đặt và vận hành trên nền tảng
+**On-Premise**: Hệ thống mà được cài đặt và vận hành trên nền tảng
 phần cứng và hạ tầng mạng nội bộ của tổ chức hoặc doanh nghiệp.
-Nói cách khác, "on-premise" đề cập đến việc triển khai và sử dụng hệ
+Nói cách khác, `on-premise` đề cập đến việc triển khai và sử dụng hệ
 thống trên cơ sở vật chất của riêng mình, không phải trên môi trường
-Cloud hay máy chủ của bên thứ ba. Hệ thống On-premise được quản
+Cloud hay máy chủ của bên thứ ba. Hệ thống `on-premise` được quản
 lý và bảo trì bởi đội ngũ IT của tổ chức đó.
 
-VD: 
+- _Ví dụ chúng ta đang có sở hữu phần cứng, chúng ta mua các thiết bị về mạng, mua server, chúng ta tự lắp đặt, cài các Hypervisor, cài OS lên và chúng ta xây dựng
+hạ tầng trên toàn bộ phần cứng đó thì gọi là `On-Premise`._
 
 
+**Public Cloud**: Đây là loại hình Cloud mà tài nguyên máy chủ và dịch vụ
+được cung cấp cho khách hàng từ một `Cloud Provider`. Khách hàng sử
+dụng tài nguyên đó thông qua Internet và trả tiền cho nhà cung cấp
+dịch vụ đám mây theo mô hình `on-demand`. Ví dụ cho `public cloud` là
+`AWS`, `Azure`, `GCP`.
+
+- _Các mô hình phía trên đều mình vừa nói đều là `Public Cloud`. Chúng ta không sở hữu bất kì hạ tầng gì của họ và chúng ta chỉ trả tiền
+để sử dụng dịch vụ. Ví dụ như dịch vụ lưu trữ file, dịch vụ máy chủ, dịch vụ quản lí dự án,... chúng ta chỉ sử dụng thông qua Internet thôi._
+
+**Private Cloud**(Đám mây riêng): Đây là loại hình đám mây được xây
+dựng riêng cho một tổ chức hoặc doanh nghiệp. Tài nguyên chỉ
+available cho các người dùng được ủy quyền. `Private Cloud` có thể
+được triển khai trên cơ sở hạ tầng của công ty hoặc trên các dịch vụ
+đám mây của các `cloud provider`, nhưng mô hình này thường có giá
+thành cao hơn so với `Public Cloud`. 
+
+- _Tuy Amazon là `Public Cloud` nhưng họ cho phép chúng ta thuê server phần cứng của họ và triển khai Cloud trên đó. Tức là chúng ta quản lí
+hoàn toàn các phần cứng đó, họ sẽ cam kêt các phần cứng đó nó sẽ được đặt ở chỗ nào đó được chúng ta chỉ định. 
+Ví dụ ở một số ngành bảo hiểm, ngân hàng hay chứng khoán, những tổ chức chính phủ bên Mĩ thì họ có thể yêu cầu Amazon cung cấp cho họ các mô hình `Pravite Cloud` sử dụng hạ tầng của Amazon._
+
+**Hybrid Cloud**: Đây là loại hình đám mây kết hợp giữa `Public Cloud` và
+`Private Cloud` (hoặc `On-premise`). Tổ chức có thể sử dụng `Public Cloud`
+để đáp ứng các nhu cầu tài nguyên động và sử dụng `Private Cloud` để
+đáp ứng các nhu cầu an ninh và quản lý. Mô hình này giúp tổ chức tối
+ưu hóa sự linh hoạt và tiết kiệm chi phí, đồng thời đảm bảo an ninh
+và tuân thủ quy định của chính phủ hoặc tiêu chuẩn ngành.
+
+- _Ví dụ chúng ta có mô hình hệ thống AD Server (Active Directory Server) sẽ để ở `On-premise`, tuy nhiên những server 
+ở Application thì chúng ta lại để trên Cloud. Hoặc một số tiêu chuẩn ngành như mình có đề cập ở trên thì những thông tin của người dùng
+nó không cho phép chúng ta đẩy lên trên `Public Cloud` tùy theo một số quốc gia hoặc là các tiêu chuẩn ngành về tổ chức chính phủ nào đó
+thì chúng ta phải lưu những data quan trọng đó ở `On-premise` nhưng chúng ta lại muốn tận dụng những khả năng scale mạnh về application, về lưu trữ, về database chúng ta
+có thể để những thông tin mà nó không quá là sensitive lên trên Cloud được. Đó là cách chúng ta kết hợp giữa `On-premise` hoặc là
+`Pravite Cloud` + `Public Cloud Provider` thì nó gọi là `Hybrid Cloud`._
+
+**Multi cloud**: Sử dụng kết hợp nhiều hơn một `Cloud Provider`. Do đặc
+thù thế mạnh khác nhau của các provider, việc sử dụng kết hợp nhiều
+hơn một provider sẽ giúp khai thác tối đa thế mạnh của các cloud.
+
+- _Ví dụ Google mạnh về data, Amazon mạnh về application, Azure mạnh về Machine Learning thì khi chúng ta kết hợp cả 3 cloud này lại thì chúng ta sẽ tận dụng được sức mạnh tối đa của các `Cloud Provider`
+giúp hệ thống có thể đạt được hiệu suất tối đa._
