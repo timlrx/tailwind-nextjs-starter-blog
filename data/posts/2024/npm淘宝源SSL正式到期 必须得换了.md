@@ -1,6 +1,7 @@
 ---
 title: npm淘宝源SSL正式到期 必须得换了
 date: 2024-01-23 11:44:47
+lastmod: 2024-02-04 11:07:11
 tags:
   [前端]
 ---
@@ -29,6 +30,20 @@ tags:
   
   // 2. 切换新源
   npm config set registry https://registry.npmmirror.com
+  ```
+
+
+更新pnpm
+
+- 使用pnpm的还需要重装pnpm以切换源
+
+  ```bash
+  # 检查
+  pnpm config get registry
+  # 卸载
+  sudo npm rm pnpm -g 
+  # 重装 重装后会跟随npm源
+  sudo npm install pnpm -g 
   ```
 
   
