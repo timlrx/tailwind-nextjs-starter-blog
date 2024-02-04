@@ -14,7 +14,7 @@ const siteMetadata = {
   email: 'congly.work@gmail.com',
   github: 'https://github.com/conglytran0301',
   twitter: 'https://twitter.com/conglytran0603',
-  facebook: 'https://www.facebook.com/profile.php?id=100065053263739',
+  facebook: 'https://www.facebook.com/congly0611',
   //youtube: 'https://www.youtube.com/channel/UC-KCkEPfdESZ2EBvWjvm3MA',
   linkedin: 'https://www.linkedin.com/in/ly-tran-96b9042b1/',
   //threads: 'https://www.threads.net/@conglytran0611',
