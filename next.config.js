@@ -66,6 +66,7 @@ module.exports = () => {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
     images: {
+      unoptimized: true,
       remotePatterns: [
         {
           protocol: 'https',
@@ -73,14 +74,14 @@ module.exports = () => {
         },
       ],
     },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
+    // async headers() {
+    //   return [
+    //     {
+    //       source: '/(.*)',
+    //       headers: securityHeaders,
+    //     },
+    //   ]
+    // },
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
@@ -89,5 +90,6 @@ module.exports = () => {
 
       return config
     },
+    output: 'export',
   })
 }

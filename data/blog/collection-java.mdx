@@ -1,0 +1,341 @@
+---
+title: Collections là gì? Tổng quan về Collections trong Java
+date: '2023-09-25'
+tags: ['java', 'collection framework']
+draft: false
+---
+
+Java Collections là một phần quan trọng trong bộ thư viện tiêu chuẩn của Java mà bất cứ ai tiếp cận ngôn ngữ lập trình này đều cần phải nắm rõ.
+
+![alt text](/static/images/blog/java-collection-1.webp)
+
+Java Collections cung cấp các cấu trúc dữ liệu và cả thuật toán đi kèm để lưu trữ, quản lý, xử lý dữ liệu theo nhiều cách khác nhau. Trong bài viết này, chúng ta sẽ tìm hiểu từng khía cạnh của Java Collections nhé!
+
+# 1. Collections là gì? Giới thiệu Java Collection Framework
+Chúng ta có thể hiểu Java Collection Framework là một tập hợp các class và interface dùng để hỗ trợ trong việc thao tác lưu trữ và quản lý nhóm đối tượng dữ liệu trong ứng dụng Java. Mục đính của Collection Framework là:
+
+* Lưu trữ và quản lý các đối tượng.
+* Tối ưu hóa hiệu suất và tiết kiệm thời gian.
+* Tăng khả năng tái sử dụng của mã nguồn.
+## Java Collection Framework bao gồm:
+* Interface: Interface trong Java đề cập đến các kiểu dữ liệu trừu tượng. Cho phép Java collections được thao tác độc lập với các biểu diễn của chúng. Ngoài ra, còn tạo thành một hệ thống phân cấp trong ngôn ngữ lập trình hướng đối tượng này.
+
+* Classes: Là các lớp dưới sự triển khai của Collection Interface và thường đề cập đến các kiểu dữ liệu cụ thể mà ta có thể sử dụng để lưu trữ và quản lý các đối tượng.
+
+* Algorithm: Là thuật toán đề cập đến các phương thức được sử dụng để thực hiện các hoạt động như tìm kiếm và sắp xếp trên đối tượng triển khai của Collection Interface.
+
+# 2. Các loại Java Collections cơ bản
+Có 2 loại cơ bản của Java Collections:
+
+* Collection Interface: Collection Interface là một trong những loại Interface trong Java được sử dụng để đại diện cho các nhóm phần tử và cung cấp các phương thức để quản lý. Các class được triển khai từ Collection Interface là List, Set, và Queue.
+* Map Interface: Map Interface tạo ra ánh xạ giữa các cặp key value. Nó hỗ trợ các tính năng như lưu trữ, truy xuất, xóa và tìm kiếm các phần tử theo key. TreeMap và HashMap là các class được triển khai từ Map Interface.
+
+## 2.1. List trong Java
+Cấu trúc List là dạng danh sách các phần tử trong đó có thể được trùng lắp. Vì List là một Interface nên chúng ta không thể tạo các đối tượng từ nó. Để sử dụng các tính năng của List Interface, chúng ta có thể sử dụng các class sau:
+
+* ArrayList
+* LinkedList
+* Vector
+### 2.1.1. ArrayList
+ArrayList là một loại cấu trúc dữ liệu được sử dụng để lưu trữ các phần tử tương tự nhau. Các phần tử trong ArrayList có thể được truy cập và thay đổi một cách dễ dàng bằng cách sử dụng index. Và có khả năng tự động mở rộng kích thước, điều này giúp cho việc thêm hoặc xóa phần tử khỏi danh sách trở nên linh hoạt hơn.
+
+![alt text](/static/images/blog/java-collection-2.webp)
+Ưu điểm:
+
+* Dễ dàng thực hiện các thao tác như duyệt danh sách, tìm kiếm phần tử.
+* ArrayList cũng có thể được sử dụng để chứa các đối tượng của các class khác nhau.
+
+
+nhược điểm:
+
+* Khi dung lượng của ArrayList vượt quá giới hạn khi đó hiệu suất của chương trình có thể bị ảnh hưởng.
+* Việc thêm phần tử vào cuối danh sách có thể nhanh hơn so với thêm phần tử vào giữa danh sách.
+
+### 2.1.2. LinkedList
+LinkedList là một cấu trúc dữ liệu mà trong đó các phần tử được liên kết với nhau thông qua các địa chỉ bộ nhớ, do đó không cần phải cấp phát toàn bộ một khối bộ nhớ liên tục cho dữ liệu. Các phần tử có thể được chèn hoặc xóa bất kỳ lúc nào.
+
+Ưu điểm:
+* Thêm hoặc xóa phần tử vào LinkedList rất nhanh chóng vì chúng chỉ tác động đến các phần tử bên cạnh (trường hợp thêm và xóa ở giữa danh sách).
+![alt text](/static/images/blog/java-collection-3.webp)
+* Có thể lưu trữ số lượng phần tử không biết trước.
+* Dễ dàng thực hiện các thao tác như chèn hoặc xóa phần tử khỏi danh sách.
+
+
+nhược điểm:
+
+* Truy cập ngẫu nhiên đến các phần tử trong LinkedList chậm so với ArrayList vì không thể truy cập bằng index.
+* Do không được cấp phát liền mạch, LinkedList có thể dẫn đến việc lãng phí bộ nhớ và gây ra hiệu suất kém hơn nếu không được sử dụng đúng cách.
+
+### 2.1.2. Vector trong Java
+Tương tự như ArrayList vì cả hai đều triển khai dưới dạng List Interface nhưng có một số điểm khác biệt giữa chúng.
+
+* Vector được đồng bộ, tức là trong môi trường đa luồng, tại một thời điểm chỉ có một thread được thực thi, các thread còn lại ở trong trạng thái chờ cho đến khi thread hiện tại giải phóng đối tượng.
+* Bởi vì tại một thời điểm chỉ có một luồng truy cập nên nếu có luồng khác cố gắng truy cập vào thì sẽ văng exception (cụ thể là ConcurrentModificationException).
+![alt text](/static/images/blog/java-collection-4.webp)
+Ưu điểm:
+
+* Đúng với cái tên, Vector có thể cung cấp phương thức để tính toán độ lớn và hướng của một đối tượng trong không gian.
+* Ưu điểm vượt trội của Vector là chúng có thể tùy biến, không gò bó về kích thước và điều nãy dẫn tới tiết kiệm bộ nhớ.
+* Vector có thể được sử dụng để biểu diễn các phép toán đại số phức tạp.
+
+
+nhược điểm:
+
+* Một trong những đặc điểm chính của class Vector là nó được đồng bộ hóa synchronized tức là nó đảm bảo rằng các hoạt động trên nó là an toàn đối với đa luồng. Tuy nhiên, đồng bộ hóa có thể tốn chi phí và làm giảm hiệu suất so với các class không đồng bộ như ArrayList. Khi đó ứng dụng phải thực hiện các hoạt động đồng bộ như kiểm tra và chờ đợi khóa của đối tượng đồng nghĩa tạo ra một phí CPU bổ sung, đặc biệt khi có nhiều luồng cố gắng truy cập cùng một tài nguyên đồng thời. Ngoài ra, việc các luồng khác có thể phải chờ đợi lâu khi luồng thứ nhất hoàn thành tác vụ I/O dẫn đến hiệu suất kém.
+* Trong hầu hết các tình huống, nếu chúng ta không cần đồng bộ hóa, thì sử dụng ArrayList sẽ hiệu quả hơn.
+* Mặc dù Vector có đồng bộ hóa tự động nhưng nó không cung cấp khả năng tùy chỉnh. Điều này có nghĩa chúng ta không thể kiểm soát cách đồng bộ hóa xảy ra trên Vector.
+## 2.2. Set trong Java
+Set lưu trữ các phần tử không trùng lặp và không có thứ tự cụ thể. Khi thêm một phần tử vào Set, nếu phần tử ấy đã tồn tại trong Set rồi thì nó sẽ không được thêm vào và không có tác động gì đến Set ban đầu.
+
+### 2.2.1. HashSet
+HashSet là một class trong Java Collection Framework, được sử dụng để lưu trữ các phần tử không có thứ tự, vì vậy không có cách nào để truy xuất các phần tử theo thứ tự cụ thể. HashSet kế thừa những đặc điểm của Set, điển hình là chỉ chứa các phần tử duy nhất. Nếu chúng ta thêm một phần tử đã có trong HashSet thì phần tử đó sẽ bị bỏ qua.
+
+
+![alt text](/static/images/blog/java-collection-5.webp)
+Ưu điểm:
+
+* Tốc độ truy xuất nhanh: HashSet sử dụng bảng băm để lưu trữ phần tử, do đó tốc độ truy xuất các phần tử trong HashSet rất nhanh.
+* Tránh trùng lặp: Vì HashSet không cho phép giá trị trùng lặp, nó rất hữu ích khi cần lưu trữ một danh sách các phần tử duy nhất.
+
+
+nhược điểm:
+
+* Chính những đặc điểm của nó, cũng có thể là điểm yếu nếu chúng ta cần duy trì thứ tự của các phần tử trong danh sách thì HashSet không phải là lựa chọn tốt nhất.
+* HashSet không được đồng bộ hóa tự động. Điều này có nghĩa rằng nếu ta muốn sử dụng HashSet trong môi trường đa luồng, chúng ta cần phải tự đồng bộ hóa bằng cách sử dụng Collections.synchronizedSet() hoặc sử dụng ConcurrentHashMap thay vì HashSet.
+* HashSet không cung cấp các phương thức để truy cập phần tử dựa trên index vì nó không duy trì thứ tự. Điều này làm cho việc truy cập ngẫu nhiên các phần tử không khả thi và ta cần phải sử dụng một vòng lặp hoặc phương thức contains() để kiểm tra sự tồn tại của một phần tử.
+### 2.2.2. LinkedHashSet
+LinkedHashSet implement Set Interface trong Java, tương tự như HashSet, tuy nhiên có hỗ trợ duy trì thứ tự của các phần tử được thêm vào danh sách.
+![alt text](/static/images/blog/java-collection-6.webp)
+Ưu điểm:
+
+* Duy trì thứ tự được thêm vào danh sách là một trong những ưu điểm quan trọng của LinkedHashSet. Điều này có nghĩa rằng khi ta duyệt qua LinkedHashSet, phần tử được thêm vào trước sẽ được trả ra trước và phần tử được thêm vào sau sẽ được trả ra sau, hữu ích trong các tình huống khi chúng ta quan tâm đến thứ tự dữ liệu.
+* LinkedHashSet vẫn giữ lại tốc độ truy cập nhanh của HashSet. Chúng ta có thể thêm, xóa và kiểm tra sự tồn tại của phần tử trong thời gian gần như là hằng số.
+
+nhược điểm:
+
+* Hiệu suất của LinkedHashSet nằm giữa HashSet và TreeSet. Hiệu suất của nó hầu như tương tự như HashSet. Nhưng hơi chậm hơn vì nó cũng duy trì LinkedList nội bộ để duy trì trình tự chèn các phần tử.
+* Tốn bộ nhớ hơn HashSet: LinkedHashSet sử dụng thêm một con trỏ (hoặc một đối tượng Entry) cho mỗi phần tử để duy trì thứ tự chèn. Điều này làm tăng bộ nhớ so với HashSet, đặc biệt khi danh sách chúng ta ngày càng lớn.
+* Không thích hợp cho các yêu cầu đòi hỏi hiệu suất cao: Trong các tình huống đòi hỏi hiệu suất cao như khi ta cần thực hiện các thao tác thêm/xóa/sửa trên danh sách một cách nhanh chóng, ta có thể cân nhắc các cấu trúc dữ liệu khác như HashMap hoặc ArrayList được tối ưu hóa hơn.
+* Mặc dù LinkedHashSet duy trì thứ tự chèn nhưng nó không hỗ trợ sắp xếp dữ liệu theo thứ tự tăng dần hoặc giảm dần dựa trên giá trị của phần tử. Điều này khác biệt so với các cấu trúc dữ liệu như TreeSet, có thể sắp xếp tập hợp theo một thứ tự cụ thể. Chúng ta cùng tìm hiểu tiếp theo cấu trúc dữ liệu này nhé!
+### 2.2.3. TreeSet
+TreeSet là một class trong Java Collection Framework, nó được sử dụng để lưu trữ các phần tử theo thứ tự tăng dần hoặc giảm dần. Nó thừa hưởng những đặc điểm từ interface NavigableSet và class SortedSet. Ngoài ra, TreeSet sử dụng TreeMap để lưu trữ các phần tử.
+
+![alt text](/static/images/blog/java-collection-7.webp)
+Ưu điểm:
+
+* Các phần tử trong một TreeSet được sắp xếp theo thứ tự tự nhiên hoặc dựa trên một bộ so sánh Comparator tùy chỉnh được cung cấp tại thời điểm khởi tạo TreeSet.
+* Do dữ liệu đã được sắp xếp, việc tìm kiếm một phần tử trong TreeSet bằng cách sử dụng phương thức contains() hoặc các phương thức tìm kiếm khác như lower(), higher(), ceiling(), floor() có độ phức tạp thấp hơn so với các cấu trúc dữ liệu không được sắp xếp.
+
+nhược điểm:
+
+* TreeSet không phải là một thread-safe. Ta cần phải đồng bộ hóa quyền truy cập đồng thời vào TreeSet trong môi trường đa luồng.
+* TreeSet sử dụng bộ nhớ nhiều hơn so với một số cấu trúc dữ liệu khác, đặc biệt khi tập hợp lớn do cần lưu trữ thêm thông tin về cây nhị phân để duy trì tính tự động sắp xếp.
+* Tương tư như trên vì cần lưu trữ thêm thông tin cây nhị phân nên thời gian thêm và xóa phần tử trong TreeSet có độ phức tạp cao hơn so với các cấu trúc dữ liệu không sắp xếp.
+## 2.3. Queue trong Java
+Queue là một thành phần của Collections trong Java, được sử dụng để lưu trữ và quản lý các phần tử theo thứ tự First in, First out (FIFO). Các phần tử mới sẽ được thêm vào cuối hàng đợi và phần tử cũ sẽ được xóa khỏi đầu hàng đợi.
+
+![alt text](/static/images/blog/java-collection-8.webp)
+Các phương thức chính của Queue bao gồm:
+
+* add(): Thêm một phần tử vào cuối hàng đợi.
+* remove(): Xóa phần tử đầu tiên trong hàng đợi.
+* peek(): Truy cập phần tử đầu tiên trong hàng đợi mà không xóa nó ra khỏi hàng đợi.
+* poll(): Lấy và xóa phần tử đầu tiên ra khỏi hàng đợi.
+### 2.3.1. ArrayDeque
+![alt text](/static/images/blog/java-collection-9.webp)
+
+ArrayDeque còn được gọi với cái tên Array Double Ended Queue là một cấu trúc dữ liệu đặc biệt cho phép chúng ta có thể thêm hoặc một phần tử từ cả hai phía. Chúng ta có thể sử dụng nó như là Stack(Last-In-First-Out) hoặc là Queue(First-In-First-Out).
+
+```
+@Test
+public void whenPush_addsAtFirst() {
+    Deque<String> stack = new ArrayDeque<>();
+    stack.push("Nam");
+    stack.push("Thang");
+ 
+    assertEquals("Thang", stack.getFirst());
+}
+
+@Test
+public void whenPop_removesLast() {
+    Deque<String> stack = new ArrayDeque<>();
+    stack.push("Nam");
+    stack.push("Thang");
+ 
+    assertEquals("Thang", stack.pop());
+}
+```
+Ưu điểm:
+
+* Hiệu suất của ArrayDeque được coi là tốt nhất trong Collection Framework. Nó cho phép thực hiện với độ phức tạp O(1) để chèn, xóa và truy xuất. Class ArrayDeque được đề nghị thay vì class Stack (khi bạn muốn cấu trúc ngăn xếp dữ liệu) và thay vì class LinkedList (khi bạn muốn cấu trúc dữ liệu hàng đợi).
+* ArrayDeque không có giới hạn dung lượng. Nó sẽ  tự động mở rộng khi chúng ta đạt giới hạn kích thước.
+ điểm:
+
+* Không phải là một thread-safe. Cần cân nhắc khi sử dụng trong môi trường đa luồng.
+* Không thể thực hiện các thao tác liên quan đến index trên ArrayDeque. ArrayDeque không có phương thức để hỗ trợ các thao tác đó.
+### 2.3.2. PriorityQueue
+PriorityQueue là một cấu trúc dữ liệu trong đó mỗi phần tử có thể được sắp xếp theo thứ tự ưu tiên. Điều này hữu ích cho các phần tử với độ ưu tiên cao hơn sẽ được lấy ra trước và ngược lại các phần tử với ưu tiên thấp hơn thì sẽ được lấy ra sau.
+
+![alt text](/static/images/blog/java-collection-10.webp)
+Ưu điểm:
+
+* Có mặt trong nhiều bài toán giải quyết vấn đề như tìm kiếm đường đi ngắn nhất trong đồ thị, triển khai các thuật toán như Dijkstra và A*.
+* Với việc sử dụng heap và cách tổ chức dữ liệu như trên, PriorityQueue có thể xử lý các tác vụ như việc thêm và xóa phần tử với độ phức tạp là O(log n).
+
+nhược điểm:
+
+* Không cung cấp một phương thức cụ thể để kiểm tra xem một phần tử đó có tồn tại trong hàng đợi hay không. Điều này đòi hỏi bạn phải tốn chi phí thực hiện thao tác duyệt qua hàng đợi để kiểm tra một cách thủ công.
+* PriorityQueue sử dụng so sánh tự nhiên (natural ordering) hoặc so sánh dựa trên một Comparator. Điều này có nghĩa là nó không thích hợp với các kiểu dữ liệu tùy chỉnh mà không có định nghĩa về sự so sánh.
+## 2.4. Map trong Java
+Map là một trong những cấu trúc dữ liệu quan trọng trong lập trình Java. Nó được sử dụng để biểu diễn một tập hợp các phần tử theo cặp key-value, trong đó key là giá trị duy nhất và value là giá trị tương ứng với key.
+
+Sử dụng Map có thể giúp rất nhiều trong việc lưu trữ và truy xuất dữ liệu trong ứng dụng Java.
+
+![alt text](/static/images/blog/java-collection-11.webp)
+### 2.4.1. HashMap
+HashMap là một class trong ngôn ngữ lập trình Java được sử dụng để lưu trữ các đối tượng theo cặp key-value. Điều này giúp cho việc truy cập và tìm kiếm các phần tử trong HashMap trở nên nhanh chóng và hiệu quả.
+
+Một điểm lưu ý ở HashMap. Mặc dù nhìn qua có vẻ HashMap với các phương thức get() và put() có độ phức tạp O(1) nhưng đó chỉ là điều kiện lý tưởng khi không có hash collision. Hiệu suất của HashMap có thể bị kéo xuống khá nhiều nếu như có càng nhiều hash collision, bởi vì hash collision xảy ra tương đương với chúng ta sẽ phải thực hiện search trên cây cân bằng (thay vì LinkedList ở Java 8). Như vậy trong trường hợp tệ nhất độ phức tạp sẽ là O(log n).
+
+Đây là ví dụ theo thao tác với HashMap bao gồm put(), get(), containsKey() và remove().
+
+```
+// Tạo một hashmap
+Map<String, Integer> scores = new HashMap<>();
+
+// Thêm các phần tử vào hashmap
+scores.put("Alice", 95);
+scores.put("Bob", 80);
+scores.put("Charlie", 75);
+
+// Truy xuất giá trị của một key
+int aliceScore = scores.get("Alice");
+
+// Kiểm tra xem một key có tồn tại trong Map không
+boolean hasBob = scores.containsKey("Bob");
+
+// Xóa một phần tử khỏi Map
+scores.remove("Charlie");
+```
+Ưu điểm:
+
+* Độ phức tạp của các thao tác thêm, xóa, truy vấn phần tử trong HashMap là O(1) trong điều kiện lý tưởng khi không có hash collision, do đó nó rất hiệu quả trong việc xử lý dữ liệu.
+*Phù hợp cho các bài toán có nhiều truy vấn và thao tác trên dữ liệu.
+* Cung cấp khả năng truy xuất dữ liệu nhanh chóng.
+* HashMap có thể lưu trữ null value và null key.
+
+
+nhược điểm:
+
+* Không giữ thứ tự của các phần tử, vì vậy nó không phù hợp cho các tác vụ yêu cầu giữ thứ tự.
+* HashMap không cho phép chúng ta thêm các key trùng lặp. Nếu bạn thêm một cặp key-value với key đã tồn tại trong HashMap, nó sẽ ghi đè giá trị cũ.
+
+Tóm lại, HashMap là một class rất hữu ích trong việc lưu trữ và truy vấn dữ liệu trong ngôn ngữ Java. Tuy nhiên, để sử dụng đúng cách và đảm bảo hiệu suất tốt nhất, chúng ta cần phải cân nhắc đến các đặc điểm và ưu/
+nhược điểm của nó.
+
+### 2.4.2. LinkedHashMap
+LinkedHashMap là một class con của HashMap trong Java. Nó kế thừa tất cả tính năng của HashMap và bổ sung thêm các đặc điểm mới. Nếu như HashMap không thể đảm bảo được thứ tự phần tử chèn vào thì LinkedHashMap là phiên bản cải tiến. Định dạng dữ liệu trong LinkedHashMap được giữ nguyên, tức là các phần tử được lưu giữ theo thứ tự chèn vào.
+
+![alt text](/static/images/blog/java-collection-12.webp)
+
+Ưu điểm:
+
+* Kế thừa được những ưu điểm từ HashMap.
+* Một trong những ưu điểm lớn nhất của LinkedHashMap là giữ được thứ tự chèn của các phần tử. Điều này có nghĩa là khi ta duyệt qua LinkedHashMap, các phần tử sẽ xuất hiện theo thứ tự chúng đã được thêm vào, giúp chúng ta truy xuất dữ liệu theo thứ tự.
+
+
+nhược điểm:
+
+* Không thích hợp cho việc sắp xếp theo key: Nếu yêu cầu cần sắp xếp LinkedHashMap dựa trên key hoặc value, chúng ta sẽ cần phải thực hiện thêm công việc để tự sắp xếp dữ liệu. LinkedHashMap không cung cấp sắp xếp tự động theo các tiêu chí này.
+* Thứ tự chèn trong LinkedHashMap phụ thuộc vào thứ tự ta đã thêm các phần tử trước. Nếu chúng ta thêm lại một phần tử có sẵn với key giống nhau, thứ tự của phần tử đó sẽ không thay đổi.
+
+LinkedHashMap là một cấu trúc dữ liệu phù hợp cho các tác vụ cần giữ nguyên thứ tự chèn và thao tác tra cứu nhanh nhưng cần xem xét các ưu điểm và 
+nhược điểm trước khi sử dụng nó trong dự án.
+
+### 2.4.3. TreeMap
+
+TreeMap trong Java là một class kế thừa AbstractMap và triển khai của NavigableMap Interface ( NavigableMap kế thừa SortedMap, SortedMap kế thừa Map Interface) trong Collections Framework nên nó sẽ có một vài đặc điểm và phương thức tương đồng với Map và SortedMap và NavigableMap.
+
+```
+public class TreeMap<K,V>
+   extends AbstractMap<K,V>
+    implements NavigableMap<K,V>
+```
+Ưu điểm:
+
+* TreeMap có tính năng tự động sắp xếp các phần tử theo thứ tự tăng dần của key, giúp cho việc truy xuất dữ liệu nhanh chóng.
+* Các phương thức của TreeMap có hiệu suất cao và được tối ưu hóa tốt.
+* Với TreeMap, ta có thể sử dụng các kiểu dữ liệu khác nhau cho key và value.
+
+
+nhược điểm:
+
+* TreeMap trong Java không cho phép giá trị null làm key, nếu không sẽ văng exception NullPointerException.
+* Do TreeMap sử dụng cấu trúc cây để lưu trữ các phần tử vì vậy việc thêm, xóa hoặc sửa đổi các phần tử trong TreeMap sẽ mất nhiều thời gian hơn so với các cấu trúc dữ liệu khác.
+
+# 3. Các thuật toán cơ bản của Collections Java
+Các thuật toán cơ bản trong Collections là các thuật toán được sử dụng để thao tác và quản lý các phần tử trong Collections như List, Set, Map. Một số thuật toán cơ bản bao gồm:
+
+![alt text](/static/images/blog/java-collection-13.webp)
+
+## 3.1. Sắp xếp Java Collections
+Sắp xếp trong Java Collections là một phương thức để sắp xếp các phần tử của một collection theo một thứ tự nhất định nào đó. Để sắp xếp một Collection, ta có thể sử dụng các method như sort() hoặc *Collections.sort()*. Method này sẽ sắp xếp các phần tử của collection theo thứ tự mặc định hoặc theo thứ tự được chỉ định thông qua việc truyền vào đối tượng Comparator.
+
+```
+//Sắp xếp theo thứ tự mặc định (theo thuộc tính compareTo của Student)
+Collections.sort(students); 
+
+//Sắp xếp theo thứ tự tăng dần của tuổi của sinh viên:
+Collections.sort(students, new Comparator<Student>() { 
+public int compare(Student s1, Student s2) {
+  return Integer.compare(s1.getAge(), s2.getAge());
+} });
+```
+
+## 3.2. Tìm kiếm Java Collections
+Tìm kiếm là một trong những chức năng quan trọng của Java Collections Framework. Được thực hiện thông qua các phương thức tìm kiếm được cung cấp bởi các class collection như List và Map.
+
+Các phương thức tìm kiếm này cho phép chúng ta tìm kiếm các phần tử trong một tập hợp và danh sách dựa trên tiêu chí nhất định. Ví dụ, phương thức *contains(Object o)* sẽ xác định xem một đối tượng cụ thể có thuộc tập hợp hay không. Ngoài ra, còn có những phương thức khác giúp hỗ trợ trong việc tìm kiếm theo những tiêu chí khác nhau.
+
+* find(Object o)
+* findIndexOf(List< extends Comparable< super T>> list, T key)
+* getOrDefault(Object key, V defaultValue)
+
+Việc sử dụng các phương thức này sẽ giúp tối ưu hóa việc truy cập và tìm kiếm phần tử trong các tập hợp và danh sách.
+
+## 3.3. Xóa Java Collections
+Trong Java, Collections ngoài việc được sử dụng để lưu trữ và quản lý các đối tượng. Trong một số trường hợp, chúng ta cần phải xóa một hoặc nhiều phần tử khỏi danh sách.
+
+Để xóa một phần tử trong một Collection trong Java, chúng ta có thể sử dụng phương thức remove(). Ví dụ, nếu chúng ta muốn xóa một phần tử 'x' ra khỏi ArrayList, chúng ta có thể sử dụng câu lệnh sau:
+
+```
+// Nếu chúng ta muốn xóa một phần tử 'x' từ ArrayList
+list.remove(x);
+
+// Nếu chúng ta muốn xóa tất cả các phần tử 
+list.clear();
+```
+
+Tương tự, các phương thức remove() và clear() cũng có sẵn cho các bộ sưu tập khác trong Java như Set và Map.
+
+## 3.4. Thêm Java Collections
+Phương thức này có cú pháp đơn giản là collection.add(element). Khi sử dụng phương thức này, kết quả sẽ trả về true nếu phần tử đã được thêm vào thành công và false nếu phần tử không thể được thêm vào danh sách.
+
+![alt text](/static/images/blog/java-collection-14.webp)
+
+# 4. Thread Safety trong Java Collections
+Ở phía trên chúng ta đã có đề cập đến nhiều về Thread Safety. Vậy nó là gì? Hãy cùng mình tìm hiểu nó trong phần này.
+
+
+![alt text](/static/images/blog/java-collection-15.webp)
+
+Đây là một khái niệm quan trọng, được sử dụng với mục đích giữ an toàn trong môi trường đa luồng. Khi một Collection được sử dụng đồng thời bởi nhiều thread, có thể xảy ra những lỗi không mong muốn như race condition (xung đột) gây ra kết quả không chính xác và không thể dự đoán được.
+
+Để đảm bảo Thread Safety, Java Collections có các class được thiết kế để đồng bộ hóa quá trình truy cập và chỉnh sửa, đảm bảo rằng các Thread sẽ không xảy ra xung đột và dẫn đến kết quả không mong muốn.
+
+Ví dụ với ArrayList, ta có thể sử dụng ConcurrentHashMap hoặc synchronizedList method để đảm bảo Thread Safety.
+
+# 5. Tổng kết về Java Collections
+Tóm lại, Java Collections là một framework được sử dụng để lưu trữ và xử lý các đối tượng trong Java. Nó cung cấp các interface, abstract classes và implementation classes cho phép chúng ta thực hiện các thao tác phức tạp trên các collection như add, remove, search, sort.
+
+Các loại Collections được hỗ trợ trong Java Collections bao gồm List, Set, Queue, Map. Mỗi loại đều có các đặc điểm riêng và phù hợp cho các mục đích sử dụng khác nhau.
