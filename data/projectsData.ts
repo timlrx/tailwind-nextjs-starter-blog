@@ -24,7 +24,7 @@ const projectsData: Series[] = [
     title: 'AWS Route 53',
     description: `Domain Name System`,
     imgSrc: '/static/images/route-53.jpg',
-    href: '/blog/the-time-machine','/blog/gioi-thieu-ve-cloud-computing',
+    href: '/blog/nested-route/the-time-machine',
   },
 ]
 
