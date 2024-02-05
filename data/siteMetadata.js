@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'CloudLearningHub',
+  title: 'CloudVirtualLink',
   author: 'Ly Tran',
-  headerTitle: 'CloudLearningHub',
-  description: 'Chào mừng đến CloudLearningHub Blog 👨‍💻',
+  headerTitle: 'CloudVirtualLink',
+  description: 'Chào mừng đến CloudVirtualLink Blog 👨‍💻',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://aws-amplify-with-github.vercel.app',
