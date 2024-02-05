@@ -1,0 +1,174 @@
+---
+title: Tìm hiểu về Circuit Breaker Design Pattern — Netflix Hystrix
+date: '2023-03-18'
+tags: ['circuit breaker', 'netfkux hystrix']
+draft: false
+---
+
+# Circuit Breaker
+
+![alt text](/static/images/blog/circuit-breaker-1.png)
+
+# **1. Đặt vấn đề**
+
+Trong môi trường phân tán, các dịch vụ có thể giao tiếp nội bộ với nhau hoặc với các dịch vụ từ xa khác để thực hiện nghiệp vụ. Việc giao tiếp này luôn tiềm ẩn nguy cơ chẳng hạn như một trong hai bên tạm thời không khả dụng (temporarily unavailable) hoặc có độ trễ cao, kết nối mạng chậm (cá mập cắn cáp :) ), hay thời gian service trả về quá lâu (timeouts), service đó đang bị quá tải (overload) , tài nguyên bị quá mức. Như vậy về cơ bản là không thể sử dụng được. Các lỗi này thường tự sửa sau một khoảng thời gian ngắn. Tuy nhiên cũng không thể loại bỏ được các tình huống lỗi là do các sự kiện không lường trước được và điều đó có thể khiến chúng ta mất nhiều thời gian hơn để khắc phục. Trong những tình huống này thì việc ứng dụng liên tục thử lại một hành động không có khả năng thành công là hoàn toàn vô nghĩa thay vào đó chúng ta nên tìm ra một giải pháp khác.
+
+Ngoài ra, trong tình trạng lỗi như thế tài nguyên được tạo ở các luồng xử lý dịch vụ gọi sẽ phải chờ đợi phản hồi, điều này dẫn đến việc hao phí , cạn kiệt tài nguyên khiến dịch vụ không thể xử lý các yêu cầu khác. Sự thật bại của một dịch vụ có khả năng lỗi xếp tầng sang các dịch vụ khác trong toàn bộ hệ thống.
+
+Vậy câu hỏi sẽ được đặt ra là ***“Làm thế nào để ngăn chặn sự cố mạng hoặc dịch vụ xếp tầng sang các dịch vụ khác ?”***
+
+Ở bài viết này mình xin phép trình bày về **The Circuit Breaker pattern**, việc pattern được phổ biến rộng rãi nên cũng sẽ có nhiều framework giúp chúng ta implement một cách nhanh chóng và dễ dàng như : **Netfix**, **Istio**. Nhưng mình quyết định chọn **[Hystrix library — Netfix framework](https://github.com/Netflix/Hystrix)** với lý do thư viện này tích hợp dễ dàng với Spring Boot ở phần code client.
+
+# **2. Giới thiệu Circuit Breaker Pattern**
+
+**Circuit Breaker** (CB) nếu dịch theo nghĩa Tiếng Việt được gọi là cầu giao, nhiệm vụ chính của nó chính là ngắt mạch mỗi khi hệ thống điện có vấn đề xảy ra để tránh hệ thống quá tải dẫn đến các thành phần bên trong bị sụp đổ theo dẫn đến một thảm họa khác. Điều đó cũng được ánh xạ qua việc lập trình, trong môi trường phân tán (distributed environment). Hãy tưởng tượng việc hệ thống bên ngoài (external services) mà chúng ta gọi bị down khá lâu mà hệ thống chúng ta lại đang có quá nhiều reuqest gọi đến nó mà mỗi request lại có một khoảng thời gian chờ (timeout) đển các request khác bị chặn (blocking) cho đến hết thời gian chờ, những blocking request này có thể chứa những tài nguyên của hệ thống khác như memory, threads, database connection, ..v.v dẫn đến các tài nguyên nhanh chóng bị cạn kiệt và đễn đến các hệ thống khác không liên qua dùng chung tài nguyên bị sụp đổ theo (**[Cascading Failure](https://en.wikipedia.org/wiki/Cascading_failure)**).
+
+Trong cuốn sách **Release It**, **Micheal Nygard** đã có đề cập đến mẫu thiết kế này như một biện pháp để ngăn chặn hệ thống bị một thảm họa thác , sự xếp tầng lỗi như đã nói ở bên trên.
+
+- **Circuit Breaker** là một mẫu thiết kế được sử dụng trong phần mềm hiện đại
+- Được sử dụng để bọc các lời gọi, hành động có khả năng thất bại trong một thành phần
+- Ngắt mạch xảy ra tự động trong trường hợp đạt đến ngưỡng thất bại
+- Tạo điều kiện cho các ứng dụng tự phục hồi như trong trường hợp bị ngắt mạch sẽ quyết định sử dụng gọi dịch vụ khác hay ngừng dịch vụ cho đến khi hệ thống ổn định
+
+![alt text](/static/images/blog/circuit-breaker-2.png)
+
+
+
+Ý tưởng cơ bản đằng sau của pattern này là rất đơn giản. Nó sẽ dùng proxy wrap những lời gọi của chúng ta trong một đối tượng CB đến các dịch vụ khác. Từ đó sẽ theo dõi trên đối tượng đó, quản lý và thống kê số lần lỗi xảy ra trong một khoảng thời gian (tùy chúng ta cấu hình) để quyết định xem có cho phép chương trình tiếp tục hay “ngắt mạch” ngay lập tức. Nếu mạch đã bị ngắt thì những lời gọi tiếp theo sẽ được thực hiện nhanh chóng như trả ra lỗi thay vì gọi sang dịch vu khác. Quyết định của bộ ngắt mạch được đưa ra dựa theo ba trạng thái của CB như sau:
+
+- **CLOSED**: Khi ở trạng thái này, toàn bộ chương trình hoạt động bình thường, các remote calls vẫn được phép gọi nhưng một remote call nào đó bị fail thì bộ đếm lỗi của CB kích hoạt và tăng lên một đơn vị. Mục đích bộ đếm lỗi (error counter) ở đây là xác định được số lượng fail tối đa mà hệ thống cho phép, nếu vượt quá thì CB sẽ thực hiện mở ra trạng thái **OPEN**
+- **OPEN**: Trạng thái này các request từ ứng dụng sẽ bị fail ngay lập tức thì và có exception sẽ được trả về cho ứng dụng, các services từ bên ngoài sẽ bị cô lập với chương trình chúng ta
+- **HAFL-OPEN**: Khi CB ở trạng thái **OPEN** sau một khoảng thời gian timeout nào đó thì nó tạo cơ hội chuyển sang trạng thái **HAFL-OPEN** cho phép một remote call từ ứng dụng được phép đi qua và gọi hoạt động. Nếu yêu cầu này thành công, có thể giả định rằng lỗi trước đó đã được khắc phục và CB sẽ chuyển lại trạng thái **CLOSED**, còn nếu không thì CB sẽ chuyển trạng thái sang **OPEN** và reset lại error counter. Đây chính là điểm mạnh của Circuit Breaker khi được ánh xạ qua việc lập trình, bộ mạch điện bên ngoài cuộc sống không có khả năng biết khi nào hệ thống điện bên trong nội tại ổn định. Trạng thái này hữu ích cho việc từ từ kiểm tra các remote calls đã hoạt động được không mà tránh việc mở ra ồ ạt các remote calls bằng cách chỉ cho phép một request đi.
+
+![alt text](/static/images/blog/circuit-breaker-3.png)
+
+
+
+# **3. Hystrix library — Netflix framework**
+
+## **3.1 Giới thiệu Hystrix library**
+
+**Hystrix** đã phát triển từ kỹ thuật phục hồi mà nhóm **API Netflix** bắt đầu vào nằm 2011. Năm 2012, **Hystrix** tiếp tục phát triển và trưởng thành. Nhiều team trong **Netflix** đã áp dụng nó.
+
+**Hystrix** là một thư viện độ trễ và khả năng chịu lỗi được thiết kế để cách ly các điểm truy cập giữa các hệ thống, dịch vụ và thư viện bên thứ ba, ngăn chặn sự thất bại, cho phép khả năng phục hồi trong các hệ thống phức tạp, nơi không thể tránh khỏi các thất bại.
+
+Thiết kế của Hystrix dựa trên khái niệm **Circuit Breaker Pattern**, nó đáp ứng đầy đủ mong muốn của chúng ta
+
+- Cung cấp bảo vệ và kiểm soát độ trễ giữa các dịch vụ giao tiếp với nhau
+- Xác định thất bại nhanh chóng và nhanh chóng phục hồi
+- Cung cấp các thao tác dự phòng khi có lỗi xảy ra
+- Ngoài ra, **Hystrix** còn cung cấp cho chúng ta **Hystrix Dashboard**, cho phép theo dõi real-time, alert và có thể nhìn được tổng quát thống kê lỗi để kiểm soát các hoạt động, Hystrix còn có thể expose các metrics để chúng ta có thể tích hợp với **Prometheus**
+
+## **3.2 Cách hoạt động của Hystrix**
+
+![alt text](/static/images/blog/circuit-breaker-4.png)
+
+
+
+**3.2.1 Khởi tạo HystrixCommand Object**
+
+Bước đầu chính là khởi tạo đối tượng **HystrixCommand**, là đối tượng đại diện cho request. Chỉ có đối tượng này mới có thể tương tác với **HystrixCircuitBreaker**, từ đó đối tượng **HystrixCircuitBreaker** mới ra quyết định đóng hay ngắt mạch
+
+- **fallbackMethod**: chỉ định tên method để khi bộ mạch ngắt sẽ được chuyển sang call method này
+- **commandKey**: chỉ định key của **HystrixCommand** này, cần phân biệt khi hệ thống chúng sử dụng nhiều **HystrixCommand**
+
+**3.2.2 Thực thi command**
+
+Ở đây chúng ta sẽ có 2 cách để thực thi command
+
+- **execute**: dùng để thực thi các lệnh synchronous. Nó sẽ chặn và trả ra kết quả respone duy nhất từ các bên phụ thuộc (hoặc ném ra ngoại lệ trong trường hợp có lỗi)
+- **queue**: dùng để thực thi các lệnh asynchronous. Queue này sẽ chứa các command bên trong thread pool và trả ra Future để nhận lại kết quả sau khi hoàn thành. Lưu ý nếu ở đây chúng ta không config theo kiểu separate thread, thì nó sẽ hoạt động theo kiểu **execute**
+
+**3.2.3 Kiểm tra Circuit Open?**
+
+Khi chúng ta execute command thì thật sự vẫn chưa được execute, **Hystrix** sẽ ngầm kiểm tra bộ ngắt mạch (CB) có mở hay không. Nếu mạch đang mở (tripped) thì **Hystrix** sẽ không thực thi lệnh mà sẽ chuyển hưởng đến method fallback (3.2.8). Nếu mạch được đóng thì luồng tiếp tục kiểm tra những yếu tố khác (3.2.4)
+
+**3.2.4 Kiểm tra Thread Pool/Queue/Semaphore?**
+
+Nếu nhóm luồng và hàng đợi (hoặc là semaphore nếu không sử dụng separate thread) được gắn với lệnh command này đã đầy thì **Hystrix** sẽ không thực hiện mà sẽ ngay lập tức chuyển hướng đến method fallback (3.2.8)
+
+**3.2.5 Run**
+
+Ngay tại phương thức này, **Hystrix** mới thật sự invoke request đến các dịch vụ bên ngoài. Nếu vượt qua ngưỡng thời gian giá trị command’s timeout thì **Hystrix** sẽ throw **TimeoutException** (nếu cấu hình không chạy theo luồng chính nó, sẽ có một luồng separate timer làm việc đó) và sẽ thực hiện tiếp fallback method (3.2.5a) .Nhưng ở đây mình có 2 **lưu ý** dành cho các bạn
+
+- Trong việc quá thời gian chờ (timeout), **Hystrix** đã cố gắng làm tất cả những gì là throw **InterruptedExceptions**. Nhưng với việc khi chúng ta sử dụng library **HttpClient** điều đó sẽ không thể interrupt được vì nó đang nằm giữa cuộc gọi blocking IO, vì vậy mọi sự thay đổi này đều không effect. Hành vi này có thể gây ra một số lỗi như thay đổi trạng thái code sau khi blocking code kết thúc ( vừa thực hiện đoạn code sau đó vừa thực hiện fallback method).
+- Ngoài ra việc chúng ta cần phải lưu ý để giá trị timeout ở **Hystrix** nhỏ hơn bằng giá trị timeout của **HttpClient**, vì nếu khi lớn hơn Hystrix sẽ không nhận ra được cuộc gọi đang bị timeout. Nó sẽ hiểu nhầm là đã gọi thành công
+
+**3.2.6 Kiểm tra sức khỏe của bộ mạch**
+
+**Hystrix** gửi số lượng thành công, lỗi, lỗi rejection từ thread pool và thời gian chờ timeout đến circuit breaker thống kê để xác định khi nào ngắt mạch. Nếu đạt ngưỡng nó sẽ đoản mạch mọi yêu cầu tiếp theo cho đến khi hết thời gian phục hồi, sau đó nó sẽ đóng lại mạch sau khi kiểm tra trạng thái yêu cầu của lần đầu tiên sau khi mở.
+
+**3.2.7 Kiểm tra sức khỏe của bộ mạch (Health Check)**
+
+![alt text](/static/images/blog/circuit-breaker-5.png)
+
+
+
+**Fallback** là một phương án dự phòng khi xảy ra lỗi, có thể repsonse lỗi cho user, một công việc gì đó mà tính logic là hoàn toàn đúng ở ngữ cảnh này. Bởi lẽ nếu chúng ta thực hiện một công việc phức tạp khác, một công việc có khả năng thật bại cao ngay tại fallback, chúng ta phải sử dụng một Hystrix Command khác để theo dõi hành động nó khiến code chúng ta phức tạp và như rơi vào bài toán đệ quy. Nếu trong chúng ta không cài đặt hàm fallback hoặc hàm này throw exception, Hystrix vẫn trả kết quả lại cho chúng ta tùy thuộc vào cách chúng ta khởi tạo Hystrix Command ban đầu
+
+- **execute**() — throw an exception
+- **queue**() — vẫn trả thành công Future, nhưng Future này sẽ throw exception khi chúng ta dùng method get() của nó
+
+## **3.3 Cách triển khai luồng hoạt động của ứng dụng**
+
+Như đã bàn ở phía trên, bất cứ method nào được gắn với annotation @**HystrixCommand** đều được quản lý bởi **Hystrix** và do đó được bao bọc lại bởi một proxy để quản lý các cuộc gọi trong một thread pool riêng biệt. Hình dưới đây sẽ cung cấp một cái nhìn tổng quan về nhóm luồng mặc định của **Hystrix**.
+
+
+
+![alt text](/static/images/blog/circuit-breaker-6.png)
+
+![alt text](/static/images/blog/circuit-breaker-7.png)
+
+Tham số cấu hình mặc định của **Hystrix** về thread pool này là 10. Nhưng chúng ta hãy suy nghĩ nếu như đây là một ứng dụng lớn, doanh nghiệp, là một heavy application với high volume gọi đến remote database và remote service. Câu trả lời rất đơn giản :) . Những available thread sẽ nhanh chóng cạn kiệt trong một thời gian ngắn và client có thể bị fail.
+
+Vậy có giải pháp nào cho trường hợp này hay không? **Hystrix** cung cấp cho chúng ta như một giải pháp được lấy ý tưởng từ việc cài đặt **[BulkHead Pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/bulkhead)** tạo ra những luồng thread pool riêng biệt cho mỗi remote resource.
+
+Nếu như một cuộc gọi tài nguyên (ví dụ query database) sử dụng hết tất cả các tài nguyên có sẵn thì chỉ có Hystrix Thread Pool 1 đó bị thất bại trong khi các thành phần khác không bị ảnh hưởng. Đó chính là điểm mạnh của pattern này mà **Hystrix** đã áp dụng để giải quyết vấn đề trên
+
+## **3.4 Thread Pools và Semaphore**
+
+![alt text](/static/images/blog/circuit-breaker-8.png)
+
+
+
+> “Today tens of billions of thread-isolated, and hundreds of billions of semaphore-isolated calls are executed via Hystrix every day at Netflix” — Netflix
+> 
+
+Đây là một câu nói khi giới thiệu **Hystrix**. Vậy sự khác biệt ở hai chiến lược này là gì?
+
+Điểm yếu của chiến lược **Thread Isolated** là chi phí tạo thread. Mỗi lệnh liên quan đến queue, scheduler đều liên quan đến việc chạy một lệnh trên một luồng riêng biệt. **Netflix** khi thiết kế hệ thống này đã quyết định chấp nhận chi phí này để đánh đổi lại lợi ích mà nó cung cấp và coi nó đủ nhỏ để không ảnh hưởng lớn đến chi phí hoặc hiệu suất
+
+Điểm yếu của chiến lược **Semaphore** là nếu một dependency được phân lập theo **Semaphore** thì sẽ trở nên tìm ẩn, các cuộc gọi đồng thời không được cách ly hoàn toàn với các cuộc gọi khác.
+
+## **3.5 Configuration**
+
+Tiếp theo, mình xin giới thiệu một vài properties để chúng ta có thể hiểu rõ và sử dụng một cách dễ dàng
+
+- ***circuitBreaker.requestVolumeThreshold*** (default value: 20)
+
+Thuộc tính này đặt số lượng request tối thiểu trong một khoảng thời gian nhất định.Khi số lượng request thấp hơn giá trị này, việc ngắt mạch sẽ không thể xảy ra.
+
+Ví dụ : Giá trị là 20 nhưng đã có đến 19 request fail trong một rolling window (được hiểu một khoảng thời gian để thống kê lỗi), bộ mạch vẫn không được ngắt mạch
+
+- ***circuitBreaker.errorThresholdPercentage*** (default value: 50)
+
+Con số phần trăm lỗi trong một rolling window đạt ngưỡng nhất định sẽ được so sánh với giá trị thuộc tính này để xem có ngắt các request tiếp theo hay không. Nếu ít hơn 50% lỗi thì mạch vẫn hoạt động bình thường
+
+- ***circuitBreaker.sleepWindowInMilliseconds*** (default value: 5000)
+
+Đây là thuộc tính quan trọng trong **Hystrix Circuit Breaker**. Nó thể hiện được lượng thời gian, sau khi ngắt mạch chuyển các request đến fallback đến trước khi cho phép thử lị để xác định mạch có nên được đóng lại hay tiếp tục mở hay không. Vì vậy nếu để quá cao thì trong trường thất bại , mạch của bạn sẽ được mở trong khoảng thời gian dài
+
+- ***coreSize*** (default value: 10)
+
+Chỉ định số thread được tạo ra trong thread pool
+
+- ***maxQueueSize*** (default: -1)
+
+Giá trị mặc định là -1, **Hystrix** sẽ block tất cả các incoming reuqest nếu không có luồng thread từ thread pool có sẵn để xử lý. Giá trị lớn hơn 1, **Hystrix** sử dụng **[LinkedBlockingQueue](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/BlockingQueue.html)** để xếp hàng các request cho đến khi một thread có sẵn trong thread pool để xử lý
+
+## **4. Kết luận**
+
+Ở bài viết này mình đã giới thiệu về cách hoạt động và những lưu ý khi sử dụng **Hystrix Circuit Breaker**. Các bạn có thể tham khảo ***[slide](https://vngms-my.sharepoint.com/:p:/r/personal/namtv3_vng_com_vn/_layouts/15/Doc.aspx?sourcedoc=%7B21990DC7-43E0-410B-819A-0F1EC9A5C396%7D&file=Circuit-Breaker-Pattern%201%202.pptx&wdOrigin=OFFICECOM-WEB.START.MRU&action=edit&mobileredirect=true)*** và ***[source code](https://gitlab.com/thangvynam1808/circuit_breaker_netflix_hystrix)*** tại đây Qua bài viết, các bạn có thể thấy được vẻ lợi hại của framework này khi áp dụng cho hệ thống chúng ta nhưng tóm lại khi nào thì nên áp dụng **Cicuit Breaker**
+
+- **Nên**: và chỉ nên sử dụng ở các ứng dụng gọi đến các dịch vụ bên ngoài hệ thống (remote service) hoặc các tài nguyên được chia sẻ (shared resource) với tần suất lớn và có khẳ năng bị FAIL
+- **Không nên**: Cho việc quản lý ứng dụng gọi đến các tài nguyên nằm trong mạng của hệ thống (local private resource) ví dụ như in-memory data hay internal services, với trường hợp này áp dụng **Circuit Breaker** chỉ làm cho hệ thống của bạn bị tốn tài nguyên hay overhead chứ chẳng có tác dụng gì Hay dùng nó thay thế việc quản lý lỗi trong nghiệp vụ của ứng dụng của bạn cũng là điều không nên

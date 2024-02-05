@@ -1,0 +1,117 @@
+---
+title: Observability with OpenTelemetry
+date: '2023-05-11'
+tags: ['opentelemetry', 'jaeger', 'grafana', 'devops']
+draft: false
+summary: Microservices architectures have enabled developers to build and release software faster and with greater independence
+---
+
+# Problem
+
+![alt text](/static/images/blog/open-telemetry.jpeg)
+
+Microservices architectures have enabled developers to build and release software faster and with greater independence. It's not like in monolithic architectures with tightly coupled services. When you break application into smaller set of services, the number of moving components increase in architecture. It's really hard to track a request end to end
+
+As these now-distributed systems scaled, it became increasingly difficult for developers to see how their own services depend on or affect other services, especially after a deployment or during an outage, where speed and accuracy are critical. Therefore, how do we observe overall system?
+
+# What is OpenTelemetry?
+
+Distributed tracing patterns/solutions solve this problem and numerous other performance issues, because it can track requests through each service and provide an end-to-end narrative account of every request. This is achieved by correlating all the services by injecting a TraceId which id unique for any request. This id can be used to observe the system. In general OpenTelemetry's aim is to create a common model and send telemetry data to any monitoring platform.
+
+There are a number of Observability tools out there, ranging from self-hosted open source tools (e.g. Jaeger and Zipkin)
+Before we deep dive in to OpenTelemetry, let's get to know **OpenTracing** and **OpenCensus**:
+
+1. OpenTracing provided a vendor-neutral API for sending telemetry data over to an Observability back-end; however, it relied on developers to implement their own libraries to meet the specification.
+2. OpenCensus provided a set of language-specific libraries that developers could use to instrument their code and send to any one of their supported back-ends.
+
+In the interest of having one single standard, OpenCensus and OpenTracing were merged to form OpenTelemetry (OTel for short). It provides best of both tools, and some more.
+
+OTel’s goal is to provide a set of standardized vendor-agnostic SDKs, APIs, and tools for ingesting, transforming, and sending data to an Observability back-end (i.e. open source or commercial vendor).
+
+Besides, OpenTelemetry is not a monitoring/analysis tool like Jaeger or Prometheus. Instead, it supports generate telemetry data, exporting them to a variety of open source and commercial back-ends. It provides a pluggable architecture so additional technology protocols and formats can be easily added.
+
+# Concepts
+To understand a system from the outside, the application code must emit signals such as traces, metrics, and logs.
+
+## Log
+It is a timestamped message emitted by services or other components. Unfortunately, logs aren’t extremely useful for tracking code execution, as they typically lack contextual information, such as where they were called from.
+
+## Span
+In opposition to Log, Span represent a unit of work or operation. It tracks specific operations that a request makes, painting a picture of what happened during the time in which that operation was executed.
+
+## Span context
+It is the part of a span that is serialized and propagated alongside Distributed Context
+
+## Attribute
+It is key-value that contain metadata that you can use to annotate a Span to carry information about the operation it is tracking.
+For example, if a span tracks an operation that adds an item to a user’s shopping cart in an eCommerce system, you can capture the user’s ID, the ID of the item to add to the cart, and the cart ID.
+
+## Distributed trace
+
+![alt text](/static/images/blog/distributed-trace.png)
+
+It gives us the big picture of what happens when a request is made to an application. In additional, it allows developers to trace requests across multiple services and components. This provides end-to-end visibility into the flow of requests through application
+A trace is made of one or more spans. It means more spans have the same traceId. The first span represents the root span. Each root span represents a request from start to finish. The spans underneath the parent provide a more in-depth context of what occurs during a request.
+
+## Context Propagation
+It is important thing what we should know it
+* **Context** is an object that contains the information for the sending and receiving service to correlate one span with another and associate it with the trace overall. For example, if Service A calls Service B, then a span from Service A whose ID is in context will be used as the parent span for the next span created in Service B.
+* **Propagation** is the mechanism that moves Context between services and processes. By doing so, it assembles a Distributed Trace. It serializes or deserializes Span Context and provides the relevant Trace information to be propagated from one service to another. We now have what we call: Trace Context. The default format used in OpenTelemetry tracing is W3C
+
+![alt text](/static/images/blog/context-propagation.png)
+
+## Sampling
+OpenTelemetry supports sampling to reduce the volume of the telemetry data collected. This can help reduce overhead and improve performance
+
+# Working with Collectors
+We have more options to configure collector but as I know we should use Collector component of the OpenTelemetry to collect all the trace and perform some custom processing and forward the trace information to other storage such as Zipkin. The reason for this is that you can extend requirement to get the trace data and apply custom processing to filter the traces.
+
+To do with Otel collector, we have two options to deploy it
+
+**Agent** : A Collector instance running with the application or on the same host as the application (e.g. binary, sidecar, or daemonset)
+
+**Gateway**: One or more Collector instances running as a standalone service (e.g. container or deployment) typically per cluster, data center or region.
+
+![alt text](/static/images/blog/working-with-collectors.png)
+
+The Collector consists of components that access telemetry data:
+* Receivers which can be push or pull based, is how data gets into the Collector
+* Processors are run on data between being received and being exported
+* Exporters which can be push or pull based, is how you send data to one or more backends
+
+Extensions (optional) eg: health monitoring, service discovery, and data forwarding
+
+The Service section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections
+
+To collect metrics, applications should expose their metrics in Prometheus or OpenMetrics format over http. For applications that cannot do that, there are exporters that expose metrics in the right format.
+
+If we would like to view trace data, you should use Zipkin exporter. Otherwise, you can use Prometheus exporter to view metric data. Importantly, you need to configure carefully. Each receiver/processor/exporter can be used in more than one pipeline
+
+![alt text](/static/images/blog/collectors.jpeg)
+
+# Practice
+I had forked from the other repository and enhanced it by integrating Prometheus, Grafana. Besides, I use the OpenTelemetry Java instrumentation agent for exposing metrics instead of getting metrics from application directly. The Prometheus endpoint of the application is no longer involved. There are some images what I would like to show you. You could access and read it details at [here](https://github.com/thangvynam/tutorials/tree/master/spring-cloud-modules/spring-cloud-open-telemetry). 
+
+## Jaeger
+![alt text](/static/images/blog/jeager-1.png)
+
+
+![alt text](/static/images/blog/jeager-2.png)
+
+## Prometheus
+![alt text](/static/images/blog/prometheus-1.png)
+
+
+![alt text](/static/images/blog/prometheus-2.png)
+
+
+![alt text](/static/images/blog/prometheus-3.png)
+
+## Grafana
+![alt text](/static/images/blog/grafana.png)
+
+# Conclusion
+In short, we need to pay attention to these following points.
+* Set up OpenTelemetry Collector to get data from application (two options deployment as I mentioned above)
+* Secondly, you must configure receivers, processor, exporters in config file. It depends on the data what you want to observe.
+* Eventually, you must set up third party tool to view data such as Zipkin (to view traces data), Prometheus (view metrics data)

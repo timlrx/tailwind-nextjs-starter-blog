@@ -1,0 +1,159 @@
+---
+title: Kafka, Avro Serialization And Schema
+date: '2023-08-21'
+tags: ['kafka', 'avro']
+draft: false
+---
+
+# Avro
+
+![alt text](/static/images/blog/kafka-avro-cover.png)
+
+## What is Avro?
+
+We have a lot of data formats such as XML, JSON, ASN.1, … But why do we choose Avro? Why is this format one of the better choices for stream data?
+
+Avro is open-source data serialization system that helps us with data exchange between systems, processing frameworks. The strong point is that define a binary format for your data as well as map it to programming language of your choice. It has JSON like data model but can be represented as either JSON or binary form
+
+It has a number of reasons: 
+
+- Direct mapping to and form JSON, extensible schema language in pure JSON
+- Very fast
+- Great bindings for variety of programming languages so you can generate Java Objects that make working with event data easier
+- Compatibility for evolving data over time
+
+![alt text](/static/images/blog/avro-1.jpeg)
+
+## What is Schema Registry?
+
+This article I will call **“SR”** for short instead of Schema Registry. SR stores Avro Schemas for Kafka producers and consumers. Kafka producers and consumers that use Kafka Avro serialization handle schema management and the serialization of records using Avro and the SR
+
+![alt text](/static/images/blog/avro-2.jpeg)
+
+When using the SR, producers don’t have to send schema — just the schema ID, which is unique. The consumer uses the schema ID to look up the full schema from the SR if it's not already cached. Since you don’t have to send the schema with each set of records, this make us save time
+
+The consumer's schema may be differ from the producer's. With the SR, a compatibility check is performed, then the payload transformation happens via Avro Schema Evolution
+
+## Avro Schema Evolution
+
+This point is so important aspect of data management. If we think through data management and schema evolution carelessly, we will pay a much higher cost later on
+
+Schema evolution happens only during deserialization at the consumer. If an Avro schema is changed after data has been written to store using an older version of that schema then Avro might do a schema evolution when you try to read data
+
+I’ll show you an example to talk about this. Let’s dive deep into 
+
+```json
+{
+  "namespace": "com.nam.thang.avro.orders",
+  "type": "record",
+  "name": "Order",
+  "fields": [
+    { "name": "orderid", "type": "string"},
+    { "name": "amount", "type": "int"},
+    { "name": "created",
+      "type": {
+        "type": "long",
+        "logicalType": "local-timestamp-millis"
+      }
+    },
+    {"name": "customer", "type": "string"},
+    { "name": "discountamount", "type": "int", "default": 0},
+  ]
+}
+```
+
+The previous version **Order** schema ****didn’t have a `discountamount` field and then later I add this field with default value of 0. Now, we have a producer using new version of the schema with `discountamount` and a consumer using previous version without `discountamount`
+
+The producer uses new version of the **Order** schema, creates `com.nam.thang.avro.orders` record, sets `discountamount` field to 2000 then sends it to Kafka topic `my-topic-1` . The consumer consumes records from this topic with previous version so it removes the `discountamount` field during deserialization
+
+If you added the `discountamount` and it was not optional (did not have default value), SR could reject the schema and producer could not use it to append it to the Kafka log
+
+## **Schema Compatibility**
+
+![alt text](/static/images/blog/avro-3.png)
+
+When using Avro or other schema formats, one of the most important things is to manage the schemas and use the type of compatibility. The compatibility type determines how SR compares the new schema with previous versions of a schema, for a given subject. (Subject is defined a scope which schemas can evolve). The SR default compatibility mode is `BACKWARD`. To learn all compatibility types which are described in more in the [*section*](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types)
+
+When a schema is first created for a subject, it gets a unique id and it gets a version number, i.e., version 1. When the schema is updated (if it passes compatibility checks), it gets a new unique id and it gets an incremented version number, i.e., version 2.
+
+## Hands on
+
+Before sending Avro messages to the topic, you have register Avro schema for the topic to the schema registry. Let’s create Avro Schema File above I have mentioned
+
+1. You are going to use an `Avro Gradle` Plugin, which allow us to create Java POJO out of Avro schemas. In `build.gradle`, put the following in your “Plugins” section:
+
+```json
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "com.github.davidmc24.gradle.plugin.avro" version "1.3.0"
+    id 'idea' // (in which case you will be able to see a new task)
+}
+```
+
+1. Next, the following dependencies should be added:
+
+```json
+dependencies {
+    implementation group: 'org.apache.avro', name: 'avro', version: '1.11.0'
+    implementation group: 'io.confluent', name: 'kafka-avro-serializer', version: '5.3.0'
+    implementation group: 'io.confluent', name: 'kafka-schema-registry-client', version: '5.3.0'
+}
+```
+
+1. Then add this is under “Repositories”:
+
+```json
+repositories {
+    mavenCentral()
+    maven {
+        url "http://packages.confluent.io/maven/"
+        allowInsecureProtocol = true 
+    }
+}
+```
+
+For insecure HTTP connections in `Gradle 7+` version, we need to specify a boolean `allowInsecureProtocol` as true to `MavenArtifactRepository` closure, otherwise you’ll get error
+
+1. In [application.properties](http://application.properties), you also need to specify group-id, the serializer and schema-registry-url. 
+
+```json
+spring.kafka.consumer.group-id=nam-thang-consumer-group-1
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=io.confluent.kafka.serializers.KafkaAvroDeserializer
+spring.kafka.consumer.auto-offset-reset=latest
+spring.kafka.consumer.properties.schema.registry.url=http://0.0.0.0:8081
+```
+
+## Schema Registry REST API
+
+SR allows us to manage schemas using the following operations:
+
+| GET /schemas/ids/:id | Get the schema string identified by the input ID. |
+| --- | --- |
+| GET /schemas/types/ | Get the schema types that are registered with Schema Registry. |
+| GET /schemas/ids/:id/versions | Get the subject-version pairs identified by the input ID. |
+| … | … |
+
+You should refer to more details at [here](https://docs.confluent.io/platform/current/schema-registry/develop/api.html#sr-api-reference). I have example when I run cURL in my project 
+
+![alt text](/static/images/blog/avro-4.png)
+
+## Conclusion
+
+I have shown how to configure and implement how to send Avro messages and consume Avro message using Kafka Schema Registry. Avro provides schema migration, which is necessary for streaming and big data architectures
+
+Hope this article can help you to have knowledge about Avro
+
+The example presented here can be found in my [Github repository](https://gitlab.com/thangvynam1808/transform-kafka)
+
+[Kafka, Avro Serialization, and the Schema Registry - DZone](https://dzone.com/articles/kafka-avro-serialization-and-the-schema-registry)
+
+[https://docs.confluent.io/platform/current/schema-registry/avro.html#full-compatibility](https://docs.confluent.io/platform/current/schema-registry/avro.html#full-compatibility)
+
+[Schema Registry Overview | Confluent Documentation](https://docs.confluent.io/platform/current/schema-registry/index.html#avro-json-and-protobuf-supported-formats-and-extensibility)
+
+[https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#formats-serializers-and-deserializers](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#formats-serializers-and-deserializers)
+
+[https://developer.confluent.io/learn-kafka/spring/hands-on-cloud-schema-registry/](https://developer.confluent.io/learn-kafka/spring/hands-on-cloud-schema-registry/)

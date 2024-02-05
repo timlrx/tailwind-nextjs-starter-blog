@@ -1,0 +1,134 @@
+---
+title: Những bài học thương đau
+date: '2023-05-11'
+tags: ['lesson learned']
+draft: false
+---
+
+# Những bài học thương đau
+
+Hôm nay nhân dịp một ngày đặc biệt tôi nghĩ mình nên trải lòng về những thứ gọi là thương đau (thật ra chỉ khi chúng ta thương chúng ta mới thật sự đau) 
+
+Vào thời điểm đó, đội ngũ developer chúng tôi được nhận một tín hiệu từ vũ trụ đó là di chuyển những ***thùng hàng*** nặng nề làm tốn diện tích của vùng đất sang một nơi được gọi là thiên đường cho sự phát triển. Tôi đã tập tành di chuyển càng sớm càng tốt nhưng mọi người biết đấy cuộc sống mà đâu ai biết trước được chuyện gì có những thứ đụng rồi mới biết… 
+
+![alt text](/static/images/blog/lession-learned-1.png)
+
+Sau khi đã lan man chém gió phía trên nhiều rồi nên ở đây mình vẫn tiếp tục chém gió tiếp ^^
+
+Khi đó mình được giao trọng trách di chuyển service ở tầng physical đã trải qua nhiều đời của đàn anh sang một môi trường vật lý ảo. Điều đó giúp chúng ta:
+
+- Phát triển, tích hợp và triển khai liên tục
+- Khả năng quan sát hiển thị thông tin và các metric ở mức hệ điều hành rõ ràng hơn
+- Sử dụng tài nguyên hiệu quả hơn
+
+Vì độ legacy của service ấy cao cộng với việc nhận lượng traffic lớn nên khi làm việc dù mình đã cố gắng điềm tĩnh nhưng vẫn rất rén. Tình trạng service ở physical khi ấy 
+
+- Service chạy môi trường java 8 ở physical server
+- Dùng local queue message là **ActiveMQ**. Queue này được share chung cho những service được deploy trên server đó nên rất nặng nề dễ impact đến nhau
+- Dùng mô hình Pub/Sub của message broker là **Kafka** để phát event đến các service khác
+- Dùng **Redis** cluster chạy với mô hình master-flower cùng với config 3 master nằm ở 3 server khác nhau để làm tầng cache những thứ quan trọng như order, history
+
+## Bất ngờ xảy ra từ những điều không kiểm soát
+
+```java
+private Random rand;
+
+    {
+        try {
+            rand = SecureRandom.getInstanceStrong();
+        } catch (NoSuchAlgorithmException e) {
+            rand = new SecureRandom();
+        }
+    }
+```
+
+Đoạn code này ngay từ đầu đã chạy ổn ở physical server nhưng khi đóng gói ứng dựng dựa trên Docker thì đó lại là một câu chuyện khác. Cốt lỗi vấn đề mọi người có thể tham khảo thêm ở đây [1], [2]. Nhìn chung vấn đề là khi chúng ta sử dụng *getInstanceStrong* cơ chế này ở Docker hoặc CoreOS, chúng ta sẽ init image mới và không có được state system giữa mỗi lần reboot và sẽ bị block thread khi thiếu tài nguyên nhóm entropy của hệ thống. 
+
+Sau khi tìm hiểu thì mọi thứ đã ổn khi đoạn code trên được sửa lại
+
+```java
+private static final Random rand = new SecureRandom();
+```
+
+## Đừng nên ra mặt, cần sự `gán ghép`
+
+Trong service mình khi ấy có dùng biến static để lưu trữ config làm nhiệm vụ riêng biệt và một trong số đó lưu trữ trọng số của nhà cung cấp.
+
+Đoạn code mình dùng trực tiếp biến static để push dữ liệu vào. Khi đó start lần đầu có thể đúng đấy nhưng vì mình có thêm một nghiệp vụ khác là reload lấy data mới mà không cần phải restart service nên khi phần xử lý logic code mình dùng trực tiếp biến static. Điều này có thể xảy ra những tình trạng sau
+
+- Data đang được dùng để làm nghiệp vụ và khi ta push tuần tự như thế sẽ có khả năng mỗi request sẽ nhìn thấy data khác nhau
+- Sẽ duplicate data nếu dùng cấu trúc dữ liệu List, Stack, …
+
+```java
+private static Map<String, String> data = new HashMap<>();
+
+// Don't do this
+data.push("key", "value");
+
+// Shoud do this
+Map<String, String> tempData = new HashMap<>();
+tempData.push("key", "value");
+tempData = data;
+```
+
+## Chỉ nên làm một việc tại một thời điểm
+
+![alt text](/static/images/blog/lession-learned-2.png)
+
+Icon của **good job** cũng chỉ có một ngón tay nên khi chúng ta muốn là một công việc nào đó thật tốt thì ta nên tập trung vào duy nhất nó thôi. Với một người đam mê sự hoàn hảo, tôi dấn thân ngồi đào sâu thêm xem có chỗ nào dư thừa hoặc không đúng đắn, sửa lại style code cho “`đẹp mắt`" thì tôi rút ra rằng:
+
+- Nếu muốn refactor thì sẽ để sau khi chúng ta làm công việc chính
+- Nếu muốn xoá một line code nào đó chúng ta không chỉ xem logic ở đó mà còn phải test full flow xem logic những chỗ khác có impact hay không
+- Ngoài ra, nếu có thời gian thì nên load-test xem có impact đến latency hay không
+
+**`Hãy nhớ kĩ 1 điều là phải có một lý do gì đó tác giả trước mới có dòng code đó, không gì là ngẫu nhiên`**
+
+## Message queue là một vấn đề cần khắc phục
+
+![alt text](/static/images/blog/lession-learned-4.png)
+
+Ngay từ đầu service dùng queue local được dựng ngay cùng server với service, điều này buộc lòng khi chúng ta move service và phải move luôn queue. Điều này khá risk vì khi đó service mình được deploy ở hai cụm server nên đang dùng hai queue local còn khi move chúng ta sẽ dùng queue server mới và queue dùng ở đây là mode single broker. Điều này khiến queue message trở thành bottleneck của hệ thống
+
+## Lưu ý khi upgrade version Java
+
+Khi mình cần có nhu cầu chạy service ở môi trường Java 11 thì mình có sửa lại Docker rồi run ở trên server lại lỗi nhưng ở local máy thì không hề lỗi 
+
+Khi upgrade thì Java 11 đã remove package sun.* và những class liên quan đến SOAP 
+
+Điều này thì lại cần cho service mình nhưng chạy ở local thì không hề thấy lỗi gì 
+
+Nguyên nhân do chúng ta cần phải config lại biến môi trường trong IntelliJ nhé mọi người **File → Project Structure → Chọn SDK tương ứng** 
+
+## Chia tay nhau ngoài sự thanh lịch cần phải hiểu rõ lý do vì sao chia tay ☹️
+
+Sau khi trải qua một số thương đau mình ngỡ rằng cuộc sống đã nỡ hoa, tình cảm sẽ thêm khắt khít nhưng rồi ngày nọ chúng tôi `chia tay`, chúng tôi cần restart service thì một câu chuyện xảy ra service không **graceful shutdown.** Lại là câu chuyện ở physical ổn những khi lên k8s thì lại không work 
+
+![alt text](/static/images/blog/lession-learned-3.png)
+
+Điều này khiến service trước khi stop sẽ không ngắt connection **Queue, Kafka, Redis và** làm rơi rớt một số giao dịch trước lúc stop, sau khi tìm hiểu thì nguyên nhân đến từ việc config trong Dockerfile 
+
+```docker
+ENTRYPOINT ["/home/zdeploy_docker/run.sh"]
+```
+
+```bash
+#run.sh
+java $JVM_OPTS -jar $JAR_FILE
+```
+
+Do việc tách Dockerfile và file #run.sh. Trong khi file sh thì mặc định không nhận signal của tiến trình con. Cách fix trong trường hợp này chúng ta sẽ thêm lệnh `exec` để thay thể tiến trình mẹ [3]
+
+```bash
+#run.sh
+exec java $JVM_OPTS -jar $JAR_FILE
+```
+
+## Kết luận
+
+Ở bài viết này, mình đã cùng nhau nhìn lại những lần vấp ngã mong có thể giúp mọi người tránh được những cú này. Bài viết trên mình không trình bày chi tiết của từng vấn đề nên mọi người có thể tham khảo những link phía bên dưới nhé ^^
+
+## Tài liệu tham khảo
+
+- **[The Right Way to Use SecureRandom](https://tersesystems.com/blog/2015/12/17/the-right-way-to-use-securerandom/#:~:text=SHA1PRNG)**
+- **[Challenges With Randomness In Multi-tenant Linux Container Platforms](https://tanzu.vmware.com/content/blog/challenges-with-randomness-in-multi-tenant-linux-container-platforms)**
+- **[Gracefully Shutting Down Java in Containers](https://dzone.com/articles/gracefully-shutting-down-java-in-containers)**

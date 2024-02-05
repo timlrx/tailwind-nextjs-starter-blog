@@ -1,0 +1,264 @@
+---
+title: API Gateway, Spring Cloud Gateway & Zuul 2
+date: '2023-02-01'
+tags: ['api gateway', 'spring cloud']
+draft: false
+---
+
+# API Gateway
+
+**Spring Cloud Gateway & Zuul 2**
+
+![alt text](/static/images/blog/api-gateway-01.png)
+
+Trong **bài blog trước** chúng ta đã thảo luận về các vấn đề giao tiếp giữa các service với nhau có thể xảy ra khi phát triển theo kiến trúc [**Microservice Architectur**e](https://en.wikipedia.org/wiki/Microservices). Microserivce tuy phức tạp nhưng thường là lựa chọn lý tưởng cho các ứng dụng lớn và đòi hỏi sự đáp ứng nhanh. Ngoài những vấn đề đã nêu ở bài trước, chúng ta còn gặp khó khăn gì khi xây dựng service theo kiến trúc này?
+
+## **1. Đặt vấn đề**
+
+Khi xây dựng ứng dụng bằng một tập hợp các microservices, chúng ta cần quyết định các application clients sẽ tương tác với microservices như thế nào. Với một ứng dụng theo hướng **[Monolithic Architecture](https://en.wikipedia.org/wiki/Monolithic_application)** chỉ có một tập hợp các endpoints. Tuy nhiên, trong kiến trúc Microservices thì mỗi service sẽ có tập các endpoints nhỏ riêng theo từng service. Những URL public sẽ ánh xạ tới load balancer của microservice, phân phối các request trên tới các instance đang có sẵn và để lấy thông tin từ phía service, application client chỉ cần gửi request đúng với endpoint đó, đúng với các tham số quy định, từ đó có thể lấy thông tin. Mọi thử ở đây khá đơn giản :)
+
+Tuy nhiên sẽ có vấn đề tìm ẩn ở đây và nó chỉ xảy ra khi hệ thống chúng ta mở rộng không kiểm soát. Khi đó mỗi service sẽ có một tập danh sách api dài để phục vụ cho business. Nên nhớ business liên tục thay đổi và phức tạp hơn theo thời gian và cách tiếp cận bên trên có thể mang đến những thách thức và hạn chế nhất định.
+
+- Sự không phù hợp giữa nhu cầu client và các api chi tiết được cung cấp bởi từng service. Do mỗi service sẽ có các business logic khác nhau nên khi client muốn lấy hết thông tin thì phải thực hiện nhiều request đến từng service khác nhau và nó sẽ càng nhiều hơn trong tương lai. Cách tiếp cận này làm cho mã nguồn các client sẽ phức tạp hơn rất nhiều.
+- Đối với một số service sử dụng các giao thức không thân thiện với web như (RPC, AMQP) các protocol này chỉ phù hợp cho cách giao tiếp nội bộ.
+- Gây khó khăn trong việc tái cấu trúc microservices. Theo thời gian chúng ta có nhu cầu muốn thay đổi cách hệ thống để phân vùng các services (hợp nhất 2 service hoặc chia service chung thành 2 service riêng biệt). Nếu như client giao tiếp trực tiếp với dịch vụ thì việc thực hiện tái cấu trúc này sẽ khó hơn.
+- Hiệu suất mạng sẽ khác nhau đối với mỗi client. Với mạng di động thường sẽ chậm hơn và latency cao hơn đối non-mobile network. Điều đó phản ánh mobile client sẽ có hiệu suất chậm hơn việc server-side web sử dụng mạng LAN. Ở phía server-side web có thể thực hiện nhiều request đến backend service mà không ảnh hưởng đến trải nghiệm user.
+
+Câu hỏi được đặt ra ***"Làm thể nào để có thể giải quyết được vấn đề này ?".*** Bài viết này chúng ta sẽ tìm hiểu việc xây dựng microservices bằng cách sử dụng API Gateway.
+
+## **2. Giới thiệu API Gateway**
+
+Với mô hình kinh điển của mircoservice:
+
+![alt text](/static/images/blog/api-gateway-02.png)
+
+Với mô hình trên chúng ta có thể hình dung mỗi một service sẽ đi kèm với một Security, lẫn Logging được quản lý theo version và để quản lý các flow như trên chắc hẳn chúng ta sẽ cần ít nhất một người am hiểu về hệ thống và phát triển sau này. Điều này làm cho việc quản trị sẽ bị phụ thuộc. Chắc hẳn mọi người ở đây đều biết đến khái niệm **[Facade Pattern](https://en.wikipedia.org/wiki/Facade_pattern#:~:text=From%20Wikipedia%2C%20the%20free%20encyclopedia,complex%20underlying%20or%20structural%20code)**, là một design pattern của thuộc Structural Pattern và API Gateway có khái niệm gần giống khái niệm Facade Pattern. Nó đóng vai trò là một nơi trung gian, là một cổng vào duy nhất đến hệ thống microservice. API Gateway sẽ đóng gói hệ thống nội bộ và cung cấp các API được thiết kế riêng cho từng client.
+
+![alt text](/static/images/blog/api-gateway-03.png)
+
+Ý tưởng API Gateway rất hay nhưng lại đơn giản, nó sẽ lo việc điều hướng các request đến service mong muốn. Nhiệm vụ chính là xác thực (authentication), điều hướng yêu cầu (routing request), giám sát (monitoring), cân bằng tải (load balancing) và xử lý phản hỗi tĩnh (static response handling).
+
+Trong thực tế với **Netflix** cổng API Gateway của họ một ngày phải xử lý đến hàng tỷ request, với mô hình trên chỉ là khái quát cách hoạt động của API Gateway, nhưng với Netflix họ phải định nghĩa lại API Gateway vì khác hàng của Netflix sử dụng rất nhiều các thiệt bị truy cập khác nhau vì thế API one-size-fill-alls (đa nền tảng) không đáp ứng được nhu cầu. Ngoài Netflix sử dụng chính API Gateway họ xây dựng là Netflix Zuul, chúng ta còn có một số công nghệ/framework để sử dụng mô hình API Gateway là: NginxPlus, AWS API Gateway, Kong, Spring Cloud Gateway, ...
+
+![alt text](/static/images/blog/api-gateway-04.png)
+
+## **3. Spring Cloud Gateway**
+
+### **3.1 Giới thiệu**
+
+Dự án này cung cấp API Gateway dựa trên hệ sinh thái Spring bao gồm: Spring 5, Spring boot 2, Project Reactor. Mục đích đưa ra giải pháp hiệu quả trong việc routing api, security, monitoring/metrics và khả năng phục hồi lỗi. Được xem la một trong số API Gateway nổi tiếng, cung cấp đơn giản và hiệu quả để định tuyến các request đến điểm đích bằng việc sử dụng cơ chế Gateway Handler Mapping. Bên cạnh đó, sử dụng Netty Server để cung cấp async request
+
+Spring Cloud Gateway gồm có ba phần chính:
+
+- **Route**: Gồm những yếu cơ bản của gateway. Được xác định bởi ID, URI, tập các Filter, tập các điều kiện
+- **Predicate**: Như khái niệm Predicate trong Java 8 Function Predicate. Cho phép chúng ta sử dụng các params hoặc header từ HTTP để xác định. Là một object để xác định điều kiện. Với mỗi route chúng ta có thể có nhiều predicate
+- **Filter**: là instance của Spring Framework Webfilter. Mục đích sử dụng là chúng ta có thể chỉnh sửa được request và response trong quá trình routing
+
+```
+public abstract class AbstractRoutePredicateFactory<C>
+          extends AbstractConfigurable<C> implements RoutePredicateFactory<C> {
+     public AbstractRoutePredicateFactory(Class<C> configClass) {
+         super(configClass);
+     }
+}
+
+```
+
+Spring Cloud Gateway sử dụng [Factory Method Pattern](https://en.wikipedia.org/wiki/Factory_method_pattern#:~:text=In%20class%2Dbased%20programming%2C%20the,object%20that%20will%20be%20created.) như một cơ chế để hỗ trợ việc tạo các phiên bản Predicate theo cách có thể mở rộng. Khi chúng ta tạo một custom predicate chúng ta cần khai báo cho Spring Cloud Gateway biết được việc này bằng cách khai báo bean. Nhưng do implemnt RoutePredicateFactor, Spring sẽ tự động hiểu và khởi tạo context phù hợp sau đó cung cấp cho Spring Cloud Gateway
+
+Chúng ta có hai cách để routing request:
+
+- Code client sử dụng Spring RouteLocator. Nhưng vấn đề cứ lần add hoặc update route chúng ta phải redeploy appication
+- Sử dụng file config
+
+**Lưu ý**: Khi chúng ta tạo một custom predicate. PostFix của class name đó phải là RoutePredicateFactory. VD: SampleRoutePredicateFactory. Khi đó muốn sử dụng ở file config, chúng ta chỉ cần ghi Sample
+
+Dưới đây là cách config một route theo file yaml
+
+```
+routes:
+- id: test
+uri: http://localhost:9091/
+predicates:
+- Path=/test/**
+- Before=2021-01-20T17:42:47.789-07:00[America/Denver]
+filters:
+- name: PreFilter
+
+```
+
+- **id**: mỗi route phải có một id riêng biệt
+- **uri**: là hostname của service ta muốn route đến. không cần full context, chỉ cần hostname
+- **predicates**: là tập những điều kiện Gateway check có thõa điều kiện hay không trước khi routing đến uri
+
+Spring Clould Gateway có hỗ trợ nhiều class Filter như Path, After, Before,... Hoặc chúng ta có thể chủ động tạo class custom Filters theo nhu cầu của mình bằng việc implements GatewayFilterFactory
+
+```
+public class TelcoGatewayFilterFactory
+       implements GatewayFilterFactory<TelcoGatewayFilterFactory.Config> {
+}
+
+```
+
+### **3.2 Cách hoạt động**
+
+![alt text](/static/images/blog/api-gateway-05.png)
+
+Clients sẽ gửi request Spring Cloud Gateway nếu Gateway Handler Mapping xác định một request phù hợp với route, nó sẽ gửi đến Gateway Web Handler. Handler này sẽ gửi request này qua chuỗi Filter đúng với config dành riêng có request này.Lưu ý nếu URI define không có port cụ thể thì service gateway sẽ mặc định 80 đối với HTTP và 443 đối với HTTPS URIs. Ngoài ra, chuỗi Filter sẽ thực hiện các Filter theo thứ tự chúng ta config
+
+### **3.3 Route Predicate Factories**
+
+Spring Cloud Gateway hỗ trợ nhiều cơ chế built-in route predicate. Tất cả các predicate sẽ match với từng attribute của http request. Chúng ta có thể combine route bằng việc dùng logic and để kết hợp nhiều predicate. Tham khảo các thuộc tính tại [đây](https://cloud.spring.io/spring-cloud-gateway/multi/multi_gateway-request-predicates-factories.html)
+
+```
+Map<String, String> uriVariables = ServerWebExchangeUtils.getPathPredicateVariables(exchange);
+String segment = uriVariables.get("segment");
+
+```
+
+### **3.4 Route Filter (Gateway Filter)**
+
+Cho phép chúng ta chỉnh sửa incoming HTTP request hoặc outgoing HTTP response. Sau đây là những config được Spring Cloud Gateway giới thiệu. Tham khảo các thuộc tính tại [đây](https://cloud.spring.io/spring-cloud-gateway/multi/multi_gateway-route-filters.html). Trong đó: 
+
+- **SetStatus**: status chính là HttpStatus
+
+```
+spring:
+    cloud:
+         gateway:
+             routes:
+                 - id: setstatusstring_route
+                 - uri: https://example.org
+             filters:
+                 - SetStatus=BAD_REQUEST // - SetStatus=401
+
+```
+
+=> Config trên mạng ý nghĩa, nếu có request đến [https://example.org](https://example.org/), thì sẽ có status http code của response là BAD_REQUEST
+
+- **Retry**:
+
+```
+spring:
+    cloud:
+         gateway:
+             routes:
+                 - id: setstatusstring_route
+                 - uri: https://example.org
+             filters:
+                 - name: Retry
+                 - args:
+                    retries: 3
+                    statuses: BAD_GATEWAY
+                    methods: GET, POST
+
+```
+
+=> retries ****chỉ ra số lượng có thể retry request. statuses ****thể hiện việc HTTP status code nào sẽ có cho phép retry (thuộc loại **org.springframework.http.HttpStatus**)
+
+### **3.5 Global Filter**
+
+Global Filter có cùng những đặc điểm với GatewayFilter những khác biệt ở chỗ nó apply cho all route. Khi kết hợp Global Filter và GateFilter Ordering, request matches với route, filtering web handler sẽ add tất cả instance của GlobalFilter và instance của GatewayFilter vào trong 1 chuỗi lọc. Thứ tự filter phụ thuộc vào hàm getOrder()
+
+## **4. Neflix Zuul**
+
+### **4.1 Giới thiệu**
+
+Bản thân hệ sinh thái Spring không tự build hết tất cả các viên gạch cần để xây dựng ứng dụng Microservices. Thay vào đó, có một kho gạch dành cho Microservices được Netflix ban đầu phát triển trong nội bộ của họ để xây dựng dịch vụ xem phim trực tuyến nổi tiếng của họ và sau đó public ra dưới dạng open source với cái tên Netflix OSS (Open Source Software) và Spring đơn giản chỉ làm nhiệm vụ wrap chúng lại và dùng trong hệ sinh thái của Spring (tất nhiên Spring còn wrap nhiều thứ khác nữa). Bằng cách kết hợp Spring Boot, Spring Cloud và Netflix OSS sẽ đủ cung cấp các công cụ và nguyên liệu cần thiết nhất để giúp bạn có thể nhanh chóng và dễ dàng xây dựng các Microservices của mình.
+
+**Netflix Eureka** – Là một Service Discovery Server cho phép các dịch vụ microservices tự đăng ký mình vào danh sách các services hoạt động lúc khởi chạy.
+
+**Netflix Ribbon** – với chức năng Dynamic Routing và Load Balancing có thể được sử dụng bởi Service client để tra cứu dịch vụ lúc runtime. Ribbon sử dụng thông tin có sẵn trong Eureka để định vị các instance thích hợp. Nếu tìm thấy nhiều hơn một instance, Ribbon sẽ áp dụng cân bằng tải để phân phối các reuqest đến các instance đang available. Ribbon không chạy dưới dạng một dịch vụ riêng biệt mà thay vào đó no là một thành phần được nhúng trong mỗi Service client.
+
+**Netflix Zuul** – Đóng vai trò như một Edge Server hoặc gatekeeper với thế giới bên ngoài, không cho phép bất kỳ yêu cầu bên ngoài trái phép nào đi qua. Các request đi tới services đều phải qua Zuul để kiểm tra trước. Zuul sử dụng Ribbon để tra cứu các dịch vụ sẵn có và định tuyến yêu cầu bên ngoài đến instance dịch vụ thích hợp
+
+**Spring Cloud Netflix** cung cấp nần tảng tích hợp Netflix OSS (Open Source Software). Với một vài annotation chúng ta có thể nhanh chóng kích hoạt và cấu hình các mẫu phổ biến bên trong ứng dụng của mình và xây dựng các hệ thống phân tán lớn với các thành phần Netflix đã được thử nghiệm. Sẽ dễ dàng tích hợp được với những tính năng của thư viện: **Service Discovery (Eureka), Circuit Breaker(Hystrix), Client Side Load Balancer (Ribbon), External Configuration**
+
+**Zuul** là một định tuyến dựa trên JVM và bộ cân bằng tải phía máy của từ Neflix,là một proxy, gateway và là một lớp trung gian giữa user và các service. Eureka server đã giải quyết vấn đề đặt tên cho từng service thay vì dùng địa chỉ IP của chúng. Tuy nhiên một service vẫn có thể có nhiều instance và sẽ chạy trên các cổng khác nhau nên nhiệm vụ của Zuul sẽ map giữa một prefix path (/gallery/**) và một service (gallery-service). Nó sử dụng Euraka server để định tuyến các service được request. Nó giúp cân bằng tải giữa các instance của một service
+
+**Zuul** có thể sử dụng các loại filter khác nhau để chúng ta có thể apply vào hệ thống 1 cách nhanh chóng, đây là những tính năng được liệt kê
+
+- **Authentication and Security**: xác định các yêu cầu xác thực cho từng tài nguyên và từ chối các yêu cầu không đáp ứng chúng.
+- **Monitoring**: tracking đượcc data và thống kê được có bao nhiêu request pass qua đến service backend
+- **Dynamic Routing**: routing requests đến các service backend khác nhau
+- **Static Response handling**: Xử lý phản hồi tĩnh - xây dựng một số phản hồi trực tiếp ở gateway thay vì chuyển tiếp chúng đến một cụm backend nội bộ
+
+### **4.2 Cách hoạt động**
+
+![alt text](/static/images/blog/api-gateway-06.png)
+
+**Zuul 2.0** là Netty server sẽ chạy từ pre-filters(inbound filters), sau đó proxies request đến những Netty client và cuối cùng là trả response sau khi run post filters(outbound filter)
+
+Filter chính là core business logic của Zuul. Vì chúng có thể thực hiện mọi hoạt động và chạy từng phần khác nhau trong vòng đời của request và response
+
+- **Inboud Filters** excute trước khi route đến origin, đc sử dụng như authen, routing, decorating request
+- **Endpoint Filters** được sử dụng để trả static response hoặc không thì sẽ kết hợp với ProxyEndpoint để route request đến origin. Sẽ xử lý request dựa theo excute của incoming filter. Zuul đi kèm với một bộ lọc tích hợp ProxyEndpoint để proxy request đến backend server.
+- **Outbound Filters** excute sau khi nhận response từ origin và để collect metric và decorate reponse hoặc add custom header. Thường ở đây sẽ làm những thứ như: định hình reponse lại hoặc add metric chứ không làm gì nhiều: storing statistics, adding/stripping standard headers, sending events to real-time streams.
+
+Filter của Zuul có 5 yếu tố:
+
+- **Type**: Được xác định là tên của việc routing flow khi filter này apply vào (any custom string)
+- **Async**: sync hoặc async. xác định là cuộc gọi ngoài hay nội bộ
+- **Execution Order**: đi theo type xác định thứ tự excute khi multiple filter
+- **Criteria**: điều kiện cụ thể để filter đượcc excute
+- **Action**: là hành động excute khi critera thõa
+
+Zuul cung cấp framework để đọc dynamically, compile, run filter. Các filter sẽ không tự trực tiếp giao tiếp với nhau mà sẽ chia sẻ state trạng thái thông qua request context là duy nhất với mỗi request
+
+```
+public class ResponseLogFilter extends ZuulFilter {
+
+    private Logger logger = LoggerFactory.getLogger(ResponseLogFilter.class);
+
+    @Override
+    public String filterType() {
+        return POST_TYPE;
+    }
+
+    @Override
+    public int filterOrder() {
+        return 0;
+    }
+
+    @Override
+    public boolean shouldFilter() {
+        return true;
+    }
+}
+
+```
+
+**Lưu ý**: Giá trị trong method **filterType()** rất quan trọng. Nó sẽ có ý nghĩa hoàn toàn khác với chính filter đó nhưng khác **filterType().**
+
+**shoudFilter()** => return true khi chúng ta muốn filter này này chạy trong chuỗi filter nên để ở config bên ngoài để flexible hơn. Khi chúng ta xác định được instance RequestContext từ đó mới có thể lấy được response data input stream. Ở đây có thể bị NULL do service bị timeout
+
+## **5. So sánh Zuul vs Spring Cloud Gateway**
+
+![alt text](/static/images/blog/api-gateway-07.png)
+
+![alt text](/static/images/blog/api-gateway-08.png)
+
+Trước khi đi vào so sánh, chúng ta hãy xem qua hai thế hệ của Gateway (hình trái và phải)
+
+**Thế hệ đầu Blocking IO: Zuul1**
+
+Về lịch sử Zuul1 được build trên Servlet framework, sử dụng blocking và multi-threading. Nghĩa là một luồng xử lý một yêu cầu kết nối. Điều này làm tăng số lượng connection còn tồn tại khi có độ trễ và fail dẫn đến tăng luồng xử lý và đó cũng là điểm khác nhau giữa Zuul1 và Zuul2 khi Zuul 2 đã sử dụng mô hình asynchronous và non-blocking framworks. Mỗi thread trên CPU core xử lý tất cả request và response. Vòng đời của request, response được xử lý thông qua events và callback, điều này cho thấy giảm đi số luồng xử lý. Những thay đổi này đã cải thiện được đáng kể về performance
+
+**Thế hệ sau Non Blocking IO: Zuul2, Spring Cloud Gateway**
+
+Netflix dù đã cho ra mắt bản Zuul 2.x nhưng Spring Cloud dường như không có kế hoạch tích hợp. Bản mới nhất của Spring vẫn tích hợp Zuul 1.x. Spring Cloud đã tự xây dựng cổng API Gateway riêng là Spring Cloud Gateway được cho là đơn giản hơn Zuul, cấu hình thuận tiện hơn.
+
+## **6. Kết luận**
+
+Qua bài viết trên chúng ta đã biết sức mạnh của API Gateway khi áp dụng vào kiến trúc mircoservices. Mọi người có thể tham khảo code [tại đây](https://gitlab.com/thangvynam1808/spring_cloud_gateway). Vậy khi áp dụng API Gateway, hệ thống sẽ có ưu nhược điểm thế nào ?
+
+**Ưu điểm**:
+
+- Vì không phải tracking nhiều endpoints, tất cả chỉ việc gọi đến api gateway nên phần code frontend sẽ gọn gàng hơn so với việc tracking hàng trăm endpoints trên từng service một, nhất là khi tương lai sẽ càng phình to
+- Thay thế authentication services trên từng service, việc đó chuyển sang API Gateway đảm nhiệm
+- Che dấu được cấu trúc bên trong của hệ thống microservice so với bên ngoài. Clients sẽ tương tác với hệ thống thông qua api gateway chứ không gọi trực tiếp tới một service cụ thể, Các endpoints của các service sẽ chỉ được gọi nội bộ (các serivce gọi với nhau hoặc từ api gateway). Điều này khiến client không cần biết được các service backend được phân chia như thế nào
+
+**Nhược điểm**:
+
+- Tăng latency vì phải đi qua trung gian
+- Tăng khả năng lỗi cao hơn do để sử dung api gateway thì chúng ta cần phải config riêng, chỉnh sửa code, quản lý server gateway,... là điểm bottleneck của hệ thống, chẳng may gateway có lỗi thì request sẽ không thể tới được phía server
