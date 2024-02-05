@@ -18,13 +18,13 @@ const projectsData: Series[] = [
     title: 'Amazon Web Service',
     description: `Các bài viết về AWS`,
     imgSrc: '/static/images/derivong-ols.jpg',
-    href: '/blog/gioi-thieu-ve-cloud-computing',
+    href: '/blog/aws/gioi-thieu-ve-aws',
   },
   {
     title: 'AWS Route 53',
     description: `Domain Name System`,
     imgSrc: '/static/images/route-53.jpg',
-    href: '/blog/nested-route/the-time-machine',
+    href: '/blog/gioi-thieu-ve-cloud-computing',
   },
 ]
 
