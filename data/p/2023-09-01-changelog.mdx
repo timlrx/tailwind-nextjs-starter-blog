@@ -1,0 +1,41 @@
+---
+title: "Axolo changelog - July/August 2023"
+date: "2023-09-01"
+tags: ["changelog"]
+draft: false
+summary: "We introduced a beta feedback system, GPT-guided code reviews, and multi-organization management for Enterprise users, alongside GitHub Enterprise support and batch engineer imports. The platform has improved feature activation, Stripe handling, email verification, and engineer queries. Fixes include notification bugs, code comment link issues, team channel management, GitLab integration, PR handling, markdown conversion, and image preview retention after edits."
+---
+
+✨ NEW:
+
+- Enabling a feedback system for code review assistant (beta)
+- Code review guidelines powered by GPT rolled out for beta users
+- Enterprise user can now handle multiple orgs in Axolo
+- Built a notification system to send updates about Axolo to users
+- Handling multiple organizations within Enterprise customers available
+- Support for GitHub enterprise with proxy
+- Ability to import engineers in batch from app.axolo.co
+- Ability to add the organization name in PR title for Enterprise Customers
+- Ability to delete PR in our DB upon merge
+- Created a new service to force a refresh on GitLab token if it fails
+
+🔨 IMPROVEMENT:
+
+- We improved the ability to enable features from team channels for Enterprise Users.
+- Improved the way we handle Stripe webhooks.
+- Improved the ability to enforce users to have same emails in Slack and GitHub to avoid impersonation.
+- Improved the way we handle queries for engineers for multi-orgs accounts.
+
+🐞 FIX:
+
+- We fixed a bug for notifications for new onboarded collaborators.
+- We fixed a bug where links inside code comments were getting added brackets.
+- We fixed a bug with team channels if organizations archived/delete them manually from Slack.
+- We fixed a bug where we saved only members of GitLab groups and not projects.
+- We fixed an error for GitLab auto creation of repository upon webhook.
+- We fixed a bug to query pull request.
+- We fixed an error while switching a PR from draft to ready for review in team channels.
+- We fixed a bug where Axolo was not converting markdown in code review comment from GitHub and GitLab.
+- We fixed an error where GitHub admin would see an error when accepting installation.
+- We fixed a bug of a html injection with a > inside a PR title.
+- We fixed a bug where Axolo deleted the image preview of GitHub images after an edit.

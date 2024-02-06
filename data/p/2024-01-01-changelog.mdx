@@ -1,0 +1,46 @@
+---
+title: "Axolo changelog - December 2023"
+date: "2024-01-01"
+tags: ["changelog"]
+draft: false
+summary: "We have improved security against impersonation for Enterprise customers and streamlined the onboarding process across multiple organizations. Automatic Slack member saving for new organizations and enhanced sign-in experience for admins are now in place. Our updates include better handling of Slack rate limits and an optimized Slack member query for large companies. Significant bug fixes address issues with repository events, identification errors for self-hosted customers, and installation from the GitHub marketplace."
+---
+
+✨ NEW:
+
+- Added a layer of security against impersonation for Enterprise customers.
+- Created enterprise plan in our database.
+- Added another way to give feedback on Axolo.
+- Added security for Slack webhooks.
+- Automatically onboard on Axolo an already onboarded engineer that is added to a new organization.
+- Onboarding one engineer in one organization in an Enterprise would onboard them in every organization.
+- Auto save slack members for new organization when Enterprise customer first onboard.
+
+🔨 IMPROVEMENT:
+
+- Enhanced security for impersonation for enterprise users.
+- Improved Sign in experience for Axolo admins.
+- Improve onboarding queries for large organizations.
+- Better handling of Slack rate limit for large organizations.
+- Refactoring how we save slack channels for Enteprrise.
+- Add extra layer of security for impersonation.
+- Optimization for Slack Member query for large companies.
+- Improved onboarding when adding Axolo from GitHub.
+- Offboarding on all organizations for Enterprise customers.
+- Improve Strapi Admin for Axolo administrators.
+- Avoid sending multiple identical messages for developers onboarded on multiple organizations for Enterprise.
+- Avoid sending multiple message for same user in Enterprise account.
+- Refactoring onboarding for improvement issues.
+- Handling GitHub callback better.
+
+🐞 FIX:
+
+- Fixed error where Axolo didn't have a repository for some events.
+- Fix some identification error for self hosted customers.
+- Took off unecessary emoji scope.
+- Fix a bug of the installation from the github marketplace.
+- Fixed a bug for starter plan while counting created PR channels.
+- Fix bug where Axolo was forwarding HTML comments to Slack.
+- Fixed a bug during onboarding.
+- Fix bug where Axolo was editing directly code review comment in GitHub & GitLab.
+- Resolve bug when we had a state for enterprise users.
