@@ -1,0 +1,147 @@
+---
+title: JPA là gì? Giới thiệu về Java Persistence
+date: '2023-12-08'
+tags: ['java', 'spring', 'jpa']
+draft: false
+---
+
+Trong lĩnh vực phát triển ứng dụng, để giải quyết vấn đề chúng ta thường sử dụng các framework. Và Hibernate là một trong những ORM framework phổ biến nhất trong việc thao tác với cơ sở dữ liệu trong ứng dụng Java. Tuy nhiên, một số nhà phát triển cảm thấy Hibernate có quá nhiều chức năng, mà không phải tất cả đều cần thiết cho ứng dụng của họ. Do đó, JPA ra đời để giải quyết vấn đề đó.
+
+Trong bài viết này, chúng ta sẽ tìm hiểu về JPA và so sánh với Hibernate, cùng với một số ví dụ minh họa và hướng dẫn sử dụng JPA trong Spring Boot.
+
+# 1. Giới thiệu về JPA
+## 1.1 JPA là gì?
+![alt text](/static/images/blog/jpa-1.webp)
+JPA (viết tắt của Java Persistence API) là một tiêu chuẩn kỹ thuật trong lĩnh vực phát triển ứng dụng Java để lập trình đối tượng quan hệ (ORM). JPA được cung cấp bởi Oracle và đã được thừa nhận là một tiêu chuẩn quốc tế.
+
+JPA cung cấp cách tiếp cận trừu tượng cho việc lưu trữ và truy xuất dữ liệu trong cơ sở dữ liệu quan hệ. Sử dụng JPA, chúng ta có thể tập trung vào thiết kế ứng dụng của mình hơn là phải lo về cách lưu trữ và truy xuất dữ liệu như thế nào.
+
+## 1.2 Sự cần thiết của JPA trong ứng dụng Java
+Trong quá trình phát triển ứng dụng Java, chúng ta không thể tránh khỏi việc tương tác với cơ sở dữ liệu. Vấn đề là, làm thế nào để lưu trữ và truy xuất dữ liệu một cách dễ dàng và hiệu quả?
+
+Một giải pháp là sử dụng JDBC (Java Database Connectivity), một API được cung cấp bởi Sun Microsystems để tương tác với cơ sở dữ liệu. Tuy nhiên, với JDBC, chúng ta cần phải viết rất nhiều code để thực hiện các hoạt động đơn giản như việc lấy và cập nhật dữ liệu. Điều này có thể làm cho ứng dụng của chúng ta trở nên phức tạp và khó bảo trì.
+
+Vì vậy, JPA ra đời nhằm giải quyết vấn đề này bằng cách giảm bớt sự phức tạp của việc tương tác với cơ sở dữ liệu. Với JPA, ta có thể sử dụng đối tượng Java để lưu trữ và truy xuất dữ liệu. Hơn nữa, JPA sẽ tự động chuyển đổi các đối tượng thành các câu truy vấn SQL để thực hiện việc lưu trữ và truy xuất, giúp lập trình viên chúng ta tập trung vào việc phát triển tính năng của ứng dụng mà không phải lo nhiều về SQL phức tạp.
+
+## 1.3 Vai trò của JPA trong phát triển ứng dụng
+![alt text](/static/images/blog/jpa-2.webp)
+JPA là một công nghệ quan trọng trong việc phát triển ứng dụng Java, bởi vì nó giúp:
+
+* Viết code ít hơn: Sử dụng JPA, chúng ta có thể sử dụng các đối tượng Java thay vì phải viết các câu truy vấn SQL hoặc sử dụng JDBC trực tiếp. Điều này làm cho code trở nên ngắn gọn hơn và dễ đọc hơn, giảm thiểu tối đa boilerplate code.
+* Dễ bảo trì: Với JPA, việc thay đổi cấu trúc cơ sở dữ liệu trở nên dễ dàng hơn. Chúng ta chỉ cần thay đổi định nghĩa của đối tượng Java và JPA sẽ tự động áp dụng các thay đổi này vào cơ sở dữ liệu tương ứng.
+* Hiệu suất cao: JPA giúp tối ưu hóa việc truy xuất và lưu trữ dữ liệu trong cơ sở dữ liệu. Nó sử dụng các kỹ thuật như lazy loading và caching để giảm thiểu số lần truy cập vào cơ sở dữ liệu.
+
+# 2. ORM là gì
+## 2.1 Một số ORM framework hỗ trợ JPA
+ORM (Object-Relational Mapping) là một kỹ thuật trong lập trình để ánh xạ các đối tượng Java vào cơ sở dữ liệu quan hệ. Khi sử dụng ORM, chúng ta có thể làm việc với cơ sở dữ liệu thông qua các đối tượng Java, thay vì phải sử dụng các câu truy vấn SQL trực tiếp.
+
+![alt text](/static/images/blog/jpa-3.webp)
+
+Có nhiều framework hỗ trợ ORM và JPA được liệt kê phía dưới:
+
+* Hibernate: Hibernate là một trong những framework ORM phổ biến nhất và cũng là backend mặc định cho JPA. Nó cung cấp các tính năng mạnh mẽ và linh hoạt cho việc tương tác với cơ sở dữ liệu quan hệ.
+* EclipseLink: EclipseLink là một framework ORM mạnh mẽ khác được sử dụng rộng rãi trong cộng đồng Java. Nó cũng hỗ trợ đầy đủ JPA.
+* OpenJPA: OpenJPA là một framework ORM được phát triển bởi Apache. Nó cung cấp một loạt các tính năng để làm việc với cơ sở dữ liệu quan hệ và hỗ trợ đầy đủ JPA.
+
+# 3. Java Persistence API cơ bản
+## 3.1 Kiến trúc JPA
+Để hiểu rõ cách JPA hoạt động, chúng ta cần tìm hiểu về một số thành phần chính của nó.
+
+![alt text](/static/images/blog/jpa-4.webp)
+### 3.1.1 Định nghĩa Entity
+Trong JPA, một Entity là một đối tượng Java ánh xạ vào một bảng trong cơ sở dữ liệu. Chúng ta có thể hiệu là mối quan hệ 1-1. Đối tượng Entity chứa thông tin về cấu trúc và dữ liệu của bảng.
+
+Để định nghĩa một Entity trong JPA, chúng ta có thể sử dụng các annotation như **@Entity, @Table, @Column**, vv. Dưới đây là một ví dụ:
+
+```
+@Entity
+@Table(name = "employees")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "name")
+    private String name;
+    
+    // getters and setters
+}
+```
+Ở ví dụ trên, Employee được đánh dấu là một Entity bằng cách sử dụng annotation @Entity. Sẽ ánh xạ vào bảng "employees" trong cơ sở dữ liệu. Thuộc tính id được đánh dấu là khóa chính bằng cách sử dụng annotation @Id. Các thuộc tính khác được ánh xạ vào các cột của bảng bằng cách sử dụng annotation @Column.
+
+### 3.1.2 Quản lý Entity Manager
+Entity Manager là một thành phần quan trọng trong JPA. Nó làm nhiệm vụ quản lý các đối tượng Entity và từ đó chúng ta có thể sử dụng Entity Manager để thực hiện các hoạt động CRUD (Create, Read, Update, Delete) trên cơ sở dữ liệu. Ví dụ:
+
+```
+public void createEmployee(Employee employee) {
+    EntityManager entityManager = // lấy Entity Manager từ EntityManagerFactory
+    
+    entityManager.persist(employee); // thêm đối tượng vào cơ sở dữ liệu
+}
+```
+
+Và ở ví dụ trên, chúng ta sử dụng phương thức persist() của Entity Manager để thêm một đối tượng Employee vào cơ sở dữ liệu.
+
+### 3.1.3 Entity Transaction
+Trong JPA, mỗi hoạt động liên quan đến cơ sở dữ liệu sẽ được thực hiện trong một transaction. Transaction là một tập hợp các hoạt động ghi và đọc dữ liệu liên quan mà thường được thực hiện cùng nhau và được xem như là một thao tác duy nhất. Việc sử dụng các thao tác liên quan trong cùng một Transaction sẽ giúp đảm bảo tính toàn vẹn của dữ liệu khi thực hiện.
+
+Để làm việc với transaction trong JPA, chúng ta sử dụng Entity Transaction. Dưới đây là một ví dụ:
+
+```
+public void updateEmployeeName(long id, String newName) {
+    EntityManager entityManager = // lấy Entity Manager từ EntityManagerFactory
+    
+    EntityTransaction transaction = entityManager.getTransaction();
+    transaction.begin(); // bắt đầu transaction
+    
+    Employee employee = entityManager.find(Employee.class, id); // tìm kiếm đối tượng Employee theo id
+    employee.setName(newName); // thay đổi tên của Employee
+    
+    transaction.commit(); // kết thúc transaction và lưu các thay đổi vào cơ sở dữ liệu
+}
+```
+
+Trong ví dụ trên, chúng ta sử dụng phương thức getTransaction() của Entity Manager để lấy Entity Transaction. Sau đó, chúng ta bắt đầu transaction bằng cách gọi begin(). Trong một transaction, chúng ta có thể thực hiện các hoạt động liên quan đến cơ sở dữ liệu và cuối cùng gọi  phương thức commit() để kết thúc transaction và lưu các thay đổi vào cơ sở dữ liệu.
+
+### 3.1.4 Quản lý Persistence Context
+Persistence Context là một trong những khái niệm quan trọng trong JPA, là một vùng nhớ tạm thời được quản lý bởi Entity Manager và chứa các đối tượng đã được truy xuất từ cơ sở dữ liệu.
+
+Khi chúng ta lấy một đối tượng từ cơ sở dữ liệu bằng cách sử dụng Entity Manager, đối tượng này được lưu trong Persistence Context. Khi bạn thay đổi đối tượng trong Persistence Context, JPA sẽ tự động theo dõi các thay đổi này và cập nhật nó vào cơ sở dữ liệu khi transaction kết thúc.
+
+# 4. Tại sao nên dùng JPA
+## 4.1 No-code Repository
+Một trong những lợi ích lớn nhất của JPA là chúng ta không cần phải viết mã SQL hay DAO (Data Access Object) để làm việc với cơ sở dữ liệu. Thay vào đó, JPA cung cấp Repository Interfaces để thực hiện các hoạt động CRUD.
+
+
+![alt text](/static/images/blog/jpa-5.webp)
+
+Ví dụ, để lấy tất cả các bản ghi từ một bảng trong cơ sở dữ liệu, bạn chỉ cần sử dụng phương thức findAll() của JpaRepository:
+
+```
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    List<Employee> findAll();
+}
+```
+
+Điều này giúp giảm thiểu rất nhiều công việc lặp lại và mã boilerplate code mà chúng ta thường phải viết khi sử dụng JDBC trực tiếp.
+
+## 4.2 Khả năng mở rộng
+Với JPA, chúng ta có thể thay đổi cơ sở dữ liệu mà không cần sửa đổi mã nguồn ứng dụng. Điều này làm cho việc di động giữa các hệ thống cơ sở dữ liệu khác nhau dễ dàng hơn.
+
+Ngoài ra, JPA còn cho phép chúng ta mở rộng ứng dụng dễ dàng bằng cách thêm mới các Entity và Repository mới mà không cần phải sửa đổi mã nguồn đã có.
+
+# 5. So sánh JPA và Hibernate
+![alt text](/static/images/blog/jpa-6.webp)
+JPA và Hibernate là hai khái niệm liên quan đến ánh xạ quan hệ đối tượng (ORM) trong Java. Với ORM như đề cập ở phía trên, là một kỹ thuật cho phép chuyển đổi các đối tượng Java thành các bản ghi trong cơ sở dữ liệu quan hệ và ngược lại. Từ đó, chúng ta có thể thấy được JPA và Hibernate có một số điểm khác nhau như sau:
+
+* JPA là một tiêu chuẩn, Hibernate là một triển khai. Điều này có nghĩa là JPA chỉ định nghĩa các đặc tả cần thiết và không có code hiện thực từ những đặc tả đó.
+* JPA sử dụng JPQL (Java Persistence Query Language), Hibernate sử dụng HQL (Hibernate Query Language). JPQL và HQL đều là các ngôn ngữ truy vấn dựa trên SQL, nhưng có một số khác biệt về cú pháp và chức năng. JPQL là một phần của tiêu chuẩn JPA, do đó nó được hỗ trợ bởi tất cả các triển khai JPA. HQL là một ngôn ngữ truy vấn riêng biệt của Hibernate, do đó nó chỉ được hỗ trợ bởi Hibernate.
+* JPA tuân thủ tiêu chuẩn, Hibernate mở rộng tiêu chuẩn. Điều này có nghĩa là JPA chỉ cung cấp các tính năng cơ bản cho ORM, trong khi Hibernate cung cấp nhiều tính năng nâng cao và tùy biến cho ORM. Ví dụ: JPA chỉ hỗ trợ hai loại bộ nhớ đệm: bộ nhớ đệm thực thể (entity cache) và bộ nhớ đệm truy vấn (query cache). Hibernate hỗ trợ ba loại bộ nhớ đệm: bộ nhớ đệm thực thể, bộ nhớ đệm truy vấn và bộ nhớ đệm về các cấu trúc dữ liệu (collection cache).
+
+Tóm lại, JPA và Hibernate là hai khái niệm liên quan nhưng khác nhau về ORM trong Java. JPA là một tiêu chuẩn cho ORM, trong khi Hibernate là một triển khai của JPA. Hibernate mở rộng JPA với nhiều tính năng riêng biệt và mạnh mẽ hơn.
+
+Tuy nhiên, việc sử dụng các tính năng dành riêng cho Hibernate có thể gây ra sự phụ thuộc vào nhà cung cấp và khó chuyển đổi sang các triển khai JPA khác. Do đó, chúng ta nên cân nhắc kỹ trước khi sử dụng Hibernate hoặc JPA cho dự án của mình.
+
+# 6. Tổng kết
+Bài viết này đã giới thiệu về Java Persistence API (JPA) và vai trò quan trọng của nó trong việc phát triển ứng dụng Java. Chúng ta đã tìm hiểu về ORM, kiến trúc JPA cơ bản, tại sao nên sử dụng JPA, và so sánh với Hibernate. Hy vọng rằng thông qua bài viết này, bạn đã có cái nhìn rõ ràng về JPA và có thêm kiến thức để áp dụng vào các dự án thực tế của mình.
