@@ -1,28 +1,31 @@
 ---
-title: "Axolo changelog - September/October 2023"
-date: "2023-11-01"
+title: "Axolo changelog - November 2023"
+date: "2023-12-01"
 tags: ["changelog"]
 draft: false
-summary: "We updated features with admin access requests, improved Slack and email notifications, personalized stand-up alerts, usage-based free plan, and subgroup onboarding for GitLab. Security enhancements include VPN-secured API and admin panel. Improvements cover login issues, notification updates, and GitLab bot identification. Fixed a bug related to new user welcome emails."
+summary: "We introduced GitHub Proxy configuration for enterprises, enhanced impersonation security, provided LGTM tips in PR channels, and automated PR channel closure. Sign-in and Slack message formatting have been improved. Enhancements include better customer success notifications, updated onboarding messages, refined analytics, proactive feedback collection, and post-plan update emails. Fixes addressed enterprise team channel management, weekend reminders, sign-in without organizations, and unarchiving PR channels."
 ---
 
 ✨ NEW:
 
-- Enabled engineers to ask admin access on the billing page after reaching the starter plan limit
-- Updated some of our transactional emails to Customer.io
-- Better Slack toast notifications for failed tests
-- Update the stand-up notification with personalization, you can now choose which OR status Axolo sends in Slack
-- Update our free plan from a seat-based pricing to a usage-based pricing up to 50 PR per month
-- Automatically offer subgroup onboarding possibility for users without any ownership on main GitLab groups
-- Add enhanced security for our admin panel
+- Enabled enterprise customers to add their GitHub Proxy address.
+- Added more security features around impersonation for Enterprises.
+- Giving tips to Axolo users who type LGTM in a pull request channel.
+- Created a service to close PR channels when the PR is closed in GitHub/GitLab.
+- Improved sign in process with added security and less waiting time.
+- Improved simple slack link formatting for edited messages.
 
 🔨 IMPROVEMENT:
 
-- Better handling wrong workspace login for our users
-- Enhanced security for our API using VPN filtered routes
-- Update standup and /axolo command notification with PR where someone from the team is also reviewer, not only author
-- Improved the way we identify GitLab bots
+- Improved internal notifications for customer success.
+- Updated the initial message of onboarding.
+- Improve analytics to help understand Axolo usage.
+- Ask for feedback if users speak about Axolo.
+- Improved emails after customer plan updates.
 
 🐞 FIX:
 
-- Fix bug where the email welcoming new users was not sent
+- Fixed a bug for enterprise customers on team channels management.
+- Fix a bug where Axolo would send reminders on weekends for specific timezones.
+- Allow users to sign in when there are no organisations yet.
+- Resolved bug while unarchiving a PR channel.
