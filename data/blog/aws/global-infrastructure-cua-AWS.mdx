@@ -32,14 +32,14 @@ _*Nguồn: https://aws.amazon.com/about-aws/global-infrastructure/_
 
 - 115 Direct Connect Locations
 
-# Định nghĩa về Region
+# Region là gì?
 
 **Region** là một khái niệm để mô tả một khu vực vật lý trên thế giới mà AWS cung cấp các dịch vụ điện toán đám mây. 
 Mỗi AWS Region là một khu vực độc lập với cơ sở hạ tầng và các dịch vụ. 
 
 Mỗi Region sẽ gồm nhiều **Availability Zone** (AZ).
 
-# Lựa chọn Region
+## Lựa chọn Region như thế nào?
 
 Việc lựa chọn region để triển khai hệ thống dựa trên:
 
@@ -51,7 +51,7 @@ Việc lựa chọn region để triển khai hệ thống dựa trên:
 
 - Giá cả của các dịch vụ.
 
-# Tiêu chí chọn region cho hệ thống
+## Tiêu chí chọn region cho hệ thống
 
 Switch sang đúng region trước khi bắt đầu bất kì thao tác nào để tránh việc chúng ta tạo nhầm resource.
 
@@ -61,13 +61,13 @@ Một số region không available by-default, cần enable để có thể sử
 
 ![Enable-Region](/static/images/enable-region.png)
 
-# Private region - Ex China region
+## Private region - Ex China region
 
 AWS có mặt tại China tuy nhiên không thể trực tiếp switch sang region này trên Console vì hạ tầng của AWS China và AWS Global nó không liên quan gì đến nhau. Cần phải đăng kí với AWS một account riêng biệt và tách biệt hoàn toàn với account thông thường.
 
 # Availability Zone là gì?
 
-Một Availability Zone (AZ) là một trung tâm dữ liệu hoặc một nhóm các
+Một **Availability Zone** (AZ) là một trung tâm dữ liệu hoặc một nhóm các
 trung tâm dữ liệu nằm trong cùng một khu vực vật lý, nhưng được
 phân bổ và vận hành hoàn toàn độc lập. Mỗi AZ có thể có các tài
 nguyên đám mây như máy chủ ảo, ổ cứng, network, security, các dịch
@@ -94,9 +94,9 @@ VD: Ở region Singapore (ap-southeast) sẽ có các zone:
 Hầu hết các service của AWS đều hỗ trợ triển khai trên Multi-AZ để
 đảm bảo nâng cao High Avalibility của hệ thống.
 
-# Local Zone
+# Local Zone là gì?
 
-AWS Local Zones are a type of infrastructure deployment that places compute, storage, database, and other
+**AWS Local Zones** are a type of infrastructure deployment that places compute, storage, database, and other
 select AWS services close to large population and industry centers.
 
 ![Local-Zone](/static/images/local-zone.png)
@@ -112,9 +112,9 @@ Các bạn biết là network bên Thái Lan sang đến Singapore thì khá là
 Khi bật Local Zone lên thì các bạn có thể tạo được con server thay vì default các bạn chọn là **ap-southeast-** `a`,`b`,`c` thông thường ở bên Singapore
 thì bạn chọn là `ap-southeast-1-bbk-1` thì chúng ta sẽ biết là local zone nằm ở bên Thái Lan. 
 
-# Edge Location
+# Edge Location là gì?
 
-AWS Edge Location là một mạng lưới các điểm phân phối (Point of
+**AWS Edge Location** là một mạng lưới các điểm phân phối (Point of
 Presense) trên thế giới, nơi các dịch vụ AWS, như Amazon CloudFront
 và Amazon Route 53, cung cấp các tính năng xử lý và phân phối nội
 dung (CDN) đến người dùng cuối.
