@@ -1,7 +1,7 @@
 ---
-title: "GitLab code review best practices"
+title: "GitLab code review best practices in 2024"
 date: "2022-08-09"
-lastmod: "2023-07-04"
+lastmod: "2024-02-09"
 tags: ["gitlab", "code-review"]
 draft: false
 summary: "In this article, we will be going through the code review best practices in GitLab. If you are interesting in learning how to use GitLab to be more productive while reviewing code, follow us!"
@@ -112,9 +112,24 @@ After setting up your CODEOWNERS file, you will be able to find any potential re
 
 #### GitLab auto assign reviewers
 
-GitLab does not have a built-in feature to automatically assign reviewers. They tweaked another open-source project to receive recommendations for reviewers inside their merge requests.
+GitLab does not have a built-in feature to automatically assign reviewers but we have created a side-project to help every GitLab users assign automatically their reviewers: <a href="https://axolo.co/auto-assign-reviewer-for-gitlab" target="_blank" rel="noopener">Auto Assign Reviewer for GitLab by Axolo</a>. You don't even need to create an Axolo account, you can use it on your own.
 
-They are using the <NoFollowLink url='https://github.com/danger/danger'>Danger</NoFollowLink> bot and applied some personal workflows to it (you can find more information about that in <NoFollowLink url='https://about.gitlab.com/blog/2019/10/23/reviewer-roulette-one-year-on/'>Reviewer roulette one year one</NoFollowLink>).
+<a href="https://axolo.co/auto-assign-reviewer-for-gitlab" target="_blank" rel="noopener">
+  <ImageContainer
+    src="/blog/static/images/gitlab/meta-auto-review.jpg"
+    alt="GitLab Auto Assign Reviewers"
+    width={1920}
+    height={911}
+    classNameDiv="mx-20 "
+  />
+</a>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Use the Auto Assign Reviewer for GitLab to ... well automatically assign your reviewers on merges
+  requests
+</SubImageText>
+
+Use this tool to leverage CODEOWNERS and automatically assign reviewers to your merge requests. It's
+a simple and easy-to-use tool that will help you save time and improve your code review process.
 
 ### Review, approval & comment in GitLab
 
