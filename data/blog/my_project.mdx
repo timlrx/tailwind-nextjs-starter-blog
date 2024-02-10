@@ -1,0 +1,50 @@
+---
+title: 'IoT project'
+date: 2024-01-21T14:00:00Z
+lastmod: '2024-01-21'
+tags: ['node-js', 'flutter', 'dart', 'mqtt', 'arduino']
+draft: false
+summary: 'A few things about my IoT GitHub project for flood detection, water level measure'
+layout: PostSimple
+---
+
+## About project
+
+I developed an application to measure temperature, humidity, water level i.e. under the sink, near washing machine or dishwasher to detect an incident with flood in a home.
+A project consists 4 parts - an arduino app, a backend to maintain data from mqtt and the mobile application to present actual metrics and events with alarming data.
+I describe every part as briefly as I can.
+
+### An arduino part
+I used IoT controller just like this in a [link](https://botland.store/esp8266-wifi-modules/8241-esp8266-wifi-module-nodemcu-v3-5904422300630.html).
+
+I used two sensors with this iot controller:
+- [DHT11](https://botland.store/multifunctional-sensors/1886-temperature-and-humidity-sensor-dht11-module--5903351242448.html) - it reads temperature, humidity and heat index.
+- [Iduino SE045](https://botland.store/liquid-level-sensors/7279-water-level-sensor-module-iduino-se045-5903351241281.html) - reads liquid level
+
+Controller has a Wi-Fi module to make simple the TCP/IP connections, in my case it was a popular message broker MQTT `mosquitto` on a docker [eclipse-mosquitto](https://hub.docker.com/_/eclipse-mosquitto).
+Every 5 seconds I read data from sensors and publish to mqtt broker. All arduino code you have it [here](https://github.com/kjaniec-dev/arduino_esp8266_water_leak_detection/tree/main)
+
+### Backend
+It's a bridge between mqtt broker data and a mobile application. Repository is [here](https://github.com/kjaniec-dev/iot-backend).
+I subscribed to mqtt topic /water_leak/detection and I analyzed data from mqtt package in a backend application. I think it's worth to mention about mechanism for detection missing package. By detection missing packages I mean checking time from last one occurred data (if one minute elasped I raise an event `noDataReceivedEvent`).
+Of course backend has logging and events and data are stored in a files, so if application restart I retrieve current day events and data.
+You can retrieve events from rest endpoint, but last value data are emitted to websockets.
+
+### Mobile application
+I decided to create a mobile application in `Flutter`, in a `Dart` language. Probably you say: why not create an app in `React Native`, because you know a `React` and should not be any problem to do it faster.
+I just save you have right to think like that. But I'm a developer who love to learn a new things and a `flutter` is not complicated like you think. It's a great documentation and for me is easy to use, popular, with nice syntax :)
+The best thing is how easy you create a components / widgets in a flutter. Check out the [repository](https://github.com/kjaniec-dev/iot-mobile-app) to see how application looks like. In my app I use a IOWebsocketChannel for websockets and default http dart package to make rest calls.
+In app I focused on ,ios so code has specific components for ios. Of course in `Flutter`, just like in `React Native` you have some components only for ios and android, but is a lot of common components. I'm not realized that someone can use my application, so I debug an app on IOS. But maybe sometimes I change it to android too ;)
+
+Here's how my app looks like:
+![Last values](/static/images/mobile_app_last_value.png)
+![Events](/static/images/events.png)
+
+
+
+
+
+
+
+
+

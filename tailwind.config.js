@@ -15,6 +15,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      animation: {
+        spin: 'spin 500ms ease-in-out forwards',
+      },
       lineHeight: {
         11: '2.75rem',
         12: '3rem',
@@ -25,7 +28,7 @@ module.exports = {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },
       colors: {
-        primary: colors.pink,
+        primary: colors.teal,
         gray: colors.gray,
       },
       typography: ({ theme }) => ({

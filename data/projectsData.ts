@@ -7,12 +7,10 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'Water leak detection',
+    description: `What if you could look up any information`,
+    imgSrc: '/static/images/mobile_app_last_value.png',
+    href: 'https://github.com/kjaniec-dev/iot-mobile-app',
   },
   {
     title: 'The Time Machine',
