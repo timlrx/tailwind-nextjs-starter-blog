@@ -1,6 +1,6 @@
 ---
 title: Global Infrastructure of AWS
-date: '2024-02-05'
+date: '2024-02-07'
 tags: ['Cloud', 'Beginner', 'AWS', 'Infrastructure' ]
 draft: false
 summary: The AWS Cloud spans 105 Availability Zones within 33 geographic regions around the world, with announced plans for 12 more Availability Zones and 4 more AWS Regions in Germany, Malaysia, New Zealand, and Thailand. 
@@ -96,18 +96,18 @@ Hầu hết các service của AWS đều hỗ trợ triển khai trên Multi-AZ
 
 # Local Zone là gì?
 
-**AWS Local Zones** are a type of infrastructure deployment that places compute, storage, database, and other
-select AWS services close to large population and industry centers.
+**AWS Local Zones** là một loại triển khai cơ sở hạ tầng đặt các dịch vụ điện toán, lưu trữ, cơ sở dữ liệu và các dịch vụ AWS chọn lọc khác gần các trung tâm công nghiệp và dân cư đông đúc.
 
 ![Local-Zone](/static/images/local-zone.png)
 _*Nguồn: https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/_
 
 **Enable local zone trên console**
 
-![Local-Zone](/static/images/enable-local-zone.png)
 _*Chỉ bật khi thật sự có nhu cầu._
 
-Ví dụ mình chọn một Region ở Singapore thì mình có thêm một Local Zone đó là Local Zone bên Thái Lan. 
+![Local-Zone](/static/images/enable-local-zone.png)
+
+Ví dụ mình chọn một Region ở Singapore thì mình có sẽ có thêm một Local Zone bên Thái Lan. 
 Các bạn biết là network bên Thái Lan sang đến Singapore thì khá là xa thì giả sử mình có một nhóm đối tượng khách hàng họ yêu cầu đặt data center ở Thái Lan thì các bạn có thể bật cái Local Zone lên.
 Khi bật Local Zone lên thì các bạn có thể tạo được con server thay vì default các bạn chọn là **ap-southeast-** `a`,`b`,`c` thông thường ở bên Singapore
 thì bạn chọn là `ap-southeast-1-bbk-1` thì chúng ta sẽ biết là local zone nằm ở bên Thái Lan. 

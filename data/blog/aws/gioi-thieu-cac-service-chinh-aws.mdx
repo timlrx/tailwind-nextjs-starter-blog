@@ -1,8 +1,46 @@
 ---
 title: Giới Thiệu Các Service Chính Của AWS
-date: '2024-02-06'
+date: '2024-02-08'
 tags: ['Cloud', 'Beginner', 'AWS', 'Service']
 draft: false
-summary: 
+summary: AWS có nhiều dịch vụ hơn và nhiều tính năng hơn trong các dịch vụ đó, hơn bất kỳ nhà cung cấp đám mây nào khác–từ các công nghệ cơ sở hạ tầng như máy tính, ổ lưu trữ và cơ sở dữ liệu–đến các công nghệ mới nổi, như machine learning và trí tuệ nhân tạo, kho dữ liệu và phân tích, và Internet of Things.
 images: ['/static/images/cloud-computing.png']
 ---
+
+# Tổng quan về các dịch vụ trên AWS
+
+*Các dịch vụ trong danh sách này được sắp xếp theo 2 tiêu chí:
+
+- Mức độ phổ biến trong các dự án thực tế (Service nào hay dùng được đưa lên đầu).
+
+- Độ khó tăng dần (Service nào dễ tiếp cận được đưa lên trước).
+
+*Danh sách chỉ là một phần nhỏ, không phải tất cả dịch vụ của AWS.
+
+*Những dịch vụ trong khung màu xanh là những dịch vụ thường được sử dụng
+
+*Không càn phải nhớ hết các service như biểu tượng (vì google có), ngoài ra các bạn sẽ được làm quen từ từ qua các chương sau.
+
+## Computing & Container
+
+![Computing-Container](/static/images/computing-and-container.png)
+
+Đầu tiên chúng ta có các dịch vụ về Computing và Container là những dịch vụ mà cho phép chúng ta tạo ra các máy chủ ảo, hỗ trợ chúng ta
+deloy một cái source code gì đó đã code trước đó hoặc là một cái docker image chúng ta đã build ra thì đơn củ đại diện
+ta có `EC2`,`Elastic Beanstalk`, `Lambda`, `Auto Scaling`, `ECR`(là nơi chứa các docker image), `ECS`(là nơi giúp chúng ta chạy những cái Service dưới dạng docker container),
+`EKS`(nó là một cái manage cluster của Amazon cho phép chúng ta chạy, triển khai K8S trên này), `Fargate`(là một mode chạy cho phép chúng ta địch nghĩa các tags dưới dạng CPU và Memory mà không cần quan tâm đến hạ tầng ở bên dưới. Nó giúp đơn giản hóa quy trình của chúng ta triển khai những ứng dụng container).
+
+Ngoài ra còn có `VMware Cloud`(chúng ta cài VMware lên nhưng chúng ta không dùng server vật lí mà chúng ta dùng hạ tầng của Amazon, service này dành cho những khách hàng mà họi đã quá quen với việc xài VMware rồi thì họ hoàn toàn có thể xài các service này), `Outposts Family`(là service cho phép chúng ta có thể thê luôn phần cứng của Amazon cho các dự án của chúng ta làm cho chính phủ chẳng hạn, thì họ sẽ yêu cầu chúng ta kiểm soát đến phần cứng) và giá của nó rất là mắc nên là các bạn khó có thể tiếp cận với 2 service này.
+
+
+## Storage
+
+![Storage](/static/images/storage.png)
+
+Nhóm service tiếp theo liên quan đến storage, nói đến storage thì nhiệm vụ của nó chính là để lưu trữ, lưu trữ blog, file, object và những dạng data nén để lưu lâu dài.
+
+Chúng ta có dịch vụ `EBS`(cung cấp các ổ cứng dưới dạng blog), `S3`(để lưu trữ object ), `EFS`(lưu trữ dạng file system).
+
+Ngoài ra còn có những dịch vụ giúp chúng ta có thể upload một phần data từ data center lên trên cloud, những data chúng ta ít sử dụng, chúng ta lấy về khi cần. Như dịch vụ `Storage Gateway`(mô hình cloud hybrid), 
+Service SFx
+
