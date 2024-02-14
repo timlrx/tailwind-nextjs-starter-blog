@@ -20,7 +20,8 @@
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.2",
     "image-size": "1.0.0",
-    "next": "14.1.0",
+    "mapbox-gl": "^3.1.2",
+    "next": "14.0.3",
     "next-contentlayer": "0.3.4",
     "next-themes": "^0.2.1",
     "pliny": "0.1.7",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
+    "@types/mapbox-gl": "^2.7.21",
     "@types/mdx": "^2.0.5",
     "@types/react": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.1.0",

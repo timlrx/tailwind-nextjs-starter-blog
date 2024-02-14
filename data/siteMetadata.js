@@ -17,6 +17,7 @@ const siteMetadata = {
   threads: 'https://www.threads.net',
   instagram: 'https://www.instagram.com',
   locale: 'en-US',
+  mapboxToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -41,7 +42,7 @@ const siteMetadata = {
   },
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
-    // Please add your .env file and modify it according to your selection
+    // Please add your .env.local file and modify it according to your selection
     // provider: 'buttondown',
   },
   //comments: {
