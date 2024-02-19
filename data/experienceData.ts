@@ -15,6 +15,7 @@ const experienceData: ExperienceSectionEntry[] = [
       'Express.JS',
       'Nest.JS',
       'React',
+      'GRPC',
       'PostgreSQL',
       'RabbitMQ',
       'Redis',

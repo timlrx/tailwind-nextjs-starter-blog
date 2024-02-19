@@ -10,12 +10,12 @@ const Map = () => {
     const defaultLatitude = 51.801953
     const supported = mapboxgl.supported();
 
-    const mapContainer = useRef(null)
-    const map = useRef(null)
+    const mapContainer = useRef<any>(null)
+    const map = useRef<any>(null)
     const [lng, setLng] = useState(defaultLongitude)
     const [lat, setLat] = useState(defaultLatitude)
     const [zoom, setZoom] = useState(16)
-    const marker = useRef(null);
+    const marker = useRef<any>(null);
     const {resolvedTheme} = useTheme()
 
     mapboxgl.accessToken = siteMetadata.mapboxToken
