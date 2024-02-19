@@ -1,8 +1,9 @@
 const siteMetadata = {
-  title: "Learn more about software engineering in the Axolo blog",
+  title:
+    "Axolo is the best pull request Slack application out there, learn more about it in our blog!",
   "slack-app-id": "A01RP0R62N7",
   author: "Axolo",
-  headerTitle: "Engineering collaboration and tech news",
+  headerTitle: "The best GitHub (& GitLab) pull request Slack application",
 
   description:
     "Discover best practices and tech news shared by the Axolo team. Product updates, interviews with engineering leaders and thoughts on engineering collaboration are on the menu.",
