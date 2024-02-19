@@ -1,0 +1,67 @@
+---
+title: "Changelog writer GPT and how we automate our changelogs with Axolo"
+date: "2024-02-19"
+lastmod: "2024-02-19"
+tags: ["software development"]
+draft: false
+summary: "Hey everyone, so today I'm going to explain how we've automated our changelogs at Axolo. You'll have access to a GPT I initially built internally and just decided to release to the public. It's simple but effective for us, and I hope it will help some of you!"
+image: "/blog/static/images/changelog-writer/changelog.jpg"
+---
+
+Hey everyone, so today I'm going to explain how we've automated our changelogs at Axolo. You'll have access to a GPT I initially built internally and just decided to release to the public. It's simple but effective for us, and I hope it will help some of you!
+
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
+## How the Changelog Writer by Axolo GPT works
+
+So who's better than the GPT to explain what it does? Here is a brief description of its role, written by itself:
+
+As <NoFollowLink url="https://chat.openai.com/g/g-KsaI65Bhr-changelog-writer-by-axolo">**Changelog Writer by Axolo**</NoFollowLink>, my primary function is to assist users in transforming their raw development inputs—ranging from bug fixes, new features, tasks, or any other updates—into a polished and structured changelog. This involves meticulously parsing the user's input to identify the essence of each update, then categorizing them into distinct sections:
+
+- `✨ NEW:` for brand-new features or additions
+- `🔨 IMPROVEMENT:` for enhancements to existing elements
+- `🐞 FIX:` for bug fixes
+
+My role extends beyond mere rephrasing or clarification; I aim to ensure that each entry is presented in a clear, concise, and professional manner, making the changelog both informative and easy to read.
+
+Soooo, basically what I've done is created a GPT where I can send a huge amount of information concerning our latest update, and the Changelog Writer will return a well-structured changelog composed in 3 sections. It's a simple but effective way to automate our changelogs.
+
+<CTABanner type="learn" />
+
+## How did we automate our changelogs?
+
+So, I wanted a way to automate most of our changelog writing process. The first thing we needed was to find a way to ask what we'd just developed easily. And as we're hardcore Slack users and have already integrated most of our process with GitHub through Axolo, I decided to develop a workflow around just that.
+
+It's incredibly simple:
+
+1. Each time we merge a pull request, Axolo writes a DM to the PR author with input and asks if we'd like to add this PR to our next changelog,
+2. If the author answers yes, the content of the input is sent to a specific channel in our Slack (called `#changelog`, surprisingly).
+3. The changelog content pills up each month in this channel.
+4. On the 1st day of each month, a cron job queries the whole month's conversation, and sends it straight to GPT with a specific prompt (prompt I used to build the Changelog Writer GPT)
+5. GPT sends the newly created changelog to the `#changelog` channel, and we're done! A quick review and it's ready to be published.
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/changelog-writer/explanation.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={989}
+  height={556}
+/>
+
+<ImageContainer
+  alt="sweaty-hands"
+  src="/blog/static/images/changelog-writer/jan-changelog.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1321}
+  height={743}
+/>
+
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Here is an extract of our January changelog
+</SubImageText>
+
+So let me know what you think, how we can improve if we should add it in normal Axolo workflows, or anything you have in mind! You can test the GPT from here: <NoFollowLink url="https://chat.openai.com/g/g-KsaI65Bhr-changelog-writer-by-axolo">**Changelog Writer by Axolo**</NoFollowLink>.
+
+<UserReview />
