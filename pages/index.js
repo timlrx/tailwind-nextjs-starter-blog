@@ -36,6 +36,12 @@ function WithImage({ image, date }) {
 export default function Home({ posts }) {
   // we filter to hide changelog articles
   posts = posts.filter((post) => !post?.tags?.includes("changelog"))
+  posts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -51,18 +57,19 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && "No posts found."}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags, image } = frontMatter
+            const { slug, date, title, summary, tags, image, lastmod } = frontMatter
+            const dateToFormat = lastmod || date
             return (
               <li key={slug} className="py-12">
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     {image ? (
-                      <WithImage image={image} date={date} />
+                      <WithImage image={image} date={dateToFormat} />
                     ) : (
                       <dl>
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                          <time dateTime={date}>{formatDate(date)}</time>
+                          <time dateTime={dateToFormat}>{formatDate(dateToFormat)}</time>
                         </dd>
                       </dl>
                     )}
