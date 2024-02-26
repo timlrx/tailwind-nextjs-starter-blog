@@ -36,6 +36,12 @@ function WithImage({ image, date }) {
 export default function Home({ posts }) {
   // we filter to hide changelog articles
   posts = posts.filter((post) => !post?.tags?.includes("changelog"))
+  posts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
