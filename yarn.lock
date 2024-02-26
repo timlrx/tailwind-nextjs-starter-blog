@@ -6390,6 +6390,7 @@ __metadata:
     next: 14.0.3
     next-contentlayer: 0.3.4
     next-themes: ^0.2.1
+    pinyin-pro: ^3.19.6
     pliny: 0.1.6
     postcss: ^8.4.24
     prettier: ^3.0.0
@@ -9527,6 +9528,13 @@ __metadata:
   version: 2.3.0
   resolution: "pify@npm:2.3.0"
   checksum: 9503aaeaf4577acc58642ad1d25c45c6d90288596238fb68f82811c08104c800e5a7870398e9f015d82b44ecbcbef3dc3d4251a1cbb582f6e5959fe09884b2ba
+  languageName: node
+  linkType: hard
+
+"pinyin-pro@npm:^3.19.6":
+  version: 3.19.6
+  resolution: "pinyin-pro@npm:3.19.6"
+  checksum: dc801ebe86d1323469d2009212b502c7ac22339f0b0eb6e3864b723acfc6f43dceeefac38f8ce894922635aed030540f43eda0e83000986bdfcf84b008e37d65
   languageName: node
   linkType: hard
 

@@ -22,13 +22,19 @@ import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import octicons from '@primer/octicons'
+import { pinyin } from 'pinyin-pro';
 
 const root = process.cwd()
 
 const computedFields: ComputedFields = {
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    resolve: (doc) => {
+      const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
+      return pinyin(slut, { toneType: 'none', nonZh: 'consecutive' })
+        .replaceAll(' ', '-')
+        .replaceAll('/-', '/')
+    },
   },
   path: {
     type: 'string',
