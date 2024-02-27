@@ -31,10 +31,10 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => {
       const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
-      return pinyin(slut, { toneType: 'none', nonZh: 'consecutive' })
+      return pinyin(slut, { toneType: 'none', nonZh: 'consecutive', separator: '-' })
         .replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/g, '') // url 标准符号
-        .replace(/(-\s+-)|(-$)/g, '') // -/ -/ 或者结尾-
         .replaceAll(/-+/g, '-')
+        .replace(/(-\/s)|(\/-)|(-$)/g, '') // /- -/ 或者结尾-
     },
   },
   path: {
