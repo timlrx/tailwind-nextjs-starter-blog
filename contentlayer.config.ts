@@ -32,10 +32,10 @@ const computedFields: ComputedFields = {
     resolve: (doc) => {
       const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
       return pinyin(slut, { nonZh: 'consecutive' })
+        .replaceAll(/《|》/g, '')
         .replaceAll(' ', '-')
         .replaceAll('/-', '/')
-        .replaceAll('---', '-')
-        .replaceAll('--', '-')
+        .replaceAll(/-+/g, '-')
     },
   },
   path: {
