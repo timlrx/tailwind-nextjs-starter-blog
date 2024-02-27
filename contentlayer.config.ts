@@ -22,7 +22,7 @@ import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import octicons from '@primer/octicons'
-import { pinyin } from 'pinyin-pro';
+import { pinyin } from 'pinyin-pro'
 
 const root = process.cwd()
 
@@ -31,7 +31,7 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => {
       const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
-      return pinyin(slut, { toneType: '', nonZh: 'consecutive' })
+      return pinyin(slut, { nonZh: 'consecutive' })
         .replaceAll(' ', '-')
         .replaceAll('/-', '/')
         .replaceAll('---', '-')
