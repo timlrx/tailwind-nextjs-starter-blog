@@ -34,7 +34,8 @@ const computedFields: ComputedFields = {
       return pinyin(slut, { toneType: 'none', nonZh: 'consecutive', separator: '-' })
         .replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/g, '') // url 标准符号
         .replaceAll(/-+/g, '-')
-        .replace(/(-\/s)|(\/-)|(-$)/g, '') // /- -/ 或者结尾-
+        .replace(/(-\/s)|(\/-)/g, '/') // /- -/ 或者结尾-
+        .replace(/((-$))/g, '') // /- -/ 或者结尾-
     },
   },
   path: {
