@@ -33,7 +33,7 @@ const computedFields: ComputedFields = {
       const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
       return pinyin(slut, { toneType: 'none', nonZh: 'consecutive' })
         .replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/g, '') // url 标准符号
-        .replaceAll('/-', '/')
+        .replace(/(-\s+-)|(-$)/g, '') // -/ -/ 或者结尾-
         .replaceAll(/-+/g, '-')
     },
   },
