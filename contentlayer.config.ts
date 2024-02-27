@@ -31,10 +31,11 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => {
       const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
-      return pinyin(slut, { toneType: 'none', nonZh: 'consecutive' })
+      return pinyin(slut, { toneType: '', nonZh: 'consecutive' })
         .replaceAll(' ', '-')
         .replaceAll('/-', '/')
         .replaceAll('---', '-')
+        .replaceAll('--', '-')
     },
   },
   path: {
