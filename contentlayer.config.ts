@@ -34,6 +34,7 @@ const computedFields: ComputedFields = {
       return pinyin(slut, { toneType: 'none', nonZh: 'consecutive' })
         .replaceAll(' ', '-')
         .replaceAll('/-', '/')
+        .replaceAll('---', '-')
     },
   },
   path: {
