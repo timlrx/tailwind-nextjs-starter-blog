@@ -23,7 +23,7 @@ const postDateTemplate = {
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children, toc }) {
   const { slug, fileName, date, title, tags, lastmod, image: bannerImage } = frontMatter
-
+  console.log("toc,", toc)
   const DateSection = () => {
     if (!lastmod) {
       return (
@@ -165,7 +165,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 )}
               </div>
               <div className="sideBannerContainer">
-                <TOCSide headings={toc} />
+                <TOCSide headings={toc?.filter((t) => t.depth === 2 || t.depth === 3)} />
 
                 <SideBannerForArticle />
                 <div className="pt-4 xl:pt-8">
