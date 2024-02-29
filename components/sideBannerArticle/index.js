@@ -42,11 +42,8 @@ export default function SideBannerForArticle() {
           height={1260}
         />
       </div>
-      <div className="mt-4 text-center text-2xl font-bold">
-        Awaiting your <br />
-        PR reviewer?
-      </div>
-      <div className="mt-4">
+
+      {/* <div className="mt-4">
         <button
           onClick={() => {
             posthog.capture("Click on button after side banner blog")
@@ -56,7 +53,7 @@ export default function SideBannerForArticle() {
         >
           Start merging faster today
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }

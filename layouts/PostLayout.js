@@ -8,6 +8,7 @@ import siteMetadata from "@/data/siteMetadata"
 import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/ScrollTopAndComment"
 import SideBannerForArticle from "@/components/sideBannerArticle"
+import TOCSide from "@/components/TOCSide"
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/p/${fileName}`
 const discussUrl = (slug) =>
@@ -20,7 +21,7 @@ const postDateTemplate = {
   day: "numeric",
 }
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({ frontMatter, authorDetails, next, prev, children, toc }) {
   const { slug, fileName, date, title, tags, lastmod, image: bannerImage } = frontMatter
 
   const DateSection = () => {
@@ -163,14 +164,18 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </div>
                 )}
               </div>
-              <SideBannerForArticle />
-              <div className="pt-4 xl:pt-8">
-                <Link
-                  href="/p"
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                >
-                  &larr; Back to the blog
-                </Link>
+              <div className="sideBannerContainer">
+                <TOCSide headings={toc} />
+
+                <SideBannerForArticle />
+                <div className="pt-4 xl:pt-8">
+                  <Link
+                    href="/p"
+                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  >
+                    &larr; Back to the blog
+                  </Link>
+                </div>
               </div>
             </footer>
           </div>

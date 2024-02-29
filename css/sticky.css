@@ -1,0 +1,15 @@
+.sideBannerContainer {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0; /* Adjust this value based on desired offset from the top */
+  align-self: start; /* Helps in aligning the sticky element in flex/grid layouts */
+}
+
+.tocSide {
+  position: sticky;
+  top: 4rem; /*  as needed */
+}
+
+.tocSideList {
+  list-style: none;
+}

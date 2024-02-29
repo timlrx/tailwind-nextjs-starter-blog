@@ -32,7 +32,7 @@ const EnterpriseEmailInput = ({ source }) => {
             Email address
           </label>
           {submitted ? (
-            <p className="self-center text-gray-800 dark:text-gray-50">Thank you.</p>
+            <p className="self-center text-xs text-gray-800 dark:text-gray-50">Thank you.</p>
           ) : (
             <input
               id="email"
