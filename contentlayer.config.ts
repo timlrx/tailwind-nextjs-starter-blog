@@ -26,21 +26,22 @@ import { pinyin } from 'pinyin-pro'
 
 const root = process.cwd()
 
+const getChinesePath = (doc) => {
+  const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
+  return pinyin(slut, { toneType: 'none', nonZh: 'consecutive', separator: '-' })
+    .replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/g, '') // url 标准符号
+    .replaceAll(/-+/g, '-')
+    .replace(/(-\/s)|(\/-)|(-$)/g, '') // /- -/ 或者结尾-
+}
+
 const computedFields: ComputedFields = {
   slug: {
     type: 'string',
-    resolve: (doc) => {
-      const slut = doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
-      return pinyin(slut, { toneType: 'none', nonZh: 'consecutive', separator: '-' })
-        .replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/g, '') // url 标准符号
-        .replaceAll(/-+/g, '-')
-        .replace(/(-\/s)|(\/-)/g, '/') // /- -/ 或者结尾-
-        .replace(/((-$))/g, '') // /- -/ 或者结尾-
-    },
+    resolve: (doc) => getChinesePath(doc),
   },
   path: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath,
+    resolve: (doc) => 'blog/' + getChinesePath(doc),
   },
   filePath: {
     type: 'string',
@@ -137,7 +138,7 @@ export const Post = defineDocumentType(() => ({
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
         image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+        url: siteMetadata.siteUrl + '/blog/' + getChinesePath(doc),
         author: doc.authors,
       }),
     },
