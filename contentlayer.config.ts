@@ -48,6 +48,10 @@ const computedFields: ComputedFields = {
     resolve: (doc) => doc._raw.sourceFilePath,
   },
   toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+  summary: {
+    type: 'string',
+    resolve: (doc) => extractTocHeadings(doc.body.raw).then((res) => JSON.stringify(res)),
+  },
 }
 
 /**
