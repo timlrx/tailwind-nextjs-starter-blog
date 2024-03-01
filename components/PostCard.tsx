@@ -27,9 +27,9 @@ const PostCard = ({ post, tag }: { post: CoreContent<Post>; tag?: 'plog' }) => {
         )}
         <div className="flex-1 p-3">
           <h2 className="text-xl font-extrabold">{title || slug}</h2>
-          <section className="text-gray-500">
+          {/* <section className="text-gray-500">
             <p>{summary}</p>
-          </section>
+          </section> */}
           <span className="ml-1 text-sm font-bold text-gray-600">
             <time dateTime={date}>
               {new Date(date).toLocaleDateString(
