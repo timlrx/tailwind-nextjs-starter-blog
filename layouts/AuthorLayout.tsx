@@ -39,13 +39,13 @@ export default function AuthorLayout({ children, content }: Props) {
               <SocialIcon kind="linkedin" href={linkedin} />
               <SocialIcon kind="twitter" href={twitter} />
             </div>
-            <div className={"my-8"}>
+            <div className={'my-8'}>
               <a
-                  href={"/static/files/resume.pdf"}
-                  target="_blank"
-                  aria-label="Download resume"
-                  rel="noopener noreferrer"
-                  className="bg-primary-500 dark:bg-primary-400 rounded-full p-3 text-gray-100 hover:text-gray-200 dark:text-gray-600 transition-all hover:bg-primary-600 hover:dark:bg-primary-200 hover:dark:text-gray-700"
+                href={'/static/files/resume.pdf'}
+                target="_blank"
+                aria-label="Download resume"
+                rel="noopener noreferrer"
+                className="rounded-full bg-primary-500 p-3 text-gray-100 transition-all hover:bg-primary-600 hover:text-gray-200 dark:bg-primary-400 dark:text-gray-600 hover:dark:bg-primary-200 hover:dark:text-gray-700"
               >
                 Download resume
               </a>

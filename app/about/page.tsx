@@ -9,7 +9,7 @@ import educationData from '@/data/educationData'
 import Skill from '@/components/Progress'
 import SectionLayout from '@/layouts/SectionLayout'
 import skillsData from '@/data/skillsData'
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
 export const metadata = genPageMetadata({ title: 'About' })
 
@@ -17,9 +17,9 @@ export default function Page() {
   const author = allAuthors.find((p) => p.slug === 'default') as Authors
   const mainContent = coreContent(author)
 
-    const Map = dynamic(() => import("../../components/Map"), {
-        ssr: false
-    });
+  const Map = dynamic(() => import('../../components/Map'), {
+    ssr: false,
+  })
 
   return (
     <>
