@@ -13,7 +13,9 @@ export default function Learning() {
             Learning
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            I like to learn a new things by watching courses. I have over 80 or maybe more courses on variety of platforms. Here is a list of only completed ones. I plan to present it differently than the cards, but let assume it's ok now ;)
+            I like to learn a new things by watching courses. I have over 80 or maybe more courses
+            on variety of platforms. Here is a list of only completed ones. I plan to present it
+            differently than the cards, but let assume it's ok now ;)
           </p>
         </div>
         <div className="container py-12">
