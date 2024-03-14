@@ -48,6 +48,7 @@
     "@types/react": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
+    "@typescript-eslint/typescript-estree": "^7.2.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.45.0",
     "eslint-config-next": "14.1.0",

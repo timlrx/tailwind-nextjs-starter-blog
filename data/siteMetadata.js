@@ -12,10 +12,7 @@ const siteMetadata = {
   socialBanner: '/static/images/twitter-card.png',
   email: 'contact@kjaniec.dev',
   github: 'https://github.com/kjaniec-dev',
-  twitter: 'https://twitter.com/Twitter',
-  linkedin: 'https://www.linkedin.com',
-  threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com',
+  linkedin: 'https://www.linkedin.com/in/kjaniec-dev',
   locale: 'en-US',
   mapboxToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
   analytics: {
