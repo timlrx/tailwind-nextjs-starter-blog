@@ -3,6 +3,7 @@ title: ESOP Taxation in India and its impact
 tags: [esop, tax, india, tax-impact, esop-tax]
 date: 2023-12-06
 draft: false
+image: https://vinayakg.dev/static/images/do-more-with-less-productive.jpg
 summary: ESOP Taxation reforms need change to let employees benefit in the truest sense
 canonicalUrl: https://vinayakg.dev/esop-taxation-india-2023
 ---

@@ -17,7 +17,7 @@ Ever wondered why SSL certificates sometimes have a different Common Name (CN) t
 
 3. 🕵️‍♂️ **Check Your Cert:** Use this OpenSSL command to inspect CN, SAN, and more:
 
-\``sh openssl s_client -connect [yourdomain.com:443](http://yourdomain.com:443/) 2>/dev/null | openssl x509 -noout -text | grep -E "CN=|DNS:|IP Address:|Purpose:|Public Key:|Not Before:|Not After:" \`
+`sh openssl s_client -connect [yourdomain.com:443](http://yourdomain.com:443/) 2>/dev/null | openssl x509 -noout -text | grep -E "CN=|DNS:|IP Address:|Purpose:|Public Key:|Not Before:|Not After:" `
 
 4. 🌟 **Firebase Example:** Google Firebase might show a different CN, but with a whopping 100 SAN DNS entries. Impressive!
 
@@ -27,7 +27,7 @@ Ever wondered why SSL certificates sometimes have a different Common Name (CN) t
 
 ![openssl-cli-san](../static/images/ssl-cn-san-1706214791424.jpeg)
 
-![browser-padlock-cert	](../static/images/ssl-cn-san-1706214789234.jpeg)
+![browser-padlock-cert](../static/images/ssl-cn-san-1706214789234.jpeg)
 
 
 
