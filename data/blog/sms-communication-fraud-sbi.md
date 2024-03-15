@@ -1,10 +1,10 @@
 ---
-title: SMS Communication fraud u
-tags: [ssl, san,cn,common-name, subject-alternate-name]
+title: Dissecting SBI netbanking clone Financial Fraud
+tags: [netbanking-clone,cybersecurity,financial-fraud, cybercrime, sbi-clone]
 date: 2023-12-10
 draft: false
 summary: Dissecting SBI netbanking clone link received via SMS
-canonicalUrl: https://vinayakg.dev/financial-fraud-with-sbi-clone
+canonicalUrl: https://vinayakg.dev/dissecting-sbi-bank-clone-financial-fraud
 ---
 
 This post is an alert on Cybercrime. 
