@@ -3,7 +3,6 @@ title: bob & Yi 大模型翻译插件
 date: 2024-03-15 15:52:41
 tags:
   [造个小轮子]
-image: https://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-03-15%2001.03.12.png
 ---
 
 # 一个让 Bob 翻译可以使用 零一万物Yi Model API 的插件 
