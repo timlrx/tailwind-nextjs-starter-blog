@@ -1,9 +1,9 @@
 ---
-title: SSL Common Name (CN) and Subject Alternate Name (SAN)
+title: SMS Communication fraud u
 tags: [ssl, san,cn,common-name, subject-alternate-name]
-date: 2022-12-10
+date: 2023-12-10
 draft: false
-summary: SSL Common Names (CN) and Subject Alternative Names (SAN) and its mystery and how browsers use them
+summary: Dissecting SBI netbanking clone link received via SMS
 canonicalUrl: https://vinayakg.dev/financial-fraud-with-sbi-clone
 ---
 
@@ -51,6 +51,10 @@ Update: Hostinger has been kind enough to take down the backend
 ![financial-fraud-with-sbi-clone-1701523235270](../static/images/financial-fraud-with-sbi-clone-1701523235270.jpeg)
 
 
+
+![financial-fraud-with-sbi-clone-1701523234716](../static/images/financial-fraud-with-sbi-clone-1701523234716.jpeg)
+
+![financial-fraud-with-sbi-clone-1701523235328](../static/images/financial-fraud-with-sbi-clone-1701523235328.jpeg)
 
 
 
