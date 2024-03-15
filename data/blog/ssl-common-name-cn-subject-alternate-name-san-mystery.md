@@ -3,7 +3,7 @@ title: SSL Common Name (CN) and Subject Alternate Name (SAN)
 tags: [ssl, san,cn,common-name, subject-alternate-name]
 date: 2024-02-13
 draft: false
-summary: URL shortcuts to enable you to do even more better
+summary: SSL Common Names (CN) and Subject Alternative Names (SAN) and its mystery and how browsers use them
 canonicalUrl: https://vinayakg.dev/ssl-common-name-cn-subject-alternate-name-san-mystery
 ---
 
