@@ -3,13 +3,14 @@ title: URL shortcuts to get you more productive
 tags: [new, shortcuts, url]
 date: 2024-03-14
 draft: false
-summary: URL shortcuts to enable you to do even more better
+summary: URL shortcuts are an essential tool for boosting productivity in the digital age. By simplifying the process of navigating the web, URL shortcuts help users focus on their tasks without the distraction of searching for links, leading to a more organized and efficient online experience.
+image: https://vinayakg.dev/static/images/do-more-with-less-productive.jpg
 canonicalUrl: https://vinayakg.dev/url-shortcuts-to-get-you-more-productive
 ---
 
-I am big fan of computer shortcuts and try and inculcate as many as I can in my daily workflows. So far I have been focussed on being productive in the tools that I use daily.
+I am big fan of computer shortcuts and try and inculcate as many as I can in my daily workflows. So far I have been focussed on being productive in the desktop tools that I use daily.
 
-Browsers are the gateway to internet and more and more tools are browser native. Right from Development environments like [vscode](https://github.dev), Communication tools like [teams](https://teams.microsoft.com)/[slack](https://slack.com), Documentation platforms like [Microsoft Docs](https://www.microsoft.com/en-us/microsoft-365/word)/[Google Docs](https://docs.google.com)/[Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)/[Google Sheets](https://sheets.google.com), Mail Platforms like [Office 365](https://outlook.office.com/)/[Gmail](https://gmail.com) to the Latest LLM's [Microsoft Co-Pilot](https://copilot.microsoft.com/)/[Perplexity](https://www.perplexity.ai/), most run on browser and can be used by one and all.
+Comimg to Browsers, they are the gateway to internet and more and more tools are browser native and its increasing as we speak. Right from IDE's(Development environments) like [vscode](https://github.dev), Communication tools like [teams](https://teams.microsoft.com)/[slack](https://slack.com), Documentation platforms like [Microsoft Docs](https://www.microsoft.com/en-us/microsoft-365/word)/[Google Docs](https://docs.google.com)/[Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel)/[Google Sheets](https://sheets.google.com), Mail Platforms like [Office 365](https://outlook.office.com/)/[Gmail](https://gmail.com) to the Latest LLM's [Microsoft Co-Pilot](https://copilot.microsoft.com/)/[Perplexity](https://www.perplexity.ai/), most run on browser and can be used by one and all.
 
 I have been using some shortcuts like [sheets.new](https://sheets.new) and [docs.new](https://docs.new) and I was looking to see if there are more such shortcuts that can be used.
 
@@ -20,7 +21,7 @@ Today, I would like to share few shortcuts that are already public and set by co
 ### Here is a list of compiled url shortcuts:
 
 | Short Link                                                                                                                                            | Application Name     | What it does?                                                              | Additional Info                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- | :------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
 | [check.new](https://check.new)                                                                                                                        | Checkly              | Create a javascript browser check using Checkly                            | Monitoring platform for API's, Automated UI tests                                                                                   |
 | [pen.new](https://pen.new)                                                                                                                            | CodePen              | Prototype your frontend code in CodePen's online development sandbox       | The best place to build, test, and discover front-end code                                                                          |
 | [gist.new](https://gist.new)                                                                                                                          | GitHub               | Open new GitHub gists                                                      | Public/Private gists on Github                                                                                                      |
@@ -46,6 +47,6 @@ Today, I would like to share few shortcuts that are already public and set by co
 | [git.new/dub](https://git.new/dub)                                                                                                                    | dubinc/dub           |                                                                            |                                                                                                                                     |
 | [git.new/cal](https://git.new/cal)                                                                                                                    | calcom/cal.com       | Open source Calendly                                                       | Your personalized scheduling infrastructure                                                                                         |
 
-### References
+## References
 
 [Whats' new on Google](https://whats.new/shortcuts#developer-tools)
