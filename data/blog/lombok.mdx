@@ -1,0 +1,206 @@
+---
+title: Introduction to Lombok
+date: '2024-03-17'
+tags: ['lombok', 'java']
+draft: false
+summary: In traditional Java programming, developers frequently find themselves writing repetitive code for tasks like definiting accessors, mutators, constructors, and logging statement
+---
+
+# Introduction to Lombok
+
+![alt text](/static/images/blog/lombok-1.png)
+In traditional Java programming, developers frequently find themselves writing repetitive code for tasks like definiting accessors, mutators, constructors, and logging statement. This not only increases the amount of code one has to write but also introduces the potenial for errors and inconsistencies. For example:
+
+```
+public class User {
+    private String name;
+    private int age;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String toString() {
+        return "Name: " + name + ", Age: " + age;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        return age == user.age && Objects.equals(name, user.name);
+    }
+
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+}
+```
+
+Lombok, built to solve above issue, is a Java library that aims to reduce boilerplate code in Java projects. It provides a set of annotations that developers can use to automatically generate common code constructs, such as getters, setters, constructors, and more. By leveraging these annotations, developers can write cleaner, more concise code, thus improving productivity and maintainability
+
+The way it works is by plugging into our build process and auto-generating Java bytecode into our .class files as per a number of project annotations we introduce in our code.
+
+# Why Lombok?
+
+![alt text](/static/images/blog/lombok-3.jpeg)
+
+## Addressing Java Boilerplate
+
+Java, as a language, is also know for its verbosity, esspecially it comes to writing repetitive boilerplate code. As I mentioned ealier, this boilerplate code includes tasks such as getters, setters, constructors, equals and hashCode method, and toString methods. These tasks add little to the core logic of the application but are necessary for maintaining the integrity and readability of the codebase
+
+## Reduction of Errors
+
+With manual creation of the boilerplate code, there's always a risk of introducing errors or inconsistencies, especially when making changes to the codebase. Lombok's automatic code generation helps mitigate this risk by ensuring that the generate code is consistent. This leads to fewer bugs and smoother code maintenance over time
+
+## Flexibility and Customization
+
+While Lombok provides convenient defaults for code generation, it also offers flexibility for customization. Developers can fine-tune the behavior of Lombok annotations using various options and paramenters, allowing them to tailor for specific requirements
+
+# Key Features
+
+## @Getter and @Setter
+
+If you use this annoation for the class level, it automatically generate getter and setter methods for class fields
+
+```
+@Getter
+@Setter
+public class User {
+```
+
+Or if used on a specific field, Lombok will genrate getter/setter methods only the annotated field. Addiontionally, by default Lombok generates all fields with public access level. You can modify this access level by specifying the AccessLevel
+
+- Public
+- Protected
+- Package
+- Private
+- None
+
+```
+@Setter(AccessLevel.PROTECTED) private String name;;
+```
+
+## @ToString
+
+It will generate a toString() method including all class attributes. No need to write one ourselves and maintain it as we enrich our data model.
+
+## @EqualsAndHashCode
+
+It will generate both equals() and hashCode() methods by default considering all relevant fields. Important thing is by default @EqualsAndHashCode just includes all non-final properties fo the entity class. There is a advice that we shouldn't use Lombok to generate the equals() and hashCode() method for JPA entities
+
+## @NoArgsConstructor, @AllArgsConstructor, @RequiredArgsConstructor
+
+- **@AllArgsConstructor** generates a constructor requiring an argument for every field in the annotated class
+
+- **@NoArgsConstructor** generates a default constructor with no parameters
+
+- **@RequiredArgsConstructor** generates a constructor requiring an argument for the final and @NonNull fields
+
+  ```
+  @RequiredArgsConstructor
+  public class User {
+
+      private final String name;
+      private final int age;
+  }
+  ```
+
+### Calling the super constructor
+
+> Lombok can't call the super constructor unless it is a no-args constructor.
+
+If super class even has argument constructor without default constructor with no parametes, **@AllArgsConstructor** or other constructor annotations can't generate a constructor
+
+```
+error: constructor User in class User cannot be applied to given types;
+@AllArgsConstructor
+^
+  required: String,int
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+
+```
+
+## @Builder
+
+The **Builder Pattern** is a design pattern used to construct a complex object by using simple objects and step-by-step access
+
+Instead, we can tell the tool to generate a builder pattern, which negates us from having to write an extra Builder class and the associated fluent setter-like methods by simply adding the @Builder annotation to our User class
+
+```
+@Builder
+@Getter
+@Setter
+public class UserBuilder {
+    private String name;
+    private int age;
+}
+```
+
+and the result is
+
+```
+UserBuilder userBuilder = UserBuilder.builder()
+        .name("John")
+        .age(30)
+        .build();
+```
+
+## @Data
+
+The @Data annotation is a convenient shortcut that combines the functionality of @Getter, @Setter, @ToString, @EqualsAndHashCode, and @RequiredArgsConstructor
+
+It generates all these methods for a class, reducing the need for multiple annotations and further reducing boilerplate code
+
+# Three Lombok Annotations You Need to Avoid
+
+> Not everything is good, sometimes it also has some points to be noted
+
+Lombok is an incredibly popular framework despite having few annotations. This is because it addresses developer pain points
+
+I won't delve deeper into this topic. You may refer to this article for more detailed information [here](https://thorben-janssen.com/lombok-hibernate-how-to-avoid-common-pitfalls/)
+
+# Integration with IDEs
+
+Lombok seamlessly integrates with popular Java IDEs like IntelliJ IDEA, Eclipse, and NetBeans. Here I will guide everyone how to install Lombok on IDEA
+
+In order to use these annotations above, you have to add dependency into your project
+
+```
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+```
+
+Then, insteall plugin lombok for your IDE. Here I use IntelliJ IDEA
+
+- Preferences > Plugins > Marketplace > "Lombok" -> Install -> Restart
+
+![alt text](/static/images/blog/lombok.png)
+
+# Conclusion
+
+In conclusion, Lombok is a powerful tool that revolutionizes Java development by eliminating boilerplate code and streamlining common tasks. By leveraging Lombok's key features such as automatic code generation, integration with IDEs, and flexibility for customization, developers can significantly enhance their productivity and code quality
+
+You can refer my repository [here](https://github.com/thangvynam/demo-project)
