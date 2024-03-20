@@ -15,6 +15,7 @@ interface PaginationProps {
   totalPages: number
   currentPage: number
 }
+
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
@@ -87,7 +88,9 @@ export default function ListLayoutWithTags({
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
               {pathname.startsWith('/blog') ? (
-                <h3 className="font-bold uppercase text-primary-500 dark:text-primary-400">All Posts</h3>
+                <h3 className="font-bold uppercase text-primary-500 dark:text-primary-400">
+                  All Posts
+                </h3>
               ) : (
                 <Link
                   href={`/blog`}
