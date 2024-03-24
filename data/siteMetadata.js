@@ -1,6 +1,6 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Nam Thang Blog',
+  title: 'Nam Thang',
   author: 'Nam Thang',
   headerTitle: 'Nam Thang',
   description: 'Just follow what you think it is right to do',
