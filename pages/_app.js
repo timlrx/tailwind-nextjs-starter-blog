@@ -17,6 +17,7 @@ import { ClientReload } from "@/components/ClientReload"
 import TopBanner from "@/components/topBanner"
 import posthog from "posthog-js"
 import { PostHogProvider } from "posthog-js/react"
+import RSS from "@/components/Rss"
 
 const isDevelopment = process.env.NODE_ENV === "development"
 const isSocket = process.env.SOCKET
@@ -103,6 +104,7 @@ export default function App({ Component, pageProps }) {
           <LayoutWrapper>
             <Component {...pageProps} />
           </LayoutWrapper>
+          <RSS />
         </ThemeProvider>
       </PostHogProvider>
     </>

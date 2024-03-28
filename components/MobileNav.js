@@ -1,10 +1,11 @@
 import { useState } from "react"
 import Link from "./Link"
 import headerNavLinks from "@/data/headerNavLinks"
+import useTranslation from "next-translate/useTranslation"
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
-
+  const { t } = useTranslation()
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
@@ -65,7 +66,7 @@ const MobileNav = () => {
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                {link.title}
+                {t(`headerNavLinks:${link.title.toLowerCase()}`)}{" "}
               </Link>
             </div>
           ))}

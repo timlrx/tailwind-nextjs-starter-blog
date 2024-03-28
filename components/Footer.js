@@ -1,6 +1,7 @@
 import Link from "./Link"
 import siteMetadata from "@/data/siteMetadata"
 import SocialIcon from "@/components/social-icons"
+// import { useRouter } from "next/router"
 
 export default function Footer() {
   return (

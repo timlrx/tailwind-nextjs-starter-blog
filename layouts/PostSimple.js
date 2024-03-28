@@ -6,13 +6,24 @@ import siteMetadata from "@/data/siteMetadata"
 import formatDate from "@/lib/utils/formatDate"
 import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/ScrollTopAndComment"
+import useTranslation from "next-translate/useTranslation"
+import { useRouter } from "next/router"
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  next,
+  prev,
+  children,
+  availableLocales,
+}) {
   const { date, title, image: bannerImage } = frontMatter
-
+  const { t } = useTranslation()
+  const { locale } = useRouter()
   return (
     <SectionContainer>
       <BlogSEO
+        availableLocales={availableLocales}
         url={`${siteMetadata.siteUrl}/p/${frontMatter.slug}`}
         {...frontMatter}
         bannerImage={bannerImage}
@@ -24,9 +35,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
               <dl>
                 <div>
-                  <dt className="sr-only">Published on</dt>
+                  <dt className="sr-only">{t("common:pub")}</dt>{" "}
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date)}</time>
+                    <time dateTime={date}>{formatDate(date, locale)}</time>{" "}
                   </dd>
                 </div>
               </dl>
