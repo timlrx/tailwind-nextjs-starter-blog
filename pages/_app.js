@@ -84,17 +84,6 @@ export default function App({ Component, pageProps }) {
               }}
               defer
             />
-
-            {/* <script
-          dangerouslySetInnerHTML={{
-            __html: renderSnippet(),
-          }}
-          defer
-        /> */}
-            {/* <meta
-          httpEquiv="Content-Security-Policy"
-          content="img-src data: https://client.crisp.chat https://image.crisp.chat https://storage.crisp.chat; font-src https://client.crisp.chat; media-src https://client.crisp.chat; style-src 'unsafe-inline' https://client.crisp.chat; frame-src https://game.crisp.chat; script-src https://client.crisp.chat https://settings.crisp.chat; connect-src https://client.crisp.chat https://storage.crisp.chat wss://client.relay.crisp.chat wss://stream.relay.crisp.chat"
-        ></meta> */}
           </Head>
           {process.env.NODE_ENV === "production" && <GoogleAnalytics trackPageViews />}
 

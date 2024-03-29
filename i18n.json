@@ -1,6 +1,7 @@
 {
   "locales": ["en", "fr"],
   "defaultLocale": "en",
+  "localeDetection": false,
   "pages": {
     "*": ["common", "headerNavLinks", "newsletter", "404", "SEO"],
     "/projects": ["projects"]
