@@ -4,7 +4,7 @@ const siteMetadata = {
   author: "Axolo",
   headerTitle: {
     en: "Axolo - The best pull request Slack application",
-    fr: "Pull request Slack applicatio & best practices",
+    fr: "Pull request Slack application & best practices",
   },
   description: {
     en: "Discover best practices and tech news shared by the Axolo team. Product updates, interviews with engineering leaders and thoughts on engineering collaboration are on the menu.",
