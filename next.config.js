@@ -2,7 +2,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
 
-const nextTranslate = require("next-translate")
+const nextTranslate = require("next-translate-plugin")
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `

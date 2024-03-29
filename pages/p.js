@@ -4,7 +4,7 @@ import ListLayout from "@/layouts/ListLayout"
 import { PageSEO } from "@/components/SEO"
 import useTranslation from "next-translate/useTranslation"
 
-export const POSTS_PER_PAGE = 5
+export const POSTS_PER_PAGE = 10
 
 export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ""

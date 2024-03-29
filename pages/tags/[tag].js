@@ -50,7 +50,7 @@ export async function getStaticProps({ params, defaultLocale, locale, locales })
   const availableLocales = []
   await locales.forEach(async (ilocal) => {
     const otherLocale = ilocal !== defaultLocale ? ilocal : ""
-    const itags = await getAllTags("blog", otherLocale)
+    const itags = await getAllTags("p", otherLocale)
     Object.entries(itags).map((itag) => {
       if (itag[0] === params.tag) availableLocales.push(ilocal)
     })

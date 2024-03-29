@@ -48,7 +48,7 @@ export async function getStaticProps({ defaultLocale, locales, locale, params })
   const availableLocales = []
   await locales.forEach(async (ilocal) => {
     const otherLocale = ilocal !== defaultLocale ? ilocal : ""
-    const iAllPosts = await getAllFilesFrontMatter("blog", otherLocale)
+    const iAllPosts = await getAllFilesFrontMatter("p", otherLocale)
     iAllPosts.map((ipost) => {
       if (ipost.slug === post.frontMatter.slug && ipost.slug !== "") availableLocales.push(ilocal)
     })
