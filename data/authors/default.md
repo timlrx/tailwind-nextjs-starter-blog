@@ -9,4 +9,4 @@ linkedin: https://www.linkedin.com/in/arthurcoudouy/
 github: https://github.com/acoudouy
 ---
 
-Arthur Coudouy has been helping engineering teams collaborate during code reviews for the past three years.
+As Co-Founder of Axolo, Arthur has spent the past three years enhancing collaboration within tech teams, focusing on merging coding with operational efficiency. His work involved direct engagement with engineering teams, streamlining their review processes through Axolo's GitHub-Slack integration, ensuring optimal communication and targeted notifications. He has conducted extensive research on DORA metrics and the Accelerate & SPACE frameworks, applying these insights to enhance the tool's effectiveness in boosting software delivery performance and team satisfaction.
