@@ -3,7 +3,6 @@ title: Next.js 中关于'use client'的使用误解及解法
 date: 2024-03-30 12:04:36
 tags:
   [React]
-image: http://image.hansking.cn/picgo/243239077-684221b7-f31b-4e71-b6b5-5380245bda42.png
 ---
 
 ## client component vs server component
