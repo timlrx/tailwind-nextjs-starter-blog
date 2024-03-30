@@ -1,9 +1,7 @@
 ---
 title: Next.js 中关于'use client'的使用误解及解法
 date: 2024-03-30 12:16:16
-tags:
-  [React]
-
+tags: [React]
 ---
 ## client component vs server component
 
@@ -11,7 +9,7 @@ tags:
 
 ```tsx
 tsx
-复制代码// app/page.tsx
+// app/page.tsx
 import styles from './page.module.css'
 import Button from './components/button'
 export default function Home() {
@@ -41,7 +39,7 @@ export default function Home() {
 
 ```tsx
 tsx
-复制代码'use client'
+'use client'
 import styles from './page.module.css'
 import Button from './components/button'
 import Post from './components/post'
@@ -77,7 +75,7 @@ export default function Home() {
 
 ```tsx
 tsx
-复制代码// app/context/ThemeComtext.tsx
+// app/context/ThemeComtext.tsx
 'use client'
 import { useState, cloneElement, ReactNode, ReactElement } from 'react'
 export default function ThemeContextProvider({ children }: { children: ReactNode }) {
@@ -95,7 +93,7 @@ export default function ThemeContextProvider({ children }: { children: ReactNode
 
 ```tsx
 tsx
-复制代码import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ThemeContextProvider from './context/ThemeContext'
@@ -128,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```jsx
 jsx
-复制代码import style from './button.module.css'
+import style from './button.module.css'
 export default function Button() {
 	return (
 		<div className={style.btn} onClick={() => console.log('click me')}>
@@ -142,7 +140,7 @@ server Component
 
 ```jsx
 jsx
-复制代码import sanitizeHtml from 'sanitize-html'
+import sanitizeHtml from 'sanitize-html'
 import Button from './button'
 export default function Post() {
 	return (
@@ -158,7 +156,7 @@ Client component
 
 ```jsx
 jsx
-复制代码'use client'
+'use client'
 import Button from './button'
 export default function Form() {
 	return (
