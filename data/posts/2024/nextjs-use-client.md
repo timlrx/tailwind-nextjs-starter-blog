@@ -5,7 +5,6 @@ tags:
   [React]
 
 ---
-
 ## client component vs server component
 
 我们在 page.tsx中导入 Button 自定义组件
@@ -29,8 +28,7 @@ export default function Home() {
 
 ![](http://image.hansking.cn/picgo/202403301210616.png)
 
-可以简单按照报错提示修改为 client component 这样就没问题 ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52543b878e4449099b41bca54535b77a~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3820&h=2092&s=804361&e=png&b=232323)
-
+可以简单按照报错提示修改为 client component 这样就没问题
 ![](http://image.hansking.cn/picgo/20240330121133.png)
 
 但是如果你稍不注意直接在 page.tsx 加上'use client'也是没有报错的！
