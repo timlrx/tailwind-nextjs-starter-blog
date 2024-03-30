@@ -1,3 +1,11 @@
+---
+title: Next.js 中关于'use client'的使用误解及解法
+date: 2024-03-30 12:16:16
+tags:
+  [React]
+
+---
+
 ## client component vs server component
 
 我们在 page.tsx中导入 Button 自定义组件
