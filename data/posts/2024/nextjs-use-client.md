@@ -1,10 +1,3 @@
----
-title: Next.js 中关于'use client'的使用误解及解法
-date: 2024-03-30 12:04:36
-tags:
-  [React]
----
-
 ## client component vs server component
 
 我们在 page.tsx中导入 Button 自定义组件
@@ -26,13 +19,17 @@ export default function Home() {
 
 由于 nextjs 默认 src之下的组件都是 server component，在Button组件（server component）中，如果直接调用client component 才能使用的交互性例如 onClick useState是会报错的
 
-![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/855aeac9a88e4b2b9288ff5719556777~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3814&h=2094&s=1367505&e=png&b=232323)
+![](http://image.hansking.cn/picgo/202403301210616.png)
 
 可以简单按照报错提示修改为 client component 这样就没问题 ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52543b878e4449099b41bca54535b77a~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3820&h=2092&s=804361&e=png&b=232323)
 
+![](http://image.hansking.cn/picgo/20240330121133.png)
+
 但是如果你稍不注意直接在 page.tsx 加上'use client'也是没有报错的！
 
-![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4b4889585cce4beda74cbf977675c578~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3824&h=2074&s=944723&e=png&b=232323)
+![](http://image.hansking.cn/picgo/20240330121154.png)
+
+
 
 但是这样造成的问题是：导入page.tsx 的所有组件都将是'client component',那和直接写 react 有什么区别..
 
@@ -54,15 +51,19 @@ export default function Home() {
 }
 ```
 
-假设 Post 组件中需要加载一个很大的第三方库例如`sanitize-html`![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9721cc54a4cb438cb1ae2daa88b0977c~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1392&h=324&s=57831&e=png&b=242424)
+假设 Post 组件中需要加载一个很大的第三方库例如`sanitize-html
 
-如果放在client component 就不太适宜，可以看官方文档的第四条，将导入的较大第三方库尽量放在server component上减少客户端的压力 ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e1ef3142ae64f3983821a384cf4131e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1344&h=1338&s=193916&e=png&b=fefefe)
+![](http://image.hansking.cn/picgo/20240330121318.png)
+
+如果放在client component 就不太适宜，可以看官方文档的第四条，将导入的较大第三方库尽量放在server component上减少客户端的压力 
+
+![](http://image.hansking.cn/picgo/20240330121337.png)
 
 所以最优的解决办法就是：谁需要交互性就将最叶子节点变成客户端组件
 
-❎ ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/310b31e9fb2841b885e68ba5662725cf~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1976&h=1138&s=123451&e=png&b=ffffff)
+❎ ![](http://image.hansking.cn/picgo/20240330121407.png)
 
-✔️ ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f75939680dcf4532a3937121250563b8~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1888&h=1114&s=119919&e=png&b=ffffff)
+✔️ ![](http://image.hansking.cn/picgo/20240330121447.png)
 
 ## 使用 context 封装 children
 
@@ -162,9 +163,8 @@ export default function Form() {
 }
 ```
 
-结果是符合直觉的 ![Img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/280deb9b6c854532b7bb9bc0e2dfd13b~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=3828&h=2058&s=1131825&e=png&b=232323) 如果将 Post 组件删掉是不会报错的，也就是说在 client component使用Button会表现为client，而在 server component不会被影响，各自独立
+结果是符合直觉的 
 
-作者：oddpro
-链接：https://juejin.cn/post/7301948815753445414
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+![](http://image.hansking.cn/picgo/20240330121502.png)
+
+如果将 Post 组件删掉是不会报错的，也就是说在 client component使用Button会表现为client，而在 server component不会被影响，各自独立
