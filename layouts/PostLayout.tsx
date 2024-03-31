@@ -81,8 +81,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               href={author.twitter}
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             >
-                              {author.twitter.replace('https://twitter.com/', '@')
-                              .replace('https://x.com/', '@')}
+                              {author.twitter
+                                .replace('https://twitter.com/', '@')
+                                .replace('https://x.com/', '@')}
                             </Link>
                           )}
                         </dd>
