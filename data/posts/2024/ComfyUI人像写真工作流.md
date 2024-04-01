@@ -2,7 +2,7 @@
 title: ComfyUI 人像写真工作流
 date: 2024-03-29 11:47:01
 tags:
-  [React]
+  [AI]
 image: http://image.hansking.cn/picgo/ComfyUIDemo.png
 ---
 
