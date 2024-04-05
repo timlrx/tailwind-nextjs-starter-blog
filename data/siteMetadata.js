@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'Welcome to the blog of an unapologetically Black Engineering Manager, helping to make the tech field more equitable. I build high performing teams by leading with a nurturing, but demanding style. I care more about the impact of actions than the intention behind them. Follow me as I share my path to becoming a better leader and what is exciting in my life.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://stephondoestech.com',
+  siteUrl: 'https://stephondoestech.dev',
   siteRepo: 'https://github.com/stephondoestech/stephondoestech_personal_blog',
   siteLogo: './static/images/avatar2.png',
   socialBanner: '',
