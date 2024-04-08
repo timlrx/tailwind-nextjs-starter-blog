@@ -4,17 +4,22 @@ import siteMetadata from "@/data/siteMetadata"
 import { useState } from "react"
 import Pagination from "@/components/Pagination"
 import formatDate from "@/lib/utils/formatDate"
+import useTranslation from "next-translate/useTranslation"
+import { useRouter } from "next/router"
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState("")
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter?.tags?.join(" ")
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+    return searchContent?.toLowerCase().includes(searchValue.toLowerCase())
   })
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+
+  const { t } = useTranslation()
+  const { locale } = useRouter()
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
               aria-label="Search articles"
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search articles"
+              placeholder={t("common:search")}
               className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
             <svg
@@ -55,9 +60,9 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
               <li key={slug} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
-                    <dt className="sr-only">Published on</dt>
+                    <dt className="sr-only">{t("common:pub")}</dt>{" "}
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
+                      <time dateTime={date}>{formatDate(date, locale)}</time>{" "}
                     </dd>
                   </dl>
                   <div className="space-y-3 xl:col-span-3">

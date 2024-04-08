@@ -1,12 +1,14 @@
 import { useRef, useState } from "react"
 
 import siteMetadata from "@/data/siteMetadata"
+import useTranslation from "next-translate/useTranslation"
 
 const NewsletterForm = ({ title = "Subscribe to the newsletter" }) => {
   const inputEl = useRef(null)
   const [error, setError] = useState(false)
   const [message, setMessage] = useState("")
   const [subscribed, setSubscribed] = useState(false)
+  const { t } = useTranslation()
 
   const subscribe = async (e) => {
     e.preventDefault()
@@ -40,7 +42,7 @@ const NewsletterForm = ({ title = "Subscribe to the newsletter" }) => {
       <form className="flex flex-col sm:flex-row" onSubmit={subscribe}>
         <div>
           <label className="sr-only" htmlFor="email-input">
-            Email address
+            {t("newsletter:mail")}{" "}
           </label>
           <input
             autoComplete="email"
@@ -62,12 +64,14 @@ const NewsletterForm = ({ title = "Subscribe to the newsletter" }) => {
             type="submit"
             disabled={subscribed}
           >
-            {subscribed ? "Thank you!" : "Sign up"}
+            {subscribed ? t("newsletter:buttonSuccess") : t("newsletter:buttonDefault")}{" "}
           </button>
         </div>
       </form>
       {error && (
-        <div className="w-72 pt-2 text-sm text-red-500 dark:text-red-400 sm:w-96">{message}</div>
+        <div className="w-72 pt-2 text-sm text-red-500 dark:text-red-400 sm:w-96">
+          {t("newsletter:messageError")}
+        </div>
       )}
     </div>
   )

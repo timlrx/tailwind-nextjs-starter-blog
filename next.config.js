@@ -2,6 +2,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
 
+const nextTranslate = require("next-translate-plugin")
+
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -52,62 +54,64 @@ const securityHeaders = [
   },
 ]
 
-module.exports = withBundleAnalyzer({
-  basePath: "/blog",
-  reactStrictMode: true,
-  pageExtensions: ["js", "jsx", "md", "mdx"],
-  images: {
-    domains: [
-      "apichaos.s3.eu-west-3.amazonaws.com",
-      "axolo.s3.eu-west-3.amazonaws.com",
-      "datatribes-bucket.s3.eu-west-3.amazonaws.com",
-    ],
-  },
-  eslint: {
-    dirs: ["pages", "components", "lib", "layouts", "scripts"],
-  },
-  env: {
-    CRISP_WEBSITE_ID: process.env.CRISP_WEBSITE_ID,
-    SEGMENT_API_KEY: process.env.SEGMENT_API_KEY,
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ]
-  },
-  webpack: (config, { dev, isServer }) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-    })
-
-    if (!dev && !isServer) {
-      // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        "react/jsx-runtime.js": "preact/compat/jsx-runtime",
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
+module.exports = nextTranslate(
+  withBundleAnalyzer({
+    basePath: "/blog",
+    reactStrictMode: true,
+    pageExtensions: ["js", "jsx", "md", "mdx"],
+    images: {
+      domains: [
+        "apichaos.s3.eu-west-3.amazonaws.com",
+        "axolo.s3.eu-west-3.amazonaws.com",
+        "datatribes-bucket.s3.eu-west-3.amazonaws.com",
+      ],
+    },
+    eslint: {
+      dirs: ["pages", "components", "lib", "layouts", "scripts"],
+    },
+    env: {
+      CRISP_WEBSITE_ID: process.env.CRISP_WEBSITE_ID,
+      SEGMENT_API_KEY: process.env.SEGMENT_API_KEY,
+    },
+    async headers() {
+      return [
+        {
+          source: "/(.*)",
+          headers: securityHeaders,
+        },
+      ]
+    },
+    webpack: (config, { dev, isServer }) => {
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       })
-    }
 
-    return config
-  },
-  async redirects() {
-    return [
-      {
-        source: "/p/gitlab-self-managed-slack-integrations",
-        destination: "/p/gitlab-cicd-pipeline-slack-notifications",
-        permanent: true,
-      },
-      {
-        source: "/blog/p/gitlab-self-managed-slack-integrations",
-        destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
-        permanent: true,
-      },
-    ]
-  },
-})
+      if (!dev && !isServer) {
+        // Replace React with Preact only in client production build
+        Object.assign(config.resolve.alias, {
+          "react/jsx-runtime.js": "preact/compat/jsx-runtime",
+          react: "preact/compat",
+          "react-dom/test-utils": "preact/test-utils",
+          "react-dom": "preact/compat",
+        })
+      }
+
+      return config
+    },
+    async redirects() {
+      return [
+        {
+          source: "/p/gitlab-self-managed-slack-integrations",
+          destination: "/p/gitlab-cicd-pipeline-slack-notifications",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/gitlab-self-managed-slack-integrations",
+          destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
+          permanent: true,
+        },
+      ]
+    },
+  })
+)

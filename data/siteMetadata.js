@@ -1,12 +1,15 @@
 const siteMetadata = {
-  title:
-    "Axolo is the best pull request Slack application out there, learn more about it in our blog!",
+  title: "Axolo Blog | Pull request Slack application, best practices and tech news",
   "slack-app-id": "A01RP0R62N7",
   author: "Axolo",
-  headerTitle: "The best GitHub (& GitLab) pull request Slack application",
-
-  description:
-    "Discover best practices and tech news shared by the Axolo team. Product updates, interviews with engineering leaders and thoughts on engineering collaboration are on the menu.",
+  headerTitle: {
+    en: "Axolo - The best pull request Slack application",
+    fr: "Pull request Slack application & best practices",
+  },
+  description: {
+    en: "Discover best practices and tech news shared by the Axolo team. Product updates, interviews with engineering leaders and thoughts on engineering collaboration are on the menu.",
+    fr: "Découvrez les meilleures pratiques et les actualités technologiques partagées par l'équipe Axolo. Mises à jour du produit, interviews avec des leaders tech et réflexions sur la collaboration entre développeurs sont au menu.",
+  },
   language: "en-us",
   "twitter:label1": "About",
   "twitter:data1": "axolo.co",

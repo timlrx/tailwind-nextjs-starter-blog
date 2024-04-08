@@ -4,18 +4,25 @@ import Tag from "@/components/Tag"
 import siteMetadata from "@/data/siteMetadata"
 import { getAllTags } from "@/lib/tags"
 import kebabCase from "@/lib/utils/kebabCase"
+import useTranslation from "next-translate/useTranslation"
 
-export async function getStaticProps() {
-  const tags = await getAllTags("p")
+export async function getStaticProps({ defaultLocale, locale, locales }) {
+  const otherLocale = locale !== defaultLocale ? locale : ""
+  const tags = await getAllTags("p", otherLocale)
 
-  return { props: { tags } }
+  return { props: { tags, locale, availableLocales: locales } }
 }
 
-export default function Tags({ tags }) {
+export default function Tags({ tags, locale, availableLocales }) {
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
+  const { t } = useTranslation()
   return (
     <>
-      <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I blog about" />
+      <PageSEO
+        title={`${t("headerNavLinks:tags")} - ${siteMetadata.author}`}
+        description={t("SEO:tags")}
+        availableLocales={availableLocales}
+      />{" "}
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
         <div className="space-x-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:border-r-2 md:px-6 md:text-6xl md:leading-14">
