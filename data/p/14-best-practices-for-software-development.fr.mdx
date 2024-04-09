@@ -1,0 +1,141 @@
+---
+title: "14 meilleures pratiques pour le développement logiciel de 100 CTO"
+date: "2024-04-09"
+tags: ["développement logiciel"]
+draft: false
+summary: "En construisant Axolo, nous avons interviewé plus de 100 CTO // Head of Engineering et nous leur avons demandé ce qu'ils considéraient comme une bonne pratique. Voici la liste :"
+image: "/blog/static/images/checks_github.png"
+authors: ["sydney"]
+---
+
+En construisant Axolo, nous avons interviewé plus de 100 CTO // Head of Engineering et nous leur avons demandé ce qu'ils considéraient comme une bonne pratique. Voici la liste :
+
+## 1. Pull Requests et code reviews
+
+- Les PR devraient être courts et précis
+- Avoir de 1 à 3 personnes pour les revoir
+- Les retours devraient être amicaux et contribuer à la connaissance mutuelle
+
+Certaines des équipes que j'ai interviewées ont des CTO qui ne font pas réviser leur code. Ils poussent des hotfix et créent du code que personne ne voit jusqu'à ce qu'ils tombent dessus en construisant quelque chose par-dessus. D'autres équipes appliquent le "chaque morceau de code devrait être revu par au moins une autre personne dans l'équipe" même si cette personne est plus junior, pourquoi ? Une personne junior peut toujours poser des questions pertinentes, demander des éclaircissements sur des points qui ne semblent pas clairs, et plus important encore, apprendre d'une personne senior dans l'équipe.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/pullrequestsandcodereviews.png"
+    alt="Pull request et code reviews"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 2. Linter
+
+Les linters sont un bon moyen de maintenir un environnement de code sain. Si tout le monde respecte les mêmes normes et syntaxes, cela aide à comprendre le code des autres. J'ai aussi personnellement beaucoup appris des linters, quand il y a une erreur, cela m'explique pourquoi je devrais faire d'une manière plutôt que d'une autre.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img src="/blog/static/images/bestpractices/linter.png" alt="Linter" style={{ width: "500px" }} />
+</div>
+
+## 3. Testing
+
+Tests unitaires + tests fonctionnels. La plupart des équipes avec lesquelles j'ai échangé considèrent les tests comme une bonne pratique. Cela leur donne confiance dans leur code, leur permet de partager la responsabilité quand quelque chose se casse, et évite les erreurs en production.
+
+Une personne avec qui j'ai parlé a mentionné qu'elle ne se sentait pas responsable si quelque chose d'essentiel se casse en production si les tests passent, car les tests devraient couvrir tous les services centraux.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/testing.png"
+    alt="Capture d'écran de Testing"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 4. Code coverage tools
+
+La couverture de code est une métrique pour évaluer combien de votre code est couvert par des tests. Elle est généralement exprimée en %. Certains outils comme CodeCov vous permettent de calculer ce nombre pour chaque Pull Request que vous créez.
+
+Certaines entreprises aiment avoir une couverture de code élevée (> 80%) tandis que d'autres ont une politique moyenne (~50%). Je suppose que tout dépend de l'importance de votre service (votre service est-il un générateur de memes ou un SaaS pour hôpitaux ?) et des directives de votre entreprise. Les Code coverage tools sont excellents pour indiquer quel type d'attentes vous avez envers votre équipe technique et combien de temps devrait être consacré aux tests pour chaque fonctionnalité que vous développez.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/code-coverage-tools.png"
+    alt="Code coverage tools"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 5. Responsabilité Unique
+
+Évitez à tout prix le code magique (code qui fait beaucoup de choses) et privilégiez la méthodologie SOLID. Une fonction = une responsabilité. Il en va de même pour les Pull Requests et les fichiers : Un Pull Request devrait traiter une fonctionnalité, un fichier devrait couvrir un seul sujet.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/meme-code-magic.jpg"
+    alt="Meme code magique"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 6. Méthodologie Polaris
+
+Marcel de Meta-Api m'a raconté celle-ci. Ils ont des sprints de 6 semaines (Q&A inclus) + 2 semaines de repos. Le repos est un moment pour eux de revenir sur ce qui n'a pas été terminé, de "sentir le code" comme il dit. Ces deux semaines sont une opportunité pour eux de refactoriser et de repenser leur architecture.
+
+Je pense que cela a beaucoup de sens, parfois vous devez faire quelque chose rapidement pour tester une hypothèse, et pendant que vous faites cela, vous devez créer des fonctions qui ne sont pas tout à fait correctes et vous vous laissez un commentaire // TODO CHANGE THIS LATER. Mais vous n'avez jamais le temps de revenir à ce commentaire jusqu'à ce que quelque chose se casse ou jusqu'à ce que vous ayez besoin de changer cette fonction. Les méthodes Polaris sont un excellent moyen de surmonter cela.
+
+## 7. Conventions de nommage
+
+Beaucoup de personnes avec qui j'ai parlé mentionnent les conventions de nommage. L'une d'elles est la convention de nommage Open API. Être cohérent, logique et prévisible dans la manière dont vous nommez vos variables, fonctions et routes permettra à quiconque de lire, comprendre et utiliser le code de manière effective et efficace.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/naming-convention.png"
+    alt="Capture d'écran des Spécifications OpenAPI par Swagger"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 8. Intégration Continue & Développement Continu
+
+Expédier constamment du code présente de nombreux avantages : un processus de développement plus court signifie qu'il est plus facile de détecter le code défectueux et il est plus facile de tester les fonctionnalités qui sont expédiées. Cela a également un MTTR (Mean time to Resolution) plus rapide, car vous êtes habitué à expédier constamment du code, si une erreur apparaît, vous résoudrez cette erreur plus rapidement.
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/continuous integration and development.png"
+    alt="intégration continue et développement continu"
+    style={{ width: "500px" }}
+  />
+</div>
+
+## 9. MonoRepo
+
+Quelques CTO m'ont parlé de leur récente transition vers un mono repo (backend + front end dans le même dépôt) plutôt que plusieurs. Ils ont constaté une amélioration massive de la clarté et m'ont dit que cela rendait plus facile l'essai de nouvelles pull request.
+
+## 10. Feature Switch
+
+Les entreprises plus établies ont généralement cela. Un feature switch qui vous permet de pousser une fonctionnalité en production et de l'activer pour certains de vos utilisateurs avant de la lancer dans la nature. Cela vous permet de tester auprès d'un public spécifique et de vous assurer que tout fonctionne comme prévu. En tant qu'utilisateur, vous pouvez parfois demander à faire partie de ces audiences. J'ai par exemple demandé à LinkedIn d'être un utilisateur bêta pour leurs nouvelles fonctionnalités.
+
+## 11. Lancement de test à chaque commit
+
+L'une des entreprises avec lesquelles j'ai parlé lançait leur CI complet (21000 tests) pour chaque commit pour chaque développeur. Le coût était d'environ 1/2€ par commit. L'idée derrière cela est d'améliorer l'expérience des développeurs et de s'assurer qu'il n'y a pas d'effets secondaires pour chaque commit lancé.
+
+## 12. Spécifications claires - impliquer tout le monde dans la création des spécifications
+
+Avoir des spécifications claires, passer du temps supplémentaire là-dessus et impliquer les développeurs dès le début de leur définition est quelque chose qui aide de nombreuses entreprises. Si ce que vous devez faire est clair, alors c'est 10 fois plus facile à réaliser. Je pense qu'impliquer les développeurs dans les définitions des spécifications les rend plus efficaces car le développeur pourra dire quelle fonctionnalité prend plus de temps qu'une autre et expliquer pourquoi.
+
+## 13. Méthodologie MoSCow
+
+J'ai entendu parler de ce cadre par une équipe française, le cadre Moscou est là pour aider les développeurs principaux et les CTO à prioriser le travail à faire. M : Must have, S : Should Have, C : Could Have, Won't have. Vous devez faire attention à ne pas tout mettre en must sinon cette méthodologie n'aide pas.
+
+## 14. CREG : Guide des Emojis pour la Revue de Code
+
+Le guide des emojis pour la code review est un ensemble de directives pour faire des commentaires dans les Pull Requests. C'est une opportunité pour le relecteur de transmettre l'intention de ses commentaires. Exemples : 🔧 Signifie que je pense que cela doit être changé. 🌱 Signifie planter une graine pour le futur, etc. Voir la liste complète sur GitHub : https://github.com/ItisChaos/code-review-emoji-guide/blob/master/README.md
+
+<div style={{ display: "flex", justifyContent: "center" }}>
+  <img
+    src="/blog/static/images/bestpractices/code review emoji guide.png"
+    alt="guide des emojis pour la code review"
+    style={{ width: "500px" }}
+  />
+</div>
+
+Il existe de nombreuses bonnes pratiques et j'en ai probablement manqué beaucoup, y a-t-il une bonne pratique qui n'est pas listée ici que vous appliquez dans votre entreprise ? Avez-vous découvert quelque chose de nouveau à travers ce post ?
+
+<CTABanner type="learn" />
