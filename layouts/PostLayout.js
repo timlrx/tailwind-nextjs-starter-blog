@@ -178,7 +178,7 @@ export default function PostLayout({
                 )}
               </div>
               <div className="sideBannerContainer">
-                <TOCSide headings={toc?.filter((t) => t.depth === 2 || t.depth === 3)} />
+                <TOCSide headings={toc?.filter((t) => t.depth === 2)} />
 
                 <SideBannerForArticle />
                 <div className="pt-4 xl:pt-8">
