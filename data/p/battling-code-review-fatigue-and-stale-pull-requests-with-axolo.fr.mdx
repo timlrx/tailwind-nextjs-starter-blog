@@ -1,0 +1,183 @@
+---
+title: "Combattre la fatigue des code reviews et les pull requests obsolètes avec Axolo"
+date: "2024-04-10"
+lastmod: "2024-04-10"
+tags: ["Customer-stories", "software-development", "productivity"]
+draft: false
+summary: "Les code reviews sont une grande partie du quotidien de toute équipe technique. Elles nous aident à nous assurer que nous écrivons le meilleur code possible et à attraper les bugs tôt. Mais soyons honnêtes, elles peuvent aussi être fatigantes et prendre beaucoup de temps. De plus, parfois les pull requests restent là, en attente d'une revue, devenant 'obsolètes' et bloquant tout le processus de développement. Dans cet article, nous allons explorer les défis communs des code reviews et comment ils peuvent mener à des retards et à la fatigue."
+image: "/blog/static/images/bestpractices/fatigue.jpg"
+---
+
+Les code reviews sont une grande partie du quotidien de toute équipe technique. Elles nous aident à nous assurer que nous écrivons le meilleur code possible et à attraper les bugs tôt. Mais soyons honnêtes, elles peuvent aussi être fatigantes et prendre beaucoup de temps. De plus, parfois les pull requests restent là, en attente d'une revue, devenant 'obsolètes' et bloquant tout le processus de développement.
+
+Explorons les défis communs des code reviews et comment ils peuvent mener à des retards et à la fatigue. Ensuite, nous vous présenterons Axolo - un outil qui synchronise votre GitHub (ou GitLab) et Slack pour rendre votre processus de code review plus fluide et rapide. Nous parlerons de ses fonctionnalités et partagerons même quelques études de cas réelles (une sur GitHub, et la seconde sur GitLab) pour le montrer en action. Alors, commençons !
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## 1. Défis des Code Reviews
+
+Les code reviews sont essentielles pour l'assurance qualité et pour favoriser la collaboration d'équipe, mais elles viennent avec leur ensemble de défis :
+
+- **Incohérences dans les Cycles de Review** : Le processus de revue n'est pas toujours uniforme, menant à des retards imprévisibles et à l'arrêt du cycle de développement.
+
+- **Difficulté à Suivre les PRs** : Lorsque vous jonglez avec plusieurs pull requests, il est facile de perdre la trace de celles qui nécessitent une attention immédiate, contribuant aux retards.
+
+- **Lacunes de Communication** : La coordination à travers plusieurs plateformes comme GitHub et Slack peut entraîner des malentendus ou des problèmes négligés, réduisant l'efficacité des code reviews.
+
+<ImageContainer
+  alt="Défis des code reviews"
+  src="/blog/static/images/bestpractices/codereview-challenges.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={1288}
+  height={858}
+/>
+
+## 2. Importance des Code Reviews
+
+Malgré les défis, l'importance des code reviews ne peut être sous-estimée :
+
+- **Assure la Qualité et la Maintenabilité du Code** : Les reviews sont un point de contrôle qui assure que le code adhère aux meilleures pratiques, le rendant plus facile à gérer et à mettre à jour à long terme.
+
+- **Facilite le Partage de Connaissances** : En engageant plusieurs membres de l'équipe dans le processus de revue, chacun obtient une compréhension plus claire de la base de code, facilitant la propriété collective.
+
+- **Attrape les Bugs Tôt** : Identifier les problèmes au stade de la revue peut prévenir des erreurs coûteuses plus tard, économisant à la fois du temps et des ressources.
+
+## 3. Axolo : Synchronisation Bidirectionnelle Slack-GitHub
+
+<ImageContainer
+  src="https://axolo.s3.eu-west-3.amazonaws.com/communication/landing/axolo_way.png"
+  alt="La manière Axolo : s'abonner aux pull requests GitHub dans Slack"
+  classNameDiv="!mx-4 bg-white"
+  classNameImage=""
+  width={1200}
+  height={480}
+/>
+Imaginez un monde où basculer entre Slack et GitHub appartient au passé. Axolo tisse de manière transparente
+ces deux plateformes ensemble, créant un espace de travail unique et concentré.
+
+En centralisant toutes vos discussions de Pull Request dans des canaux Slack éphémères, Axolo vous aide à abandonner le chaos et à rationaliser votre flux de travail. Fini la chasse aux PR nécessitant une attention urgente ou la recherche de ce commentaire critique perdu ; tout est là, dans votre canal Slack dédié.
+
+Et qu'en est-il de ces notifications interminables ? Avec la synchronisation en temps réel d'Axolo, chaque commentaire et mise à jour de statut est reflété sur les deux plateformes. Cela signifie que vous êtes toujours dans la boucle, mais sans la distraction de pings inutiles.
+
+## 4. Comment fonctionnent les fonctionnalités d'Axolo ?
+
+Alors, vous êtes aux prises avec des défis de "code review" et vous cherchez une bouée de sauvetage. Entrez Axolo. Conçu en pensant à vos points de douleur, Axolo va au-delà de simplement faire le pont entre Slack et GitHub ; il révolutionne la manière dont vous abordez les "code reviews".
+
+Parlons des fonctionnalités :
+
+1. **Approvals rapides avec `/lgtm`** : Dites adieu aux approbations manuelles fastidieuses. Un simple commentaire `/lgtm` dans Slack, et votre approbation est enregistrée dans GitHub. Aussi rapide que de taper un emoji.
+
+2. **Rappels de PR Automatisés** : Oubliez les PR obsolètes qui accumulent la poussière numérique. Axolo donne un coup de pouce à votre équipe avec des rappels automatisés, pour que rien ne soit négligé.
+
+3. **Récapitulatifs Quotidiens de PR** : Les stand-ups viennent de devenir beaucoup plus efficaces. Axolo envoie des récapitulatifs quotidiens de PR à des canaux spécifiques, vous donnant un aperçu de l'état des choses, et où l'attention est nécessaire.
+
+<ImageContainer
+  src="/blog/static/images/changelog/stand-up.png"
+  alt="Résumé de pull request Axolo pour les stand-ups"
+  width={1992}
+  height={1101}
+  classNameDiv="mx-10 lg:-mx-10"
+/>
+
+4. **CI/CD, GitHub Actions et pipelines GitLab dans Slack** : Axolo envoie des mises à jour passives pour vos conflits de branches, vérifications de pull request et déploiements dans leurs canaux spécifiques. Personnalisez les mises à jour de statut que vous souhaitez voir.
+
+<ImageContainer
+  alt="notification de canal d'équipe Axolo"
+  src="/blog/static/images/bestpractices/cicd.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1732}
+  height={780}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-88 ">
+  Exemples de notifications CI/CD
+</SubImageText>
+
+5. **Notifications Spécifiques à l'Équipe** : Créez un environnement où tout le monde est au courant mais pas submergé. Axolo envoie des notifications de nouveaux PR uniquement aux canaux d'équipe pertinents, minimisant le bruit.
+
+<ImageContainer
+  alt="notification de canal d'équipe Axolo"
+  src="/blog/static/images/irwin/mag.png"
+  classNameDiv="mx-10 lg:mx-28"
+  classNameImage=""
+  width={830}
+  height={379}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-88 ">
+  Une notification de canal d'équipe indiquant que Sydney a approuvé et que j'ai fusionné
+</SubImageText>
+
+Ce n'est pas juste un outil ; c'est une centrale qui donne à votre équipe d'ingénierie le pouvoir d'être plus efficace, concentrée et collaborative.
+
+<UserReview />
+
+## Amélioration du temps de cycle de PR : Deux Études de Cas
+
+### Étude de Cas 1 sur GitHub : Agency Analytics - Un Changement de Jeu dans la Revue de Code
+
+<TopGuestBanner
+  text="Blake Acheson est le CTO et cofondateur d'Agency Analytics. Il utilise Axolo depuis un an. Nous nous sommes assis avec lui pour discuter de la manière dont Axolo a amélioré leur processus de 'code review' et réduit leur temps de cycle de 'pull request' de 65%."
+  imageUrl="/blog/static/images/agencyanalytics/blake-acheson.webp"
+/>
+
+#### Avant Axolo :
+
+L'équipe d'Agency Analytics avait du mal avec le processus de "code review" inefficace de GitHub et son système de notification peu intuitif. Ils étaient confrontés à des problèmes tels que des temps de prise en charge lents, des cycles de révision de "pull request" prolongés et un flux de travail généralement inefficace.
+
+#### La Transition vers Axolo :
+
+Initialement testé avec une équipe, Axolo s'est rapidement révélé indispensable, rendant le processus de "code review" plus efficace et rationalisé. L'intégration de Slack et Axolo a facilité une communication ouverte, transformant leur approche de développement basée sur le tronc.
+
+<Callout
+  title="Agency Analytics a vu une réduction impressionnante de 65% de leur temps de cycle de 'pull request'."
+  subtitle="La communication bidirectionnelle entre Slack et GitHub a fait des 'code reviews' une priorité, éliminant les retards et facilitant des déploiements rapides en production."
+/>
+
+#### Points Clés :
+
+- L'intégration étroite d'Axolo avec Slack était un avantage significatif, s'intégrant parfaitement dans le flux de travail existant de l'entreprise.
+- La transition vers Axolo a été fluide, et même les membres de l'équipe initialement hésitants sont devenus des défenseurs de son efficacité.
+- La communication ouverte facilitée par Axolo a cultivé un environnement plus collaboratif, conduisant à une amélioration des compétences architecturales et à une approche plus discernante avant le déploiement en production.
+
+Vous pouvez trouver l'étude de cas complète d'Agency Analytics [ici](https://axolo.co/blog/p/how-agency-analytics-reduced-pr-cycle-time-by-65-with-axolo).
+
+### Étude de cas 2 sur GitLab : Révolutionner le flux de travail d'ingénierie chez Irwin
+
+<TopGuestBanner
+  text="Richard Michael est directeur de l'ingénierie chez Irwin. Il a 20 ans d'expérience dans les systèmes informatiques. Nous nous sommes assis pour discuter comment Irwin est passé de la construction de son Slackbot interne à s'appuyer sur Axolo pour automatiser toutes leurs tâches fastidieuses de code review."
+  imageUrl="/blog/static/images/irwin/richard.png"
+/>
+
+#### Avant Axolo :
+
+Le processus de code review chez Irwin était péniblement fastidieux. Les ingénieurs copiaient manuellement les URL des merge request de GitLab et les partageaient dans les canaux Slack. Le processus était tellement encombrant qu'ils ont tenté de construire un Slackbot interne pour l'automatiser.
+
+#### La transition vers Axolo :
+
+Après quelques petits obstacles d'authentification, le passage à Axolo a été fluide. Richard a dit : "C'était plus rapide et plus facile que de terminer notre Slackbot. L'équipe s'est rapidement adaptée, et les conversations ont été déplacées vers le canal Slack MR."
+
+<Callout
+  title="Avec Axolo, l'équipe d'Irwin a bénéficié d'une transparence et d'une visibilité accrues."
+  subtitle="Des fonctionnalités notables comme le statut mergeable, l'attribution des reviewers et les mises à jour automatiques se sont toutes produites dans le canal Slack dédié. Richard note, 'Ces petites choses ont fait une énorme différence'. Un cas d'utilisation remarquable était la possibilité d'assigner des reviewers en utilisant la fonctionnalité de réaction 🔎 d'Axolo."
+/>
+
+#### Principaux enseignements :
+
+- La transition sans heurt vers Axolo a permis à l'équipe de continuer son travail sans perturbation significative.
+- Axolo a éliminé les tâches répétitives et manuelles, libérant les ingénieurs pour se concentrer sur le développement.
+- Les mises à jour en temps réel et les fonctionnalités d'Axolo continuent de rendre le processus de code review plus fluide et plus efficace pour l'équipe d'Irwin.
+
+Pour ceux qui sont intéressés par une plongée plus profonde dans la manière dont Axolo a révolutionné le processus de code review chez Irwin, un enregistrement vidéo complet est disponible [ici](https://axolo.co/blog/p/irwin-shift-from-slackbot-to-axolo).
+
+## 6. Améliorez votre processus de code review avec Axolo
+
+Axolo aborde de front les défis communs en intégrant vos environnements GitHub et Slack, rationalisant ainsi les code reviews et favorisant une atmosphère plus collaborative.
+
+Les études de cas que nous avons partagées d'Agency Analytics et d'Irwin illustrent à quel point Axolo peut être transformateur. Les deux entreprises ont constaté des améliorations notables dans l'efficacité du flux de travail, la réduction des temps de cycle des pull request et l'amélioration de la collaboration d'équipe.
+
+Nous encourageons les équipes qui luttent avec les processus de code review ou les canaux de communication inefficaces à envisager de mettre en œuvre Axolo. Ce n'est pas juste un outil ; c'est une révolution du flux de travail.
+
+Alors, pourquoi attendre ? Transformez votre processus de code review et offrez à votre équipe d'ingénierie le flux de travail efficace et rationalisé qu'elle mérite.
+
+<CTABanner type="try" />

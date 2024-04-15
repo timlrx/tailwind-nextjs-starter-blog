@@ -1,0 +1,136 @@
+---
+title: "Comment implémenter les quatre principales métriques DevOps d'Accelerate en 2024"
+date: "2024-04-10"
+lastmod: "2024-04-10"
+tags: ["développement logiciel", "analytique"]
+summary: "Dr. Nicole Forsgren, Jez Humble et Gene Kim ont publié les résultats de leurs années de recherche développées à partir de 23 000 ensembles de données d'entreprises internationales. Startups, entreprises, à but lucratif, à but non lucratif font tous partie de ce panel."
+image: "/blog/static/images/general/elite_performers.png"
+---
+
+Toutes les équipes d'ingénierie efficaces visent à améliorer la manière dont elles construisent leurs produits et services logiciels. À travers Accelerate, trois chercheurs ont voulu comprendre ce qui fonctionne de manière scientifique.
+Explorez cet article avec nous pour découvrir comment l'implémentation des quatre principales métriques DevOps peut améliorer à la fois la productivité et le bien-être de votre équipe d'ingénierie.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    borderRadius: "0.5rem",
+  }}
+>
+  <Image
+    width={550}
+    height={366}
+    className="rounded-xl"
+    src="/blog/static/images/general/elite_performers.png"
+    alt="Axolo Accelerate Elite Performers DORA metrics"
+  />
+</div>
+
+Dr. Nicole Forsgren, Jez Humble et Gene Kim ont publié les résultats de leurs années de recherche développées à partir de 23 000 ensembles de données d'entreprises internationales. Startups, entreprises, à but lucratif, à but non lucratif font tous partie de ce panel.
+
+Dans <u>_Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations_</u>, vous pouvez apprendre ce qui distingue les meilleures équipes d'ingénierie du reste du monde logiciel. Cet article vise à vous donner une vue d'ensemble de l'importance des quatre principales métriques DevOps, et comment les suivre.
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  }}
+>
+  <Image
+    width={250}
+    height={250}
+    src="https://axolo.s3.eu-west-3.amazonaws.com/communication/blog/book_accelerate.jpg"
+    alt="Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations"
+  />
+</div>
+
+## Résumé des quatre principales métriques DevOps
+
+Votre équipe d'ingénierie utilise-t-elle les meilleures pratiques mondiales ?
+
+| **Métriques d'Accelerate et définition**                                                                                                                                                                                                                                                       | **Niveau optimal**                             | **Niveau élevé**                                | **Niveau moyen**                                | **Niveau faible**                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| **Fréquence de déploiement** : Nombre de déploiements dans une durée donnée. À quelle fréquence votre organisation déploie-t-elle du code en production ou le rend-elle disponible pour les utilisateurs finaux ?                                                                              | À la demande (plusieurs déploiements par jour) | Entre une fois par jour et une fois par semaine | Entre une fois par semaine et une fois par mois | Entre une fois par mois et une fois tous les six mois |
+| **Temps de cycle ou Délai de mise en œuvre** : Temps pour implémenter, tester et livrer le code pour une fonctionnalité (mesuré depuis le premier commit jusqu'au déploiement). Combien de temps cela prend-il pour passer d'un code commit à un code fonctionnant avec succès en production ? | Moins d'un jour                                | Entre un jour et une semaine                    | Entre une semaine et un mois                    | Entre un mois et six mois                             |
+| **Temps moyen de récupération** : Combien de temps faut-il pour restaurer le service lorsqu'un incident impactant les utilisateurs se produit ?                                                                                                                                                | Moins d'une heure                              | Moins d'un jour                                 | Moins d'un jour                                 | Entre une semaine et un mois                          |
+| **Taux d'échec des changements** : Quel pourcentage de changements en production résultent en un service dégradé et nécessitent par la suite une remédiation ?                                                                                                                                 | 0-15 %                                         | 0-15 %                                          | 16-45 %                                         | 46-60 %                                               |
+
+## Pourquoi les métriques Accelerate sont-elles importantes pour les leaders en ingénierie ?
+
+Considérez ces métriques non pas comme l'objectif final pour votre équipe d'ingénierie, mais plutôt comme des indicateurs précieux à surveiller et à affiner au fil du temps. Comme souligné par le Dr Forsgren dans sa conférence ; <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.youtube.com/watch?v=RBuPlMTXuFc">"La clé de la haute performance : ce que les données disent"</a>, la mise en œuvre rigoureuse de ces métriques clés a montré que les équipes d'ingénierie dans la meilleure catégorie ont deux fois plus de chances de réussir leurs objectifs commerciaux (rentabilité, part de marché, nombre de clients) et leurs objectifs non commerciaux (qualité du produit ou du service et satisfaction client). Le Dr Forsgren a conclu que les équipes performant bien sous ces métriques DevOps atteignent une croissance de la capitalisation boursière de 50M supérieure sur trois ans.
+
+De plus, selon le <a target="_blank" rel="noopener noreferrer nofollow" href="https://services.google.com/fh/files/misc/state-of-devops-2018.pdf">Google State of DevOps 2018</a>, il existe une forte corrélation entre le bien-être des ingénieurs et la mise en œuvre réussie de ces métriques. Le rapport souligne que les ingénieurs du groupe de performance Elite "sont 1,8 fois plus susceptibles de recommander leur équipe comme un excellent lieu de travail".
+
+## Quelles sont les quatre métriques Accelerate et leurs meilleures pratiques ?
+
+Les quatre métriques clés sont les suivantes :
+
+### Fréquence de déploiement
+
+À quelle fréquence votre organisation déploie-t-elle avec succès en production ?
+
+La fréquence de déploiement devrait être la métrique la plus facile pour vous à collecter. Contrairement aux autres métriques, elle ne nécessite qu'une seule source d'entrée. Mais attention, nous parlons ici de fréquence et non de volume. Vous ne pouvez pas montrer un volume de déploiement quotidien ou calculer un nombre moyen de déploiements par semaine.
+
+L'autre paramètre à considérer est ce qui constitue un déploiement réussi pour votre organisation. Incluez-vous tout type de déploiement ? Des déploiements qui affecteront au moins 10 % de votre base d'utilisateurs ? 50 % ? C'est à vous de décider.
+
+Les équipes les plus performantes sont considérées comme "déployant quotidiennement", ce qui signifie qu'elles réussissent à libérer en production presque tous les jours. Les quatre différents types de comportements soulignés dans Accelerate sont les suivants, quelle catégorie vous décrit le mieux ?
+
+- À la demande (plusieurs déploiements par jour),
+- Entre une fois par jour et une fois par semaine,
+- Entre une fois par semaine et une fois par mois,
+- Entre une fois par mois et une fois tous les six mois.
+
+### Temps de cycle ou Temps de conduite du changement
+
+Combien de temps faut-il à votre organisation pour libérer une demande client ?
+
+Il existe deux écoles de pensée concernant le Temps de cycle, l'une pouvant être plus facile à suivre au sein de votre équipe d'ingénierie. Vous aurez besoin de deux pièces d'information :
+
+- la date à laquelle un client a demandé une nouvelle fonctionnalité ou lorsque le premier commit de votre ingénieur concernant cette fonctionnalité a eu lieu,
+- la date à laquelle le déploiement a été libéré avec succès.
+
+Les équipes d'ingénierie les plus performantes peuvent libérer en production une nouvelle fonctionnalité le jour même où le travail a commencé. Quelle affirmation est la plus proche de votre organisation ? Nous pouvons libérer avec succès une fonctionnalité commencée aujourd'hui :
+
+- en moins d'un jour,
+- entre un jour et une semaine,
+- entre une semaine et un mois,
+- entre un mois et six mois.
+
+### Taux d'échec des changements
+
+Combien de pourcent de vos déploiements sont à l'origine d'un nouvel échec en production ?
+
+Pour suivre votre Taux d'Échec des Changements, vous devez trouver le déploiement qui a créé chaque nouvel incident en production. Si la plupart de vos déploiements créent de nouveaux incidents, vous devriez essayer de publier plus souvent et avec des modifications plus petites à votre base de code.
+
+Les déploiements des équipes les plus performantes devraient avoir moins de 15 % pour créer de nouveaux incidents en production. Les quatre catégories de Taux d'Échec des Changements sont les suivantes, laquelle est la vôtre ?
+
+- 0-15 %,
+- 16-30 %,
+- 16-45 %,
+- 46-60 %.
+
+### Temps Moyen de Récupération
+
+Combien de temps faut-il pour restaurer le service lorsqu'un incident impactant les utilisateurs se produit ?
+
+Pour calculer votre temps moyen de récupération, vous devez enregistrer :
+
+- la date à laquelle un incident a été créé en production (non repéré, donc nous parlons de la date du déploiement),
+- la date du déploiement qui a résolu l'incident.
+
+Les équipes les plus performantes sont capables de résoudre l'incident en moins d'une heure. Quelle catégorie décrit le mieux votre organisation ? Nous pouvons résoudre les incidents :
+
+- en moins d'une heure,
+- en moins d'un jour,
+- en moins d'un jour,
+- entre une semaine et un mois.
+
+## Conclusion sur les métriques Accelerate
+
+Étant donné que l'adhésion à ces Quatre Clés Métriques DevOps est largement reconnue comme une meilleure pratique pour les équipes d'ingénierie aujourd'hui, nous vous encourageons fortement à commencer à les intégrer dans les pratiques de votre organisation.
+
+<CTABanner type="learn" />
