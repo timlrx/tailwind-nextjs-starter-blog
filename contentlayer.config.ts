@@ -162,8 +162,6 @@ export default makeSource({
           behavior: 'prepend',
           headingProperties: {
             className: ['content-header'],
-            tabIndex: '-1',
-            dir: 'auto',
           },
           content: icon,
         },
