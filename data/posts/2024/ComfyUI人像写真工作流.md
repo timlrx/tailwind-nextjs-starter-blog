@@ -3,12 +3,12 @@ title: ComfyUI 人像写真工作流
 date: 2024-03-29 11:47:01
 tags:
   [AI]
-image: http://image.hansking.cn/picgo/ComfyUIDemo.png
+image: http://image-hans.test.upcdn.net/picgo/ComfyUIDemo.png
 ---
 
 # ComfyUI 人像写真工作流
 
-![ComfyUIDemo](http://image.hansking.cn/picgo/ComfyUIDemo.png)
+![ComfyUIDemo](http://image-hans.test.upcdn.net/picgo/ComfyUIDemo.png)
 
 此版本工作流非常适合漫展修图。
 
@@ -26,7 +26,7 @@ image: http://image.hansking.cn/picgo/ComfyUIDemo.png
 
   
 工作流下载地址：
-[AI人像写真工作流.json](https://image.hansking.cn/file/AI%E4%BA%BA%E5%83%8F%E5%86%99%E7%9C%9F%E5%B7%A5%E4%BD%9C%E6%B5%81.json)
+[AI人像写真工作流.json](http://image-hans.test.upcdn.net/file/AI%E4%BA%BA%E5%83%8F%E5%86%99%E7%9C%9F%E5%B7%A5%E4%BD%9C%E6%B5%81.json)
 
 
 

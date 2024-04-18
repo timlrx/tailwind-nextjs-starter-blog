@@ -17,7 +17,7 @@ tags:
 >
 >3. Yi Model Api 申请 http://platform.lingyiwanwu.com
 >
-> ![截屏2024-03-15 15.54.42](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-03-15%2015.54.42.png)
+> ![截屏2024-03-15 15.54.42](http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-03-15%2015.54.42.png)
 >
 >**bob和插件都安装后** 进入上图位置，填写 api_key ，选中文字 按 commant+d 体验翻译。
 
@@ -27,7 +27,7 @@ tags:
 
 1. 翻译有很准哦！
 
-<img width="500" alt="image" src="https://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-03-15%2001.03.12.png" />
+<img width="500" alt="image" src="http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-03-15%2001.03.12.png" />
 
 同时也支持指令切换(输入框#号键入)
 
