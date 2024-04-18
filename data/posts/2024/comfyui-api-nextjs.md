@@ -12,7 +12,7 @@ tags:
 
 先上效果图
 
-![截屏2024-04-01 00.59.34](http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-04-01%2000.59.34.png)
+![截屏2024-04-01 00.59.34](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-04-01%2000.59.34.png)
 
 预览地址 [https://aiphoto.hansking.cn/admin/history](https://aiphoto.hansking.cn/admin/history)
 

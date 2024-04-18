@@ -3,7 +3,7 @@ title: 老板让我抄个侧边栏 那我得用AI一把梭
 date: 2024-01-15 15:59:04
 tags:
   [AI,效率工具]
-image: http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.07.04.png
+image: http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.07.04.png
 ---
 
 # 前端多摸鱼，指使AI干了吧。
@@ -19,9 +19,9 @@ image: http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.
 > 瞅着 logo 和 vercel 的很像，让我怀疑又是vercel搞的鬼。`vercel` `nextjs` 都是 vercel 家的产品，独立开发者狂喜。
 
 1. 我先把完整的过程贴在这里 https://v0.dev/t/jVCkm9izY3L
-1. 喂图+咒语`navbar`：![code2](http://image-hans.test.upcdn.net/picgo/code2.png)
+1. 喂图+咒语`navbar`：![code2](http://image.hansking.cn/picgo/code2.png)
 1. 第一步没能理解navbar是左侧导航菜单，遂加咒语`On the left is the navbar, on the right is the content area`。
-1. 这是第二步出来的图，这个效果已经OK，可以用到项目中，且，svg的 icon 都给我了，索性直接用。![截屏2024-01-15 16.07.04](http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.07.04.png)
+1. 这是第二步出来的图，这个效果已经OK，可以用到项目中，且，svg的 icon 都给我了，索性直接用。![截屏2024-01-15 16.07.04](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-15%2016.07.04.png)
 
 5. 我再调一下，想想需求：目前没有点击效果，active效果，hover效果，main内容区切换效果。直接把这句话翻译，扔到咒语里面`At present, there is no click effect, active effect, hover effect, main content area switching effect.`，
 

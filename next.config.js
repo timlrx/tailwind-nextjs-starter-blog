@@ -67,12 +67,7 @@ module.exports = () => {
     },
     images: {
       dangerouslyAllowSVG: true,
-      domains: [
-        'http://image.hansking.cn',
-        'http://image-hans.test.upcdn.net',
-        'opengraph.githubassets.com',
-        'komarev.com',
-      ],
+      domains: ['image.hansking.cn', 'opengraph.githubassets.com', 'komarev.com'],
       remotePatterns: [
         {
           protocol: 'https',

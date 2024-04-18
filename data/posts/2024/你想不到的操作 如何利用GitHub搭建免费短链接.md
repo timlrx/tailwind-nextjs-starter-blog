@@ -3,7 +3,7 @@ title: 你想不到的操作 如何利用GitHub搭建免费短链接
 tags:   [🙅🏻‍♀️bu造轮子]
 categories: [code]
 date: 2024-01-19 00:16:19
-image: http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-19%2000.50.46.png
+image: http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-19%2000.50.46.png
 ---
 
 # 如何利用GitHub搭建免费短链接？
@@ -66,7 +66,7 @@ var GITHUB_ISSUES_LINK = "https://api.github.com/repos/{username}/{dbname}/issue
 2. 新建issue `New Issue`按钮
 3. Title框输入你想要转短链的域名
 4. 直接提交
-5. 提交成功在标题后面的#1597 就是你的了。![截屏2024-01-19 00.13.25](http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-19%2000.13.25.png)
+5. 提交成功在标题后面的#1597 就是你的了。![截屏2024-01-19 00.13.25](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-19%2000.13.25.png)
 
 6. 现在可以试试访问本站 [nlsn.cf/1597](https://nlsn.cf/1597)
 

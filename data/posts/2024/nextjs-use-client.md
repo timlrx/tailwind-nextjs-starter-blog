@@ -24,14 +24,14 @@ export default function Home() {
 
 由于 nextjs 默认 src之下的组件都是 server component，在Button组件（server component）中，如果直接调用client component 才能使用的交互性例如 onClick useState是会报错的
 
-![](http://image-hans.test.upcdn.net/picgo/202403301210616.png)
+![](http://image.hansking.cn/picgo/202403301210616.png)
 
 可以简单按照报错提示修改为 client component 这样就没问题
-![](http://image-hans.test.upcdn.net/picgo/20240330121133.png)
+![](http://image.hansking.cn/picgo/20240330121133.png)
 
 但是如果你稍不注意直接在 page.tsx 加上'use client'也是没有报错的！
 
-![](http://image-hans.test.upcdn.net/picgo/20240330121154.png)
+![](http://image.hansking.cn/picgo/20240330121154.png)
 
 
 
@@ -57,17 +57,17 @@ export default function Home() {
 
 假设 Post 组件中需要加载一个很大的第三方库例如`sanitize-html
 
-![](http://image-hans.test.upcdn.net/picgo/20240330121318.png)
+![](http://image.hansking.cn/picgo/20240330121318.png)
 
 如果放在client component 就不太适宜，可以看官方文档的第四条，将导入的较大第三方库尽量放在server component上减少客户端的压力 
 
-![](http://image-hans.test.upcdn.net/picgo/20240330121337.png)
+![](http://image.hansking.cn/picgo/20240330121337.png)
 
 所以最优的解决办法就是：谁需要交互性就将最叶子节点变成客户端组件
 
-❎ ![](http://image-hans.test.upcdn.net/picgo/20240330121407.png)
+❎ ![](http://image.hansking.cn/picgo/20240330121407.png)
 
-✔️ ![](http://image-hans.test.upcdn.net/picgo/20240330121447.png)
+✔️ ![](http://image.hansking.cn/picgo/20240330121447.png)
 
 ## 使用 context 封装 children
 
@@ -169,6 +169,6 @@ export default function Form() {
 
 结果是符合直觉的 
 
-![](http://image-hans.test.upcdn.net/picgo/20240330121502.png)
+![](http://image.hansking.cn/picgo/20240330121502.png)
 
 如果将 Post 组件删掉是不会报错的，也就是说在 client component使用Button会表现为client，而在 server component不会被影响，各自独立

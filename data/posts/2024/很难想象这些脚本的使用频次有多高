@@ -3,14 +3,14 @@ title: 很难想象这些脚本的使用频次有多高
 date: 2024-01-22 15:56:36
 tags:
   [CSS,造个小轮子]
-image: http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-22%2015.55.02.png
+image: http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-22%2015.55.02.png
 ---
 
 ### 1. 监听是谁在滚动
 
 ​	页面未知原因出现滚动条，揪出来是谁在瞎滚。
 
-### ![截屏2024-01-22 15.55.02](http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-01-22%2015.55.02.png)
+### ![截屏2024-01-22 15.55.02](http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-01-22%2015.55.02.png)
 
 ```js
 function findscroller(element){

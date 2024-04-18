@@ -38,7 +38,7 @@ npm install -g dts-gen
 
 1 确认tsconfig.json中的 noImplicitAny 配置为 false
 
-![](http://image-hans.test.upcdn.net/picgo/2019092416571230.png)
+![](http://image.hansking.cn/picgo/2019092416571230.png)
 
 话说 我使用了装饰器 
 
@@ -46,7 +46,7 @@ npm install -g dts-gen
 
 编译的时候没有报警告或错误 但是vscode有提示
 
-![](http://image-hans.test.upcdn.net/picgo/20190924165834262.png)
+![](http://image.hansking.cn/picgo/20190924165834262.png)
 
 就是这红色的小波浪~
 

@@ -27,7 +27,7 @@ export default function Home() {
         Yi Translator for Bob 👽
       </a>
       <img
-        src="http://image-hans.test.upcdn.net/picgo/%E6%88%AA%E5%B1%8F2024-03-20%2015.02.20.png"
+        src="http://image.hansking.cn/picgo/%E6%88%AA%E5%B1%8F2024-03-20%2015.02.20.png"
         alt=""
       />
     </>

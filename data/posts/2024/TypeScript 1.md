@@ -3,7 +3,7 @@ title: TypeScript 使用
 date: 2024-01-12 17:55:13
 tags:
   [前端,TS]
-image: http://image-hans.test.upcdn.net/picgo/code2024-01-12%201.png
+image: http://image.hansking.cn/picgo/code2024-01-12%201.png
 ---
 
 # TypeScript 使用
