@@ -68,8 +68,8 @@ module.exports = () => {
     images: {
       dangerouslyAllowSVG: true,
       domains: [
-        'image.hansking.cn',
-        'image-hans.test.upcdn.net',
+        'http://image.hansking.cn',
+        'http://image-hans.test.upcdn.net',
         'opengraph.githubassets.com',
         'komarev.com',
       ],
