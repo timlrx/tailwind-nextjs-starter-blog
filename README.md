@@ -58,7 +58,8 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [CuB3y0nd's Portfolio](https://www.cubeyond.net/) - CuB3y0nd‘s cyber security study notes「中文」
 - [London Tech Talk](https://london-tech-talk.com/) - A podcast exploring technology trends and expatriate living experiences. - 日本語
 - [CRUD Flow Blog](http://blog.ndamulelo.co.za/) - A technical blog about AI, Cloud Engineering, Data Science and Personal development
-- [Trillium's Blog](https://trilliumsmith.com/) - Modified to render resume pdf on `/resume` page 
+- [Trillium's Blog](https://trilliumsmith.com/) - Modified to render resume pdf on `/resume` page
+- [Frank's Tech Blog](https://frank-tech-blog.vercel.app/) - Frank's personal blog about software development and technology. ([source code](https://github.com/frank-mendez/frank-blog))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
