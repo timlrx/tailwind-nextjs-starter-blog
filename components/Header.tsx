@@ -38,7 +38,7 @@ const Header = () => {
               {link.title}
             </Link>
           ))}
-          <NavOptions/>
+        <NavOptions />
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />

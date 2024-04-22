@@ -28,16 +28,17 @@ export const NavOptions = () => {
         >
           <Menu.Items className="absolute right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800">
             <div className="p-1">
-              {headerNavOptions.children && headerNavOptions.children.map((link) => (
-                <Menu.Item>
-                  <Link
-                    key={link.title}
-                    href={link.href}
-                    className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                    {link.title}
-                  </Link>
-                </Menu.Item>
-              ))}
+              {headerNavOptions.children &&
+                headerNavOptions.children.map((link) => (
+                  <Menu.Item key={link.title}>
+                    <Link
+                      href={link.href}
+                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                    >
+                      {link.title}
+                    </Link>
+                  </Menu.Item>
+                ))}
             </div>
           </Menu.Items>
         </Transition>
