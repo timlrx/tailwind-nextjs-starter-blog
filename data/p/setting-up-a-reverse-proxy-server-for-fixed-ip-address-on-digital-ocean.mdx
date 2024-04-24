@@ -42,7 +42,14 @@ The shift from a Digital Ocean App to a Droplet was primarily unappealing due to
 
 While Heroku readily provides proxy addons, Digital Ocean doesn't have an equally straightforward solution. See screenshot of the Heroku Addons:
 
-<ImageContainer alt="Heroku Proxy Servers" src="/blog/static/images/fixedIP/Heroku Proxy Servers.jpg" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1080} height={775} />
+<ImageContainer
+  alt="Heroku Proxy Servers"
+  src="/blog/static/images/fixedIP/Heroku Proxy Servers.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1080}
+  height={775}
+/>
 
 A reverse proxy server can serve as an intermediary between your server and any other third party (for us, it's a GitHub enterprise server). When your server needs to make a request, it prompts the proxy server to initiate the request to the third party, and vice versa.
 
@@ -77,7 +84,14 @@ Opting for a third-party service allows you to quickly and efficiently implement
 
 Screenshot of QuotaGuard Dashboard:
 
-<ImageContainer alt="Screenshot dashboard quotaguard" src="/blog/static/images/fixedIP/Screenshot dashboard quotaguard.jpg" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1631} height={880} />
+<ImageContainer
+  alt="Screenshot dashboard quotaguard"
+  src="/blog/static/images/fixedIP/Screenshot dashboard quotaguard.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1631}
+  height={880}
+/>
 
 ### Why We Decided to Use a Third-Party Service
 
@@ -87,11 +101,25 @@ The decision to use a third-party service was driven by our intent to iterate sw
 
 Once you've chosen your reverse proxy server solution, the next step involves integrating it into your codebase. To ensure every request traverses through a fixed IP address (the reverse proxy server), a dedicated function can be created.
 
-<ImageContainer alt="axios-with-proxy-agent" src="/blog/static/images/fixedIP/axios-with-proxy-agent.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1430} height={1164} />
+<ImageContainer
+  alt="axios-with-proxy-agent"
+  src="/blog/static/images/fixedIP/axios-with-proxy-agent.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1430}
+  height={1164}
+/>
 
 Although integrating this functionality required some fine-tuning and testing within our code, the overall process was quite straightforward. Here's an example of how we implemented this with an Octokit instance for querying a GitHub enterprise server:
 
-<ImageContainer alt="octokit proxy calls" src="/blog/static/images/fixedIP/octokit proxy calls.png" classNameDiv="mx-10 lg:mx-20" classNameImage='' width={1794} height={1478} />
+<ImageContainer
+  alt="octokit proxy calls"
+  src="/blog/static/images/fixedIP/octokit proxy calls.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1794}
+  height={1478}
+/>
 
 ## Wrapping Up
 
