@@ -60,6 +60,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [CRUD Flow Blog](http://blog.ndamulelo.co.za/) - A technical blog about AI, Cloud Engineering, Data Science and Personal development
 - [Trillium's Blog](https://trilliumsmith.com/) - Modified to render resume pdf on `/resume` page
 - [Frank's Tech Blog](https://frank-tech-blog.vercel.app/) - Frank's personal blog about software development and technology. ([source code](https://github.com/frank-mendez/frank-blog))
+- [Wujie's Blog: 旅行者计划](https://www.wujieli.com/) - Wujie's personal digital garden ([source code](https://github.com/wujieli0207/wujie-blog-next))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
