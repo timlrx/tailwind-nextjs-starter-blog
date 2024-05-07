@@ -1,0 +1,49 @@
+---
+title: "Axolo changelog - March 2024"
+date: "2024-04-01"
+tags: ["changelog"]
+draft: false
+summary: "We've improved security against impersonation for Enterprise customers and refined the onboarding process for multiple organizations. We introduced automatic Slack member updates for new organizations and enhanced the sign-in experience for admins. Improvements include better management of Slack rate limits and more efficient member queries for large companies. We've also addressed critical bugs affecting repository events, identification errors for self-hosted customers, and installations from the GitHub marketplace."
+---
+
+## ✨ NEW:
+
+- Created the Emoji Reactions for GitHub Chrome extension to enhance expressiveness in code reviews.
+- Implemented auto-refresh for Slack members within the app.
+- Enabled users to provide feedback when cancelling or pausing their subscriptions.
+- Introduced optional notifications during engineer onboarding.
+- Implemented ability to change billing plans from yearly to monthly.
+- Added feature to ask NPS to enterprise engineers using Axolo.
+- Added feature to ask how signup discovered Axolo.
+- Implemented ability for bots' PRs to show in standup notifications.
+- Added ability to snooze reminders.
+- Introduced automatic reviewer assignment for GitLab.
+- Enabled GitHub enterprise users to select specific repositories for updates from the Pull Request tab.
+- Enabled organizations to manage multiple GitLab groups within one Slack instance.
+- Introduced multi-org pricing for enterprise GitLab users.
+- Implemented a delay setting when archiving channels to allow discussion about PRs.
+
+## 🔨 IMPROVEMENT:
+
+- Reduced the number of direct messages sent during onboarding.
+- Enhanced retry configurations for Slack messages to mitigate rate limit errors.
+- Refactored permissions file for API management.
+- Enabled direct messaging when a GitHub token expires.
+- Notified users in DM during PR creation if the author is not onboarded.
+- Changed the conflict notification color to red to enhance visibility.
+- Asked for NPS through ephemeral messages rather than direct messages.
+- Marked reminders as read to reduce redundant notifications for PR authors or reviewers in specific PR statuses.
+- Established a fail-safe for enterprise customers to confirm a PR channel was merged.
+- Enabled business and enterprise plans to adjust settings when archiving a channel for post-discussion.
+
+## 🐞 FIX:
+
+- Resolved an issue where adding '>' in a GitHub issue comment caused deletion by Axolo.
+- Fixed a bug preventing Axolo from inviting reviewers during specific bot-invoked workflows.
+- Corrected a bug where PRs from archived repositories were still appearing in stand-up notifications.
+- Fixed an issue with downgrading for companies installing directly from GitHub.
+- Resolved a critical bug that failed to invite reviewers to automated pull requests from bots.
+- Addressed a bug causing Axolo to incorrectly label a PR as reviewable after being merged or closed.
+- Fixed a bug preventing comments in GitLab from appearing in the correct thread.
+- Resolved an issue causing channel titles to be truncated inappropriately.
+- Improved link unfurling for code snippets in messages.-
