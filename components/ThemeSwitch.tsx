@@ -72,7 +72,10 @@ const ThemeSwitch = () => {
               <div className="p-1">
                 <RadioGroup.Option value="light">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
+                    <button
+                      aria-label="Light"
+                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                    >
                       <div className="mr-2">
                         <Sun />
                       </div>
@@ -82,7 +85,10 @@ const ThemeSwitch = () => {
                 </RadioGroup.Option>
                 <RadioGroup.Option value="dark">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
+                    <button
+                      aria-label="Dark"
+                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                    >
                       <div className="mr-2">
                         <Moon />
                       </div>
@@ -92,7 +98,10 @@ const ThemeSwitch = () => {
                 </RadioGroup.Option>
                 <RadioGroup.Option value="system">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
+                    <button
+                      aria-label="System"
+                      className="group flex w-full items-center rounded-md px-2 py-2 text-sm"
+                    >
                       <div className="mr-2">
                         <Monitor />
                       </div>
