@@ -36,8 +36,12 @@ export default function Home({ posts }) {
                   </dl>
                   <div className="mt-1 space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     {images ? (
-                      <div className="m-auto h-96 w-full xl:h-36 xl:pr-10">
-                        <img src={images[0]} className="h-full w-full rounded-md" alt="topimg" />
+                      <div className="m-auto h-60 w-full xl:h-36 xl:pr-10">
+                        <img
+                          src={images[0]}
+                          className="h-full w-full rounded-md object-cover"
+                          alt="topimg"
+                        />
                       </div>
                     ) : (
                       <div></div>
