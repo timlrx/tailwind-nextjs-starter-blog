@@ -27,11 +27,13 @@ const Hero = () => {
           </div>
           <div className="order-1 flex h-80 w-full items-center justify-center overflow-hidden md:order-2">
             <Image
-              src={'/static/images/profile.jpeg'}
+              src={require('../public/static/images/profile.jpeg')}
               width={310}
               height={310}
               className=" rounded-full object-cover"
               alt="profile image"
+              placeholder="blur"
+              priority={true}
             />
           </div>
         </div>
