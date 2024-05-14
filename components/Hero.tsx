@@ -9,7 +9,7 @@ const Hero = () => {
           <div className="order-2 flex w-full flex-col items-center md:order-1 md:flex-row">
             <div className="">
               <h1 className="text-3xl font-bold tracking-wide text-gray-800 dark:text-white md:text-5xl">
-                Hi, this is lynx
+                Hi, this is Lynx
               </h1>
               <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
                 Welcome to my blog - This is going to be my portfolio/blog website from now on. I am
