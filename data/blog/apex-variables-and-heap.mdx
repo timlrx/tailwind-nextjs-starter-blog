@@ -1,0 +1,1158 @@
+---
+title: Apex Datatypes, Variable, Nulls, Constants and Heap
+date: '2024-05-14'
+tags: ['apex', 'basics']
+draft: false
+summary: Understanding the concepts of variables and heap memory is crucial for efficient coding and managing application performance.
+---
+
+# Variables in Apex
+
+Variables in Apex are containers for data values. When you create a variable, you define its data type, which determines what kind of data it can hold, such as integers, strings, or custom objects. Some notes:
+
+- **Declaration**: Variables must be declared with a specific data type which defines the kind of data the variable can hold. For example, an `Integer` type variable can hold numeric values without decimals.
+- **Initialization**: Variables can be initialized when they are declared, which means you can assign a value at the time of creating the variable. For example: `Integer count = 1;`.
+- **Scope**: The scope of a variable determines where it can be accessed within the code. For instance, a variable declared within a method is only accessible within that method.
+
+### Table of Contents
+
+[Primitives](#primitives)\
+[Heap](#heap)\
+[Nulls](#nulls)\
+[Constants](#constants)
+
+## <a name="primitives"></a>Primitives
+
+Primitive data types in Apex are the basic building blocks used to define variables and data structures. They include simple values such as numbers, strings, and dates.
+
+### Types of Primitives
+
+[Blob](#blob)\
+[Boolean](#boolean)\
+[Date](#date)\
+[Datetime](#datetime)\
+[Decimal](#decimal)\
+[Double](#double)\
+[Id](#id)\
+[Integer](#integer)\
+[Long](#long)\
+[Object](#object)\
+[String](#string)\
+[Time](#time)
+
+### <a name="blob"></a>Blob
+
+A `Blob` in Apex is a data type used to store binary data, such as files, images, or any other binary content. Blobs are useful for handling data that isn't easily represented as text, such as documents or multimedia files.
+
+#### Key Characteristics
+
+- **Binary Data:** Stores data in a raw binary format.
+- **Non-Human Readable:** Suitable for non-textual data.
+- **Fixed Size:** Data stored as a sequence of bytes.
+
+#### Common Uses
+
+- **Storing Attachments:** Handling file attachments in Salesforce.
+- **Document Management:** Managing documents, images, and other binary files.
+- **Encryption/Decryption:** Storing encrypted data securely.
+
+#### Example Usages
+
+1. **Converting String to Blob**
+
+   - **Example:**
+     ```apex
+     String myString = 'Hello, World!';
+     Blob myBlob = Blob.valueOf(myString);
+     ```
+
+2. **Converting Blob to String**
+
+   - **Example:**
+     ```apex
+     Blob myBlob = Blob.valueOf('Hello, World!');
+     String myString = myBlob.toString();
+     ```
+
+3. **Handling File Attachments**
+
+   - **Example:**
+     ```apex
+     // Assume attachment is a previously defined Attachment object
+     Attachment attachment = new Attachment();
+     attachment.Body = Blob.valueOf('File content here');
+     attachment.Name = 'MyFile.txt';
+     attachment.ParentId = '0017F00000k4ABcQAM'; // Parent record ID
+     insert attachment;
+     ```
+
+4. **Base64 Encoding and Decoding**
+   - **Example:**
+     ```apex
+     Blob myBlob = Blob.valueOf('Hello, World!');
+     String encodedBlob = EncodingUtil.base64Encode(myBlob);
+     Blob decodedBlob = EncodingUtil.base64Decode(encodedBlob);
+     ```
+
+Blobs in Apex are used to handle binary data, making them ideal for managing files, attachments, and encrypted data. They provide methods for conversion between strings and blobs, as well as encoding and decoding functionalities.
+
+### <a name="boolean"></a>Boolean
+
+A `Boolean` in Apex is a primitive data type that can hold one of two values: `true` or `false`. It is used to represent binary states, such as yes/no, on/off, or true/false.
+
+#### Key Characteristics
+
+- **Binary Value:** Can only be `true` or `false`.
+- **Default Value:** If not explicitly initialized, the default value is `false`.
+
+#### Common Uses
+
+- **Conditional Statements:** Controlling the flow of logic with `if`, `else if`, and `else` statements.
+- **Flags:** Indicating the presence or absence of a condition or state.
+- **Loop Control:** Managing iterations in loops.
+
+#### Example Usages
+
+1. **Basic Assignment**
+
+   - **Example:**
+     ```apex
+     Boolean isActive = true;
+     Boolean hasAccess = false;
+     ```
+
+2. **Conditional Statements**
+
+   - **Example:**
+     ```apex
+     Boolean isUserLoggedIn = true;
+     if (isUserLoggedIn) {
+         System.debug('User is logged in');
+     } else {
+         System.debug('User is not logged in');
+     }
+     ```
+
+3. **Flags and Logical Operations**
+
+   - **Example:**
+     ```apex
+     Boolean isVerified = true;
+     Boolean isAdmin = false;
+     Boolean hasAccess = isVerified && isAdmin;
+     System.debug('Has access: ' + hasAccess); // Outputs: Has access: false
+     ```
+
+4. **Loop Control**
+
+   - **Example:**
+     ```apex
+     Boolean continueProcessing = true;
+     Integer counter = 0;
+     while (continueProcessing) {
+         counter++;
+         if (counter == 5) {
+             continueProcessing = false;
+         }
+     }
+     System.debug('Counter: ' + counter); // Outputs: Counter: 5
+     ```
+
+5. **Ternary Operator**
+   - **Example:**
+     ```apex
+     Boolean isEligible = true;
+     String message = isEligible ? 'Eligible for the offer' : 'Not eligible for the offer';
+     System.debug(message); // Outputs: Eligible for the offer
+     ```
+
+Booleans in Apex are simple binary variables that hold `true` or `false` values. They are essential for controlling logic flow, managing conditions, and indicating states or flags within your Apex code. Their straightforward nature makes them a fundamental part of decision-making structures in programming.
+
+### <a name="date"></a>Date
+
+The `Date` primitive in Apex represents a date value (year, month, day) without any time component. It is used to store and manipulate calendar dates.
+
+#### Key Characteristics
+
+- **Components:** Year, month, and day.
+- **Immutable:** Once created, the value of a `Date` object cannot be changed.
+- **No Time Information:** Does not include hours, minutes, seconds, or milliseconds.
+
+#### Common Uses
+
+- **Storing Birthdates:** Capturing and storing birthdates or other significant dates.
+- **Date Calculations:** Performing operations like adding days, months, or years.
+- **Date Comparisons:** Comparing two dates to determine their chronological order.
+
+#### Example Usages
+
+1. **Creating a Date**
+
+   - **Example:**
+     ```apex
+     Date today = Date.today(); // Gets the current date
+     Date specificDate = Date.newInstance(2024, 5, 14); // Creates a specific date
+     ```
+
+2. **Date Calculations**
+
+   - **Example:**
+     ```apex
+     Date today = Date.today();
+     Date nextWeek = today.addDays(7); // Adds 7 days to the current date
+     Date nextMonth = today.addMonths(1); // Adds 1 month to the current date
+     Date nextYear = today.addYears(1); // Adds 1 year to the current date
+     ```
+
+3. **Date Comparisons**
+
+   - **Example:**
+     ```apex
+     Date date1 = Date.newInstance(2024, 5, 14);
+     Date date2 = Date.newInstance(2023, 12, 31);
+     if (date1 > date2) {
+         System.debug('Date1 is after Date2');
+     } else if (date1 < date2) {
+         System.debug('Date1 is before Date2');
+     } else {
+         System.debug('Date1 is the same as Date2');
+     }
+     ```
+
+4. **Extracting Components**
+
+   - **Example:**
+     ```apex
+     Date today = Date.today();
+     Integer year = today.year(); // Gets the year component
+     Integer month = today.month(); // Gets the month component
+     Integer day = today.day(); // Gets the day component
+     ```
+
+5. **Formatting Dates**
+   - **Example:**
+     ```apex
+     Date today = Date.today();
+     String formattedDate = today.format(); // Default format
+     String customFormattedDate = today.format('yyyy-MM-dd'); // Custom format
+     ```
+
+The `Date` primitive in Apex is used to handle calendar dates, providing functionality for creation, manipulation, and comparison of date values. It is crucial for applications involving time-based data and operations.
+
+### <a name="datetime"></a>Datetime
+
+`Datetime` is a primitive data type in Apex used to represent both a date and a time, including the year, month, day, hour, minute, second, and millisecond. It is useful for scenarios where you need to work with exact moments in time.
+
+#### Key Characteristics
+
+- **Precision:** Includes date and time down to the millisecond.
+- **Time Zone Support:** Methods available to handle time zone conversions.
+- **Immutable:** Instances of `Datetime` are immutable, meaning their values cannot be changed once they are set.
+
+#### Common Uses
+
+- **Timestamping:** Recording the exact time an event occurs.
+- **Scheduling:** Managing future and past events with precise timing.
+- **Date and Time Calculations:** Performing operations involving dates and times.
+
+#### Example Usages
+
+1. **Getting Current Datetime**
+
+   - **Example:**
+     ```apex
+     Datetime currentTime = Datetime.now();
+     System.debug('Current Datetime: ' + currentTime);
+     ```
+
+2. **Creating Specific Datetime**
+
+   - **Example:**
+     ```apex
+     Datetime specificTime = Datetime.newInstance(2024, 5, 14, 15, 30, 0);
+     System.debug('Specific Datetime: ' + specificTime);
+     ```
+
+3. **Formatting Datetime**
+
+   - **Example:**
+     ```apex
+     Datetime currentTime = Datetime.now();
+     String formattedDate = currentTime.format('yyyy-MM-dd HH:mm:ss');
+     System.debug('Formatted Datetime: ' + formattedDate);
+     ```
+
+4. **Converting to and from Date**
+
+   - **Example:**
+
+     ```apex
+     Date currentDate = Date.today();
+     Datetime dateTimeFromDate = Datetime.newInstance(currentDate.year(), currentDate.month(), currentDate.day());
+     System.debug('Datetime from Date: ' + dateTimeFromDate);
+
+     Datetime currentDateTime = Datetime.now();
+     Date dateFromDatetime = currentDateTime.date();
+     System.debug('Date from Datetime: ' + dateFromDatetime);
+     ```
+
+5. **Adding Time**
+
+   - **Example:**
+     ```apex
+     Datetime currentTime = Datetime.now();
+     Datetime futureTime = currentTime.addDays(10).addHours(5).addMinutes(30);
+     System.debug('Future Datetime: ' + futureTime);
+     ```
+
+6. **Timezone Conversion**
+   - **Example:**
+     ```apex
+     Datetime currentTime = Datetime.now();
+     String timezone = 'America/Los_Angeles';
+     Datetime localTime = currentTime.format('yyyy-MM-dd HH:mm:ss', timezone);
+     System.debug('Local Datetime: ' + localTime);
+     ```
+
+The `Datetime` primitive in Apex is a versatile and precise data type used to handle both dates and times. It is essential for timestamping, scheduling, and performing date and time calculations. The `Datetime` class provides methods to create, format, and manipulate date and time values efficiently.
+
+### <a name="decimal"></a>Decimal
+
+`Decimal` is a primitive data type in Apex used to represent high-precision numeric values, including integers and floating-point numbers. It is particularly useful for financial calculations or any scenarios requiring exact numerical precision.
+
+#### Key Characteristics
+
+- **High Precision:** Provides arbitrary precision for exact calculations.
+- **Immutable:** Once created, the value of a `Decimal` cannot be changed.
+- **Supports Arithmetic Operations:** Includes methods for addition, subtraction, multiplication, division, and rounding.
+
+#### Common Uses
+
+- **Financial Calculations:** Handling currency and other financial data accurately.
+- **Scientific Calculations:** Performing precise computations where accuracy is critical.
+- **General Arithmetic:** Managing numbers that require precision beyond what `Double` provides.
+
+#### Example Usages
+
+1. **Basic Declaration and Assignment**
+
+   - **Example:**
+     ```apex
+     Decimal totalAmount = 12345.67;
+     System.debug('Total Amount: ' + totalAmount);
+     ```
+
+2. **Arithmetic Operations**
+
+   - **Example:**
+     ```apex
+     Decimal amount1 = 100.50;
+     Decimal amount2 = 200.75;
+     Decimal sum = amount1 + amount2;
+     Decimal difference = amount2 - amount1;
+     Decimal product = amount1 * amount2;
+     Decimal quotient = amount2 / amount1;
+     System.debug('Sum: ' + sum);
+     System.debug('Difference: ' + difference);
+     System.debug('Product: ' + product);
+     System.debug('Quotient: ' + quotient);
+     ```
+
+3. **Rounding**
+
+   - **Example:**
+     ```apex
+     Decimal number = 123.45678;
+     Decimal roundedNumber = number.setScale(2, RoundingMode.HALF_UP);
+     System.debug('Rounded Number: ' + roundedNumber);
+     ```
+
+4. **Comparisons**
+
+   - **Example:**
+     ```apex
+     Decimal amount1 = 100.50;
+     Decimal amount2 = 200.75;
+     Boolean isEqual = amount1 == amount2;
+     Boolean isGreaterThan = amount1 > amount2;
+     Boolean isLessThan = amount1 < amount2;
+     System.debug('Is Equal: ' + isEqual);
+     System.debug('Is Greater Than: ' + isGreaterThan);
+     System.debug('Is Less Than: ' + isLessThan);
+     ```
+
+5. **Parsing Strings to Decimal**
+   - **Example:**
+     ```apex
+     String numberString = '12345.67';
+     Decimal parsedNumber = Decimal.valueOf(numberString);
+     System.debug('Parsed Number: ' + parsedNumber);
+     ```
+
+The `Decimal` primitive in Apex is designed for handling high-precision numeric values, making it ideal for financial and scientific calculations where accuracy is paramount. It supports various arithmetic operations, comparisons, and rounding, providing the necessary tools for precise numerical computation.
+
+### <a name="double"></a>Double
+
+`Double` is a primitive data type in Apex used to represent 64-bit floating-point numbers. It is suitable for calculations requiring a balance between range and precision, such as scientific computations and general arithmetic operations involving decimal points.
+
+#### Key Characteristics
+
+- **64-bit Floating-Point:** Can represent a wide range of values with fractional components.
+- **Precision:** Provides double-precision, which is adequate for most calculations, but not as precise as the `Decimal` type.
+- **Default Value:** If not explicitly initialized, the default value is `0.0`.
+
+#### Common Uses
+
+- **Scientific Calculations:** Handling measurements and calculations in scientific applications.
+- **General Arithmetic:** Performing mathematical operations with decimals.
+- **Approximate Calculations:** Useful when absolute precision is not critical.
+
+#### Example Usages
+
+1. **Basic Declaration and Assignment**
+
+   - **Example:**
+     ```apex
+     Double pi = 3.14159;
+     System.debug('Value of Pi: ' + pi);
+     ```
+
+2. **Arithmetic Operations**
+
+   - **Example:**
+     ```apex
+     Double number1 = 10.5;
+     Double number2 = 2.5;
+     Double sum = number1 + number2;
+     Double difference = number1 - number2;
+     Double product = number1 * number2;
+     Double quotient = number1 / number2;
+     System.debug('Sum: ' + sum);
+     System.debug('Difference: ' + difference);
+     System.debug('Product: ' + product);
+     System.debug('Quotient: ' + quotient);
+     ```
+
+3. **Exponentiation and Square Root**
+
+   - **Example:**
+
+     ```apex
+     Double base = 2.0;
+     Double exponent = 3.0;
+     Double result = Math.pow(base, exponent);
+     System.debug('Exponentiation: ' + result);
+
+     Double number = 16.0;
+     Double sqrtResult = Math.sqrt(number);
+     System.debug('Square Root: ' + sqrtResult);
+     ```
+
+4. **Comparisons**
+
+   - **Example:**
+     ```apex
+     Double number1 = 10.5;
+     Double number2 = 20.5;
+     Boolean isEqual = number1 == number2;
+     Boolean isGreaterThan = number1 > number2;
+     Boolean isLessThan = number1 < number2;
+     System.debug('Is Equal: ' + isEqual);
+     System.debug('Is Greater Than: ' + isGreaterThan);
+     System.debug('Is Less Than: ' + isLessThan);
+     ```
+
+5. **Parsing Strings to Double**
+   - **Example:**
+     ```apex
+     String numberString = '12345.67';
+     Double parsedNumber = Double.valueOf(numberString);
+     System.debug('Parsed Number: ' + parsedNumber);
+     ```
+
+The `Double` primitive in Apex is a 64-bit floating-point data type used for general-purpose arithmetic operations involving decimals. It offers a balance between range and precision, making it suitable for scientific calculations, general arithmetic, and scenarios where absolute precision is not essential. It supports arithmetic operations, comparisons, and conversions from strings.
+
+### <a name="id"></a>Id
+
+The `Id` primitive data type in Apex is used to store and manipulate Salesforce record identifiers. These identifiers are unique 18-character strings that represent specific records in the Salesforce database.
+
+#### Key Characteristics
+
+- **Uniqueness:** Each `Id` value uniquely identifies a record in Salesforce.
+- **Case-Insensitive:** The `Id` type is case-insensitive. However, when displayed, they are typically shown in uppercase.
+- **Length:** Salesforce `Id` values are 18 characters long. They can also be represented as 15-character values in certain contexts, but the 18-character version is case-insensitive and preferred for Apex operations.
+
+#### Common Uses
+
+- **Record Identification:** Storing the unique identifier of a Salesforce record.
+- **Referencing Records:** Using `Id` values to reference records in queries and DML operations.
+- **Record Comparisons:** Comparing identifiers to check if they reference the same record.
+
+#### Example Usages
+
+1. **Declaring and Assigning Id Values**
+
+   ```apex
+   Id accountId = '001D000000IqhSLIAZ';
+   System.debug('Account Id: ' + accountId);
+   ```
+
+2. **Using Ids in SOQL Queries**
+
+   ```apex
+   Id contactId = '003D000000QeuwVIAZ';
+   Contact contact = [SELECT Id, FirstName, LastName FROM Contact WHERE Id = :contactId];
+   System.debug('Contact Name: ' + contact.FirstName + ' ' + contact.LastName);
+   ```
+
+3. **Comparing Ids**
+
+   ```apex
+   Id id1 = '001D000000IqhSLIAZ';
+   Id id2 = '001D000000IqhSLIAZ';
+   Id id3 = '001D000000IqhSLLAZ';
+
+   Boolean isEqual = id1 == id2; // True
+   Boolean isNotEqual = id1 != id3; // True
+
+   System.debug('Ids are equal: ' + isEqual);
+   System.debug('Ids are not equal: ' + isNotEqual);
+   ```
+
+4. **Using Ids in DML Operations**
+
+   ```apex
+   Id contactId = '003D000000QeuwVIAZ';
+   Contact contact = new Contact(
+       Id = contactId,
+       LastName = 'UpdatedName'
+   );
+
+   update contact;
+   System.debug('Updated Contact Id: ' + contact.Id);
+   ```
+
+5. **Checking for Null Id**
+
+   ```apex
+   Id recordId = null;
+
+   if (recordId == null) {
+       System.debug('Record Id is null');
+   } else {
+       System.debug('Record Id: ' + recordId);
+   }
+   ```
+
+The `Id` primitive data type in Apex is a specialized type for storing Salesforce record identifiers. It ensures that records can be uniquely and reliably identified, referenced, and manipulated within the Salesforce platform. This type is integral to performing operations that involve specific records, such as querying, updating, and comparing records.
+
+### <a name="integer"></a>Integer
+
+`Integer` is a primitive data type in Apex used to represent 32-bit signed whole numbers. It is suitable for calculations and operations involving whole numbers within a specific range.
+
+**Key Characteristics:**
+
+- **32-bit Signed Integer:** Can represent values from -2,147,483,648 to 2,147,483,647.
+- **Default Value:** If not explicitly initialized, the default value is `0`.
+
+**Common Uses:**
+
+- **Counting:** Keeping track of counts or quantities.
+- **Indexing:** Using as indices in loops and collections.
+- **Basic Arithmetic:** Performing simple mathematical operations.
+
+**Example Usages:**
+
+1. **Basic Declaration and Assignment:**
+
+   ```apex
+   Integer count = 10;
+   System.debug('Count: ' + count);
+   ```
+
+2. **Arithmetic Operations:**
+
+   ```apex
+   Integer number1 = 10;
+   Integer number2 = 20;
+   Integer sum = number1 + number2;
+   Integer difference = number1 - number2;
+   Integer product = number1 * number2;
+   Integer quotient = number1 / number2;
+   System.debug('Sum: ' + sum);
+   System.debug('Difference: ' + difference);
+   System.debug('Product: ' + product);
+   System.debug('Quotient: ' + quotient);
+   ```
+
+3. **Loop Control:**
+
+   ```apex
+   for (Integer i = 0; i < 10; i++) {
+       System.debug('Iteration: ' + i);
+   }
+   ```
+
+4. **Comparisons:**
+
+   ```apex
+   Integer number1 = 10;
+   Integer number2 = 20;
+   Boolean isEqual = number1 == number2;
+   Boolean isGreaterThan = number1 > number2;
+   Boolean isLessThan = number1 < number2;
+   System.debug('Is Equal: ' + isEqual);
+   System.debug('Is Greater Than: ' + isGreaterThan);
+   System.debug('Is Less Than: ' + isLessThan);
+   ```
+
+5. **Parsing Strings to Integer:**
+   ```apex
+   String numberString = '123';
+   Integer parsedNumber = Integer.valueOf(numberString);
+   System.debug('Parsed Number: ' + parsedNumber);
+   ```
+
+### <a name="long"></a>Long
+
+`Long` is a primitive data type in Apex used to represent 64-bit signed whole numbers. It is suitable for calculations and operations involving large whole numbers beyond the range of `Integer`.
+
+**Key Characteristics:**
+
+- **64-bit Signed Integer:** Can represent values from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
+- **Default Value:** If not explicitly initialized, the default value is `0`.
+
+**Common Uses:**
+
+- **Large Counts:** Tracking large quantities or counts.
+- **Large Numeric Calculations:** Performing operations that involve large numbers.
+
+**Example Usages:**
+
+1. **Basic Declaration and Assignment:**
+
+   ```apex
+   Long largeCount = 10000000000L;
+   System.debug('Large Count: ' + largeCount);
+   ```
+
+2. **Arithmetic Operations:**
+
+   ```apex
+   Long number1 = 10000000000L;
+   Long number2 = 20000000000L;
+   Long sum = number1 + number2;
+   Long difference = number1 - number2;
+   Long product = number1 * number2;
+   Long quotient = number1 / number2;
+   System.debug('Sum: ' + sum);
+   System.debug('Difference: ' + difference);
+   System.debug('Product: ' + product);
+   System.debug('Quotient: ' + quotient);
+   ```
+
+3. **Comparisons:**
+
+   ```apex
+   Long number1 = 10000000000L;
+   Long number2 = 20000000000L;
+   Boolean isEqual = number1 == number2;
+   Boolean isGreaterThan = number1 > number2;
+   Boolean isLessThan = number1 < number2;
+   System.debug('Is Equal: ' + isEqual);
+   System.debug('Is Greater Than: ' + isGreaterThan);
+   System.debug('Is Less Than: ' + isLessThan);
+   ```
+
+4. **Parsing Strings to Long:**
+   ```apex
+   String numberString = '123456789012345';
+   Long parsedNumber = Long.valueOf(numberString);
+   System.debug('Parsed Number: ' + parsedNumber);
+   ```
+
+### <a name="object"></a>Object
+
+`Object` is a primitive data type in Apex that acts as a universal base type from which all other types, both primitive and complex, are derived. It is the most generic data type and can hold any data type, including instances of classes, collections, and primitives.
+
+#### Key Characteristics
+
+- **Universal Base Type:** Can store any type of data.
+- **Type Casting Required:** To use the data, it often needs to be cast back to its original type.
+- **Default Value:** If not explicitly initialized, the default value is `null`.
+
+#### Common Uses
+
+- **Generic Collections:** Storing mixed types in collections like `List<Object>`.
+- **Dynamic Data Handling:** Managing data when the type is not known at compile-time.
+- **Flexible Method Parameters:** Allowing methods to accept parameters of any type.
+
+#### Example Usages
+
+1. **Basic Declaration and Assignment**
+
+   - **Example:**
+
+     ```apex
+     Object anyType = 10; // Storing an Integer
+     System.debug('Stored value: ' + anyType);
+
+     anyType = 'Hello, World!'; // Storing a String
+     System.debug('Stored value: ' + anyType);
+
+     anyType = Date.today(); // Storing a Date
+     System.debug('Stored value: ' + anyType);
+     ```
+
+2. **Type Casting**
+
+   - **Example:**
+     ```apex
+     Object anyType = '123';
+     String strValue = (String) anyType; // Casting to String
+     Integer intValue = Integer.valueOf(strValue); // Converting to Integer
+     System.debug('Integer value: ' + intValue);
+     ```
+
+3. **Using with Collections**
+
+   - **Example:**
+
+     ```apex
+     List<Object> mixedList = new List<Object>();
+     mixedList.add(10); // Adding an Integer
+     mixedList.add('Hello'); // Adding a String
+     mixedList.add(Date.today()); // Adding a Date
+
+     for (Object item : mixedList) {
+         System.debug('Item: ' + item);
+     }
+     ```
+
+4. **Flexible Method Parameters**
+
+   - **Example:**
+
+     ```apex
+     public void processData(Object input) {
+         if (input instanceof String) {
+             System.debug('Processing String: ' + (String) input);
+         } else if (input instanceof Integer) {
+             System.debug('Processing Integer: ' + (Integer) input);
+         } else if (input instanceof Date) {
+             System.debug('Processing Date: ' + (Date) input);
+         } else {
+             System.debug('Unknown type');
+         }
+     }
+
+     processData('Hello'); // Passing a String
+     processData(100); // Passing an Integer
+     processData(Date.today()); // Passing a Date
+     ```
+
+5. **Handling Dynamic Data**
+   - **Example:**
+     ```apex
+     Object dynamicData = '2024-05-14';
+     if (dynamicData instanceof String) {
+         Date dateValue = Date.valueOf((String) dynamicData);
+         System.debug('Converted to Date: ' + dateValue);
+     }
+     ```
+
+The `Object` primitive in Apex is a flexible and generic data type that can hold any type of data, making it suitable for dynamic and generic programming scenarios. It is the base type for all other types in Apex and is particularly useful for handling data when the specific type is not known at compile-time. However, careful type casting is often necessary to use the data effectively.
+
+### <a name="string"></a>String
+
+`String` is a primitive data type in Apex used to represent sequences of characters. It is primarily used to store and manipulate textual data.
+
+#### Key Characteristics
+
+- **Immutable:** Once a `String` is created, its value cannot be changed. Any modification results in a new `String` being created.
+- **Unicode Support:** Supports a wide range of characters and symbols from various languages.
+- **Default Value:** The default value is `null` if not explicitly initialized.
+
+#### Common Uses
+
+- **Text Storage:** Used to store text data such as names, addresses, and descriptions.
+- **String Manipulation:** Enables operations such as concatenation, substring extraction, and case conversion.
+- **Data Parsing:** Facilitates parsing and processing data from various sources like user input or files.
+
+#### Example Usages
+
+1. **Basic Declaration and Assignment**
+
+   ```apex
+   String greeting = 'Hello, World!';
+   System.debug('Greeting: ' + greeting);
+   ```
+
+2. **String Concatenation**
+
+   ```apex
+   String firstName = 'John';
+   String lastName = 'Doe';
+   String fullName = firstName + ' ' + lastName;
+   System.debug('Full Name: ' + fullName);
+   ```
+
+3. **String Methods**
+
+   ```apex
+   String text = 'Salesforce Apex';
+
+   // Length of the string
+   Integer length = text.length();
+   System.debug('Length: ' + length);
+
+   // Substring
+   String sub = text.substring(0, 9);
+   System.debug('Substring: ' + sub);
+
+   // Convert to upper case
+   String upper = text.toUpperCase();
+   System.debug('Upper Case: ' + upper);
+
+   // Convert to lower case
+   String lower = text.toLowerCase();
+   System.debug('Lower Case: ' + lower);
+
+   // Replace characters
+   String replaced = text.replace('Apex', 'Lightning');
+   System.debug('Replaced String: ' + replaced);
+   ```
+
+4. **String Comparison**
+
+   ```apex
+   String str1 = 'Hello';
+   String str2 = 'World';
+   String str3 = 'Hello';
+
+   // Equals
+   Boolean isEqual = str1.equals(str3);
+   System.debug('Is Equal: ' + isEqual);
+
+   // CompareTo
+   Integer comparison = str1.compareTo(str2);
+   System.debug('Comparison Result: ' + comparison);
+   ```
+
+5. **Parsing and Converting**
+
+   ```apex
+   // String to Integer
+   String numberString = '123';
+   Integer number = Integer.valueOf(numberString);
+   System.debug('Parsed Integer: ' + number);
+
+   // String to Date
+   String dateString = '2024-05-14';
+   Date date = Date.valueOf(dateString);
+   System.debug('Parsed Date: ' + date);
+   ```
+
+6. **Checking for Null or Empty**
+
+   ```apex
+   String emptyString = '';
+   String nullString = null;
+
+   // Check if string is empty
+   Boolean isEmpty = emptyString.isEmpty();
+   System.debug('Is Empty: ' + isEmpty);
+
+   // Check if string is blank (null or empty)
+   Boolean isNullOrEmpty = String.isBlank(nullString);
+   System.debug('Is Null or Empty: ' + isNullOrEmpty);
+   ```
+
+The `String` primitive in Apex is a robust and flexible data type designed for storing and manipulating text. Its immutability ensures data integrity, and its extensive method library allows for a wide range of operations, making it an essential tool for handling textual data in Salesforce Apex development.
+
+### <a name="time"></a>Time
+
+`Time` is a primitive data type in Apex that represents a specific time of day, down to milliseconds. It does not include date information, only the time (hours, minutes, seconds, and milliseconds).
+
+#### Key Characteristics
+
+- **Time of Day:** Represents only the time portion (hours, minutes, seconds, milliseconds) without any date information.
+- **Immutable:** Once a `Time` instance is created, it cannot be changed.
+- **Default Value:** If not explicitly initialized, the default value is `null`.
+
+#### Common Uses
+
+- **Storing Time:** Used to store specific times of the day, such as business hours or appointment times.
+- **Time Calculations:** Performing operations that involve calculating time differences or adding/subtracting time units.
+- **Formatting and Parsing:** Converting between `Time` and `String` representations for display and input purposes.
+
+#### Example Usages
+
+1. **Basic Declaration and Initialization**
+
+   ```apex
+   // Initializing a Time instance to represent 10:30:00.000 AM
+   Time timeInstance = Time.newInstance(10, 30, 0, 0);
+   System.debug('Time: ' + timeInstance);
+   ```
+
+2. **Accessing Components**
+
+   ```apex
+   Time timeInstance = Time.newInstance(14, 45, 30, 500);
+
+   // Getting individual components
+   Integer hour = timeInstance.hour();
+   Integer minute = timeInstance.minute();
+   Integer second = timeInstance.second();
+   Integer millisecond = timeInstance.millisecond();
+
+   System.debug('Hour: ' + hour);
+   System.debug('Minute: ' + minute);
+   System.debug('Second: ' + second);
+   System.debug('Millisecond: ' + millisecond);
+   ```
+
+3. **Formatting Time**
+
+   ```apex
+   Time timeInstance = Time.newInstance(16, 20, 10, 250);
+   String timeString = timeInstance.format();
+   System.debug('Formatted Time: ' + timeString);
+   ```
+
+4. **Parsing Time from String**
+
+   ```apex
+   String timeString = '14:30:00.000Z';
+   Time parsedTime = Time.valueOf(timeString);
+   System.debug('Parsed Time: ' + parsedTime);
+   ```
+
+5. **Comparing Times**
+
+   ```apex
+   Time time1 = Time.newInstance(9, 0, 0, 0);
+   Time time2 = Time.newInstance(17, 0, 0, 0);
+
+   Boolean isBefore = time1 < time2;
+   Boolean isAfter = time1 > time2;
+   Boolean isEqual = time1 == time2;
+
+   System.debug('Is Before: ' + isBefore);
+   System.debug('Is After: ' + isAfter);
+   System.debug('Is Equal: ' + isEqual);
+   ```
+
+6. **Time Arithmetic**
+   ```apex
+   Time startTime = Time.newInstance(8, 0, 0, 0);
+   Integer additionalHours = 2;
+   Time endTime = startTime.addHours(additionalHours);
+   System.debug('End Time: ' + endTime);
+   ```
+
+The `Time` primitive in Apex is used to represent a specific time of day without any associated date information. It is immutable and provides various methods for creating, accessing, formatting, parsing, and performing arithmetic operations on time values. This makes it useful for applications involving time-specific data, such as scheduling and time tracking.
+
+## <a name="heap"></a>Heap in Apex
+
+The heap is a region of memory where Apex stores objects at runtime. Unlike stack memory, which is used for static memory allocation and executing threads, the heap is used for dynamic memory allocation—allocating and deallocating memory as needed during runtime.
+
+- **Dynamic Allocation**: When you create an instance of an object in Apex, it is allocated on the heap. This memory allocation is managed by Salesforce’s runtime environment, which includes automatic garbage collection to free up memory that is no longer in use.
+- **Garbage Collection**: Apex automatically handles garbage collection, which means that memory used by objects that are no longer referenced by any variable or object is cleared automatically. This helps in managing memory efficiently and ensures that the heap does not run out of space.
+- **Governor Limits**: Salesforce imposes governor limits on the amount of memory that can be used at runtime to ensure that no single process or transaction hogs the shared resources on the multitenant platform. This includes limits on the total heap size that can be used by an execution context.
+
+Variables and heap memory in Apex is fundamental to efficient code and Salesforce application performance. By managing these resources, developers can create applications that adhere to Salesforce’s best practices and respect governor limits.
+
+### <a name="nulls"></a>Nulls
+
+`null` is a special value in Apex used to represent the absence of a value or an uninitialized variable. It indicates that a variable does not reference any object or hold any data.
+
+#### Key Characteristics
+
+- **Default Value:** Many object and reference types have `null` as their default value when not explicitly initialized.
+- **Not Applicable to Primitives:** Primitive data types (like `Integer`, `Boolean`, etc.) have their own default values and cannot be set to `null`.
+- **Null Checks:** Essential to avoid `NullPointerException` errors when accessing methods or properties of objects that may be `null`.
+
+#### Common Uses
+
+- **Uninitialized Variables:** Representing variables that haven't been assigned a value.
+- **Optional Data:** Indicating optional fields or parameters that may or may not have a value.
+- **Clearing References:** Setting a variable to `null` to clear its reference and allow for garbage collection.
+
+#### Example Usages
+
+1. **Basic Declaration and Assignment**
+
+   ```apex
+   String uninitializedString;
+   System.debug('Uninitialized String: ' + uninitializedString); // Outputs: null
+
+   uninitializedString = 'Hello, World!';
+   System.debug('Initialized String: ' + uninitializedString); // Outputs: Hello, World!
+
+   uninitializedString = null;
+   System.debug('Cleared String: ' + uninitializedString); // Outputs: null
+   ```
+
+2. **Null Checks**
+
+   ```apex
+   String name = null;
+
+   if (name == null) {
+       System.debug('Name is null');
+   } else {
+       System.debug('Name: ' + name);
+   }
+   ```
+
+3. **Avoiding NullPointerException**
+
+   ```apex
+   String description = null;
+
+   // Check for null before accessing properties or methods
+   if (description != null) {
+       Integer length = description.length();
+       System.debug('Description Length: ' + length);
+   } else {
+       System.debug('Description is null, cannot get length');
+   }
+   ```
+
+4. **Using Null for Optional Data**
+
+   ```apex
+   public class Product {
+       public String name;
+       public String description;
+
+       public Product(String name) {
+           this.name = name;
+           this.description = null; // Optional field
+       }
+   }
+
+   Product product = new Product('Laptop');
+   System.debug('Product Name: ' + product.name); // Outputs: Laptop
+   System.debug('Product Description: ' + product.description); // Outputs: null
+   ```
+
+5. **Clearing References**
+
+   ```apex
+   String temporaryData = 'Temporary Data';
+   System.debug('Temporary Data: ' + temporaryData); // Outputs: Temporary Data
+
+   // Clear the reference
+   temporaryData = null;
+   System.debug('Cleared Temporary Data: ' + temporaryData); // Outputs: null
+   ```
+
+`null` in Apex is used to signify the absence of a value or that a variable has not been initialized. It is important for handling optional data and avoiding runtime errors by performing null checks before accessing methods or properties of potentially null objects. Proper use of `null` enhances code robustness and reliability.
+
+### <a name="constants"></a>Constants
+
+Constants in Apex are variables whose values are fixed and cannot be changed once they are initialized. They are typically declared with the `final` keyword to ensure their immutability.
+
+#### Key Characteristics
+
+- **Immutability:** Once assigned, the value of a constant cannot be modified.
+- **Use of `final` Keyword:** Declared with the `final` keyword to enforce the immutability.
+- **Convention:** Often named using uppercase letters with underscores to separate words (e.g., `MAX_VALUE`).
+
+#### Common Uses
+
+- **Fixed Configuration Values:** Storing values that do not change, such as configuration parameters, maximum limits, or default values.
+- **Improving Code Readability:** Making code more readable and maintainable by providing meaningful names to fixed values.
+- **Ensuring Consistency:** Preventing accidental changes to values that should remain constant throughout the program.
+
+#### Example Usages
+
+1. **Declaring a Constant**
+
+   ```apex
+   public class ConstantsExample {
+       public static final Integer MAX_LOGIN_ATTEMPTS = 5;
+       public static final String COMPANY_NAME = 'Salesforce';
+
+       public void displayConstants() {
+           System.debug('Max Login Attempts: ' + MAX_LOGIN_ATTEMPTS);
+           System.debug('Company Name: ' + COMPANY_NAME);
+       }
+   }
+   ```
+
+2. **Using Constants in Methods**
+
+   ```apex
+   public class OrderProcessing {
+       public static final Decimal SALES_TAX_RATE = 0.07;
+
+       public Decimal calculateTotalPrice(Decimal price) {
+           Decimal tax = price * SALES_TAX_RATE;
+           return price + tax;
+       }
+   }
+
+   // Usage
+   OrderProcessing order = new OrderProcessing();
+   Decimal totalPrice = order.calculateTotalPrice(100);
+   System.debug('Total Price: ' + totalPrice);
+   ```
+
+3. **Accessing Constants Across Classes**
+
+   ```apex
+   public class ApplicationSettings {
+       public static final String DEFAULT_LANGUAGE = 'English';
+   }
+
+   public class UserPreferences {
+       public void displayDefaultLanguage() {
+           System.debug('Default Language: ' + ApplicationSettings.DEFAULT_LANGUAGE);
+       }
+   }
+
+   // Usage
+   UserPreferences prefs = new UserPreferences();
+   prefs.displayDefaultLanguage();
+   ```
+
+4. **Preventing Modifications**
+
+   ```apex
+   public class ImmutableValues {
+       public static final Integer MAX_USERS = 100;
+
+       public void attemptModification() {
+           // MAX_USERS = 200; // This line would cause a compile-time error
+       }
+   }
+   ```
+
+5. **Improving Code Readability**
+
+   ```apex
+   public class PaymentProcessor {
+       public static final String CURRENCY_USD = 'USD';
+       public static final String CURRENCY_EUR = 'EUR';
+
+       public void processPayment(Decimal amount, String currency) {
+           if (currency == CURRENCY_USD) {
+               System.debug('Processing payment in USD: ' + amount);
+           } else if (currency == CURRENCY_EUR) {
+               System.debug('Processing payment in EUR: ' + amount);
+           } else {
+               System.debug('Unsupported currency: ' + currency);
+           }
+       }
+   }
+
+   // Usage
+   PaymentProcessor processor = new PaymentProcessor();
+   processor.processPayment(100, PaymentProcessor.CURRENCY_USD);
+   ```
+
+Constants in Apex are used to define immutable values that provide consistency and improve code readability. They are declared using the `final` keyword and are typically used for fixed configuration values, default settings, and limits. By preventing modifications, constants ensure that critical values remain unchanged throughout the execution of a program.

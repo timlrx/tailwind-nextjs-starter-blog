@@ -1,0 +1,78 @@
+---
+title: Introduction to Apex
+date: '2024-05-14'
+tags: ['apex', 'basics']
+draft: false
+summary: A brief primer on Salesforce Apex.
+---
+
+### Introducing Apex
+
+Apex is a programming language designed for developers to build business applications on Salesforce. Apex provides a framework for automation and customization beyond standard Salesforce point-and-click configuration.
+
+### What is Apex?
+
+Apex is a strongly typed, object-oriented programming language that executes on the Salesforce platform, enabling direct transaction control. With syntax similar to Java, Apex integrates with Salesforce events such as button clicks, updates, and Lightning Web Components. It can be triggered by web services or object triggers, streamlining complex transactions.
+
+### Strong Typing in Apex
+
+**Strong typing** means that once a variable is declared as a certain type, it cannot be assigned a value of another type without an explicit conversion. Apex is a strongly typed language, which means:
+
+- **Type Enforcement:** Variables, method parameters, and return values must be declared with specific data types (e.g., `String`, `Integer`, `Boolean`, `SObject`, etc.).
+- **Compile-time Checking:** The type of the variable is checked at compile time, reducing the likelihood of type errors at runtime. This ensures that type mismatches are caught early in the development process.
+- **Code Clarity:** Strong typing makes the code more readable and maintainable, as it is clear what types of data are expected.
+
+Example:
+
+```apex
+Integer myInteger = 10;
+String myString = 'Hello, World!';
+
+// This will cause a compile-time error
+myInteger = myString; // Type mismatch: cannot convert from String to Integer
+```
+
+### Weak Typing
+
+**Weak typing**, on the other hand, means that variables can be assigned values of different types more freely, and type checking is often done at runtime. Apex does not support weak typing in the same way that some other languages like JavaScript, Python do.
+
+### Remember
+
+- **Strong Typing in Apex:**
+
+  - Variables have specific data types.
+  - Type checking is done at compile time.
+  - Reduces runtime errors and improves code clarity.
+
+- **Weak Typing (Not supported in Apex):**
+  - Variables can hold values of different types.
+  - Type checking is done at runtime.
+  - Can lead to more flexible but potentially error-prone code.
+
+Apex remains strongly typed, emphasizing type safety and reducing the risk of type-related errors in Salesforce development.
+
+### Object Oriented programming
+
+An object-oriented program is a software design approach that organizes code into objects, which encapsulate both data (attributes) and behavior (methods). These objects interact with each other to perform tasks and represent real-world entities. Key principles include encapsulation, inheritance, polymorphism, and abstraction.
+
+### Multi-Tenancy
+
+Multi-tenancy in Salesforce is an architecture where multiple customers (tenants) share the same Salesforce infrastructure and resources, but their data is logically isolated. So that:
+
+- Each tenant's data is secure and separate.
+- Resource utilization is optimized across tenants.
+- The application is scalable and cost-effective.
+
+### Governor Limits
+
+Governor limits in Salesforce Apex are enforced constraints designed to ensure efficient use of shared resources on the multi-tenant environment. These limits prevent a single Apex transaction from consuming excessive resources and impacting other orgs. Key governor limits include:
+
+- **SOQL Queries:** Maximum of 100 synchronous or 200 asynchronous queries per transaction.
+- **DML Statements:** Maximum of 150 DML statements per transaction.
+- **CPU Time:** Maximum of 10,000 milliseconds for synchronous and 60,000 milliseconds for asynchronous transactions.
+- **Heap Size:** Maximum of 6 MB for synchronous and 12 MB for asynchronous transactions.
+- **Callouts:** Maximum of 100 callouts to external services per transaction.
+- **Records Retrieval:** Maximum of 50,000 records retrieved by SOQL queries per transaction.
+- **Batch Size:** For batch Apex, a maximum of 50 million records can be processed in a single batch job.
+
+These limits ensure fair usage and maintain system performance and stability.

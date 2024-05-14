@@ -74,7 +74,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
+                        {/* <dt className="sr-only">Twitter</dt>
                         <dd>
                           {author.twitter && (
                             <Link
@@ -84,6 +84,20 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               {author.twitter
                                 .replace('https://twitter.com/', '@')
                                 .replace('https://x.com/', '@')}
+                            </Link>
+                          )}
+                        </dd> */}
+                        <dt className="sr-only">LinkedIn</dt>
+                        <dd>
+                          {author.linkedin && (
+                            <Link
+                              href={author.linkedin}
+                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                            >
+                              {author.linkedin.replace(
+                                'https://linkedin.com/in/tony-geiser',
+                                '@LinkedIn'
+                              )}
                             </Link>
                           )}
                         </dd>

@@ -1,0 +1,50 @@
+---
+title: Hello World! Your First Apex Program
+date: '2024-05-14'
+tags: ['apex', 'basics']
+draft: false
+summary: How to write your first Apex program in Salesforce!
+---
+
+A "Hello World" program is a simple script that is often used as an introduction to the basics of a programming language. In Salesforce Apex, we will demonstrate using an anonymous block, which is an easy way to execute snippets of code directly in Salesforce's Developer Console without deploying them as part of an application. Or, setting up an IDE like Visual Code.
+
+### Writing a 'Hello World' Program in Apex
+
+In Apex we can write this program in one line of code:
+
+```apex
+System.debug('Hello, World!');
+```
+
+### How it Works
+
+1. **System.debug()**:
+   - `System.debug()` is a method used to log messages. The debug log records database operations, system processes, and errors that occur when executing a transaction or while running unit tests. It is a useful tool for developers to track the flow of their code execution and inspect the values of variables and expressions at specific points.
+   - The string `'Hello, World!'` is the message that gets logged. This simple example doesn't output to a user interface or a console like other programming languages, as Apex runs on Salesforce's server-side. Instead, the output is directed to the system log, viewable within the Salesforce interface.
+
+### See It In Action
+
+To run this simple program in Salesforce, you would typically use the Developer Console's "Execute Anonymous" window. Here’s how you can do it:
+
+1. **Log into your Salesforce Org**:
+
+   - Ensure you have access to Salesforce and permissions to use the Developer Console.
+
+2. **Open the Developer Console**:
+
+   - Navigate to the quick access menu (displayed as a gear icon in Salesforce Classic or the App Launcher in Lightning Experience), and select "Developer Console." This opens a new window with various developer tools.
+
+3. **Execute Anonymous Window**:
+
+   - In the Developer Console, go to "Debug" on the top menu and select "Open Execute Anonymous Window" from the dropdown.
+
+4. **Enter and Execute the Code**:
+
+   - In the Execute Anonymous Window, enter the code `System.debug('Hello, World!');`
+   - Check "Open Log" if it's not already checked. This option ensures that the debug log opens automatically after the code execution.
+   - Click the "Execute" button.
+
+5. **View the Output**:
+   - The output of the program will be in the debug log that opens after execution. You will find the "Hello, World!" message logged as part of the execution details.
+
+This example introduces the basics of writing and running Apex code, and how to output data, which in real-world applications could be part of a more complex process like triggering events or processing data in Salesforce.
