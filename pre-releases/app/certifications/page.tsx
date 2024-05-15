@@ -1,7 +1,7 @@
 import React from 'react'
 import { genPageMetadata } from 'app/seo'
 import Card from '@/components/Card'
-import certificationsData from '@/data/certificationsData'
+// import certificationsData from '@/data/certificationsData'
 
 export const metadata = genPageMetadata({
   title: 'Certifications',
@@ -22,7 +22,7 @@ const Certifications = () => {
         </div>
         <div className="container py-12">
           <div className="-m-4 flex flex-wrap">
-            {certificationsData.map((d) => (
+            {/* {certificationsData.map((d) => (
               <Card
                 key={d.title}
                 title={d.title}
@@ -30,7 +30,7 @@ const Certifications = () => {
                 imgSrc={d.imgSrc}
                 href={d.href}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ const Certifications = () => {
         </div>
         <div className="container py-12">
           <div className="-m-4 flex flex-wrap">
-            {certificationsData.map((d) => (
+            {/* {certificationsData.map((d) => (
               <Card
                 key={d.title}
                 title={d.title}
@@ -53,7 +53,7 @@ const Certifications = () => {
                 imgSrc={d.imgSrc}
                 href={d.href}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
