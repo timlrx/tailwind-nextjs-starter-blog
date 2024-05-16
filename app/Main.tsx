@@ -15,14 +15,15 @@ export default function Home({ posts }) {
             Hi, I'm Anthony
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Welcome to my blog, this will be my space to talk about data analytics, my projects, running 
-            and maybe some wine. If you're here to look at my resume and projects feel free to look around
-            and dont be afraid to ask any questions...
+            Welcome to my blog, this will be my space to talk about data analytics, my projects,
+            running and maybe some wine. If you're here to look at my resume and projects feel free
+            to look around and dont be afraid to ask any questions...
           </p>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Here i'd like to put maybe some links to my strava api link like KM's this week? <br></br>
-            Maybe a spotify api linkto see what im listenging too? <br></br>
-            a field i can updates like werhe im located atm with a flag? <br></br>
+            Here i'd like to put maybe some links to my strava api link like KM's this week?{' '}
+            <br></br>
+            Maybe a spotify api linkto see what im listenging too? <br></br>a field i can updates
+            like werhe im located atm with a flag? <br></br>
             Current project im working on?<br></br>
             id also like to format this to a half page so i can put a picture of me?
           </p>
@@ -32,7 +33,8 @@ export default function Home({ posts }) {
             Latest Posts
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Check out some of my recent posts! They're usually about new skills, passions and projects I'm working on.
+            Check out some of my recent posts! They're usually about new skills, passions and
+            projects I'm working on.
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
