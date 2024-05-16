@@ -17,7 +17,7 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             Welcome to my blog, this will be my space to talk about data analytics, my projects, running 
             and maybe some wine. If you're here to look at my resume and projects feel free to look around
-            and dont be afraid to ask any questions.
+            and dont be afraid to ask any questions...
           </p>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             Here i'd like to put maybe some links to my strava api link like KM's this week? <br></br>
