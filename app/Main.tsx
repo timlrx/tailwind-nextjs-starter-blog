@@ -4,7 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 2
 
 export default function Home({ posts }) {
   return (
@@ -12,10 +12,27 @@ export default function Home({ posts }) {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Late
+            Hi, I'm Anthony
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
+            Welcome to my blog, this will be my space to talk about data analytics, my projects, running 
+            and maybe some wine. If you're here to look at my resume and projects feel free to look around
+            and dont be afraid to ask any questions.
+          </p>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Here i'd like to put maybe some links to my strava api link like KM's this week? <br></br>
+            Maybe a spotify api linkto see what im listenging too? <br></br>
+            a field i can updates like werhe im located atm with a flag? <br></br>
+            Current project im working on?<br></br>
+            id also like to format this to a half page so i can put a picture of me?
+          </p>
+        </div>
+        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            Latest Posts
+          </h1>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Check out some of my recent posts! They're usually about new skills, passions and projects I'm working on.
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -70,22 +87,6 @@ export default function Home({ posts }) {
           })}
         </ul>
       </div>
-      {posts.length > MAX_DISPLAY && (
-        <div className="flex justify-end text-base font-medium leading-6">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="All posts"
-          >
-            All Posts &rarr;
-          </Link>
-        </div>
-      )}
-      {siteMetadata.newsletter?.provider && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
     </>
   )
 }
