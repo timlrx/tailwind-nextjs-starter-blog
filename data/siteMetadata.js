@@ -1,17 +1,17 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'ApexDevNotes',
+  title: 'ForceDevNotes',
   author: 'Tony Geiser',
-  headerTitle: 'ApexDevNotes',
+  headerTitle: 'ForceDevNotes',
   description: "A developer's guide to Apex for Salesforce.",
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://apexdevnotes.com',
+  siteUrl: 'https://ForceDevNotes.com',
   siteRepo: 'https://github.com/geisera/apex-blog',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'tony@apexdevnotes.com',
+  email: 'tony@ForceDevNotes.com',
   github: 'https://github.com',
   x: 'https://twitter.com/x',
   // twitter: 'https://twitter.com/Twitter',
