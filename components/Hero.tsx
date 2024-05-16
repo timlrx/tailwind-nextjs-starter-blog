@@ -7,16 +7,14 @@ export default function Example() {
             <h1 className="py-5 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Let's learn Omniscript
             </h1>
-            <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-              <ul>
-                <li>- and Apex</li>
-                <li>- and Lightning Web Components</li>
-                <li>- and Javascript</li>
-                <li>- and Flows</li>
-                <li>- and SOQL</li>
-                <li>- and everything else!</li>
-              </ul>
-            </p>
+            <ul className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+              <li>- and Apex</li>
+              <li>- and Lightning Web Components</li>
+              <li>- and Javascript</li>
+              <li>- and Flows</li>
+              <li>- and SOQL</li>
+              <li>- and everything else!</li>
+            </ul>
           </div>
           <div className="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
             <div className="shadow-lg md:rounded-3xl">
