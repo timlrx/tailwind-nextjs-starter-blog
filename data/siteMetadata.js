@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'rdg1029 Dev Blog',
   author: 'Kim Younghyun',
   headerTitle: 'Kim Younghyun',
-  description: '프론트엔드 개발자의 개인 블로그입니다.',
+  description: '프론트엔드 개발자의 블로그입니다.',
   language: 'ko-kr',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog-rdg1029.vercel.app/',
