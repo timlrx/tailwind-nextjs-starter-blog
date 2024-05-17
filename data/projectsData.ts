@@ -7,20 +7,10 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
-  },
-  {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Soul Rest',
+    description: `힐링을 위한 서울시의 각종 명소들을 주제별, 자치구별로 분류해 제공하는 애플리케이션입니다.`,
+    imgSrc: '/static/images/soulrest.png',
+    href: 'https://github.com/yymin1022/SeoulHealing',
   },
 ]
 
