@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://ForceDevNotes.com',
   siteRepo: 'https://github.com/geisera/apex-blog',
   siteLogo: '/static/images/logo.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/social-banner.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'tony@ForceDevNotes.com',
   github: 'https://github.com',
