@@ -1,1 +1,1 @@
-{"java":6,"flyway":1,"lombok":1,"spring":3,"jpa":1,"jira":1,"management-software":1,"java-collection-framework":1,"kafka":1,"avro":1,"lesson-learned":1,"opentelemetry":1,"jaeger":1,"grafana":1,"devops":1,"circuit-breaker":1,"api-gateway":1}
+{"api-gateway":1,"spring":3,"circuit-breaker":1,"java":5,"java-collection-framework":1,"jira":1,"management-software":1,"kafka":1,"avro":1,"lesson-learned":1,"lombok":1,"opentelemetry":1,"jaeger":1,"grafana":1,"devops":1,"jpa":1}
