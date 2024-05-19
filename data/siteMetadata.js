@@ -2,14 +2,14 @@
 const siteMetadata = {
   title: 'Lynx Blogs',
   author: 'Lynx',
-  headerTitle: 'Zenith Web',
+  headerTitle: "Zenith's Tech",
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://zenithweb.vercel.app',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/zenith.svg',
-  socialBanner: '/static/images/zenith.png',
+  socialBanner: '/static/images/zenithstech.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'panchamb63@gmail.com',
   github: 'https://github.com/Pancham555',
