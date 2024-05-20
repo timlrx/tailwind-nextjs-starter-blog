@@ -39,7 +39,7 @@ export default function Home({ posts }) {
                       <div className="m-auto h-60 w-full xl:h-36 xl:pr-10">
                         <img
                           src={images[0]}
-                          className="h-full w-full rounded-md object-cover"
+                          className="h-full max-h-56 w-full rounded-md object-cover "
                           alt="topimg"
                         />
                       </div>

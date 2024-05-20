@@ -134,6 +134,15 @@ export default function ListLayoutWithTags({
                       </dl>
                       <div className="space-y-3">
                         <div>
+                          {/* Modified */}
+                          {post.images ? (
+                            <img
+                              src={post?.images?.[0]}
+                              className="my-2 h-full max-h-56 w-full rounded-md object-cover"
+                              alt="topimg"
+                            />
+                          ) : null}
+                          {/* Modified */}
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
                               {title}
