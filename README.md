@@ -1,3 +1,3 @@
 ## An aerial perspective of the site.
 
-![zenith site](https://zenithweb.vercel.app/static/images/site.png)
+![zenith site](https://www.zenithstech.com/static/images/site.png)

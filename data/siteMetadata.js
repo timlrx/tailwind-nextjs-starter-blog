@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://zenithweb.vercel.app',
+  siteUrl: 'https://www.zenithstech.com',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '/static/images/zenith.svg',
   socialBanner: '/static/images/zenithstech.png',
