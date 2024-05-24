@@ -1,9 +1,128 @@
 ---
-title: TEST
+title: Executing Apex
 date: '2024-05-14'
-tags: ['basics']
+tags: ['apex', 'basics']
 draft: false
-summary: Testing.
+summary: Where to put Apex to work.
 ---
 
-# Testing
+## Execution Contexts for Apex in Salesforce
+
+### Anonymous Code Blocks
+
+**Anonymous code blocks** are snippets of Apex code that can be executed on-the-fly without being stored in the Salesforce database. They are primarily used for testing, debugging, and running ad-hoc operations.
+
+- **Where:** Developer Console or Salesforce IDEs
+- **How:** Execute ad-hoc Apex code for testing and debugging.
+- **Example:**
+  ```apex
+  System.debug('Hello, World!');
+  ```
+
+### Triggers
+
+**Triggers** in Salesforce are pieces of Apex code that automatically execute before or after certain database operations on specified standard or custom objects. They enable developers to perform custom actions when records are inserted, updated, deleted, or undeleted.
+
+- **Where:** Attached to SObjects (e.g., Account, Contact)
+- **How:** Automatically executed in response to DML operations (insert, update, delete, undelete).
+- **Example:**
+  ```apex
+  trigger AccountTrigger on Account (before insert, after update) {
+      // Trigger logic here
+  }
+  ```
+
+### Asynchronous Apex
+
+**Asynchronous Apex** allows developers to run processes in the background, enabling the execution of long-running operations without blocking the main thread. This helps in managing large datasets, improving performance, and adhering to Salesforce governor limits.
+
+- **Where:** Background operations to avoid long-running processes
+- **How:**
+  - **Future Methods:**
+    ```apex
+    @future
+    public static void someFutureMethod() {
+        // Async logic here
+    }
+    ```
+  - **Batch Apex:**
+    ```apex
+    global class MyBatchClass implements Database.Batchable<SObject> {
+        // Batch logic here
+    }
+    ```
+  - **Scheduled Apex:**
+    ```apex
+    global class MyScheduledClass implements Schedulable {
+        global void execute(SchedulableContext sc) {
+            // Scheduled logic here
+        }
+    }
+    ```
+  - **Queueable Apex:**
+    ```apex
+    public class MyQueueableClass implements Queueable {
+        public void execute(QueueableContext context) {
+            // Queueable logic here
+        }
+    }
+    ```
+
+### Web Services
+
+**Web services** enable integration with external systems using SOAP or REST protocols, facilitating the exchange of data and functionality between Salesforce and other platforms.
+
+- **Where:** Expose Apex methods as SOAP or REST web services
+- **How:**
+  - **SOAP:**
+    ```apex
+    global class MySoapService {
+        webservice static String myMethod() {
+            return 'Hello, World!';
+        }
+    }
+    ```
+  - **REST:**
+    ```apex
+    @RestResource(urlMapping='/myservice/*')
+    global class MyRestService {
+        @HttpGet
+        global static String doGet() {
+            return 'Hello, World!';
+        }
+    }
+    ```
+
+### Email Services
+
+**Email services** in Apex process incoming emails using custom logic defined in an inbound email handler, enabling automated responses and actions based on email content.
+
+- **Where:** Process incoming emails
+- **How:** Implement an email service handler
+- **Example:**
+  ```apex
+  global class MyEmailService implements Messaging.InboundEmailHandler {
+      global Messaging.InboundEmailResult handleInboundEmail(Messaging.InboundEmail email, Messaging.InboundEnvelope envelope) {
+          // Email handling logic here
+      }
+  }
+  ```
+
+### Saving and Compiling Apex
+
+Apex code is automatically compiled upon saving or deploying, where it waits to be executed when it's properly invoked.
+
+- **Where:** Salesforce setup, Developer Console, or Salesforce IDEs
+- **How:**
+  - Write Apex classes and triggers in the Developer Console or IDE.
+  - Save to compile and deploy to the Salesforce org.
+- **Example:**
+  ```apex
+  public class MyClass {
+      public void myMethod() {
+          System.debug('Hello, World!');
+      }
+  }
+  ```
+
+Apex can be executed in various contexts within Salesforce, including anonymous code blocks for testing, triggers for data-driven logic, asynchronous methods for background processing, web services for external communication, email services for handling inbound emails, and via standard saving and compiling methods within the Salesforce environment.
