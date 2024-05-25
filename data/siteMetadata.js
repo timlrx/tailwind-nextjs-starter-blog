@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Lynx Blogs',
+  title: "Zenith's Tech | Lynx Blogs",
   author: 'Lynx',
   headerTitle: "Zenith's Tech",
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'A site made by Lynx',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://www.zenithstech.com',
