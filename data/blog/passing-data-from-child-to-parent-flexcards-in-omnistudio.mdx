@@ -1,0 +1,46 @@
+---
+title: Passing Data from Child FlexCards to Parent FlexCards in OminStudio
+date: '2024-06-04'
+tags: ['omnistudio', 'flexcards']
+draft: false
+summary: How to pass data from a child FlexCard to a parent FlexCard in OmniStudio.
+---
+
+## Pass Data From a Child FlexCard to a Parent FlexCard
+
+### Overview
+
+After embedding a child FlexCard inside another FlexCard, you can pass data from the child to its parent as input parameters from a **Custom Event** action on the child.
+Use an event listener to execute a **Set Values** action to update fields on the parent.
+
+Create a child FlexCard or select one from the FlexCards home tab.
+
+### Add a custom event to the child FlexCard:
+
+- Drag an action element onto the canvas.
+- Set the **Action Type** to **_Event_**
+- Set the **Event Type** to **_Custom_**
+- Enter a name in the **Event Name** field.
+- In the **Input Parameters** section, click **+ Add New**
+- Under **Input Parameters** enter a name for the data you want to call in the **Key** input field.
+- Under **Input Parameters** enter a value to pass. Or, enter a merge field from the child's data source.
+- Activate the child FlexCard.
+
+Create the parent FlexCard or open one from the FlexCards home tab.
+
+### Create an Event Listener on the Parent FlexCard
+
+- Drag a FlexCard element from the **\*Build** panel onto the canvas.
+- Click into the FlexCard **Name** field and select the child FlexCard you created previously.
+- In the Setup panel, click **+ Add New** in the **Event Listener** section.
+- Under **Event Type** select **Custom Event**.
+- In the **Event Name** input field, enter the name of the event you created in the child FlexCard.
+- In the Actions section, under **Action Type** select **Card**
+- In the Actions section under **Type** select **Set Values**.
+- In the new **Set Values** section, click **+ Add New**.
+- In the **Key** input field, select the data field to update.
+- In the **Value** input field, use the `{action.param}` syntax
+
+To preview and test, click Preview. Click the action in the child FlexCard to update a data field in the parent.
+
+Source: [Salesforce Docs](https://help.salesforce.com/s/articleView?id=sf.os_pass_data_from_a_child_flexcard_to_a_parent_flexcard.htm&type=5)
