@@ -1,0 +1,76 @@
+---
+title: Understanding Class Constructors in Salesforce Apex
+date: '2024-06-07'
+tags: ['apex', 'intro']
+draft: false
+summary: An overview of Salesforce Apex class constructors.
+---
+
+In Apex, constructors are special methods within a [**class**](/blog/understanding-classes-in-apex) that are automatically invoked when an object of that class is created using the `new` keyword. Constructors initialize the newly created object, setting initial values to its member variables or performing other initialization tasks.
+
+## Key points about class constructors in Salesforce Apex
+
+### **Syntax**
+
+- Constructors in Apex have the same name as the class they belong to.
+- They don't have a return type, not even `void`.
+- Constructors can be overloaded, meaning a class can have multiple constructors with different parameter lists.
+
+### **Purpose**
+
+- Constructors are primarily used to initialize the state of an object when it is created.
+- They set initial values to member variables, perform validation, or execute any other necessary setup tasks.
+
+### **Default Constructor**
+
+- If a class doesn't explicitly define any constructors, Apex provides a default constructor with no parameters.
+- The default constructor initializes member variables to their default values (null for reference types, 0 for numeric types, false for Boolean, etc.).
+
+### **Overloading Constructors**
+
+- Apex supports constructor overloading, allowing a class to have multiple constructors with different parameter lists.
+- Overloaded constructors provide flexibility in object initialization by allowing different ways to create objects.
+
+### **Calling Superclass Constructors**
+
+- If a subclass extends a superclass, the subclass constructor can call the constructor of its superclass using the `super()` keyword.
+- This is useful for initializing inherited members or performing common initialization tasks defined in the superclass.
+
+### **Example**
+
+Here's an example illustrating the use of constructors in Salesforce Apex:
+
+```apex
+public class MyClass {
+    public String name;
+    public Integer age;
+
+    // Default constructor
+    public MyClass() {
+        name = 'John Doe';
+        age = 30;
+    }
+
+    // Parameterized constructor
+    public MyClass(String newName, Integer newAge) {
+        name = newName;
+        age = newAge;
+    }
+
+    // Constructor calling superclass constructor
+    public class MySubClass extends MyClass {
+        public MySubClass() {
+            super(); // Call superclass constructor
+        }
+    }
+}
+```
+
+In this example:
+
+- `MyClass` has two constructors: a default constructor that initializes `name` and `age`, and a parameterized constructor that allows custom initialization.
+- `MySubClass` extends `MyClass` and calls the superclass constructor using `super()`.
+
+Constructors play a crucial role in initializing objects and ensuring that they are in a valid state when they are created. They provide flexibility and reusability in object initialization within Apex classes.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_ref_guide.htm)_**.
