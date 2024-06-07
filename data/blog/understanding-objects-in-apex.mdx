@@ -1,0 +1,68 @@
+---
+title: Understanding Objects in Salesforce Apex
+date: '2024-06-06'
+tags: ['apex', 'intro']
+draft: false
+summary: An overview of Salesforce Apex objects.
+---
+
+Objects represent the structure and behavior of data stored in the Salesforce database. You can think of objects as tables in a relational database, storing records (rows) of data. Each object has fields (columns) that define the specific data that can be stored in the object.
+
+## Key concepts related to objects in Salesforce Apex
+
+### **Standard Objects**
+
+Salesforce provides a set of standard objects such as Account, Contact, Opportunity, Lead, etc., which are commonly used to store data related to sales, marketing, and customer relationships. These standard objects come pre-defined with Salesforce and have built-in functionality.
+
+### **Custom Objects**
+
+In addition to standard objects, Salesforce allows users to create custom objects to store data specific to their organization's needs. Custom objects can have custom fields and relationships and are created using the Salesforce setup interface or programmatically using Apex.
+
+### **Schema**
+
+In Salesforce, the schema describes the organization's data model, including standard and custom objects, fields, and relationships between objects. The Schema namespace in Apex provides classes and methods to dynamically access and manipulate schema information, such as object metadata and field describe information.
+
+### **Object and Field Permissions**
+
+Salesforce provides granular control over who can access and modify objects and fields. Object-level and field-level security can be configured to restrict access to sensitive data.
+
+### **DML Operations**
+
+Data Manipulation Language (DML) operations are used to insert, update, delete, and query records in Salesforce objects. Apex provides DML statements (`insert`, `update`, `delete`, `undelete`, `upsert`, `merge`) to perform these operations on records.
+
+### **SOQL (Salesforce Object Query Language)**
+
+SOQL is a query language used to retrieve data from Salesforce objects. It is similar to SQL (Structured Query Language) but tailored for Salesforce's data model. SOQL queries are executed using Apex code to fetch records based on specified criteria.
+
+### **Example**
+
+Here's a simple example illustrating the creation of a custom object and performing DML operations on it using Apex
+
+```apex
+// Creating a custom object
+Schema.SObjectType customObjectType = Schema.getGlobalDescribe().get('Custom_Object__c');
+if (customObjectType == null) {
+    SchemaBuilder.createCustomObject();
+}
+
+// Inserting a record into the custom object
+Custom_Object__c customObject = new Custom_Object__c(Name='Test Object');
+insert customObject;
+
+// Querying records from the custom object
+List<Custom_Object__c> customObjects = [SELECT Id, Name FROM Custom_Object__c WHERE Name = 'Test Object'];
+
+// Updating a record
+if (!customObjects.isEmpty()) {
+    Custom_Object__c objToUpdate = customObjects[0];
+    objToUpdate.Name = 'Updated Name';
+    update objToUpdate;
+}
+
+// Deleting a record
+if (!customObjects.isEmpty()) {
+    delete customObjects[0];
+}
+```
+
+Objects are the foundation of data storage and manipulation in Salesforce, enabling organizations to efficiently manage their business data and processes within the platform.

@@ -1,0 +1,79 @@
+---
+title: Understanding Classes in Salesforce Apex
+date: '2024-06-05'
+tags: ['apex', 'intro']
+draft: false
+summary: An overview of Salesforce Apex classes, syntax, modifiers, methods, and usage.
+---
+
+**Classes** are essentially blueprints for creating [**objects**](/blog/understanding-objects-in-apex). They encapsulate data and methods (functions) to perform operations on that data. Classes in Apex are similar to classes in other object-oriented programming languages like Java or C#.
+
+## Key concepts related to classes in Salesforce Apex
+
+### **Syntax**
+
+A class in Apex is defined using the `class` keyword followed by the class name and optional access modifiers (`public`, `private`, or `global`). Here's a basic syntax:
+
+```apex
+public class MyClass {
+    // Class members (variables and methods) go here
+}
+```
+
+### **Access Modifiers**
+
+- `public`: Accessible from any Apex code within the same application.
+- `private`: Accessible only within the same class.
+- `global`: Accessible from any Apex code in the Salesforce organization.
+
+### **Class Members**
+
+- **Variables**: Variables declared within a class represent the state or data of the class. They can have different access modifiers.
+- **Methods (Functions)**: Methods define the behavior of the class. They can be `void` (not returning any value) or returning a specific data type.
+
+### **Constructors**
+
+Constructors are special methods invoked when an object of a class is created. They initialize the object's state. In Apex, constructors have the same name as the class and no return type. They are typically used to initialize member variables.
+
+### **Instantiation**
+
+Once a class is defined, you can create instances (objects) of that class using the `new` keyword. For example:
+
+```apex
+MyClass obj = new MyClass();
+```
+
+### **Example**
+
+Here's a simple example illustrating a class in Apex:
+
+```apex
+public class Car {
+    // Class variables
+    public String make;
+    public Integer year;
+
+    // Constructor
+    public Car(String make, Integer year) {
+        this.make = make;
+        this.year = year;
+    }
+
+    // Method to display car information
+    public void displayInfo() {
+        System.debug('Make: ' + make);
+        System.debug('Year: ' + year);
+    }
+}
+```
+
+### **Using Classes**
+
+Once a class is defined, you can use its methods and access its variables within your Apex code. For example:
+
+```apex
+Car myCar = new Car('Toyota', 2020);
+myCar.displayInfo();
+```
+
+Classes are fundamental building blocks of custom business logic in the Salesforce platform. They enable developers to create modular, reusable code that enhances the functionality of Salesforce applications.
