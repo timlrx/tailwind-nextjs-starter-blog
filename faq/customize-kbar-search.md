@@ -45,7 +45,7 @@ export const SearchProvider = ({ children }) => {
             keywords: post?.summary || '',
             section: 'Blog',
             subtitle: post.tags.join(', '),
-            perform: () => router.push(post.path),
+            perform: () => router.push('/' + post.path),
           }))
         },
       }}
@@ -53,5 +53,39 @@ export const SearchProvider = ({ children }) => {
       {children}
     </KBarSearchProvider>
   )
+}
+```
+
+You can even choose to do a full text search over the entire generated blog content though this would come at the expense of a larger search index file by modifying the `createSearchIndex` function in `contentlayer.config.ts` to:
+
+```tsx
+function createSearchIndex(allBlogs) {
+  if (
+    siteMetadata?.search?.provider === 'kbar' &&
+    siteMetadata.search.kbarConfig.searchDocumentsPath
+  ) {
+    writeFileSync(
+      `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
+      JSON.stringify((sortPosts(allBlogs)))
+    )
+    console.log('Local search index generated...')
+  }
+}
+```
+
+Note the change from `JSON.stringify(allCoreContent(sortPosts(allBlogs)))` to `JSON.stringify((sortPosts(allBlogs)))`.
+
+Next, in the modified `SearchProvider`, dump the raw content to the `keywords` field in the `onSearchDocumentsLoad` prop:
+
+```tsx
+onSearchDocumentsLoad(json) {
+  return json.map((post: Blog) => ({
+    id: post.path,
+    name: post.title,
+    keywords: post.body.raw,
+    section: 'Blog',
+    subtitle: post.tags.join(', '),
+    perform: () => router.push('/' + post.path),
+  }))
 }
 ```
