@@ -6,4 +6,12 @@ const headerNavLinks = [
   { href: '/about', title: 'About' },
 ]
 
+export const headerNavOptions = { 
+  title: 'Dropdown', children: [
+    {href: '/projects', title: 'Projects',},
+    {href: '/about', title: 'About',},
+  ]
+}
+
+
 export default headerNavLinks
