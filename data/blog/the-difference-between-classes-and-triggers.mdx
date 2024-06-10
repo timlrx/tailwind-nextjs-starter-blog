@@ -1,0 +1,116 @@
+---
+title: What's the Difference Between Apex Triggers and Apex Classes?
+date: '2024-06-09'
+tags: ['triggers']
+draft: false
+summary: Apex Triggers and Apex Classes are both critical components in Salesforce development, but they serve different purposes and are used in distinct contexts. Here’s how to understand their differences.
+---
+
+Apex Triggers and Apex Classes are both critical components in Salesforce development, but they serve different purposes and are used in distinct contexts. Here’s how to understand their differences.
+
+### Apex Triggers
+
+**Purpose:**
+
+- Apex Triggers are designed to automate processes by executing custom actions before or after changes to Salesforce records. They are event-driven, meaning they run in response to specific data changes like insertions, updates, deletions, or undeletes of records.
+
+**When to Use:**
+
+- When you need to perform operations directly tied to database actions (DML operations) such as creating, updating, or deleting records.
+- To enforce business rules, maintain data integrity, or perform custom actions automatically when a record is modified.
+
+**Structure:**
+
+- Triggers are defined for specific Salesforce objects and have limited execution contexts: `before` or `after` insert, update, delete, or undelete.
+- They contain trigger handlers that determine the logic to execute for the specified operations.
+
+**Execution Context:**
+
+- They run in the context of the DML operation on which they are triggered. This means they execute based on the actions performed on the records (e.g., insert, update).
+- Triggers operate on a bulk basis, meaning they can handle multiple records at once in a single execution context.
+
+**Syntax Example:**
+
+```apex
+trigger AccountTrigger on Account (before insert, after insert, before update, after update) {
+    if (Trigger.isBefore) {
+        if (Trigger.isInsert) {
+            // Logic before inserting an Account
+        }
+        if (Trigger.isUpdate) {
+            // Logic before updating an Account
+        }
+    }
+    if (Trigger.isAfter) {
+        if (Trigger.isInsert) {
+            // Logic after inserting an Account
+        }
+        if (Trigger.isUpdate) {
+            // Logic after updating an Account
+        }
+    }
+}
+```
+
+### Apex Classes
+
+**Purpose:**
+
+- Apex Classes are general-purpose containers for business logic and are used to define reusable code that can be called from various parts of the application. They can include methods, variables, and inner classes.
+
+**When to Use:**
+
+- When you need to encapsulate complex logic, perform calculations, or handle reusable operations that aren't directly tied to database events.
+- To build services, utility functions, and logic that can be invoked by triggers, Visualforce pages, Lightning components, batch processes, or other Apex code.
+
+**Structure:**
+
+- Classes can have methods and properties, and they can implement interfaces or inherit from other classes.
+- They provide a modular approach to development, allowing for the separation of concerns and the organization of code into logical units.
+
+**Execution Context:**
+
+- They can be called from triggers, other classes, or directly by users via buttons, batch processes, scheduled jobs, or web services.
+- Classes are not tied to any specific event and provide more flexibility in how and when they are executed.
+
+**Syntax Example:**
+
+```apex
+public class AccountHelper {
+    public static void processNewAccounts(List<Account> newAccounts) {
+        for (Account acc : newAccounts) {
+            // Logic to process each new Account
+            acc.Description = 'Processed by AccountHelper';
+        }
+    }
+
+    public void updateAccountName(Account acc, String newName) {
+        acc.Name = newName;
+    }
+}
+```
+
+### Key Differences
+
+| Feature            | Apex Triggers                           | Apex Classes                                   |
+| ------------------ | --------------------------------------- | ---------------------------------------------- |
+| **Purpose**        | Respond to data changes in Salesforce   | Encapsulate reusable logic and functionality   |
+| **Use Cases**      | Automate record-level actions           | Provide services, utilities, or complex logic  |
+| **Execution**      | Event-driven (insert, update, delete)   | Invoked by triggers, components, or other code |
+| **Scope**          | Specific to a Salesforce object         | General-purpose across the application         |
+| **Bulk Operation** | Automatically handles bulk records      | Can be designed to handle bulk operations      |
+| **Modularity**     | Limited to trigger context and handlers | Highly modular, supporting classes and methods |
+
+### Integration of Triggers and Classes
+
+**Best Practices:**
+
+- **Separation of Concerns**: Keep business logic within Apex classes and use triggers only to initiate these classes. This makes the code easier to manage and test.
+- **Reusable Code**: Use classes to create reusable methods and utilities that can be called from multiple triggers or other components.
+- **Trigger Frameworks**: Implement trigger frameworks that leverage classes to handle complex trigger logic, ensuring better organization and maintainability.
+
+By understanding the distinct roles of Apex Triggers and Apex Classes, developers can effectively design and implement robust Salesforce solutions.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)_**.
+
+### Next: [When to use a trigger instead of a flow...](/blog/when-to-use-a-trigger-instead-of-a-flow)

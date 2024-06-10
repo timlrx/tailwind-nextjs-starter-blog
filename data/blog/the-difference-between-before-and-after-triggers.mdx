@@ -1,0 +1,155 @@
+---
+title: What's The Difference Between Before and After Triggers?
+date: '2024-06-11'
+tags: ['triggers']
+draft: false
+summary: Understanding the difference between these two types is crucial for implementing the appropriate logic in your automation. Here’s a detailed explanation.
+---
+
+In Salesforce, Apex Triggers are broadly categorized into "Before" and "After" triggers based on when they execute relative to the database operation. Understanding the difference between these two types is crucial for implementing the appropriate logic in your automation. Here’s a detailed explanation:
+
+### Before Triggers
+
+**Definition:**
+
+- "Before" triggers are executed before a record is saved to the database. They run before the DML (Data Manipulation Language) operation is committed.
+
+**Purpose:**
+
+- The primary purpose of a Before Trigger is to perform operations or validations on records before they are saved. This allows you to modify the record’s fields or prevent the save operation if certain conditions aren’t met.
+
+**Typical Use Cases:**
+
+1. **Validation Checks**:
+
+   - Ensure that data meets certain criteria before allowing it to be saved. For example, checking that a required field is not empty or that values are within a specified range.
+
+   ```apex
+   trigger BeforeAccountInsert on Account (before insert) {
+       for (Account acc : Trigger.new) {
+           if (acc.Industry == null) {
+               acc.addError('Industry cannot be null.');
+           }
+       }
+   }
+   ```
+
+2. **Default Field Values**:
+
+   - Automatically populate or adjust field values before they are written to the database. For instance, setting a default status for a new record.
+
+   ```apex
+   trigger BeforeAccountInsert on Account (before insert) {
+       for (Account acc : Trigger.new) {
+           if (acc.Status__c == null) {
+               acc.Status__c = 'New';
+           }
+       }
+   }
+   ```
+
+3. **Data Transformation**:
+
+   - Modify the data being saved, such as formatting a phone number or calculating a field value based on other fields.
+
+   ```apex
+   trigger BeforeAccountInsert on Account (before insert) {
+       for (Account acc : Trigger.new) {
+           acc.Phone = formatPhoneNumber(acc.Phone);
+       }
+   }
+   ```
+
+**Characteristics:**
+
+- **No Database Changes Yet**: The record hasn’t been saved to the database, so you can still modify its fields or prevent the operation without needing additional DML statements.
+- **Efficient for Field Updates**: Because the record is still in memory, any changes made to it don’t require additional DML operations, making Before Triggers more efficient for setting or adjusting field values.
+- **Pre-Validation**: They are useful for validating data before it gets saved, ensuring data integrity and consistency.
+
+### After Triggers
+
+**Definition:**
+
+- "After" triggers are executed after a record has been saved to the database. They run after the DML operation has been committed.
+
+**Purpose:**
+
+- The main purpose of an After Trigger is to perform operations that require the record to be committed to the database, such as actions that involve related records or need the record’s database ID.
+
+**Typical Use Cases:**
+
+1. **Creating Related Records**:
+
+   - Insert or update related records that depend on the ID of the record that was just saved. For example, creating a related Contact after an Account is created.
+
+   ```apex
+   trigger AfterAccountInsert on Account (after insert) {
+       List<Contact> contacts = new List<Contact>();
+       for (Account acc : Trigger.new) {
+           Contact con = new Contact(LastName = 'Default', AccountId = acc.Id);
+           contacts.add(con);
+       }
+       insert contacts;
+   }
+   ```
+
+2. **Updating Related Records**:
+
+   - Update related records based on changes to the main record. For instance, updating a custom field on all child records when the parent record is updated.
+
+   ```apex
+   trigger AfterAccountUpdate on Account (after update) {
+       List<Opportunity> oppsToUpdate = new List<Opportunity>();
+       for (Account acc : Trigger.new) {
+           if (acc.Industry != Trigger.oldMap.get(acc.Id).Industry) {
+               for (Opportunity opp : [SELECT Id FROM Opportunity WHERE AccountId = :acc.Id]) {
+                   opp.Description = 'Updated due to Account industry change';
+                   oppsToUpdate.add(opp);
+               }
+           }
+       }
+       update oppsToUpdate;
+   }
+   ```
+
+3. **Logging and Notifications**:
+
+   - Implement logging mechanisms or send notifications after a record operation has completed. For example, sending an email or creating a log entry after a record is updated.
+
+   ```apex
+   trigger AfterAccountUpdate on Account (after update) {
+       for (Account acc : Trigger.new) {
+           if (acc.Industry != Trigger.oldMap.get(acc.Id).Industry) {
+               LogService.logIndustryChange(acc.Id, acc.Industry);
+           }
+       }
+   }
+   ```
+
+**Characteristics:**
+
+- **Database Changes Committed**: The record has already been saved to the database, making its ID and other database-specific fields available for use.
+- **Operations on Related Records**: They are well-suited for actions involving related records or actions that depend on the record being fully saved and having a database ID.
+- **Post-Save Actions**: Used for operations that logically follow the completion of the save operation, such as logging, external integrations, or cascading updates to other objects.
+
+### Key Differences
+
+| Feature                 | Before Trigger                                          | After Trigger                                                 |
+| ----------------------- | ------------------------------------------------------- | ------------------------------------------------------------- |
+| **Execution Time**      | Before the record is saved to the database              | After the record is saved to the database                     |
+| **Main Purpose**        | Modify record values or validate data before save       | Perform actions that require the record to be saved           |
+| **Use Case**            | Validation, setting default values, data transformation | Creating or updating related records, logging, notifications  |
+| **Access to Record ID** | Record ID is not available (for new records)            | Record ID is available                                        |
+| **Modification**        | Can modify the record being saved directly              | Cannot modify the triggering record, only related records     |
+| **Efficiency**          | More efficient for in-memory changes                    | Requires additional DML operations for related record updates |
+
+### When to Use Each
+
+- **Before Trigger**: Use when you need to modify the record being saved or perform validations and transformations before it is committed to the database.
+- **After Trigger**: Use when you need to perform actions that depend on the record’s ID or when the record has been committed to the database, such as interacting with related records or external systems.
+
+Understanding these differences ensures you implement your business logic effectively, choosing the right type of trigger based on the specific needs of your Salesforce application.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)_**.
+
+### Next: [How to Create an Apex Trigger](/blog/how-to-create-an-apex-trigger)

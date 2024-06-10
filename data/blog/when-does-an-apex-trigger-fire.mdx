@@ -1,0 +1,98 @@
+---
+title: When Does an Apex Trigger Fire?
+date: '2024-06-8'
+tags: ['triggers']
+draft: false
+summary: Here’s a detailed overview of when Apex triggers fire.
+---
+
+An Apex trigger in Salesforce is a tool to perform custom actions before or after changes to Salesforce records. Triggers are essential in automating processes and ensuring data integrity. Here’s a detailed overview of when Apex triggers fire.
+
+### Trigger Events
+
+1. **Before Insert**
+
+   - Fires before a new record is inserted into the database.
+   - Useful for validating or modifying the record's values before they are saved.
+
+2. **After Insert**
+
+   - Fires after a new record has been inserted into the database.
+   - Commonly used for actions that need to occur after the record is committed to the database, such as creating related records.
+
+3. **Before Update**
+
+   - Fires before an existing record is updated in the database.
+   - Useful for validating or modifying record values before they are updated.
+
+4. **After Update**
+
+   - Fires after an existing record has been updated in the database.
+   - Often used for post-update processes such as updating related records or logging changes.
+
+5. **Before Delete**
+
+   - Fires before an existing record is deleted from the database.
+   - Useful for validation checks to prevent the deletion of certain records or to cascade delete related records.
+
+6. **After Delete**
+
+   - Fires after an existing record has been deleted from the database.
+   - Typically used for actions that need to occur after the record is removed, such as removing related records or sending notifications.
+
+7. **After Undelete**
+   - Fires after a record is restored from the Recycle Bin.
+   - Useful for re-establishing relationships or re-triggering processes for records that were previously deleted.
+
+### Execution Context
+
+Apex triggers can operate in the following contexts based on the DML operations being performed:
+
+- **Insert**: When new records are being added.
+- **Update**: When existing records are being modified.
+- **Delete**: When records are being removed.
+- **Undelete**: When records are being restored.
+
+### Order of Execution
+
+1. **Load record data from the database or initialize new record values.**
+2. **Execute system validation rules.**
+3. **Run `before` triggers.**
+4. **Apply duplicate rules.**
+5. **Save the record to the database (but not commit yet).**
+6. **Run `after` triggers.**
+7. **Run assignment rules (if applicable).**
+8. **Run auto-response rules (if applicable).**
+9. **Run workflow rules.**
+10. **Execute processes and flows.**
+11. **Update the record again if there were changes from the workflow.**
+12. **Run `before` update triggers if there were updates in step 11.**
+13. **Save the record again (but not commit yet).**
+14. **Run `after` update triggers if there were updates in step 11.**
+15. **Execute escalation rules (if applicable).**
+16. **Run entitlement rules (if applicable).**
+17. **Commit the transaction to the database.**
+18. \*\*Execute post-commit logic (such as sending email).
+
+### Practical Examples
+
+- **Before Insert**: Automatically set a default value for a field.
+- **After Insert**: Send a welcome email to a new user.
+- **Before Update**: Prevent a change to a record if it does not meet specific criteria.
+- **After Update**: Update a related record with the latest information.
+- **Before Delete**: Check if a record can be safely deleted based on related records.
+- **After Delete**: Log the deletion of records for audit purposes.
+- **After Undelete**: Restore relationships or status of records that were previously deleted.
+
+### Best Practices
+
+- **Keep Logic Out of Triggers**: Use triggers to initiate logic contained in helper classes rather than placing logic directly within the trigger.
+- **Avoid Recursive Triggers**: Ensure that triggers do not call themselves repeatedly, which can lead to infinite loops and exceed governor limits.
+- **Bulkify Your Code**: Write triggers that can handle bulk operations efficiently.
+- **Use Context Variables**: Leverage `Trigger.isInsert`, `Trigger.isUpdate`, etc., to control the flow based on the context of the operation.
+
+Understanding when and how Apex triggers fire is crucial for effective Salesforce development and ensuring seamless automation within your Salesforce environment.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)_**.
+
+### Next: [What's the difference between classes and triggers?](/blog/the-difference-between-classes-and-triggers)

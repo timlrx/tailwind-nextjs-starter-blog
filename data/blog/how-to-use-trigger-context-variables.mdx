@@ -1,0 +1,165 @@
+---
+title: How to Use Apex Trigger Context Variables
+date: '2024-06-13'
+tags: ['triggers']
+draft: false
+summary: Trigger context variables in Salesforce are special system-provided variables that allow you to access and manipulate data within an Apex Trigger.
+---
+
+Trigger context variables in Salesforce are special system-provided variables that allow you to access and manipulate data within an Apex Trigger.
+They provide crucial information about the current operation, such as whether the trigger is running before or after a database operation, which records are involved, and details about the context in which the trigger is executing.
+
+### Key Trigger Context Variables
+
+These are the primary context variables available in Apex Triggers:
+
+1. **`Trigger.new`**:
+
+   - A list of the new versions of the records that are currently being processed by the trigger.
+   - Available in `insert` and `update` triggers.
+   - It’s a `List<SObject>` of the records that are about to be inserted or updated.
+   - Example: `Trigger.new` for an `Account` object will be `List<Account>`.
+
+2. **`Trigger.old`**:
+
+   - A list of the old versions of the records before they were modified.
+   - Available in `update` and `delete` triggers.
+   - Useful for comparing the current and previous values.
+   - Example: `Trigger.old` for an `Account` object will be `List<Account>`.
+
+3. **`Trigger.newMap`**:
+
+   - A map of the new versions of the records, keyed by their IDs.
+   - Available in `insert` and `update` triggers.
+   - Provides efficient access to records by their IDs.
+   - Example: `Trigger.newMap` for an `Account` object will be `Map<Id, Account>`.
+
+4. **`Trigger.oldMap`**:
+
+   - A map of the old versions of the records, keyed by their IDs.
+   - Available in `update` and `delete` triggers.
+   - Useful for quick lookup of the old state of records before changes.
+   - Example: `Trigger.oldMap` for an `Account` object will be `Map<Id, Account>`.
+
+5. **`Trigger.isInsert`**:
+
+   - Boolean variable indicating if the trigger was fired due to an `insert` operation.
+
+6. **`Trigger.isUpdate`**:
+
+   - Boolean variable indicating if the trigger was fired due to an `update` operation.
+
+7. **`Trigger.isDelete`**:
+
+   - Boolean variable indicating if the trigger was fired due to a `delete` operation.
+
+8. **`Trigger.isBefore`**:
+
+   - Boolean variable indicating if the trigger was fired before any records were saved to the database.
+
+9. **`Trigger.isAfter`**:
+
+   - Boolean variable indicating if the trigger was fired after all records were saved to the database.
+
+10. **`Trigger.isUndelete`**:
+
+    - Boolean variable indicating if the trigger was fired after a record was undeleted from the Recycle Bin.
+
+11. **`Trigger.size`**:
+    - The total number of records in `Trigger.new` or `Trigger.old` lists.
+    - Useful for knowing how many records are being processed in bulk operations.
+
+### How to Use Trigger Context Variables
+
+Let’s look at a few practical examples to understand how these context variables are used within an Apex Trigger.
+
+#### Example 1: Using `Trigger.new` and `Trigger.old`
+
+This trigger ensures that whenever an `Account` is updated, its `Industry` field must be different from the previous value.
+
+```apex
+trigger AccountTrigger on Account (before update) {
+    for (Account acc : Trigger.new) {
+        Account oldAcc = Trigger.oldMap.get(acc.Id);
+        if (acc.Industry != oldAcc.Industry) {
+            // Custom logic when Industry changes
+            acc.Description = 'Industry was changed';
+        }
+    }
+}
+```
+
+- `Trigger.new` provides the new versions of the records.
+- `Trigger.oldMap` allows quick access to the old versions by their IDs for comparison.
+
+#### Example 2: Using `Trigger.newMap` and `Trigger.isBefore`
+
+This trigger sets a default `Status` to "New" for all `Account` records before they are inserted, if the `Status` is not already set.
+
+```apex
+trigger AccountTrigger on Account (before insert) {
+    if (Trigger.isBefore && Trigger.isInsert) {
+        for (Account acc : Trigger.new) {
+            if (acc.Status__c == null) {
+                acc.Status__c = 'New';
+            }
+        }
+    }
+}
+```
+
+- `Trigger.new` is used to iterate over the records being inserted.
+- `Trigger.isBefore` and `Trigger.isInsert` ensure the logic runs only before an insert operation.
+
+#### Example 3: Using `Trigger.isAfter` and `Trigger.isInsert`
+
+This trigger creates a default contact for each new `Account` after it is inserted.
+
+```apex
+trigger AccountTrigger on Account (after insert) {
+    if (Trigger.isAfter && Trigger.isInsert) {
+        List<Contact> contacts = new List<Contact>();
+        for (Account acc : Trigger.new) {
+            Contact con = new Contact(
+                LastName = 'Default',
+                AccountId = acc.Id
+            );
+            contacts.add(con);
+        }
+        insert contacts;
+    }
+}
+```
+
+- `Trigger.isAfter` and `Trigger.isInsert` ensure the logic runs only after new records are inserted.
+- `Trigger.new` is used to access the newly inserted records, and their IDs are now available for creating related contacts.
+
+#### Example 4: Using `Trigger.isDelete`
+
+This trigger logs a message whenever an `Account` is deleted.
+
+```apex
+trigger AccountTrigger on Account (before delete) {
+    if (Trigger.isDelete) {
+        for (Account acc : Trigger.old) {
+            System.debug('Account being deleted: ' + acc.Name);
+        }
+    }
+}
+```
+
+- `Trigger.isDelete` confirms the trigger runs during a delete operation.
+- `Trigger.old` contains the records being deleted, allowing you to log or process them before deletion.
+
+### Summary of When to Use Each Variable
+
+- **`Trigger.new`**: When you need to access or modify the new versions of records being inserted or updated.
+- **`Trigger.old`**: When you need to compare with the old versions of records being updated or deleted.
+- **`Trigger.newMap` and `Trigger.oldMap`**: For efficient lookups and operations based on record IDs.
+- **`Trigger.isInsert`, `Trigger.isUpdate`, `Trigger.isDelete`, `Trigger.isUndelete`**: To determine the type of DML operation triggering the event.
+- **`Trigger.isBefore` and `Trigger.isAfter`**: To distinguish between pre-save and post-save operations.
+- **`Trigger.size`**: To know the number of records being processed in bulk operations.
+
+By leveraging these context variables appropriately, you can write efficient, maintainable, and effective triggers to handle complex business logic and automate processes within Salesforce.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)_**.

@@ -1,0 +1,90 @@
+---
+title: Introduction to Triggers
+date: '2024-06-7'
+tags: ['triggers']
+draft: false
+summary: An overview of Salesforce Apex triggers. What are they? And, when to use one?
+---
+
+Triggers in Salesforce execute automatically in response to specific events on records, such as when records are created, updated, or deleted. Here's a look at what triggers are and why they are used.
+
+## What are Triggers?
+
+### **Event-Driven Execution**:
+
+- Triggers run in response to particular events. These events can be:
+  - **Before Insert**: Executes before a new record is inserted into the database.
+  - **Before Update**: Executes before an existing record is updated.
+  - **Before Delete**: Executes before an existing record is deleted.
+  - **After Insert**: Executes after a new record is inserted into the database.
+  - **After Update**: Executes after an existing record is updated.
+  - **After Delete**: Executes after an existing record is deleted.
+  - **After Undelete**: Executes after a record is recovered from the Recycle Bin (undeleted).
+
+### **Apex Code**:
+
+- Triggers are written in Apex, which is similar to Java. This allows for complex logic to be applied during the execution of a trigger.
+
+### **Context Variables**:
+
+- Salesforce provides context variables within triggers to access runtime data, such as:
+  - **Trigger.New**: Contains the new versions of the records being inserted or updated.
+  - **Trigger.Old**: Contains the old versions of the records being updated or deleted.
+  - **Trigger.NewMap**: A map of IDs to the new versions of the records.
+  - **Trigger.OldMap**: A map of IDs to the old versions of the records.
+
+## Why Use Triggers?
+
+### **Automate Complex Processes**:
+
+- Triggers allow you to automate processes that are too complex for declarative tools like workflows or process builder. For example, you can update related records, enforce custom business rules, or validate data before it is committed to the database.
+
+### **Real-Time Data Processing**:
+
+- Triggers enable real-time data processing. They execute immediately when an event occurs, allowing you to update data or perform calculations instantly.
+
+### **Custom Business Logic**:
+
+- With triggers, you can implement custom business logic that goes beyond the capabilities of Salesforce’s standard automation tools. This can include complex data manipulations, calculations, or interactions with external systems.
+
+### **Enforce Data Integrity**:
+
+- Triggers can help maintain data integrity by ensuring certain conditions are met before a record is inserted or updated. For instance, you can prevent records from being saved if they do not meet specific criteria.
+
+### **Integrate with External Systems**:
+
+- Triggers can be used to integrate Salesforce with external systems by calling external web services or APIs when certain events occur in Salesforce.
+
+### **Bulk Processing**:
+
+- Triggers can handle bulk processing of records, making them efficient for operations that involve large volumes of data.
+
+## Example Use Cases:
+
+### **Cascade Updates**:
+
+- Automatically update related records when a parent record is modified. For example, updating all child opportunity records when an account record is updated.
+
+### **Custom Validation**:
+
+- Implement custom validation logic that is not possible through standard validation rules. For example, ensuring that a certain combination of field values is unique across all records.
+
+### **Data Synchronization**:
+
+- Synchronize data changes between Salesforce and an external system by sending updates to an external API whenever certain records are created or modified.
+
+### **Automated Calculations**:
+
+- Perform automated calculations that require complex logic. For example, calculating the total order amount based on the sum of its line items and applying discounts dynamically.
+
+## Some Things to Consider when Developing Triggers:
+
+- **Governor Limits**: Salesforce imposes limits on the execution of Apex code, including the amount of data processed and the number of transactions. It's crucial to write efficient and optimized trigger code to stay within these limits.
+- **Recursion**: Careful handling of recursive trigger execution is essential to prevent infinite loops.
+- **Bulk Operations**: Triggers should be designed to handle bulk operations efficiently to ensure they perform well with large datasets.
+
+Salesforce triggers provide capabilities to automate processes, and enforce business rules. They are essential to implement complex business logic that goes beyond what can be achieved with Salesforce’s declarative tools.
+
+As always, please refer to the official Salesforce documentation **_[here](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers.htm)_**.
+
+### Next: [When does an Apex trigger fire?](/blog/when-does-an-apex-trigger-fire)
