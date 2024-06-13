@@ -76,7 +76,7 @@ const ThemeSwitch = () => {
                       <div className="mr-2">
                         <Sun />
                       </div>
-                      Light
+                      Vaalea
                     </button>
                   </Menu.Item>
                 </RadioGroup.Option>
@@ -86,7 +86,7 @@ const ThemeSwitch = () => {
                       <div className="mr-2">
                         <Moon />
                       </div>
-                      Dark
+                      Tumma
                     </button>
                   </Menu.Item>
                 </RadioGroup.Option>
@@ -96,7 +96,7 @@ const ThemeSwitch = () => {
                       <div className="mr-2">
                         <Monitor />
                       </div>
-                      System
+                      Järjestelmä
                     </button>
                   </Menu.Item>
                 </RadioGroup.Option>
