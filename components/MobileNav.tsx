@@ -37,7 +37,7 @@ const MobileNav = () => {
       </button>
       <div
         className={`fixed left-0 top-0 z-10 h-full w-full transform bg-white opacity-95 duration-300 ease-in-out dark:bg-gray-950 dark:opacity-[0.98] ${
-          navShow ? 'translate-x-0' : 'translate-x-full'
+          navShow ? 'translate-x-0' : 'hidden translate-x-full'
         }`}
       >
         <div className="flex justify-end">
