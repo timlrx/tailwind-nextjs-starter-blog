@@ -44,6 +44,7 @@ const Monitor = () => (
     <line x1="10" y1="13" x2="10" y2="17"></line>
   </svg>
 )
+const Blank = () => <svg className="h-6 w-6" />
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
