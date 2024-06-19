@@ -1,0 +1,321 @@
+---
+title: "8 façons d'intégrer ChatGPT dans votre flux de travail pour augmenter la productivité des développeurs"
+date: "2023-08-16"
+tags: ["SOFTWARE-DEVELOPMENT", "DEVELOPER-PRODUCTIVITY", "CODE-REVIEW", "GITHUB"]
+draft: false
+summary: "Au-delà de simples interactions par chat, ChatGPT peut comprendre le code, suggérer des améliorations et même résoudre des erreurs. Avec le traitement du langage naturel comme cœur de métier, il offre des interactions significatives qui peuvent être bénéfiques pour les développeurs."
+image: "/blog/static/images/general/ChatGPT.jpg"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+<br />
+
+# ChatGPT pour la productivité des développeurs
+
+Au-delà de simples interactions par chat, ChatGPT peut comprendre le code, suggérer des améliorations et même résoudre des erreurs. Avec le traitement du langage naturel comme cœur de métier, il offre des interactions significatives qui peuvent être bénéfiques pour les développeurs.
+
+## ChatGPT : 5 Prompts pour la productivité des développeurs
+
+Les cinq prompts que nous mentionnons dans cet article sont listés ici : [Dépôt GitHub](https://github.com/axolo-co/prompt-developer-productivity)
+
+<YellowCalloutBox emoji="⚠️" title="Limitations">
+  Bien que ChatGPT soit un outil puissant, les développeurs doivent être conscients de ses
+  limitations. Se reposer excessivement sur ses suggestions sans comprendre le raisonnement peut
+  conduire à un code sous-optimal. Il est vital de garantir une supervision humaine dans le
+  processus de développement. Il ne comprend pas toujours le contexte de la manière dont le ferait
+  un humain. Par exemple, dans des projets complexes où il existe plusieurs systèmes entrelacés, une
+  solution qui pourrait sembler appropriée isolément pourrait ne pas être la meilleure pour le
+  système dans son ensemble.
+</YellowCalloutBox>
+
+# 8 façons dont ChatGPT peut aider à la productivité des développeurs
+
+## 1. Refactoring et suggestions
+
+ChatGPT est étonnamment bon pour le refactoring et pour donner des suggestions sur les mauvaises pratiques et les odeurs de code.
+
+Voici le prompt que j'aime généralement utiliser pour demander à ChatGPT de refactorer et de me donner des suggestions :
+
+```
+Veuillez examiner le snippet de code suivant. S'il y a des domaines à améliorer
+basés sur les meilleures pratiques, erreurs de logique, répétitions,
+ou optimisation, veuillez fournir des suggestions.
+```
+
+Voici un exemple de comment je l'utilise :
+
+```javascript
+Veuillez examiner le snippet de code suivant.
+S'il y a des domaines à améliorer basés sur les meilleures pratiques,
+erreurs de logique, répétitions, ou optimisation, veuillez fournir des suggestions.
+
+function factorial(n) {
+	if (n < 0) {
+		throw new Error("Le factorial n'est pas défini pour les nombres négatifs.");
+	}
+	let result = 1;
+	for (let i = 2; i <= n; i++) {
+		result *= i;
+	}
+	return result;
+}
+```
+
+ChatGPT a pu me donner une meilleure version tout en expliquant pourquoi elle était meilleure :
+
+Voici la meilleure version :
+
+```javascript
+function factorial(n) {
+  if (n < 0 || !Number.isInteger(n)) {
+    throw new Error("Veuillez fournir un entier non négatif.")
+  }
+
+  let result = 1
+  for (let i = 2; i <= n; i++) {
+    result *= i
+  }
+  return result
+}
+```
+
+Et les commentaires que ChatGPT a faits :
+
+```
+Votre snippet de code pour calculer le factorial d'un nombre est bon et produira des résultats corrects pour les entiers non négatifs. Cependant, il y a quelques points que j'aimerais aborder :
+
+# Validation des entrées :
+Si n n'est pas un entier, votre fonction essaiera quand même de calculer le factorial. Par exemple, factorial(5.5) s'exécutera sans erreur mais produira un résultat inattendu. Il pourrait être judicieux de valider si n est un entier.
+
+# Approche récursive :
+Certains pourraient argumenter qu'une approche récursive est plus "élégante" ou intuitive pour les factoriels. Cependant, soyez conscient que l'approche récursive atteindra une limite de pile avec des valeurs plus grandes de n. Votre approche itérative n'a pas ce problème, donc elle est souvent plus efficace et peut gérer de plus grands nombres. Néanmoins, si vous souhaitez un exemple de l'approche récursive :
+
+# Gestion des grands nombres :
+Les nombres JavaScript peuvent devenir imprécis avec des valeurs très grandes. Si vous souhaitez gérer de plus grands factoriels, vous pourriez vouloir utiliser une bibliothèque comme BigInteger pour gérer les opérations arithmétiques.
+
+# Validation des entrées pour les entiers :
+
+Vous pouvez ajouter une condition pour vérifier si n est un entier.
+
+Voici une capture d'écran de toute la conversation :
+
+<ImageContainer
+  alt="chatGPTsuggestions"
+  src="/blog/static/images/chatGPT/chatGPTsuggestions.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2240}
+  height={3632}
+/>
+
+<UserReview />
+
+## 2. Créer des résumés de PR - avec GitHub Actions
+
+Vous pouvez avoir une description de pull request automatique pour chaque pull request que vous créez sur GitHub.
+Je suggère que cela ne remplace pas une description humaine mais cela peut venir en complément. ChatGPT est doué pour résumer les faits et vous aidera à rendre votre historique de PR plus lisible.
+
+Voici le projet open source que j'ai utilisé pour mettre en place une GitHub action pour créer des descriptions de pull request automatiques : https://github.com/jbrocher/auto-pr-body-generator.
+
+Voici un exemple de corps de pull request généré en utilisant ChatGPT et ChatGPT-CodeReview
+
+## 3. Documentation - Expliquer un morceau de code
+
+La documentation est souvent négligée par les développeurs car cela prend un temps précieux supplémentaire. Mais plus vous passez de temps à écrire une bonne documentation, moins vous passerez de temps à comprendre pour votre futur vous, ou moins de temps la prochaine personne aura besoin de comprendre.
+
+ChatGPT peut venir à la rescousse, voici l'invite que j'aime utiliser pour générer de la documentation :
+
+```
+
+Vous êtes un assistant spécialisé dans la documentation de code. Étant donné la fonction suivante,
+veuillez fournir une explication détaillée au format Markdown adaptée pour un fichier README.md.
+Cela devrait inclure le but de la fonction, son utilisation et des exemples illustratifs.
+
+````
+
+Voici un exemple de la documentation qui a été créée pour la fonction Factorielle que nous avons utilisée plus tôt :
+
+### Fonction factorielle
+
+**But**
+La fonction factorielle calcule la factorielle d'un entier non négatif donné.
+En mathématiques, la factorielle d'un entier non négatif n est le produit de tous
+les entiers positifs inférieurs ou égaux à n. Elle est notée n!.
+
+### Utilisation
+
+#### Paramètres
+
+- n (Nombre) : L'entier non négatif pour lequel la factorielle doit être calculée.
+  Retourne
+- (Nombre) : La factorielle du nombre n donné.
+  Lance
+- Erreur : Si le nombre n fourni est négatif ou n'est pas un entier.
+  **Exemple: **
+
+```javascript
+// Utilisation de la fonction factorielle
+const result = factorial(5) // Retourne 120 parce que 5! = 5 x 4 x 3 x 2 x 1 = 120
+console.log(result) // Affiche : 120
+
+const anotherResult = factorial(0) // Retourne 1 parce que 0! est défini comme 1
+console.log(anotherResult) // Affiche : 1
+
+// Fournir un nombre négatif ou un non-entier lancera une erreur
+try {
+  const errorResult = factorial(-5)
+} catch (error) {
+  console.error(error.message) // Affiche : "Veuillez fournir un entier non négatif."
+}
+
+try {
+  const errorResult = factorial(5.5)
+} catch (error) {
+  console.error(error.message) // Affiche : "Veuillez fournir un entier non négatif."
+}
+````
+
+### Détails de l'implémentation
+
+La fonction commence par vérifier si le nombre n fourni est négatif ou n'est pas un entier. Si l'une de ces conditions est vraie, elle lance une erreur. Sinon, elle initialise une variable de résultat à 1 puis la multiplie par chaque entier de 2 à n en utilisant une boucle for. Le résultat final est ensuite retourné.
+
+## 4. Code reviews avec GitHub Actions
+
+Vous pouvez avoir ChatGPT faire des code reviews et des suggestions de code pour chaque nouvelle pull request ou chaque pull request mise à jour.
+
+Je recommande vivement d'utiliser GPT 4, c'est un peu plus cher mais toujours moins coûteux que le temps de développeur et le temps que vous gagnez en utilisant GPT 4 au lieu de GPT 3.
+
+Voici deux outils open source que je recommande :
+
+| Caractéristique/Aspect au 10 août 2024 | [ChatGPT-CodeReview](https://github.com/anc95/ChatGPT-CodeReview) | [CodiumAI PR-Agent](https://github.com/Codium-ai/pr-agent) |
+
+```
+
+| ------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Description**                       | Un bot simple de revue de code alimenté par ChatGPT               | CodiumAI PR-Agent est un outil open-source visant à aider les développeurs à examiner les pull requests plus rapidement et plus efficacement. Il analyse automatiquement la pull request et peut fournir plusieurs types de retours. |
+| **Stars**                             | 2.8k                                                              | 1.5k                                                                                                                                                                                                       |
+| **Forks**                             | 249                                                               | 88                                                                                                                                                                                                         |
+| **Issues**                            | 36                                                                | 14                                                                                                                                                                                                         |
+| **Principales Fonctionnalités**       | - Intégration GitHub Action<br/>- Automatisation de la revue de code | - Auto-Description<br/>- Revue de PR<br/>- Réponse aux questions<br/>- Suggestions de code<br/>- Mise à jour du Changelog                                                                                  |
+| **Langages Utilisés**                 | JavaScript (99.8%)                                                | Python (99.8%)                                                                                                                                                                                             |
+| **Licence**                           | ISC                                                               | Apache-2.0                                                                                                                                                                                                 |
+| **Contributeurs**                     | 26                                                                | 20                                                                                                                                                                                                         |
+| **Fournisseurs Git Supportés**        | GitHub                                                            | GitHub, Gitlab, Bitbucket                                                                                                                                                                                  |
+| **Méthodes d'Installation**           | Actions GitHub                                                    | Docker, Action GitHub, Exécution à partir du source, Serveur de sondage, Application GitHub                                                                                                                |
+
+Et voici un exemple de comment les suggestions de revue de code apparaissent dans vos pull requests.
+
+<ImageContainer
+  alt="suggestions-revue-de-code"
+  src="/blog/static/images/chatGPT/codereview-suggestions.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1960}
+  height={1450}
+/>{" "}
+
+## 5. Générer des tests
+
+ChatGPT peut vous aider à générer des tests basiques pour votre code. Je lui demande généralement de générer des tests unitaires pour des fonctions afin que cela me donne un bon modèle pour commencer.
+
+Voici l'invite que j'utilise :
+
+```
+
+Vous êtes un expert en tests Jest. Étant donné la fonction JavaScript suivante,
+
+veuillez fournir un ensemble complet de cas de test Jest pour en assurer la correction.
+Incluez les imports nécessaires, les blocs describe et les cas de test.
+
+```javascript
+// Suite de tests pour la fonction factorielle
+describe("factorial", () => {
+  // Cas de test pour des entrées valides
+  it("devrait retourner 1 pour n=0", () => {
+    expect(factorial(0)).toBe(1)
+  })
+
+  it("devrait retourner 1 pour n=1", () => {
+    expect(factorial(1)).toBe(1)
+  })
+
+  it("devrait retourner 2 pour n=2", () => {
+    expect(factorial(2)).toBe(2)
+  })
+
+  it("devrait retourner 6 pour n=3", () => {
+    expect(factorial(3)).toBe(6)
+  })
+
+  it("devrait retourner 24 pour n=4", () => {
+    expect(factorial(4)).toBe(24)
+  })
+
+  // Cas de test pour des entrées invalides
+  it("devrait lever une erreur pour les nombres négatifs", () => {
+    expect(() => factorial(-1)).toThrow("Veuillez fournir un entier non négatif.")
+  })
+
+  it("devrait lever une erreur pour les nombres non entiers", () => {
+    expect(() => factorial(2.5)).toThrow("Veuillez fournir un entier non négatif.")
+  })
+
+  it("devrait lever une erreur pour les types non numériques", () => {
+    expect(() => factorial("string")).toThrow("Veuillez fournir un entier non négatif.")
+    expect(() => factorial({})).toThrow("Veuillez fournir un entier non négatif.")
+    expect(() => factorial([])).toThrow("Veuillez fournir un entier non négatif.")
+    expect(() => factorial(true)).toThrow("Veuillez fournir un entier non négatif.")
+  })
+})
+```
+
+## 6. Noms de variables
+
+Cela devient pratique lorsque je peux penser à un bon nom de variable. Je donne généralement un peu de code et j'essaie de dire en quelques mots ce que j'essaie de faire avec la variable ou la fonction.
+
+Voici l'invite que j'utilise :
+
+```
+Vous êtes un expert en nommage. Étant donné la description suivante du but et du contexte d'une variable, veuillez suggérer un nom de variable concis et descriptif.
+```
+
+Voici ce qu'il m'a donné pour sauvegarder le résultat dans un nom de variable pour notre fonction factorielle plus tôt :
+
+```
+Étant donné le contexte et le but de la variable, qui est de stocker le résultat de la fonction factorielle, un nom plus descriptif pour la variable serait :
+
+let factorialResult = factorial(5);
+Ce nom indique clairement que la variable contient le résultat d'un calcul factoriel.
+```
+
+## 7. Explication des erreurs
+
+Parfois, je suis trop paresseux pour taper mon erreur dans Google et chercher une réponse sur Stackoverflow, donc je copie-colle simplement mon erreur et demande à ChatGPT de me dire ce qu'elle signifie et comment y remédier.
+
+Voici l'invite que j'utilise habituellement :
+
+```
+Vous êtes un expert en dépannage. J'ai rencontré l'erreur suivante en travaillant sur ma base de code.
+Voici le message d'erreur et le contexte :
+
+*********[Message d'erreur et tout code ou logs pertinents]*********
+
+Pouvez-vous fournir 1. une explication
+et 2. une solution ou suggérer des étapes pour résoudre ce problème ?
+```
+
+## 8. AICommits
+
+Last but not least! AICommits est un outil CLI utile pour écrire des messages de commit descriptifs basés sur les fichiers en attente. Il fonctionne bien pour les petits commits, et je l'utilise quand je ne suis pas d'humeur à passer trop de temps à réfléchir à une description. Il vous donnera une suggestion que vous pouvez choisir d'utiliser ou non.
+
+<ImageContainer
+  alt="aicommits"
+  src="/blog/static/images/chatGPT/aicommits.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1645}
+  height={1022}
+/>{" "}
+
+<CTABanner type="try" />

@@ -1,0 +1,314 @@
+---
+title: "Outil de couverture de code JS en 2023 - Istanbul vs Jest vs JS Coverage vs CodeCov"
+date: "2023-07-28"
+lastmod: "2023-07-28"
+tags: ["CODE-COVERAGE", "DEVELOPER-PRODUCTIVITY", "TESTING", "DEVELOPER-EXPERIENCE"]
+draft: false
+summary: "Cet article offre une revue détaillée et une comparaison d'Istanbul, Jest, JS Coverage et CodeCov - quatre des principaux outils de couverture de code JavaScript. Découvrez leurs fonctionnalités, tarifs, et quand utiliser chaque outil."
+image: "/blog/static/images/codecoverage/js-code-coverage-tools.jpg"
+authors: ["sydney"]
+---
+
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
+## Couverture de code JS
+
+Maintenir la qualité et la fiabilité du code est crucial. L'une des principaux indicateurs aidant dans ce processus est la 'Couverture de Code'. Cet article se concentrera sur le concept de Couverture de Code, son importance en JavaScript, et explorera certains des meilleurs outils disponibles pour la mesurer.
+
+### 1.1 Qu'est-ce que la Couverture de Code ?
+
+<ImageContainer
+  alt="capture d'écran de l'outil de couverture de code jest"
+  src="/blog/static/images/codecoverage/jest.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3080}
+  height={1728}
+/>{" "}
+
+La Couverture de Code est une métrique qui quantifie le degré auquel le code source d'un programme est exécuté pendant les tests. Elle est généralement mesurée en pourcentage, des pourcentages plus élevés indiquant que davantage de code source a été couvert par les tests. Cette métrique peut aider à identifier les zones du code qui n'ont pas été testées et nécessitent une attention supplémentaire.
+
+### 1.2 Limitations de la couverture de code
+
+Bien que la couverture de code soit un outil précieux dans les tests logiciels, il est important de comprendre ses limitations. La couverture de code mesure l'étendue du code qui est exécuté pendant les tests, mais elle n'évalue pas la qualité des tests eux-mêmes. Une couverture de code élevée peut donner un faux sentiment de sécurité si les tests sont mal écrits ou s'ils ne vérifient pas adéquatement les bons résultats. De plus, la couverture de code ne prend pas en compte les différents chemins à travers le code qui pourraient se produire dans différentes conditions. Elle ne peut également pas garantir que tous les inputs possibles ou états de votre application sont testés. Par conséquent, tout en visant une couverture de code élevée est bénéfique, cela devrait être complété avec d'autres stratégies de test et pratiques d'assurance qualité pour garantir des tests complets et efficaces.
+
+<Callout
+  title="Une couverture de code élevée peut donner un faux sentiment de sécurité si les tests sont mal écrits ou s'ils ne vérifient pas adéquatement les bons résultats."
+  subtitle="...ne prend pas en compte les différents chemins à travers le code qui pourraient se produire dans différentes conditions....cela devrait être complété avec d'autres stratégies de test et pratiques d'assurance qualité pour garantir des tests complets et efficaces."
+/>
+
+### 1.3 Importance de la Couverture de Code en JavaScript
+
+JavaScript, en tant que l'un des langages de programmation les plus utilisés, constitue l'épine dorsale de nombreuses applications web. Assurer la fiabilité du code JavaScript est donc vital pour la performance globale et l'expérience utilisateur de ces applications.
+
+Dans le contexte du JavaScript, la Couverture de Code sert de mesure visuelle qui aide les développeurs à identifier les parties du code non testées. Cela peut empêcher les bugs potentiels de se frayer un chemin jusqu'en production et aide à maintenir et améliorer la qualité du code au fil du temps.
+
+Dans les sections suivantes, nous explorerons certains des meilleurs outils pour mesurer la Couverture de Code en JavaScript, en fournissant une analyse complète de leurs fonctionnalités, avantages, inconvénients et utilisation.
+
+<UserReview />
+
+## 2. Outils de Couverture de Code pour JavaScript : Un Aperçu
+
+Dans l'écosystème JavaScript, il existe plusieurs outils disponibles qui peuvent aider les développeurs à mesurer la couverture de code. Ces outils varient dans leurs fonctionnalités, facilité d'utilisation, et le niveau de détail qu'ils fournissent sur le code. Certains outils sont des outils de couverture de code autonomes, tandis que d'autres sont des cadres de test incluant la fonctionnalité de couverture de code. Dans cette section, nous fournirons un aperçu de ces outils et discuterons des critères de sélection d'un outil de couverture de code.
+
+### 2.1 Critères pour Sélectionner un Outil de Couverture de Code
+
+Choisir le bon outil de couverture de code peut avoir un impact significatif sur l'efficacité de votre processus de test. Voici quelques critères clés à considérer lors de la sélection d'un outil de couverture de code pour JavaScript :
+
+**Compatibilité :** L'outil doit être compatible avec votre pile technologique. Il doit fonctionner de manière transparente avec vos cadres de test et bibliothèques existants.
+
+**Facilité d'utilisation :** L'outil doit être convivial et facile à intégrer dans votre flux de travail existant. Il doit fournir des rapports clairs et compréhensibles.
+
+**Rapports détaillés :** Recherchez des outils qui offrent des rapports détaillés et complets. Les rapports ne doivent pas seulement montrer le pourcentage de code couvert, mais aussi indiquer quelles parties du code ne le sont pas.
+
+**Performance :** L'outil ne doit pas ralentir de manière significative votre processus de test. Il doit être efficace et rapide.
+
+**Support de la communauté :** Les outils avec un fort soutien communautaire ont tendance à avoir des mises à jour régulières, plus de ressources pour l'apprentissage, et des corrections de bugs plus rapides.
+
+**Intégration avec CI/CD :** Si vous utilisez l'intégration continue/le déploiement continu (CI/CD), l'outil doit idéalement s'intégrer à votre système CI/CD pour automatiser le processus de couverture de code.
+
+En considérant ces critères, vous pouvez sélectionner un outil de couverture de code qui s'adapte le mieux aux besoins de votre projet et contribue à la qualité globale de votre code.
+
+## 3. Revue Détaillée des Outils Sélectionnés
+
+### 3.1 Outil 1 : Istanbul
+
+<ImageContainer
+  alt="capture d'écran de l'outil de couverture de code istanbul"
+  src="/blog/static/images/codecoverage/istanbul.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2240}
+  height={670}
+/>
+
+#### 3.1.1 Vue d'ensemble d'Istanbul
+
+Istanbul, également connu sous le nom de nyc, est une interface en ligne de commande de pointe pour la couverture de code JavaScript. Il instrumente votre code JavaScript ES5 et ES2015+ avec des compteurs de lignes, vous permettant de suivre l'efficacité avec laquelle vos tests unitaires exercent votre base de code. Le client en ligne de commande nyc pour Istanbul fonctionne bien avec la plupart des cadres de test JavaScript comme tap, mocha, AVA, etc.
+
+#### 3.1.2 Fonctionnalités d'Istanbul
+
+Istanbul prend en charge les applications qui lancent des sous-processus.
+Il fournit une couverture source-mappée des projets Babel et TypeScript.
+Istanbul vous permet de définir des seuils de couverture personnalisés qui échoueront si check-coverage est défini sur true et que votre couverture tombe en dessous de ces seuils.
+Il prend en charge à la fois les source-maps intégrés et les fichiers .map pour les bases de code pré-instrumentées.
+Istanbul peut combiner le rapport de couverture pour vous s'il est configuré correctement avec le drapeau --no-clean et la commande report.
+
+#### 3.1.3 Avantages et Inconvénients d'Istanbul
+
+_👍 Avantages :_
+
+Istanbul prend en charge une grande variété d'arguments de configuration.
+Il vous permet d'hériter d'autres configurations en utilisant la clé extends dans la strophe package.json, .nycrc, ou les fichiers YAML.
+Istanbul prend en charge la mise en cache des fichiers instrumentés sur disque pour éviter d'instrumenter plusieurs fois les fichiers source, et accélérer les temps d'exécution de nyc.
+
+_👎 Inconvénients :_
+
+Un inconvénient potentiel pourrait être la complexité de configuration pour les débutants.
+
+#### 3.1.4 Comment Utiliser Istanbul pour la Couverture de Code
+
+Pour utiliser Istanbul pour la couverture de code, vous devez l'ajouter en tant que dépendance de développement en utilisant votre gestionnaire de paquets : npm i -D nyc ou yarn add -D nyc. Vous pouvez utiliser nyc pour appeler des scripts npm (en supposant qu'ils n'exécutent pas déjà nyc en eux).
+
+Par exemple :
+
+```
+{
+"scripts": {
+"test": "mocha",
+"coverage": "nyc npm run test"
+}
+}
+```
+
+Vous pouvez également utiliser npx au lieu d'installer nyc en tant que dépendance, mais vous pourriez obtenir des mises à jour pour lesquelles vous n'êtes pas prêt ; pour contourner cela, épinglez à une version majeure spécifique en spécifiant, par exemple, nyc@14.
+
+Pour des instructions plus détaillées et une utilisation avancée, vous pouvez vous référer à la [documentation](https://istanbul.js.org/) d'Istanbul.
+
+### 3.2 Outil 2 : Jest
+
+<ImageContainer
+  alt="capture d'écran de l'outil de couverture de code jest"
+  src="/blog/static/images/codecoverage/jest.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={3080}
+  height={1728}
+/>{" "}
+
+#### 3.2.1 Vue d'ensemble de Jest
+
+Jest est un framework de test JavaScript agréable développé et régulièrement maintenu par Facebook. Il fonctionne immédiatement pour la plupart des projets JavaScript et offre une boucle de retour instantanée aux développeurs. Jest est connu pour sa philosophie de "zéro configuration". Vous n'avez pas à prendre beaucoup de décisions et à ajuster des configurations pour commencer avec Jest. Il prend également en charge les tests de capture instantanée, qui peuvent capturer des instantanés d'objets volumineux pour simplifier les tests et analyser comment ils changent au fil du temps.
+
+#### 3.2.2 Fonctionnalités de Jest
+
+**Zéro configuration :** Jest fonctionne immédiatement pour la plupart des projets JavaScript, ce qui signifie que vous pouvez commencer rapidement sans avoir à décider de beaucoup de configurations.
+**Test de capture instantanée :** Jest peut capturer des instantanés d'arbres React ou d'autres valeurs sérialisables pour écrire rapidement des tests et fournir un moyen de suivre les changements dans le temps.
+**Mode Watch interactif :** Le mode watch de Jest exécute uniquement les tests liés aux fichiers modifiés depuis le dernier commit, offrant une boucle de retour rapide.
+**Mocking et Isolation :** Jest vous permet de simuler des objets dans vos fichiers de test. Il prend en charge le mocking de fonctions, le mocking manuel, le mocking de timers, et plus encore.
+Couverture de code : Avec Jest, vous pouvez collecter des informations sur la couverture de code et voir exactement quelles lignes de votre code sont testées.
+
+#### 3.2.3 Avantages et Inconvénients de Jest
+
+_👍 Avantages :_
+
+Jest est facile à configurer et à utiliser, ce qui en fait un bon choix pour des projets de toute taille.
+Il dispose d'une API riche pour diverses fonctionnalités comme le mocking et l'espionnage.
+Jest bénéficie d'un fort soutien communautaire et est régulièrement maintenu par Facebook.
+
+_👎 Inconvénients :_
+
+Jest fonctionne plus lentement comparé à certaines autres bibliothèques de test comme Mocha.
+Bien que les tests de capture instantanée de Jest puissent être utiles, ils peuvent également conduire à de gros fichiers de capture instantanée qui doivent être manuellement examinés et maintenus.
+
+#### 3.2.4 Comment Utiliser Jest pour la Couverture de Code
+
+Pour utiliser Jest pour la couverture de code, vous devez installer Jest en tant que dépendance de développement dans votre projet :
+
+```
+  npm install --save-dev jest
+```
+
+Ou si vous utilisez yarn :
+
+```
+  yarn add --dev jest
+```
+
+Ensuite, vous pouvez ajouter un script dans votre package.json pour exécuter vos tests avec Jest :
+
+```
+  {
+    "scripts": {
+    "test": "jest"
+    }
+  }
+```
+
+Pour collecter la couverture de code, vous pouvez exécuter Jest avec le drapeau --coverage :
+
+```
+  npm test -- --coverage
+```
+
+Ou avec yarn :
+
+```
+  yarn test --coverage
+```
+
+Cela générera un rapport de couverture dans un nouveau répertoire, coverage, dans la racine de votre projet.
+
+Pour des instructions plus détaillées et une utilisation avancée, vous pouvez vous référer à la [documentation de Jest](https://jestjs.io/docs/getting-started).
+
+### 3.3 Outil 3 : JS Coverage
+
+#### 3.3.1 Vue d'ensemble de JS Coverage
+
+JS Coverage est un outil de couverture de code écrit en pur JavaScript, prenant en charge à la fois Node.js et le JavaScript. Il est conçu pour être facile à utiliser et flexible, permettant aux développeurs de mesurer rapidement et efficacement la couverture de code de leur code JavaScript.
+
+#### 3.3.2 Fonctionnalités de JS Coverage
+
+- JS Coverage prend en charge à la fois Node.js et le JavaScript.
+- Il fournit une interface en ligne de commande pour une utilisation facile et une intégration dans les flux de travail de test.
+- JS Coverage prend en charge l'injection de fonctions dans vos exports de module pour faciliter les tests.
+- Il permet la création de rapports de couverture dans divers formats, y compris spec, list, tap, detail, et HTML.
+- JS Coverage prend en charge l'utilisation d'un fichier `.covignore` pour spécifier les fichiers à ignorer lors du calcul de la couverture.
+
+#### 3.3.3 Avantages et Inconvénients de JS Coverage
+
+_👍 Avantages :_
+
+- JS Coverage est facile à utiliser et flexible, ce qui en fait un bon choix pour des projets de toute taille.
+- Il prend en charge une grande variété de formats de rapport, permettant aux développeurs de choisir celui qui convient le mieux à leurs besoins.
+- JS Coverage prend en charge l'utilisation d'un fichier `.covignore`, offrant une flexibilité dans la détermination des fichiers à inclure dans le calcul de la couverture.
+
+_👎 Inconvénients :_
+
+- La documentation pour JS Coverage est quelque peu limitée, ce qui peut rendre son utilisation plus difficile pour les nouveaux utilisateurs.
+- JS Coverage n'a pas été mis à jour récemment (en date de juillet 2023), ce qui peut indiquer un manque de maintenance et de soutien continu.
+
+Pour utiliser JS Coverage pour la couverture de code, vous devez l'installer en tant que dépendance dans votre projet :
+
+```
+npm install jscoverage
+```
+
+Ensuite, vous pouvez utiliser JS Coverage pour instrumenter vos fichiers JavaScript pour la mesure de couverture :
+
+```
+jscoverage source.js source-cov.js
+```
+
+Cela créera un nouveau fichier, source-cov.js, qui est une version instrumentée de source.js pouvant être utilisée pour mesurer la couverture de code.
+
+Pour des instructions plus détaillées et une utilisation avancée, vous pouvez vous référer à la [documentation JS Coverage](https://github.com/fishbar/jscoverage).
+
+### 3.4 Outil 4 : CodeCov
+
+<ImageContainer
+  alt="capture d'écran de l'outil de couverture de code codecov"
+  src="/blog/static/images/codecoverage/codecov.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2646}
+  height={1130}
+/>{" "}
+
+#### 3.4.1 Vue d'ensemble de CodeCov
+
+CodeCov est un outil hautement intégré qui fournit des métriques de couverture de code pour aider les développeurs à écrire de meilleur code. Il peut être utilisé avec n'importe quel framework de test, service CI/CD et supporte plus de 30 langues. CodeCov facilite l'implémentation de la couverture de code dans votre flux de travail de développement, en fournissant des rapports d'équipe et de dépôt, des commentaires sur les pull request et des vérifications de statut.
+
+#### 3.4.2 Fonctionnalités de CodeCov
+
+- CodeCov supporte plus de 30 langues et peut être utilisé avec n'importe quel service CI/CD.
+- Il offre des fonctionnalités telles que la gestion d'équipe, les rapports de dépôt, les commentaires sur les pull request et les vérifications de statut.
+- CodeCov propose une extension de navigateur qui superpose les rapports de couverture sur GitHub.
+- Il fournit une variété de graphiques et de rapports pour visualiser les données de couverture.
+
+#### 3.4.3 Avantages et inconvénients de CodeCov
+
+_👍 Avantages :_
+
+- CodeCov est hautement intégré et flexible, ce qui en fait un bon choix pour les équipes utilisant des services CI/CD.
+- Il fournit des rapports détaillés et des visualisations, vous aidant à comprendre vos données de couverture en un coup d'œil.
+- CodeCov supporte une large gamme de langues, ce qui en fait un outil polyvalent pour les projets multilingues.
+
+_👎 Inconvénients :_
+
+- CodeCov est un outil payant, bien qu'il propose une version gratuite pour les projets open-source. Le coût pourrait être un obstacle pour certaines équipes.
+- Le processus de configuration peut être complexe comparé à certains autres outils.
+
+#### 3.4.4 Comment utiliser CodeCov pour la couverture de code
+
+Pour utiliser CodeCov pour la couverture de code, vous devez vous inscrire à un compte CodeCov et ajouter votre dépôt. Une fois votre dépôt connecté, vous pouvez ajouter une étape CodeCov à votre pipeline CI/CD pour télécharger vos rapports de couverture. CodeCov traitera les rapports et vous fournira des métriques de couverture détaillées.
+
+Pour des instructions plus détaillées et une utilisation avancée, vous pouvez vous référer à la [documentation CodeCov](https://docs.codecov.io/docs).
+
+## 4. Comparaison des outils
+
+### 4.1 Tableau comparatif : Istanbul vs Jest vs JS Coverage vs CodeCov
+
+| Fonctionnalité                          | Istanbul | Jest    | JS Coverage | CodeCov                                                                    |
+| --------------------------------------- | -------- | ------- | ----------- | -------------------------------------------------------------------------- |
+| **Facilité d'utilisation**              | 🟢       | 🟢      | 🟡          | 🟢                                                                         |
+| **Rapports détaillés**                  | ✔️       | ✔️      | ✔️          | ✔️                                                                         |
+| **Performance**                         | 🟢       | 🟡      | 🟢          | 🟢                                                                         |
+| **Support de la communauté**            | 🟢       | 🟢      | ❌          | 🟢                                                                         |
+| **Intégration CI/CD**                   | ✔️       | ✔️      | ❌          | ✔️                                                                         |
+| **Dernière mise à jour (juillet 2023)** | Récent   | Récent  | Pas récent  | Récent                                                                     |
+| **Tarification**                        | Gratuit  | Gratuit | Gratuit     | Gratuit/Open Source, $10/utilisateur/mois (Pro), Personnalisé (Entreprise) |
+
+### 4.2 Quel outil choisir et quand ?
+
+Le choix d'un outil de couverture de code dépend largement de vos besoins spécifiques et de la nature de votre projet. Voici quelques recommandations générales :
+
+- **Istanbul** : Choisissez Istanbul si vous voulez un outil haute performance avec des rapports détaillés et un soutien communautaire solide. C'est un bon choix pour les projets de grande taille ou les projets où la performance est une préoccupation clé.
+
+- **Jest** : Jest est un excellent choix si vous recherchez une solution de test complète incluant la couverture de code. Il est facile à utiliser et bénéficie d'un soutien communautaire fort, mais il peut être plus lent que certains autres outils.
+
+- **JS Coverage** : JS Coverage pourrait être l'outil qu'il vous faut si vous travaillez sur un projet de petite taille ou si vous préférez un outil facile à utiliser et flexible. Cependant, gardez à l'esprit qu'il n'a pas été mis à jour récemment et qu'il ne bénéficie pas d'autant de soutien communautaire que les autres outils.
+
+- **CodeCov** : CodeCov est une excellente option si vous recherchez un outil qui s'intègre bien aux systèmes CI/CD. Il est facile à utiliser, fournit des rapports détaillés et bénéficie d'un soutien communautaire fort.
+
+<CTABanner type="try" />
