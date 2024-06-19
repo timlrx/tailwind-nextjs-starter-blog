@@ -75,32 +75,50 @@ const ThemeSwitch = () => {
               <div className="p-1">
                 <RadioGroup.Option value="light">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                      <div className="mr-2">
-                        <Sun />
-                      </div>
-                      Light
-                    </button>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active ? 'bg-primary-600 text-white' : ''
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        <div className="mr-2">
+                          <Sun />
+                        </div>
+                        Light
+                      </button>
+                    )}
                   </Menu.Item>
                 </RadioGroup.Option>
                 <RadioGroup.Option value="dark">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                      <div className="mr-2">
-                        <Moon />
-                      </div>
-                      Dark
-                    </button>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active ? 'bg-primary-600 text-white' : ''
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        <div className="mr-2">
+                          <Moon />
+                        </div>
+                        Dark
+                      </button>
+                    )}
                   </Menu.Item>
                 </RadioGroup.Option>
                 <RadioGroup.Option value="system">
                   <Menu.Item>
-                    <button className="group flex w-full items-center rounded-md px-2 py-2 text-sm">
-                      <div className="mr-2">
-                        <Monitor />
-                      </div>
-                      System
-                    </button>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active ? 'bg-primary-600 text-white' : ''
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        <div className="mr-2">
+                          <Monitor />
+                        </div>
+                        System
+                      </button>
+                    )}
                   </Menu.Item>
                 </RadioGroup.Option>
               </div>
