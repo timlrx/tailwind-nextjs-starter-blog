@@ -57,7 +57,9 @@ const ThemeSwitch = () => {
     <div className="mr-5">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</Menu.Button>
+          <Menu.Button>
+            {mounted ? resolvedTheme === 'dark' ? <Moon /> : <Sun /> : <Blank />}
+          </Menu.Button>
         </div>
         <Transition
           as={Fragment}
