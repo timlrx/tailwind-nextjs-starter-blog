@@ -41,6 +41,19 @@ const MobileNav = () => {
           navShow ? 'translate-x-0' : 'hidden translate-x-full'
         }`}
       >
+        <nav className="fixed mt-8 h-full">
+          {headerNavLinks.map((link) => (
+            <div key={link.title} className="px-12 py-4">
+              <Link
+                href={link.href}
+                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                onClick={onToggleNav}
+              >
+                {link.title}
+              </Link>
+            </div>
+          ))}
+        </nav>
         <div className="flex justify-end">
           <button className="mr-8 mt-11 h-8 w-8" aria-label="Toggle Menu" onClick={onToggleNav}>
             <svg
@@ -57,19 +70,6 @@ const MobileNav = () => {
             </svg>
           </button>
         </div>
-        <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
-              <Link
-                href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
-                onClick={onToggleNav}
-              >
-                {link.title}
-              </Link>
-            </div>
-          ))}
-        </nav>
       </div>
     </>
   )
