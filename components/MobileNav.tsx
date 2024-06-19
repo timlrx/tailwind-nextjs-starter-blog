@@ -26,7 +26,8 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="h-8 w-8 text-gray-900 dark:text-gray-100"
+          className="h-8 w-8 text-gray-900 hover:text-primary-500 dark:text-gray-100
+          dark:hover:text-primary-400"
         >
           <path
             fillRule="evenodd"
@@ -46,7 +47,8 @@ const MobileNav = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="text-gray-900 dark:text-gray-100"
+              className="text-gray-900 hover:text-primary-500 dark:text-gray-100
+              dark:hover:text-primary-400"
             >
               <path
                 fillRule="evenodd"
@@ -61,7 +63,8 @@ const MobileNav = () => {
             <div key={link.title} className="px-12 py-4">
               <Link
                 href={link.href}
-                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
+                className="text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100
+                dark:hover:text-primary-400"
                 onClick={onToggleNav}
               >
                 {link.title}
