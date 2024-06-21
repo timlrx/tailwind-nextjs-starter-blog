@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Vasen käännös',
   author: 'Aaro Heroja',
   headerTitle: 'Vasen käännös',
-  description: 'Jälkiviisautta risteyksissä missä on käännytty vasemmalle',
+  description: 'Jälkiviisautta risteyksien jälkeen, missä on käännytty vasemmalle. ',
   language: 'fi-fi',
   theme: 'system', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
@@ -13,7 +13,7 @@ const siteMetadata = {
   email: 'aaro@aaroheroja.fi',
   github: 'https://github.com/Aromiii',
   linkedin: 'https://www.linkedin.com/in/aaro-heroja/',
-  locale: 'en-US',
+  locale: 'fi-FI',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -68,7 +68,7 @@ const siteMetadata = {
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
-      lang: 'en',
+      lang: 'fi',
     },
   },
   search: {
