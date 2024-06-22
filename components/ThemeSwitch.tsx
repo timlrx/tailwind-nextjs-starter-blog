@@ -9,7 +9,7 @@ const Sun = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    className="h-6 w-6 text-gray-900 dark:text-gray-100"
+    className="group:hover:text-gray-100 h-6 w-6"
   >
     <path
       fillRule="evenodd"
@@ -23,7 +23,7 @@ const Moon = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    className="h-6 w-6 text-gray-900 dark:text-gray-100"
+    className="group:hover:text-gray-100 h-6 w-6"
   >
     <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
   </svg>
@@ -37,13 +37,14 @@ const Monitor = () => (
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    className="h-6 w-6 text-gray-900 dark:text-gray-100"
+    className="group:hover:text-gray-100 h-6 w-6"
   >
     <rect x="3" y="3" width="14" height="10" rx="2" ry="2"></rect>
     <line x1="7" y1="17" x2="13" y2="17"></line>
     <line x1="10" y1="13" x2="10" y2="17"></line>
   </svg>
 )
+const Blank = () => <svg className="h-6 w-6" />
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
@@ -55,8 +56,10 @@ const ThemeSwitch = () => {
   return (
     <div className="mr-5">
       <Menu as="div" className="relative inline-block text-left">
-        <div>
-          <Menu.Button>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</Menu.Button>
+        <div className="hover:text-primary-500 dark:hover:text-primary-400">
+          <Menu.Button>
+            {mounted ? resolvedTheme === 'dark' ? <Moon /> : <Sun /> : <Blank />}
+          </Menu.Button>
         </div>
         <Transition
           as={Fragment}
