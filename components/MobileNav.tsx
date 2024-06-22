@@ -108,3 +108,46 @@ const MobileNav = () => {
 }
 
 export default MobileNav
+
+interface RenderMobileNavLinkProps extends NavItem {
+  clickFunc: () => void
+  navLink: NavItem
+}
+
+const RenderMobileNavLink = ({ navLink, clickFunc }: RenderMobileNavLinkProps) => {
+  const children: NavItemChild[] = navLink?.children || []
+
+  if (children?.length > 0) {
+    return (
+      <div key={navLink.title} className="px-12 py-4">
+        <h3 className="border-b border-gray-500 text-2xl font-bold tracking-widest text-gray-700 dark:border-gray-400 dark:text-gray-300">
+          {navLink.title}
+        </h3>
+        <div className="ml-6 flex flex-col items-start">
+          {children.map((cLink) => (
+            <Link
+              key={cLink.title}
+              href={cLink.href}
+              className="mt-4 text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400"
+              onClick={clickFunc}
+            >
+              {cLink.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div key={navLink.title} className="px-12 py-4">
+        <Link
+          href={navLink.href}
+          className="text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400"
+          onClick={clickFunc}
+        >
+          {navLink.title}
+        </Link>
+      </div>
+    )
+  }
+}
