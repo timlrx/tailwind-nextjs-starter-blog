@@ -24,7 +24,7 @@ const RenderNavLink = ({ navItem }: { navItem: NavItem }) => {
       <Link
         key={navItem.title}
         href={navItem.href}
-        className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
+        className="hidden font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400 sm:block"
       >
         {navItem.title}
       </Link>
@@ -35,7 +35,11 @@ const RenderNavLink = ({ navItem }: { navItem: NavItem }) => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           {navItem.title && (
-            <Menu.Button className={'hidden font-medium text-gray-900 dark:text-gray-100 sm:block'}>
+            <Menu.Button
+              className={
+                'hidden font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400 sm:block'
+              }
+            >
               {navItem.title}
             </Menu.Button>
           )}
