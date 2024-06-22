@@ -139,7 +139,7 @@ const RenderMobileNavLink = ({ navLink, clickFunc }: RenderMobileNavLinkProps) =
     return (
       <div key={navLink.title} className="px-12 py-4">
         <Link
-          href={navLink.href}
+          href={navLink.href ?? ''}
           className="text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400"
           onClick={clickFunc}
         >
