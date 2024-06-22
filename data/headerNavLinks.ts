@@ -16,7 +16,12 @@ const headerNavLinks = [
 export interface NavItem {
   href?: string
   title: string
-  children?: NavItem[]
+  children?: NavItemChild[]
+}
+
+export interface NavItemChild {
+  href: string
+  title: string
 }
 
 export default headerNavLinks
