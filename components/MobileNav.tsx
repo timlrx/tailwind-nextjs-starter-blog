@@ -107,7 +107,7 @@ const MobileNav = () => {
 
 export default MobileNav
 
-interface RenderMobileNavLinkProps extends NavItem {
+type RenderMobileNavLinkProps = {
   clickFunc: () => void
   navLink: NavItem
 }
@@ -122,7 +122,7 @@ const RenderMobileNavLink = ({ navLink, clickFunc }: RenderMobileNavLinkProps) =
           {navLink.title}
         </h3>
         <div className="ml-6 flex flex-col items-start">
-          {children.map((cLink) => (
+          {children.map((cLink: NavItemChild) => (
             <Link
               key={cLink.title}
               href={cLink.href}
