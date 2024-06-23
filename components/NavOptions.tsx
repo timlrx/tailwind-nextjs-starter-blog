@@ -3,8 +3,29 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { Menu, RadioGroup, Transition } from '@headlessui/react'
-import headerNavLinks, { NavItem, NavItemChild } from '@/data/headerNavLinks'
+import headerNavLinks from '@/data/headerNavLinks'
 import Link from 'next/link'
+
+type NavItemBase = {
+  title: string
+}
+
+type NavItemWithHref = NavItemBase & {
+  href: string
+  children?: never
+}
+
+type NavItemWithChildren = NavItemBase & {
+  children: NavItemChild[]
+  href?: never
+}
+
+export type NavItemChild = {
+  href: string
+  title: string
+}
+
+export type NavItem = NavItemWithHref | NavItemWithChildren
 
 export const NavOptions = () => {
   return (
