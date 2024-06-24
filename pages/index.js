@@ -19,11 +19,11 @@ export async function getStaticProps({ locale, defaultLocale, locales }) {
   return { props: { posts, locale, availableLocales: locales } }
 }
 
-function WithImage({ image, date }) {
+export function WithImage({ image, date, alt }) {
   return (
     <div className="flex flex-col">
       <div className="flex  justify-center pb-4  xl:block xl:justify-start xl:pb-0">
-        <Image width={220} height={146} src={image} alt="avatar" />
+        <Image width={220} height={146} src={image} alt={alt} />
       </div>
       <dl>
         <dt className="sr-only">Published on</dt>
@@ -67,7 +67,7 @@ export default function Home({ posts, locale, availableLocales }) {
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     {image ? (
-                      <WithImage image={image} date={dateToFormat} />
+                      <WithImage image={image} date={dateToFormat} alt={title} />
                     ) : (
                       <dl>
                         <dt className="sr-only">{t("common:pub")}</dt>{" "}

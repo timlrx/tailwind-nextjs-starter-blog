@@ -1,22 +1,47 @@
 import Link from "@/components/Link"
 import Tag from "@/components/Tag"
 import siteMetadata from "@/data/siteMetadata"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Pagination from "@/components/Pagination"
 import formatDate from "@/lib/utils/formatDate"
 import useTranslation from "next-translate/useTranslation"
 import { useRouter } from "next/router"
+import { WithImage } from "pages"
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
+  const [displayPosts, setDisplayPosts] = useState(
+    initialDisplayPosts.length > 0 ? initialDisplayPosts : posts.slice(0, 10)
+  ) // Start with the first 10 posts or initialDisplayPosts
+  const [hasMore, setHasMore] = useState(posts.length > displayPosts.length)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadMorePosts()
+        }
+      },
+      {
+        rootMargin: "100px",
+      }
+    )
+
+    const sentinel = document.querySelector("#scroll-sentinel")
+    if (sentinel) observer.observe(sentinel)
+
+    return () => observer.disconnect()
+  }, [displayPosts, hasMore])
+
+  const loadMorePosts = () => {
+    const morePosts = posts.slice(displayPosts.length, displayPosts.length + 10) // Load 10 more posts
+    setDisplayPosts([...displayPosts, ...morePosts])
+    setHasMore(posts.length > displayPosts.length + morePosts.length)
+  }
   const [searchValue, setSearchValue] = useState("")
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter?.tags?.join(" ")
     return searchContent?.toLowerCase().includes(searchValue.toLowerCase())
   })
-
-  // If initialDisplayPosts exist, display it if no searchValue is specified
-  const displayPosts =
-    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
 
   const { t } = useTranslation()
   const { locale } = useRouter()
@@ -55,31 +80,49 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
         <ul>
           {!filteredBlogPosts.length && "No posts found."}
           {displayPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, image, lastmod } = frontMatter
+            const dateToFormat = lastmod || date
             return (
               <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">{t("common:pub")}</dt>{" "}
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, locale)}</time>{" "}
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/p/${slug}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
+                <article>
+                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                    {image ? (
+                      <WithImage image={image} date={dateToFormat} alt={title} />
+                    ) : (
+                      <dl>
+                        <dt className="sr-only">{t("common:pub")}</dt>{" "}
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <time dateTime={date}>{formatDate(date, locale)}</time>{" "}
+                        </dd>
+                      </dl>
+                    )}
+                    <div className="!mt-auto space-y-5 xl:col-span-3">
+                      <div className="space-y-6 ">
+                        <div>
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <Link href={`/p/${slug}`} className="text-gray-900 dark:text-gray-100">
+                              {title}
+                            </Link>
+                          </h2>
+                          <div className="flex flex-wrap">
+                            {tags.map((tag) => (
+                              <Tag key={tag} text={tag} />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                          {summary}
+                        </div>
                       </div>
-                    </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {summary}
+                      <div className="text-base font-medium leading-6">
+                        <Link
+                          href={`/p/${slug}`}
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          aria-label={`Read "${title}"`}
+                        >
+                          {t("common:more")} &rarr;{" "}
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -87,10 +130,8 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
             )
           })}
         </ul>
+        {hasMore && <div id="scroll-sentinel" className="h-10"></div>}
       </div>
-      {pagination && pagination.totalPages > 1 && !searchValue && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-      )}
     </>
   )
 }
