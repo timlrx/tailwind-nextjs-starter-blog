@@ -39,7 +39,7 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    provider: 'convertkit',
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the
@@ -62,13 +62,14 @@ const siteMetadata = {
       // transparent_dark, preferred_color_scheme, custom
       theme: 'light',
       // theme when dark mode
+      inputPosition: 'top',
       darkTheme: 'transparent_dark',
       // If the theme option above is set to 'custom`
       // please provide a link below to your custom theme css file.
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
-      lang: 'fi',
+      lang: 'en',
     },
   },
   search: {
