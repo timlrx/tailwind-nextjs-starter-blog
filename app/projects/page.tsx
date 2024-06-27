@@ -13,7 +13,7 @@ export default function Projects() {
             Projektit
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Esittele projektiasi kuvalla (16 x 9)
+            Merkitykselliset projektit mitä on vuosien varrella tullut tehtyä.
           </p>
         </div>
         <div className="container py-12">
