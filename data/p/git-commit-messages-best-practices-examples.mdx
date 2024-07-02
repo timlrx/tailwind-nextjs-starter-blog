@@ -11,11 +11,75 @@ authors: ["sydney"]
 
 <TOCInline toc={props.toc} toHeading={3} asDisclosure />
 
+## TLDR: Git Commit Message template
+
+Use the following examples to craft clear and effective Git commit messages for various scenarios:
+
+```GITHUB COMMIT MESSAGE TEMPLATE EXAMPLES
+
+# Commit message with description and breaking change footer
+feat: allow provided config object to extend other configs
+
+BREAKING CHANGE: 'extends' key in config file is now used for extending other config files.
+
+# Commit message with ! to draw attention to a breaking change
+feat!: send an email to the customer when a product is shipped
+
+# Commit message with scope and ! to draw attention to a breaking change
+feat(api)!: send an email to the customer when a product is shipped
+
+# Commit message with both ! and BREAKING CHANGE footer
+chore!: drop support for Node 6
+
+BREAKING CHANGE: use JavaScript features not available in Node 6.
+
+# Commit message with no body
+docs: correct spelling of CHANGELOG
+
+# Commit message with scope
+feat(lang): add Polish language
+
+# Commit message with multi-paragraph body and multiple footers
+fix: prevent racing of requests
+
+Introduce a request id and a reference to latest request. Dismiss
+incoming responses other than from the latest request.
+
+Remove timeouts which were used to mitigate the racing issue but are
+obsolete now.
+
+Reviewed-by: Z
+Refs: #123
+
+# Commit message for a minor bug fix
+fix(ui): resolve issue with dropdown menu alignment
+
+The dropdown menu was misaligned on the profile page due to CSS conflicts.
+Updated the styles to ensure proper alignment across different screen sizes.
+Fixes issue #789.
+
+# Commit message for adding a new test
+test: add unit tests for user authentication module
+
+Added unit tests for the user authentication module to cover login, registration, and token verification functionalities.
+Ensured all tests pass with the new authentication logic.
+Refs: #456
+
+# Commit message for a configuration change
+chore(config): update ESLint configuration to support latest standards
+
+Updated the ESLint configuration to support the latest JavaScript standards and best practices.
+Included new rules for code formatting and improved error detection.
+Reviewed-by: A, B
+```
+
 # Introduction
 
 ## Importance of Clear Git Commit Messages
 
 Clear and concise Git commit messages are essential in the software development lifecycle. They provide context and understanding of changes, aiding in project management, collaboration, and maintaining a clean version history. Here’s why they matter.
+
+## Git Commit Messages checklist
 
 <ImageContainer
   alt="Git Commit Messages checklist"
@@ -176,6 +240,15 @@ Markdown is a lightweight markup language that can be used to format commit mess
 
 ## Part 4: Git Commit Message Best Practices
 
+<ImageContainer
+  alt="commit_messages_get_less_informative.png"
+  src="/blog/static/images/commitmessages/1. commit_messages_get_less_informative.png"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={2294}
+  height={1252}
+/>
+
 Writing great commit messages is an art that combines clarity, brevity, and structure. Here are some best practices to follow, ensuring your commit messages are both informative and efficient.
 
 ### Keep Messages Short but Descriptive
@@ -280,15 +353,6 @@ By following these best practices, you'll ensure your commit messages are a valu
 </SubImageText>
 
 ## Part 5: Git Commit Message Best Practices Examples
-
-<ImageContainer
-  alt="commit_messages_get_less_informative.png"
-  src="/blog/static/images/commitmessages/1. commit_messages_get_less_informative.png"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={2294}
-  height={1252}
-/>{" "}
 
 To make these best practices more tangible, here are some examples of well-crafted commit messages for different scenarios. Each example includes a subject line and a detailed body that adheres to the guidelines we've discussed.
 
