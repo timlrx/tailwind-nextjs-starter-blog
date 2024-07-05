@@ -4,6 +4,7 @@ export interface Education {
   startDate: Date
   endDate?: Date
   skills?: string[]
+  schoolLogo?: string
 }
 
 export interface Experience {
@@ -20,6 +21,7 @@ export interface Experience {
 
 export interface CourseLicenseOrCertification {
   issuerName: string
+  issuerLogo?: string
   title: string
   issueDate: Date
   skills?: string[]

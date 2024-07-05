@@ -28,18 +28,24 @@ const ListElement = (props: { data: Education | Experience | CourseLicenseOrCert
   return (
     <div className="md p-4 py-2.5">
       {isEducation(data) && (
-        <>
-          <h3 className="mb-2 text-xl font-bold leading-8 tracking-tight">{data.schoolName}</h3>
-          <p className="prose max-w-none text-gray-500 dark:text-gray-400">{data.title}</p>
-          <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">
-            {data.startDate.toDateString()} - {data.endDate?.toDateString() || 'Nyt'}
-          </p>
-          {data.skills && (
-            <p className="prose max-w-none text-gray-500 dark:text-gray-400">
-              Taidot: {data.skills.join(', ')}
+        <div className="flex gap-3">
+          <img
+            src={data.schoolLogo || '/static/images/org.svg'}
+            className="aspect-square h-9 w-9 rounded-md object-cover"
+          />
+          <div>
+            <h3 className="mb-2 text-xl font-bold leading-8 tracking-tight">{data.schoolName}</h3>
+            <p className="prose max-w-none text-gray-500 dark:text-gray-400">{data.title}</p>
+            <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">
+              {data.startDate.toDateString()} - {data.endDate?.toDateString() || 'Nyt'}
             </p>
-          )}
-        </>
+            {data.skills && (
+              <p className="prose max-w-none text-gray-500 dark:text-gray-400">
+                Taidot: {data.skills.join(', ')}
+              </p>
+            )}
+          </div>
+        </div>
       )}
       {isExperience(data) && (
         <>
@@ -85,18 +91,24 @@ const ListElement = (props: { data: Education | Experience | CourseLicenseOrCert
         </>
       )}
       {isCourseLicenseOrCertification(data) && (
-        <>
-          <h3 className="text-xl font-bold leading-8 tracking-tight">{data.title}</h3>
-          <p className="prose max-w-none text-gray-500 dark:text-gray-400">{data.issuerName}</p>
-          <p className="prose max-w-none text-gray-500 dark:text-gray-400">
-            {data.issueDate.toDateString()}
-          </p>
-          {data.skills && (
+        <div className="flex gap-3">
+          <img
+            src={data.issuerLogo || '/static/images/org.svg'}
+            className="aspect-square h-9 w-9 rounded-md object-cover"
+          />
+          <div>
+            <h3 className="text-xl font-bold leading-8 tracking-tight">{data.title}</h3>
+            <p className="prose max-w-none text-gray-500 dark:text-gray-400">{data.issuerName}</p>
             <p className="prose max-w-none text-gray-500 dark:text-gray-400">
-              Skills: {data.skills.join(', ')}
+              {data.issueDate.toDateString()}
             </p>
-          )}
-        </>
+            {data.skills && (
+              <p className="prose max-w-none text-gray-500 dark:text-gray-400">
+                Skills: {data.skills.join(', ')}
+              </p>
+            )}
+          </div>
+        </div>
       )}
     </div>
   )

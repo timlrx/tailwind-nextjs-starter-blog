@@ -153,21 +153,26 @@ const cvData: CV = {
       title: 'PSK 6803 Työturvallisuus',
       issueDate: new Date(2024, 5),
       issuerName: 'Verkkokoulu.com',
+      issuerLogo: '/static/images/verkkokoulu.jpg',
     },
     {
       title: 'Young spokespeople -kurssi',
       issuerName: 'Suomen Partiolaiset - Finlands Scouter ry',
       issueDate: new Date(2023, 1),
+      issuerLogo: '/static/images/partio_sp.svg',
     },
     {
       title: 'Ryhmänohjaajakoulutus',
       issueDate: new Date(2023, 3),
       issuerName: 'Hyvinkään Nummenpojat ry',
+      issuerLogo:
+        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnummenpojat.fi%2Fwp-content%2Fuploads%2F2023%2F03%2Fcropped-HN-reunaton-logo-png.png&f=1&nofb=1&ipt=b2f1004c1317e68be4f4060b38526d2360cb4502b74af455b179af87672741f5&ipo=images',
     },
     {
       title: 'Turvallisesti yhdessä -verkkokurssi',
       issuerName: 'Suomen Partiolaiset - Finlands Scouter ry',
       issueDate: new Date(2022, 6),
+      issuerLogo: '/static/images/partio_sp.svg',
     },
   ],
 }
