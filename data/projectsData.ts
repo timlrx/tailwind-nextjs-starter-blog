@@ -7,6 +7,13 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    title: 'Sovellus - Riippumattorimedia',
+    description:
+      'Riippumattomedian sovellus on uutissovellus Partiojournalistien journalistisen median kuluttamisen. Tehtäväni on johtaa tiimi, joka toteuttaa sovelluksen. Itseni lisäksi projektin parissa toimii käyttöliittymäsuunnittelija, frontend ohjelmistokehittäjä ja kaksi backend ohjelmistokehittäjää',
+    imgSrc: '/static/images/partio_journalistit.jpg',
+    href: 'https://partiojournalistit.fi',
+  },
+  {
     title: 'HuHu-sovellus',
     description: `HuHu-sovellus on HuHu24 leirille tehty leirisovellus helpottaakseen leirin sisäistä viestintää ja 
     toimintaa. Sovelluksen ominaisuuksia oli muun muassa tiedotteiden julkaiseminen, ilmoituksien lähettäminen, 
@@ -14,6 +21,12 @@ const projectsData: Project[] = [
     ja vastasin etenkin arkkitehtuurista ja viestinnästä muun leiriorganisaation kanssa. `,
     imgSrc: 'https://raw.githubusercontent.com/HuHu24/huhu-sovellus/main/public/huhuymp.png',
     href: 'https://github.com/HuHu24/huhu-sovellus',
+  },
+  {
+    title: 'Pestikome - Kimara2024',
+    description: `Pestikone auttaa löytämään osa-alueen, joka vastaa omia vahvuuksiasi, kiinnostustasi ja intohimojasi pestiä varten Kimara 2024 leirillä. Pestikone on toteutettu OpenElectionCompass-projektin pohjalle. `,
+    imgSrc: '/static/images/pestikone-kimara.png',
+    href: 'https://pestikone.kimara2024.fi',
   },
   {
     title: 'Liveal',
@@ -24,12 +37,6 @@ const projectsData: Project[] = [
     imgSrc:
       'https://raw.githubusercontent.com/Aromiii/Liveal/cce74e52d3709f9f401d4c9cac7e59d1039eb9b7/next/public/livealLogoWithText.svg',
     href: 'https://github.com/Aromiii/Liveal',
-  },
-  {
-    title: 'Pestikome - Kimara2024',
-    description: `Pestikone auttaa löytämään osa-alueen, joka vastaa omia vahvuuksiasi, kiinnostustasi ja intohimojasi pestiä varten Kimara 2024 leirillä. Pestikone on toteutettu OpenElectionCompass-projektin pohjalle. `,
-    imgSrc: '/static/images/pestikone-kimara.png',
-    href: 'https://pestikone.kimara2024.fi',
   },
 ]
 
