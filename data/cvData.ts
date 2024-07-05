@@ -26,6 +26,7 @@ const cvData: CV = {
   volunteerExperience: [
     {
       company: 'Suomen Partiolaiset - Finlands Scouter ry',
+      companyLogoImgSrc: '/static/images/partio_sp.svg',
       positions: [
         {
           title: 'Vaalitoimikunnan jäsen',
@@ -49,6 +50,7 @@ const cvData: CV = {
     },
     {
       company: 'Partiojournalistit ry',
+      companyLogoImgSrc: '/static/images/partio_journalistit.jpg',
       positions: [
         {
           title: 'Projektipäällikkö | Riippari-sovellus',
@@ -58,6 +60,7 @@ const cvData: CV = {
     },
     {
       company: 'Lounais-Suomen Partiopiiri ry',
+      companyLogoImgSrc: '/static/images/partio_lsp.jpg',
       positions: [
         {
           title: 'Brändimestari | HuHu24',
@@ -67,6 +70,7 @@ const cvData: CV = {
     },
     {
       company: 'Pohjanmaan Partiolaiset ry',
+      companyLogoImgSrc: '/static/images/partio_pohjanmaa.png',
       positions: [
         {
           title: 'Webmaster | Orbis2025',
@@ -76,6 +80,7 @@ const cvData: CV = {
     },
     {
       company: 'Pääkaupunkiseudun Partiolaiset ry',
+      companyLogoImgSrc: '/static/images/partio_papa.jpg',
       positions: [
         {
           title: 'Analytiikkamestari | Kimara2024',
