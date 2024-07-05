@@ -45,7 +45,7 @@ const ListElement = (props: { data: Education | Experience | CourseLicenseOrCert
         <>
           <div className="mb-2 flex max-h-9 place-items-center gap-3">
             <img
-              src={data.companyLogoImgSrc}
+              src={data.companyLogoImgSrc || '/static/images/org.svg'}
               className="aspect-square w-9 rounded-md object-cover"
             />
             <h3 className="text-md font-bold leading-8 tracking-tight">{data.company}</h3>
