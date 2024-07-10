@@ -303,7 +303,7 @@ Then, deploy the generated `out` folder or run `npx serve out` it locally.
 > [!TIP]
 > Alternatively to `UNOPTIMIZED=1`, to continue using `next/image`, you can use an alternative image optimization provider such as Imgix, Cloudinary or Akamai. See [image optimization documentation](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization) for more details.
 
-Optionnally:
+Consider removing the following features that cannot be used in a static build:
 
 1. Comment out `headers()` from `next.config.js`.
 2. Remove `api` folder and components which call the server-side function such as the Newsletter component. Not technically required and the site will build successfully, but the APIs cannot be used as they are server-side functions.
