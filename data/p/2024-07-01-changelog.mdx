@@ -1,0 +1,40 @@
+---
+title: "Axolo changelog - July 2024"
+date: "2024-07-01"
+tags: ["changelog"]
+draft: false
+summary: "This changelog includes new features such as the /axolo command for multi-organizations users, improved PR title statuses, and enhanced notifications. It also highlights several improvements including updates to the open-source feature, enhanced engineer fetching for GitLab, and comprehensive alerting and archiving services. Additionally, multiple bug fixes address issues with GitLab auto-assignment, Slack thread integration, GitLab token updates, and more, ensuring a smoother and more reliable user experience."
+---
+
+## ✨ NEW:
+
+- Added the `/axolo` command feature for multi-organizations users.
+- Added status (merged or closed) in PR title along with the draft status.
+- Added a notification in PR channels if no one from a reviewer team was invited due to a wrongly set up CODEOWNERS rule.
+- Specific workflow for enterprise users.
+- API for provisioning and deprovisioning engineers automatically using OKTA or similar services.
+
+## 🔨 IMPROVEMENT:
+
+- Updated the open-source feature to allow Axolo to open PR channels on public repositories.
+- Improved the `/axolo` command for Enterprise customers.
+- Improved the way we fetch engineers for GitLab groups and subgroups.
+- Improved mergeability check for consecutive commits in PRs.
+- Alerting in team channels and emails for failed payment.
+- Notification in team channels & emails when downgrading to the starter plan.
+- Added a message saying that all developers belong to a team channel in the app.
+- Service to archive closed MRs if there was a webhook issue.
+- Automated a service to archive closed PR channels if there was an issue with GitLab webhooks.
+- Updated our database if we have a 404 from GitLab.
+
+## 🐞 FIX:
+
+- Resolved bug where GitLab auto-assignment was adding too many logs.
+- Solved a bug when creating the admin conversation while requesting Axolo installation.
+- Solved a bug where Slack threads were not being sent to GitHub.
+- Fixed bug to update GitLab token when there is a renewal issue.
+- Fixed bug for Stripe invoicing.
+- Fixed rendering bug for Axolo home in Slack for multi-organization customers.
+- Fixed bug where a message was sent to every developer instead of only those missing the onboarding process in GitLab.
+- Fixed a GitLab thread bug when the editor created the thread from the first tab right away.
+- Fixed a bug for standup selector in-app.
