@@ -3,7 +3,7 @@ name: GitHub Pages
 
 on:
   push:
-    branches: main
+    branches: pmndrs
   workflow_dispatch:
 
 permissions:

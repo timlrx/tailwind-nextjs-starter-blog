@@ -1,14 +1,22 @@
 {
-  "name": "",
-  "short_name": "",
+  "background_color": "#000000",
+  "display": "standalone",
   "icons": [
     {
-      "src": "/android-chrome-96x96.png",
-      "sizes": "96x96",
+      "purpose": "any maskable",
+      "sizes": "192x192",
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any maskable",
+      "sizes": "512x512",
+      "src": "/android-chrome-512x512.png",
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "display": "standalone"
+  "name": "Poimandres",
+  "short_name": "PMNDRS",
+  "start_url": "https://pmnd.rs",
+  "theme_color": "#000000"
 }
