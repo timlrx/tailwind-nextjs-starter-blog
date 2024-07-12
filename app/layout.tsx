@@ -1,16 +1,17 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
+// import '../css/globals.css'
 
+import Header from '@/components/PmndrsHeader'
+import { NullFooter } from '@/components/NullFooter'
+import SectionContainer from '@/components/SectionContainer'
+import siteMetadata from '@/data/siteMetadata'
+import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
-import { SearchProvider, SearchConfig } from 'pliny/search'
-import Header from '@/components/Header'
-import SectionContainer from '@/components/SectionContainer'
-import Footer from '@/components/Footer'
-import siteMetadata from '@/data/siteMetadata'
+import { SearchConfig, SearchProvider } from 'pliny/search'
 import { ThemeProviders } from './theme-providers'
-import { Metadata } from 'next'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -83,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Header />
                 <main className="mb-auto">{children}</main>
               </SearchProvider>
-              <Footer />
+              <NullFooter />
             </div>
           </SectionContainer>
         </ThemeProviders>

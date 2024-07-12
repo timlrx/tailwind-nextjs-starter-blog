@@ -14,6 +14,8 @@
   "dependencies": {
     "@headlessui/react": "1.7.19",
     "@next/bundle-analyzer": "14.2.3",
+    "@react-three/drei": "^9.108.3",
+    "@react-three/fiber": "^8.16.8",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.13",
@@ -42,12 +44,14 @@
     "remark-github-blockquote-alert": "^1.2.1",
     "remark-math": "^6.0.0",
     "tailwindcss": "^3.4.3",
+    "three": "^0.154.0",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
     "@types/mdx": "^2.0.12",
     "@types/react": "^18.2.73",
+    "@types/three": "^0.154.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "cross-env": "^7.0.3",
