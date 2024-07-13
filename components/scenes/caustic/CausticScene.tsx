@@ -1,9 +1,9 @@
 'use client'
 
 import * as THREE from 'three'
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { easing } from 'maath'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   useGLTF,
   Center,
@@ -44,8 +44,9 @@ export default function CausticScene() {
       camera={{ position: [20, 0.9, 20], fov: 26 }}
       className="touch-action-none inset-0 opacity-0"
       style={{ position: 'fixed', animation: 'fade-in 5s ease 1s forwards' }}
-      gl={{ debug: { checkShaderErrors: false, onShaderError: () => {} } }}
+      flat
     >
+      {/* <AsyncPreload> */}
       {/** PerfMon will detect performance issues */}
       <PerformanceMonitor onDecline={() => degrade(true)} />
 
@@ -64,6 +65,7 @@ export default function CausticScene() {
           color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
           scale={20}
           position={[0, -0.005, 0]}
+          toneMapped={false}
         >
           <RandomizedLight
             amount={8}
@@ -76,6 +78,7 @@ export default function CausticScene() {
         </AccumulativeShadows>
       </group>
       <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
+      {/* </AsyncPreload> */}
     </Canvas>
   )
 }
@@ -258,5 +261,37 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
         />
       </group>
     </Environment>
+  )
+}
+
+function AsyncPreload({ children }) {
+  const group = useRef<THREE.Group>(null!)
+
+  const gl = useThree((state) => state.gl)
+  const scene = useThree((state) => state.scene)
+  const camera = useThree((state) => state.camera)
+
+  useLayoutEffect(() => {
+    group.current.visible = false
+
+    scene.traverse((child) => {
+      // Init all textures
+      if (child instanceof THREE.Mesh) {
+        if (child.material.map) gl.initTexture(child.material.map)
+        if (child.material.normalMap) gl.initTexture(child.material.normalMap)
+        if (child.material.roughnessMap) gl.initTexture(child.material.roughnessMap)
+        if (child.material.metalnessMap) gl.initTexture(child.material.metalnessMap)
+      }
+    })
+
+    gl.compileAsync(group.current, camera, scene).then(() => {
+      group.current.visible = true
+    })
+  }, [gl, scene, camera, children])
+
+  return (
+    <group ref={group} visible={false}>
+      {children}
+    </group>
   )
 }
