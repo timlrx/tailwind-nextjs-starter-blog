@@ -52,17 +52,20 @@ const PmndrsHeader = () => {
     if (!linksRef.current || !sectionRef.current) return
 
     const linksWidth = linksRef.current.offsetWidth
-    const sectionBounds = sectionRef.current.getBoundingClientRect()
+    const sectionWidthWithoutPadding =
+      parseFloat(window.getComputedStyle(sectionRef.current).width) -
+      parseFloat(window.getComputedStyle(sectionRef.current).paddingLeft) -
+      parseFloat(window.getComputedStyle(sectionRef.current).paddingRight)
     const hasHomeChanged = prevIsHome.current !== isHome
 
     let linksX = 0
     if (isHome) {
       linksX = winWidth - linksWidth - 40
     } else {
-      linksX = sectionBounds.right - linksWidth - 20
+      linksX = winWidth - (winWidth - sectionWidthWithoutPadding) / 2 - linksWidth
     }
 
-    const homeX = sectionBounds.left
+    const homeX = (winWidth - sectionWidthWithoutPadding) / 2
     const homeOpacity = isHome ? 0 : 1
 
     springApi.start({ linkOpacity: 1 })
@@ -78,7 +81,7 @@ const PmndrsHeader = () => {
 
   return (
     <>
-      <header className="absolute left-0 top-0 z-[1] flex h-[130px] w-[100%] items-center py-10">
+      <header className="absolute left-[calc((100%-100vw)/2)] top-0 z-[1] flex h-[130px] w-[100%] items-center py-10">
         <a.div
           ref={homeRef}
           className="absolute"
