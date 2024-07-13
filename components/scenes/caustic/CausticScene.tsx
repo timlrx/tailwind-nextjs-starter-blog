@@ -60,7 +60,7 @@ export default function CausticScene() {
         <Scene />
         <AccumulativeShadows
           frames={100}
-          alphaTest={0.85}
+          alphaTest={0.8}
           opacity={0.8}
           color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
           scale={20}
@@ -71,7 +71,7 @@ export default function CausticScene() {
             amount={8}
             radius={6}
             ambient={0.5}
-            intensity={1}
+            intensity={Math.PI}
             position={[-1.5, 2.5, -2.5]}
             bias={0.001}
           />
