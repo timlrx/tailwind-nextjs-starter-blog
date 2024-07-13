@@ -35,8 +35,6 @@ export default function CausticScene() {
   const [perfSucks, degrade] = useState(false)
   const { resolvedTheme } = useTheme()
 
-  console.log('resolvedTheme', resolvedTheme)
-
   return (
     <Canvas
       shadows
@@ -46,6 +44,7 @@ export default function CausticScene() {
       camera={{ position: [20, 0.9, 20], fov: 26 }}
       className="touch-action-none inset-0 opacity-0"
       style={{ position: 'fixed', animation: 'fade-in 5s ease 1s forwards' }}
+      gl={{ debug: { checkShaderErrors: false, onShaderError: () => {} } }}
     >
       {/** PerfMon will detect performance issues */}
       <PerformanceMonitor onDecline={() => degrade(true)} />

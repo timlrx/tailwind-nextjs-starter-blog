@@ -1,9 +1,11 @@
 'use client'
 
+import headerNavLinks from '@/data/headerNavLinks'
+import siteMetadata from '@/data/siteMetadata'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Link from './Link'
-import headerNavLinks from '@/data/headerNavLinks'
+import SocialIcon from './social-icons'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
@@ -74,6 +76,16 @@ const MobileNav = () => {
                         </Link>
                       </div>
                     ))}
+
+                    <div className="px-12 py-4">
+                      <SocialIcon kind="github" href={siteMetadata.github} size={6} />
+                    </div>
+                    <div className="px-12 py-4">
+                      <SocialIcon kind="discord" href={siteMetadata.discord} size={6} />
+                    </div>
+                    <div className="px-12 py-4">
+                      <SocialIcon kind="twitter" href={siteMetadata.x} size={6} />
+                    </div>
                   </nav>
 
                   <div className="flex justify-end">

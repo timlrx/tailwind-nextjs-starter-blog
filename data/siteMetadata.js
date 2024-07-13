@@ -14,6 +14,7 @@ const siteMetadata = {
   // email: 'address@yoursite.com',
   github: 'https://github.com/pmndrs',
   x: 'https://twitter.com/pmndrs',
+  discord: 'https://pmnd.rs/discord',
   // twitter: 'https://twitter.com/Twitter',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',

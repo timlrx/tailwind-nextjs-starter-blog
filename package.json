@@ -14,6 +14,7 @@
   "dependencies": {
     "@headlessui/react": "1.7.19",
     "@next/bundle-analyzer": "14.2.3",
+    "@react-spring/web": "^9.7.3",
     "@react-three/drei": "^9.108.3",
     "@react-three/fiber": "^8.16.8",
     "@tailwindcss/forms": "^0.5.7",
