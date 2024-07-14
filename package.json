@@ -47,7 +47,7 @@
     "remark-github-blockquote-alert": "^1.2.1",
     "remark-math": "^6.0.0",
     "tailwindcss": "^3.4.3",
-    "three": "^0.156.0",
+    "three": "^0.166.1",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
