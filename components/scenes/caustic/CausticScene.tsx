@@ -43,42 +43,47 @@ export default function CausticScene() {
       eventPrefix="client"
       camera={{ position: [20, 0.9, 20], fov: 26 }}
       className="touch-action-none inset-0 opacity-0"
-      style={{ position: 'fixed', animation: 'fade-in 5s ease 1s forwards' }}
+      style={{ position: 'fixed', width: '100vw', animation: 'fade-in 5s ease 1s forwards' }}
       flat
     >
-      {/* <AsyncPreload> */}
-      {/** PerfMon will detect performance issues */}
-      <PerformanceMonitor onDecline={() => degrade(true)} />
+      <AsyncPreload
+        mountOnLoad={
+          <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
+            <AccumulativeShadows
+              frames={100}
+              alphaTest={0.8}
+              opacity={0.8}
+              color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
+              scale={20}
+              position={[0, -0.005, 0]}
+              toneMapped={false}
+            >
+              <RandomizedLight
+                amount={8}
+                radius={6}
+                ambient={0.5}
+                intensity={Math.PI}
+                position={[-1.5, 2.5, -2.5]}
+                bias={0.001}
+              />
+            </AccumulativeShadows>
+          </group>
+        }
+      >
+        {/** PerfMon will detect performance issues */}
+        <PerformanceMonitor onDecline={() => degrade(true)} />
 
-      {resolvedTheme === 'dark' ? (
-        <color attach="background" args={['#0d0d0d']} />
-      ) : (
-        <color attach="background" args={['#f0f0f0']} />
-      )}
+        {resolvedTheme === 'dark' ? (
+          <color attach="background" args={['#0d0d0d']} />
+        ) : (
+          <color attach="background" args={['#f0f0f0']} />
+        )}
 
-      <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
-        <Scene />
-        <AccumulativeShadows
-          frames={100}
-          alphaTest={0.8}
-          opacity={0.8}
-          color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
-          scale={20}
-          position={[0, -0.005, 0]}
-          toneMapped={false}
-        >
-          <RandomizedLight
-            amount={8}
-            radius={6}
-            ambient={0.5}
-            intensity={Math.PI}
-            position={[-1.5, 2.5, -2.5]}
-            bias={0.001}
-          />
-        </AccumulativeShadows>
-      </group>
-      <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
-      {/* </AsyncPreload> */}
+        <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
+          <Scene />
+        </group>
+        <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
+      </AsyncPreload>
     </Canvas>
   )
 }
@@ -202,7 +207,7 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
   return (
     <Environment
       frames={perfSucks ? 1 : Infinity}
-      preset={theme === 'dark' ? 'forest' : 'city'}
+      files={'/static/hdri/city.jpg'}
       resolution={256}
       background
       backgroundBlurriness={0.8}
@@ -264,12 +269,20 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
   )
 }
 
-function AsyncPreload({ children }) {
+function AsyncPreload({
+  children,
+  mountOnLoad,
+}: {
+  children: React.ReactNode
+  mountOnLoad?: React.ReactNode
+}) {
   const group = useRef<THREE.Group>(null!)
 
   const gl = useThree((state) => state.gl)
   const scene = useThree((state) => state.scene)
   const camera = useThree((state) => state.camera)
+
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useLayoutEffect(() => {
     group.current.visible = false
@@ -286,12 +299,14 @@ function AsyncPreload({ children }) {
 
     gl.compileAsync(group.current, camera, scene).then(() => {
       group.current.visible = true
+      setIsLoaded(true)
     })
   }, [gl, scene, camera, children])
 
   return (
     <group ref={group} visible={false}>
       {children}
+      {isLoaded && mountOnLoad}
     </group>
   )
 }
