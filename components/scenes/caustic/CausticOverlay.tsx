@@ -1,4 +1,5 @@
 import { a, useTrail } from '@react-spring/web'
+import Logo from '@/data/logo.svg'
 
 const charClasses =
   'absolute text-[14vw] font-extrabold leading-[0.8em] dark:text-white select-none'
@@ -39,52 +40,19 @@ export default function CausticOverlay({ show = true }) {
         ))}
       </div>
 
-      {/* {transitions(
-        (style, item) =>
-          item && (
-            <a.div
-              style={style}
-              className="pointer-events-none fixed left-0 top-0 z-[5] h-[100%] w-[100vw] overflow-hidden"
-            >
-              <div className={charClasses} style={{ top: 40, left: 40 }}>
-                P
-              </div>
-              <div className={charClasses} style={{ top: 40, left: '20vw' }}>
-                M
-              </div>
-              <div className={charClasses} style={{ top: 40, left: '40vw' }}>
-                N
-              </div>
-              <div className={charClasses} style={{ top: '20vw', left: '20vw' }}>
-                D
-              </div>
-              <div className={charClasses} style={{ bottom: 40, left: '40vw' }}>
-                R
-              </div>
-              <div className={charClasses} style={{ bottom: 40, left: '60vw' }}>
-                S
-              </div>
-            </a.div>
-          )
-      )} */}
-
-      {/* <div style={{ position: 'absolute', bottom: 120, left: 120, fontSize: '18px' }}>
-        Runtime caustics and soft shadows,
-        <br />
-        for more realism on the web.
-        <br />
-        <br />
-        <div style={{ position: 'relative', marginTop: 10, display: 'inline-block' }}>
-          <a
-            style={{ fontSize: '15px', fontWeight: 600, letterSpacing: 2 }}
-            href="https://github.com/pmndrs/drei#caustics"
-          >
-            DOCUMENTATION
+      <a.div
+        className="fixed bottom-[120px] left-[120px] z-[5] text-[18px]"
+        style={{ opacity: trails2[trails.length - 2].opacity }}
+      >
+        <div className="flex items-center">
+          <Logo className="mr-4 size-8 opacity-70 dark:invert" />
+          <a href="https://pmnd.rs/" className="text-[13px] leading-tight">
+            pmndrs
+            <br />
+            dev collective
           </a>
-          <div style={{ marginTop: 6, height: 2.5, width: '100%', background: '#3e3e3d' }} />
         </div>
-        <br />
-      </div> */}
+      </a.div>
     </>
   )
 }

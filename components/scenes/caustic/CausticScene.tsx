@@ -129,9 +129,7 @@ function Scene(props) {
       <Caustics
         backside
         color={[1, 0.8, 0.8]}
-        // focus={[0, -1.2, 0]}
         lightSource={[-1.2, 3, -2]}
-        // frustum={1.75}
         intensity={0.003}
         worldRadius={0.26 / 10}
         ior={0.9}
