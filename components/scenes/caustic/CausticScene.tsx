@@ -211,13 +211,13 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
       backgroundBlurriness={0.8}
     >
       <Lightformer
-        intensity={theme === 'dark' ? 0 : 4}
+        intensity={theme === 'dark' ? 0.5 : 4}
         rotation-x={Math.PI / 2}
         position={[0, 5, -9]}
         scale={[10, 10, 1]}
       />
       <Lightformer
-        intensity={theme === 'dark' ? 0 : 4}
+        intensity={theme === 'dark' ? 0.2 : 4}
         rotation-x={Math.PI / 2}
         position={[0, 5, -9]}
         scale={[10, 10, 1]}
