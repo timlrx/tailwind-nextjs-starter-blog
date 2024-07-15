@@ -48,7 +48,8 @@
     "remark-math": "^6.0.0",
     "tailwindcss": "^3.4.3",
     "three": "^0.166.1",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",

@@ -1,10 +1,9 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
-// import '../css/globals.css'
 
-import Header from '@/components/PmndrsHeader'
 import { NullFooter } from '@/components/NullFooter'
+import Header from '@/components/PmndrsHeader'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
@@ -12,6 +11,7 @@ import { Inter } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import { ThemeProviders } from './theme-providers'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -59,6 +59,10 @@ export const metadata: Metadata = {
   },
 }
 
+const PmndrsCanvas = dynamic(() => import('./Canvas'), {
+  ssr: false,
+})
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -79,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <div className="relative z-[0]">
+            <PmndrsCanvas />
             <SectionContainer>
               <div className="flex h-screen flex-col justify-between font-sans">
                 <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>

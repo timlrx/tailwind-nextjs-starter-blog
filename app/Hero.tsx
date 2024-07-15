@@ -1,18 +1,15 @@
-import dynamic from 'next/dynamic'
-import CausticOverlay from '@/components/scenes/caustic/CausticOverlay'
-
-// const CausticScene = dynamic(() => import('@/components/scenes/caustic/CausticScene'), {
-//   ssr: false,
-// })
-const MonitorsScene = dynamic(() => import('@/components/scenes/monitors/MonitorsScene'), {
-  ssr: false,
-})
+'use client'
+import { useLayoutEffect } from 'react'
+import { useCanvasApi } from './Canvas'
 
 export function Hero() {
-  return (
-    <>
-      <MonitorsScene />
-      {/* <CausticOverlay /> */}
-    </>
-  )
+  const { pause, play } = useCanvasApi()
+
+  useLayoutEffect(() => {
+    play()
+    return () => pause()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return null
 }

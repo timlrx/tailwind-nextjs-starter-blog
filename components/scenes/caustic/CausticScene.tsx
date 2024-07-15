@@ -1,21 +1,21 @@
 'use client'
 
-import * as THREE from 'three'
-import { useLayoutEffect, useRef, useState } from 'react'
-import { easing } from 'maath'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
-  useGLTF,
-  Center,
+  AccumulativeShadows,
   Caustics,
+  Center,
   Environment,
   Lightformer,
-  RandomizedLight,
-  PerformanceMonitor,
-  AccumulativeShadows,
   MeshTransmissionMaterial,
+  RandomizedLight,
+  useGLTF,
 } from '@react-three/drei'
+import { _roots, useFrame, useThree } from '@react-three/fiber'
+import { useCanvasApi } from 'app/Canvas'
+import { easing } from 'maath'
 import { useTheme } from 'next-themes'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import * as THREE from 'three'
 
 const innerMaterial = new THREE.MeshStandardMaterial({
   transparent: true,
@@ -29,62 +29,45 @@ const innerMaterial = new THREE.MeshStandardMaterial({
   envMapIntensity: 2,
 })
 
-THREE.Texture.DEFAULT_ANISOTROPY = 8
-
-export default function CausticScene() {
-  const [perfSucks, degrade] = useState(false)
+export default function CausticScene({ perfSucks = false }) {
   const { resolvedTheme } = useTheme()
 
   return (
-    <Canvas
-      shadows
-      dpr={[1, perfSucks ? 1.5 : 2]}
-      eventSource={document.getElementById('root')!}
-      eventPrefix="client"
-      camera={{ position: [20, 0.9, 20], fov: 26 }}
-      className="touch-action-none inset-0 opacity-0"
-      style={{ position: 'fixed', width: '100vw', animation: 'fade-in 5s ease 1s forwards' }}
-      flat
-    >
-      <AsyncPreload
-        mountOnLoad={
-          <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
-            <AccumulativeShadows
-              frames={100}
-              alphaTest={0.8}
-              opacity={0.8}
-              color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
-              scale={20}
-              position={[0, -0.005, 0]}
-              toneMapped={false}
-            >
-              <RandomizedLight
-                amount={8}
-                radius={6}
-                ambient={0.5}
-                intensity={Math.PI}
-                position={[-1.5, 2.5, -2.5]}
-                bias={0.001}
-              />
-            </AccumulativeShadows>
-          </group>
-        }
-      >
-        {/** PerfMon will detect performance issues */}
-        <PerformanceMonitor onDecline={() => degrade(true)} />
-
-        {resolvedTheme === 'dark' ? (
-          <color attach="background" args={['#0d0d0d']} />
-        ) : (
-          <color attach="background" args={['#f0f0f0']} />
-        )}
-
+    <AsyncPreload
+      mountOnLoad={
         <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
-          <Scene />
+          <AccumulativeShadows
+            frames={100}
+            alphaTest={0.75}
+            opacity={0.8}
+            color={resolvedTheme === 'dark' ? '#5e00d3' : 'red'}
+            scale={20}
+            position={[0, -0.005, 0]}
+          >
+            <RandomizedLight
+              amount={8}
+              radius={6}
+              ambient={0.5}
+              intensity={Math.PI}
+              position={[-1.5, 2.5, -2.5]}
+              bias={0.001}
+            />
+          </AccumulativeShadows>
+          <IsLoadedWhenMounted />
         </group>
-        <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
-      </AsyncPreload>
-    </Canvas>
+      }
+    >
+      {resolvedTheme === 'dark' ? (
+        <color attach="background" args={['#0d0d0d']} />
+      ) : (
+        <color attach="background" args={['#f0f0f0']} />
+      )}
+
+      <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
+        <Scene />
+      </group>
+      <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
+    </AsyncPreload>
   )
 }
 
@@ -309,4 +292,14 @@ function AsyncPreload({
       {isLoaded && mountOnLoad}
     </group>
   )
+}
+
+function IsLoadedWhenMounted() {
+  const setIsLoaded = useCanvasApi((state) => state.setIsLoaded)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [setIsLoaded])
+
+  return null
 }

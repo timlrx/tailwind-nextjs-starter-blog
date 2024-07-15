@@ -11569,6 +11569,7 @@ __metadata:
     three: ^0.166.1
     typescript: ^5.1.3
     unist-util-visit: ^5.0.0
+    zustand: ^4.5.4
   languageName: unknown
   linkType: soft
 
@@ -12522,7 +12523,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^4.3.2":
+"zustand@npm:^4.3.2, zustand@npm:^4.5.4":
   version: 4.5.4
   resolution: "zustand@npm:4.5.4"
   dependencies:
