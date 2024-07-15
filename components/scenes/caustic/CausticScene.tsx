@@ -8,13 +8,14 @@ import {
   Lightformer,
   MeshTransmissionMaterial,
   RandomizedLight,
+  useEnvironment,
   useGLTF,
 } from '@react-three/drei'
-import { _roots, useFrame, useThree } from '@react-three/fiber'
+import { ThreeElements, useFrame, useThree } from '@react-three/fiber'
 import { useCanvasApi } from 'app/Canvas'
 import { easing } from 'maath'
 import { useTheme } from 'next-themes'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 const innerMaterial = new THREE.MeshStandardMaterial({
@@ -64,7 +65,7 @@ export default function CausticScene({ perfSucks = false }) {
       )}
 
       <group position={[0, -0.5, 0]} rotation={[0, -0.75, 0]}>
-        <Scene />
+        <Scene theme={resolvedTheme} />
       </group>
       <Env perfSucks={perfSucks} theme={resolvedTheme ?? 'light'} />
     </AsyncPreload>
@@ -85,9 +86,21 @@ Authors:
   CDcruz (https://sketchfab.com/cdcruz) (Ikea - Pokal Glass Cups)
     https://sketchfab.com/3d-models/ikea-pokal-glass-cups-21837e54a14346aa900e1ae719779b86
 */
-function Scene(props) {
+function Scene({ theme, ...props }: ThreeElements['group'] & { theme?: string }) {
   const { nodes: _nodes, materials } = useGLTF('/static/models/glass-transformed.glb')
   const nodes = _nodes as Record<string, THREE.Mesh>
+
+  const cakeStandardMaterial = useMemo(() => {
+    const material = new THREE.MeshStandardMaterial({
+      map: (materials.FruitCakeSlice_u1_v1 as THREE.MeshBasicMaterial).map,
+      emissiveMap: (materials.FruitCakeSlice_u1_v1 as THREE.MeshBasicMaterial).map,
+      emissive: new THREE.Color('white'),
+    })
+    return material
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  cakeStandardMaterial.emissiveIntensity = theme === 'light' ? 0.5 : 0
 
   return (
     <group {...props} dispose={null}>
@@ -95,7 +108,7 @@ function Scene(props) {
         castShadow
         rotation={[0, -0.5, 0]}
         geometry={nodes.cake.geometry}
-        material={materials.FruitCakeSlice_u1_v1}
+        material={cakeStandardMaterial}
       />
       <mesh castShadow geometry={nodes.straw_1.geometry} material={materials.straw_2} />
       <mesh castShadow geometry={nodes.straw_2.geometry} material={materials.straw_1} />
@@ -184,11 +197,15 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
     }
   })
 
+  // Preload the environments. There has to be a better way
+  useEnvironment({ files: '/static/hdri/city.jpg' })
+  useEnvironment({ files: '/static/hdri/space.jpg' })
+
   // Runtime environments can be too slow on some systems, better safe than sorry with PerfMon
   return (
     <Environment
       frames={perfSucks ? 1 : Infinity}
-      files={'/static/hdri/city.jpg'}
+      files={theme === 'light' ? '/static/hdri/city.jpg' : '/static/hdri/space.jpg'}
       resolution={256}
       background
       backgroundBlurriness={0.8}
@@ -264,8 +281,12 @@ function AsyncPreload({
   const camera = useThree((state) => state.camera)
 
   const [isLoaded, setIsLoaded] = useState(false)
+  const isLoadedRef = useRef(isLoaded)
+  isLoadedRef.current = isLoaded
 
   useLayoutEffect(() => {
+    if (isLoadedRef.current) return
+
     group.current.visible = false
 
     scene.traverse((child) => {
@@ -285,7 +306,7 @@ function AsyncPreload({
   }, [gl, scene, camera, children])
 
   return (
-    <group ref={group} visible={false}>
+    <group ref={group} visible={isLoaded}>
       {children}
       {isLoaded && mountOnLoad}
     </group>
