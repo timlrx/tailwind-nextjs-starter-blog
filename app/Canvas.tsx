@@ -2,7 +2,7 @@
 
 import CausticOverlay from '@/components/scenes/caustic/CausticOverlay'
 import CausticScene from '@/components/scenes/caustic/CausticScene'
-import { useSpring, useTransition, a } from '@react-spring/web'
+import { useSpring } from '@react-spring/web'
 import { PerformanceMonitor } from '@react-three/drei'
 import { Canvas, invalidate, useThree } from '@react-three/fiber'
 import { usePathname } from 'next/navigation'
@@ -69,13 +69,6 @@ export default function PmndrsCanvas() {
       },
     })
   }, [isLoaded, springApi])
-
-  // useTransition
-  const transitions = useTransition(isHome.current, {
-    from: { opacity: 0, y: 100 },
-    enter: (isHome) => ({ opacity: isHome ? 1 : 0, y: isHome ? 0 : 100 }),
-    leave: (isHome) => ({ opacity: isHome ? 0 : 1, y: isHome ? 100 : 0 }),
-  })
 
   return (
     <>
