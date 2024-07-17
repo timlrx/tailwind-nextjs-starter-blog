@@ -107,7 +107,7 @@ const PmndrsHeader = () => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="hidden font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400
+                  className="hidden font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:opacity-60
               sm:block"
                 >
                   {link.title}

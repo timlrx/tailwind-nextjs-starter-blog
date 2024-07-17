@@ -19,7 +19,7 @@ const SearchButton = () => {
           strokeWidth={1.5}
           stroke="currentColor"
           className="h-6 w-6 text-gray-900 hover:text-primary-500 dark:text-gray-100
-          dark:hover:text-primary-400"
+          dark:hover:opacity-60"
         >
           <path
             strokeLinecap="round"
