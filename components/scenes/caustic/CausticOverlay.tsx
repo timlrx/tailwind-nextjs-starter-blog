@@ -41,16 +41,16 @@ export default function CausticOverlay({ show = true }) {
       </div>
 
       <a.div
-        className="fixed bottom-[120px] left-[120px] z-[5] text-[18px]"
+        className="fixed bottom-[120px] left-[120px] z-[5] select-none text-[18px]"
         style={{ opacity: trails2[trails.length - 2].opacity }}
       >
         <div className="flex items-center">
           <Logo className="mr-4 size-8 opacity-70 dark:invert" />
-          <a href="https://pmnd.rs/" className="text-[13px] leading-tight">
+          <div className="text-[13px] leading-tight">
             pmndrs
             <br />
             dev collective
-          </a>
+          </div>
         </div>
       </a.div>
     </>
