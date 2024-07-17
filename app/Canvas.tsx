@@ -21,28 +21,48 @@ export default function PmndrsCanvas() {
   const onPause = useCanvasApi((state) => state.onPause)
   const onPlay = useCanvasApi((state) => state.onPlay)
   const isLoaded = useCanvasApi((state) => state.isLoaded)
+  const prevIsLoaded = useRef(isLoaded)
 
   const pathname = usePathname()
-  const isHome = useRef(pathname === '/')
-  isHome.current = pathname === '/'
+  const isHome = pathname === '/'
+  const isHomeRef = useRef(isHome)
+  isHomeRef.current = isHome
 
   const [showOverlay, setShowOverlay] = useState(false)
 
   useEffect(() => {
     let timeout: NodeJS.Timeout
 
-    if (isHome.current) {
-      timeout = setTimeout(() => {
+    // if (isHome.current) {
+    //   timeout = setTimeout(() => {
+    //     setShowOverlay(true)
+    //   }, 1000)
+    // } else {
+    //   setShowOverlay(false)
+    // }
+
+    if (isHome) {
+      if (!prevIsLoaded.current && !isLoaded) return
+
+      if (!prevIsLoaded.current && isLoaded) {
+        timeout = setTimeout(() => {
+          setShowOverlay(true)
+        }, 1000)
+      }
+
+      if (prevIsLoaded.current && isLoaded) {
         setShowOverlay(true)
-      }, 1000)
+      }
     } else {
       setShowOverlay(false)
     }
 
+    prevIsLoaded.current = isLoaded
+
     return () => {
       clearTimeout(timeout)
     }
-  }, [isLoaded])
+  }, [isLoaded, isHome])
 
   const [props, springApi] = useSpring(() => ({
     opacity: 0,
@@ -78,7 +98,7 @@ export default function PmndrsCanvas() {
 
   useEffect(() => {
     if (!isLoaded) return
-    if (!isHome.current) return
+    if (!isHomeRef.current) return
 
     springApi.start({
       opacity: 1,
