@@ -225,7 +225,7 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
           color="#190e38"
           side={THREE.BackSide}
           transparent
-          opacity={theme === 'light' ? 0 : 0.85}
+          opacity={theme === 'light' ? 0 : 0.9}
         />
       </Sphere>
 
@@ -274,7 +274,7 @@ function Env({ perfSucks, theme }: { perfSucks: boolean; theme: string }) {
 
       <group ref={ref}>
         <Lightformer
-          intensity={5}
+          intensity={theme === 'light' ? 5 : 3.5}
           form="ring"
           color={theme === 'light' ? 'red' : '#9c0210'}
           rotation-y={Math.PI / 2}
