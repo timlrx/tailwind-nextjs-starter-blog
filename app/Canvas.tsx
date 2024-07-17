@@ -26,6 +26,24 @@ export default function PmndrsCanvas() {
   const isHome = useRef(pathname === '/')
   isHome.current = pathname === '/'
 
+  const [showOverlay, setShowOverlay] = useState(false)
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+
+    if (isHome.current) {
+      timeout = setTimeout(() => {
+        setShowOverlay(true)
+      }, 1000)
+    } else {
+      setShowOverlay(false)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [isLoaded])
+
   const [props, springApi] = useSpring(() => ({
     opacity: 0,
   }))
@@ -72,7 +90,7 @@ export default function PmndrsCanvas() {
 
   return (
     <>
-      <CausticOverlay show={isHome.current} />
+      <CausticOverlay show={showOverlay} />
       <Canvas
         ref={(node) => {
           if (!node) return
