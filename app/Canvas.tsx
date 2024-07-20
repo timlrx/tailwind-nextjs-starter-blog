@@ -22,24 +22,19 @@ export default function PmndrsCanvas() {
   const onPlay = useCanvasApi((state) => state.onPlay)
   const isLoaded = useCanvasApi((state) => state.isLoaded)
   const prevIsLoaded = useRef(isLoaded)
+  const setIsLazyLoaded = useCanvasApi((state) => state.setIsLazyLoaded)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
   const isHomeRef = useRef(isHome)
   isHomeRef.current = isHome
 
+  const firstPath = useRef(pathname)
+
   const [showOverlay, setShowOverlay] = useState(false)
 
   useEffect(() => {
     let timeout: NodeJS.Timeout
-
-    // if (isHome.current) {
-    //   timeout = setTimeout(() => {
-    //     setShowOverlay(true)
-    //   }, 1000)
-    // } else {
-    //   setShowOverlay(false)
-    // }
 
     if (isHome) {
       if (!prevIsLoaded.current && !isLoaded) return
@@ -63,6 +58,12 @@ export default function PmndrsCanvas() {
       clearTimeout(timeout)
     }
   }, [isLoaded, isHome])
+
+  useEffect(() => {
+    if (firstPath.current !== '/') {
+      setIsLazyLoaded(true)
+    }
+  }, [setIsLazyLoaded])
 
   const [props, springApi] = useSpring(() => ({
     opacity: 0,
@@ -172,6 +173,7 @@ function SubscribeToFrameloop() {
 type CanvasApi = {
   isPaused: boolean
   isLoaded: boolean
+  isLazyLoaded: boolean
   pause: () => void
   play: () => void
   onPauseCallbacks: (() => void)[]
@@ -179,11 +181,13 @@ type CanvasApi = {
   onPause: (callback: () => void) => () => void
   onPlay: (callback: () => void) => () => void
   setIsLoaded: (isLoaded: boolean) => void
+  setIsLazyLoaded: (isLazyLoaded: boolean) => void
 }
 
 export const useCanvasApi = create<CanvasApi>((set, get) => ({
   isPaused: true,
   isLoaded: false,
+  isLazyLoaded: false,
   onPauseCallbacks: [],
   onPlayCallbacks: [],
   onPause: (callback) => {
@@ -211,4 +215,5 @@ export const useCanvasApi = create<CanvasApi>((set, get) => ({
     onPlay.forEach((fn) => fn())
   },
   setIsLoaded: (isLoaded) => set({ isLoaded }),
+  setIsLazyLoaded: (isLazyLoaded) => set({ isLazyLoaded }),
 }))

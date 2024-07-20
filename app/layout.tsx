@@ -12,6 +12,7 @@ import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import { ThemeProviders } from './theme-providers'
 import dynamic from 'next/dynamic'
+import { Spinner } from '@/components/Spinner'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -104,6 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <div className="relative z-[0]">
             <PmndrsCanvas />
+            <Spinner />
             <SectionContainer>
               <div className="flex h-screen flex-col justify-between font-sans">
                 <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
