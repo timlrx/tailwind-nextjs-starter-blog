@@ -34,9 +34,9 @@ const Monitor = () => (
     viewBox="0 0 20 20"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="group:hover:text-gray-100 h-6 w-6"
   >
     <rect x="3" y="3" width="14" height="10" rx="2" ry="2"></rect>
