@@ -20,7 +20,7 @@ export function Spinner() {
       className="pointer-events-none fixed flex h-screen w-screen select-none place-content-center items-center"
       style={props}
     >
-      <div className="m-[100px auto] animate-rotateplane h-14 w-14 bg-gray-800 dark:bg-white" />
+      <div className="m-[100px auto] h-14 w-14 animate-rotateplane bg-gray-800 dark:bg-white" />
     </a.div>
   )
 }
