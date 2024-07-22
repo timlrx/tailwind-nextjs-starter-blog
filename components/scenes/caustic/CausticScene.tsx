@@ -10,7 +10,6 @@ import {
   RandomizedLight,
   Sphere,
   Stars,
-  useEnvironment,
   useGLTF,
 } from '@react-three/drei'
 import { ThreeElements, useFrame, useThree } from '@react-three/fiber'

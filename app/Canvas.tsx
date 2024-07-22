@@ -22,14 +22,11 @@ export default function PmndrsCanvas() {
   const onPlay = useCanvasApi((state) => state.onPlay)
   const isLoaded = useCanvasApi((state) => state.isLoaded)
   const prevIsLoaded = useRef(isLoaded)
-  const setIsLazyLoaded = useCanvasApi((state) => state.setIsLazyLoaded)
 
   const pathname = usePathname()
   const isHome = pathname === '/'
   const isHomeRef = useRef(isHome)
   isHomeRef.current = isHome
-
-  const firstPath = useRef(pathname)
 
   const [showOverlay, setShowOverlay] = useState(false)
 
@@ -58,12 +55,6 @@ export default function PmndrsCanvas() {
       clearTimeout(timeout)
     }
   }, [isLoaded, isHome])
-
-  useEffect(() => {
-    if (firstPath.current !== '/') {
-      setIsLazyLoaded(true)
-    }
-  }, [setIsLazyLoaded])
 
   const [props, springApi] = useSpring(() => ({
     opacity: 0,
@@ -187,7 +178,7 @@ type CanvasApi = {
 export const useCanvasApi = create<CanvasApi>((set, get) => ({
   isPaused: true,
   isLoaded: false,
-  isLazyLoaded: false,
+  isLazyLoaded: typeof window === 'undefined' ? false : window.location.pathname !== '/',
   onPauseCallbacks: [],
   onPlayCallbacks: [],
   onPause: (callback) => {
