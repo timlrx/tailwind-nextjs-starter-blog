@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Blog',
   author: 'Peter Krauß-Hohl',
   headerTitle: 'Peters',
-  description: 'A blog which I use to write about everything that I find relevant and could be helpful for others',
+  description: 'Hi!. This is my blog which I use to write about everything that I find relevant and could be helpful for others. Main topics are tech management and in a general sense technology things',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://pkrauss-hohl.site',
