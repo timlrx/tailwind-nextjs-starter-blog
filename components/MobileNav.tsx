@@ -1,24 +1,30 @@
 'use client'
 
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
+import { Fragment, useState, useEffect, useRef } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
+  const navRef = useRef(null)
 
   const onToggleNav = () => {
     setNavShow((status) => {
       if (status) {
-        document.body.style.overflow = 'auto'
+        enableBodyScroll(navRef.current)
       } else {
         // Prevent scrolling
-        document.body.style.overflow = 'hidden'
+        disableBodyScroll(navRef.current)
       }
       return !status
     })
   }
+
+  useEffect(() => {
+    return clearAllBodyScrollLocks
+  })
 
   return (
     <>
@@ -37,7 +43,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <Transition appear show={navShow} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={onToggleNav}>
+        <Dialog as="div" ref={navRef} className="relative z-10" onClose={onToggleNav}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
