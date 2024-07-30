@@ -301,6 +301,8 @@ Then, deploy the generated `out` folder or run `npx serve out` it locally.
 > ```sh
 > $ EXPORT=1 UNOPTIMIZED=1 BASE_PATH=/myblog yarn build
 > ```
+>
+> => In your code, `${process.env.BASE_PATH || ''}/robots.txt` will print `"/myblog/robots.txt"` in the `out` build (or only `/robots.txt` if `yarn dev`, ie: on localhost:3000)
 
 > [!TIP]
 > Alternatively to `UNOPTIMIZED=1`, to continue using `next/image`, you can use an alternative image optimization provider such as Imgix, Cloudinary or Akamai. See [image optimization documentation](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#image-optimization) for more details.
