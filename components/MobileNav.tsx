@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import { NavItem, NavItemChild } from '@/components/NavOptions'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
@@ -63,17 +64,15 @@ const MobileNav = () => {
               >
                 <Dialog.Panel className="fixed left-0 top-0 z-10 h-full w-full bg-white opacity-95 duration-300 dark:bg-gray-950 dark:opacity-[0.98]">
                   <nav className="fixed mt-8 h-full text-left">
-                    {headerNavLinks.map((link) => (
-                      <div key={link.title} className="px-12 py-4">
-                        <Link
-                          href={link.href}
-                          className="text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
-                          onClick={onToggleNav}
-                        >
-                          {link.title}
-                        </Link>
-                      </div>
-                    ))}
+                    {headerNavLinks.map((link) => {
+                      return (
+                        <RenderMobileNavLink
+                          navLink={link}
+                          clickFunc={onToggleNav}
+                          key={link.title}
+                        />
+                      )
+                    })}
                   </nav>
 
                   <div className="flex justify-end">
@@ -107,3 +106,46 @@ const MobileNav = () => {
 }
 
 export default MobileNav
+
+type RenderMobileNavLinkProps = {
+  clickFunc: () => void
+  navLink: NavItem
+}
+
+const RenderMobileNavLink = ({ navLink, clickFunc }: RenderMobileNavLinkProps) => {
+  const children: NavItemChild[] = navLink?.children || []
+
+  if (children?.length > 0) {
+    return (
+      <div key={navLink.title} className="px-12 py-4">
+        <h3 className="border-b border-gray-500 text-2xl font-bold tracking-widest text-gray-700 dark:border-gray-400 dark:text-gray-300">
+          {navLink.title}
+        </h3>
+        <div className="ml-6 flex flex-col items-start">
+          {children.map((cLink: NavItemChild) => (
+            <Link
+              key={cLink.title}
+              href={cLink.href}
+              className="mt-4 text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400"
+              onClick={clickFunc}
+            >
+              {cLink.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div key={navLink.title} className="px-12 py-4">
+        <Link
+          href={navLink.href ?? ''}
+          className="text-2xl font-bold tracking-widest text-gray-900 hover:text-primary-500 dark:text-gray-100  dark:hover:text-primary-400"
+          onClick={clickFunc}
+        >
+          {navLink.title}
+        </Link>
+      </div>
+    )
+  }
+}
