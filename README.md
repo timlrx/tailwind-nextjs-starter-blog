@@ -57,12 +57,12 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [CuB3y0nd's Portfolio](https://www.cubeyond.net/) - CuB3y0nd‘s cyber security study notes「中文」
 - [London Tech Talk](https://london-tech-talk.com/) - A podcast exploring technology trends and expatriate living experiences. - 日本語
 - [CRUD Flow Blog](http://blog.ndamulelo.co.za/) - A technical blog about AI, Cloud Engineering, Data Science and Personal development
-- [Trillium's Blog](https://trilliumsmith.com/) - Modified to render resume pdf on `/resume` page
+- [Trillium's Blog](https://trilliumsmith.com/) - Modified to render resume pdf on `/resume` page. ([source code](https://github.com/trillium/trilliumsmith.com))
 - [Frank's Tech Blog](https://frank-tech-blog.vercel.app/) - Frank's personal blog about software development and technology. ([source code](https://github.com/frank-mendez/frank-blog))
 - [Wujie's Blog: 旅行者计划](https://www.wujieli.com/) - Wujie's personal digital garden ([source code](https://github.com/wujieli0207/wujie-blog-next))
 - [Xiaodong's Blog](https://blog.linxiaodong.com) - Xiaodong's personal blog about front-end technology, and life. 「中文」([source code](https://github.com/buxuku/buxuku.github.io))
 - [Azurtelier.com](https://www.azurtelier.com/) - Amos's personal website for tech, music, AI illustrations, etc. [English/中文] ([Source code](https://github.com/AmosChenZixuan/Azurtelier.com))
-- [JoshHaines.com](https://www.JoshHaines.com/) - Personal website for Josh Haines. ([source code](https://github.com/jdhaines/joshhaines))
+- [JoshHaines.com](https://www.JoshHaines.com/) - Personal website for Josh Haines. ([source code](https://github.com/trillium/trilliumsmith.com))
 - - [Jigu's Blog](https://animeirl.top) - Jigu's personal blog about tech, crypto, golang, and life. 「中文」
 - [andrewsam.xyz](https://www.andrewsam.xyz/) - Andrew's Personal website using ShadCN, Prisma, MongoDB, Auth.js, Resume Page, Custom Experience timeline and technologies components. ([source code](https://github.com/andrew-sameh/andrewsam.xyz))
 - [Rulli Damara Putra's Portfolio](https://www.damaraputra.my.id/) - Rully's personal blog and portfolio.
