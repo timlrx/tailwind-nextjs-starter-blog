@@ -60,7 +60,7 @@ export const Callout = ({ title, subtitle }) => {
         transition: "all 0.3s ease",
       }}
     >
-      <h1
+      <h2
         style={{
           fontSize: "32px",
           fontWeight: "bold",
@@ -69,7 +69,7 @@ export const Callout = ({ title, subtitle }) => {
         }}
       >
         {"“" + title + "”"}
-      </h1>
+      </h2>
       {subtitle && (
         <p style={{ fontSize: "20px", margin: "20px 0 0 0", color: "#666" }}>{"— " + subtitle}</p>
       )}
