@@ -31,11 +31,15 @@ export default function TopBanner() {
               <span className="sm:hidden">{text}</span>
               {/* desktop text */}
               <span className="hidden sm:inline">{text}</span>
-              <span>
-                <button className="rainbow-button ml-1 inline-flex items-center font-bold ">
-                  with Axolo
-                  <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
-                </button>
+              <span
+                className="rainbow-button ml-1 inline-flex cursor-pointer items-center font-bold"
+                onClick={(e) => {
+                  e.stopPropagation() // Prevents the anchor click
+                  // Add any additional functionality here if needed
+                }}
+              >
+                with Axolo
+                <ArrowSmallRightIcon className="ml-2 h-4 w-4 animate-bounce-h" />
               </span>
             </a>
           </p>
