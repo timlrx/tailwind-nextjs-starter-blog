@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   media-src *.crisp.chat *.google.com;
   connect-src * *.crisp.chat  wss://client.relay.crisp.chat wss://stream.relay.crisp.chat *.google-analytics.com https://*.google-analytics.com *.analytics.google.com https://*.analytics.google.com *.googletagmanager.com https://*.googletagmanager.com *.google.com;
   font-src 'self' *.crisp.chat;
-  frame-src giscus.app  *.crisp.chat *.youtube.com *docs.google.com *.google.com;
+  frame-src giscus.app  *.crisp.chat *.youtube.com *.google.com; // Ensure this line is correct
 `
 
 const securityHeaders = [
