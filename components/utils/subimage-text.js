@@ -9,7 +9,7 @@ export const SubImageText = ({ classNameDiv = "", classNameText = "", children }
       )}
     >
       <span className={classNames("w-56 lg:w-[400px]", classNameText.length > 0 && classNameText)}>
-        {children}
+        <>{children}</>
       </span>
     </div>
   )
