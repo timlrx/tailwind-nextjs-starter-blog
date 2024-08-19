@@ -112,7 +112,19 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
-          source: "/blog/:lang(fr)?/:path*",
+          source: "/blog/fr/:path*",
+          has: [
+            {
+              type: "host",
+              value: "blog.axolo.co",
+            },
+          ],
+          destination: "https://axolo.co/:path*",
+          permanent: true,
+        },
+        // Redirect for English and other languages paths
+        {
+          source: "/blog/:path*",
           has: [
             {
               type: "host",
