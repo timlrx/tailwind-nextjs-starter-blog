@@ -111,6 +111,17 @@ module.exports = nextTranslate(
           destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
           permanent: true,
         },
+        {
+          source: "/:path*",
+          has: [
+            {
+              type: "host",
+              value: "blog.axolo.co",
+            },
+          ],
+          destination: "https://axolo.co/:path*",
+          permanent: true,
+        },
       ]
     },
   })
