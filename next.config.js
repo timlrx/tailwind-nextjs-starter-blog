@@ -121,6 +121,8 @@ module.exports = nextTranslate(
           ],
           destination: "https://axolo.co/:path*",
           permanent: true,
+          // Add this to explicitly define the handling of query parameters
+          query: {},
         },
       ]
     },
