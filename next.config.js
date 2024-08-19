@@ -112,7 +112,7 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
-          source: "/:path*",
+          source: "/blog/:lang(fr)?/:path*",
           has: [
             {
               type: "host",
