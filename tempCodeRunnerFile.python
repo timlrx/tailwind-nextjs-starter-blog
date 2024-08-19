@@ -1,0 +1,84 @@
+import pandas as pd
+
+# Tạo dữ liệu cho từng thành viên
+tasks = {
+    "Thành viên A": [
+        {"Tuần": "1-2", "Nhiệm vụ": "Nghiên cứu về kiến trúc Serverless và các dịch vụ AWS liên quan"},
+        {"Tuần": "3-4", "Nhiệm vụ": "Thiết kế kiến trúc tổng thể của hệ thống Serverless"},
+        {"Tuần": "5-6", "Nhiệm vụ": "Cài đặt và cấu hình môi trường phát triển"},
+        {"Tuần": "7-8", "Nhiệm vụ": "Xây dựng Backend với Serverless và Terraform"},
+        {"Tuần": "9-10", "Nhiệm vụ": "Kiểm thử và hoàn thiện Backend"},
+        {"Tuần": "11-12", "Nhiệm vụ": "Tối ưu hóa và kiểm tra cuối cùng Backend"},
+        {"Tuần": "13-14", "Nhiệm vụ": "Viết tài liệu hướng dẫn và báo cáo"},
+        {"Tuần": "15", "Nhiệm vụ": "Chuẩn bị demo và thuyết trình"},
+        {"Tuần": "16", "Nhiệm vụ": "Thực hiện thuyết trình và đánh giá"}
+    ],
+    "Thành viên B": [
+        {"Tuần": "1-2", "Nhiệm vụ": "Nghiên cứu về Frontend và TailwindCSS"},
+        {"Tuần": "3-4", "Nhiệm vụ": "Thiết kế giao diện người dùng và cấu trúc thư mục dự án Frontend"},
+        {"Tuần": "5-6", "Nhiệm vụ": "Cài đặt và cấu hình môi trường Frontend"},
+        {"Tuần": "7-8", "Nhiệm vụ": "Xây dựng giao diện người dùng với TailwindCSS"},
+        {"Tuần": "9-10", "Nhiệm vụ": "Tích hợp Frontend với Backend"},
+        {"Tuần": "11-12", "Nhiệm vụ": "Kiểm tra và hoàn thiện Frontend"},
+        {"Tuần": "13-14", "Nhiệm vụ": "Xây dựng tài liệu và báo cáo"},
+        {"Tuần": "15", "Nhiệm vụ": "Kiểm tra cuối cùng và chuẩn bị thuyết trình"},
+        {"Tuần": "16", "Nhiệm vụ": "Thực hiện thuyết trình và đánh giá"}
+    ],
+    "Thành viên C": [
+        {"Tuần": "1-2", "Nhiệm vụ": "Nghiên cứu về Infrastructure as Code (IaC) và Terraform"},
+        {"Tuần": "3-4", "Nhiệm vụ": "Thiết kế quy trình làm việc"},
+        {"Tuần": "5-6", "Nhiệm vụ": "Cài đặt và cấu hình môi trường DevOps"},
+        {"Tuần": "7-8", "Nhiệm vụ": "Viết các tệp Terraform để triển khai tài nguyên AWS"},
+        {"Tuần": "9-10", "Nhiệm vụ": "Kiểm thử và sửa lỗi Terraform"},
+        {"Tuần": "11-12", "Nhiệm vụ": "Tối ưu hóa và hoàn thiện hạ tầng"},
+        {"Tuần": "13-14", "Nhiệm vụ": "Viết tài liệu hướng dẫn và báo cáo"},
+        {"Tuần": "15", "Nhiệm vụ": "Chuẩn bị demo và thuyết trình"},
+        {"Tuần": "16", "Nhiệm vụ": "Thực hiện thuyết trình và đánh giá"}
+    ],
+    "Thành viên D": [
+        {"Tuần": "1-2", "Nhiệm vụ": "Lập danh sách tài liệu cần thiết, xác định yêu cầu của đề tài"},
+        {"Tuần": "3-4", "Nhiệm vụ": "Biên soạn tài liệu về kiến trúc tổng thể và quy trình làm việc"},
+        {"Tuần": "5-6", "Nhiệm vụ": "Thiết lập tài khoản AWS và tạo sơ đồ cấu trúc dự án"},
+        {"Tuần": "7-8", "Nhiệm vụ": "Viết tài liệu hướng dẫn về cách triển khai và quản lý Backend và Terraform"},
+        {"Tuần": "9-10", "Nhiệm vụ": "Kiểm tra và sửa lỗi tài liệu"},
+        {"Tuần": "11-12", "Nhiệm vụ": "Hoàn thiện tài liệu về cách sử dụng và triển khai hệ thống"},
+        {"Tuần": "13-14", "Nhiệm vụ": "Xây dựng tài liệu chi tiết và báo cáo"},
+        {"Tuần": "15", "Nhiệm vụ": "Kiểm tra cuối cùng và chuẩn bị thuyết trình"},
+        {"Tuần": "16", "Nhiệm vụ": "Thực hiện thuyết trình và đánh giá"}
+    ]
+}
+
+# Tạo DataFrame cho từng thành viên
+df_A = pd.DataFrame(tasks["Thành viên A"])
+df_B = pd.DataFrame(tasks["Thành viên B"])
+df_C = pd.DataFrame(tasks["Thành viên C"])
+df_D = pd.DataFrame(tasks["Thành viên D"])
+
+# Tạo một writer object để ghi vào file Excel
+with pd.ExcelWriter("/mnt/data/Project_Plan.xlsx", engine='xlsxwriter') as writer:
+    df_A.to_excel(writer, sheet_name='Thành viên A', index=False)
+    df_B.to_excel(writer, sheet_name='Thành viên B', index=False)
+    df_C.to_excel(writer, sheet_name='Thành viên C', index=False)
+    df_D.to_excel(writer, sheet_name='Thành viên D', index=False)
+
+    # Tạo biểu đồ cho từng thành viên
+    workbook  = writer.book
+    
+    for sheet_name, df in zip(['Thành viên A', 'Thành viên B', 'Thành viên C', 'Thành viên D'], [df_A, df_B, df_C, df_D]):
+        worksheet = writer.sheets[sheet_name]
+        chart = workbook.add_chart({'type': 'line'})
+
+        chart.add_series({
+            'name':       sheet_name,
+            'categories': [sheet_name, 1, 0, len(df), 0],
+            'values':     [sheet_name, 1, 1, len(df), 1],
+        })
+
+        chart.set_title({'name': 'Project Tasks Timeline'})
+        chart.set_x_axis({'name': 'Week'})
+        chart.set_y_axis({'name': 'Tasks'})
+
+        worksheet.insert_chart('E5', chart)
+
+# Đường dẫn đến file Excel
+"/mnt/data/Project_Plan.xlsx"
