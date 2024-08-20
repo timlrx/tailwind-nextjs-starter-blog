@@ -12,7 +12,7 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 interface LayoutProps {
   content: CoreContent<Blog>
-  children: ReactNode
+  children: ReactElement
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
 }
