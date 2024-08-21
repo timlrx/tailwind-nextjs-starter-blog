@@ -54,11 +54,7 @@ const generateLinks = (router, availableLocales) =>
 // const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLocales }) => {
   const router = useRouter()
-  console.log(
-    "☀️☀️☀️ availableLocales",
-    availableLocales,
-    `${siteMetadata.siteUrl}${router.asPath}`
-  )
+
   return (
     <Head>
       <title>{title}</title>
