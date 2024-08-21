@@ -1,7 +1,7 @@
 import Link from "@/components/Link"
 import Tag from "@/components/Tag"
 import siteMetadata from "@/data/siteMetadata"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Pagination from "@/components/Pagination"
 import formatDate from "@/lib/utils/formatDate"
 import useTranslation from "next-translate/useTranslation"
@@ -9,34 +9,6 @@ import { useRouter } from "next/router"
 import { WithImage } from "pages"
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
-  const [displayPosts, setDisplayPosts] = useState(
-    initialDisplayPosts.length > 0 ? initialDisplayPosts : posts.slice(0, 10)
-  ) // Start with the first 10 posts or initialDisplayPosts
-  const [hasMore, setHasMore] = useState(posts.length > displayPosts.length)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          loadMorePosts()
-        }
-      },
-      {
-        rootMargin: "100px",
-      }
-    )
-
-    const sentinel = document.querySelector("#scroll-sentinel")
-    if (sentinel) observer.observe(sentinel)
-
-    return () => observer.disconnect()
-  }, [displayPosts, hasMore])
-
-  const loadMorePosts = () => {
-    const morePosts = posts.slice(displayPosts.length, displayPosts.length + 10) // Load 10 more posts
-    setDisplayPosts([...displayPosts, ...morePosts])
-    setHasMore(posts.length > displayPosts.length + morePosts.length)
-  }
   const [searchValue, setSearchValue] = useState("")
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter?.tags?.join(" ")
@@ -79,7 +51,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
         </div>
         <ul>
           {!filteredBlogPosts.length && "No posts found."}
-          {displayPosts.map((frontMatter) => {
+          {filteredBlogPosts.slice(0, pagination.currentPage * 10).map((frontMatter) => {
             const { slug, date, title, summary, tags, image, lastmod } = frontMatter
             const dateToFormat = lastmod || date
             return (
@@ -130,7 +102,9 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
             )
           })}
         </ul>
-        {hasMore && <div id="scroll-sentinel" className="h-10"></div>}
+        {pagination.totalPages > 1 && (
+          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        )}
       </div>
     </>
   )
