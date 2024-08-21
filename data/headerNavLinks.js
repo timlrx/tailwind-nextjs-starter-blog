@@ -1,5 +1,5 @@
 const headerNavLinks = [
-  { href: "/p", title: "Blog" },
+  { href: "/", title: "Blog" },
   { href: "/tags", title: "Tags" },
   { href: "https://axolo.co", title: "Axolo" },
 ]

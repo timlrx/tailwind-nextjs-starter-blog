@@ -35,7 +35,7 @@ export default function buildNavigation({ domain, hostingTool }) {
       { name: "Helpdesk", href: `https://help.axolo.co` },
     ],
     company: [
-      { name: "Blog", href: `${URL_FRONT}blog/p` },
+      { name: "Blog", href: `${URL_FRONT}blog` },
       { name: "Events", href: `${URL_FRONT}events` },
       {
         name: "Slack Community",
@@ -86,7 +86,7 @@ export default function buildNavigation({ domain, hostingTool }) {
       },
     ]
     navigation.company = [
-      { name: "Blog", href: `${URL_FRONT}blog/p` },
+      { name: "Blog", href: `${URL_FRONT}blog` },
       { name: "Security", href: `${URL_FRONT}security` },
       { name: "Privacy policy", href: `${URL_FRONT}privacy-policy` },
       { name: "Terms", href: `${URL_FRONT}tos` },

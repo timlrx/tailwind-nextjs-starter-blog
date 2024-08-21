@@ -7,6 +7,8 @@ import formatDate from "@/lib/utils/formatDate"
 import Image from "next/image"
 import NewsletterForm from "@/components/NewsletterForm"
 import useTranslation from "next-translate/useTranslation"
+import ListLayout from "@/layouts/ListLayout"
+import { POSTS_PER_PAGE } from "./p"
 
 const postDateTemplate = { year: "numeric", month: "long", day: "numeric" }
 
@@ -15,8 +17,16 @@ const MAX_DISPLAY = 5
 export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ""
   const posts = await getAllFilesFrontMatter("p", otherLocale)
+  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
+  const pagination = {
+    currentPage: 1,
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+  }
 
-  return { props: { posts, locale, availableLocales: locales } }
+  return {
+    props: { initialDisplayPosts, posts, pagination, locale, availableLocales: locales },
+  }
+  // return { props: { posts, locale, availableLocales: locales } }
 }
 
 export function WithImage({ image, date, alt }) {
@@ -35,7 +45,7 @@ export function WithImage({ image, date, alt }) {
   )
 }
 
-export default function Home({ posts, locale, availableLocales }) {
+export default function Home({ posts, initialDisplayPosts, pagination, locale, availableLocales }) {
   const { t } = useTranslation()
   // we filter to hide changelog articles
   posts = posts.filter((post) => !post?.tags?.includes("changelog"))
@@ -45,6 +55,7 @@ export default function Home({ posts, locale, availableLocales }) {
 
     return new Date(bDate) - new Date(aDate)
   })
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description[locale]} />
@@ -57,7 +68,7 @@ export default function Home({ posts, locale, availableLocales }) {
             {siteMetadata.description[locale]}{" "}
           </p>
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        {/* <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && "No posts found."}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags, image, lastmod } = frontMatter
@@ -109,24 +120,30 @@ export default function Home({ posts, locale, availableLocales }) {
               </li>
             )
           })}
-        </ul>
+        </ul>  */}
       </div>
-      {posts.length > MAX_DISPLAY && (
+      <ListLayout
+        posts={posts}
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+        title={t("common:all")}
+      />
+      {/* {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
-            href="/p"
+            href="/"
             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
             {t("common:all")} &rarr;{" "}
           </Link>
         </div>
-      )}
-      {siteMetadata.newsletter.provider !== "" && (
+      )} */}
+      {/* {siteMetadata.newsletter.provider !== "" && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm title={t("newsletter:title")} />{" "}
         </div>
-      )}
+      )} */}
     </>
   )
 }
