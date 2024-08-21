@@ -54,6 +54,11 @@ const generateLinks = (router, availableLocales) =>
 // const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLocales }) => {
   const router = useRouter()
+  console.log(
+    "☀️☀️☀️ availableLocales",
+    availableLocales,
+    `${siteMetadata.siteUrl}${router.asPath}`
+  )
   return (
     <Head>
       <title>{title}</title>
@@ -83,10 +88,9 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLoca
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
-      {/* <link
-        rel="canonical"
-        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
-      /> */}
+      {!availableLocales && (
+        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+      )}
       {availableLocales && generateLinks(router, availableLocales)}
     </Head>
   )
