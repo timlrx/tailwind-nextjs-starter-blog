@@ -27,7 +27,7 @@ The five prompts we mention in this article are listed here: [GitHub repository]
   solution that might seem apt in isolation might not be the best fit for the broader system.
 </YellowCalloutBox>
 
-# 8 ways ChatGPT can help developer productivity
+## 8 ways ChatGPT can help developer productivity
 
 ## 1. Refactoring and suggestions
 
@@ -83,16 +83,16 @@ And the comments that ChatGPT made:
 ```
 Your code snippet for calculating the factorial of a number looks good and will produce correct results for non-negative integers. However, there are a few points I'd like to touch upon:
 
-# Input validation:
+## Input validation:
 If n is not an integer, your function will still try to calculate the factorial. For instance, factorial(5.5) will run without error but produce an unexpected result. It might be a good idea to validate if n is an integer.
 
-# Recursive approach:
+## Recursive approach:
 Some might argue that a recursive approach is more "elegant" or intuitive for factorials. However, be aware that the recursive approach will hit a stack limit with larger values of n. Your iterative approach doesn't have this problem, so it's often more efficient and can handle bigger numbers. Still, if you'd like a sample of the recursive approach:
 
-# Handling larger numbers:
+## Handling larger numbers:
 JavaScript numbers can get imprecise with very large values. If you want to handle larger factorials, you might want to use a library like BigInteger to handle the arithmetic operations.
 
-# Input validation for integers:
+## Input validation for integers:
 
 You can add a condition to check if n is an integer.
 ```

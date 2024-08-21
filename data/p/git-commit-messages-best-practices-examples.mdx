@@ -17,29 +17,29 @@ Use the following examples to craft clear and effective Git commit messages for 
 
 ```GITHUB COMMIT MESSAGE TEMPLATE EXAMPLES
 
-# Commit message with description and breaking change footer
+## Commit message with description and breaking change footer
 feat: allow provided config object to extend other configs
 
 BREAKING CHANGE: 'extends' key in config file is now used for extending other config files.
 
-# Commit message with ! to draw attention to a breaking change
+## Commit message with ! to draw attention to a breaking change
 feat!: send an email to the customer when a product is shipped
 
-# Commit message with scope and ! to draw attention to a breaking change
+## Commit message with scope and ! to draw attention to a breaking change
 feat(api)!: send an email to the customer when a product is shipped
 
-# Commit message with both ! and BREAKING CHANGE footer
+## Commit message with both ! and BREAKING CHANGE footer
 chore!: drop support for Node 6
 
 BREAKING CHANGE: use JavaScript features not available in Node 6.
 
-# Commit message with no body
+## Commit message with no body
 docs: correct spelling of CHANGELOG
 
-# Commit message with scope
+## Commit message with scope
 feat(lang): add Polish language
 
-# Commit message with multi-paragraph body and multiple footers
+## Commit message with multi-paragraph body and multiple footers
 fix: prevent racing of requests
 
 Introduce a request id and a reference to latest request. Dismiss
@@ -51,21 +51,21 @@ obsolete now.
 Reviewed-by: Z
 Refs: #123
 
-# Commit message for a minor bug fix
+## Commit message for a minor bug fix
 fix(ui): resolve issue with dropdown menu alignment
 
 The dropdown menu was misaligned on the profile page due to CSS conflicts.
 Updated the styles to ensure proper alignment across different screen sizes.
 Fixes issue #789.
 
-# Commit message for adding a new test
+## Commit message for adding a new test
 test: add unit tests for user authentication module
 
 Added unit tests for the user authentication module to cover login, registration, and token verification functionalities.
 Ensured all tests pass with the new authentication logic.
 Refs: #456
 
-# Commit message for a configuration change
+## Commit message for a configuration change
 chore(config): update ESLint configuration to support latest standards
 
 Updated the ESLint configuration to support the latest JavaScript standards and best practices.
