@@ -6,6 +6,7 @@ import { getAllFilesFrontMatter } from "@/lib/mdx"
 import { getAllTags } from "@/lib/tags"
 import kebabCase from "@/lib/utils/kebabCase"
 import fs from "fs"
+import { POSTS_PER_PAGE } from "pages/p"
 import path from "path"
 
 const root = process.cwd()
@@ -55,11 +56,14 @@ export async function getStaticProps({ params, defaultLocale, locale, locales })
       if (itag[0] === params.tag) availableLocales.push(ilocal)
     })
   })
-
-  return { props: { posts: filteredPosts, tag: params.tag, locale, availableLocales } }
+  const pagination = {
+    currentPage: 1,
+    totalPages: Math.ceil(filteredPosts.length / POSTS_PER_PAGE),
+  }
+  return { props: { posts: filteredPosts, tag: params.tag, locale, availableLocales, pagination } }
 }
 
-export default function Tag({ posts, tag, locale, availableLocales }) {
+export default function Tag({ posts, tag, locale, availableLocales, pagination }) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(" ").join("-").slice(1)
   return (
@@ -69,7 +73,7 @@ export default function Tag({ posts, tag, locale, availableLocales }) {
         description={`${tag} tags - ${siteMetadata.title[locale]}`}
         availableLocales={availableLocales}
       />
-      <ListLayout posts={posts} title={title} />
+      <ListLayout posts={posts} title={title} pagination={pagination} />
     </>
   )
 }
