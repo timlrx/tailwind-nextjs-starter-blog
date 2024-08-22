@@ -25,7 +25,7 @@ const siteMetadata = {
   email: "hey@axolo.co",
   github: "https://github.com/axolo-co",
   slack: "https://api.axolo.co/club",
-  twitter: "https://twitter.com/axolo_co",
+  twitter: "https://x.com/axolo_co",
   facebook: "https://facebook.com",
   youtube: "https://www.youtube.com/channel/UCU9dG-QueR1-XxPtKMUC43Q",
   linkedin: "https://www.linkedin.com/company/73192155",

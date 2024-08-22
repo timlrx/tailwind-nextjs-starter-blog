@@ -3,7 +3,7 @@ name: Sydney Cohen
 avatar: /blog/static/images/authors/sydney.jpg
 occupation: CTO @ Axolo.co
 company: Axolo
-twitter: https://twitter.com/chnsydney
+twitter: https://x.com/chnsydney
 linkedin: https://www.linkedin.com/in/cohensydney
 ---
 

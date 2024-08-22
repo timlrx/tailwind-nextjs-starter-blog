@@ -4,7 +4,7 @@ avatar: /blog/static/images/authors/arthur.jpg
 occupation: CEO @ Axolo
 company: Axolo
 email: arthur@axolo.co
-twitter: https://twitter.com/arthurcoudouy
+twitter: https://x.com/arthurcoudouy
 linkedin: https://www.linkedin.com/in/arthurcoudouy/
 github: https://github.com/acoudouy
 ---
