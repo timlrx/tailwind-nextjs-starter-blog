@@ -3,7 +3,7 @@ name: Hugo Escafit
 avatar: ""
 occupation: Marketing coordinator
 company: Mergify
-twitter: https://twitter.com/mergifyio
+twitter: https://x.com/mergifyio
 linkedin: https://www.linkedin.com/in/hugo-escafit-78950510a/?originalSubdomain=fr
 ---
 
