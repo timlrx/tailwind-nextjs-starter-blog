@@ -7,6 +7,8 @@
 }:
 
 {
+  dotenv.disableHint = true;
+
   packages = [ pkgs.git ];
 
   enterTest = ''
