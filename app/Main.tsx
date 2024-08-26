@@ -3,6 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import GitHubCalendar from 'react-github-calendar'
 
 const MAX_DISPLAY = 5
 
@@ -11,6 +12,16 @@ export default function Home({ posts }) {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
+          <h1 className="home bg-gradient-animated bg-gradient-to-r from-pink-500 via-red-500 to-yellow-600 bg-clip-text text-9xl font-bold text-transparent">
+            Hello World
+          </h1>
+          <p className="pt-4 text-2xl">이민상 | 덕영고등학교 빅데이터과</p>
+          <p className="pb-4 pt-4 text-2xl">MINSANG LEE | DYHS BigData Department </p>
+          <div className="rounded-2xl border-4 border-solid border-slate-300 p-10">
+            <GitHubCalendar username={'dev-minsang9850'} />
+          </div>
+          <br className="pt-6"></br>
+          <hr className="pb-6"></hr>
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Latest
           </h1>
@@ -81,11 +92,11 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
-      {siteMetadata.newsletter?.provider && (
+      {/* {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />
         </div>
-      )}
+      )} */}
     </>
   )
 }

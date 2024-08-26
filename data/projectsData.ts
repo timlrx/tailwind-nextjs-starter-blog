@@ -1,18 +1,16 @@
 interface Project {
-  title: string,
-  description: string,
-  href?: string,
-  imgSrc?: string,
+  title: string
+  description: string
+  href?: string
+  imgSrc?: string
 }
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
+    title: 'DYWI - Project ',
+    description: `언제 어디서든 당신의 날씨를 알려드립니다. `,
     imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    href: '/blog/nested-route/dywi-project',
   },
   {
     title: 'The Time Machine',

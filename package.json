@@ -31,6 +31,7 @@
     "postcss": "^8.4.24",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-github-calendar": "^4.2.2",
     "reading-time": "1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-citation": "^2.0.0",

@@ -1,0 +1,524 @@
+---
+title: 'dywi-project'
+date: '2024-05-29'
+tags: ['web']
+draft: false
+summary: '이 블로그는 웹 개발을 처음 접하는 사람들을 위한 글입니다.'
+---
+
+# 블로그를 시작하기 전에...
+
+이 블로그는 웹 개발을 처음 접하는 사람들을 위한 블로그 입니다. 이 블로그를 읽기 전 미리 `HTML, CSS, JS`가 무엇인지 알고 오는 것이 좋습니다. 또한 API가 무엇인지 알고 오는 것이 좋습니다.
+
+## 어떻게 만드는가
+
+날씨 정보를 얻기 위한 페이지를 만들기 위해선, 웹페이지의 구성이 필수적입니다. 폴더의 구성은 다음과 같습니다. `main`으로 보여질 index의 경우 기본적으로 `html, css, js`의 파일이 있으며, 여기서 저는 추가적으로 제가 무엇을 만들었는지와 더 자세한 날씨를 알려주기 위해 `dywi_wf_if`라는 폴더와 `dywi_wf_all`라는 폴더를 만들었습니다.
+
+## 사용한 것
+
+데이터를 가져오고, 사용자의 위치에 따라 날씨 예상 정보를 알려주기 위해 사용한 것은 다음과 같습니다.
+
+- OpenWeatherAPI(날씨 데이터를 가져오기 위한 API)
+- Visual Studio Code(코드 작성을 위한 편집기 프로그램)
+- TailwindCSS(디자인 요소를 위한 CSS 프레임워크(?))
+
+## 코드의 구성
+
+- index.html
+
+```html
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DYWI</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body>
+    <header class="flex items-center justify-between bg-blue-900 p-4 text-white shadow-md">
+      <h1 class="text-2xl font-bold" id="clickable-heading">DYWI</h1>
+      <button
+        id="menu_button"
+        class="rounded bg-blue-800 px-4 py-2 font-bold text-white hover:bg-blue-800"
+      >
+        메뉴
+      </button>
+    </header>
+
+    <nav id="menu_screen" class="hidden">
+      <button id="close_menu">X</button>
+      <ul>
+        <li><a href="/dywi_wf_if/if_index">DYWI란?</a></li>
+        <li><a href="#" onclick="showContact()">연락처</a></li>
+        <li><a href="/dywi_wf_all/">주간날씨로 이동하기!</a></li>
+      </ul>
+    </nav>
+
+    <div class="container ">
+      <h2 class="text-xl font-semibold ">날씨 정보</h2>
+      <div class="weather-info mb-4 rounded-lg p-6 shadow-md">
+        <p id="location" class="text-lg font-bold ">위치:</p>
+        <p id="temperature" class="text-lg ">온도:</p>
+        <p id="description" class="mb-2 text-lg">날씨:</p>
+        <p id="last-updated" class="text-lg">최종 업데이트:</p>
+        <p id="clothing-recommendation" class="text-lg font-semibold">추천 옷차림:</p>
+      </div>
+
+      <div class="text-center">
+        <button
+          id="back_button"
+          class="rounded bg-blue-700 px-4 py-2 font-bold text-white hover:bg-blue-700"
+        >
+          최신 정보 가져오기
+        </button>
+      </div>
+
+      <div class="chart">
+        <canvas id="weatherChart"></canvas>
+        <!-- 원래는 차트까지 구성하였습니다. -->
+      </div>
+    </div>
+
+    <footer class="bg-blue-900 p-4 text-center text-white">
+      <p>&copy; 2024 실시간 날씨정보</p>
+    </footer>
+  </body>
+</html>
+```
+
+- css
+
+```css
+@font-face {
+  font-family: 'KCC-Hanbit';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'KCC-Hanbit';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 100%;
+}
+
+header {
+  font-family: KCC-Hanbit;
+  color: #fff;
+  text-align: left;
+  background-color: rgb(32, 32, 32);
+  padding: 15px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  font-size: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  margin-left: 20px;
+}
+
+h2 {
+  color: black;
+}
+
+.img {
+  background-image: url('weather-wow.png');
+  content: '';
+  display: flex;
+  background-size: 40px 33px;
+  width: 40px;
+  height: 33px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+h1:before {
+  content: '';
+  display: inline-block;
+  background-image: url('weather-wow.png');
+  background-size: 40px 33px;
+  width: 40px;
+  height: 33px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.Info {
+  font-size: 150%;
+}
+
+.background {
+  background-image: url(skywallpaper.jpg);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+.container {
+  font-family: KCC-Hanbit;
+  margin: auto;
+  padding: 3%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  width: 55%;
+  height: 65%;
+}
+
+.weather-info {
+  text-align: center;
+  font-size: 10rem;
+}
+
+p {
+  text-align: center;
+  margin: 7.8px 0;
+  font-size: 150%;
+  background-color: #253985;
+  color: #ffffff;
+}
+
+#menu_button:hover {
+  background: #6183e9;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 1rem 0;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+nav.hidden {
+  display: none;
+}
+
+#close_menu {
+  background: #253985;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  transition: 0.3s;
+}
+
+#close_menu:hover {
+  background: #94adff;
+}
+
+#clothing-recommendation {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#clothing-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  color: #fff;
+  text-align: center;
+  padding: 0.5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-family: KCC-Hanbit;
+}
+```
+
+```javascript
+document.addEventListener('DOMContentLoaded', function () {
+  const apiKey = '' // 여기에 OpenWeatherMap API 키를 입력하세요
+
+  function fetchWeatherData(lat, lon) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=kr`
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data) // 데이터 확인용
+        const locationName = data.name // API에서 반환된 도시 이름
+        const koreanLocationName = translateLocationName(locationName) // 한국어로 변환된 도시 이름
+
+        document.getElementById('location').textContent = `위치: ${koreanLocationName}`
+        document.getElementById('temperature').textContent = `온도: ${data.main.temp}°C`
+        document.getElementById('description').textContent = `날씨: ${data.weather[0].description}`
+        const currentDateTime = new Date()
+        document.getElementById('last-updated').textContent =
+          `최종 업데이트: ${formatDateToKorean(currentDateTime)}`
+        const clothingRecommendation = getClothingRecommendation(
+          data.main.temp,
+          data.weather[0].main
+        )
+        document.getElementById('clothing-recommendation').textContent =
+          `추천 옷차림: ${clothingRecommendation}`
+      })
+      .catch((error) => {
+        console.error('Error fetching weather data:', error)
+      })
+  }
+
+  function formatDateToKorean(date) {
+    return date.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    })
+  }
+
+  function getClothingRecommendation(temp, weather) {
+    if (weather === 'Rain') {
+      if (temp > 20) {
+        return '가벼운 우비, 방수 신발'
+      } else {
+        return '따뜻한 옷, 방수 코트, 방수 부츠'
+      }
+    } else if (weather === 'Clear') {
+      if (temp > 25) {
+        return '반팔, 반바지, 선글라스'
+      } else if (temp > 15) {
+        return '긴팔, 가벼운 자켓'
+      } else {
+        return '따뜻한 외투, 레이어드 옷'
+      }
+    } else if (weather === 'Snow') {
+      return '두꺼운 외투, 장갑, 목도리, 부츠'
+    } else {
+      if (temp > 25) {
+        return '가벼운 옷'
+      } else if (temp > 15) {
+        return '편안한 옷'
+      } else {
+        return '따뜻한 레이어드 옷, 코트'
+      }
+    }
+  }
+
+  function translateLocationName(locationName) {
+    const locationMapping = {
+      Seoul: '서울특별시',
+      'Seongnam-si': '성남시',
+      Busan: '부산광역시',
+      Incheon: '인천광역시',
+      Daegu: '대구광역시',
+      Daejeon: '대전광역시',
+      Gwangju: '광주광역시',
+      Ulsan: '울산광역시',
+      Sejong: '세종특별자치시',
+      Suwon: '수원시',
+      Changwon: '창원시',
+      Goyang: '고양시',
+      Yongin: '용인시',
+      Cheongju: '청주시',
+      Jeonju: '전주시',
+      Cheonan: '천안시',
+      Ansan: '안산시',
+      Bucheon: '부천시',
+      Gimhae: '김해시',
+      Pohang: '포항시',
+      Jinju: '진주시',
+      Hwaseong: '화성시',
+      Namyangju: '남양주시',
+      Siheung: '시흥시',
+      Gumi: '구미시',
+      Pyeongtaek: '평택시',
+      Uijeongbu: '의정부시',
+      Paju: '파주시',
+      Gimpo: '김포시',
+      Gwangmyeong: '광명시',
+      Wonju: '원주시',
+      Asan: '아산시',
+      Iksan: '익산시',
+      Gunsan: '군산시',
+      Gyeongju: '경주시',
+      Yangsan: '양산시',
+      'Gwangju (Gyeonggi)': '광주시 (경기도)',
+      Suncheon: '순천시',
+      Chuncheon: '춘천시',
+      Gyeongsan: '경산시',
+      Mokpo: '목포시',
+      Gangneung: '강릉시',
+      Pocheon: '포천시',
+      Tongyeong: '통영시',
+      Yeosu: '여수시',
+      Miryang: '밀양시',
+      Geoje: '거제시',
+      Sacheon: '사천시',
+      Gunpo: '군포시',
+      Icheon: '이천시',
+      Osan: '오산시',
+      Hanam: '하남시',
+      Guri: '구리시',
+      Anseong: '안성시',
+      Pyeongchang: '평창군',
+      Jeju: '제주시',
+      Seogwipo: '서귀포시',
+    }
+
+    return locationMapping[locationName] || locationName
+  }
+
+  function getLocationAndFetchWeather() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude
+          const longitude = position.coords.longitude
+          fetchWeatherData(latitude, longitude)
+        },
+        (error) => {
+          const locationElement = document.getElementById('location')
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              locationElement.textContent = '사용자가 위치 정보 제공을 거부했습니다.'
+              break
+            case error.POSITION_UNAVAILABLE:
+              locationElement.textContent = '위치 정보를 사용할 수 없습니다.'
+              console.error('위치 정보를 사용할 수 없습니다:', error.message)
+              break
+            case error.TIMEOUT:
+              locationElement.textContent = '위치 정보를 가져오는 요청이 시간 초과되었습니다.'
+              console.error('위치 정보를 가져오는 요청이 시간 초과되었습니다:', error.message)
+              break
+            case error.UNKNOWN_ERROR:
+              locationElement.textContent = '알 수 없는 오류가 발생했습니다.'
+              console.error('알 수 없는 오류가 발생했습니다:', error.message)
+              break
+          }
+        },
+        {
+          timeout: 10000, // 10초 후에 타임아웃 발생
+        }
+      )
+    } else {
+      document.getElementById('location').textContent =
+        '이 브라우저는 Geolocation을 지원하지 않습니다.'
+    }
+  }
+
+  const backButton = document.getElementById('back_button')
+  if (backButton) {
+    backButton.addEventListener('click', getLocationAndFetchWeather)
+  }
+
+  getLocationAndFetchWeather()
+
+  const menuButton = document.getElementById('menu_button')
+  const menuScreen = document.getElementById('menu_screen')
+  const closeMenuButton = document.getElementById('close_menu')
+
+  function toggleMenu() {
+    if (menuScreen) {
+      menuScreen.classList.toggle('hidden')
+    }
+  }
+
+  if (menuButton) {
+    menuButton.addEventListener('click', toggleMenu)
+  }
+
+  if (closeMenuButton) {
+    closeMenuButton.addEventListener('click', toggleMenu)
+  }
+})
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.body.classList.add('fade-in')
+  document.body.style.backgroundImage = "url('path/to/your-default-background.jpg')" // 기본 배경 이미지 설정
+})
+
+document.getElementById('clickable-heading').addEventListener('click', function () {
+  window.location.href = '/' // 다른 HTML 파일 경로
+})
+
+function showContact() {
+  const contactInfo = '' // info 버튼을 눌렀을 때 나오는 사이트를 만든 사용자의 정보를 나오게 할 수 있습니다.
+  alert(contactInfo)
+}
+```
+
+이 코드들을 바탕으로 만든 사이트는 다음과 같습니다.
+https://dywi.whitespider.kr
