@@ -21,6 +21,8 @@ const layouts = {
   PostBanner,
 }
 
+export const dynamic = 'error'
+
 export async function generateMetadata({
   params,
 }: {

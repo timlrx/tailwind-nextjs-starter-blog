@@ -4,6 +4,8 @@ import { genPageMetadata } from 'app/seo'
 
 export const metadata = genPageMetadata({ title: 'Projects' })
 
+export const dynamic = 'error'
+
 export default function Projects() {
   return (
     <>

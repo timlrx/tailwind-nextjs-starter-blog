@@ -11,6 +11,8 @@ export const generateStaticParams = async () => {
   return paths
 }
 
+export const dynamic = 'error'
+
 export default function Page({ params }: { params: { page: string } }) {
   const posts = allCoreContent(sortPosts(allBlogs))
   const pageNumber = parseInt(params.page as string)

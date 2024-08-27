@@ -7,6 +7,8 @@ const POSTS_PER_PAGE = 5
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 
+export const dynamic = 'error'
+
 export default function BlogPage() {
   const posts = allCoreContent(sortPosts(allBlogs))
   const pageNumber = 1

@@ -7,7 +7,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-next-on-pages'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -16,6 +16,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'next',
     'next/core-web-vitals',
+    'plugin:eslint-plugin-next-on-pages/recommended',
   ],
   parserOptions: {
     project: true,
