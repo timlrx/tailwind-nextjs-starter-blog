@@ -94,6 +94,15 @@ export default () => {
         },
       ]
     },
+    async redirects() {
+      return [
+        {
+          source: '/posts/:path*',
+          destination: '/blog/:path*',
+          permanent: false,
+        },
+      ]
+    },
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.svg$/,
