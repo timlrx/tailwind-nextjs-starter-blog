@@ -121,6 +121,16 @@ module.exports = nextTranslate(
           destination: "/",
           permanent: true,
         },
+        {
+          source: "/p/2023-11-01-changelog copy",
+          destination: "/p/2023-11-01-changelog",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/2023-11-01-changelog copy",
+          destination: "/blog/p/2023-11-01-changelog",
+          permanent: true,
+        },
       ]
     },
   })

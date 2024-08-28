@@ -1,2 +1,11 @@
+
+# *
 User-agent: *
-Disallow: /blog/tags/
+Allow: /
+Disallow: /en/category/
+Disallow: /tags/
+# Host
+Host: https://axolo.co
+
+# Sitemaps
+Sitemap: https://axolo.co/sitemap-0.xml
