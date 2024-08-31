@@ -69,6 +69,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [blog.taoluyuan.com 套路猿](https://blog.taoluyuan.com) - A personal tech blog that supports multi-theme switching. 「中英」
 - [LyricsDecode.com](https://lyricsdecode.com) - A song lyrics website offering original lyrics, Romanisation, and English translations with customisable viewing options.
 - [bmacharia.com](https://bmacharia.com/) - Benson Macharia's technical blog about Cybersecurity and IT Risk Management.
+- [armujahid.me](https://armujahid.me/) - Abdul Rauf's personal blog about tech and random stuff.
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
