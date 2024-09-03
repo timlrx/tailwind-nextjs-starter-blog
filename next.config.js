@@ -111,6 +111,26 @@ module.exports = nextTranslate(
           destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
           permanent: true,
         },
+        {
+          source: "/blog/p/",
+          destination: "/blog",
+          permanent: true,
+        },
+        {
+          source: "/p/",
+          destination: "/",
+          permanent: true,
+        },
+        {
+          source: "/p/2023-11-01-changelog copy",
+          destination: "/p/2023-11-01-changelog",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/2023-11-01-changelog copy",
+          destination: "/blog/p/2023-11-01-changelog",
+          permanent: true,
+        },
       ]
     },
   })

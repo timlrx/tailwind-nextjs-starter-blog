@@ -6,7 +6,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="apple-touch-icon"
-            sizes="76x76"
+            sizes="180x180"
             href="/blog/static/favicons/apple-touch-icon.png"
           />
           <link
@@ -27,9 +27,14 @@ class MyDocument extends Document {
             href="/blog/static/favicons/safari-pinned-tab.svg"
             color="#5bbad5"
           />
-          <meta name="msapplication-TileColor" content="#000000" />
-          <meta name="theme-color" content="#000000" />
-          <link rel="alternate" type="application/rss+xml" href="/feed.xml" itemProp="url" />
+          <meta name="msapplication-TileColor" content="#603cba" />
+          <meta name="theme-color" content="#0049ff" />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            href="/blog/static/favicons/feed.xml"
+            itemProp="url"
+          />
         </Head>
         <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
           <Main />

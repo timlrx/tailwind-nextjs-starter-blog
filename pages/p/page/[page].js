@@ -79,13 +79,17 @@ export default function PostPage({
   availableLocales,
 }) {
   const { t } = useTranslation()
+  const pageTitle = `Blog — Our Tech News - Page ${pagination.currentPage} | Axolo`
   return (
     <>
       <PageSEO
-        title={siteMetadata.title[locale]}
+        title={pageTitle}
         description={siteMetadata.description[locale]}
         availableLocales={availableLocales}
       />{" "}
+      <h1 className="mt-4 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        {t("common:greeting")}{" "}
+      </h1>
       <ListLayout
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}

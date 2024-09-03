@@ -1,26 +1,38 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import siteMetadata from "@/data/siteMetadata"
+import React from "react"
 
 const generateLinks = (router, availableLocales) =>
-  availableLocales.map((locale) => (
-    <link
-      key={locale}
-      rel={
-        // Here we do as follow: Default langage is canonical
-        // if default langage is not present, we get the first element of the langage array by default
-        // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
-        locale === router.defaultLocale
-          ? "canonical"
-          : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
-          ? "canonical"
-          : "alternate"
-      }
-      hrefLang={locale}
-      href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
-        router.asPath
-      }`}
-    />
+  availableLocales.map((locale, index) => (
+    <React.Fragment key={index}>
+      <link
+        key={locale}
+        rel={
+          // Here we do as follow: Default langage is canonical
+          // if default langage is not present, we get the first element of the langage array by default
+          // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
+          locale === router.defaultLocale
+            ? "canonical"
+            : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
+            ? "canonical"
+            : "alternate"
+        }
+        hrefLang={locale}
+        href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
+          router.asPath
+        }`}
+      />
+      {locale === router.locale && (
+        <link
+          rel="alternate"
+          hrefLang={locale}
+          href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
+            router.asPath
+          }`}
+        />
+      )}
+    </React.Fragment>
   ))
 
 // export const PageSeo = ({ title, description, availableLocales }) => {
@@ -54,6 +66,7 @@ const generateLinks = (router, availableLocales) =>
 // const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLocales }) => {
   const router = useRouter()
+
   return (
     <Head>
       <title>{title}</title>
@@ -83,10 +96,9 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLoca
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
-      {/* <link
-        rel="canonical"
-        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
-      /> */}
+      {!availableLocales && (
+        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+      )}
       {availableLocales && generateLinks(router, availableLocales)}
     </Head>
   )
