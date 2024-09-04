@@ -7,6 +7,7 @@
   idx = {
     extensions = [
       "dbaeumer.vscode-eslint"
+      "esbenp.prettier-vscode"
     ];
   };
 }
