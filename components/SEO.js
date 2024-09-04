@@ -239,8 +239,6 @@ export const BlogSEO = ({
     structuredData.keywords = tags.join(", ").replace(/-/g, " ")
   }
 
-  console.log("structuredData", structuredData)
-
   // metadata image for twitter here
   const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
