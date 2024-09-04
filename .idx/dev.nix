@@ -6,7 +6,7 @@
   ];
   idx = {
     extensions = [
-
+      "dbaeumer.vscode-eslint"
     ];
   };
 }
