@@ -10,5 +10,6 @@
       "esbenp.prettier-vscode"
       "bradlc.vscode-tailwindcss"
     ];
+    workspace = { };
   };
 }
