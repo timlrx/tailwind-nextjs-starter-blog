@@ -4,5 +4,9 @@
     pkgs.nodejs_20
     pkgs.yarn
   ];
-  idx = { };
+  idx = {
+    extensions = [
+
+    ];
+  };
 }
