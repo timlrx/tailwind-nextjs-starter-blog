@@ -3,8 +3,8 @@ import { useRouter } from "next/router"
 import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
-const generateLinks = (router, availableLocales) =>
-  availableLocales.map((locale, index) => (
+const generateLinks = (router, availableLocales) => {
+  const links = availableLocales.map((locale, index) => (
     <React.Fragment key={index}>
       <link
         key={locale}
@@ -34,6 +34,12 @@ const generateLinks = (router, availableLocales) =>
       )}
     </React.Fragment>
   ))
+  // Add x-default hreflang link
+  links.push(
+    <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
+  )
+  return links
+}
 
 // export const PageSeo = ({ title, description, availableLocales }) => {
 //   const router = useRouter()
