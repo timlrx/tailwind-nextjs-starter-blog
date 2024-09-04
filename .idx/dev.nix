@@ -10,6 +10,10 @@
       "esbenp.prettier-vscode"
       "bradlc.vscode-tailwindcss"
     ];
-    workspace = { };
+    workspace = {
+      onCreate = {
+        npm-install = "yarn install --frozen-lockfile --non-interactive --offline --silent --timing";
+      };
+    };
   };
 }
