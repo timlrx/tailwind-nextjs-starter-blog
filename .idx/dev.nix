@@ -15,6 +15,8 @@
         npm-install = "yarn install --frozen-lockfile --non-interactive --offline --silent --timing";
       };
     };
-    previews = { };
+    previews = {
+      enable = true;
+    };
   };
 }
