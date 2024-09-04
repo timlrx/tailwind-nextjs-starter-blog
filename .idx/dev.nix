@@ -17,7 +17,9 @@
     };
     previews = {
       enable = true;
-      previews = { };
+      previews = {
+        web = { };
+      };
     };
   };
 }
