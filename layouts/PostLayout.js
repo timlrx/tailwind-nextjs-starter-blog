@@ -74,6 +74,8 @@ export default function PostLayout({
         {...frontMatter}
         bannerImage={bannerImage}
         images={bannerImage ? [bannerImage] : []}
+        words={frontMatter?.readingTime?.words}
+        tags={tags}
       />
       <ScrollTopAndComment />
       <article>

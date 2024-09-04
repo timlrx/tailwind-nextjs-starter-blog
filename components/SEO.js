@@ -158,6 +158,8 @@ export const BlogSEO = ({
   // canonicalUrl,
   availableLocales,
   bannerImage,
+  words,
+  tags,
 }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
@@ -228,6 +230,17 @@ export const BlogSEO = ({
       { name: "twitter:creator", content: "@axolo_co" },
     ],
   }
+
+  if (words) {
+    structuredData.wordCount = words
+  }
+
+  if (tags && tags.length > 0) {
+    structuredData.keywords = tags.join(", ").replace(/-/g, " ")
+  }
+
+  console.log("structuredData", structuredData)
+
   // metadata image for twitter here
   const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
