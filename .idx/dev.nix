@@ -18,7 +18,16 @@
     previews = {
       enable = true;
       previews = {
-        web = { };
+        web = {
+          command = [
+            "yarn"
+            "dev"
+            "--port"
+            "$PORT"
+            "--hostname"
+            "0.0.0.0"
+          ];
+        };
       };
     };
   };
