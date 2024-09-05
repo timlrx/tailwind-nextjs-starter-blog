@@ -8,6 +8,7 @@
     extensions = [
       "dbaeumer.vscode-eslint"
       "esbenp.prettier-vscode"
+      "bradlc.vscode-tailwindcss"
     ];
   };
 }
