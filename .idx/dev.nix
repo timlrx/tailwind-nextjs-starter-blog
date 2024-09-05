@@ -11,7 +11,9 @@
       "bradlc.vscode-tailwindcss"
     ];
     workspace = {
-      onCreate = { };
+      onCreate = {
+        npm-install = "yarn install --frozen-lockfile --silent";
+      };
     };
   };
 }
