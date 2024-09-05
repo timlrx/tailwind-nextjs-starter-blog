@@ -10,6 +10,8 @@
       "esbenp.prettier-vscode"
       "bradlc.vscode-tailwindcss"
     ];
-    workspace = { };
+    workspace = {
+      onCreate = { };
+    };
   };
 }
