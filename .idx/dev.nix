@@ -15,5 +15,6 @@
         npm-install = "yarn install --frozen-lockfile --silent";
       };
     };
+    previews = { };
   };
 }
