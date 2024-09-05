@@ -5,6 +5,8 @@
     pkgs.yarn
   ];
   idx = {
-    extensions = [ ];
+    extensions = [
+      "dbaeumer.vscode-eslint"
+    ];
   };
 }
