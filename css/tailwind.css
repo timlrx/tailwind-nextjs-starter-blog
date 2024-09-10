@@ -49,3 +49,11 @@ input:-webkit-autofill:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
+.palt {
+  font-feature-settings: "palt";
+}
+
+.pwid {
+  font-feature-settings: "pwid";
+}
