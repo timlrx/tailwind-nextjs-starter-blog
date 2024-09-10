@@ -5,6 +5,12 @@ import type { MDXComponents } from 'mdx/types'
 import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
+import ProfileTable from './ProfileTable'
+// import type Horse from '@/types/Horse'
+// import { HorseCard } from './HorseCard'
+import FamilyTree from './FamilyTree'
+import HL from './HorseLink'
+
 
 export const components: MDXComponents = {
   Image,
@@ -13,4 +19,9 @@ export const components: MDXComponents = {
   pre: Pre,
   table: TableWrapper,
   BlogNewsletterForm,
+  ProfileTable,
+  // HorseCard,
+  FamilyTree,
+  HL,
+  strong: ({ children }) => <HL name={children as string} />,
 }
