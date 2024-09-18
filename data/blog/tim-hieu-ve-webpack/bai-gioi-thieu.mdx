@@ -1,0 +1,102 @@
+---
+title: Giới thiệu Webpack
+date: '2024-09-11'
+tags: ['webpack']
+draft: true
+summary: Webpack là công cụ đóng gói mã javascript vô cùng quan trọng được sử dụng gần như là đa phần cho các dự án thương mại. Bài viết này sẽ cài đặt source-code siêu đơn giản, tạo bước đà để tìm hiểu những khái niệm mà công cụ này đem lại.
+---
+
+Webpack là công cụ đóng gói code vô cùng quan trọng đối với front-end. Create-React-App và NextJs vẫn sử dụng webpack là công cụ mặc định. Với mình qua vài năm kinh nghiệm với các dự án ở công ty, tuy biết về nó nhưng chưa thực sự hiểu về các khái niệm mà webpack đưa ra, các tuỳ chọn cấu hình, hệ thống plugin, loader và nhiều thứ khác. Đây quả thật là sự thiếu sót vô cùng lớn. Bởi webpack có thể giúp tối ưu hoá mã cuối cùng được chạy trên trình duyệt. Thời gian nay mình sẽ bỏ thời gian rảnh để tìm hiểu thông tin về nó.
+
+Hôm nay mình sẽ lên một source-code siêu nhỏ qua đó là tiền đề hiểu về webpack. Ở đó sẽ không cài đặt bất kì package nào cả. Như để tìm hiểu thêm thứ mới, mình cũng sẽ dùng yarn berry, version mới nhất của yarn ở thời điểm hiện thời. Nhờ đó, theo thiết lập mặc định của Yarn, mọi người sẽ thấy không còn thư mục node_modules quen thuộc nữa. Một điểm nữa, mình cũng thêm một thư mục node_modules ở trong thư mục src. Cái này chủ yếu cho vui, ta có thể import như một package thông thường. Tất nhiên sẽ cần thiết lập 1 chút để cho webpack và vscode hiểu được đường dẫn của các module trong thư mục node_modules này nhen.
+
+Sau đây là cấu trúc file
+
+```text
+src
+├── a.js
+├── b.js
+├── c.js
+├── d.js
+├── e.js
+├── f.js
+├── g.js
+├── index.js
+└── node_modules
+    ├── x.js
+    ├── y.js
+    └── z.js
+```
+
+Ta bắt đầu khởi tạo ứng dụng thông qua Yarn:
+
+![6924bce558cb450e111cb5c59b73bf2f.webp](/static/images/413e017d-3b16-4dc7-8c06-e41d481041b2/b917014f14e844ccb8ca93f073ccec68.webp)
+
+Ta đi kích hoạt corepack và khởi tạo ứng dụng
+
+Sau đó hãy chạy:
+
+```bash
+yarn add typescript webpack webpack-cli -D
+```
+
+Lúc này package.json sẽ giống như sau:
+
+```json
+{
+  "name": "webpack-sample",
+  "packageManager": "yarn@4.4.1",
+  "scripts": {
+    "build": "webpack",
+    "bootstrap": "yarn dlx @yarnpkg/sdks vscode"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
+```
+
+Đối với yarn berry, sẽ cần có configure cho Vscode nên mình có thêm vào bootstrap để thiết lập cho Vscode
+
+Sau đó các bạn sẽ làm:
+
+```bash
+yarn install
+yarn run bootstrap
+```
+
+Cuối cùng ta tạo file webpack.config.js và chạy `yarn run build`
+
+```js
+const path = require("path");
+
+/**
+ * @type {import("webpack/types").Configuration}
+ */
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    clean: true,
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, "src/node_modules")],
+  },
+  optimization: {
+    minimize: false,
+    moduleIds: "named",
+    chunkIds: "named",
+    splitChunks: false,
+  },
+};
+```
+
+Kết quả ta thu được thư mục dist gồm các file được webpack đóng gói
+
+![c95d24a0d842a31e1c56e49514e16b68.png](/static/images/413e017d-3b16-4dc7-8c06-e41d481041b2/431c4052854647c88ae35dfcd64ae835.webp)
+
+FAQs:
+1. Vì sao lại cài cả typescript trong khi không code typescript?
