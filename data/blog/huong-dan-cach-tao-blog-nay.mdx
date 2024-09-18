@@ -1,0 +1,80 @@
+---
+title: Hướng dẫn cách blog này được tạo ra
+date: '2024-09-19'
+tags: []
+draft: false
+summary: Một số bạn có hỏi cách tạo blog này như thế nào? Nên nay sẽ lên bài viết cách mình bắt đầu.
+---
+
+Trong thời gian rảnh rỗi này tôi có tìm hiểu cách tạo 1 blog và tình cờ là nó không thể dễ dàng hơn bởi ngoài kia họ cung cấp rất nhiều thứ hoàn toàn miễn phí.
+
+## Sử dụng template
+
+[Vercel](https://vercel.com/templates) đưa ra các khá nhiều mẫu templates cho các bạn với các tuỳ chọn về blog, Ecommerce, framework, CMS, v..v...
+
+Trọng tâm hôm nay là về [Tailwind CSS Blog](https://vercel.com/templates/next.js/tailwind-css-starter-blog), tôi sử dụng nó cho blog của mình. Nó gồm các trang Trang chủ, Các trang về Bài viết, Dự án, Giới thiệu bản thân.
+
+![Trang chủ](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/50399343c9a247c58a55e11192a9ff42.webp)
+
+Giao diện khá gọn gàng, cấu trúc cơ bản, đủ cho bản thân sử dụng và cập nhất sau này. Tính năng được tác giả mô ta khá rõ ràng ở README.md, tiêu biểu như sau:
+- Công nghệ: Nextjs, Tailwind, ReactJs
+- Sử dụng MARKDOWN để tạo nội dung cho bài viết
+- Hỗ trợ ảnh, code sample, ...
+- Các bài viết có thể đánh tag để dễ tìm kiếm
+- Hỗ trợ theme sáng, tối
+
+Thế nên, tôi đã vô repository của dự án, fork về cho mình 1 bản. Tiếp đó là bước clone về để code trên máy tính. Việc fork giúp đảm bảo cập nhật tính năng, sửa bug từ repository của anh Timothy Lin.
+
+Vị trí các bài viết nằm ở đường dẫn `data/blog`. Ta tạo file có đuối `.mdx` và bổ sung nội dung cho bài viết. Mới đầu, bạn copy bài viết nào sẵn có và sửa thông tin title, date, tags, draft,...
+
+Bài nào bạn chưa muốn đăng hãy để là false, thì khi deploy sẽ bị ẩn đi.
+Thứ tự các bài sẽ hiển thị theo thời gian gần nhất nên bạn hãy thay đổi ngày tháng cho bài viết nhé.
+
+Thế là xong, bước cuối cùng là DEPLOY. Cứ theo y chang hướng dẫn của anh Lin mà làm:
+
+1.  Đi tới Settings -> Page -> Build and deployment -> Source
+2.  Chọn Github Actions
+
+![aef593ad207070a3c53fd37c7ee1b02a.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/961c94463049426299c2a924bfd5d42c.webp)
+
+Vậy là mỗi lần tạo Pull request từ nhánh `feature` tới `main`. Merge xong, quá trình Deploy sẽ diẽn ra tự động các bạn ạ.
+
+## Câu hỏi và Trả lời
+
+### 1. Tạo nội dung như thế nào?
+
+Để tạo nội dung cho bài viết, tôi sử dụng chương trình [Joplin](https://joplinapp.org). Nó sử dụng markdown, tôi có thể viết nội dung và thấy preview kết quả ngay bên cạnh. Nhìn chung Joplin dễ sử dụng, bởi nó cho phép tổ chức các bài viết theo thư mục. Vậy nên, tôi sẽ lên ý tưởng và hoàn thành bài viết ở đây, sau đó copy nội dung vô trong sourcecode, commit và đẩy lên github. Mọi thứ sẽ tự động được deploy. Chời! khá mượt pk nào 😉
+
+Khi chụp màn hình, có thể copy + paste vô, Joplin sẽ lưu vô. Khi muốn lấy file hình nào, hãy phải chuột vào bức hình và chọn nơi lưu
+
+![919b525cd67b4ee31b91ccdfb217e03b.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/88dec18d7e864bca8fb9ba9fb9751345.webp)
+
+### 2. Sắm tên miền ra sao?
+
+Mềnh có đăng ký tài khoản ở [https://www.namecheap.com](https://www.namecheap.com) và mua domain __ngayhe.com__. Giá 1 năm chỉ khoảng 8usd tức là khoảng 200 ngàn. Cái đặt Advanced DNS:
+
+![caebaa62ee991fd3e5d173c79a13468a.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/d613597f57b8439bb0eae1b37c86a7d3.webp)
+
+Rồi đi qua repo để thay đổi Custom domain là Done
+
+### 3. Setup
+
+Sau khi clone về, tôi dùng [yarn](https://yarnpkg.com/). Các scripts được qui định ở trong `package.json`
+
+#### - cài đặt các package
+
+```terminal
+yarn install
+```
+
+#### - chạy dev
+```terminal
+yarn run dev
+```
+
+#### - Khi cần có thể build local trên máy và chạy thử với
+
+```terminal
+yarn run build
+yarn run serve
+```
