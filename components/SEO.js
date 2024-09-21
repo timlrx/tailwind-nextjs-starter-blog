@@ -3,8 +3,8 @@ import { useRouter } from "next/router"
 import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
-const generateLinks = (router, availableLocales) =>
-  availableLocales.map((locale, index) => (
+const generateLinks = (router, availableLocales) => {
+  const links = availableLocales.map((locale, index) => (
     <React.Fragment key={index}>
       <link
         key={locale}
@@ -34,6 +34,12 @@ const generateLinks = (router, availableLocales) =>
       )}
     </React.Fragment>
   ))
+  // Add x-default hreflang link
+  links.push(
+    <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
+  )
+  return links
+}
 
 // export const PageSeo = ({ title, description, availableLocales }) => {
 //   const router = useRouter()
@@ -158,6 +164,8 @@ export const BlogSEO = ({
   // canonicalUrl,
   availableLocales,
   bannerImage,
+  words,
+  tags,
 }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
@@ -228,6 +236,15 @@ export const BlogSEO = ({
       { name: "twitter:creator", content: "@axolo_co" },
     ],
   }
+
+  if (words) {
+    structuredData.wordCount = words
+  }
+
+  if (tags && tags.length > 0) {
+    structuredData.keywords = tags.join(", ").replace(/-/g, " ")
+  }
+
   // metadata image for twitter here
   const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
