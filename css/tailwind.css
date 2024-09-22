@@ -58,3 +58,12 @@ input:-webkit-autofill:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
+@layer base {
+  .light {
+    --brand-primary: #e30613;
+  }
+  .dark {
+    --brand-primary: #e30613;
+  }
+}

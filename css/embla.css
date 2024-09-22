@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .light {
+    --brand-secondary: rgb(116, 97, 195);
+    --brand-alternative: rgb(19, 120, 134);
+    --background-site: rgb(249, 249, 249);
+    --background-code: rgb(244, 244, 244);
+    --text-body: rgb(54, 49, 61);
+    --text-comment: rgb(99, 94, 105);
+    --text-high-contrast: rgb(49, 49, 49);
+    --text-medium-contrast: rgb(99, 94, 105);
+    --text-low-contrast: rgb(116, 109, 118);
+    --detail-high-contrast: rgb(192, 192, 192);
+    --detail-medium-contrast: rgb(234, 234, 234);
+    --detail-low-contrast: rgb(240, 240, 242);
+    --admonition-note: rgb(46, 109, 188);
+    --admonition-warning: rgb(255, 196, 9);
+    --admonition-danger: rgb(220, 38, 38);
+    --brand-primary-rgb-value: 47, 112, 193;
+    --brand-secondary-rgb-value: 116, 97, 195;
+    --brand-alternative-rgb-value: 19, 120, 134;
+    --background-site-rgb-value: 249, 249, 249;
+    --background-code-rgb-value: 244, 244, 244;
+    --text-body-rgb-value: 54, 49, 61;
+    --text-comment-rgb-value: 99, 94, 105;
+    --text-high-contrast-rgb-value: 49, 49, 49;
+    --text-medium-contrast-rgb-value: 99, 94, 105;
+    --text-low-contrast-rgb-value: 116, 109, 118;
+    --detail-high-contrast-rgb-value: 192, 192, 192;
+    --detail-medium-contrast-rgb-value: 234, 234, 234;
+    --detail-low-contrast-rgb-value: 240, 240, 242;
+    --admonition-note-rgb-value: 46, 109, 188;
+    --admonition-warning-rgb-value: 255, 196, 9;
+    --admonition-danger-rgb-value: 220, 38, 38;
+  }
+  .dark {
+    --brand-secondary: rgb(193, 168, 226);
+    --brand-alternative: rgb(136, 186, 191);
+    --background-site: rgb(0, 0, 0);
+    --background-code: rgb(12, 12, 12);
+    --text-body: rgb(222, 222, 222);
+    --text-comment: rgb(170, 170, 170);
+    --text-high-contrast: rgb(230, 230, 230);
+    --text-medium-contrast: rgb(202, 202, 202);
+    --text-low-contrast: rgb(170, 170, 170);
+    --detail-high-contrast: rgb(101, 101, 101);
+    --detail-medium-contrast: rgb(25, 25, 25);
+    --detail-low-contrast: rgb(21, 21, 21);
+    --admonition-note: rgb(138, 180, 248);
+    --admonition-warning: rgb(253, 186, 116);
+    --admonition-danger: rgb(220, 38, 38);
+    --brand-primary-rgb-value: 138, 180, 248;
+    --brand-secondary-rgb-value: 193, 168, 226;
+    --brand-alternative-rgb-value: 136, 186, 191;
+    --background-site-rgb-value: 0, 0, 0;
+    --background-code-rgb-value: 12, 12, 12;
+    --text-body-rgb-value: 222, 222, 222;
+    --text-comment-rgb-value: 170, 170, 170;
+    --text-high-contrast-rgb-value: 230, 230, 230;
+    --text-medium-contrast-rgb-value: 202, 202, 202;
+    --text-low-contrast-rgb-value: 170, 170, 170;
+    --detail-high-contrast-rgb-value: 101, 101, 101;
+    --detail-medium-contrast-rgb-value: 25, 25, 25;
+    --detail-low-contrast-rgb-value: 21, 21, 21;
+    --admonition-note-rgb-value: 138, 180, 248;
+    --admonition-warning-rgb-value: 253, 186, 116;
+    --admonition-danger-rgb-value: 220, 38, 38;
+  }
+}
+
+@layer components {
+  .embla {
+    max-width: 70rem;
+    margin: auto;
+    --slide-height: 300px;
+    --slide-spacing: 1rem;
+    --slide-size: 100%;
+    --slide-spacing-sm: 1.6rem;
+    --slide-size-sm: calc(100% / 2.4);
+    --slide-spacing-lg: 2rem;
+    --slide-size-lg: calc(100% / 2);
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
+    backface-visibility: hidden;
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  @media (min-width: 750px) {
+    .embla__container {
+      margin-left: calc(var(--slide-spacing-sm) * -1);
+    }
+  }
+  @media (min-width: 1200px) {
+    .embla__container {
+      margin-left: calc(var(--slide-spacing-lg) * -1);
+    }
+  }
+  .embla__slide {
+    transform: translate3d(0, 0, 0);
+    min-width: 0;
+    flex: 0 0 var(--slide-size);
+    padding-left: var(--slide-spacing);
+  }
+  @media (min-width: 750px) {
+    .embla__slide {
+      flex: 0 0 var(--slide-size-sm);
+      padding-left: var(--slide-spacing-sm);
+    }
+  }
+  @media (min-width: 1200px) {
+    .embla__slide {
+      flex: 0 0 var(--slide-size-lg);
+      padding-left: var(--slide-spacing-lg);
+    }
+  }
+  .embla__slide__img {
+    border-radius: 12px;
+    display: block;
+    height: var(--slide-height);
+    width: 100%;
+    object-fit: cover;
+  }
+  .embla__slide__number {
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    border-radius: 1.8rem;
+    font-size: 4rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--slide-height);
+    user-select: none;
+  }
+  .embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: 20px;
+  }
+  .embla__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .embla__parallax {
+    border-radius: 1.8rem;
+    height: 100%;
+    overflow: hidden;
+  }
+  .embla__parallax__layer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .embla__parallax__img {
+    max-width: none;
+    flex: 0 0 calc(115% + (var(--slide-spacing) * 2));
+    object-fit: cover;
+  }
+}
+
+@layer utilities {
+  .embla__button {
+    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    width: 28px;
+    height: 28px;
+    z-index: 1;
+    border-radius: 50%;
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .embla__button:disabled {
+    color: var(--detail-high-contrast);
+  }
+  .embla__button__svg {
+    width: 35%;
+    height: 35%;
+  }
+  .embla__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+  }
+  .embla__dot {
+    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .embla__dot:after {
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    content: '';
+  }
+  .embla__dot--selected:after {
+    box-shadow: inset 0 0 0 0.2rem var(--brand-primary);
+  }
+}
