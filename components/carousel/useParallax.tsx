@@ -7,11 +7,9 @@ export function useParallax(emblaApi?: EmblaCarouselType) {
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
   const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    const slides = emblaApi
-      .slideNodes()
-      .map((slideNode) => {
-        return slideNode.querySelector('.embla__parallax__layer') as HTMLElement
-      })
+    const slides = emblaApi.slideNodes().map((slideNode) => {
+      return slideNode.querySelector('.embla__parallax__layer') as HTMLElement
+    })
 
     tweenNodes.current = slides
   }, [])
