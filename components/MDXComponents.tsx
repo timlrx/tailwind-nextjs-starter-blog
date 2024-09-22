@@ -5,6 +5,8 @@ import type { MDXComponents } from 'mdx/types'
 import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
+import EmblaCarousel from '@/components/carousel/EmblaCarousel'
+import EmblaCarouselItem from '@/components/carousel/EmblaCarouselItem'
 
 export const components: MDXComponents = {
   Image,
@@ -13,4 +15,6 @@ export const components: MDXComponents = {
   pre: Pre,
   table: TableWrapper,
   BlogNewsletterForm,
+  EmblaCarousel,
+  EmblaCarouselItem,
 }
