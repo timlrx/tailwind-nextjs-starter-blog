@@ -48,10 +48,10 @@ const securityHeaders = [
     value: 'max-age=31536000; includeSubDomains',
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()',
-  },
+  // {
+  //   key: 'Permissions-Policy',
+  //   value: 'camera=(), microphone=(), geolocation=()',
+  // },
 ]
 
 const output = process.env.EXPORT ? 'export' : undefined
@@ -86,6 +86,46 @@ module.exports = () => {
           source: '/(.*)',
           headers: securityHeaders,
         },
+      ]
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/:slug',
+          destination: '/blog/:slug',
+        }
+      ]
+    },
+    async redirects() {
+      return [
+        {
+          source: '/_next/data/:path*.json',
+          destination: '/feed.xml',
+          permanent: true,
+          has: [
+            {
+              type: 'query',
+              key: 'slug',
+              value: 'blog/',
+            },
+            {
+              type: 'header',
+              key: 'content-type',
+              value: 'application/json; charset=utf-8',
+            },
+          ],
+        },
+        {
+          source: '/esop-taxation-india', // The original URL
+          destination: '/esop-taxation-impact-india', // The destination URL you want to redirect to
+          permanent: true
+        },
+        {
+          source: '/url-shortcuts-to-get-you-more-productive', // The original URL
+          destination: '/shorter-urls-to-get-you-more-productive', // The destination URL you want to redirect to
+          permanent: true
+        }
+
       ]
     },
     webpack: (config, options) => {
