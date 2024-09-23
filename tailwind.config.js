@@ -2,6 +2,23 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
+/**
+ * Sử dụng tool tạo dải màu: https://uicolors.app/create
+ */
+const punch = {
+  50: '#fff0f1',
+  100: '#ffdee0',
+  200: '#ffc3c7',
+  300: '#ff999f',
+  400: '#ff5e67',
+  500: '#ff2b37',
+  600: '#f60c1a',
+  700: '#e30613',
+  800: '#ab0913',
+  900: '#8d0f16',
+  950: '#4d0206',
+}
+
 /** @type {import("tailwindcss/types").Config } */
 module.exports = {
   content: [
@@ -25,7 +42,7 @@ module.exports = {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },
       colors: {
-        primary: colors.pink,
+        primary: punch,
         gray: colors.gray,
       },
       zIndex: {
