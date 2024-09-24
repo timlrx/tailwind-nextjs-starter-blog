@@ -70,28 +70,28 @@ yarn run bootstrap
 Cuối cùng ta tạo file webpack.config.js và chạy `yarn run build`
 
 ```js
-const path = require("path");
+const path = require('path')
 
 /**
  * @type {import("webpack/types").Configuration}
  */
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
     clean: true,
   },
   resolve: {
-    modules: [path.resolve(__dirname, "src/node_modules")],
+    modules: [path.resolve(__dirname, 'src/node_modules')],
   },
   optimization: {
     minimize: false,
-    moduleIds: "named",
-    chunkIds: "named",
+    moduleIds: 'named',
+    chunkIds: 'named',
     splitChunks: false,
   },
-};
+}
 ```
 
 Kết quả ta thu được thư mục dist gồm các file được webpack đóng gói
@@ -99,6 +99,7 @@ Kết quả ta thu được thư mục dist gồm các file được webpack đ�
 ![c95d24a0d842a31e1c56e49514e16b68.png](/static/images/413e017d-3b16-4dc7-8c06-e41d481041b2/431c4052854647c88ae35dfcd64ae835.webp)
 
 FAQs:
+
 1. Vì sao lại cài cả typescript trong khi không code typescript?
 
 Việc này để mình có thể "Go to definition" trong Vscode. Bạn nhớ thực thi 2 câu lệnh:
@@ -112,5 +113,9 @@ Kết quả là sẽ thấy typescript được thêm vào `.yarn`
 
 ![typescript trong .yarn](/static/images/413e017d-3b16-4dc7-8c06-e41d481041b2/c91f3b19f5294c03a14ad7c71d09d293.webp)
 
-
-<img src="/static/images/trang-hoang/paper_airplane_send_with_dotted_lines_flat_style-ai.svg" alt="Mô tả hình ảnh" style={{ maxWidth: 320, margin: '0 auto', width: '100%' }} />
+<img
+  src="/static/images/trang-hoang/paper_airplane_send_with_dotted_lines_flat_style-ai.svg"
+  alt="Mô tả hình ảnh"
+  style={{ maxWidth: 320, margin: '0 auto', width: '100%' }}
+  loading="lazy"
+/>
