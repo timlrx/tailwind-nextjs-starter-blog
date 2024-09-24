@@ -2,7 +2,7 @@
 title: Giới thiệu Webpack
 date: '2024-09-11'
 tags: ['webpack']
-draft: true
+draft: false
 summary: Webpack là công cụ đóng gói mã javascript vô cùng quan trọng được sử dụng gần như là đa phần cho các dự án thương mại. Bài viết này sẽ cài đặt source-code siêu đơn giản, tạo bước đà để tìm hiểu những khái niệm mà công cụ này đem lại.
 ---
 
@@ -100,3 +100,17 @@ Kết quả ta thu được thư mục dist gồm các file được webpack đ�
 
 FAQs:
 1. Vì sao lại cài cả typescript trong khi không code typescript?
+
+Việc này để mình có thể "Go to definition" trong Vscode. Bạn nhớ thực thi 2 câu lệnh:
+
+```terminal
+yarn add typescript -D
+yarn run bootstrap
+```
+
+Kết quả là sẽ thấy typescript được thêm vào `.yarn`
+
+![typescript trong .yarn](/static/images/413e017d-3b16-4dc7-8c06-e41d481041b2/c91f3b19f5294c03a14ad7c71d09d293.webp)
+
+
+<img src="/static/images/trang-hoang/paper_airplane_send_with_dotted_lines_flat_style-ai.svg" alt="Mô tả hình ảnh" style={{ maxWidth: 320, margin: '0 auto', width: '100%' }} />
