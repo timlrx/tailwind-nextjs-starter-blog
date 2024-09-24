@@ -67,3 +67,16 @@ input:-webkit-autofill:focus {
     --brand-primary: #e30613;
   }
 }
+
+@layer utilities {
+  /* Sử dụng tool: https://www.magicpattern.design/tools/css-backgrounds */
+  .background-zigzag {
+    background-color: #e20612;
+    opacity: 1;
+    background:
+      linear-gradient(135deg, #da061555 25%, transparent 25%) -40px 0/ 80px 80px,
+      linear-gradient(225deg, #da0615 25%, transparent 25%) -40px 0/ 80px 80px,
+      linear-gradient(315deg, #da061555 25%, transparent 25%) 0px 0/ 80px 80px,
+      linear-gradient(45deg, #da0615 25%, #e20612 25%) 0px 0/ 80px 80px;
+  }
+}
