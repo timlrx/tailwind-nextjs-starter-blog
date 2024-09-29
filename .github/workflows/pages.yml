@@ -40,6 +40,7 @@ jobs:
           UNOPTIMIZED: 1
           BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
           NEXT_PUBLIC_DISQUS_SHORTNAME: ${{ secrets.NEXT_PUBLIC_DISQUS_SHORTNAME }}
+          NEXT_UMAMI_ID: ${{ secrets.NEXT_UMAMI_ID }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
