@@ -122,11 +122,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         sizes="1024x1024"
         href={`${basePath}/static/favicons/apple-icon-1024x1024.png`}
       />
+      <link rel="icon" type="image/x-icon" href={`${basePath}/static/favicons/favicon.ico`} />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href={`${basePath}/static/favicons/favicon.ico`}
+        href={`${basePath}/static/favicons/favicon-16x16.png`}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={`${basePath}/static/favicons/favicon-32x32.png`}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="48x48"
+        href={`${basePath}/static/favicons/favicon-48x48.png`}
       />
       <link rel="manifest" href={`${basePath}/static/favicons/manifest.webmanifest`} />
       <link
