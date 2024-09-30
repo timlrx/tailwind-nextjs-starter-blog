@@ -6,6 +6,8 @@ draft: false
 summary: Webpack là công cụ đóng gói mã javascript vô cùng quan trọng được sử dụng gần như là đa phần cho các dự án thương mại. Bài viết này sẽ cài đặt source-code siêu đơn giản, tạo bước đà để tìm hiểu những khái niệm mà công cụ này đem lại.
 ---
 
+[source code](https://github.com/haingdc/webpack-sample-cho-blog/tree/ban-basic)
+
 Webpack là công cụ đóng gói code vô cùng quan trọng đối với front-end. Create-React-App và NextJs vẫn sử dụng webpack là công cụ mặc định. Với mình qua vài năm kinh nghiệm với các dự án ở công ty, tuy biết về nó nhưng chưa thực sự hiểu về các khái niệm mà webpack đưa ra, các tuỳ chọn cấu hình, hệ thống plugin, loader và nhiều thứ khác. Đây quả thật là sự thiếu sót vô cùng lớn. Bởi webpack có thể giúp tối ưu hoá mã cuối cùng được chạy trên trình duyệt. Thời gian nay mình sẽ bỏ thời gian rảnh để tìm hiểu thông tin về nó.
 
 Hôm nay mình sẽ lên một source-code siêu nhỏ qua đó là tiền đề hiểu về webpack. Ở đó sẽ không cài đặt bất kì package nào cả. Như để tìm hiểu thêm thứ mới, mình cũng sẽ dùng yarn berry, version mới nhất của yarn ở thời điểm hiện thời. Nhờ đó, theo thiết lập mặc định của Yarn, mọi người sẽ thấy không còn thư mục node_modules quen thuộc nữa. Một điểm nữa, mình cũng thêm một thư mục node_modules ở trong thư mục src. Cái này chủ yếu cho vui, ta có thể import như một package thông thường. Tất nhiên sẽ cần thiết lập 1 chút để cho webpack và vscode hiểu được đường dẫn của các module trong thư mục node_modules này nhen.
