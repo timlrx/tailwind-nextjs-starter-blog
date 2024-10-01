@@ -1,6 +1,6 @@
 // Here put the folder name and it will create a component for each image that he can
 
-const folder = "public/static/images/slow-pull-requests/part2/"
+const folder = "public/static/images/types-of-code-review/"
 
 var sizeOf = require("image-size")
 var fs = require("fs")
