@@ -184,6 +184,8 @@ export const BlogSEO = ({
     }
   })
 
+  const metaTitle = `${title} | Axolo Blog`
+
   let authorList
   if (authorDetails) {
     authorList = authorDetails.map((author) => {
@@ -206,7 +208,7 @@ export const BlogSEO = ({
       "@type": "WebPage",
       "@id": url,
     },
-    headline: title,
+    headline: metaTitle,
     image: featuredImages,
     datePublished: publishedAt,
     dateModified: modifiedAt,
@@ -251,7 +253,7 @@ export const BlogSEO = ({
   return (
     <>
       <CommonSEO
-        title={title}
+        title={metaTitle}
         description={summary}
         ogType="article"
         ogImage={featuredImages}
