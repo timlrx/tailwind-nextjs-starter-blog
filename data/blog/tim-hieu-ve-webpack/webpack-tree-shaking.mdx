@@ -1,0 +1,97 @@
+---
+title: Webpack tree shaking
+date: '2024-10-04'
+tags: ['webpack', 'tree shaking']
+draft: true
+summary: Khi xây dựng...
+---
+
+[source code](https://github.com/haingdc/webpack-sample-cho-blog/tree/tree-shaking)
+
+Tree Shaking là cơ chế để loại bỏ code không được sử dụng. Đối với webpack, ta có thể bật/tắt nó thông qua optimization.usedExports với giá trị true.
+
+Hôm nay mềnh xin phép bắt đầu với ví dụ như sau:
+
+```js
+// math.js
+export function square(x) {
+  return x * x;
+}
+
+export function cube(x) {
+  return x * x * x;
+}
+```
+
+```js
+// index.js
+import { cube } from "./math.js";
+
+function component() {
+  const element = document.createElement("pre");
+
+  element.innerHTML = ["Hello webpack!", "5 cubed is equal to " + cube(5)].join(
+    "\n\n"
+  );
+
+  return element;
+}
+
+document.body.appendChild(component());
+```
+
+Để áp dụng Tree shaking, các bạn sẽ được yêu cầu set minimization là true, sử dụng mode development và devtool source-map:
+
+```js
+// webpack.config.js
+const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
+
+/**
+ * @type {import("webpack/types").Configuration}
+ */
+module.exports = {
+  mode: "development",
+  devtool: "source-map",
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    clean: true,
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, "src/node_modules")],
+  },
+  optimization: {
+    minimize: true,
+    usedExports: true,
+    concatenateModules: false,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          mangle: {
+            keep_fnames: true, // keep function names as they are
+          },
+        },
+      }),
+    ],
+  },
+};
+
+```
+
+Sử dụng devtool là source-map. Như vậy, bundle code trong main.js sẽ không xuất hiện các hàm [eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)
+
+`usedExports` hay tên phổ biến chính là Tree Shaking được để là true. Khi bundle, hàm square không sử dụng sẽ không xuất hiện ở file build nữa.
+
+Chú ý là webpack có nhiều bước để tối ưu hoá code, được qui định ở thuộc tính optimization. Minimize chỉ là 1 trong số đó. Giá trị true sẽ xoá các khoảng trắng, rút gọn tên các hàm. Cách mình loại bỏ bước rút gọn tên chính là nhờ TerserPlugin
+
+Một bước tối ưu hoá mà webpack dùng tới là Constant Folding. Do phát hiện hàm này có thể thay thế trực tiếp thành 125, nên webpack sử dụng trực tiếp luôn giá trị đó. Qua đó hàm cube cũng bị biến mất sau khi bundle.  Muốn không sử dụng tính năng này, tớ sẽ thiết lập concatenateModules là false. Ví dụ:
+
+```js
+console.log(cube(5))
+// sẽ chuyển thành
+console.log(125)
+```
+
+- [ ] Tái hiện ví dụ, hàm square có comment unused harmony export square

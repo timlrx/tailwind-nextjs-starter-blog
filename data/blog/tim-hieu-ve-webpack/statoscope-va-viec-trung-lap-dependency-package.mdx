@@ -1,0 +1,51 @@
+---
+title: Ví dụ sử dụng trùng lặp các phiên bản của cùng package được phát hiện qua Statoscope
+date: '2024-10-04'
+tags: ['webpack', 'statoscope']
+draft: false
+summary: Khi xây dựng một website, bạn có thể sử dụng trùng lặp dependency package mà không để ý. Điều đó sẽ làm tăng kích thức bundle. Đặc biết trong trường hợp sự trùng lặp xảy ra ở initial chunks. Statoscope có khả năng phát hiện và chỉ ra điều đó
+---
+
+[source code](https://github.com/haingdc/webpack-sample-cho-blog/tree/ban-voi-duplicate-dependency-packages)
+
+Đôi khi bạn có thể gặp trường hợp bị trùng lặp package do các dependencies package sử dụng các phiên bản khác nhau của cùng một package.
+
+Bắt đầu, mình sẽ tạo và phát hành 2 package thông qua jsr.io thay vì NPM. Có thể coi JSR là bản mở rộng của NPM tương tự như Typescript với Javascript - theo như Ryan Dahl cha đẻ của NodeJs nói về nó trong 1 hội thảo của ảnh trên youtube.
+
+Bạn có thể coi video này nếu cảm thấy hứng thú [link video](https://www.youtube.com/watch?v=MFCn4ce5dVc)
+
+2 package này lần lượt là: [@hn/one-true-date](https://jsr.io/@hn/one-true-date) và [@hn/one-true-date-verpa-xi-khoi](https://jsr.io/@hn/one-true-date-verpa-xi-khoi). Một cái có dependency là date-fns version 2.30.0 và 4.1.0
+
+Bạn thêm vào package và sử dụng như sau:
+
+```terminal
+yarn dlx jsr add @hn/one-true-date
+yarn dlx jsr add @hn/one-true-date-verpa-xi-khoi
+```
+
+```ts
+import { oneTrueDate } from "@hn/one-true-date";
+import { oneTrueDate as oneTrueDateXiKhoi } from "@hn/one-true-date-verpa-xi-khoi";
+
+console.log(oneTrueDate(new Date()));
+console.log(oneTrueDateXiKhoi(new Date()));
+```
+
+Lập tức, Statoscope chỉ ra nơi trùng lặp là 2 package đó.
+
+![trùng lặp xảy ra ở 2 package one-true-date khi sử dụng date-fns phiên bản khác nhau](/static/images/65052ffa-e333-44e8-b274-75bcfafbd0bf/e3fb8867566f41eda3b60a1a3831251e.png)
+
+Nguyên do là hàm oneTrueDate được tạo ra dù dùng cùng 1 code dưới nhưng khi install package được mình cố ý chỉ định 2 version riêng. 
+
+```ts
+import { format } from 'date-fns';
+
+/** the proper way to format date */
+export function oneTrueDate(date: Date): string {
+  return format(date, 'yyyy-MM-dd');
+}
+```
+
+Để xem chi tiết, bạn có thể click vào từng cái để thấy chi tiết hơn.
+
+Cảm ơn bạn đã đọc được bài viết này nhen 🤗
