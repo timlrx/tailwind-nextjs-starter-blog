@@ -8,6 +8,7 @@ import TOCInline from 'pliny/ui/TOCInline'
 import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
+import { Details, Summary, Content } from 'coffee-time-components'
 
 export const components: MDXComponents = {
   Image,
@@ -19,4 +20,7 @@ export const components: MDXComponents = {
   EmblaCarousel,
   EmblaCarouselItem,
   PaperAirplane,
+  Details,
+  Summary,
+  Content,
 }
