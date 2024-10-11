@@ -42,43 +42,55 @@ Vậy là mỗi lần tạo Pull request từ nhánh `feature` tới `main`. Mer
 
 ## Câu hỏi và Trả lời
 
-### 1. Tạo nội dung như thế nào?
+<Details>
+  <Summary>1. Tạo nội dung như thế nào?</Summary>
+  <Content>
+    Để tạo nội dung cho bài viết, tôi sử dụng chương trình [Joplin](https://joplinapp.org). Nó sử dụng markdown, tôi có thể viết nội dung và thấy preview kết quả ngay bên cạnh. Nhìn chung Joplin dễ sử dụng, bởi nó cho phép tổ chức các bài viết theo thư mục. Vậy nên, tôi sẽ lên ý tưởng và hoàn thành bài viết ở đây, sau đó copy nội dung vô trong sourcecode, commit và đẩy lên github. Mọi thứ sẽ tự động được deploy. Chời! khá mượt pk nào 😉
 
-Để tạo nội dung cho bài viết, tôi sử dụng chương trình [Joplin](https://joplinapp.org). Nó sử dụng markdown, tôi có thể viết nội dung và thấy preview kết quả ngay bên cạnh. Nhìn chung Joplin dễ sử dụng, bởi nó cho phép tổ chức các bài viết theo thư mục. Vậy nên, tôi sẽ lên ý tưởng và hoàn thành bài viết ở đây, sau đó copy nội dung vô trong sourcecode, commit và đẩy lên github. Mọi thứ sẽ tự động được deploy. Chời! khá mượt pk nào 😉
+    Khi chụp màn hình, có thể copy + paste vô, Joplin sẽ lưu vô. Khi muốn lấy file hình nào, hãy phải chuột vào bức hình và chọn nơi lưu
 
-Khi chụp màn hình, có thể copy + paste vô, Joplin sẽ lưu vô. Khi muốn lấy file hình nào, hãy phải chuột vào bức hình và chọn nơi lưu
+    ![919b525cd67b4ee31b91ccdfb217e03b.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/88dec18d7e864bca8fb9ba9fb9751345.webp)
 
-![919b525cd67b4ee31b91ccdfb217e03b.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/88dec18d7e864bca8fb9ba9fb9751345.webp)
+  </Content>
+</Details>
 
-### 2. Sắm tên miền ra sao?
+<Details>
+  <Summary>2. Sắm tên miền ra sao?</Summary>
+  <Content>
+    Mềnh có đăng ký tài khoản ở [https://www.namecheap.com](https://www.namecheap.com) và mua domain **ngayhe.com**. Giá 1 năm chỉ khoảng 8usd tức là khoảng 200 ngàn. Cái đặt Advanced DNS:
 
-Mềnh có đăng ký tài khoản ở [https://www.namecheap.com](https://www.namecheap.com) và mua domain **ngayhe.com**. Giá 1 năm chỉ khoảng 8usd tức là khoảng 200 ngàn. Cái đặt Advanced DNS:
+    ![caebaa62ee991fd3e5d173c79a13468a.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/d613597f57b8439bb0eae1b37c86a7d3.webp)
 
-![caebaa62ee991fd3e5d173c79a13468a.png](/static/images/df5ef6ed-0e71-4099-9fa7-db2536c39c1f/d613597f57b8439bb0eae1b37c86a7d3.webp)
+    Rồi đi qua repo để thay đổi Custom domain là Done
 
-Rồi đi qua repo để thay đổi Custom domain là Done
+  </Content>
+</Details>
 
-### 3. Setup
+<Details>
+  <Summary>3. Setup</Summary>
+  <Content>
+    Sau khi clone về, tôi dùng [yarn](https://yarnpkg.com/). Các scripts được qui định ở trong `package.json`
 
-Sau khi clone về, tôi dùng [yarn](https://yarnpkg.com/). Các scripts được qui định ở trong `package.json`
+    #### - cài đặt các package
 
-#### - cài đặt các package
+    ```terminal
+    yarn install
+    ```
 
-```terminal
-yarn install
-```
+    #### - chạy dev
 
-#### - chạy dev
+    ```terminal
+    yarn run dev
+    ```
 
-```terminal
-yarn run dev
-```
+    #### - Khi cần có thể build local trên máy và chạy thử với
 
-#### - Khi cần có thể build local trên máy và chạy thử với
+    ```terminal
+    yarn run build
+    yarn run serve
+    ```
 
-```terminal
-yarn run build
-yarn run serve
-```
+  </Content>
+</Details>
 
 <PaperAirplane />
