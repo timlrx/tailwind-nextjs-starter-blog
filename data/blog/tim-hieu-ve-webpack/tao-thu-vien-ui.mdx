@@ -1,0 +1,168 @@
+---
+title: Tạo thư viện NPM ứng dụng  react, typescript và webpack
+date: '2024-10-12'
+tags: ['webpack', 'react', 'typescript']
+draft: false
+summary: Tạo một package NPM để các dự án sử dụng là một việc không hề đơn giản. Bởi có bao nhiêu là công cụ lẫn khái niệm cho dù là một lập trình viên có kinh nghiệm nhiều khi cũng không nắm rõ. Thực hành viết một package sẽ đem tới cho bạn nhiều kiến thức bổ ích không ngờ đấy.
+---
+
+[Source code](https://github.com/haingdc/coffee-time-components/tree/sample-task-15)
+
+Ý tưởng về thư viện UI bắt nguồn từ việc mình cần phần Q&A trong blog này trở nên gọn ghẽ hơn. Chính vì vậy, accordion là component loé lên đầu tiên cho nhiệm vụ này.
+
+Vừa là để research nên mình có đặt ra vài gạch đầu dòng sẽ áp dụng cho thư viện này:
+
+- [x] Sử dụng React
+- [x] Sử dụng Typescript
+- [x] Đăng tải lên NPM/JSR để dễ bề sử dụng
+- [x] Sử dụng hàm CSS là `light-dark()`
+- [ ] ~~Sử dụng tính năng CSS mới là container queries~~ - Bỏ đi vì accordion chưa thấy phù hợp để áp dụng
+
+Thế là tôi bắt đầu bằng component Accordion. Đây là dạng component phổ biến cho hiển thị và thu gọn nội dung.
+
+Đây là hình ảnh minh hoạ lấy trong blog này:
+
+Accordion khi đóng:
+![Accordion Khi đóng](/static/images/0b145f62-1c6f-4e58-9832-c5962960c9d4/860f268bbb06445da6b695980d3181f5.webp)
+
+Accordion khi mở:
+![Accordion Khi mở](/static/images/0b145f62-1c6f-4e58-9832-c5962960c9d4/0a29c37f8fe34768a5d5f2e5c2055ea9.webp)
+
+Khách quan mà nói, accordion này nhìn cũng tạm ổn, không được sexy như những thư viện ngoài cung cấp. Tạm bỏ qua tính xấu đẹp, ta hãy bắt đầu về cấu trúc của mã nguồn sẽ như sau:
+
+```txt
+src
+├── accordion
+│   ├── components
+│   │   ├── Content.tsx
+│   │   ├── ContentLink.tsx
+│   │   ├── Details.tsx
+│   │   ├── Summary.tsx
+│   │   ├── accordion.css
+│   │   └── compose
+│   │       └── Accordion.tsx
+│   └── index.ts
+└── index.ts
+
+```
+
+Để xem mã nguồn là gì, chúng ta có thể mở link source code ở đầu bài viết.
+
+Accordion mình sẽ dụng thông qua thẻ details. Đây là thẻ mới được các browser lớn hỗ trợ từ tháng 1 năm 2020.
+
+Khi bắt đầu tìm hiểu cách thức tạo package, tôi đã làm theo một số bài viết trên mạng. Các bài này đưa mình đi tới sử dụng [Typescript CLI](https://www.typescriptlang.org/docs/handbook/compiler-options.html#using-the-cli) hoặc là [Esbuild](https://esbuild.github.io/). Cả 2 cách này tôi sẽ không sử dụng. Tôi có thể giải thích như sau.
+
+Với Typescript CLI, tôi gặp vấn đề khi import CSS file trong component Details:
+
+```tsx
+import React from "react";
+import './accordion.css';
+
+```
+
+Khi tham gia các dự án trước đây, việc import CSS là hoàn toàn bình thường. Tuy nhiên với Typescript CLI, câu lệnh này hoàn toàn bị bỏ qua bởi tsc. Nên khi đăng tải lên npm và sử dụng thư viện, tôi gặp lỗi do không thể load được file CSS. Vậy là dùng CLI đã bị loại trừ.
+
+Về Esbuild, vì dạo gần đây tôi đang đọc về Webpack nên chắc chắn Esbuild không có đầy đủ tính năng như Webpack nên phải học 1 công cụ đóng gói code khác là bất khả thi.
+
+Tất nhiên Webpack là lựa chọn sau cùng. Việc import CSS file sẽ dễ dàng được giải quyết thông qua Webpack loader là style-loader và css-loader. Ts-loader cũng được sử dụng để biên dịch mã typescript, cài đặt được qui định qua tsconfig.json. Vì muốn chuyển hoá code từ typescript ra javascript mà sử dụng các tính năng mới trong Js mình để target là "ES2020", module cũng là "ES2020". Bởi ESM là tương lai của javascript, nên mình sẽ thử bỏ commonjs code.
+
+- `"moduleResolution": "Bundler"` giúp mình không cần thêm vào phần mở rộng khi import - tham khảo [tài liệu về moduleResolution](https://www.typescriptlang.org/tsconfig/#moduleResolution)
+
+### Những vấn đề gặp phải
+#### 1. Làm sao để hỗ trợ dynamic import - `import()`
+
+Để dynamic load một module, trong trường hợp này là các component, nó đòi hỏi ta sẽ đi export default chúng, ví dụ:
+
+```tsx
+const Accordion: React.FC<AccordionProps> = ({ summary, children, ...htmlDetailsProps }) => {
+  return (
+    <Details {...htmlDetailsProps}>
+      <Summary>{summary}</Summary>
+      <Content>{children}</Content>
+    </Details>
+  )
+}
+
+export default Accordion
+```
+
+Sau đó mình có vận dụng kiến thức về entries và output trong webpack để khi đóng gói ra mã đầu ra, thu được các file component với `default export`.
+
+Bước cuối, ta sẽ cần qui định để người dùng những file mà ta cho phép:
+
+```json
+/* package.json */
+"exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./accordion/components/compose/Accordion": {
+      "types": "./src/accordion/components/compose/Accordion.tsx",
+      "default": "./dist/accordion/components/compose/Accordion.js"
+    },
+    "./accordion/components/Content": {
+      "types": "./src/accordion/components/Content.tsx",
+      "default": "./dist/accordion/components/Content.js"
+    },
+      "default": "./dist/accordion/components/ContentLink.js"
+    },
+    "./accordion/tailwind/components/accordion.css": {
+      "require": "./dist/accordion/tailwind/components/accordion.css",
+      "import": "./dist/accordion/tailwind/components/accordion.css"
+    }
+  }
+```
+
+Ở trên, bạn đang cho phép các module: index.js, Accordion.js, Content.js và 1 file CSS.
+
+Thì khi sử dụng lazy load cho React component ta có thể:
+
+```tsx
+const Accordion = React.lazy(() =>
+  import("coffee-time-components/accordion/components/compose/Accordion")
+);
+```
+
+
+#### 2. Blog này sử dụng Tailwind, nên khi sử dụng thư viện, mềnh gặp lỗi syntax. Khi kiểm tra, vấn đề là cần thêm đoạn mã sau vào file `accordion.css`:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Để "qua" được, mình đã thêm vào thiết lập plugins trong webpack config:
+
+```js
+/* file: webpack.config.cjs */
+plugins: [
+    /* thiết lập plugins khác */
+    {
+      apply: (compiler) => {
+        compiler.hooks.afterEmit.tapAsync('AfterEmitPlugin', (compilation, callback) => {
+          // Chèn mã vào file CSS
+          const cssToPrepend = '@tailwind base;\n' +
+            '@tailwind components;\n' +
+            '@tailwind utilities;\n';
+          const filePath = path.resolve(__dirname, 'dist', 'accordion', 'tailwind', 'components', 'accordion.css');
+
+          // Đọc và ghi lại file với đoạn mã mới
+          exec(`echo "${cssToPrepend}" | cat - ${filePath} > temp && mv temp ${filePath}`, (err) => {
+            if (err) {
+              console.error(`Error writing to CSS file: ${err}`);
+            }
+            callback();
+          });
+        });
+      },
+    },
+  ]
+```
+
+Chỉ mới nhiêu đây khi xây dựng thư viện mà mình đã gặp và xử lí. Có thể nói, giải pháp đưa ra là "tạm bợ" mục đích cho việc học. Nó giúp mình biết được nhiều khái niệm mới mà trước đây chỉ đi sử dụng 3rd khác, mình coi đó là hiển nhiên.
+
+### Tham khảo
+- [Thẻ details và summary](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
+- [Dynamic import - import()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import)
