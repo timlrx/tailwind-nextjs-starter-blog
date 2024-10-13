@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog, Authors } from 'contentlayer/generated'
+import type { Blog } from 'contentlayer/generated'
 import Comments from '@/components/common/Comments'
 import Link from '@/components/common/Link'
 import PageTitle from '@/components/common/PageTitle'
@@ -9,6 +9,8 @@ import Image from '@/components/common/Image'
 import Tag from '@/components/common/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/common/ScrollTopAndComment'
+import { Member } from 'app/type'
+import { getGithubMember } from 'app/actions/getGithubMember'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -23,15 +25,28 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 
 interface LayoutProps {
   content: CoreContent<Blog>
-  authorDetails: CoreContent<Authors>[]
+  authorList: string[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default async function PostLayout({
+  content,
+  authorList,
+  next,
+  prev,
+  children,
+}: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
+
+  const allMembers = await getGithubMember()
+
+  const authorDetails = authorList.map((author) => {
+    const member = allMembers.find((m) => m.github === author)
+    return member
+  })
 
   return (
     <SectionContainer>
@@ -60,36 +75,37 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-                  {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
-                      {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width={38}
-                          height={38}
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
-                        />
-                      )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
-                        <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter
-                                .replace('https://twitter.com/', '@')
-                                .replace('https://x.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
-                      </dl>
-                    </li>
-                  ))}
+                  {authorDetails.map((author) => {
+                    if (!author) return null
+                    return (
+                      <li className="flex items-center space-x-2" key={author.name}>
+                        {author.avatar && (
+                          <Image
+                            src={author.avatar}
+                            width={38}
+                            height={38}
+                            alt="avatar"
+                            className="h-10 w-10 rounded-full"
+                          />
+                        )}
+                        <dl className="whitespace-nowrap text-sm font-medium leading-5">
+                          <dt className="sr-only">Name</dt>
+                          <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                          <dt className="sr-only">Twitter</dt>
+                          <dd>
+                            {author.website && (
+                              <Link
+                                href={author.website}
+                                className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                              >
+                                {author.website.replace('https://', '').replace('http://', '@')}
+                              </Link>
+                            )}
+                          </dd>
+                        </dl>
+                      </li>
+                    )
+                  })}
                 </ul>
               </dd>
             </dl>
