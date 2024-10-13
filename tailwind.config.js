@@ -90,5 +90,5 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
-  safelist: ['accordion', 'accordion-content'],
+  safelist: ['accordion', 'accordion-content', 'arrow-icon', 'arrow'],
 }
