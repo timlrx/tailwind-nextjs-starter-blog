@@ -1,4 +1,3 @@
-# Inspired from https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
 name: GitHub Pages
 
 on:
@@ -23,18 +22,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: yarn
       - id: configurepages
         uses: actions/configure-pages@v5
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
-      - run: yarn
-      - run: yarn build
+      - run: npm install -force
+      - run: npm run lint
+      - run: npm run build
         env:
           EXPORT: 1
           UNOPTIMIZED: 1
@@ -43,13 +35,13 @@ jobs:
         with:
           path: ./out
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+  # # Deployment job
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - id: deployment
+  #       uses: actions/deploy-pages@v4
