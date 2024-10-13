@@ -28,6 +28,8 @@ jobs:
 
             - name: Build the project
               run: npm run build
+              env:
+                GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
             - name: Upload Production Build as Artifact
               uses: actions/upload-artifact@v4
