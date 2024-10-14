@@ -9,9 +9,11 @@ import {
   Mastodon,
   Threads,
   Instagram,
+  Website,
+  Telegram,
 } from './icons'
 
-const components = {
+export const icons = {
   mail: Mail,
   github: Github,
   facebook: Facebook,
@@ -22,10 +24,12 @@ const components = {
   mastodon: Mastodon,
   threads: Threads,
   instagram: Instagram,
+  telegram: Telegram,
+  website: Website,
 }
 
 type SocialIconProps = {
-  kind: keyof typeof components
+  kind: keyof typeof icons
   href: string | undefined
   size?: number
 }
@@ -37,7 +41,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
   )
     return null
 
-  const SocialSvg = components[kind]
+  const SocialSvg = icons[kind]
 
   return (
     <a
