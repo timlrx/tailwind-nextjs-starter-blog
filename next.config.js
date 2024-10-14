@@ -77,7 +77,7 @@ module.exports = () => {
         },
         {
           protocol: 'https',
-          hostname: 'i.imgur.com',
+          hostname: 'cardano.ideascale.com',
         },
       ],
     },
