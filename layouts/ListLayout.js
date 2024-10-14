@@ -10,13 +10,15 @@ import { WithImage } from "pages"
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState("")
-  const filteredBlogPosts = initialDisplayPosts.filter((frontMatter) => {
+  const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.title + frontMatter.summary + frontMatter?.tags?.join(" ")
     return searchContent?.toLowerCase().includes(searchValue.toLowerCase())
   })
 
   const { t } = useTranslation()
   const { locale } = useRouter()
+
+  const displayPosts = searchValue ? filteredBlogPosts : initialDisplayPosts
 
   return (
     <>
@@ -50,8 +52,8 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
           </div>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!filteredBlogPosts.length && "No posts found."}
-          {filteredBlogPosts.slice(0, pagination.currentPage * 10).map((frontMatter) => {
+          {!displayPosts.length && "No posts found."}
+          {displayPosts.slice(0, pagination.currentPage * 10).map((frontMatter) => {
             const { slug, date, title, summary, tags, image, lastmod } = frontMatter
             const dateToFormat = lastmod || date
             return (
