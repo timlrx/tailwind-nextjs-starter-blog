@@ -25,7 +25,7 @@ module.exports = {
         sans: ['var(--font-lexend)', ...fontFamily.sans],
       },
       colors: {
-        primary: colors.pink,
+        primary: colors.indigo,
         gray: colors.gray,
       },
       zIndex: {
