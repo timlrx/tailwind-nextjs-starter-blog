@@ -102,36 +102,6 @@ module.exports = nextTranslate(
     async redirects() {
       return [
         {
-          source: "/p/gitlab-self-managed-slack-integrations",
-          destination: "/p/gitlab-cicd-pipeline-slack-notifications",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/gitlab-self-managed-slack-integrations",
-          destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/",
-          destination: "/blog",
-          permanent: true,
-        },
-        {
-          source: "/p/",
-          destination: "/",
-          permanent: true,
-        },
-        {
-          source: "/p/2023-11-01-changelog copy",
-          destination: "/p/2023-11-01-changelog",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/2023-11-01-changelog copy",
-          destination: "/blog/p/2023-11-01-changelog",
-          permanent: true,
-        },
-        {
           source: "/blog/p/Github-4-ways-to-subscribe-to-pull-requests",
           destination: "/blog/p/github-4-ways-to-subscribe-to-pull-requests",
           permanent: true,
@@ -169,6 +139,36 @@ module.exports = nextTranslate(
         {
           source: "/p/how-we-use-Axolo",
           destination: "/p/how-we-use-axolo",
+          permanent: true,
+        },
+        {
+          source: "/p/gitlab-self-managed-slack-integrations",
+          destination: "/p/gitlab-cicd-pipeline-slack-notifications",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/gitlab-self-managed-slack-integrations",
+          destination: "/blog/p/gitlab-cicd-pipeline-slack-notifications",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/",
+          destination: "/blog",
+          permanent: true,
+        },
+        {
+          source: "/p/",
+          destination: "/",
+          permanent: true,
+        },
+        {
+          source: "/p/2023-11-01-changelog copy",
+          destination: "/p/2023-11-01-changelog",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/2023-11-01-changelog copy",
+          destination: "/blog/p/2023-11-01-changelog",
           permanent: true,
         },
       ]

@@ -4,40 +4,47 @@ import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
 const generateLinks = (router, availableLocales) => {
-  const links = availableLocales.map((locale, index) => (
-    <React.Fragment key={index}>
-      <link
-        key={locale}
-        rel={
-          // Here we do as follow: Default langage is canonical
-          // if default langage is not present, we get the first element of the langage array by default
-          // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
-          locale === router.defaultLocale
-            ? "canonical"
-            : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
-            ? "canonical"
-            : "alternate"
-        }
-        hrefLang={locale}
-        href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
-          router.asPath
-        }`}
-      />
-      {locale === router.locale && (
+  console.log("availableLocales", availableLocales)
+  const links = availableLocales.map((locale, index) => {
+    console.log("LINKS", locale)
+    const hrefLang = locale === "en" ? "en-US" : "fr-FR"
+    return (
+      <React.Fragment key={index}>
         <link
-          rel="alternate"
-          hrefLang={locale}
+          key={locale}
+          rel={
+            // Here we do as follow: Default langage is canonical
+            // if default langage is not present, we get the first element of the langage array by default
+            // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
+            locale === router.defaultLocale
+              ? "canonical"
+              : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
+              ? "canonical"
+              : "alternate"
+          }
+          hrefLang={hrefLang}
           href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
             router.asPath
           }`}
         />
-      )}
-    </React.Fragment>
-  ))
+        {locale === router.locale && (
+          <link
+            rel="alternate"
+            hrefLang={hrefLang}
+            href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
+              router.asPath
+            }`}
+          />
+        )}
+      </React.Fragment>
+    )
+  })
   // Add x-default hreflang link
   links.push(
     <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
   )
+
+  console.log("LINKSSSSS", links)
   return links
 }
 
