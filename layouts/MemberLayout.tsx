@@ -28,7 +28,7 @@ export default function MemberLayout({ member }: Props) {
         <div className="text-gray-500 dark:text-gray-400">{location}</div>
         <div className="flex space-x-3 pt-6">
           <SocialIcon kind="mail" href={`mailto:${email}`} />
-          <SocialIcon kind="github" href={github} />
+          <SocialIcon kind="github" href={`https://github.com/${github}`} />
           <SocialIcon kind="website" href={website} />
           {social.map((s, index) => {
             const kind =
