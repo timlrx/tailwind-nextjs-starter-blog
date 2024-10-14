@@ -22,7 +22,7 @@ const ideascaleData: IdeascaleProject[] = [
   },
   {
     title:
-      '🇻🇳🇻 Cardano App Development Course: A Step-by-Step Guide for Beginners - From basic Web development to use Cardano Libraries and interacting with Smart Contracts!',
+      '🇻🇳 Cardano App Development Course: A Step-by-Step Guide for Beginners - From basic Web development to use Cardano Libraries and interacting with Smart Contracts!',
     description: `We created a dApp course, guiding basic programming from building the webapp, integrating tools like Mesh, Lucid for transactions, and connecting with Aiken smart contracts to build a complete dApp.`,
     imgSrc:
       'https://cardano.ideascale.com/a/attachments/embedded-files/embedded-idea-description-image-61d658/png',
