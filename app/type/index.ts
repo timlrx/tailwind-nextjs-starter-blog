@@ -9,9 +9,9 @@ export type Member = {
   location: string
   email: string
   bio: string
-  social: Soclal[]
+  social: Social[]
 }
-export type Soclal = {
+export type Social = {
   provider: string
   url: string
 }
