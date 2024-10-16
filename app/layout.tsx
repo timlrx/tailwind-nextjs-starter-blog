@@ -9,8 +9,8 @@ import Header from '@/components/common/Header'
 import SectionContainer from '@/components/common/SectionContainer'
 import Footer from '@/components/common/Footer'
 import siteMetadata from '@/data/siteMetadata'
-import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+import { AppProviders } from './app-providers'
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -94,8 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
-        <ThemeProviders>
+      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased">
+        <AppProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <SectionContainer>
             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
@@ -104,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </SearchProvider>
             <Footer />
           </SectionContainer>
-        </ThemeProviders>
+        </AppProviders>
       </body>
     </html>
   )
