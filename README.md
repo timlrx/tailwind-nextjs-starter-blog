@@ -70,6 +70,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [LyricsDecode.com](https://lyricsdecode.com) - A song lyrics website offering original lyrics, Romanisation, and English translations with customisable viewing options.
 - [bmacharia.com](https://bmacharia.com/) - Benson Macharia's technical blog about Cybersecurity and IT Risk Management.
 - [armujahid.me](https://armujahid.me/) - Abdul Rauf's personal blog about tech and random stuff.
+- [OpenSats Blog](https://opensats.org/blog) - A 501(c)(3) public charity which aims to sustainably fund free and open-source projects. ([source code](https://github.com/OpenSats/website))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
