@@ -83,6 +83,19 @@ module.exports = () => {
     async headers() {
       return [
         {
+          source: '/api/:path*', // Chỉ định headers cho các API routes
+          headers: [
+            {
+              key: 'Access-Control-Allow-Origin',
+              value: '*', // Thay đổi thành miền mà bạn muốn cấp phép
+            },
+            {
+              key: 'Access-Control-Allow-Methods',
+              value: 'GET,POST,OPTIONS',
+            },
+          ],
+        },
+        {
           source: '/(.*)',
           headers: securityHeaders,
         },
