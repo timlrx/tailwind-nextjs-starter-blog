@@ -19,23 +19,25 @@ const HorseLink: React.FC<LinkProps> = ({ name }) => {
     }
   }, []);
   // Anchors のキーをループし、該当するページとIDを見つける
-  for (const [page, ids] of Object.entries(NameList)) {
-    if (ids.includes(name)) {
-      // 現在のページと一致する場合、ページ内リンクを生成
-      if (currentPath && currentPath.includes(page)) {
-        return <a href={`#${name}`}>{name}</a>;
-      }
-      // 他ページへのリンクを生成
-      return (
-        <NextLink href={`/${page}#${name}`}>
-          {name}
-        </NextLink>
-      );
-    }
+  const result = NameList.get(name);
+
+  if (!result) {
+    return (
+      <span className="font-medium">{name}</span>
+    )
   }
 
-  // デフォルト: 太字にする
-  return <span className="font-medium">{name}</span>
+  // 現在のページと一致する場合、ページ内リンクを生成
+  if (currentPath && currentPath.includes(result.family)) {
+    return <a href={`#${result.link}`}>{result.name}</a>;
+  }
+
+  // 他ページへのリンクを生成
+  return (
+    <NextLink href={`/family/${result.family}#${result.link}`}>
+      {result.name}
+    </NextLink>
+  );
 };
 
 

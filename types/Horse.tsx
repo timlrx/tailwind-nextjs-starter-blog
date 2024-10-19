@@ -26,6 +26,7 @@ interface Horse {
   former_name?: string, // 改名前の競走名など
   local_name?: string, // 地方転出後の馬名
   former_pedigree_name?: string, // 出生時の血統名など（繁殖入り時に使われなかったもの）
+  id_name?: string, // 同名馬を一意に識別するための名前
   foaled: string | Date, // 生年月日
   sex: Sex, // 性別
   breed?: string, // 品種
@@ -41,6 +42,7 @@ interface Horse {
   earnings?: string, // 獲得賞金
   award?: { year: number, award: Award }[], // 受賞
   record?: RaceRecord[], // 重賞成績
+  citation?: string[], // 参考文献
   // 以下は後々追加 一旦は不要
   retired?: string, // 抹消日
   died?: string, // 死亡日

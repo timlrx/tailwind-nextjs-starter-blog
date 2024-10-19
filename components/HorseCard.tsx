@@ -32,11 +32,11 @@ const filterRecords = (records: RaceRecord[], number: number) => {
   if (records.length == 0) {
     return records
   }
-  // 重賞勝利を抽出
-  const won_races = records.filter((record) => record.result == 1)
-  // 重賞勝利数が{number}以上の場合、グレード→日付 の条件でソートし、重賞勝利のみを抽出
-  if (won_races.length >= number) {
-    return won_races.sort((a, b) => {
+  // 重賞勝利を抽出 重賞はrank=4以下
+  const won_grade_races = records.filter((record) => record.result == 1 && grades[record.grade].rank <= 4)
+  // 重賞勝利数が{number}以上の場合、グレード→日付 の条件でソートし、重賞勝利のみを返す
+  if (won_grade_races.length >= number) {
+    return won_grade_races.sort((a, b) => {
       if (a.grade != b.grade) {
         return grades[a.grade].rank - grades[b.grade].rank
       } else {
@@ -45,8 +45,9 @@ const filterRecords = (records: RaceRecord[], number: number) => {
     })
   }
 
-  // 重賞勝利数が{number}未満の場合、着順→グレード→日付 の条件でソートし、上位{number}レースを抽出
-  return records.sort((a, b) => {
+  // 重賞勝利数が{number}未満の場合、重賞成績を抽出 重賞はrank=4以下
+  // 着順→グレード→日付 の条件でソートし、上位{number}レースを抽出
+  const all_grade_races: RaceRecord[] = records.filter((record) => grades[record.grade].rank <= 4).sort((a, b) => {
     if (a.result != b.result) {
       return a.result - b.result
     } else if (a.grade != b.grade) {
@@ -55,6 +56,15 @@ const filterRecords = (records: RaceRecord[], number: number) => {
       return compareDate(a.date, b.date)
     }
   }).slice(0, number)
+
+  // 重賞成績が{number}未満の場合、{number}件になるまで重賞以外の勝利も追加する
+  if (all_grade_races.length < number) {
+    const rest = number - all_grade_races.length
+    const rest_races = records.filter((record) => record.result == 1 && grades[record.grade].rank > 4)
+    return [...all_grade_races, ...rest_races.slice(0, rest)]
+  } else {
+    return all_grade_races
+  }
 }
 
 const BaseInfo = (horse: Horse): JSX.Element => {
@@ -70,7 +80,7 @@ function HorseCard(horse: Horse) {
   // 勝ち鞍の最高格付け 重賞勝ち鞍がない場合は0
   const horse_rank = won_races ? Math.max(...won_races.map((record) => grades[record.grade].rank)) : 0
   return (
-    <div className="group-last-of-type:border-l-4 group-last-of-type:border-indigo-500 group-last-of-type:border-double">
+    <div className="horse-card">
       <div className="pt-3 -ml-2 ">
         <div className="card bg-base-100 shadow-xl rounded-none before:content-[''] before:w-4 before:h-4 before:bg-white before:opacity-50 before:mt-2 before:absolute before:display-block before:z-10">
           <HorseDetails {...horse} />
@@ -127,6 +137,15 @@ const HorseDetails = (horse: Horse) => {
   }
 }
 
+const HorseDetailsStub = (horse: Horse) => {
+  const summarized = filterRecords(horse.record || [], 3)
+  return (
+    <div className={`${summary({ sex: horse.sex })}`}>
+      <BaseInfo {...horse} />
+    </div>
+  )
+}
+
 // 馬名を整形する
 // 競走名 / 血統名 (旧名 or 地方名)
 function displayHorseName(horse: Horse): string {
@@ -141,7 +160,7 @@ const raceName = tv({
     rank: {
       1: 'text-red-700',
       2: 'text-blue-500',
-      3: 'text-green-500',
+      3: 'text-green-600',
       4: '',
       5: '',
     },
