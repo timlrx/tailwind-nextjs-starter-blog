@@ -4600,13 +4600,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"coffee-time-components@npm:^1.0.26":
-  version: 1.0.26
-  resolution: "coffee-time-components@npm:1.0.26"
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
+  languageName: node
+  linkType: hard
+
+"coffee-time-components@npm:^1.0.46":
+  version: 1.0.46
+  resolution: "coffee-time-components@npm:1.0.46"
+  dependencies:
+    clsx: ^2.1.1
   peerDependencies:
     react: ^16.8 || ^17 || ^18
     react-dom: ^16.8 || ^17 || ^18
-  checksum: 3fad6ad7469fe2d22ad5e6bd44e2898238c310c264552e7708390aa3c7b7d1c549a8f7992c5636fe978c0e2d2a751758b95f402b980f9397e1058d15eae308dd
+  checksum: a40f46e56e4f020ce9ac26458df8251de511a152a9799e6d17a58a5839e32cb6725ac419df0e12b655411b8f68b50f9179d985fa76429a7c6503f65a888d6d11
   languageName: node
   linkType: hard
 
@@ -11428,7 +11437,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.1.0
     autoprefixer: ^10.4.13
     body-scroll-lock: ^4.0.0-beta.0
-    coffee-time-components: ^1.0.26
+    coffee-time-components: ^1.0.46
     contentlayer2: 0.5.1
     cross-env: ^7.0.3
     embla-carousel-react: ^8.3.0
