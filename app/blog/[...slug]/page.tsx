@@ -1,7 +1,7 @@
+import 'css/global.css'
 import 'css/prism.css'
 import 'css/embla.css'
 import 'katex/dist/katex.css'
-import 'coffee-time-components/accordion/tailwind/components/accordion.css'
 
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
