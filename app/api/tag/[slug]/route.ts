@@ -37,3 +37,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
     },
   })
 }
+
+// Hàm để tạo các tham số tĩnh cho slug
+export async function generateStaticParams() {
+  const slugs = allBlogs.flatMap((post) => {
+    return post.tags.map((tag) => slugFn(tag)) // Chuyển các tag thành slug
+  })
+  return slugs.map((slug) => ({ slug })) // Tạo một đối tượng cho mỗi slug
+}
