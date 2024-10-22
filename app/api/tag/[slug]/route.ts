@@ -30,12 +30,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
       },
     })
   }
-  return new Response(JSON.stringify(filteredPosts), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  return Response.json({ data: filteredPosts })
 }
 
 // Hàm để tạo các tham số tĩnh cho slug
