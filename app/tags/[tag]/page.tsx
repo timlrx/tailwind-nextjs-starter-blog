@@ -26,7 +26,8 @@ export const generateStaticParams = async () => {
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const paths = tagKeys.map((tag) => ({
-    tag: /* encodeURI( */ tag /* ) */,
+    // tag: encodeURI(tag), // hỗ trợ Chinese và đếch sử dụng được Tiếng Việt
+    tag: tag,
   }))
   return paths
 }
