@@ -3,37 +3,50 @@ import { useRouter } from "next/router"
 import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
-const generateLinks = (router, availableLocales) =>
-  availableLocales.map((locale, index) => (
-    <React.Fragment key={index}>
-      <link
-        key={locale}
-        rel={
-          // Here we do as follow: Default langage is canonical
-          // if default langage is not present, we get the first element of the langage array by default
-          // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
-          locale === router.defaultLocale
-            ? "canonical"
-            : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
-            ? "canonical"
-            : "alternate"
-        }
-        hrefLang={locale}
-        href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
-          router.asPath
-        }`}
-      />
-      {locale === router.locale && (
+const generateLinks = (router, availableLocales) => {
+  console.log("availableLocales", availableLocales)
+  const links = availableLocales.map((locale, index) => {
+    console.log("LINKS", locale)
+    const hrefLang = locale === "en" ? "en-US" : "fr-FR"
+    return (
+      <React.Fragment key={index}>
         <link
-          rel="alternate"
-          hrefLang={locale}
+          key={locale}
+          rel={
+            // Here we do as follow: Default langage is canonical
+            // if default langage is not present, we get the first element of the langage array by default
+            // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
+            locale === router.defaultLocale
+              ? "canonical"
+              : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
+              ? "canonical"
+              : "alternate"
+          }
+          hrefLang={hrefLang}
           href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
             router.asPath
           }`}
         />
-      )}
-    </React.Fragment>
-  ))
+        {locale === router.locale && (
+          <link
+            rel="alternate"
+            hrefLang={hrefLang}
+            href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
+              router.asPath
+            }`}
+          />
+        )}
+      </React.Fragment>
+    )
+  })
+  // Add x-default hreflang link
+  links.push(
+    <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
+  )
+
+  console.log("LINKSSSSS", links)
+  return links
+}
 
 // export const PageSeo = ({ title, description, availableLocales }) => {
 //   const router = useRouter()
@@ -158,6 +171,8 @@ export const BlogSEO = ({
   // canonicalUrl,
   availableLocales,
   bannerImage,
+  words,
+  tags,
 }) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
@@ -175,6 +190,8 @@ export const BlogSEO = ({
       url: `${siteMetadata.siteUrl}${img}`.replace("blog/blog", "blog"),
     }
   })
+
+  const metaTitle = `${title} | Axolo Blog`
 
   let authorList
   if (authorDetails) {
@@ -198,7 +215,7 @@ export const BlogSEO = ({
       "@type": "WebPage",
       "@id": url,
     },
-    headline: title,
+    headline: metaTitle,
     image: featuredImages,
     datePublished: publishedAt,
     dateModified: modifiedAt,
@@ -228,13 +245,22 @@ export const BlogSEO = ({
       { name: "twitter:creator", content: "@axolo_co" },
     ],
   }
+
+  if (words) {
+    structuredData.wordCount = words
+  }
+
+  if (tags && tags.length > 0) {
+    structuredData.keywords = tags.join(", ").replace(/-/g, " ")
+  }
+
   // metadata image for twitter here
   const twImageUrl = `${siteMetadata.siteUrl}${bannerImage?.slice(5)}`
 
   return (
     <>
       <CommonSEO
-        title={title}
+        title={metaTitle}
         description={summary}
         ogType="article"
         ogImage={featuredImages}
