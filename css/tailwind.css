@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base" layer(my-base);
+@import "tailwindcss/components" layer(my-components);
+@import "tailwindcss/utilities" layer(my-utilities);
 
 .task-list-item::before {
   @apply hidden;
@@ -59,7 +59,7 @@ input:-webkit-autofill:focus {
   vertical-align: middle;
 }
 
-@layer base {
+@layer my-base {
   .light {
     --brand-primary: #e30613;
   }
@@ -68,7 +68,7 @@ input:-webkit-autofill:focus {
   }
 }
 
-@layer utilities {
+@layer my-utilities {
   /* Sử dụng tool: https://www.magicpattern.design/tools/css-backgrounds */
   .background-zigzag {
     background-color: #e20612;
