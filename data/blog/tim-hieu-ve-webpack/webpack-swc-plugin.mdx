@@ -1,0 +1,296 @@
+---
+title: Hướng dẫn tạo SWC plugin cho Webpack
+date: '2024-10-26'
+tags: ['webpack', 'rust', 'wasm']
+draft: false
+summary: Theo lí thuyết, plugin Webpack viết bằng wasm file cho khả năng xử lí nhanh hơn so với js file. Nay sẽ hướng dẫn tạo 1 plugin đơn giản viết bằng Rust.
+---
+
+Với sự lên nổi lên của các build tool như Vite, Esbuild với sự tập trung vào tính đơn giản, tốc độ được cộng đồng đón nhận, Webpack dần hạ bớt nhiệt. Thậm chí còn có ý kiến cho rằng nó đang thoái trào. Ưu điểm lớn nhất của Webpack vẫn là khả năng mở rộng, phù hợp với qui mô project và hệ sinh thái plugin, loader được phát triển từ cộng đồng vô cùng phong phú. Nó sẽ vẫn ở đó thôi, không dễ để 1 công cụ khác tới và thay thế nó chỉ trong thời gian ngắn ngủi.
+
+Tôi vốn đang bắt đầu tìm hiểu sâu hơn về Webpack. Quả thật, chưa có đủ kiến thức để tuỳ biến webpack, sử dụng những hiểu biết để mở rộng chức năng cho dự án thực tế. Tóm lại là vẫn chỉ sử dụng theo framework sẵn có. Tuy nhiên, tôi quan niệm nắm rõ 1 công cụ là tiền đề cho việc biết về các công cụ khác. Hiểu và tuỳ biến tool giúp hỗ trợ cho việc biết về các tính năng web được sinh ra, ý nghĩa mà chúng giải quyết vấn đề ra sao.
+
+Sau khi đọc về những khái niệm như entry, module, module factory, module graph, compiler, compilation, phương thức, vv.. Bạn sẽ bị rối bởi những khái niệm mà webpack đưa ra. Thực sự là cần thời gian để thẩm thấu bọn này. Hôm nay tôi làm theo hướng dẫn về viết code Rust để tạo ra plugin cho Webpack để đổi gió, sau khi bị "bội thực" bởi những khái niệm.
+
+Bạn có thể biết, trình duyệt có thể chạy được Javascript và WebAssembly. Và không chỉ vậy, các runtime như Node.js, Bun hay deno cũng thực thi được. Không như file JS là file text, Wasm là file binary nên sinh ra không phải để người đọc. Có một số ngôn ngữ có thể được biên dịch sang wasm như Rust, Go, C++...
+
+Sau khi có file WASM, để chạy nó, ta sẽ cần tới loader tên là swc-loader. Loader này là gì và sử dụng nó trong cài đặt webpack ra sao? Câu trả lời nằm ở phía dưới.
+
+### Yêu cầu
+
+Bạn biết chút chút về Rust, Webpack nếu không có thể làm theo các bước cũng ok. Sau đó sẽ dẫn tìm hiểu các khái niệm sau đó.
+
+### Công thức:
+
+Bài này sẽ chia ra 2 thư mục:
+
+#### Thư mục Rust để build thành plugin WASM:
+
+- swc_cli cho phép tạo dự án plugin SWC (Speedy Web Compiler)
+- trait VisitMut 
+
+#### Thư mục Code chạy bằng HTML, Javascript code được xử lí bởi Webpack và plugin WASM với các development dependencies sau:
+
+- webpack
+- webpack-cli
+- @swc/core
+- swc-loader
+
+### Công thức 1
+
+Giả sử bạn đã cài đặt Rust trên máy, cũng như setup dự án Rust trên Vscode:
+
+![08bb4e44570c3ddddd98e6c3243636d7.png](/static/images/57104281-735d-4f8d-bc06-435809e1a3d0/df4b4170f8e949b6b34b1f0d5beaf7d5.jpeg)
+
+Từ bây giờ có thể bắt đầu. Đầu tiên là đảm bảo bạn đã có công cụ `swc_cli`, nếu không hãy chạy lệnh:
+
+```terminal
+cargo install swc_cli
+```
+
+Hãy cài giúp mình thêm vào target cho trình biên dịch:
+
+```terminal
+rustup target add wasm32-wasi
+```
+
+Tới đây ta sẽ tạo thư mục dự án tên là rust-swc-webpack-plugin thông qua lệnh:
+
+```terminal
+mkdir rust-swc-webpack-plugin
+cd rust-swc-webpack-plugin
+swc plugin new --target-type wasm32-wasi rust-swc-webpack-plugin
+```
+
+
+Sau khi chạy được câu lệnh này lên, ta sẽ có 1 template để bắt đầu tạo SWC plugin.
+
+Sau đó, paste code sau vào trong tệp src/lib.rs:
+
+```rust
+use swc_core::ecma::utils::quote_ident;
+use swc_core::plugin::{plugin_transform, proxies::TransformPluginProgramMetadata};
+use swc_core::{
+    common::DUMMY_SP,
+    ecma::{
+        ast::{CallExpr, Callee, Expr, MemberExpr, MemberProp, Program},
+        transforms::testing::test_inline,
+        visit::{as_folder, noop_visit_mut_type, FoldWith, VisitMut, VisitMutWith},
+    },
+};
+
+pub struct TransformVisitor;
+
+const CONSOLE: &str = "console";
+const DEBUG: &str = "debug";
+const LOG: &str = "log";
+
+impl VisitMut for TransformVisitor {
+    noop_visit_mut_type!();
+
+    fn visit_mut_call_expr(&mut self, call_expr: &mut CallExpr) {
+        call_expr.visit_mut_children_with(self);
+
+        if let Callee::Expr(callee) = &mut call_expr.callee {
+            if let Expr::Member(member) = &**callee {
+                if let (Expr::Ident(obj), MemberProp::Ident(prop)) = (&*member.obj, &member.prop) {
+                    if &obj.sym == CONSOLE && &prop.sym == LOG {
+                        *callee = Box::new(Expr::Member(MemberExpr {
+                            span: DUMMY_SP,
+                            obj: member.obj.to_owned(),
+                            prop: MemberProp::Ident(quote_ident!(DEBUG)),
+                        }));
+                    }
+                }
+            }
+        }
+    }
+}
+
+#[plugin_transform]
+pub fn process_transform(program: Program, _metadata: TransformPluginProgramMetadata) -> Program {
+    program.fold_with(&mut as_folder(TransformVisitor))
+}
+
+test_inline!(
+    Default::default(),
+    |_| as_folder(TransformVisitor),
+    log_to_debug,
+    // Input codes
+    r#"console.log("hello, world");"#,
+    // Output codes after transformed with plugin
+    r#"console.debug("hello, world");"#
+);
+
+test_inline!(
+    Default::default(),
+    |_| as_folder(TransformVisitor),
+    debug_stays_debug,
+    // Input codes
+    r#"console.debug("hello, world");"#,
+    // Output codes after transformed with plugin
+    r#"console.debug("hello, world");"#
+);
+
+test_inline!(
+    Default::default(),
+    |_| as_folder(TransformVisitor),
+    not_interested_in_args,
+    // Input codes
+    r#"console.debug("log");"#,
+    // Output codes after transformed with plugin
+    r#"console.debug("log");"#
+);
+
+```
+
+Tôi sẽ không đi sâu vào giải thích chi tiết mà sẽ nói về mục đích tổng quát của file nó là "thay thế lệnh `console.log` bằng `console.debug`"" khi ta đi bundle Webpack. Ở đây cũng có test code là các test để đảm bảm hàm chạy đúng chức năng mong chờ. Đó là tất cả điều mà bạn nên biết trước tiên. Sau này, khi biết nhiều hơn về các khái niệm trong Rust, bạn có thể làm được những ý tưởng khác, hơn là thay thế console.log bằng console.debug hoàn toàn chỉ mang tính minh hoạ, không có ý nghĩa thực tiễn.
+
+Để chạy test, thực thi câu lệnh:
+
+```terminal
+cargo test
+```
+
+Vì đây là thí dụ, chắc chắn mọi test case đều 100% thành công:
+
+```terminal
+$ cargo test
+warning: `/Users/hainguyen/coding/temp/create-webpack-plugin-by-rust/rust-swc-webpack-plugin/.cargo/config` is deprecated in favor of `config.toml`
+note: if you need to support cargo 1.38 or earlier, you can symlink `config` to `config.toml`
+   Compiling rust-swc-webpack-plugin v0.1.0 (/Users/hainguyen/coding/temp/create-webpack-plugin-by-rust/rust-swc-webpack-plugin)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.78s
+     Running unittests src/lib.rs (target/debug/deps/rust_swc_webpack_plugin-1cf253cfe0768ffc)
+
+running 3 tests
+test log_to_debug ... ok
+test not_interested_in_args ... ok
+test debug_stays_debug ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+```
+
+Ta sẽ thấy 1 cái Warning nhưng cứ bỏ qua mà xuống phía dưới đoạn`running 3 tests...`. Cả 3 test case đều passed.
+
+Sau khi test thành công, tiếp theo ta sẽ build để thu được tệp WASM. Đó chính là cái đích của công thức 1. Chạy lệnh `cargo build-wasi --release`:
+
+Sẽ có log như sau:
+
+```terminal
+➜  rust-swc-webpack-plugin git:(main) ✗ cargo build-wasi --release
+warning: `/Users/hainguyen/coding/temp/create-webpack-plugin-by-rust/rust-swc-webpack-plugin/.cargo/config` is deprecated in favor of `config.toml`
+note: if you need to support cargo 1.38 or earlier, you can symlink `config` to `config.toml`
+   Compiling rust-swc-webpack-plugin v0.1.0 (/Users/hainguyen/coding/temp/create-webpack-plugin-by-rust/rust-swc-webpack-plugin)
+warning: the `wasm32-wasi` target is being renamed to `wasm32-wasip1` and the `wasm32-wasi` target will be removed from nightly in October 2024 and removed from stable Rust in January 2025
+
+warning: `rust-swc-webpack-plugin` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 12.02s
+```
+
+Bỏ qua các warning, dòng cuối cùng mang ý nghĩa việc build là thành công.
+
+![f75f9e98b450ef090373487eee5197f5.png](/static/images/57104281-735d-4f8d-bc06-435809e1a3d0/1e3b408baef44bcca651889a6a577568.jpeg)
+
+### Công thức 2
+
+Ở bước này, ta chạy lệnh `npm init` để khởi tạo dự án javascript và cài đặt các devDependencies:
+
+```terminal
+# tạo thư mục cùng cấp với thư mục rust-swc-webpack-plugin
+mkdir webpack-sample
+cd webpack-sample
+npm init
+npm i --save-dev @swc/core swc-loader webpack webpack-cli
+```
+
+Ta sẻ dùng Webpack để bundle code. Sử dụng loader có tên là swc-loader. Loader này sẽ sử dụng plugin là wasm file build được ở trên. Có lưu ý là bạn đừng nhầm lẫn với thuộc tính "plugins" ở đây nhé: [webpack plugins](https://webpack.js.org/concepts/#plugins). Ta sẽ qui định plugin trực tiếp ở swc-loader:
+
+
+```js
+const path = require('path');
+
+/**
+ * @type {import("webpack/types").Configuration}
+ */
+module.exports = {
+  name: 'swc-plugin-test',
+  mode: 'production',
+  entry: path.join(__dirname, 'src', 'index.js'),
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    clean: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'swc-loader',
+            // kết hợp configure từ file .swcrc
+            options:  {
+              jsc: {
+                parser: { syntax: 'ecmascript' },
+                experimental: {
+                  plugins: [
+                    [
+					  // trỏ tới file wasm local
+                      path.join(__dirname, '..', 'rust-swc-webpack-plugin', 'target', 'wasm32-wasi', 'release', 'rust_swc_webpack_plugin.wasm'),
+                      {},
+                    ],
+                  ],
+                },
+              },
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  optimization: {
+    minimize: false,
+    moduleIds: "named",
+    chunkIds: "named",
+    splitChunks: false,
+  },
+}
+
+```
+
+Configure vậy đó, giờ ta cần 1 file js để dùng làm entry, tạo file src/index.js với nội dung như sau:
+
+```js
+console.log('hello, world')
+console.debug('this is already debuged. ')
+console.debug('log')
+console.trace('hello')	
+```
+
+Kết quả sau khi bundle ở file dist/bundle.js:
+
+```js
+/******/ (() => { // webpackBootstrap
+console.debug('hello, world');
+console.debug('this is already debuged. ');
+console.debug('log');
+console.trace('hello');
+
+/******/ })()
+;
+```
+
+Như đã nói:
+
+```js
+console.log('hello, world')
+
+// được biến đổi thành
+
+console.debug('hello, world')
+
+
+```
+
+Sweat!
