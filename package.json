@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.13",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "coffee-time-components": "^1.0.46",
+    "coffee-time-components": "^1.0.52",
     "contentlayer2": "0.5.1",
     "embla-carousel-react": "^8.3.0",
     "esbuild": "0.20.2",
@@ -61,6 +61,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^9.0.0",
     "lint-staged": "^13.0.0",
+    "postcss-import": "^16.1.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "typescript": "^5.1.3"

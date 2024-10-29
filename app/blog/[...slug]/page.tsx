@@ -1,4 +1,3 @@
-import 'css/global.css'
 import 'css/prism.css'
 import 'css/embla.css'
 import 'katex/dist/katex.css'

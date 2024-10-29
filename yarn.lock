@@ -4607,15 +4607,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"coffee-time-components@npm:^1.0.46":
-  version: 1.0.46
-  resolution: "coffee-time-components@npm:1.0.46"
+"coffee-time-components@npm:^1.0.52":
+  version: 1.0.52
+  resolution: "coffee-time-components@npm:1.0.52"
   dependencies:
     clsx: ^2.1.1
   peerDependencies:
     react: ^16.8 || ^17 || ^18
     react-dom: ^16.8 || ^17 || ^18
-  checksum: a40f46e56e4f020ce9ac26458df8251de511a152a9799e6d17a58a5839e32cb6725ac419df0e12b655411b8f68b50f9179d985fa76429a7c6503f65a888d6d11
+  checksum: 0bfa61d370c382ba93c8f3bd87705c4218e97ebbd5a76ef57e16c9d6ccefccdd2395c718557d892ceb7661e9a74ef1c1a80e195b581cac099b8634b4b817b3b5
   languageName: node
   linkType: hard
 
@@ -9693,6 +9693,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-import@npm:^16.1.0":
+  version: 16.1.0
+  resolution: "postcss-import@npm:16.1.0"
+  dependencies:
+    postcss-value-parser: ^4.0.0
+    read-cache: ^1.0.0
+    resolve: ^1.1.7
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 6d7f2fd649b7c7c3ff58d9d08003a0502466a007176655922ec535c98ab1a6bb42f09f017bb05bd18dd5fb57419df0ed9a06ec7f53b1a286fcb2daf964eec19c
+  languageName: node
+  linkType: hard
+
 "postcss-js@npm:^4.0.1":
   version: 4.0.1
   resolution: "postcss-js@npm:4.0.1"
@@ -11437,7 +11450,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.1.0
     autoprefixer: ^10.4.13
     body-scroll-lock: ^4.0.0-beta.0
-    coffee-time-components: ^1.0.46
+    coffee-time-components: ^1.0.52
     contentlayer2: 0.5.1
     cross-env: ^7.0.3
     embla-carousel-react: ^8.3.0
@@ -11457,6 +11470,7 @@ __metadata:
     next-themes: ^0.3.0
     pliny: 0.2.1
     postcss: ^8.4.24
+    postcss-import: ^16.1.0
     prettier: ^3.0.0
     prettier-plugin-tailwindcss: ^0.5.11
     react: 18.3.1

@@ -1,0 +1,8 @@
+/* 
+@import '../node_modules/coffee-time-components/dist/styles/tailwind/accordion.css';
+@import '../node_modules/coffee-time-components/dist/styles/tailwind/list.css'; */
+
+/* @import "tailwindcss/base" layer(my-base);
+@import "tailwindcss/components" layer(my-components);
+@import "tailwindcss/utilities" layer(my-utilities);
+@import '../node_modules/coffee-time-components/dist/styles/tailwind/base.css' layer(my-base); */

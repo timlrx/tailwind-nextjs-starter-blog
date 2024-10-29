@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
+@layer my-base {
   .light {
     --brand-secondary: rgb(116, 97, 195);
     --brand-alternative: rgb(19, 120, 134);
@@ -71,7 +67,7 @@
   }
 }
 
-@layer components {
+@layer my-components {
   .embla {
     max-width: 70rem;
     margin: auto;
@@ -170,7 +166,7 @@
   }
 }
 
-@layer utilities {
+@layer my-utilities {
   .embla__button {
     -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
     -webkit-appearance: none;
