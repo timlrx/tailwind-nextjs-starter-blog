@@ -16,27 +16,21 @@ Bạn có thể biết, trình duyệt có thể chạy được Javascript và 
 
 Sau khi có file WASM, để chạy nó, ta sẽ cần tới loader tên là swc-loader. Loader này là gì và sử dụng nó trong cài đặt webpack ra sao? Câu trả lời nằm ở phía dưới.
 
-### Yêu cầu
+## Yêu cầu
 
 Bạn biết chút chút về Rust, Webpack nếu không có thể làm theo các bước cũng ok. Sau đó sẽ dẫn tìm hiểu các khái niệm sau đó.
 
-### Công thức:
+Bài này sẽ chia ra 2 thư mục Rust để build thành plugin WASM và thư mục Javascript để bundle code
 
-Bài này sẽ chia ra 2 thư mục:
+## Thư mục Rust
 
-#### Thư mục Rust để build thành plugin WASM:
-
-- swc_cli cho phép tạo dự án plugin SWC (Speedy Web Compiler)
-- trait VisitMut 
-
-#### Thư mục Code chạy bằng HTML, Javascript code được xử lí bởi Webpack và plugin WASM với các development dependencies sau:
-
-- webpack
-- webpack-cli
-- @swc/core
-- swc-loader
-
-### Công thức 1
+<Section>
+  <Heading>Thành phần</Heading>
+  <List>
+    <ListItem>swc_cli cho phép tạo dự án plugin SWC (Speedy Web Compiler)</ListItem>
+    <ListItem>trait VisitMut</ListItem>
+  </List>
+</Section>
 
 Giả sử bạn đã cài đặt Rust trên máy, cũng như setup dự án Rust trên Vscode:
 
@@ -191,7 +185,17 @@ Bỏ qua các warning, dòng cuối cùng mang ý nghĩa việc build là thành
 
 ![f75f9e98b450ef090373487eee5197f5.png](/static/images/57104281-735d-4f8d-bc06-435809e1a3d0/1e3b408baef44bcca651889a6a577568.jpeg)
 
-### Công thức 2
+## Thư mục Javascript
+
+<Section>
+  <Heading>Thành phần</Heading>
+  <List>
+    <ListItem>webpack</ListItem>
+    <ListItem>webpack-cli</ListItem>
+    <ListItem>@swc/core</ListItem>
+    <ListItem>swc-loader</ListItem>
+  </List>
+</Section>
 
 Ở bước này, ta chạy lệnh `npm init` để khởi tạo dự án javascript và cài đặt các devDependencies:
 

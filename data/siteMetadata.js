@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Blog ngày hè',
   description: 'Những bài viết dạo gần đây',
   language: 'vi',
-  theme: 'system', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://ngayhe.com',
   siteRepo: 'https://github.com/haingdc/pedal-pedal',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,

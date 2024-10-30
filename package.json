@@ -19,7 +19,7 @@
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.4.13",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "coffee-time-components": "^1.0.52",
+    "coffee-time-components": "^1.0.57",
     "contentlayer2": "0.5.1",
     "embla-carousel-react": "^8.3.0",
     "esbuild": "0.20.2",
