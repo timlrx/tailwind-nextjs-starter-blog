@@ -4,9 +4,7 @@ import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
 const generateLinks = (router, availableLocales) => {
-  console.log("availableLocales", availableLocales)
   const links = availableLocales.map((locale, index) => {
-    console.log("LINKS", locale)
     const hrefLang = locale === "en" ? "en-US" : "fr-FR"
     return (
       <React.Fragment key={index}>
@@ -44,7 +42,6 @@ const generateLinks = (router, availableLocales) => {
     <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
   )
 
-  console.log("LINKSSSSS", links)
   return links
 }
 
