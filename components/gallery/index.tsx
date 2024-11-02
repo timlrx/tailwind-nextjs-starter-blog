@@ -1,12 +1,11 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import { GalleryChild, GalleryContainer, GalleryParents } from 'coffee-time-components'
+import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
+import React, { useEffect } from 'react'
 import 'photoswipe/style.css'
 import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
-import './test.css'
-import { GalleryParents, GalleryChild, GalleryContainer } from 'coffee-time-components'
-import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin'
 
 export default function SimpleGallery(props) {
   useEffect(() => {
