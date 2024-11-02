@@ -17,6 +17,7 @@ import {
   Section,
   Heading,
 } from './coffee-time-components'
+import SimpleGallery from './gallery'
 
 export const components: MDXComponents = {
   Image,
@@ -35,4 +36,5 @@ export const components: MDXComponents = {
   ListItem,
   Section,
   Heading,
+  SimpleGallery,
 }

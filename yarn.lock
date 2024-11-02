@@ -4607,15 +4607,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"coffee-time-components@npm:^1.0.57":
-  version: 1.0.57
-  resolution: "coffee-time-components@npm:1.0.57"
+"coffee-time-components@npm:^1.0.62":
+  version: 1.0.62
+  resolution: "coffee-time-components@npm:1.0.62"
   dependencies:
     clsx: ^2.1.1
   peerDependencies:
     react: ^16.8 || ^17 || ^18
     react-dom: ^16.8 || ^17 || ^18
-  checksum: 48e57525bf56ede8d2fb955f06dae32910337423ca97f6d2e98da9057cb81fc61097715cf273eefbd0518a8e64c66254fe872dd85f586cba71ad168f1fb831a9
+  checksum: e2799cee212e4b503be53b1660f835c6bd3991bd62dbd3201198c9a85674fd0953a2dd8b93558e0d88495eae83f6c0b8a6cb5d73fad165e092177dba60656736
   languageName: node
   linkType: hard
 
@@ -9611,6 +9611,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"photoswipe-dynamic-caption-plugin@npm:^1.2.7":
+  version: 1.2.7
+  resolution: "photoswipe-dynamic-caption-plugin@npm:1.2.7"
+  checksum: 4062a4807c86f0a54944103ae9563ce8827dfaa331f456d6657d856ed9c679e8eafba8635241b674ae75ac35673978ad122155e9f7c89e826bbf4e5bd184325d
+  languageName: node
+  linkType: hard
+
+"photoswipe@npm:^5.4.4":
+  version: 5.4.4
+  resolution: "photoswipe@npm:5.4.4"
+  checksum: 9e1ee1278d1472e390c486f6ef5d5e13a3e55f660fde15360ce266bd31dcdce8feb08d406f8ccc9c35277ddf67b6d5ca8f028977d02033261647c0a54e7a17ea
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0, picocolors@npm:^1.0.1":
   version: 1.1.0
   resolution: "picocolors@npm:1.1.0"
@@ -11450,7 +11464,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.1.0
     autoprefixer: ^10.4.13
     body-scroll-lock: ^4.0.0-beta.0
-    coffee-time-components: ^1.0.57
+    coffee-time-components: ^1.0.62
     contentlayer2: 0.5.1
     cross-env: ^7.0.3
     embla-carousel-react: ^8.3.0
@@ -11468,6 +11482,8 @@ __metadata:
     next: 14.2.3
     next-contentlayer2: 0.5.1
     next-themes: ^0.3.0
+    photoswipe: ^5.4.4
+    photoswipe-dynamic-caption-plugin: ^1.2.7
     pliny: 0.2.1
     postcss: ^8.4.24
     postcss-import: ^16.1.0
