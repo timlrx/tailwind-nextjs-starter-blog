@@ -51,13 +51,41 @@ rustup target add wasm32-wasi
 Tới đây ta sẽ tạo thư mục dự án tên là rust-swc-webpack-plugin thông qua lệnh:
 
 ```terminal
-mkdir rust-swc-webpack-plugin
-cd rust-swc-webpack-plugin
 swc plugin new --target-type wasm32-wasi rust-swc-webpack-plugin
+cd rust-swc-webpack-plugin
 ```
 
 
 Sau khi chạy được câu lệnh này lên, ta sẽ có 1 template để bắt đầu tạo SWC plugin.
+
+Thêm 2 tính năng là common và ecma_utils vào crate swc_core:
+
+```terminal
+cargo add swc_core --features "common, ecma_utils"
+```
+
+Khi đó ta sẽ có file cargo.toml như sau:
+
+```toml
+[package]
+name = "rust-swc-webpack-plugin"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+
+[dependencies]
+serde = "1"
+swc_core = { version = "0.101.*", features = ["common", "ecma_plugin_transform", "ecma_utils"] }
+
+# .cargo/config defines few alias to build plugin.
+# cargo build-wasi generates wasm-wasi32 binary
+# cargo build-wasm32 generates wasm32-unknown-unknown binary.
+```
 
 Sau đó, paste code sau vào trong tệp src/lib.rs:
 
@@ -138,7 +166,7 @@ test_inline!(
 
 ```
 
-Tôi sẽ không đi sâu vào giải thích chi tiết mà sẽ nói về mục đích tổng quát của file nó là "thay thế lệnh `console.log` bằng `console.debug`"" khi ta đi bundle Webpack. Ở đây cũng có test code là các test để đảm bảm hàm chạy đúng chức năng mong chờ. Đó là tất cả điều mà bạn nên biết trước tiên. Sau này, khi biết nhiều hơn về các khái niệm trong Rust, bạn có thể làm được những ý tưởng khác, hơn là thay thế console.log bằng console.debug hoàn toàn chỉ mang tính minh hoạ, không có ý nghĩa thực tiễn.
+Tôi sẽ không đi sâu vào giải thích chi tiết mà sẽ nói về mục đích tổng quát của file nó là "thay thế lệnh `console.log` bằng `console.debug`" khi ta đi bundle Webpack. Ở đây cũng có test code là các test để đảm bảm hàm chạy đúng chức năng mong chờ. Đó là tất cả điều mà bạn nên biết trước tiên. Sau này, khi biết nhiều hơn về các khái niệm trong Rust, bạn có thể làm được những ý tưởng khác, hơn là thay thế console.log bằng console.debug hoàn toàn chỉ mang tính minh hoạ, không có ý nghĩa thực tiễn.
 
 Để chạy test, thực thi câu lệnh:
 
@@ -166,7 +194,7 @@ test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 Ta sẽ thấy 1 cái Warning nhưng cứ bỏ qua mà xuống phía dưới đoạn`running 3 tests...`. Cả 3 test case đều passed.
 
-Sau khi test thành công, tiếp theo ta sẽ build để thu được tệp WASM. Đó chính là cái đích của công thức 1. Chạy lệnh `cargo build-wasi --release`:
+Sau khi test thành công, tiếp theo ta sẽ build để thu được tệp WASM. Đó chính là cái đích của tiêu đề Thư mục Rust. Hãy chạy lệnh `cargo build-wasi --release`:
 
 Sẽ có log như sau:
 
@@ -207,7 +235,7 @@ npm init
 npm i --save-dev @swc/core swc-loader webpack webpack-cli
 ```
 
-Ta sẻ dùng Webpack để bundle code. Sử dụng loader có tên là swc-loader. Loader này sẽ sử dụng plugin là wasm file build được ở trên. Có lưu ý là bạn đừng nhầm lẫn với thuộc tính "plugins" ở đây nhé: [webpack plugins](https://webpack.js.org/concepts/#plugins). Ta sẽ qui định plugin trực tiếp ở swc-loader:
+Ta sẻ dùng Webpack để bundle code. Sử dụng loader có tên là swc-loader. Loader này sẽ sử dụng plugin là wasm file build được ở trên. Có lưu ý là bạn đừng nhầm lẫn với thuộc tính "plugins" ở đây nhé: [webpack plugins](https://webpack.js.org/concepts/#plugins). Ta sẽ qui định plugin trực tiếp ở swc-loader. Paste mã sau vào file webpack.config.cjs:
 
 
 ```js
@@ -272,7 +300,15 @@ console.debug('log')
 console.trace('hello')	
 ```
 
-Kết quả sau khi bundle ở file dist/bundle.js:
+Trong package.json, thêm script sau:
+
+```json
+"scripts": {
+  "build": "webpack"
+}
+```
+
+Thực thi lệnh `npm run build` để build. Kết quả sau khi bundle ở file dist/bundle.js:
 
 ```js
 /******/ (() => { // webpackBootstrap
