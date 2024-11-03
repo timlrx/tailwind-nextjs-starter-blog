@@ -10009,6 +10009,16 @@ react@rc:
   languageName: node
   linkType: hard
 
+"rehype-katex-notranslate@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "rehype-katex-notranslate@npm:1.1.4"
+  dependencies:
+    unified: ^11.0.5
+    unist-util-visit: ^5.0.0
+  checksum: e43de356b695e0c7fa9d806f18c4447a976d0c7b9b11b7a70ac392b83566cc92622d3f73f408d3c923fcb159a5467d800db311816c436407b25208e16d27714d
+  languageName: node
+  linkType: hard
+
 "rehype-katex@npm:^7.0.0":
   version: 7.0.1
   resolution: "rehype-katex@npm:7.0.1"
@@ -11347,6 +11357,7 @@ react@rc:
     rehype-autolink-headings: ^7.1.0
     rehype-citation: ^2.0.0
     rehype-katex: ^7.0.0
+    rehype-katex-notranslate: ^1.1.4
     rehype-preset-minify: 7.0.0
     rehype-prism-plus: ^2.0.0
     rehype-slug: ^6.0.0
@@ -11721,7 +11732,7 @@ react@rc:
   languageName: node
   linkType: hard
 
-"unified@npm:^11.0.0, unified@npm:^11.0.4":
+"unified@npm:^11.0.0, unified@npm:^11.0.4, unified@npm:^11.0.5":
   version: 11.0.5
   resolution: "unified@npm:11.0.5"
   dependencies:
