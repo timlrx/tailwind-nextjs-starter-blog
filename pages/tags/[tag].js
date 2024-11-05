@@ -60,10 +60,26 @@ export async function getStaticProps({ params, defaultLocale, locale, locales })
     currentPage: 1,
     totalPages: Math.ceil(filteredPosts.length / POSTS_PER_PAGE),
   }
-  return { props: { posts: filteredPosts, tag: params.tag, locale, availableLocales, pagination } }
+  return {
+    props: {
+      posts: allPosts,
+      initialDisplayPosts: filteredPosts,
+      tag: params.tag,
+      locale,
+      availableLocales,
+      pagination,
+    },
+  }
 }
 
-export default function Tag({ posts, tag, locale, availableLocales, pagination }) {
+export default function Tag({
+  posts,
+  tag,
+  locale,
+  availableLocales,
+  pagination,
+  initialDisplayPosts,
+}) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(" ").join("-").slice(1)
   return (
@@ -73,7 +89,12 @@ export default function Tag({ posts, tag, locale, availableLocales, pagination }
         description={`${tag} tags - ${siteMetadata.title[locale]}`}
         availableLocales={availableLocales}
       />
-      <ListLayout posts={posts} title={title} pagination={pagination} />
+      <ListLayout
+        posts={posts}
+        title={title}
+        pagination={pagination}
+        initialDisplayPosts={initialDisplayPosts}
+      />
     </>
   )
 }
