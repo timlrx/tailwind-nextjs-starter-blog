@@ -101,46 +101,42 @@ module.exports = nextTranslate(
     },
     async redirects() {
       return [
-        {
-          source: "/blog/p/Github-4-ways-to-subscribe-to-pull-requests",
-          destination: "/blog/p/github-4-ways-to-subscribe-to-pull-requests",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/MixPanel-groupId-Segment-collaborative-SaaS",
-          destination: "/blog/p/mixpanel-groupid-segment-collaborative-saas",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/8-key-takeaways-from-tim-glaser-cto-of-postHog",
-          destination: "/blog/p/8-key-takeaways-from-tim-glaser-cto-of-posthog",
-          permanent: true,
-        },
-        {
-          source: "/blog/p/how-we-use-Axolo",
-          destination: "/blog/p/how-we-use-axolo",
-          permanent: true,
-        },
-        {
-          source: "/p/Github-4-ways-to-subscribe-to-pull-requests",
-          destination: "/p/github-4-ways-to-subscribe-to-pull-requests",
-          permanent: true,
-        },
-        {
-          source: "/p/MixPanel-groupId-Segment-collaborative-SaaS",
-          destination: "/p/mixpanel-groupid-segment-collaborative-saas",
-          permanent: true,
-        },
-        {
-          source: "/p/8-key-takeaways-from-tim-glaser-cto-of-postHog",
-          destination: "/p/8-key-takeaways-from-tim-glaser-cto-of-posthog",
-          permanent: true,
-        },
-        {
-          source: "/p/how-we-use-Axolo",
-          destination: "/p/how-we-use-axolo",
-          permanent: true,
-        },
+        // There is a redirect loop for those page, we need to change the url if we want to make it lowercase
+        // {
+        //   source: "/blog/p/Github-4-ways-to-subscribe-to-pull-requests",
+        //   destination: "/blog/p/github-4-ways-to-subscribe-to-pull-requests",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/blog/p/MixPanel-groupId-Segment-collaborative-SaaS",
+        //   destination: "/blog/p/mixpanel-groupid-segment-collaborative-saas",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/blog/p/8-key-takeaways-from-tim-glaser-cto-of-postHog",
+        //   destination: "/blog/p/8-key-takeaways-from-tim-glaser-cto-of-posthog",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/blog/p/how-we-use-Axolo",
+        //   destination: "/blog/p/how-we-use-axolo",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/p/Github-4-ways-to-subscribe-to-pull-requests",
+        //   destination: "/p/github-4-ways-to-subscribe-to-pull-requests",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/p/8-key-takeaways-from-tim-glaser-cto-of-postHog",
+        //   destination: "/p/8-key-takeaways-from-tim-glaser-cto-of-posthog",
+        //   permanent: true,
+        // },
+        // {
+        //   source: "/p/how-we-use-Axolo",
+        //   destination: "/p/how-we-use-axolo",
+        //   permanent: true,
+        // },
         {
           source: "/p/gitlab-self-managed-slack-integrations",
           destination: "/p/gitlab-cicd-pipeline-slack-notifications",
