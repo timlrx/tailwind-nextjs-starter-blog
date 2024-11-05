@@ -73,6 +73,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [leohuynh.dev](leohuynh.dev) - 🇻🇳 Leo's dev blog – stories, insights, and ideas. Add `/snippets`, `/books` pages, add `ProfileCard`, `CareerTimeline` components and many more.
 - [OpenSats Blog](https://opensats.org/blog) - A 501(c)(3) public charity which aims to sustainably fund free and open-source projects. ([source code](https://github.com/OpenSats/website))
 - [Schedles Blog](https://schedles.com/blog) - Social media scheduling tips, strategies, and product updates for content creators. ([Project Link](https://schedles.com))
+- [YawDev Blog](https://yawdev.org/blog) - IT-Agency / Software Development. Blog about tech and business ([Project Link](https://yawdev.org))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
