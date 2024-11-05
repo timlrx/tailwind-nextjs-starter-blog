@@ -101,6 +101,7 @@ module.exports = nextTranslate(
     },
     async redirects() {
       return [
+        // There is a redirect loop for those page, we need to change the url if we want to make it lowercase
         // {
         //   source: "/blog/p/Github-4-ways-to-subscribe-to-pull-requests",
         //   destination: "/blog/p/github-4-ways-to-subscribe-to-pull-requests",
