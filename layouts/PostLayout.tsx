@@ -63,17 +63,26 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   {authorDetails.map((author) => (
                     <li className="flex items-center space-x-2" key={author.name}>
                       {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width={38}
-                          height={38}
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
-                        />
+                        <Link href={`/authors/${author.slug}`}>
+                          <Image
+                            src={author.avatar}
+                            width={38}
+                            height={38}
+                            alt={`${author.name}'s avatar`}
+                            className="h-10 w-10 rounded-full"
+                          />
+                        </Link>
                       )}
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                        <dd>
+                          <Link
+                            href={`/authors/${author.slug}`}
+                            className="text-gray-900 dark:text-gray-100"
+                          >
+                            {author.name}
+                          </Link>
+                        </dd>
                         <dt className="sr-only">Twitter</dt>
                         <dd>
                           {author.twitter && (
@@ -100,7 +109,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   Discuss on Twitter
                 </Link>
                 {` • `}
-                <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
               {siteMetadata.comments && (
                 <div
