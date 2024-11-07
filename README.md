@@ -72,6 +72,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [armujahid.me](https://armujahid.me/) - Abdul Rauf's personal blog about tech and random stuff.
 - [leohuynh.dev](leohuynh.dev) - 🇻🇳 Leo's dev blog – stories, insights, and ideas. Add `/snippets`, `/books` pages, add `ProfileCard`, `CareerTimeline` components and many more.
 - [OpenSats Blog](https://opensats.org/blog) - A 501(c)(3) public charity which aims to sustainably fund free and open-source projects. ([source code](https://github.com/OpenSats/website))
+- [Schedles Blog](https://schedles.com/blog) - Social media scheduling tips, strategies, and product updates for content creators. ([Project Link](https://schedles.com))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
@@ -321,6 +322,7 @@ Consider removing the following features that cannot be used in a static build:
 
 - [How can I add a custom MDX component?](/faq/custom-mdx-component.md)
 - [How can I customize the `kbar` search?](/faq/customize-kbar-search.md)
+- [Deploy with docker](/faq/deploy-with-docker.md)
 
 ## Support
 
