@@ -64,6 +64,7 @@ module.exports = nextTranslate(
         "apichaos.s3.eu-west-3.amazonaws.com",
         "axolo.s3.eu-west-3.amazonaws.com",
         "datatribes-bucket.s3.eu-west-3.amazonaws.com",
+        "axolo.co",
       ],
     },
     eslint: {

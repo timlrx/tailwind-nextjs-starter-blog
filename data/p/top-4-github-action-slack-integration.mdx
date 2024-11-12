@@ -1,18 +1,32 @@
 ---
 title: "How to Set Up GitHub Actions Notifications in Slack: A Guide for Engineers"
 date: "2021-09-30"
-lastmod: "2023-03-29"
+lastmod: "2024-11-12"
 tags: ["notification"]
 draft: false
 image: "/blog/static/images/top5/top4_github_action.png"
-summary: "In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. The first one is to implement a GitHub Action in your repositories and that will use the Slack API with a OAuth token, the second one is to install an application with a user interface to set up your notifications. We’re going to explain the best of both worlds in this article."
+summary: "In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. We’re going to explain the best of both worlds in this article."
 ---
 
-## <span className="rainbow-button text-2xl font-bold hover:cursor-auto">Setting up GitHub Action notifications in Slack</span>
+Today, real-time notifications play a crucial role in keeping teams aligned and efficient. Since GitHub Actions are so popular for workflow automation, adding Slack notifications can be a game-changer. This way, your team gets updates right in Slack, whether it’s about a new **pull request update**, a **status change**, or even a **workflow success/failure**. Let’s go through the setup together!
 
-For the past years, as most engineering teams on GitHub, you may have integrated GitHub Actions and workflows in your routine. GitHub Actions are great for continuous integration, continuous deployment, and monitoring your workflows.
+We'll explore options like **slackapi/slack-github-action**, **action-slack-notify**, and **Axolo**, each of which offers flexible ways to receive **GitHub Actions Slack notifications**. From **pull request status alerts** to **customized Slack messages**, these tools provide engineers with tailored notifications for crucial GitHub events. By the end, you’ll be able to streamline communication through **Slack GitHub PR notifications**, enhancing productivity and making it easy to stay on top of your GitHub Actions activity in Slack.
 
-In order to receive the right information in your Slack, there are two possibilities to set up notifications for GitHub Actions. The first one is to implement a GitHub Action in your repositories and that will use the Slack API with a OAuth token, the second one is to install an application with a user interface to set up your notifications. We’re going to explain the best of both worlds in this article.
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## <span className="rainbow-button text-2xl font-bold hover:cursor-auto">Setting up GitHub Actions Slack Notifications</span>
+
+For many engineering teams using GitHub, **GitHub Actions** has become an essential tool for continuous integration, continuous deployment, and monitoring workflows. Setting up **[GitHub Actions Slack notifications](https://axolo.co/features/github-action-slack-notifications)** is an effective way to keep your team informed, with CI/CD updates and other key notifications delivered directly to Slack.
+
+There are two main options to set up **GitHub Actions notifications** for Slack. The first is to use a customer GitHub Action integration in your repository, which leverages the Slack API and requires an OAuth token. This option allows your team to receive **GitHub Slack pull request notifications** and other automated messages. Alternatively, you can install an application with a user-friendly interface, such as **Axolo**, to easily configure **Slack GitHub notifications** for **GitHub Actions pull request** updates and more. This guide will explore both approaches so you can choose the best fit for your team's notification needs.
+
+### Why Send Slack Notifications from GitHub Actions?
+
+Integrating **GitHub Actions Slack notifications** into your workflow is an essential step for engineering teams looking to streamline communication. With **GitHub Actions notifications**, you can keep your team up-to-date on everything from pull requests to build statuses without leaving Slack.
+
+For example, setting up Slack notifications ensures that everyone involved in a project is alerted when there’s a new pull request, a status update, or an error. This kind of **Slack GitHub PR notification** provides real-time information, keeping everyone in sync without the need to constantly check GitHub.
+
+Additionally, CI/CD notifications can improve workflow efficiency by automatically sending status updates or specific messages to relevant channels. By configuring **GitHub action to send Slack message**, your team will be able to see **GitHub action status** notifications directly within Slack, helping you respond faster to important changes. In short, **GitHub Slack notifications** are a powerful way to bridge communication gaps and ensure smooth, efficient workflows.
 
 <div className="mt-4 flex justify-center">
   <iframe
@@ -25,41 +39,82 @@ In order to receive the right information in your Slack, there are two possibili
     allowFullScreen
   ></iframe>
 </div>
-<SubImageText classNameDiv="mt-4" classNameText="lg:w-80 ">
+<SubImageText classNameDiv="!mt-6" classNameText="lg:w-80 ">
   Sydney, CTO @ Axolo, explaining in video how to set up GitHub Action notifications in Slack
 </SubImageText>
-
-<TOCInline toc={props.toc} toHeading={3} asDisclosure />
 
 ## Axolo, a user interface to receive GitHub Action in Slack and much more
 
 ### Pull request GitHub Action and pull request checks
 
-Axolo’s first feature is to create a single-purpose ephemeral channel for each pull request in Slack. Then, we send every notification related to the pull request in this specific channel, so GitHub actions too!
+Axolo’s primary feature is to create a dedicated, short-lived Slack channel for each pull request, allowing for focused collaboration and quick communication. In each channel, Axolo provides Slack notifications for every event related to the pull request, ensuring that the team is always in sync with real-time updates. This setup is particularly useful for **GitHub PR Slack notifications**, keeping relevant members notified about key actions and statuses.
 
-After installation, you will be able to receive every GitHub Action notification in a pull request channel in Slack (notifying only the pull request creators and reviewers).
+Once installed, Axolo will automatically send pull request notifications to the assigned channel, notifying only the pull request creators and reviewers. This approach streamlines collaboration by minimizing noise and focusing updates where they are needed most. Axolo can also be configured to deliver specific **GitHub action status** updates, so you receive only the notifications that matter—whether it’s success, error, or other custom statuses.
 
-But it is not only about GitHub Action, you will also passively receive updates for your branch conflict, pull request checks, and deployments in their specific channel. From the app, you can select only the status you'd like to receive (success, error, ...).
+Beyond basic **GitHub actions notifications**, Axolo offers passive updates for branch conflicts, pull request checks, and deployments, all organized within the relevant Slack channel. This powerful combination of **Slack GitHub PR notifications** and selective status updates ensures your team stays informed and responsive without being overwhelmed by irrelevant details.
 
 <ImageContainer
   src="/blog/static/images/screenshots/pr_checks.png"
-  alt="Axolo PR checks"
+  alt="Axolo's GitHub Actions Slack integration'"
   width={1732}
   height={780}
   classNameDiv="mx-20"
 />
+<SubImageText classNameDiv="!mt-6" classNameText="lg:w-80 ">
+  Axolo sends a summary of the CI/CD process in each PR channel after checks are complete
+</SubImageText>
+
+## Step-by-Step Guide to GitHub Actions Notifications in Slack with Axolo
+
+### Key Features of Axolo for GitHub Actions Slack Notifications
+
+Axolo is a powerful tool designed to enhance your team's productivity by integrating GitHub notifications directly into your Slack channels. With Axolo, you can streamline updates on CI/CD workflows and **GitHub Actions pull requests**, ensuring that your team is always informed and can act on the latest developments.
+
+Key features include:
+
+- **Receive CI/CD and Deployment Updates in Real Time**: Axolo enables your team to passively receive **GitHub Actions notifications** for CI/CD processes in relevant pull request channels. With **GitHub Slack pull request notifications**, team members are promptly informed when checks pass or fail, making it easy to track the **GitHub action status** and respond swiftly to issues—all within Slack.
+
+<ImageContainer
+  src="https://axolo.co/images/featurePage/deployment.png"
+  alt="Axolo Deployment and Slack GitHub actions notifications"
+  width={1258}
+  height={538}
+  classNameDiv="mx-20"
+/>
+<SubImageText classNameDiv="!mt-6" classNameText="lg:w-80 ">
+  Here is an example of a deployment notification sent by Axolo
+</SubImageText>
+
+- **Streamlined Access to CI/CD Bookmarks**: Axolo automatically creates bookmarks in each pull request channel, providing a quick way to view the current status of all checks. This feature eliminates the need to switch back to GitHub.
+
+<ImageContainer
+  src="https://axolo.co/images/featurePage/check_bookmark.png"
+  alt="Axolo GitHub Actions Slack Bookmarks"
+  width={611}
+  height={355}
+  classNameDiv="mx-20"
+/>
+<SubImageText classNameDiv="!mt-6" classNameText="lg:w-80 ">
+  Here is an example of a bookmark created by Axolo in a PR channel
+</SubImageText>
+
+- **Centralized Notifications for Enhanced Collaboration**: Axolo allows for centralized **PR notifications** related to builds, deployments, and **GitHub Actions pull request** updates, which are sent directly to designated Slack channels. This approach enhances visibility and collaboration by keeping team members and managers informed on important updates, making Axolo an invaluable tool for effective communication.
+
+- **Simplified, Real-Time Alerts**: With Axolo’s **GitHub Action send Slack message** feature, teams receive organized notifications that clearly communicate status changes. Axolo automatically sends a CI/CD summary in each PR channel after checks are complete, so the entire team receives a concise update on each **GitHub Actions Slack notification**. This feature keeps everyone aligned and enables quick responses to changes.
+
+Axolo’s seamless integration with \*GitHub turns Slack into a central hub for real-time project updates. With tailored notifications, bookmarks, and direct **GitHub Actions notifications** for pull requests, Axolo keeps your team focused and well-informed, facilitating efficient, collaborative workflows.
 
 <CTABanner type="try" />
 
-## Three open-source GitHub Action for Slack notifications
+## Three Open-Source GitHub Actions for Slack Notifications
 
-During our research, we’ve found four applications on the GitHub marketplace to set up GitHub Action notifications to Slack. We decided to focus on the top three that had more than 100 stars at the time of the article.
+During our research, we found several applications on the GitHub Marketplace to set up GitHub Actions notifications in Slack. Here, we focus on the top three open-source options, each with over 100 stars, that enable **GitHub Actions notifications** to be sent to Slack and streamline team communication.
 
-### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/slack-notify">Slack notify</a>
+### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/slack-notify">Slack Notify</a>
 
-This application was created by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/">rtCamp</a> and has 874 stars on GitHub. They developed <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/github-actions-library/">two other applications</a> for GitHub Action: PHPCS Code Review and Deploy WordPress.
+This application, created by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/rtCamp/">rtCamp</a>, has 1.1k stars on GitHub. In addition to **Slack GitHub notifications**, rtCamp developed two other GitHub Actions, PHPCS Code Review and Deploy WordPress, offering a range of solutions for automated workflows. The **Slack notify** action enables efficient **GitHub PR Slack notifications** for CI/CD updates directly in Slack channels, making it easier to monitor key status updates.
 
-Their API is well-documented and explained. Optionally, Slack notify can support Hashicorp Vault too.
+With a well-documented API, **Slack notify** also supports advanced features such as HashiCorp Vault integration, providing added flexibility and security for teams needing **GitHub actions Slack notifications** that fit into more complex workflows.
 
 How to use it:
 
@@ -88,7 +143,7 @@ From there, you can easily add this setup to any of your current GitHub Action a
 
 ### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/github-action-for-slack">GitHub Action for Slack</a>
 
-GitHub Action for Slack was developed by Nicolas Coutin and Christoper Lion and has currently 197 stars on GitHub. The API is well documented too but messages are pretty simple and do not fully use Slack attachment API.
+**GitHub Action for Slack**, developed by Nicolas Coutin and Christopher Lion, currently has 195 stars on GitHub. While it provides a straightforward way to set up Slack notifications, it’s important to note that this action is no longer actively maintained. The API is well-documented, but the functionality is relatively basic, and it does not fully leverage the Slack attachment API, resulting in simpler GitHub Slack notifications.
 
 How to use it:
 
@@ -116,9 +171,9 @@ How to use it:
 
 ### <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/marketplace/actions/action-slack">Action Slack</a>
 
-action-slack was developed by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/8398a7">8398a7</a> and other contributors and has currently 530 stars on GitHub.
+**Action Slack**, developed by <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/8398a7">8398a7</a> and other contributors, currently has 590 stars on GitHub. This tool stands out among the other solutions due to its customizable notification appearance, allowing teams to tailor the look and feel of their Slack notifications.
 
-We love <a target="_blank" rel="noopener noreferrer nofollow" href="https://action-slack.netlify.app/">the online documentation</a> and the overall rich attachment interface, even if a quick design on the default appearance could be beneficial. But this is the only one to provide a way to customize the appearance of the notifications and they support GitHub Enterprise too!
+We appreciate the comprehensive [online documentation](https://action-slack.netlify.app/), which makes setup and configuration easy, and the robust attachment interface adds depth to **GitHub actions notifications** in Slack. **Action Slack** also supports **GitHub Enterprise**, making it a versatile choice for teams requiring advanced integration capabilities.
 
 <span className="rainbow-button  hover:cursor-auto">Example:</span>
 
@@ -143,6 +198,40 @@ steps:
   />
 </div>
 
-In conclusion, setting up notifications for GitHub Actions in Slack can greatly improve your workflow and keep your team informed of important updates. There are several ways to do this, including using out-of-the-box third-party applications like Axolo or one of the open-source GitHub Actions for Slack notifications that you need to set up. Whether you're a software engineer or a project manager, having timely notifications can help you stay on top of your tasks and make informed decisions. So give it a try and see how it can benefit your team!
+## Sending GitHub Actions Notifications in Slack: Best Practices
 
-If you know any other great integrations for GitHub Action in Slack, let us know and we will update the article!
+Follow these best practices to keep your team aligned and informed with timely updates and essential details.
+
+1. **Use Specific Channels for Targeted Notifications**  
+   Organize your **GitHub Actions Slack notifications** by directing them to relevant channels. For example, route **GitHub Slack pull request notifications** to dedicated channels for each project or team. This way, team members only receive **Slack GitHub PR notifications** that are directly relevant to their work, reducing noise and increasing focus.
+
+2. **Implement Conditional Notifications with slackapi/slack-github-action**  
+   Using **slackapi/slack-github-action**, you can customize **GitHub Actions notifications** to only send alerts based on specific conditions, like build status or test outcomes. This lets you avoid unnecessary alerts while ensuring crucial updates, like errors or successful builds, are shared promptly.
+
+3. **Take Advantage of Customizable Tools Like action-slack-notify**  
+   When you need more control over the appearance and details in your **GitHub Actions** notifications, consider using **action-slack-notify**. This tool allows you to personalize messages, enhancing the readability of **GitHub Slack notifications** for specific team needs.
+
+4. **Limit Notifications to Key Events Only**  
+   To prevent overload, configure **GitHub Actions notifications** to trigger only on significant events. Set up **GitHub PR Slack notifications** to notify the team only on status changes, deployments, or high-priority updates. This keeps Slack free from minor notifications, ensuring the team stays focused on meaningful changes.
+
+5. **Use GitHub action to send Slack message for Direct Alerts**  
+   When specific members need to receive critical updates, use these notification options to target them directly. This method is ideal for **GitHub action status** alerts or when immediate attention is required for certain **GitHub Actions pull request** updates.
+
+6. **Set Up Recap Summaries**  
+   Use tools that allow you to set recap summaries of your **GitHub Actions notifications** in each PR channel. This provides the team with a summary of key updates, ensuring everyone has access to an overview of the project’s current state without having to scroll through individual alerts.
+
+By following these best practices, you can keep **GitHub Actions Slack notifications** organized, relevant, and actionable, ensuring your team remains informed and focused on critical updates without being overwhelmed.
+
+<UserReview />
+
+## Configuring GitHub Actions for Optimal Slack Notifications with Axolo
+
+Setting up **[GitHub Actions Slack notifications](https://axolo.co/features/github-action-slack-notifications)** with Axolo can streamline your team's workflow and ensure timely, targeted updates. By integrating Axolo with **GitHub Actions**, you can receive **GitHub Slack pull request notifications** and other crucial status updates in dedicated Slack channels, enhancing team collaboration and keeping everyone informed.
+
+Axolo’s integration allows you to configure **GitHub Actions notifications** specifically for each pull request, ensuring that **GitHub Slack notifications** are directed to relevant team members. This minimizes unnecessary notifications while ensuring key updates are shared in real time. With tools like **slackapi/slack-github-action** and **action-slack-notify**, Axolo offers robust customization options, allowing teams to fine-tune how they receive **Slack GitHub PR notifications** based on specific events, statuses, and project needs.
+
+### How Axolo Helps You Maximize Efficiency with GitHub Action Status Updates
+
+With Axolo, you can automate Slack notifications with GitHub Actions to alert team members when there’s an update to the **GitHub action status**, such as a successful build, failed check, or deployment. This targeted approach keeps your team’s attention on high-priority **GitHub Actions pull request** events, ensuring everyone is aware of critical changes without being overwhelmed by minor notifications.
+
+In conclusion, Axolo’s integration with GitHub enhances workflow efficiency by delivering well-organized, real-time updates where your team communicates. With pull request notifications that are customizable and precisely targeted, Axolo minimizes noise and maximizes productivity during your [code reviews](https://axolo.co/), making it an ideal solution for engineering teams looking to stay on top of their projects. By using Axolo’s capabilities, you can keep your team focused, informed, and ready to address issues as they arise, helping your organization stay aligned and responsive.
