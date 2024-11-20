@@ -3279,6 +3279,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@smakss/react-scroll-direction@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@smakss/react-scroll-direction@npm:4.2.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 89df55c42631e3ccfbeec7cc9cc686eea1cf3340a9452218f14bf9e0fbd77085a832677addc6ef8fc99147d1cee1daf6eaab670e3648b5a8a51bfee71b0dc8e6
+  languageName: node
+  linkType: hard
+
 "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0":
   version: 8.0.0
   resolution: "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0"
@@ -11322,6 +11331,7 @@ react@rc:
   dependencies:
     "@headlessui/react": 2.2.0
     "@next/bundle-analyzer": 15.0.2
+    "@smakss/react-scroll-direction": ^4.2.0
     "@svgr/webpack": ^8.0.1
     "@tailwindcss/forms": ^0.5.9
     "@tailwindcss/typography": ^0.5.15
