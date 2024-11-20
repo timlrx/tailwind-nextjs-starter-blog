@@ -25,6 +25,7 @@
     "gray-matter": "^4.0.2",
     "hast-util-from-html-isomorphic": "^2.0.0",
     "image-size": "1.0.0",
+    "motion": "^11.11.17",
     "next": "15.0.2",
     "next-contentlayer2": "0.5.3",
     "next-themes": "^0.3.0",
