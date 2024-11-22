@@ -17,6 +17,14 @@ const MAX_DISPLAY = 5
 export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ""
   const posts = await getAllFilesFrontMatter("p", otherLocale)
+  console.log(posts.leng)
+  // Sort posts by lastmod or date in descending order
+  posts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
     currentPage: 1,
