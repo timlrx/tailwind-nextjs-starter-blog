@@ -36,6 +36,12 @@ export async function getStaticProps(context) {
   } = context
   const otherLocale = locale !== defaultLocale ? locale : ""
   const posts = await getAllFilesFrontMatter("p", otherLocale)
+  posts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   const pageNumber = parseInt(page)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

@@ -9,6 +9,12 @@ export const POSTS_PER_PAGE = 10
 export async function getStaticProps({ locale, defaultLocale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ""
   const posts = await getAllFilesFrontMatter("p", otherLocale)
+  posts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
     currentPage: 1,
