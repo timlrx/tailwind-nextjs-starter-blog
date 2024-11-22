@@ -34,6 +34,12 @@ export async function getStaticPaths({ locales, defaultLocale }) {
 export async function getStaticProps({ params, defaultLocale, locale, locales }) {
   const otherLocale = locale !== defaultLocale ? locale : ""
   const allPosts = await getAllFilesFrontMatter("p", otherLocale)
+  allPosts.sort((a, b) => {
+    const aDate = a.lastmod || a.date
+    const bDate = b.lastmod || b.date
+
+    return new Date(bDate) - new Date(aDate)
+  })
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
