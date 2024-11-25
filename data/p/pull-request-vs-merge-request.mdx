@@ -1,10 +1,10 @@
 ---
-title: "Pull Request vs. Merge Request: Understanding the Distinctions for Optimal GitHub and GitLab Usage"
+title: "Pull Request vs. Merge Request: Definitions, Key Differences, and Best Practices"
 date: "2023-07-05"
-lastmod: "2023-07-05"
+lastmod: "2024-11-26"
 tags: ["github", "gitlab", "code-review"]
 draft: false
-summary: "Since its creation, GitLab has been a popular choice for its CI/CD and pipelines focus. GitHub, on the other hand, has been the go-to choice for its ease of use and popularity among developers. That's why, when I first started using GitLab two years ago, I felt a discrepencies between the two flows for reviewing code."
+summary: "Explore the differences between Pull Requests and Merge Requests to better understand their unique roles, streamline collaboration, and optimize your development workflows in GitHub and GitLab."
 image: "/blog/static/images/gitlab/pr_vs_mr.jpg"
 ---
 
@@ -14,44 +14,50 @@ This guide is presented to you by <a href="https://axolo.co" className="no-under
 
 Let's get started!
 
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
+## Pull Request vs. Merge Request: What's the Difference?
+
+### Why Pull Requests and Merge Requests Are Important
+
+Since its creation, GitLab has been a popular choice for its CI/CD and pipelines focus. GitHub, on the other hand, has been the go-to choice for its ease of use and popularity among developers. That's why, when I first started using GitLab five years ago, I felt discrepancies between the two flows for reviewing code.
+
+I was used to GitHub's pull request flow, and I was surprised to see that GitLab's flow was different, and quite often missing features, especially on the API side (as I have been working on both APIs for the past few years). Whether it's creating a **pull request** in GitHub or working with a **merge request in GitLab**, understanding the differences is crucial.
+
+GitHub simplifies the process of reviewing code through its **pull requests**, while GitLab offers more customizable workflows with its **merge requests**. In both cases, assigning reviewers, such as deciding between a **GitLab assignee vs reviewer**, can significantly enhance collaboration. Features like **GitLab create merge request** and pipeline integration in GitLab further streamline the process, especially when teams need to ensure quality before merging.
+
+Understanding the **pull request vs merge request** differences, as well as the specific features like **GitLab approve merge request** or **GitHub approve pull request**, can help your team choose the best platform for their needs. By mastering these tools, you can make [code reviews](https://axolo.co) and the process to **merge a pull request** more efficient.
+
 <CTABanner type="learn" />
 
-<TOCInline toc={props.toc} toHeading={4} asDisclosure />
+## Understanding Pull Requests
 
-## I. Introduction, why understanding the differences between pull requests and merge requests is crucial
+### What Is a Pull Request?
 
-Since its creation, GitLab has been a popular choice for its CI/CD and pipelines focus. GitHub, on the other hand, has been the go-to choice for its ease of use and popularity among developers. That's why, when I first started using GitLab two years ago, I felt a discrepancies between the two flows for reviewing code.
+So, [what is a pull request](https://axolo.co/blog/p/part-1-what-are-github-pull-requests)? In software development, a pull request (PR) is a way to propose and merge changes to a codebase. It involves creating a request to merge a branch containing changes into a `target branch` (`base branch` in the GitLab environment). Developers can review, provide feedback, and once approved, the changes are merged into the target branch. Pull requests facilitate collaborative code review and integration.
 
-I was used to GitHub's pull request flow, and I was surprised to see that GitLab's flow was different, and quite often missing features, especially on the API side (as I have been working on both APIs for the past few years).
-
-Understanding the main differences between these two flows will help you decide which one is the best suited for your team, or if you need to change.
-
-## II. Understanding Pull Requests
-
-### Definition of Pull Requests
-
-In software development, a pull request (PR) is a way to propose and merge changes to a codebase. It involves creating a request to merge a branch containing changes into a `target branch` (`base branch` in the GitLab environment). Developers can review, provide feedback, and once approved, the changes are merged into the target branch. Pull requests facilitate collaborative code review and integration.
+A **merge request in GitLab** is a similar concept, which serves the same purpose but with slightly different workflows.
 
 ### How Pull Requests Work in GitHub
 
 #### How to Open a Pull Request in GitHub
 
-There are many ways to open a pull request in GitHub, the three most commons are:
+There are many ways to open **pull requests** in GitHub, the three most common are:
 
-- opening from your terminal while working on a different branch after a `git push`,
+- opening from your terminal while working on a different branch after a git push,
 - opening from the GitHub UI,
-- opening using <NoFollowLink url="https://cli.github.com/manual/gh_pr_create">the GitHub CLI</NoFollowLink> within your terminal.
+- opening using <NoFollowLink url="https://cli.github.com/manual/gh_pr_create">the GitHub CLI</NoFollowLink> within your terminal (the CLI is useful for a lot of things, including using git to merge a pull request).
 
 <ImageContainer
   alt="Open a pull request"
   src="/blog/static/images/gitlab/pr1.jpg"
-  classNameDiv="-mx-4 sm:-mx-10"
+  classNameDiv="-mx-4 sm:-mx-4"
   classNameImage=""
   width={1393}
   height={725}
 />
 
-This initial window lets you write a title and a description for your pull request, which will help your reviewers when they receive the request. You can also:
+This initial window lets you write a title and a description for your **pull requests**, which will help your reviewers when they receive the request. You can also:
 
 - assign reviewers,
 - assign assignees,
@@ -61,14 +67,16 @@ This initial window lets you write a title and a description for your pull reque
 - add a draft status,
 - add a linked issue.
 
-I advise you to check your changes in the code before clicking on the `Create pull request` button. That way, if you need to update anything, you won't notify your reviewers too early.
+I advise you to check your changes in the code before clicking on the `Create pull request` button to ensure smooth integration when you proceed to **merge a pull request** into the main branch. Also, I recommend you to create a [GitHub pull request template](https://axolo.co/blog/p/part-3-github-pull-request-template) to help your reviewers understand the purpose of the pull request.
 
-In GitHub, you can set an auto review request feature, you can decide which team or which developers should be requested automatically. GitLab does not provide any auto-reviewer feature.
+You can also opens a [GitHub draft PR](https://axolo.co/blog/p/part-2-how-to-open-a-pull-request) to start the review process without alerting your reviewers.
+
+In GitHub, you can set an auto-review request feature, deciding which team or developers should be requested automatically. This differs from the **pull request vs merge request** workflows, as GitLab does not provide any auto-reviewer feature. However, both platforms allow you to approve and **merge pull requests** once all reviews are completed.
 
 <ImageContainer
   alt="Changes while opening a pull request"
   src="/blog/static/images/gitlab/pr2.jpg"
-  classNameDiv="-mx-4 sm:-mx-20"
+  classNameDiv="-mx-4"
   classNameImage=""
   width={1920}
   height={929}
@@ -76,11 +84,13 @@ In GitHub, you can set an auto review request feature, you can decide which team
 
 #### How to Review a Pull Request in GitHub
 
-Once a pull request is opened, reviewers can start reviewing the changes. They can:
+Once **pull requests** are opened, reviewers can start reviewing the changes. Effective code reviews in **pull requests** help maintain code quality and facilitate collaboration across teams. Reviewers can:
 
-- create an `issue comment` in the pull request `Conversation` tab (called a `note` in GitLab),
-- comment on the code in the `Files changed` tab, which is a `code review comment` (or `diff note` in GitLab),
-- leave a review, which means creating a master review comment, requesting changes, or approving the pull request. (in GitLab, there is no such thing as a review, but you can only approve, or unapprove a merge request).
+- create an `issue comment` in the pull request `Conversation` tab (called a `note` in other tools),
+- comment on the code in the `Files changed` tab, which is a `code review comment`,
+- leave a review, which means creating a master review comment, requesting changes, or use the **GitHub approve pull request** button.
+
+Reviewers can also directly **approve pull requests** when they are satisfied with the updates and all concerns have been addressed. Adding detailed comments and suggestions within **pull requests** ensures clarity and alignment among contributors.
 
 <ImageContainer
   alt="Comments within pull requests"
@@ -91,22 +101,22 @@ Once a pull request is opened, reviewers can start reviewing the changes. They c
   height={415}
 />
 
-If you're interested in learning more about pull request code review, I wrote a guide on [how to review code in GitHub](https://axolo.co/blog/p/part-4-how-to-review-code-in-github)!
+If you're interested in learning more about **pull request** code review, I wrote a guide on [GitHub code review best practices](https://axolo.co/blog/p/part-4-how-to-review-code-in-github)!
 
 #### Finalizing and Merging a Pull Request in GitHub
 
 Depending on your team's requirements, you should set:
 
-- the minimum number of approval a pull request needs before being merged,
-- the minimum number of approval from a specific role or team (for example, a pull request needs at least one approval from a senior developer before being merged),
-- which CI/CD tests need to pass before a pull request can be merged.
+- the minimum number of approvals **pull requests** need before being merged,
+- the minimum number of approvals from a specific role or team (for example, **pull requests** need at least one approval from a senior developer before being merged),
+- which CI/CD tests need to pass before a **pull request** can be merged.
 
-On a GitHub pro plan, it is possible to set a `branch protection rule` to enforce these requirements.
+On a GitHub pro plan, it is possible to set a `branch protection rule` to enforce these requirements. By setting clear review and testing standards, teams ensure that **pull requests** are merged only after meeting high-quality benchmarks.
 
-Once the pull request is ready to be merged, you can click on the `Merge pull request` button. You can also squash and merge, or rebase and merge, depending on your team's requirements.
+Once all requirements are satisfied, and the **pull request** is ready to be merged, you can click on the `Merge pull request` button to use git to merge the pull request. Additionally, you can choose options like squash and merge or rebase and merge, depending on your team's preferences. These flexible options make it easier to handle the **merge a pull request** workflow effectively.
 
 <ImageContainer
-  alt="Comments within pull requests"
+  alt="How to approve a pull requests"
   src="/blog/static/images/gitlab/prmerge.jpg"
   classNameDiv="sm:mx-10"
   classNameImage=""
@@ -116,17 +126,17 @@ Once the pull request is ready to be merged, you can click on the `Merge pull re
 
 <CTABanner type="learn" tool="gitlab" />
 
-## III. Understanding Merge Requests
+## Understanding Merge Requests
 
-### Definition of Merge Request
+### What Is a Merge Request?
 
-In GitLab, a merge request (MR) is a mechanism for proposing and merging code changes. It allows developers to request the merging of a branch, containing their changes, into a target branch. Collaborators can review, provide feedback, and once approved, the changes are merged.
+In GitLab, a merge request (MR) is a mechanism for proposing and merging code changes. It allows developers to request the merging of a branch, containing their changes, into a target branch. Collaborators can review, provide feedback, and once approved, the changes are merged. [GitLab code reviews](https://axolo.co/gitlab-slack-integration) uses MRs to facilitate this process.
 
 So, to summarize, the main difference as of now is in terms of naming. In GitHub, you open a pull request on a `target branch`, and in GitLab, you open a merge request on a `base branch`. The rest of the flow is quite similar, but there are some differences, which we will see in the next section.
 
 ### How Merge Requests Work in GitLab
 
-There are many ways to open a merge request in GitHub, the three most commons are:
+There are many ways to open a **merge request in GitLab**, the three most common are:
 
 - opening from your terminal while working on a different branch after a `git push`,
 - opening from the GitLab UI and web editor,
@@ -141,16 +151,20 @@ There are many ways to open a merge request in GitHub, the three most commons ar
   height={1497}
 />
 
-This initial window lets you write a title (and mark the MR as draft) and a description for your pull request, which will help your reviewers when they receive the request. You can also:
+This initial window lets you write a title (and mark the MR as draft) and a description for your **pull request**, which will help your reviewers when they receive the request. Just like **pull requests** in GitHub, a **merge request in GitLab** allows developers to propose changes for collaboration and review. You can also:
 
 - assign reviewers,
 - assign assignees,
 - assign labels,
 - assign a project,
 - assign a milestone,
-- add a linked merge request.
+- add a linked **merge request**.
 
-In GitLab, you can't see your changes in this window. So when you open your MR, your reviewers will be notified right away. As said in the GitHub section, GitLab does not provide any auto review request feature.
+In GitLab, you can't see your changes in this window. So when you open your MR, your reviewers will be notified right away. Additionally, while GitHub offers auto-reviewer functionality, **GitLab creates merge request** workflows that require manual reviewer assignment.
+
+As a result, the **pull request vs merge request** debate often revolves around these differences in workflow and functionality, with teams choosing platforms based on their needs.
+
+### How Merge Requests Work in GitLab
 
 #### How to Review a Merge Request in GitLab
 
@@ -163,13 +177,15 @@ In GitLab, you can't see your changes in this window. So when you open your MR, 
   height={842}
 />
 
-Once a merge request is opened, reviewers can start reviewing the changes. They can:
+Once a **merge request in GitLab** is opened, reviewers can start evaluating the proposed changes. The **GitLab merge request** interface offers several tools for collaboration and feedback. Reviewers can:
 
 - create a `note comment` in the merge request `Overview` tab,
-- comment on the code in the `Changes` tab, which is called a `diff note`,
-- approve the MR with the button at the beginning of the `Overview` tab (or unapproved if you have already approved).
+- comment on the code in the `Changes` tab, known as a `diff note`,
+- approve the merge request using the **GitLab approve merge request** button at the top of the `Overview` tab (or unapprove it if already approved).
 
-Even if the names are different, the flow is pretty similar. But you can't request changes in the GitLab UI. If you are interested in learning more about how to review code in GitLab, I wrote a [guide on GitLab code review best practices](https://axolo.co/blog/p/gitlab-code-review-best-practices)!
+GitLab also distinguishes between roles like **GitLab assignee vs reviewer**, which helps streamline the review process by clearly defining responsibilities. This distinction ensures that the right team members are assigned for specific tasks during the review cycle.
+
+Even if the names and some features differ, the overall flow of a **merge request in GitLab** is quite similar to other platforms. However, unlike some systems, you cannot request changes directly in the GitLab UI. If you are interested in learning more about how to review code in GitLab, I wrote a guide on how to do [code review with gitlab](https://axolo.co/blog/p/gitlab-code-review-best-practices) and how to integrate Slack with your [GitLab self managed instance](https://axolo.co/blog/p/slack-integration-for-self-managed-gitlab)!
 
 #### Finalizing and Merging a Merge Request in GitLab
 
@@ -181,9 +197,9 @@ In the Settings of your project, you can set different rules for your merge requ
 
 Once the merge request is ready to be merged, you can click on the `Merge` button (which is at the beginning of the `Overview` tab). You can also squash and merge, or rebase and merge, depending on your team's requirements.
 
-## IV. Pull Request vs Merge Request: A Table of Key Differences
+## Pull Request vs Merge Request: A Table of Key Differences
 
-As we've seen, most differences are in terms of naming. But there are some differences in terms of features, GitLab does not provide an extended API and webhooks for integrations (no webhook for editing or deleting comments for example), or does not have an auto review request feature.
+As we've seen, most differences are in terms of naming if you compage merge vs pull requests. But there are some differences in terms of features, GitLab does not provide an extended API and webhooks for integrations (no webhook for editing or deleting comments for example), or does not have an auto review request feature.
 
 Also, GitLab has been initially developed as open-source, so it has been easier to deploy your instance of GitLab on your server. GitHub Enterprise Server now makes it possible to deploy your instance of GitHub, but it is not as easy as GitLab.
 
@@ -202,8 +218,74 @@ Also, GitLab has been initially developed as open-source, so it has been easier 
 
 <CTABanner type="try" />
 
-## V. Conclusion
+### Pull Request GitHub Best Practices
 
-I hope you've enjoyed this guide on Pull Request vs Merge Request! If you're interested in reviewing code faster, I invite you to test for free our service at [Axolo](https://axolo.co/). We are a Slack - GitHub/GitLab integration, and for each pull (or merge) request, we create an ephemeral channel and invite only the right people, it's like reviewing code and receiving notifications on auto-pilot!
+Pull requests in GitHub are a cornerstone of collaborative development workflows. By following best practices, teams can ensure high-quality code, efficient collaboration, and streamlined processes. Here are some key recommendations:
 
-If you want to go even further, I suggest you learn more about [what is a pull request template](https://axolo.co/blog/p/part-3-github-pull-request-template) and [how to implement code review guidelines](https://axolo.co/blog/p/code-review-guideline)!
+#### Use Clear and Descriptive Titles and Descriptions
+
+A well-written pull request title and description can save reviewers significant time and confusion. Detail the purpose of the pull request, highlight key changes, and link any relevant issues. This is especially important when collaborating across teams.
+
+> Example: "A clear description in **pull requests** helps reviewers understand the purpose and context of the changes."
+
+#### Assign Reviewers Using CodeOwners and Teams
+
+GitHub's **CodeOwners** file allows teams to automate the assignment of reviewers based on file ownership. This ensures the right person is notified for every pull request.
+
+> Example: "With **CodeOwners**, pull requests automatically notify the best-suited reviewers based on their area of expertise."
+
+#### Leverage Approval and Branch Protection Rules
+
+GitHub's branch protection rules ensure pull requests meet certain criteria before being merged. This may include requiring a minimum number of approvals or ensuring CI/CD pipelines pass successfully. The "Approve pull request" feature streamlines collaboration during reviews.
+
+> Example: "Branch protection rules prevent **merge pull requests** before all necessary checks and approvals are completed."
+
+#### Differences in Workflow: GitHub vs. GitLab
+
+A main difference between merge vs pull requests is that while GitHub automates reviewer assignments through features like **CodeOwners**, GitLab lacks a built-in auto-assign reviewer feature. However, tools like [Axolo's Auto-Assign Reviewer for GitLab](https://axolo.co/auto-assign-reviewer-for-gitlab) make it possible to replicate this functionality for free, enhancing GitLab’s review process.
+
+### Merge Request GitLab Best Practices
+
+Merge requests in GitLab offer robust features tailored for teams relying on CI/CD and granular role management. By utilizing GitLab’s unique tools, teams can improve their development workflows. Here are the best practices:
+
+#### Integrate CI/CD Pipelines
+
+One of GitLab’s standout features is its seamless integration with CI/CD pipelines. Set up your pipeline to automatically test, build, and validate your changes before approval.
+
+> Example: "Using CI/CD integration in your **GitLab merge request** ensures only validated code is merged into the main branch."
+
+#### Organize with Labels, Milestones, and Linked Issues
+
+GitLab’s interface allows you to organize merge requests with labels, linked issues, and milestones. This provides a clear context for reviewers and keeps projects on track.
+
+> Example: "Adding labels and linking issues to a **merge request in GitLab** improves visibility and helps prioritize reviews."
+
+#### Assign Roles Effectively
+
+GitLab provides a clear distinction between assignees and reviewers. Assignees are responsible for making changes, while reviewers focus on providing feedback.
+
+> Example: "Understanding the **GitLab assignee vs reviewer** distinction ensures clarity in responsibilities during the review process."
+
+#### Approvals and Permissions
+
+The **GitLab approve merge request** feature enables teams to enforce minimum approval rules before merging. This fosters accountability and ensures that code meets the team’s quality standards.
+
+## Improve Your Development Process with Axolo
+
+Either way, working on merge vs pull requests effectively can be a challenge, especially for teams striving to maintain high-quality code while ensuring fast and efficient collaboration. Axolo is here to bridge those gaps and help your team improve their workflow.
+
+With Axolo’s two-way Slack integration, you can eliminate context switching, stay notified in real-time, and significantly reduce time-to-merge metrics by up to 50%. By streamlining communication and collaboration, Axolo empowers engineering teams to be more agile and responsive to changes, keeping your team competitive in a fast-paced development environment.
+
+Here’s why teams love Axolo:
+
+- **Automated Reviewer Assignment**: Axolo ensures the right reviewers are assigned automatically, saving time and improving the efficiency of your review process.
+- **Seamless Slack Integration**: Stay connected and informed without switching between tools, with features like real-time updates, Slack threads for code comments, and synchronized communication.
+- **Improved Metrics**: By focusing on collaboration, Axolo helps teams reduce the time it takes to merge changes, enhancing agility and productivity.
+
+As Joe Rowley, VP of Engineering at Curebase, shares:
+
+> “Our developers have really enjoyed the increased focus it brings, which is especially important as our team grows. As a fully remote organization, using the correct communication tools is vital, and Axolo balances things nicely.”
+
+Ready to take your development process to the next level? Try Axolo for free and experience the difference it can make in managing your **GitHub pull requests** and **GitLab merge requests**.
+
+<UserReview />
