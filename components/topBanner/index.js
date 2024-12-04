@@ -13,7 +13,7 @@ export default function TopBanner() {
 
   return (
     <div
-      className={`relative ${isDark ? "bg-gray-800 text-white" : "bg-white text-gray-700"} ${
+      className={`relative ${isDark ? "bg-gray-900 text-white" : "bg-white text-gray-700"} ${
         isVisible ? "opacity-100 transition-opacity duration-500" : "opacity-0"
       }`}
     >

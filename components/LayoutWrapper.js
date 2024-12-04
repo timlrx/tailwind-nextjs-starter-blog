@@ -9,6 +9,8 @@ import ThemeSwitch from "./ThemeSwitch"
 import Image from "next/image"
 import useTranslation from "next-translate/useTranslation"
 import { useRouter } from "next/router"
+import { SignInUpButtons } from "./signInUpButtons"
+import TopBanner from "./topBanner"
 
 const LayoutWrapper = ({ children }) => {
   const { t } = useTranslation()
@@ -22,8 +24,9 @@ const LayoutWrapper = ({ children }) => {
 
   return (
     <SectionContainer>
-      <div className="flex h-screen flex-col justify-between">
-        <header className="flex items-center justify-between py-10">
+      <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900">
+        <TopBanner />
+        <header className="mx-auto flex max-w-3xl items-center justify-between py-4 px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div className="flex items-center justify-between">
@@ -31,24 +34,24 @@ const LayoutWrapper = ({ children }) => {
                   <Logo />
                 </div> */}
                 <Image
-                  width={44}
-                  height={44}
-                  src={siteMetadata.image}
+                  width={3798 / 20}
+                  height={840 / 20}
+                  src="/blog/static/images/axolo/logo_axolo.png"
                   alt="logo Axolo"
-                  className="rounded-full"
+                  // className="rounded-full"
                 />
-                {typeof siteMetadata.headerTitle[locale] === "string" ? (
+                {/* {typeof siteMetadata.headerTitle[locale] === "string" ? (
                   <div className="hidden h-6 text-2xl font-semibold sm:block">
                     {siteMetadata.headerTitle[locale]}
                   </div>
                 ) : (
                   siteMetadata.headerTitle[locale]
-                )}
+                )} */}
               </div>
             </Link>
           </div>
           <div className="flex items-center text-base leading-5">
-            <div className="hidden sm:block">
+            {/* <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
                 <Link
                   key={link.title}
@@ -58,7 +61,7 @@ const LayoutWrapper = ({ children }) => {
                   {t(`headerNavLinks:${link.title.toLowerCase()}`)}{" "}
                 </Link>
               ))}
-            </div>
+            </div> */}
             <select
               onChange={changeLanguage}
               defaultValue={locale}
@@ -72,12 +75,13 @@ const LayoutWrapper = ({ children }) => {
               ))}
             </select>
             <ThemeSwitch />
+            <SignInUpButtons />
             <MobileNav />
           </div>
         </header>
-        <main className="mb-auto">{children}</main>
-        <Footer />
       </div>
+      <main className="mb-auto">{children}</main>
+      <Footer />
     </SectionContainer>
   )
 }

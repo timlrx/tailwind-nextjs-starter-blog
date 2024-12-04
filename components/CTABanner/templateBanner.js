@@ -6,7 +6,7 @@ function CTABanner({ type, tool = "github" }) {
       firstText: "Axolo is a Slack app to help tech",
       secondText: `teams review ${pull} request seamlessly`,
       link: "https://axolo.co",
-      textButton: `Try for free`,
+      textButton: `Sign up`,
     },
     learn: {
       firstText: `Enable your team to ${verbe}`,
