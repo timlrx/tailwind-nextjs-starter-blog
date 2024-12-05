@@ -25,7 +25,7 @@ const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <div className="sticky top-0 z-50 w-full bg-white dark:bg-gray-900">
-        <TopBanner />
+        {/* <TopBanner /> */}
         <header className="mx-auto flex max-w-3xl items-center justify-between py-4 px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
