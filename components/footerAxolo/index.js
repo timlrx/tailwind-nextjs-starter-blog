@@ -18,12 +18,14 @@ export default function FooterAxolo({ hostingTool = "GitHub", domain = "axolo" }
         <div className="md:grid md:grid-cols-1 lg:grid-cols-7 lg:gap-8 ">
           <div className="row-start-2 mt-8 space-y-8 lg:col-span-3 lg:row-start-1 lg:mt-0 ">
             <div className="flex ">
-              <Image
-                width={150}
-                height={33}
-                src="https://axolo.s3.eu-west-3.amazonaws.com/media/logo/logo_axolo.png"
-                alt="Axolo logo"
-              />
+              <a href="https://axolo.co" target="_blank" rel="noopener noreferrer">
+                <Image
+                  width={150}
+                  height={33}
+                  src="https://axolo.s3.eu-west-3.amazonaws.com/media/logo/logo_axolo.png"
+                  alt="Axolo logo"
+                />
+              </a>
             </div>
             <p className="text-base text-gray-500 dark:text-gray-400">
               <span className="hidden sm:flex">

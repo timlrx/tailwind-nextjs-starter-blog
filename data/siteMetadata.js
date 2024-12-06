@@ -3,8 +3,8 @@ const siteMetadata = {
   "slack-app-id": "A01RP0R62N7",
   author: "Axolo",
   headerTitle: {
-    en: "Axolo - The best pull request Slack application",
-    fr: "Pull request Slack application & best practices",
+    en: "Axolo - Blog",
+    fr: "Axolo - Blog",
   },
   description: {
     en: "Discover best practices and tech news shared by the Axolo team. Product updates, interviews with engineering leaders and thoughts on engineering collaboration are on the menu.",
@@ -20,7 +20,7 @@ const siteMetadata = {
   logo: "/blog/static/images/logo_axolo.png",
   siteLogo: "/blog/static/images/logo_axolo.png",
   siteUrl: "https://axolo.co/blog",
-  image: "/blog/static/images/axolo_face_square.png",
+  image: "/blog/static/images/logo_axolo.png",
   socialBanner: "/static/images/twitter_cover.png",
   email: "hey@axolo.co",
   github: "https://github.com/axolo-co",

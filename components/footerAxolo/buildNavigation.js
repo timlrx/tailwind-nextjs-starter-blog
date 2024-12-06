@@ -1,9 +1,9 @@
-const URL_FRONT =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "https://axolo.co/"
+const URL_FRONT = "https://axolo.co/"
 
 export default function buildNavigation({ domain, hostingTool }) {
   const navigation = {
     about: [
+      { name: "Axolo", href: `${URL_FRONT}` },
       { name: "Security", href: `${URL_FRONT}security` },
       { name: "Privacy policy", href: `${URL_FRONT}privacy-policy` },
       { name: "Terms", href: `${URL_FRONT}tos` },
