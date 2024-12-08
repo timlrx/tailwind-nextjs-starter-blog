@@ -76,6 +76,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [YawDev Blog](https://yawdev.org/blog) - IT-Agency / Software Development. Blog about tech and business ([Project Link](https://yawdev.org))
 - [Engineering Notes](https://www.jonvet.com) - Jonas Vetterle Personal Website & Blog. I'm writing articles about software engineering that interest me, including AI and Quantum Computing
 - [Screenager.dev](https://screenager.vercel.app) - Personal Website as Portfolio & Blog. Documenting my learning journey and some guides.
+- [kezhenxu94's blog](https://kezhenxu94.me) - Blogging about dev, tips & tricks, tutorials and more.
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
