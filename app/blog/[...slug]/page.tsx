@@ -8,6 +8,7 @@ import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
+import PostSimpleWithTOC from '@/layouts/PostSimpleWithTOC'
 import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
@@ -17,6 +18,7 @@ import { notFound } from 'next/navigation'
 const defaultLayout = 'PostLayout'
 const layouts = {
   PostSimple,
+  PostSimpleWithTOC,
   PostLayout,
   PostBanner,
 }
