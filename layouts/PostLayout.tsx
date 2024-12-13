@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, isValidElement } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
 import Comments from '@/components/Comments'
@@ -9,6 +9,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import TOCMobile from '@/components/TOCMobile'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -162,6 +163,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </footer>
           </div>
         </div>
+        {isValidElement(children) && children.props.toc.length > 0 ? (
+          <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
+            <TOCMobile toc={children.props.toc} />
+          </div>
+        ) : null}
       </article>
     </SectionContainer>
   )

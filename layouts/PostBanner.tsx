@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, isValidElement } from 'react'
 import Image from '@/components/Image'
 import Bleed from 'pliny/ui/Bleed'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -9,6 +9,7 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import TOCMobile from '@/components/TOCMobile'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -72,6 +73,11 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           </footer>
         </div>
+        {isValidElement(children) && children.props.toc.length > 0 ? (
+          <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
+            <TOCMobile toc={children.props.toc} />
+          </div>
+        ) : null}
       </article>
     </SectionContainer>
   )
