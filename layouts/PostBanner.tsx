@@ -9,7 +9,8 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import TOCMobile from '@/components/TOCMobile'
+// import TOCMobile from '@/components/TOCMobile'
+import SideLeft from '@/components/SideLeft'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -26,6 +27,9 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
   return (
     <SectionContainer>
       <ScrollTopAndComment />
+      {isValidElement(children) && children.props.toc.length > 0 ? (
+        <SideLeft toc={children.props.toc} />
+      ) : null}
       <article>
         <div>
           <div className="space-y-1 pb-10 text-center dark:border-gray-700">
@@ -73,11 +77,11 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           </footer>
         </div>
-        {isValidElement(children) && children.props.toc.length > 0 ? (
+        {/* {isValidElement(children) && children.props.toc.length > 0 ? (
           <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
             <TOCMobile toc={children.props.toc} />
           </div>
-        ) : null}
+        ) : null} */}
       </article>
     </SectionContainer>
   )

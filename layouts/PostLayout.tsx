@@ -9,7 +9,8 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import TOCMobile from '@/components/TOCMobile'
+// import TOCMobile from '@/components/TOCMobile'
+import SideLeft from '@/components/SideLeft'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -37,6 +38,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   return (
     <SectionContainer>
       <ScrollTopAndComment />
+      {isValidElement(children) && children.props.toc.length > 0 ? (
+        <SideLeft toc={children.props.toc} />
+      ) : null}
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
@@ -163,11 +167,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </footer>
           </div>
         </div>
-        {isValidElement(children) && children.props.toc.length > 0 ? (
+        {/* {isValidElement(children) && children.props.toc.length > 0 ? (
           <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
             <TOCMobile toc={children.props.toc} />
           </div>
-        ) : null}
+        ) : null} */}
       </article>
     </SectionContainer>
   )

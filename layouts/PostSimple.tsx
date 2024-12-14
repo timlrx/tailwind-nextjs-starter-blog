@@ -9,6 +9,7 @@ import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import TOCMobile from '@/components/TOCMobile'
+import SideLeft from '@/components/SideLeft'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -23,6 +24,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   return (
     <SectionContainer>
       <ScrollTopAndComment />
+      {isValidElement(children) && children.props.toc.length > 0 ? (
+        <SideLeft toc={children.props.toc} />
+      ) : null}
       <article>
         <div>
           <header>
@@ -77,11 +81,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             </footer>
           </div>
         </div>
-        {isValidElement(children) && children.props.toc.length > 0 ? (
-          <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
+        {/* {isValidElement(children) && children.props.toc.length > 0 ? (
+          <div className="lg:hidden1 fixed bottom-8 left-1 z-50 cursor-pointer hover:scale-105 focus:scale-105">
             <TOCMobile toc={children.props.toc} />
           </div>
-        ) : null}
+        ) : null} */}
       </article>
     </SectionContainer>
   )

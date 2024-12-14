@@ -8,8 +8,9 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import TOC from '@/components/TOC'
+// import TOC from '@/components/TOC'
 import TOCMobile from '@/components/TOCMobile'
+import SideLeft from '@/components/SideLeft'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -24,6 +25,9 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   return (
     <SectionContainer>
       <ScrollTopAndComment />
+      {isValidElement(children) && children.props.toc.length > 0 ? (
+        <SideLeft toc={children.props.toc} />
+      ) : null}
       <article>
         <div>
           <header>
@@ -61,11 +65,11 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 <Comments slug={slug} />
               </div>
             )}
-            {isValidElement(children) && children.props.toc.length > 0 ? (
-              <div className="lg:hidden1 fixed bottom-16 left-8 z-50 cursor-pointer hover:scale-105 focus:scale-105">
+            {/* {isValidElement(children) && children.props.toc.length > 0 ? (
+              <div className="fixed bottom-32 left-1 z-50 cursor-pointer hover:scale-105 focus:scale-105 md:left-1 lg:hidden">
                 <TOCMobile toc={children.props.toc} />
               </div>
-            ) : null}
+            ) : null} */}
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && prev.path && (

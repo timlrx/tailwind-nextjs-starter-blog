@@ -79,48 +79,11 @@ export default function ListLayoutWithTags({
       <div>
         <div className="pb-6 pt-6">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
+            Tag: <span className="text-primary-500">{title}</span>
           </h1>
         </div>
-        <div className="flex sm:space-x-24">
-          <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded border-r border-gray-100 bg-gray-50/10 dark:border-gray-700 dark:bg-gray-900 dark:shadow-gray-800/40 sm:flex">
-            <div className="px-6 py-4">
-              {pathname.startsWith('/blog') ? (
-                <h3 className="border-b border-gray-300 pb-2 font-bold uppercase text-primary-500 dark:border-gray-500">
-                  All Posts
-                </h3>
-              ) : (
-                <Link
-                  href={`/blog`}
-                  className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-                >
-                  All Posts
-                </Link>
-              )}
-              <ul>
-                {sortedTags.map((t) => {
-                  return (
-                    <li key={t} className="my-3">
-                      {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
-                        <h3 className="inline px-3 py-2 text-sm font-bold capitalize text-primary-500">
-                          {`${t} (${tagCounts[t]})`}
-                        </h3>
-                      ) : (
-                        <Link
-                          href={`/tags/${slug(t)}`}
-                          className="px-3 py-2 text-sm font-medium capitalize text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-                          aria-label={`View posts tagged ${t}`}
-                        >
-                          {`${t} (${tagCounts[t]})`}
-                        </Link>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
-          <div>
+        <div className="flex gap-10">
+          <div className="w-full lg:w-3/4">
             <ul>
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags } = post
@@ -158,6 +121,44 @@ export default function ListLayoutWithTags({
             {pagination && pagination.totalPages > 1 && (
               <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
             )}
+          </div>
+
+          <div className="sticky top-20 hidden h-full max-h-screen w-1/4 transform flex-wrap overflow-auto rounded border-l border-gray-100 bg-gray-50/10 transition duration-200 ease-in-out dark:border-gray-700 dark:bg-gray-900 dark:shadow-gray-800/40 sm:flex">
+            <div className="w-full px-6 py-4">
+              {pathname.startsWith('/blog') ? (
+                <h3 className="border-b border-gray-300 pb-2 font-bold uppercase text-primary-500 dark:border-gray-500">
+                  All Tags
+                </h3>
+              ) : (
+                <Link
+                  href={`/blog`}
+                  className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                >
+                  All Posts
+                </Link>
+              )}
+              <ul>
+                {sortedTags.map((t) => {
+                  return (
+                    <li key={t} className="my-3">
+                      {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
+                        <h3 className="inline py-2 text-sm font-bold capitalize text-primary-500">
+                          {`${t} (${tagCounts[t]})`}
+                        </h3>
+                      ) : (
+                        <Link
+                          href={`/tags/${slug(t)}`}
+                          className="py-2 text-sm font-medium capitalize text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          aria-label={`View posts tagged ${t}`}
+                        >
+                          {`${t} (${tagCounts[t]})`}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
