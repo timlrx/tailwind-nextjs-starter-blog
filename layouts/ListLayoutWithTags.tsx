@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'
 import { formatDate } from 'pliny/utils/formatDate'
@@ -72,7 +73,17 @@ export default function ListLayoutWithTags({
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  const [searchValue, setSearchValue] = useState('')
+  const filteredBlogPosts = posts.filter((post) => {
+    const searchContent = post.title + post.summary + post.tags?.join(' ')
+    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+  })
+
+  // If initialDisplayPosts exist, display it if no searchValue is specified
+  const displayPosts =
+    initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+
+  // const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
     <>
@@ -92,7 +103,7 @@ export default function ListLayoutWithTags({
                     <article className="flex flex-col space-y-2 xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
                           <time dateTime={date} suppressHydrationWarning>
                             {formatDate(date, siteMetadata.locale)}
                           </time>
@@ -123,10 +134,38 @@ export default function ListLayoutWithTags({
             )}
           </div>
 
-          <div className="sticky top-20 hidden h-full max-h-screen w-1/4 transform flex-wrap overflow-auto rounded border-l border-gray-100 bg-gray-50/10 transition duration-200 ease-in-out dark:border-gray-700 dark:bg-gray-900 dark:shadow-gray-800/40 sm:flex">
+          <div className="sticky top-20 hidden h-full max-h-screen w-1/4 transform flex-wrap overflow-auto rounded border-l border-gray-100 transition duration-200 ease-in-out dark:border-gray-800 sm:flex">
+            <div className="px-6 py-4">
+              <div className="relative w-full">
+                <label>
+                  <span className="sr-only">Search articles</span>
+                  <input
+                    aria-label="Search articles"
+                    type="text"
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    placeholder="Search articles"
+                    className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
+                  />
+                </label>
+                <svg
+                  className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
             <div className="w-full px-6 py-4">
               {pathname.startsWith('/blog') ? (
-                <h3 className="border-b border-gray-300 pb-2 font-bold uppercase text-primary-500 dark:border-gray-500">
+                <h3 className="border-b border-gray-300 pb-2 font-bold uppercase text-primary-500 dark:border-gray-800">
                   All Tags
                 </h3>
               ) : (
@@ -134,30 +173,30 @@ export default function ListLayoutWithTags({
                   href={`/blog`}
                   className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                 >
-                  All Posts
+                  All Tags
                 </Link>
               )}
-              <ul>
+              <div className="mt-2 flex flex-wrap">
                 {sortedTags.map((t) => {
                   return (
-                    <li key={t} className="my-3">
+                    <div key={t} className="p-1">
                       {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
-                        <h3 className="inline py-2 text-sm font-bold capitalize text-primary-500">
+                        <h3 className="inline p-1 text-sm font-bold capitalize text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
                           href={`/tags/${slug(t)}`}
-                          className="py-2 text-sm font-medium capitalize text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          className="p-1 text-sm font-medium capitalize text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
                           {`${t} (${tagCounts[t]})`}
                         </Link>
                       )}
-                    </li>
+                    </div>
                   )
                 })}
-              </ul>
+              </div>
             </div>
           </div>
         </div>

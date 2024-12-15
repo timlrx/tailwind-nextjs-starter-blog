@@ -88,30 +88,27 @@ export default function SideLeft(props: TOCProps) {
         </div>
       )}
       {show && (
-        <div className="fixed bottom-6 left-2 z-50 mt-auto pt-3 md:left-4 lg:inline-flex">
-          <div className="flex-1" />
-          <div className="justify-end py-2">
-            <button
-              onClick={() => setSidebarExpanded(!sidebarExpanded)}
-              className="rounded-full bg-gray-200 p-2"
+        <div className="fixed bottom-6 left-2 z-50 mt-auto md:left-4">
+          <button
+            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+            className="rounded-full bg-gray-200 p-2 text-gray-900 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
+          >
+            <span className="sr-only">Expand / collapse sidebar</span>
+            <svg
+              className={`h-5 w-5 fill-current ${
+                !sidebarExpanded ? 'rotate-180' : 'rotate-0'
+              } transition duration-300 ease-in-out`}
+              viewBox="0 0 24 24"
             >
-              <span className="sr-only">Expand / collapse sidebar</span>
-              <svg
-                className={`h-5 w-5 fill-current ${
-                  !sidebarExpanded ? 'rotate-180' : 'rotate-0'
-                } transition duration-300 ease-in-out`}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M10.5 19.5L3 12M3 12L10.5 4.5M3 12H21"
-                  stroke="#0F172A"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M10.5 19.5L3 12M3 12L10.5 4.5M3 12H21"
+                stroke="#0F172A"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       )}
     </>
