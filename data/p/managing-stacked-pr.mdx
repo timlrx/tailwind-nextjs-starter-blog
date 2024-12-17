@@ -1,7 +1,7 @@
 ---
-title: "Managing Stacked PRs"
+title: "Managing Stacked PRs | Using Stacked Pull Requests in GitHub"
 date: "2023-11-10"
-lastmod: "2023-11-10"
+lastmod: "2024-12-17"
 tags: ["Stacked PRs", "Code Review", "GitHub", "Development Tools"]
 draft: false
 summary: "A detailed guide on managing Stacked PRs for efficient code reviews, featuring popular tools like Ghstack, Git Town, Sapling, Spr, and Graphite."
@@ -9,9 +9,19 @@ image: "/blog/static/images/general/Managing Stacked PRs.jpg"
 authors: ["sydney"]
 ---
 
-<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+Managing code reviews efficiently can make or break your team's productivity. Enter **GitHub stacked PRs**—a powerful workflow that breaks down complex changes into smaller, manageable pieces. By leveraging **stacked pull requests**, your team can streamline collaboration, improve code quality, and adhere to best practices.
 
-## 1. What is a Stacked PR? A Strategy for Sequential and Manageable Code Reviews
+Whether you're working on a large refactor or a multi-step feature, **PR stacking** ensures that each step is reviewed independently, reducing bottlenecks and making it easier to identify potential issues early. But how can your team get the most out of this workflow? From understanding **how to create a PR in GitHub** to integrating tools like Axolo, we’ll guide you through the strategies and techniques to implement **git stacked PRs** effectively.
+
+Throughout this guide, you’ll discover:
+
+- When to use **stacked PRs in GitHub** to enhance your workflow.
+- How **stacked pull requests** enable quicker, more focused reviews.
+- Tips for aligning your workflow with **GitHub pull request best practices** for faster merges and better code quality.
+
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
+## What is a Stacked PR? A Strategy for Sequential and Manageable Code Reviews
 
 <ImageContainer
   alt="stacked pr illustration"
@@ -21,22 +31,63 @@ authors: ["sydney"]
   width={1792}
   height={1024}
 /> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  The image contrasts two approaches to software development. On the left, a team works together
-  smoothly, each piece of their puzzle represents a small, easy-to-manage pull request, symbolizing
-  efficient collaboration and clear progress. On the right, a developer is overwhelmed by a jumble
-  of puzzle pieces, illustrating the confusion and complexity of handling a large, unwieldy pull
-  request. This visual metaphor highlights the advantages of stacked pull requests: quicker reviews,
-  fewer bugs, and a more organized codebase.
+  A team that knows how to use Stacked PRs vs. a team that doesn't
 </SubImageText>
 
 A Stacked Pull Request (PR) is a development workflow strategy where multiple smaller PRs are opened in a specific sequence, each one building upon the previous. This approach allows for easier code review, as each PR contains a manageable chunk of changes, making it simpler for reviewers to understand the context and impact. Stacked PRs are particularly useful in larger projects where a single PR could become overwhelming to review.
 
-## 2. The Importance of Stacked PRs in Streamlined Code Reviews
+### When and why should you use stacked PRs?
+
+By breaking down large changes into smaller, manageable units, **stacked PRs** offer numerous advantages over monolithic pull requests. But when exactly should you use stacked pull requests, and why is this strategy beneficial? Let’s explore.
+
+#### When to Use Stacked PRs
+
+1. **Complex Features**: When implementing a feature that requires multiple independent steps, using **stacked pull requests** allows each step to be reviewed and merged sequentially. This approach ensures incremental progress and reduces the risk of errors.
+2. **Large Refactoring**: For significant refactors, **git stacked PRs** make it easier to isolate changes, ensuring each piece is tested and reviewed thoroughly without overwhelming reviewers.
+3. **Collaboration Across Teams**: When multiple teams or developers work on interconnected changes, **stacked PRs** help maintain a clear dependency chain, avoiding merge conflicts.
+4. **Iterative Development**: In agile workflows, where feedback and iterative improvements are common, **PR stacking** ensures that every small change is handled independently while maintaining the integrity of the base branch.
+
+#### Why Use Stacked PRs
+
+1. **Clearer Code Reviews**: **GitHub stacked diffs** allow reviewers to focus on specific parts of the code, making reviews faster and more focused.
+2. **Reduced Risk**: Smaller, isolated changes mean fewer surprises during integration. By using **stack PR** practices, the likelihood of bugs and regressions decreases.
+3. **Efficient Collaboration**: Teams can parallelize their work, and ensures that dependent branches are handled logically and systematically.
+4. **Better Code Quality**: Best practices, like keeping changes small and self-contained, are naturally supported by stacking PRs. This ensures maintainability and readability.
+
+<ImageContainer
+  alt="stackedprs"
+  src="/blog/static/images/stacked-pr/stackedprs.webp"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={790}
+  height={399}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  This is what stacking PRs looks like
+</SubImageText>
+
+### How Stacked PRs Help
+
+- **Tracking Dependencies**: Developers can easily see which PRs are dependent on others.
+- **Faster Iterations**: With clear dependency chains, changes can be merged progressively, speeding up the development cycle.
+- **Alignment with GitHub Features**: By learning **how to create a PR in GitHub** for stacked workflows, developers can fully leverage tools like **stacked diffs** to visualize and manage changes efficiently.
+
+### Example Scenarios
+
+Imagine you’re building a new feature with multiple subcomponents. Instead of one massive pull request, you might:
+
+1. Create a base branch and a **stack PR** for the core functionality.
+2. Build dependent branches for each subcomponent, using **stacking** to manage relationships.
+3. Use tools designed for **GitHub stacked pull requests** to handle reviews, manage conflicts, and ensure a smooth integration process.
+
+By knowing **how to make a PR in GitHub** and employing stacked workflows, teams can reduce review times, improve collaboration, and achieve higher code quality.
+
+## The Importance of Stacked PRs in Streamlined Code Reviews
 
 <ImageContainer
   alt="stacked pr is efficient"
   src="/blog/static/images/stacked-pr/stacked pr is efficient.png"
-  classNameDiv="mx-10 lg:mx-20"
+  classNameDiv="mx-10 lg:mx-40"
   classNameImage=""
   width={1024}
   height={1024}
@@ -54,20 +105,18 @@ Stacked PRs align well with the best practices of having small, manageable chang
 
 By aligning with the principle of making small, focused changes, Stacked PRs inherently incorporate these best practices into your development workflow.
 
-## 3. Stacked PR in GitHub: How to Manage Stacked PRs
+## Stacked PR in GitHub: How to Manage Stacked PRs
 
 <ImageContainer
   alt="managing-stacked-pr"
   src="/blog/static/images/stacked-pr/managing-stacked-pr.png"
-  classNameDiv="mx-10 lg:mx-20"
+  classNameDiv="mx-10 lg:mx-40"
   classNameImage=""
   width={1024}
   height={1024}
-/> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  Managing Stacked PR as a developer
-</SubImageText>
+/>{" "}
 
-Managing Stacked PRs in GitHub can be a game-changer for your development workflow. According to a [LogRocket blog post](https://blog.logrocket.com/using-stacked-pull-requests-in-github/), here's a simplified guide on how to manage Stacked PRs in GitHub:
+Managing Stacked PRs in GitHub can be a game-changer for your development workflow. According to a [LogRocket blog post](https://blog.logrocket.com/using-stacked-pull-requests-in-github/), here's a simplified guide on how to do it properly:
 
 ### Creating a Stacked PR
 
@@ -109,16 +158,79 @@ Managing Stacked PRs in GitHub can be a game-changer for your development workfl
 
 - **Direct Merge**: Use the "Merge" option to maintain the commit history.
 
-### Best Practices
+## Best practices for reviewing stacked PRs
 
 - **Labeling**: Label the PR as 'Stacked' to avoid confusion.
 - **Order of Merging**: Merge the base PR first to simplify subsequent merges.
 
-By following these simplified steps, you can manage Stacked PRs in GitHub more effectively, making your development process more organized and efficient.
+By following these simplified steps, you can manage Stacked PRs more effectively, making your development process more organized and efficient.
 
-## 4. Stacked PR Tools Tools available for managing Stacked PRs
+## Benefits of Stacked PRs
 
-Managing Stacked PRs can be made even more efficient with specialized tools. Below is a table summarizing some of the popular tools and their features:
+**Stacked pull requests** bring numerous advantages to development workflows, especially when working on large, complex projects. By breaking changes into smaller, independent pieces, **GitHub stacked PRs** simplify code reviews, reduce risks, and improve collaboration. Whether you’re an experienced developer or learning **how to create a PR in GitHub**, adopting stacking techniques can greatly enhance your efficiency.
+
+### Fully Unblocked Dev Workflows
+
+One of the biggest benefits is their ability to keep development workflows unblocked. Here’s how **stacked pull requests** contribute to seamless progress:
+
+1. **Parallel Development**: With stacking, teams can work on multiple features or fixes simultaneously. Each **stack PR** depends only on its immediate predecessor, ensuring that progress isn’t stalled by pending reviews on unrelated branches.
+2. **Faster Reviews**: Smaller, focused pull requests make it easier for reviewers to identify and address issues. This aligns with **GitHub pull request best practices**, enabling quick feedback and iteration.
+3. **Clear Dependency Management**: Tools like **pull requests** and **stacked diffs** allow developers to visualize dependencies between branches, ensuring that all stacked changes are reviewed and merged in the correct order.
+4. **Minimized Merge Conflicts**: By isolating changes, **git stacked PRs** reduce the chances of merge conflicts. Each branch remains independent until it’s ready to be integrated into the base branch.
+5. **Better Resource Allocation**: Knowing **how to make a PR in GitHub** for stacked workflows allows teams to allocate resources more effectively, focusing on smaller, manageable tasks.
+
+### Example in Practice
+
+Imagine you’re working on a feature that includes a database update, an API change, and a front-end adjustment. Using **stacked PRs in GitHub**, you would:
+
+1. Create an initial **stack PR** for the database migration.
+2. Build a dependent branch for the API update, using **stacking** to manage relationships.
+3. Finally, add a branch for the front-end changes, connecting it to the API branch.
+
+This structured approach ensures that each piece can be reviewed and merged independently, keeping workflows moving efficiently.
+
+By using **GitHub stacked pull requests**, teams can achieve fully unblocked workflows, reduce bottlenecks, and deliver higher-quality code with less friction. Whether you're handling large projects or just learning, embracing **PR stacking** is a key step towards optimizing your development process.
+
+---
+
+### Quicker, More Thorough Reviews
+
+One of the greatest advantages of **GitHub stacked PRs** is their ability to streamline the review process. Smaller, more focused changes, as promoted by stacking, make it easier for reviewers to assess the quality and impact of the code.
+
+1. **Focused Scope**: By breaking changes into smaller **stacked pull requests**, reviewers can concentrate on specific aspects of the code without being overwhelmed by unrelated modifications.
+2. **Improved Feedback Loop**: When using **git stacked PRs**, reviewers can provide detailed feedback on each **stack PR**, allowing developers to address issues incrementally and refine their work step-by-step.
+3. **Clear Diff Management**: Tools like **GitHub stacked diffs** highlight only the changes made in each pull request, reducing confusion and improving clarity for reviewers.
+4. **Aligned with Best Practices**: Learning **how to create a PR in GitHub** using stacked workflows ensures alignment with industry standards, promoting high-quality code and efficient reviews.
+
+By adopting **stacked pull requests**, teams can enjoy quicker reviews without sacrificing thoroughness, leading to better overall collaboration and reduced bottlenecks.
+
+---
+
+### Easier Debugging
+
+Debugging complex code can be a nightmare, especially when multiple changes are bundled into a single pull request. With **stacked PRs**, developers can isolate and troubleshoot issues more effectively, thanks to the smaller and more manageable nature of **stacked pull requests**.
+
+1. **Isolated Changes**: Each **stack PR** contains a specific, well-defined change. This makes it easier to identify where issues originate.
+2. **Smaller Impact Radius**: By using **PR stacking**, developers minimize the risk of breaking unrelated parts of the codebase, simplifying debugging efforts.
+3. **Dependency Awareness**: With tools like **GitHub on pull_request**, developers can easily track which changes depend on others, ensuring that debugging efforts remain focused and efficient.
+4. **Clear Diffs**: Features like **GitHub stacked diffs** provide a precise view of each change, helping developers pinpoint errors quickly and accurately.
+5. **Improved Testing**: By understanding **how to make a PR in GitHub** for stacked workflows, teams can test and debug smaller changes independently, reducing the chances of compounding issues.
+
+Debugging is an essential part of the development process, and **git stacked PRs** make it easier to maintain a clean and stable codebase. Whether you're working on a large project or starting out, using **stacked PRs** simplifies error resolution and ensures a smoother workflow.
+
+## Stacked PR Tools Tools available for managing Stacked PRs
+
+Managing **GitHub stacked PRs** effectively requires the right tools to keep workflows streamlined and efficient. As development teams increasingly adopt **stacking** to break down large tasks into smaller, focused **stacked pull requests**, tools that simplify branch management, code review, and collaboration have become essential.
+
+Specialized tools for **git stacked PRs** ensure that developers can create, organize, and merge **stack PRs** without getting lost in complex dependency chains. These tools also help teams visualize **GitHub stacked diffs**, making it easier to focus on specific changes without being overwhelmed by the larger codebase.
+
+With features like seamless GitHub integration, intuitive UIs, and advanced CLI support, these tools align perfectly with **GitHub pull request best practices**, helping teams achieve:
+
+- **Clear Dependency Management**: Automatically visualize and manage relationships between **stacked pull requests**.
+- **Faster Reviews**: Enable reviewers to focus on incremental changes without losing context.
+- **Reduced Context Switching**: Simplify PR workflows, ensuring smoother collaboration across teams.
+
+Below is a list of popular tools that make **PR stacking** and managing **GitHub stacked pull requests** easier, more efficient, and more accessible for development teams of all sizes:
 
 | Tool                                                                          | Features                                                                                                                        |
 | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -130,7 +242,67 @@ Managing Stacked PRs can be made even more efficient with specialized tools. Bel
 
 <CTABanner type="try" />
 
-## 5. Conclusion: Summary and Key Takeaways
+### How to Implement the Stacking Workflow for Your Team
+
+Adopting a stacking workflow for your team can significantly enhance collaboration, reduce bottlenecks, and improve the quality of code reviews. By leveraging **GitHub stacked PRs**, teams can break down large changes into smaller, focused pull requests, making it easier for everyone involved to stay aligned and productive.
+
+#### When Should You Create a Stacked PR?
+
+Understanding when to create a **stacked PR** is essential for building an efficient workflow. Here are common scenarios where **Pstacking** can be highly beneficial:
+
+1. **Large Features or Refactoring**: When working on a feature that involves multiple components or layers, **stacked pull requests** allow your team to focus on incremental changes rather than reviewing one overwhelming PR.
+2. **Collaborative Efforts**: If multiple developers are contributing to interconnected changes, using **stacked PRs** ensures each piece is reviewed and merged in sequence, avoiding confusion or merge conflicts.
+3. **Iterative Improvements**: In agile workflows, where iterative feedback is crucial, **PR stacking** enables teams to adapt quickly without disrupting the entire project.
+4. **High-Risk Changes**: For sensitive updates like database migrations or critical business logic, creating smaller **stacked pull requests** helps isolate potential issues, making debugging easier.
+
+#### Benefits of Stacked PRs for Team Collaboration
+
+Using **GitHub stacked PRs** doesn’t just help developers—it empowers the entire team to work smarter and more effectively. Here’s how:
+
+1. **Streamlined Reviews**: By breaking changes into smaller **stack PRs**, reviewers can focus on individual parts, ensuring faster, more thorough feedback.
+2. **Improved Communication**: Tools like Axolo facilitate **stacking** by creating ephemeral Slack channels for each PR, centralizing discussions and making it easier for everyone to stay on the same page.
+3. **Faster Merges**: With clearly organized **GitHub stacked pull requests**, dependencies are easier to manage, and teams can merge changes more quickly without waiting for unrelated work to be reviewed.
+
+#### Collaborative Tips for Stacking PRs
+
+1. **Plan as a Team**: Before creating **stacked PRs**, discuss the overall approach with your team. Define the sequence of changes and assign ownership for each **stack PR**.
+2. **Label and Document**: Use consistent labels and clear descriptions for each PR to ensure everyone understands its purpose.
+3. **Leverage GitHub Features**: Utilize **stacked diffs** to provide reviewers with a clear view of incremental changes and **GitHub on pull_request** for managing notifications and tracking dependencies.
+4. **Establish Best Practices**: Encourage the team to follow established best practices, such as writing clear commit messages, testing changes thoroughly, and maintaining a consistent code style.
+
+By adopting **git stacked PRs**, your team can foster a collaborative environment where everyone works together more efficiently. Whether you’re tackling a complex feature or improving existing workflows, **stacked PRs** allow teams to deliver high-quality code faster while ensuring clarity and alignment across the board. Ready to elevate your code review process? Start implementing **stacking** today and see the difference it makes for your team!
+
+## How to handle stacked PRs on GitHub with Axolo bot
+
+Managing **stacked pull requests** has never been easier than with Axolo. Axolo seamlessly integrates **stacked PRs in GitHub** and Slack, creating **ephemeral Slack channels** for every stacked PR. This allows developers and reviewers to communicate and collaborate on each PR independently, reducing confusion and ensuring faster reviews.
+
+By organizing discussions into dedicated channels, Axolo empowers teams to focus on individual **stack PR** contexts without losing track of other pull requests. This streamlined communication significantly improves the review process, allowing teams to merge PRs faster.
+
+With Axolo:
+
+- Each stacked PR automatically generates a dedicated Slack channel for **PR stacking**.
+- Communication is centralized, making it easier to share insights and resolve issues quickly.
+- Teams can review, test, and merge **GitHub stacked pull requests** with greater speed and efficiency.
+
+#### What is Axolo?
+
+Axolo is a **GitHub and GitLab Slack bot** designed to enhance code reviews by creating instant, focused collaboration spaces for pull requests. Whether you're managing **GitHub stacked PRs**, handling CI/CD notifications, or following **stacked diffs**, Axolo ensures your team stays aligned and productive.
+
+<ImageContainer
+  alt="code review tools"
+  src="/blog/static/images/gitlab-teams/gitlabOldWay.png"
+  classNameDiv="bg-white hidden md:flex mx-0 z-50"
+  classNameImage=""
+  width={2486}
+  height={994}
+/>
+
+#### Key Features:
+
+- **1 Pull Request = 1 Channel**: Centralize discussions for every PR in ephemeral Slack channels.
+- **Customizable Notifications**: Avoid overload with tailored updates on GitHub activity.
+- **Daily Summaries**: Keep your team informed with daily PR recaps.
+- **CI/CD Integration**: Monitor branch conflicts, pull request checks, and deployments directly in Slack.
 
 Stacked PRs offer a more organized and efficient approach to code reviews, especially for larger projects. They align well with best practices for small, manageable changes, making the review process quicker and more thorough. Various tools like ghstack, Git Town, Sapling, spr, and Graphite can further streamline this workflow, each offering unique features to manage your Stacked PRs effectively.
 
