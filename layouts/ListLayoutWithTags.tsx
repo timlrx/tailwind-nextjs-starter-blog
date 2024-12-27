@@ -187,14 +187,8 @@ export function ListLayoutBase({
                             {summary}
                           </div>
                           {readMore && (
-                            <div className="text-base font-medium leading-6">
-                              <Link
-                                href={`/blog/${slug}`}
-                                className="text-primary-500 group-hover:text-primary-600 dark:group-hover:text-primary-400"
-                                aria-label={`Read more: "${title}"`}
-                              >
-                                Read more &rarr;
-                              </Link>
+                            <div className="font-medium leading-6 text-primary-500 group-hover:text-primary-300">
+                              Read more &rarr;
                             </div>
                           )}
                         </div>
