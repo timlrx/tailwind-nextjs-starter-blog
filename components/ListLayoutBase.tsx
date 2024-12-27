@@ -25,7 +25,7 @@ export function ListLayoutBase({
         {posts.map((post) => {
           const { path, date, title, summary, tags } = post
           return (
-            <li key={path} className="py-3">
+            <li key={path} className="py-10">
               <article>
                 <div
                   className={clsx({
