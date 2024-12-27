@@ -19,7 +19,7 @@ export default function Home({ posts }) {
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
-          <ListLayoutBase dateToSide={true} posts={posts} readMore={true} />
+          <ListLayoutBase dateToSide={true} posts={posts} readMore={true} divideY={true} />
         </ul>
       </div>
       {posts.length > MAX_DISPLAY && (
