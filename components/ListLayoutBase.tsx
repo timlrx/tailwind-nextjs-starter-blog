@@ -4,14 +4,18 @@ import { formatDate } from 'pliny/utils/formatDate'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
+import type { Blog } from 'contentlayer/generated'
 import clsx from 'clsx'
-import Pagination from '@/components/Pagination'
+import Pagination, { PaginationProps } from '@/components/Pagination'
 import { ListLayoutProps } from '@/layouts/ListLayoutWithTags'
+import { CoreContent } from 'pliny/utils/contentlayer'
 
-interface ListLayoutBaseProps extends ListLayoutProps {
+interface ListLayoutBaseProps {
   readMore?: boolean
   dateToSide?: boolean
   divideY?: boolean
+  pagination?: PaginationProps
+  posts: Blog[]
 }
 
 export function ListLayoutBase({
