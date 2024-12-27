@@ -9,6 +9,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
+import clsx from 'clsx'
 
 interface PaginationProps {
   totalPages: number
@@ -16,7 +17,7 @@ interface PaginationProps {
 }
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
-  title: string
+  title?: string
   initialDisplayPosts?: CoreContent<Blog>[]
   pagination?: PaginationProps
 }
@@ -77,12 +78,14 @@ export default function ListLayoutWithTags({
   return (
     <>
       <div>
-        <div className="pb-6 pt-6">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
-          </h1>
-        </div>
-        <div className="flex sm:space-x-24">
+        {title && (
+          <div className="pb-6 pt-6">
+            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+              {title}
+            </h1>
+          </div>
+        )}
+        <div className=" flex space-x-0 sm:space-x-12 xl:space-x-24">
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="w-full py-4 pl-6">
               {pathname.startsWith('/blog') ? (
@@ -118,47 +121,98 @@ export default function ListLayoutWithTags({
               </ul>
             </div>
           </div>
-          <div>
-            <ul>
-              {displayPosts.map((post) => {
-                const { path, date, title, summary, tags } = post
-                return (
-                  <li key={path} className="py-5">
-                    <article className="flex flex-col space-y-2 xl:space-y-0">
-                      <dl>
-                        <dt className="sr-only">Published on</dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                          <time dateTime={date} suppressHydrationWarning>
-                            {formatDate(date, siteMetadata.locale)}
-                          </time>
-                        </dd>
-                      </dl>
-                      <div className="space-y-3">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                          </div>
-                        </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                    </article>
-                  </li>
-                )
-              })}
-            </ul>
-            {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )}
-          </div>
+          <ListLayoutBase posts={displayPosts} pagination={pagination} />
         </div>
       </div>
     </>
+  )
+}
+
+interface ListLayoutBaseProps extends ListLayoutProps {
+  readMore?: boolean
+  dateToSide?: boolean
+}
+
+export function ListLayoutBase({
+  posts,
+  pagination,
+  readMore = false,
+  dateToSide = false,
+}: ListLayoutBaseProps) {
+  return (
+    <div className="w-full">
+      <ul>
+        {posts.map((post) => {
+          const { path, date, title, summary, tags } = post
+          return (
+            <li key={path} className="py-3">
+              <article>
+                <div
+                  className={clsx({
+                    'space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0':
+                      dateToSide === true,
+                    'pointer mb-1 flex flex-col space-y-2 transition-colors xl:space-y-0':
+                      dateToSide === false,
+                  })}
+                >
+                  {dateToSide && (
+                    <dl className="hidden xl:block">
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date} suppressHydrationWarning>
+                          {formatDate(date, siteMetadata.locale)}
+                        </time>
+                      </dd>
+                    </dl>
+                  )}
+                  <div className={clsx({ 'space-y-5 xl:col-span-3': dateToSide === true })}>
+                    <Link className="group" href={`/${path}`}>
+                      <div className="mb-2 rounded-lg border border-transparent p-2 group-hover:border-primary-400 group-hover:bg-primary-100 dark:hover:bg-primary-900">
+                        <dl className={clsx({ 'block xl:hidden': dateToSide, block: !dateToSide })}>
+                          <dt className="sr-only">Published on</dt>
+                          <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                            <time dateTime={date} suppressHydrationWarning>
+                              {formatDate(date, siteMetadata.locale)}
+                            </time>
+                          </dd>
+                        </dl>
+
+                        <div>
+                          <div>
+                            <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                              <p className="text-gray-900 dark:text-gray-100">{title}</p>
+                            </h2>
+                          </div>
+                          <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                            {summary}
+                          </div>
+                          {readMore && (
+                            <div className="text-base font-medium leading-6">
+                              <Link
+                                href={`/blog/${slug}`}
+                                className="text-primary-500 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+                                aria-label={`Read more: "${title}"`}
+                              >
+                                Read more &rarr;
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                    <div className="flex flex-row flex-wrap gap-1">
+                      {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+          )
+        })}
+      </ul>
+      {pagination && pagination.totalPages > 1 && (
+        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+      )}
+    </div>
   )
 }
