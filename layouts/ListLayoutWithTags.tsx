@@ -13,7 +13,7 @@ import clsx from 'clsx'
 import type { PaginationProps } from '@/components/Pagination'
 import Pagination from '@/components/Pagination'
 
-interface ListLayoutProps {
+export interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title?: string
   initialDisplayPosts?: CoreContent<Blog>[]
