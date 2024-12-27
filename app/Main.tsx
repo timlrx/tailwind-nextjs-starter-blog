@@ -3,7 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
-import { ListLayoutBase } from '@/layouts/ListLayoutWithTags'
+import ListLayoutBase from '@/components/ListLayoutBase'
 
 const MAX_DISPLAY = 5
 
