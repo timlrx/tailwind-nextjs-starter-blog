@@ -11,6 +11,7 @@ import { ListLayoutProps } from '@/layouts/ListLayoutWithTags'
 interface ListLayoutBaseProps extends ListLayoutProps {
   readMore?: boolean
   dateToSide?: boolean
+  divideY?: boolean
 }
 
 export function ListLayoutBase({
@@ -18,10 +19,11 @@ export function ListLayoutBase({
   pagination,
   readMore = false,
   dateToSide = false,
+  divideY = false,
 }: ListLayoutBaseProps) {
   return (
     <div className="w-full">
-      <ul>
+      <ul className={clsx({ 'divide-y divide-gray-200 dark:divide-gray-700': divideY })}>
         {posts.map((post) => {
           const { path, date, title, summary, tags } = post
           return (
