@@ -77,7 +77,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Engineering Notes](https://www.jonvet.com) - Jonas Vetterle Personal Website & Blog. I'm writing articles about software engineering that interest me, including AI and Quantum Computing
 - [Screenager.dev](https://screenager.vercel.app) - Personal Website as Portfolio & Blog. Documenting my learning journey and some guides.
 - [kezhenxu94's blog](https://kezhenxu94.me) - Blogging about dev, tips & tricks, tutorials and more.
-- [taitrd.com](https://taitrd.com) - Tai's personal dev blog, technologies and code activity with Dynamodb practice.
+- [taitrd.com](https://taitrd.com) - Tai's personal dev blog, technologies and coding activity with Dynamodb practice ([source code](https://github.com/taitrd/taitrd)).
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
