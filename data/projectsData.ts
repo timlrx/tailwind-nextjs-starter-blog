@@ -13,9 +13,20 @@ const projectsData: Project[] = [
     href: 'https://bubblyclouds.com',
   },
   {
+    title: 'Sudoku Share',
+    description: `WORK IN PROGRESS! - 🌱 Sudoku of the day - We publish a new challenge each day
+- 📸 Import a Sudoku - Scan in seconds using your camera e.g. one from a newspaper, puzzle book or a sudoku website and solve it in this app instead of on paper!
+- 🧠 Solve on your phone, laptop or tablet - continue on another device
+- 🤾‍♂️ Share a Sudoku with family and friends - see who can complete it fastest
+- ✅ Check your work, reveal solution of square/grid if desired
+- This app is Open Source - if you want to see how it’s made`,
+    imgSrc: '/content/images/projects/sudoku-share.png',
+    href: 'https://sudoku.bubblyclouds.com/',
+  },
+  {
     title: 'Music Rating',
-    description: `A website hosting music ratings for Stephen Esch. Version one is using Node.js, Knex+Postgres, S3, AngularJS. Soon to be rewritten in React, Next.js and a NestJS REST API.`,
-    imgSrc: '/content/images/projects/music-rating.png',
+    description: `A website hosting music ratings for Stephen Esch. Now running version two which is a statically generated site with React and Next.js. Version one was dynamic using Node.js, Knex+Postgres, S3, AngularJS.`,
+    imgSrc: '/content/images/projects/music-rating-v2.png',
     href: 'https://music.stephenesch.co.uk/',
   },
   {
