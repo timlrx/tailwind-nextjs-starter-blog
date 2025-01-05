@@ -80,6 +80,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Parminder's blog](https://singhspeak.com) - Thoughts on software development, life and more.
 - [wheelcircuit.com](https://wheelcircuit.com) - Automotive YouTube News & Videos blog, updated daily.
 - [taitrd.com](https://taitrd.com) - Tai's personal dev blog, technologies and coding activity with Dynamodb practice ([source code](https://github.com/taitrd/taitrd)).
+- [Shelton's Blog](https://www.sheltonma.top) - Sharing insights on TypeScript full-stack development (Next.js, React, Hono, Supabase), web crawlers, and other cutting-edge technologies.
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
