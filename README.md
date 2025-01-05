@@ -77,6 +77,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Engineering Notes](https://www.jonvet.com) - Jonas Vetterle Personal Website & Blog. I'm writing articles about software engineering that interest me, including AI and Quantum Computing
 - [Screenager.dev](https://screenager.vercel.app) - Personal Website as Portfolio & Blog. Documenting my learning journey and some guides.
 - [kezhenxu94's blog](https://kezhenxu94.me) - Blogging about dev, tips & tricks, tutorials and more.
+- [Parminder's blog](https://singhspeak.com) - Thoughts on software development, life and more.
 - [wheelcircuit.com](https://wheelcircuit.com) - Automotive YouTube News & Videos blog, updated daily.
 
 Using the template? Feel free to create a PR and add your blog to this list.
