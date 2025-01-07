@@ -15,8 +15,7 @@ authors: ["sydney"]
 
 Use the following examples to craft clear and effective Git commit messages for various scenarios:
 
-```GITHUB COMMIT MESSAGE TEMPLATE EXAMPLES
-
+```plaintext
 ## Commit message with description and breaking change footer
 feat: allow provided config object to extend other configs
 
@@ -77,9 +76,9 @@ Reviewed-by: A, B
 
 ## Importance of Clear Git Commit Messages
 
-Clear and concise Git commit messages are essential in the software development lifecycle. They provide context and understanding of changes, aiding in project management, collaboration, and maintaining a clean version history. Here’s why they matter.
+Clear, well-structured Git commit messages play a crucial role in the development process. They offer context for every change, making project management and collaboration more streamlined. By explaining the reasons behind updates, these messages prevent confusion and help teams maintain a solid version history.
 
-## Git Commit Messages checklist
+## Git Commit Messages Checklist
 
 <ImageContainer
   alt="Git Commit Messages checklist"
@@ -92,13 +91,13 @@ Clear and concise Git commit messages are essential in the software development 
 
 ### Enhancing Project Management and Collaboration
 
-Effective commit messages can significantly improve project management and team collaboration. Here's how:
+Good commit messages can significantly boost teamwork and project organization:
 
-- **Context and Clarity**: Each commit message offers a snapshot of what changes were made and why. This context is invaluable for anyone reviewing the project's history or understanding the codebase's evolution. Clear messages reduce onboarding time for new team members and make revisiting old code easier for existing members.
-- **Efficient Code Reviews**: Well-written commit messages streamline the code review process. Reviewers can quickly grasp the purpose and scope of changes, allowing for more focused reviews.
-- **Enhanced Collaboration**: Clear commit messages foster better communication among multiple developers working on the same project. They help synchronize efforts, understand each team member’s contributions, and avoid redundant work.
+- **Clarity and Purpose**: Each message quickly tells others what has changed and why it was needed. This reduces onboarding times for new developers and helps existing contributors revisit the codebase with minimal friction.
+- **Simplifying Code Reviews**: A well-written message gives reviewers insight into the scope and objective of a change, making it easier to focus on the code itself.
+- **Better Teamwork**: Detailed commit notes improve communication by illustrating how everyone’s work fits together.
 
-For more detailed guidelines, refer to the [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/).
+For more detailed guidelines, refer to the [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer").
 
 <ImageContainer
   alt="Git commit"
@@ -107,18 +106,19 @@ For more detailed guidelines, refer to the [Git Commit Guidelines](https://chris
   classNameImage=""
   width={1760}
   height={1507}
-/> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
   If you type Git Log in your Git Repository in your terminal you will see a Git history that looks
   similar to this!
 </SubImageText>
 
 ### Benefits for Code Tracking and Version Control
 
-Commit messages are essential for tracking changes and maintaining an organized version control history. Here are the benefits:
+Commit messages also act as your project’s historical breadcrumbs:
 
-- **Traceability**: Clear commit messages make it easy to trace the origin of specific changes. This is crucial for debugging, as developers can pinpoint when and why a particular change was made.
-- **History Navigation**: With well-structured commit messages, navigating through the history of the repository becomes straightforward. Developers can quickly find specific changes related to a bug fix, feature implementation, or refactor.
-- **Automated Tools Integration**: Many continuous integration (CI) and deployment tools rely on commit messages to trigger actions or generate release notes. Clear and consistent messages ensure these tools function correctly and provide meaningful outputs.
+- **Traceability**: It’s easier to backtrack changes and figure out which commit introduced an issue.
+- **Simple History Navigation**: Clear messages let you search for specific fixes or features when the repository grows.
+- **Smooth Automation**: Tools like continuous integration or release pipelines often rely on commit messages to trigger certain actions or generate notes.
 
 <ImageContainer
   alt="Commit graph"
@@ -127,67 +127,72 @@ Commit messages are essential for tracking changes and maintaining an organized 
   classNameImage=""
   width={3724}
   height={2326}
-/> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  Here is a Git History using GitLens in VS Code. It clearly shows which modifications has been made
-  by who with descriptive messages. This can be highly beneficial when debugging.
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Here is a Git History using GitLens in VS Code. It clearly shows which modifications were made by
+  whom, with descriptive messages. This can be highly beneficial when debugging.
 </SubImageText>
 
-For an in-depth understanding, check out the [Git Documentation on Commit Messages](https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines).
+For a deeper dive, check out the [Git Documentation on Commit Messages](https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines "nofollow noopener noreferrer").
 
-By adhering to best practices for writing Git commit messages, developers can enhance the overall efficiency and effectiveness of their project workflows, ensuring that the version control history is a valuable resource for everyone involved in the project.
+Following best practices in writing commit messages helps keep the repository organized, fosters clearer communication, and improves overall productivity for the entire team.
 
 ## Part 1: Understanding Git Commit Messages
 
 ### What is a Git Commit Message?
 
-A Git commit message is a brief text that accompanies each commit in a Git repository. It provides a snapshot of what changes were made and why, serving as an essential piece of documentation within the version control system.
+A Git commit message is a short note that goes with each commit in a Git repository. It shows what was changed and explains why those changes were made, serving as an important piece of documentation in your version control process.
 
-- **Definition and Purpose**: A Git commit message serves to explain the context and intent of the changes made in a particular commit. This makes it easier for other developers (and your future self) to understand the rationale behind changes when reviewing the project history.
-  - [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/saving-changes/git-commit)
-- **Anatomy of a Commit Message**: A well-structured commit message typically consists of a subject line, a body, and a footer. The subject line is a brief summary of the changes, the body provides more detailed information, and the footer includes any relevant metadata, such as issue references.
-  - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- **Definition and Purpose**: Every commit message clarifies the motivation behind a particular change, helping current and future developers understand the reasoning behind edits when they look back at the project’s history.
+
+  - [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/saving-changes/git-commit "nofollow noopener noreferrer")
+
+- **Anatomy of a Commit Message**: Generally, a well-written commit message has three parts: a subject line, a body, and a footer. The subject line sums up the changes, the body dives into the details, and the footer can include extra data like issue IDs or references.
+  - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
+
+Providing this level of detail is particularly helpful when dealing with complex projects, since it clarifies why certain paths were taken. Maintaining informative commit messages makes your version history a valuable resource for the entire team.
 
 ### Why Git Commit Messages Matter
 
-Beyond their role in basic project management, Git commit messages play several critical roles in the development lifecycle and overall project health.
+Beyond day-to-day coding tasks, commit messages play a significant role in the health of a software project:
 
-- **Facilitating Code Reviews**: Clear commit messages make it easier for reviewers to understand the scope and purpose of changes. This leads to more effective and efficient code reviews.
-  - [The Importance of Commit Messages](https://dev.to/chrissiemhrk/git-commit-message-5e21)
-- **Debugging and Troubleshooting**: When bugs arise, a well-documented commit history allows developers to trace changes that might have introduced issues. This can significantly speed up the debugging process.
-- **Project Onboarding**: For new team members, commit messages provide valuable insights into the project's evolution and decision-making processes, easing the onboarding process.
-- **Automating Workflows**: Many CI/CD systems and release tools use commit messages to trigger actions, generate changelogs, and automate parts of the deployment process. Consistent messaging ensures these tools work effectively.
-- **Historical Context**: Over time, commit messages build a historical narrative of the project. This context is invaluable for understanding why certain decisions were made, especially in complex projects.
+- **Streamlining Code Reviews**: Explaining the scope and purpose of changes helps reviewers provide better feedback.
+- **Easier Debugging and Troubleshooting**: A well-documented commit history accelerates the process of finding when and how bugs were introduced.
+- **Project Onboarding**: New contributors gain insights into the evolution and decision-making behind the code.
+- **Workflow Automation**: Many CI/CD pipelines rely on commit messages for actions like generating changelogs or deploying features.
 
-By consistently writing informative commit messages, developers can ensure that the version control history remains a valuable resource for everyone involved in the project.
+By consistently writing informative commit messages, developers keep the repository’s history an asset rather than a hindrance.
 
 ## Part 2: Structure of a Git Commit Message
 
 ### Subject Line
 
-The subject line is the first part of a commit message and should provide a brief summary of the changes made. It sets the tone for the rest of the message and helps reviewers quickly understand the purpose of the commit.
+Each commit message starts with a subject line that briefly captures the essence of your changes. It gives teammates a quick snapshot of the commit’s purpose.
 
-- **Brief Summary of the Commit (50 characters max)**: The subject line should be concise, ideally limited to 50 characters, to ensure readability in various Git tools and interfaces.
-  - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+- **Concise Summary (50 characters max)**: Keep your subject line short—ideally no more than 50 characters—so it’s easy to read in various Git tools.
+  - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer")
 
 ### Body
 
-The body of a commit message provides detailed information about the changes made. It explains the "what" and "why" behind the changes, offering valuable context for reviewers and future maintainers.
+The body of your commit message can include technical details, design reasons, or other relevant background that shaped the changes you made.
 
-- **Detailed Explanation of What and Why**: The body should elaborate on the changes introduced by the commit, explaining what was done and why it was necessary. This section can include technical details, design decisions, and any relevant background information.
-  - [Writing Good Commit Messages](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/)
-- **Reference to Relevant Issues or Pull Requests**: Whenever possible, include references to related issues or pull requests. This helps link the commit to broader project discussions and provides additional context.
-  - [Referencing Issues in Commits](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
-- **Separate Paragraphs for Different Points**: To enhance readability, separate different points or topics within the body into distinct paragraphs. This makes the message easier to scan and understand.
-  - [Commit Message Guidelines](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format)
+- [Writing Good Commit Messages](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/ "nofollow noopener noreferrer")
+
+- **Referencing Issues or Pull Requests**: If possible, mention any related issues or PRs to provide additional context and keep the broader discussion linked.
+
+  - [Referencing Issues in Commits](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls "nofollow noopener noreferrer")
+
+- **Paragraph Breaks**: Use distinct paragraphs for different points to maintain clarity. This makes it easier for others to scan and understand your message.
+  - [Commit Message Guidelines](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format "nofollow noopener noreferrer")
 
 ### Footer
 
-The footer of a commit message includes additional metadata that may be relevant to the commit. This can include co-authors, issue tracking information, and other pertinent details.
+In the footer, you can list any relevant metadata:
 
-- **Metadata Like Co-Authors, Issue Tracking, etc.**: The footer can be used to acknowledge co-authors, track related issues, or include other relevant metadata. This helps maintain a clear and comprehensive record of contributions.
-  - [Sign-off in Commit Messages](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s)
-- **Sign-off Details**: When required, include a "Signed-off-by" line in the footer to indicate who authored or reviewed the commit. This is particularly useful in projects that follow the Developer Certificate of Origin (DCO).
-  - [Git Documentation on Sign-offs](https://git-scm.com/docs/git-commit#_signing_off_commits)
+(See also [Sign-off in Commit Messages](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s "nofollow noopener noreferrer") for more details.)
+
+- **Signed-off-by**: Some teams require a “Signed-off-by” line in the footer. This is particularly important for projects adhering to the Developer Certificate of Origin (DCO).
+  - [Git Documentation on Sign-offs](https://git-scm.com/docs/git-commit#_signing_off_commits "nofollow noopener noreferrer")
 
 <ImageContainer
   alt="Git Commit"
@@ -196,29 +201,30 @@ The footer of a commit message includes additional metadata that may be relevant
   classNameImage=""
   width={2998}
   height={1826}
-/> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  Git Commiting using Vimium
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Git committing using Vimium
 </SubImageText>
 
 ## Part 3: Writing Effective Git Commit Messages
 
 ### Tips for Crafting Clear and Concise Messages
 
-Writing clear and concise commit messages is an art that can significantly improve the readability and maintainability of your codebase. Here are some tips to help you craft effective commit messages:
+Clear and concise commit messages can make your codebase significantly easier to maintain and review. Below are some suggestions:
 
-- **Be Precise and to the Point**: Avoid vague language and focus on specific changes. Clearly describe what the commit does.
-  - [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages)
-- **Use Active Voice and Present Tense**: Writing in active voice and present tense makes commit messages more direct and easier to understand.
-  - [Active Voice in Commit Messages](https://cbea.ms/git-commit/#active)
+- **Be Specific**: Avoid vague text. Summarize the change precisely and mention why it was needed.
+  - [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages "nofollow noopener noreferrer")
+- **Active Voice & Present Tense**: Opt for a direct, present-tense style (e.g., “Fix bug” rather than “Fixed bug”). It’s more straightforward and common in version control logs.
+  - [Active Voice in Commit Messages](https://cbea.ms/git-commit/#active "nofollow noopener noreferrer")
 
 ### The Imperative Mood
 
-Using the imperative mood in commit messages is a widely recommended practice. It helps maintain a consistent and professional tone.
+Many teams recommend writing commit messages in the imperative mood. It keeps messages consistent and clearly states the action the commit will take when applied.
 
-- **Explanation and Importance**: The imperative mood (e.g., "Fix bug," "Add feature") gives a command and clearly states what the commit does. This approach aligns with how commit messages are interpreted: they describe what applying the commit will do.
-  - [Imperative Mood in Git Commit Messages](https://chris.beams.io/posts/git-commit/#imperative)
-- **Examples of Imperative Mood in Commit Messages**: Examples help illustrate how to effectively use the imperative mood in your commit messages.
-  - [Sample Commit Messages](https://www.conventionalcommits.org/en/v1.0.0/)
+- **Why Imperative Mood Matters**: Short commands like “Add” or “Fix” set an easy-to-read standard.
+  - [Imperative Mood in Git Commit Messages](https://chris.beams.io/posts/git-commit/#imperative "nofollow noopener noreferrer")
+- **Examples**: “Add new feature,” “Fix layout bug,” etc.
+  - [Sample Commit Messages](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
 
 <ImageContainer
   alt="Imperative verbs"
@@ -227,16 +233,18 @@ Using the imperative mood in commit messages is a widely recommended practice. I
   classNameImage=""
   width={2808}
   height={1666}
-/>{" "}
+/>
 
 ### Using Markdown for Formatting
 
-Markdown is a lightweight markup language that can be used to format commit messages, making them more readable and organized.
+Markdown is a straightforward markup language that helps format commit messages, making them more visually appealing.
 
-- **Adding Bullet Points and Code Blocks**: Use bullet points to list changes and code blocks to highlight code snippets. This enhances the clarity and readability of the commit message.
-  - [Markdown Guide](https://www.markdownguide.org/basic-syntax/)
-- **Enhancing Readability**: Utilizing Markdown formatting can significantly improve the visual structure of your commit messages, making them easier to scan and understand.
-  - [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+- **Bullet Points & Code Blocks**: Bullets can break down changes into clear steps, while code blocks showcase snippets cleanly.
+
+  - [Markdown Guide](https://www.markdownguide.org/basic-syntax/ "nofollow noopener noreferrer")
+
+- **Improved Formatting**: Adopting Markdown features can improve how others read and digest your commit details.
+  - [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/ "nofollow noopener noreferrer")
 
 ## Part 4: Git Commit Message Best Practices
 
@@ -249,96 +257,57 @@ Markdown is a lightweight markup language that can be used to format commit mess
   height={1252}
 />
 
-Writing great commit messages is an art that combines clarity, brevity, and structure. Here are some best practices to follow, ensuring your commit messages are both informative and efficient.
+Crafting strong commit messages blends clarity, brevity, and structure. Below are several tried-and-true best practices.
 
 ### Keep Messages Short but Descriptive
 
-Your commit message should be concise yet descriptive enough to convey the main change. Aim for subject lines under 50 characters and body text that provides necessary details without being overly verbose.
-
-- **Optimal Length for Subject Lines and Bodies**: Keep your subject line to 50 characters or less to ensure it fits nicely in various Git tools and interfaces.
-  - [Git Commit Message Length](https://chris.beams.io/posts/git-commit/#limit-50)
+Aim for a concise message that still conveys the essential changes. Many teams recommend a subject line of up to 50 characters.
 
 ### Separate Subject and Body with a Blank Line
 
-Always separate the subject from the body with a blank line. This enhances readability and ensures that tools parsing your commits can do so accurately.
+Placing a blank line between the subject and the body ensures better readability and compatibility with various Git tools.
 
-### Use the Body to Explain What and Why, Not How
+### Use the Body to Explain the “What” and “Why,” Not the “How”
 
-The body of your commit message should focus on what changes were made and why they were necessary, not on how the changes were implemented. This keeps the message concise and focused.
+Focus on the reason behind the change rather than the implementation details. The code itself shows how something is done.
 
 ### Reference Issues and Pull Requests
 
-Linking to relevant issues or pull requests provides context and helps trace the history of the changes. It’s a good practice to reference issues directly in the commit message.
-
-- **Linking to GitHub or GitLab Issues**: Use autolinked references to connect your commits to issues and PRs.
-  - [GitHub Autolinked References](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls)
+Linking an issue or PR number helps with traceability, so everyone knows the broader discussion.
 
 ### Capitalize the Subject Line
 
-Always start the subject line with a capital letter. This is a simple yet effective way to keep your commit messages looking professional and consistent.
+This simple convention makes each commit message look cleaner.
 
-### Do Not End the Subject Line with a Period
+### Avoid Ending the Subject with a Period
 
-Avoid ending the subject line with a period. It’s unnecessary and goes against the convention of keeping the subject line brief and to the point.
+It’s unnecessary, and skipping it maintains a uniform style.
 
 ### Wrap the Body at 72 Characters
 
-For better readability, wrap the body text at 72 characters. This makes your commit message easier to read in various interfaces, especially those that display text in a narrow column.
+A 72-character line width is typical, keeping messages neatly formatted in various tools.
 
-### Examples of Good vs. Bad Commit Messages
+#### Examples of Good vs. Bad Commit Messages
 
-Seeing examples can help you understand these best practices in action. Here are some comparisons to illustrate good and bad commit messages.
+- **Good**:
 
-- **Good Commit Messages**: Clear, concise, and informative.
+  ```plaintext
+  Subject: Fix null pointer exception in login
 
-  - **Example 1:**
+  Body:
+  Resolved a null pointer error occurring when users log in without credentials.
+  Added validation to check for null values before processing requests.
+  Fixes issue #123.
+  ```
 
-    ```plaintext
-    Subject: Fix null pointer exception in login
+- **Bad**:
 
-    Body:
-    Resolved a null pointer exception that occurred when the user attempted to log in without entering credentials.
-    Added validation to check for null values before processing login requests.
-    Fixes issue #123.
-    ```
+  ```plaintext
+  Subject: Fix bug
 
-  - **Example 2:**
-
-    ```plaintext
-    Subject: Add search functionality to product page
-
-    Body:
-    Implemented a search feature on the product page allowing users to filter products by name, category, and price.
-    Updated UI components to accommodate the new search bar.
-    References issue #456.
-    ```
-
-- **Bad Commit Messages**: Vague, unstructured, or overly detailed.
-
-  - **Example 1:**
-
-    ```plaintext
-    Subject: Fix bug
-
-    Body:
-    Fixed a bug that was causing issues.
-    ```
-
-  - **Example 2:**
-
-    ```plaintext
-    Subject: Update code
-
-    Body:
-    Updated some parts of the code. Changed various files and fixed some bugs that were reported.
-    ```
-
-  - **Example 3:**
-    ```plaintext
-    Subject: Implemented new feature for product search which includes multiple parameters like name, category, and price. Also, updated the UI to accommodate this feature and added a new search bar at the top of the product page for better user experience. This change required modifying several components and adding new tests to ensure everything works as expected.
-    ```
-
-By following these best practices, you'll ensure your commit messages are a valuable part of your project's documentation and history, aiding both current and future developers in understanding the codebase.
+  Body:
+  fixed the bug
+  ```
 
 <ImageContainer
   alt="Commit messages"
@@ -354,263 +323,271 @@ By following these best practices, you'll ensure your commit messages are a valu
 
 ## Part 5: Git Commit Message Best Practices Examples
 
-To make these best practices more tangible, here are some examples of well-crafted commit messages for different scenarios. Each example includes a subject line and a detailed body that adheres to the guidelines we've discussed.
+To demonstrate these guidelines, here are some well-crafted commit messages:
 
-- **Example 1: Adding a New Feature**
+- **Adding a New Feature**
 
-```plaintext
-Subject: Add user authentication feature
+  ```plaintext
+  Subject: Add user authentication feature
 
-Body:
-Implemented user authentication functionality using JWT.
-Added login and registration endpoints.
-Updated frontend to handle authentication.
-```
+  Body:
+  Implemented user authentication with JWT.
+  Introduced login and registration endpoints.
+  Updated frontend components to handle tokens.
+  ```
 
-- **Example 2: Fixing a Bug**
+- **Fixing a Bug**
 
-```
+  ```plaintext
+  Subject: Fix null pointer exception in login
 
-Subject: Fix null pointer exception in login
+  Body:
+  Resolved a null pointer issue triggered by empty credentials.
+  Added validation to ensure user input fields are not null.
+  Fixes #123.
+  ```
 
-Body:
-Resolved a null pointer exception that occurred when the user attempted to log in without entering credentials.
-Added validation to check for null values before processing login requests.
-Fixes issue #123.
+- **Updating Documentation**
 
-```
+  ```plaintext
+  Subject: Update README with setup instructions
 
-- **Example 3: Updating Documentation**
+  Body:
+  Added details for local environment setup.
+  Clarified database configuration steps.
+  ```
 
-```
-Subject: Update README with setup instructions
+- **Refactoring Code**
 
-Body:
-Added detailed setup instructions for the development environment.
-Included steps for database setup and initial configuration.
-Clarified existing instructions for clarity.
+  ```plaintext
+  Subject: Refactor user service to improve maintainability
 
+  Body:
+  Broke down large methods into smaller functions.
+  Added unit tests to ensure correctness post-refactor.
+  ```
 
-```
+- **Improving Performance**
 
-- **Example 4: Refactoring Code**
+  ```plaintext
+  Subject: Optimize database queries for user endpoints
 
-```
-Subject: Refactor user service for better readability
-
-Body:
-Refactored the user service to improve code readability and maintainability.
-Split large methods into smaller, more manageable functions.
-Added unit tests to ensure the refactoring did not introduce any bugs.
-
-
-```
-
-- **Example 5: Improving Performance**
-
-```
-Subject: Optimize database queries for user endpoints
-
-Body:
-Optimized database queries to improve performance of user-related endpoints.
-Reduced query execution time by adding appropriate indexes.
-Updated ORM configurations to use more efficient query methods.
-Performance benchmarks show a 30% improvement in response times.
-
-
-```
+  Body:
+  Introduced indexes to speed up user lookups.
+  Reduced query complexity in the user service.
+  Gains of up to 30% in local benchmarks.
+  ```
 
 <UserReview />
 
+---
+
+## How to Set Up a Git Commit Message Template
+
+Using a template helps your team consistently follow a **git commit message format**, preventing confusion and making it simpler to update commit message guidelines if needed.
+
+1. **Create a Template File**
+
+   - Make a file called `commit-template.txt` in your project.
+   - Include a structure, for example:
+
+     ```
+     Subject (50 chars max):
+
+     Body (why this change? details about changes made):
+
+     Footer (issue references, co-authors, etc.):
+     ```
+
+2. **Configure Git to Use the Template**
+
+   - Set the template globally:
+     ```bash
+     git config --global commit.template path/to/commit-template.txt
+     ```
+   - Or just for one project:
+     ```bash
+     git config commit.template path/to/commit-template.txt
+     ```
+
+3. **Validate the Template**
+   - Test a commit to ensure you’re prompted with the template.
+   - If your team regularly discusses [pull request vs merge request](https://axolo.co/blog/p/pull-request-vs-merge-request "nofollow noopener noreferrer"), you might also provide guidance in the template about referencing these processes.
+
+A **commit message template** is handy for teams practicing **semantic commits** or any strict **git commit message convention**. It also encourages **writing good commit messages** by reminding everyone about critical elements like referencing tickets or giving a clear **git commit description**. If inconsistencies arise, prompt teammates to **change commit message** strategies or **fix commit message** mistakes as necessary.
+
+Tools with a **git view commit message** function let you review your template-based messages before pushing them. Whenever your style changes, it’s easy to **update commit message** formatting by refining the template.
+
+---
+
 ## Part 6: Automating Git Commit Messages
 
-Automation can help maintain consistency and adherence to best practices in Git commit messages. By using tools and templates, you can enforce standards and make sure every commit message is clear and informative.
+Automation tools help maintain consistent commit message standards, so every commit message remains clear and uniform.
 
 ### Tools for Enforcing Commit Message Standards
 
-There are several tools available to help enforce commit message standards, ensuring that every commit message meets your team's guidelines.
+- **Commitlint**: Checks if messages follow certain formats (like conventional commits).  
+  [Commitlint Documentation](https://commitlint.js.org/ "nofollow noopener noreferrer")
 
-- **Commitlint**: Commitlint checks if your commit messages meet the conventional commit format. It can be integrated with various CI tools to enforce standards automatically.
+  <ImageContainer
+    alt="Commit lint"
+    src="/blog/static/images/commitmessages/7. Commit lint screenshot.png"
+    classNameDiv="mx-10 lg:mx-20"
+    classNameImage=""
+    width={1986}
+    height={1368}
+  />
+  <SubImageText classNameDiv="" classNameText="lg:w-80 ">
+    Screenshot of how Commitlint works
+  </SubImageText>
 
-  - [Commitlint Documentation](https://commitlint.js.org/)
-    {" "}
-    <ImageContainer
-      alt="Commit lint"
-      src="/blog/static/images/commitmessages/7. Commit lint screenshot.png"
-      classNameDiv="mx-10 lg:mx-20"
-      classNameImage=""
-      width={1986}
-      height={1368}
-    /> <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-      Screenshot of how Commit Link works
-    </SubImageText>
+- **Husky**: Runs Git hooks easily, often combined with Commitlint to validate messages.  
+  [Husky Documentation](https://github.com/typicode/husky "nofollow noopener noreferrer")
 
-- **Husky**: Husky is a tool that allows you to run Git hooks easily. It can be used to enforce commit message conventions by integrating with tools like Commitlint.
-  - [Husky Documentation](https://github.com/typicode/husky)
-- **Git Hooks**: Git hooks are scripts that run automatically at specific points in the Git workflow. You can use them to enforce commit message standards, run tests, or perform other checks.
-  - [Git Hooks Documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+- **Git Hooks**: Custom scripts triggered at specific points in the Git workflow (e.g., pre-commit, commit-msg).  
+  [Git Hooks Documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks "nofollow noopener noreferrer")
 
 ### Setting Up Commit Message Templates
 
-Using commit message templates can help ensure that your commit messages are consistently formatted and include all necessary information.
+- **Creating a Commit Template in Git**:  
+  [Using Git Commit Templates](https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting "nofollow noopener noreferrer")
 
-- **Creating and Using a Commit Message Template in Git**: You can set up a commit message template in Git to standardize your commit messages. This ensures that every commit message follows a predefined structure.
-  - [Using Git Commit Templates](https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting)
-- **Example Templates and How to Customize Them**: There are many examples of commit message templates available online. You can customize these templates to fit your team's specific needs.
-  - [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50)
+- **Examples and Customization**:  
+  [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50 "nofollow noopener noreferrer")
 
 ## Part 7: Common Pitfalls and How to Avoid Them
 
-Even with the best intentions, it's easy to fall into common pitfalls when writing commit messages. Here are some typical mistakes and how to avoid them, ensuring your commit history remains clear and useful.
+Even with guidelines, it’s easy to slip into bad habits. Here are some frequent pitfalls:
 
 ### Vague Commit Messages
 
-Vague commit messages fail to provide enough information about the changes made, making it difficult for others to understand the purpose and impact of the commit.
-
-- **Examples and Why They Are Problematic**: Vague messages like "fix stuff" or "update code" are uninformative and do not help in understanding the changes made. They complicate code reviews and future maintenance.
-- **How to Make Them More Specific**: Be precise and descriptive. Explain what was changed and why. Use the commit body to provide additional context if needed.
+Phrases like “update code” or “fix stuff” don’t explain anything. Be precise about the change and its motivation.
 
 ### Overly Detailed Commit Messages
 
-While it's important to provide context, overly detailed commit messages can be just as problematic as vague ones. They can overwhelm readers with unnecessary information.
-
-- **Finding the Right Balance**: Aim for clarity and conciseness. Provide enough detail to explain the change without overloading the reader with information.
-  - [Optimal Commit Message Length](https://chris.beams.io/posts/git-commit/#limit-50)
-- **Examples of Concise Yet Informative Messages**: Focus on what and why, keeping explanations brief and to the point.
-  - [Commit Message Examples](https://www.conventionalcommits.org/en/v1.0.0/)
+On the flip side, massive blocks of text can obscure the main idea. Strike a balance between clarity and brevity.
 
 ### Ignoring the Subject Line
 
-The subject line is the most visible part of your commit message. Ignoring its importance can lead to confusion and reduced readability in commit logs.
+Always give a clear, concise subject line. This is the first thing people see and should summarize the commit at a glance.
 
-- **Importance of a Clear and Concise Subject**: A clear subject line summarizes the commit and makes it easy to understand at a glance. It should be succinct and to the point.
-  - [Subject Line Best Practices](https://chris.beams.io/posts/git-commit/#limit-50)
-- **Examples of Effective Subject Lines**: Compare good and bad subject lines to see the difference. Good subject lines are specific and informative, while bad ones are vague or overly detailed.
-
-By being aware of these common pitfalls and actively working to avoid them, you can ensure your commit messages are clear, concise, and valuable to your team. This practice will significantly enhance the quality and navigability of your project's commit history.
+By avoiding these common errors, you’ll maintain a clean, navigable history.
 
 ## Part 8: Git Commit Message Conventions
 
-Standardizing commit messages with conventions can greatly improve the readability and manageability of your project's history. Let's explore some widely-used conventions and how you can customize them for your team.
+Conventions add clarity to your project’s commit history, simplifying how changes are categorized and understood.
 
 ### Conventional Commits
 
-The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history, which makes it easier to write automated tools on top of.
-
-- **Overview and Benefits**: Conventional Commits use a simple, structured approach to writing commit messages. This helps automate the release process, generate changelogs, and ensure consistent communication across the team.
-  - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- **Types and Examples of Conventional Commits**: There are specific types of commit messages, such as `feat` for new features, `fix` for bug fixes, and more. Each type has a clear purpose, making it easy to understand the nature of each commit.
-  - [Commit Types](https://www.conventionalcommits.org/en/v1.0.0/#summary)
+A lightweight format specifying commit types (e.g., `feat`, `fix`, `docs`) and encouraging structured messages.  
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
 
 ### Semantic Commit Messages
 
-Semantic commit messages follow the principles of semantic versioning. They help in understanding the impact of each commit on the project’s version and automate the versioning process.
-
-- **Using Semantic Versioning in Commit Messages**: Semantic versioning provides a structured way to increase version numbers based on the type of changes. Using it in commit messages ensures that version numbers accurately reflect the nature of changes.
-  - [Semantic Versioning](https://semver.org/)
-- **Examples and Use Cases**: Examples include using `fix:` for bug fixes, `feat:` for new features, and `BREAKING CHANGE:` for changes that break backward compatibility. These examples help in automating version bumps and generating release notes.
+Align your commit messages with semantic versioning. This approach automates version bumps when you release.  
+[Semantic Versioning](https://semver.org/ "nofollow noopener noreferrer")
 
 ### Customizing Commit Message Guidelines for Your Team
 
-While standardized conventions are useful, customizing them to fit your team’s workflow and preferences can enhance productivity and consistency.
+Adopt existing formats or tailor them to your workflow. The goal is to keep messages uniform and easy to parse.
 
-- **Establishing and Enforcing Team-Specific Conventions**: Create a set of guidelines tailored to your team's needs. This could include specific tags for different types of work, additional metadata requirements, or custom formatting rules.
-  - [Team Commit Guidelines](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/)
+---
 
-By adopting and customizing commit message conventions, you can ensure that your project's commit history is consistent, informative, and easy to manage. This not only improves collaboration within the team but also facilitates automation and enhances the overall quality of the project documentation.
+## Tools and Resources for Better Commit Messaging
+
+Besides automating and standardizing your **github commit messages**, here are additional tools and references:
+
+1. **Axolo for code review**
+
+   - Use Axolo to open Slack channels for each PR, keeping commit and **update commit message** discussions centralized.  
+     [code review](https://axolo.co/ "nofollow noopener noreferrer")
+
+2. **GitHub Code Review Best Practices**
+
+   - Read up on [github code review best practices](https://axolo.co/blog/p/part-4-how-to-review-code-in-github "nofollow noopener noreferrer") to see how commit messages fit into broader development cycles.
+
+3. **Pull Request Guides**
+
+   - If your team debates [pull request vs merge request](https://axolo.co/blog/p/pull-request-vs-merge-request "nofollow noopener noreferrer") or wonders [what is a pull request](https://axolo.co/blog/p/part-1-what-are-github-pull-requests "nofollow noopener noreferrer"), aligning commit conventions with your PR workflow ensures clarity. This also helps optimize your [github pull request workflow](https://axolo.co/blog/p/why-your-pull-requests-are-taking-forever "nofollow noopener noreferrer").
+
+4. **GitHub Templates**
+
+   - A [github pull request template](https://axolo.co/blog/p/part-3-github-pull-request-template "nofollow noopener noreferrer") works in tandem with standardized commit messages.
+
+5. **GitHub Draft PR**
+
+   - A [github draft pr](https://axolo.co/blog/p/part-2-how-to-open-a-pull-request "nofollow noopener noreferrer") lets you experiment before finalizing commits.
+
+6. **GitHub Actions on Pull Request**
+   - Use [github actions on pull request](https://axolo.co/blog/p/top-4-github-action-slack-integration "nofollow noopener noreferrer") to automate tasks like linting or commit checks.
+
+Embracing these resources encourages a mindset of continuous improvement, so you can fine-tune or **change commit message** approaches as your project’s needs evolve.
+
+---
 
 ## Part 9: Advanced Git Commit Message Techniques
 
-Taking your Git commit messages to the next level involves adopting advanced techniques that can enhance clarity, drive automation, and improve collaboration, especially in larger or open source projects. Let's dive into some of these techniques.
+For bigger teams or open source initiatives, advanced methods can further enhance clarity and collaboration.
 
 ### Using Emojis in Commit Messages
 
-Emojis can add a visual element to commit messages, making them more engaging and easier to scan. They can quickly convey the type of change at a glance.
-
-- **Benefits and Examples**: Emojis help in categorizing commits and making the commit history more readable. For example, 🐛 for bug fixes, ✨ for new features, and 📝 for documentation updates.
-  - [Using Emojis in Commits](https://gitmoji.dev/)
-- **When and How to Use Emojis Effectively**: Use emojis consistently and sparingly. They should enhance readability, not clutter the commit message.
-
-<ImageContainer
-  alt="Emojis in"
-  src="/blog/static/images/commitmessages/8. Emojis in commit messages.png"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={2948}
-  height={2352}
-/>{" "}
+Adding emojis can make commit messages more visually distinctive, hinting at their nature at a glance.  
+[Using Emojis in Commits](https://gitmoji.dev/ "nofollow noopener noreferrer")
 
 ### Crafting Commit Messages for Automated Tools
 
-Automating workflows with CI/CD tools can be significantly enhanced by using structured commit messages. This helps in triggering specific actions, generating changelogs, and automating deployments.
-
-- **Best Practices for Commit Messages that Trigger CI/CD Actions**: Use conventional commit messages to trigger automated processes. For example, `fix:` can trigger a patch release, while `feat:` can trigger a minor version bump.
-- **Examples of Commit Messages for Automated Deployments**: Commit messages that integrate with CI/CD pipelines can streamline deployment processes. For example, using `[deploy]` in the commit message to trigger a deployment pipeline.
-  - [CI/CD and Commit Messages](https://docs.travis-ci.com/user/customizing-the-build/)
+Well-structured messages can trigger automatic release notes or build processes, especially with CI/CD setups.
 
 ### Commit Messages in Open Source Projects
 
-Commit messages are crucial in open source projects for maintaining clear and communicative histories that facilitate collaboration among a wide range of contributors.
-
-- **Guidelines for Contributing to Open Source**: Follow the specific contribution guidelines provided by the open source project. These often include standardized commit message formats to ensure consistency and clarity.
-  - [Open Source Commit Guidelines](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
-- **Examples from Popular Open Source Projects**: Many popular projects have detailed guidelines for commit messages. For instance, Kubernetes and Angular have specific conventions to follow.
-  - [Popular Open Source Projects](https://github.com/kubernetes/kubernetes/blob/master/CONTRIBUTING.md#commit-message-guidelines)
-
-By incorporating these advanced techniques into your commit message practices, you can further enhance the quality and utility of your project's commit history. These practices support better automation, clearer communication, and more effective collaboration, especially in larger teams or open source environments.
+Different open source communities have unique commit rules. Following them helps you blend in more smoothly.  
+[Open Source Commit Guidelines](https://opensource.guide/how-to-contribute/#opening-a-pull-request "nofollow noopener noreferrer")
 
 ## Conclusion
 
 ### Recap of Key Points
 
-In this guide, we've explored the crucial elements of writing effective Git commit messages. We've delved into the structure of commit messages, discussed best practices, highlighted common pitfalls, and introduced advanced techniques to elevate your commit messages. By mastering these aspects, you can significantly improve the clarity and utility of your commit history.
+We’ve covered everything from basic structure to best practices and advanced techniques for commit messages. Solid commit messages:
+
+- Help colleagues review and understand the history of changes
+- Speed up bug tracing and new team member onboarding
+- Integrate seamlessly into automation, pipelines, and versioning
 
 ### Importance of Consistent Commit Messages
 
-Consistent commit messages are the backbone of a well-maintained codebase. They:
+When commit messages follow a uniform style, the entire project benefits from easier reviews, better collaboration, and improved troubleshooting.
 
-- **Enhance Collaboration**: Clear commit messages ensure that team members can quickly understand changes, making collaboration smoother and more efficient.
-- **Facilitate Code Reviews**: Well-written messages streamline the code review process, allowing reviewers to focus on the quality of the code rather than deciphering the intent behind changes.
-- **Support Automation**: Structured commit messages are crucial for integrating with CI/CD pipelines and other automated tools, enabling seamless deployments and accurate changelogs.
-- **Aid in Troubleshooting**: Detailed and specific messages help in tracing the origins of bugs and understanding the history of changes, making debugging more straightforward.
+### Ongoing Improvement and Adaptation
 
-### Encouragement for Ongoing Improvement and Adaptation
+- **Review Practices Regularly**: Check if your message guidelines fit your current workflow.
+- **Collect Team Feedback**: Let everyone weigh in on improvements.
+- **Adopt New Tools or Techniques**: Try out new automation services or updated standards.
+- **Commit to Excellence**: See commit messages as a key part of quality development, not just an afterthought.
 
-The field of software development is dynamic, and so are the best practices for writing commit messages. Here’s how you can stay ahead:
-
-- **Regularly Review Practices**: Periodically evaluate your commit message guidelines to ensure they align with the latest industry standards and team needs.
-- **Encourage Team Feedback**: Foster an environment where team members can suggest improvements and share insights on what works best for them.
-- **Adapt to New Tools and Workflows**: Stay updated with the latest tools and methodologies that can enhance your commit message practices. Automation tools, in particular, are constantly evolving and can offer new ways to enforce standards and improve consistency.
-- **Promote a Culture of Excellence**: Commit to continuous learning and improvement. Encourage your team to view commit messages not as a chore, but as an integral part of the development process that adds significant value to the project.
-
-By embracing these principles, you can ensure that your commit messages not only document the history of your project effectively but also contribute to a more efficient, collaborative, and high-quality development process. Remember, every commit is a piece of the larger puzzle that makes up your project's history. Make each one count.
+By keeping these points in mind, you transform your commit history into a robust asset for the entire team.
 
 ## Appendix
 
 ### Glossary of Terms
 
-- **Commit**: A snapshot of changes made to the codebase at a specific point in time.
-- **Commit Message**: A brief text that accompanies a commit, describing the changes made and the reason for them.
-- **Conventional Commits**: A specification for adding human and machine-readable meaning to commit messages, based on a set of rules.
-- **CI/CD**: Continuous Integration and Continuous Deployment/Delivery. A set of practices and tools that automate the process of code integration and deployment.
-- **Semantic Versioning**: A versioning scheme that uses a three-part version number (major.minor.patch) to convey meaning about the underlying changes.
+- **Commit**: A set of changes recorded in a Git repository at a specific point in time.
+- **Commit Message**: Text accompanying a commit that describes the changes and their motivation.
+- **Conventional Commits**: A simple standard for commit messages based on specific prefixes (feat, fix, docs, etc.).
+- **CI/CD**: Continuous Integration and Continuous Deployment/Delivery, automating builds, tests, and releases.
+- **Semantic Versioning**: A versioning method using major.minor.patch to reflect the nature of changes.
 
 ### Additional Resources and References
 
-For further reading and to deepen your understanding of effective commit message practices, here are some valuable resources:
-
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/)
-- [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages)
-- [Markdown Guide](https://www.markdownguide.org/)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
+- [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer")
+- [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages "nofollow noopener noreferrer")
+- [Markdown Guide](https://www.markdownguide.org/ "nofollow noopener noreferrer")
 
 ### Templates and Checklists for Git Commit Messages
 
-Using templates and checklists can help standardize your commit messages, ensuring they are clear, consistent, and informative.
+- [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50 "nofollow noopener noreferrer")
+- [Commitlint Documentation](https://commitlint.js.org/ "nofollow noopener noreferrer")
 
-- [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50)
-- [Commitlint Documentation](https://commitlint.js.org/)
-
-By leveraging these resources and tools, you can enhance your commit message practices, contributing to a more efficient and collaborative development process. These templates and guidelines serve as a solid foundation for maintaining high standards in your project's commit history.
+Use these to keep your commit messages structured, clear, and valuable over the long haul. They’ll help you maintain high standards and streamline development in any project.
 
 <CTABanner type="try" />
