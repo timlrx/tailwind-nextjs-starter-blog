@@ -9,6 +9,12 @@ image: "/blog/static/images/general/git commit.png"
 authors: ["sydney"]
 ---
 
+<p>
+  Want to enhance your team’s code review process with clear, consistent Git commit messages? This
+  guide walks you through best practices, real-life examples, and advanced techniques to keep your
+  commit history easy to understand and collaborate on.
+</p>
+
 <TOCInline toc={props.toc} toHeading={2} asDisclosure />
 
 ## TLDR: Git Commit Message template
@@ -16,7 +22,6 @@ authors: ["sydney"]
 Use the following examples to craft clear and effective Git commit messages for various scenarios:
 
 ```plaintext
-
 # GITHUB COMMIT MESSAGE TEMPLATE EXAMPLES
 
 ## Commit message with description and breaking change footer
@@ -100,7 +105,7 @@ Good commit messages can significantly boost teamwork and project organization:
 - **Simplifying Code Reviews**: A well-written message gives reviewers insight into the scope and objective of a change, making it easier to focus on the code itself.
 - **Better Teamwork**: Detailed commit notes improve communication by illustrating how everyone’s work fits together.
 
-For more detailed guidelines, refer to the [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer").
+For more detailed guidelines, refer to <a href="https://chris.beams.io/posts/git-commit/" rel="nofollow noopener noreferrer">Git Commit Guidelines</a>.
 
 <ImageContainer
   alt="Git commit"
@@ -136,7 +141,7 @@ Commit messages also act as your project’s historical breadcrumbs:
   whom, with descriptive messages. This can be highly beneficial when debugging.
 </SubImageText>
 
-Check out the [Git Documentation on Commit Messages](https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines "nofollow noopener noreferrer") for more information.
+Check out <a href="https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines" rel="nofollow noopener noreferrer">Git Documentation on Commit Messages</a> for more information.
 
 Following best practices in writing commit messages helps keep the repository organized, fosters clearer communication, and improves overall productivity for the entire team.
 
@@ -146,12 +151,9 @@ Following best practices in writing commit messages helps keep the repository or
 
 A Git commit message is a short note that goes with each commit in a Git repository. It shows what was changed and explains why those changes were made, serving as an important piece of documentation in your version control process.
 
-- **Definition and Purpose**: Every commit message clarifies the motivation behind a particular change, helping current and future developers understand the reasoning behind edits when they look back at the project’s history.
+- **Definition and Purpose**: Every commit message clarifies the motivation behind a particular change, helping current and future developers understand the reasoning behind edits when they look back at the project’s history. <a href="https://www.atlassian.com/git/tutorials/saving-changes/git-commit" rel="nofollow noopener noreferrer">Atlassian Git Tutorials</a>
 
-  - [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/saving-changes/git-commit "nofollow noopener noreferrer")
-
-- **Anatomy of a Commit Message**: Generally, a well-written commit message has three parts: a subject line, a body, and a footer. The subject line sums up the changes, the body dives into the details, and the footer can include extra data like issue IDs or references.
-  - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
+- **Anatomy of a Commit Message**: Generally, a well-written commit message has three parts: a subject line, a body, and a footer. The subject line sums up the changes, the body dives into the details, and the footer can include extra data like issue IDs or references. <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="nofollow noopener noreferrer">Conventional Commits</a>
 
 Providing this level of detail is particularly helpful when dealing with complex projects, since it clarifies why certain paths were taken. Maintaining informative commit messages makes your version history a valuable resource for the entire team.
 
@@ -172,30 +174,23 @@ By consistently writing informative commit messages, developers keep the reposit
 
 Each commit message starts with a subject line that briefly captures the essence of your changes. It gives teammates a quick snapshot of the commit’s purpose.
 
-- **Concise Summary (50 characters max)**: Keep your subject line short—ideally no more than 50 characters—so it’s easy to read in various Git tools.
-  - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer")
+- **Concise Summary (50 characters max)**: Keep your subject line short—ideally no more than 50 characters—so it’s easy to read in various Git tools. <a href="https://chris.beams.io/posts/git-commit/" rel="nofollow noopener noreferrer">How to Write a Git Commit Message</a>
 
 ### Body
 
-The body of your commit message can include technical details, design reasons, or other relevant background that shaped the changes you made.
+The body of your commit message can include technical details, design reasons, or other relevant background that shaped the changes you made. <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/" rel="nofollow noopener noreferrer">Writing Good Commit Messages</a>
 
-- [Writing Good Commit Messages](https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/ "nofollow noopener noreferrer")
+- **Referencing Issues or Pull Requests**: If possible, mention any related issues or PRs to provide additional context and keep the broader discussion linked. <a href="https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls" rel="nofollow noopener noreferrer">Referencing Issues in Commits</a>
 
-- **Referencing Issues or Pull Requests**: If possible, mention any related issues or PRs to provide additional context and keep the broader discussion linked.
-
-  - [Referencing Issues in Commits](https://docs.github.com/en/github/writing-on-github/autolinked-references-and-urls "nofollow noopener noreferrer")
-
-- **Paragraph Breaks**: Use distinct paragraphs for different points to maintain clarity. This makes it easier for others to scan and understand your message.
-  - [Commit Message Guidelines](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format "nofollow noopener noreferrer")
+- **Paragraph Breaks**: Use distinct paragraphs for different points to maintain clarity. This makes it easier for others to scan and understand your message. <a href="https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format" rel="nofollow noopener noreferrer">Commit Message Guidelines</a>
 
 ### Footer
 
 In the footer, you can list any relevant metadata:
 
-(See also [Sign-off in Commit Messages](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s "nofollow noopener noreferrer") for more details.)
+(See also <a href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s" rel="nofollow noopener noreferrer">Sign-off in Commit Messages</a> for more details.)
 
-- **Signed-off-by**: Some teams require a “Signed-off-by” line in the footer. This is particularly important for projects adhering to the Developer Certificate of Origin (DCO).
-  - [Git Documentation on Sign-offs](https://git-scm.com/docs/git-commit#_signing_off_commits "nofollow noopener noreferrer")
+- **Signed-off-by**: Some teams require a “Signed-off-by” line in the footer. This is particularly important for projects adhering to the Developer Certificate of Origin (DCO). <a href="https://git-scm.com/docs/git-commit#_signing_off_commits" rel="nofollow noopener noreferrer">Git Documentation on Sign-offs</a>
 
 <ImageContainer
   alt="Git Commit"
@@ -215,19 +210,15 @@ In the footer, you can list any relevant metadata:
 
 Clear and concise commit messages can make your codebase significantly easier to maintain and review. Below are some suggestions:
 
-- **Be Specific**: Avoid vague text. Summarize the change precisely and mention why it was needed.
-  - [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages "nofollow noopener noreferrer")
-- **Active Voice & Present Tense**: Opt for a direct, present-tense style (e.g., “Fix bug” rather than “Fixed bug”). It’s more straightforward and common in version control logs.
-  - [Active Voice in Commit Messages](https://cbea.ms/git-commit/#active "nofollow noopener noreferrer")
+- **Be Specific**: Avoid vague text. Summarize the change precisely and mention why it was needed. <a href="https://github.com/erlang/otp/wiki/Writing-good-commit-messages" rel="nofollow noopener noreferrer">Effective Commit Messages</a>
+- **Active Voice & Present Tense**: Opt for a direct, present-tense style (e.g., “Fix bug” rather than “Fixed bug”). It’s more straightforward and common in version control logs. <a href="https://cbea.ms/git-commit/#active" rel="nofollow noopener noreferrer">Active Voice in Commit Messages</a>
 
 ### The Imperative Mood
 
 Many teams recommend writing commit messages in the imperative mood. It keeps messages consistent and clearly states the action the commit will take when applied.
 
-- **Why Imperative Mood Matters**: Short commands like “Add” or “Fix” set an easy-to-read standard.
-  - [Imperative Mood in Git Commit Messages](https://chris.beams.io/posts/git-commit/#imperative "nofollow noopener noreferrer")
-- **Examples**: “Add new feature,” “Fix layout bug,” etc.
-  - [Sample Commit Messages](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
+- **Why Imperative Mood Matters**: Short commands like “Add” or “Fix” set an easy-to-read standard. <a href="https://chris.beams.io/posts/git-commit/#imperative" rel="nofollow noopener noreferrer">Imperative Mood in Git Commit Messages</a>
+- **Examples**: “Add new feature,” “Fix layout bug,” etc. <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="nofollow noopener noreferrer">Sample Commit Messages</a>
 
 <ImageContainer
   alt="Imperative verbs"
@@ -242,12 +233,8 @@ Many teams recommend writing commit messages in the imperative mood. It keeps me
 
 Markdown is a straightforward markup language that helps format commit messages, making them more visually appealing.
 
-- **Bullet Points & Code Blocks**: Bullets can break down changes into clear steps, while code blocks showcase snippets cleanly.
-
-  - [Markdown Guide](https://www.markdownguide.org/basic-syntax/ "nofollow noopener noreferrer")
-
-- **Improved Formatting**: Adopting Markdown features can improve how others read and digest your commit details.
-  - [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/ "nofollow noopener noreferrer")
+- **Bullet Points & Code Blocks**: Bullets can break down changes into clear steps, while code blocks showcase snippets cleanly. <a href="https://www.markdownguide.org/basic-syntax/" rel="nofollow noopener noreferrer">Markdown Guide</a>
+- **Improved Formatting**: Adopting Markdown features can improve how others read and digest your commit details. <a href="https://guides.github.com/features/mastering-markdown/" rel="nofollow noopener noreferrer">GitHub Flavored Markdown</a>
 
 ## Part 4: Git Commit Message Best Practices
 
@@ -321,7 +308,10 @@ A 72-character line width is typical, keeping messages neatly formatted in vario
   height={2210}
 />
 <SubImageText classNameDiv="" classNameText="lg:w-80 ">
-  More examples from https://www.conventionalcommits.org/
+  More examples from{" "}
+  <a href="https://www.conventionalcommits.org/" rel="nofollow noopener noreferrer">
+    https://www.conventionalcommits.org/
+  </a>
 </SubImageText>
 
 ## Part 5: Git Commit Message Best Practices Examples
@@ -415,7 +405,7 @@ Using a template helps your team consistently follow a **git commit message form
 
 3. **Validate the Template**
    - Test a commit to ensure you’re prompted with the template.
-   - If your team regularly discusses [pull request vs merge request](https://axolo.co/blog/p/pull-request-vs-merge-request "nofollow noopener noreferrer"), you might also provide guidance in the template about referencing these processes.
+   - If your team regularly discusses <a href="https://axolo.co/blog/p/pull-request-vs-merge-request">pull request vs merge request</a>, you might also provide guidance in the template about referencing these processes.
 
 A **commit message template** is handy for teams practicing **semantic commits** or any strict **git commit message convention**. It also encourages **writing good commit messages** by reminding everyone about critical elements like referencing tickets or giving a clear **git commit description**. If inconsistencies arise, prompt teammates to **change commit message** strategies or **fix commit message** mistakes as necessary.
 
@@ -429,8 +419,7 @@ Automation tools help maintain consistent **github commit messages** standards, 
 
 ### Tools for Enforcing Commit Message Standards
 
-- **Commitlint**: Checks if messages follow certain formats (like conventional commits).  
-  [Commitlint Documentation](https://commitlint.js.org/ "nofollow noopener noreferrer")
+- **Commitlint**: Checks if messages follow certain formats (like conventional commits). <a href="https://commitlint.js.org/" rel="nofollow noopener noreferrer">Commitlint Documentation</a>
 
   <ImageContainer
     alt="Commit lint"
@@ -444,19 +433,25 @@ Automation tools help maintain consistent **github commit messages** standards, 
     Screenshot of how Commitlint works
   </SubImageText>
 
-- **Husky**: Runs Git hooks easily, often combined with Commitlint to validate messages.  
-  [Husky Documentation](https://github.com/typicode/husky "nofollow noopener noreferrer")
-
-- **Git Hooks**: Custom scripts triggered at specific points in the Git workflow (e.g., pre-commit, commit-msg).  
-  [Git Hooks Documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks "nofollow noopener noreferrer")
+- **Husky**: Runs Git hooks easily, often combined with Commitlint to validate messages. <a href="https://github.com/typicode/husky" rel="nofollow noopener noreferrer">Husky Documentation</a>
+- **Git Hooks**: Custom scripts triggered at specific points in the Git workflow (e.g., pre-commit, commit-msg). <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" rel="nofollow noopener noreferrer">Git Hooks Documentation</a>
 
 ### Setting Up Commit Message Templates
 
-- **Creating a Commit Template in Git**:  
-  [Using Git Commit Templates](https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting "nofollow noopener noreferrer")
-
-- **Examples and Customization**:  
-  [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50 "nofollow noopener noreferrer")
+- **Creating a Commit Template in Git**:
+  <a
+    href="https://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting"
+    rel="nofollow noopener noreferrer"
+  >
+    Using Git Commit Templates
+  </a>
+- **Examples and Customization**:
+  <a
+    href="https://gist.github.com/adeekshith/cd4c95a064977cdc6c50"
+    rel="nofollow noopener noreferrer"
+  >
+    Commit Message Template Examples
+  </a>
 
 ## Part 7: Common Pitfalls and How to Avoid Them
 
@@ -482,13 +477,11 @@ Conventions add clarity to your project’s commit history, simplifying how chan
 
 ### Conventional Commits
 
-A lightweight format specifying commit types (e.g., `feat`, `fix`, `docs`) and encouraging structured messages.  
-[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
+A lightweight format specifying commit types (e.g., `feat`, `fix`, `docs`) and encouraging structured messages. <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="nofollow noopener noreferrer">Conventional Commits</a>
 
 ### Semantic Commit Messages
 
-Align your commit messages with **semantic commits**. This approach automates version bumps when you release.  
-[Semantic Versioning](https://semver.org/ "nofollow noopener noreferrer")
+Align your commit messages with **semantic commits**. This approach automates version bumps when you release. <a href="https://semver.org/" rel="nofollow noopener noreferrer">Semantic Versioning</a>
 
 ### Customizing Commit Message Guidelines for Your Team
 
@@ -500,29 +493,25 @@ Adopt existing formats or tailor them to your workflow. The goal is to keep mess
 
 Besides automating and standardizing your **github commit message best practices**, here are additional tools and references:
 
-1. **Axolo for code review**
+1. **Axolo for code review**  
+   Use Axolo to open Slack channels for each PR, keeping commit and **update commit message** discussions centralized.
 
-   - Use Axolo to open Slack channels for each PR, keeping commit and **update commit message** discussions centralized.  
-     [code review](https://axolo.co/ "nofollow noopener noreferrer")
+   <a href="https://axolo.co/">code review</a>
 
-2. **GitHub Code Review Best Practices**
+2. **GitHub Code Review Best Practices**  
+   Read up on <a href="https://axolo.co/blog/p/part-4-how-to-review-code-in-github">github code review best practices</a> to see how commit messages fit into broader development cycles.
 
-   - Read up on [github code review best practices](https://axolo.co/blog/p/part-4-how-to-review-code-in-github "nofollow noopener noreferrer") to see how commit messages fit into broader development cycles.
+3. **Pull Request Guides**  
+   If your team debates <a href="https://axolo.co/blog/p/pull-request-vs-merge-request">pull request vs merge request</a> or wonders <a href="https://axolo.co/blog/p/part-1-what-are-github-pull-requests">what is a pull request</a>, aligning commit conventions with your PR workflow ensures clarity. This also helps optimize your <a href="https://axolo.co/blog/p/why-your-pull-requests-are-taking-forever">github pull request workflow</a>.
 
-3. **Pull Request Guides**
+4. **GitHub Templates**  
+   A <a href="https://axolo.co/blog/p/part-3-github-pull-request-template">github pull request template</a> works in tandem with standardized **github commit messages**.
 
-   - If your team debates [pull request vs merge request](https://axolo.co/blog/p/pull-request-vs-merge-request "nofollow noopener noreferrer") or wonders [what is a pull request](https://axolo.co/blog/p/part-1-what-are-github-pull-requests "nofollow noopener noreferrer"), aligning commit conventions with your PR workflow ensures clarity. This also helps optimize your [github pull request workflow](https://axolo.co/blog/p/why-your-pull-requests-are-taking-forever "nofollow noopener noreferrer").
+5. **GitHub Draft PR**  
+   A <a href="https://axolo.co/blog/p/part-2-how-to-open-a-pull-request">github draft pr</a> lets you experiment before finalizing commits.
 
-4. **GitHub Templates**
-
-   - A [github pull request template](https://axolo.co/blog/p/part-3-github-pull-request-template "nofollow noopener noreferrer") works in tandem with standardized **github commit messages**.
-
-5. **GitHub Draft PR**
-
-   - A [github draft pr](https://axolo.co/blog/p/part-2-how-to-open-a-pull-request "nofollow noopener noreferrer") lets you experiment before finalizing commits.
-
-6. **GitHub Actions on Pull Request**
-   - Use [github actions on pull request](https://axolo.co/blog/p/top-4-github-action-slack-integration "nofollow noopener noreferrer") to automate tasks like linting or commit checks.
+6. **GitHub Actions on Pull Request**  
+   Use <a href="https://axolo.co/blog/p/top-4-github-action-slack-integration">github actions on pull request</a> to automate tasks like linting or commit checks.
 
 Embracing these resources encourages a mindset of continuous improvement, so you can fine-tune or **change commit message** approaches as your project’s needs evolve.
 
@@ -534,8 +523,7 @@ For bigger teams or open source initiatives, advanced methods can further enhanc
 
 ### Using Emojis in Commit Messages
 
-Adding emojis can make commit messages more visually distinctive, hinting at their nature at a glance.  
-[Using Emojis in Commits](https://gitmoji.dev/ "nofollow noopener noreferrer")
+Adding emojis can make commit messages more visually distinctive, hinting at their nature at a glance. <a href="https://gitmoji.dev/" rel="nofollow noopener noreferrer">Using Emojis in Commits</a>
 
 ### Crafting Commit Messages for Automated Tools
 
@@ -543,8 +531,7 @@ Well-structured messages can trigger automatic release notes or build processes,
 
 ### Commit Messages in Open Source Projects
 
-Different open source communities have unique commit rules. Following them helps you blend in more smoothly.  
-[Open Source Commit Guidelines](https://opensource.guide/how-to-contribute/#opening-a-pull-request "nofollow noopener noreferrer")
+Different open source communities have unique commit rules. Following them helps you blend in more smoothly. <a href="https://opensource.guide/how-to-contribute/#opening-a-pull-request" rel="nofollow noopener noreferrer">Open Source Commit Guidelines</a>
 
 ## Conclusion
 
@@ -581,15 +568,33 @@ By keeping these points in mind, you transform your commit history into a robust
 
 ### Additional Resources and References
 
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/ "nofollow noopener noreferrer")
-- [Git Commit Guidelines](https://chris.beams.io/posts/git-commit/ "nofollow noopener noreferrer")
-- [Effective Commit Messages](https://github.com/erlang/otp/wiki/Writing-good-commit-messages "nofollow noopener noreferrer")
-- [Markdown Guide](https://www.markdownguide.org/ "nofollow noopener noreferrer")
+- <a href="https://www.conventionalcommits.org/en/v1.0.0/" rel="nofollow noopener noreferrer">
+    Conventional Commits
+  </a>
+- <a href="https://chris.beams.io/posts/git-commit/" rel="nofollow noopener noreferrer">
+    Git Commit Guidelines
+  </a>
+- <a
+    href="https://github.com/erlang/otp/wiki/Writing-good-commit-messages"
+    rel="nofollow noopener noreferrer"
+  >
+    Effective Commit Messages
+  </a>
+- <a href="https://www.markdownguide.org/" rel="nofollow noopener noreferrer">
+    Markdown Guide
+  </a>
 
 ### Templates and Checklists for Git Commit Messages
 
-- [Commit Message Template Examples](https://gist.github.com/adeekshith/cd4c95a064977cdc6c50 "nofollow noopener noreferrer")
-- [Commitlint Documentation](https://commitlint.js.org/ "nofollow noopener noreferrer")
+- <a
+    href="https://gist.github.com/adeekshith/cd4c95a064977cdc6c50"
+    rel="nofollow noopener noreferrer"
+  >
+    Commit Message Template Examples
+  </a>
+- <a href="https://commitlint.js.org/" rel="nofollow noopener noreferrer">
+    Commitlint Documentation
+  </a>
 
 Use these to keep your commit messages structured, clear, and valuable over the long haul. They’ll help you maintain high standards and streamline development in any project.
 
