@@ -44,7 +44,7 @@ export default function FooterAxolo({ hostingTool = "GitHub", domain = "axolo" }
         </div>
         <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-400">
           <p className="font-sans text-base text-gray-500 dark:text-gray-400 md:text-center">
-            &copy; 2024 IT IS CHAOS, Inc. All rights reserved.
+            &copy; 2025 IT IS CHAOS, Inc. All rights reserved.
           </p>
         </div>
         <div className="mt-4 flex justify-center space-x-6">
