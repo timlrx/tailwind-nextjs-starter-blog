@@ -1,4 +1,9 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
+import {
+  ComputedFields,
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
@@ -91,6 +96,29 @@ function createSearchIndex(allBlogs) {
   }
 }
 
+const ImageStyle = defineNestedType(() => ({
+  name: 'ImageStyle',
+  fields: {
+    parentClass: { type: 'string' },
+    childClass: { type: 'string' },
+    parentStyle: { type: 'json' },
+    childStyle: { type: 'json' },
+  },
+}))
+
+const CoverImage = defineNestedType(() => ({
+  name: 'CoverImage',
+  fields: {
+    url: { type: 'string', required: true },
+    alt: { type: 'string' },
+    width: { type: 'number', required: true },
+    height: { type: 'number', required: true },
+    home: { type: 'nested', of: ImageStyle },
+    blog: { type: 'nested', of: ImageStyle },
+    banner: { type: 'nested', of: ImageStyle },
+  },
+}))
+
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/**/*.mdx',
@@ -102,6 +130,8 @@ export const Blog = defineDocumentType(() => ({
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
     summary: { type: 'string' },
+    image: { type: 'json' },
+    coverImage: { type: 'nested', of: CoverImage },
     images: { type: 'json' },
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
@@ -119,7 +149,14 @@ export const Blog = defineDocumentType(() => ({
         datePublished: doc.date,
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
-        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        image:
+          doc.image ||
+          doc.coverImage?.url ||
+          doc.images?.[0]?.url ||
+          doc.images?.[0] ||
+          doc.images?.url ||
+          doc.images ||
+          siteMetadata.socialBanner,
         url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
       }),
     },
