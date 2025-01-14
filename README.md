@@ -114,7 +114,6 @@ Thanks to the community of users and contributors to the template! We are no lon
 - [ondiek-elijah.me](https://www.ondiek-elijah.me/) - Ondiek Elijah's website and blog ([source code](https://github.com/Dev-Elie/ondiek-elijah)).
 - [jmalvarez.dev](https://www.jmalvarez.dev/) - José Miguel Álvarez's personal blog ([source code](https://github.com/josemiguel-alvarez/nextjs-blog))
 - [justingosses.com](https://justingosses.com/) - Justin Gosses's personal website and blog ([source code](https://github.com/JustinGOSSES/justingosses-website))
-- [https://bitoflearning-9a57.fly.dev/](https://bitoflearning-9a57.fly.dev/) - Sangeet Agarwal's personal blog, replatformed to [remix](https://remix.run/remix) using the [indie stack](https://github.com/remix-run/indie-stack) ([source code](https://github.com/SangeetAgarwal/bitoflearning))
 - [raphaelchelly.com](https://www.raphaelchelly.com/) - Raphaël Chelly's personal website and blog ([source code](https://github.com/raphaelchelly/raph_www))
 - [kaveh.page](https://kaveh.page) - Kaveh Tehrani's personal blog. Added tags directory, profile card, time-to-read on posts directory, etc.
 - [drakerossman.com](https://drakerossman.com/) - Drake Rossman's blog about NixOS, Rust, Software Architecture and Engineering Management, as well as general musings.
