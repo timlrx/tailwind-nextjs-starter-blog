@@ -1,0 +1,110 @@
+---
+title: '2025 Update'
+date: '2025-01-20'
+lastmod: '2025-01-20'
+tags: ['new-year', 'retrospect']
+draft: false
+summary: "Hi 👋 here's an update after 2024 as we go into 2025!"
+authors: ['default']
+images: ['/content/images/2025/01/PXL_20240904_164208957.MP~2.jpg']
+---
+
+![Myself and Stephen in Parga, Greece](/content/images/2025/01/PXL_20240904_164208957.MP~2.jpg)
+<figcaption>Myself and Stephen in Parga, Greece</figcaption>
+
+Hi 👋 here's an update after 2024 as we go into 2025! As with every year it's a high level summary of the various things I got up to and what's to come.
+
+Personal Project Update
+-----------------------
+
+Last year I managed to find more time to work on my own [side projects](/projects).
+
+I started by re-launching all my sites moving them to React with Next.js with Vercel, and then shutting down my Linode VPS - one less thing to maintain now I no longer run a hosting business.
+
+I have been creating my own framework of generic services all deployed to AWS via CDK which I can use to power new apps. All parts are public on GitHub so feel free to take a look for your own learning.
+
+My framework currently includes:
+* Auth Lambda running Node OIDC Provider with Google login ([Github](https://github.com/jamesacres/bubblyclouds-auth)), connected to DynamoDB. This acts as the user store and provides access and refresh tokens to whichever client apps and APIs I create.
+* API Lambda running NestJS API ([Github](https://github.com/jamesacres/bubblyclouds-api)), providing an API to power parties, invites, members, sessions, connected to DynamoDB. It authorises users via their access tokens matching the audience and scopes. Again, it is designed to provide the backend of whatever apps I decide to create.
+
+I have learnt React and Next.js and integrated with electron and capacitor. I hope to fully launch [Sudoku Share](https://sudoku.bubblyclouds.com/) ([Github](https://github.com/jamesacres/sudoku-web)) on Android and iOS this year. The app allows you to scan any sudoku puzzle and invite others to complete the puzzle with you. It uses Web Assembly (WASM) utilising [open source Sudoku OCR image recognition](https://github.com/atomic14/ar-browser-sudoku) and an [open source fastest C based solver which I converted to WASM](https://github.com/t-dillon/tdoku/pull/9).
+
+In December I also did half of Advent of code ([Github](https://github.com/jamesacres/advent-of-code-2024)).
+
+This month in January I am removing Google Home and switching to [Home Assistant](https://www.home-assistant.io/). I have got fed up with Google Assistant being totally unreliable, plus the Cast from [Qobuz](https://www.qobuz.com/) app not being reliable. So I have taken matters into my own hands by running Home Assistant I'll post another blog post soon with the detail on this as it hasn't been simple!
+
+
+Work Update
+-----------
+
+It was a good year continuing as a Technical Lead at NatWest Rooster Money in the Child Squad ([see my about page](/about)).
+
+A lot about my move from specialist to lead has been to empower others and share knowledge, so a lot of the year I have been focussing on documentation, and building up the team. I learnt how to use tools such as [PlantUML](https://plantuml.com/), [Kroki](https://kroki.io/), [AsciiDoc](https://asciidoc.org/), [Antora](https://antora.org/), [Arc42](https://arc42.org/), [Diátaxis](https://diataxis.fr/). These have been very helpful so far in sharing some specialist knowledge from my head onto confluence. I also shared my learnings of the tools with the team which has enabled them to contribute to our docs. I have also been working on automating documentation such as fetching service health stats from github and populating them into a table on confluence via antora, as part of this again [raising PRs to improve these projects](https://github.com/PacoVK/antora-confluence/pull/53).
+
+Recent project highlights 🪄: At the start of the year we launched many improvements across the whole [Rooster Money App](https://app.roostermoney.com/app-link/deep/?rmclid=3183583&_gl=1*l65th1*_gcl_au*OTUyNTA0NjIyLjE3MzU5ODAxMDM.) including accessible NatWest brand colours - it's now Purple! We also added the ability for a child to setup their own device by scanning a QR code or open a link from their parent, rather than the parent having to tell them their password. The Rooster Card also launched on Google Pay and Apple Wallet, including a new Team GB card!
+
+There's lots of exciting work going on in the product and development team including improvements to how we release so should be another good year.
+
+Life update
+-----------
+
+Looking back at the year, it started with lots of pub evenings with my cousin staying in Bristol for a bit, and seeing friends with Bowling.
+
+My first trip of the year was to Watford to see my Grandad then to Whitby to visit Mum and Dad. In April this was followed by Exmoor for Stephen's birthday including a ride on Lynton & Lynmouth Cliff Railway, buying handmade Lyn Candles, and lots of nice cliff and riverside walks.
+
+![Myself and Stephen in Exmoor](/content/images/2025/01/PXL_20240415_130310512.jpg)
+<figcaption>Myself and Stephen in Exmoor</figcaption>
+
+In May the Northern lights were visible from our Garden in Bristol, admittedly a lot more visible from a phone camera but still impressively pink!
+
+In June, I flew to Edinburgh for a work meetup, and I organised a squad social with some pizza. Friends then visited Bristol for some summer comedy, fake ice curling, we also went into the Caves of Redcliff which was filled with LEDs placed by us and other visitors. Then made a trip to Warfield to see my sister and Nephews.
+
+
+In July I went to Amsterdam with friends, which was a great place to explore on foot and all their modes of transport including a free ferry.
+
+![Up above Amsterdam](/content/images/2025/01/PXL_20240809_175527607.jpg)
+<figcaption>Up above Amsterdam</figcaption>
+
+August was written off by a bad chest infection, off work for a couple of weeks 👎.
+
+![Exploring Corfu Town and its Bell Towers](/content/images/2025/01/PXL_20240902_225216721.MP.jpg)
+<figcaption>Exploring Corfu Town and its Bell Towers</figcaption>
+
+In September, Stephen and I went on holiday to Corfu Town and sailing to Parga in Greece, we left Oscar with a friend back in Bristol - it was a great trip living in the centre of the busy Corfu Town, then retreating to food heaven in Parga - both had a fusion feel of Greek and Italian. We also went Olive tasting and learnt about the Olive Groves, then saw it for real strolling around seeing all the nets tied up until October for the best and first harvest.
+
+
+![Perfect breakfast coffee view in Parga](/content/images/2025/01/PXL_20240906_082037620.jpg)
+<figcaption>Perfect breakfast coffee view in Parga</figcaption>
+![Daily Greek cooked breakfasts like Feta Scrambled Egg in Parga (Paradise)](/content/images/2025/01/PXL_20240905_071419927.jpg)
+<figcaption>Daily Greek cooked breakfasts like Feta Scrambled Egg in Parga (Paradise)</figcaption>
+
+We flew back, taking off after receiving Greek weather alerts in the heavy rain, thunder and lightning and landing in Autumnal Bristol.
+
+![Stephen back home in Autumnal Bristol](/content/images/2025/01/PXL_20240925_170934890.MP.jpg)
+<figcaption>Stephen back home in Autumnal Bristol</figcaption>
+
+October and November - watching fallout on TV and a bit of exploring in Painswick, Cotswolds. The team at work also visited Bristol, for more work and pizza.
+
+Our last trip was to the New Forest (via a detour to the Pewsey White Horse) for my Birthday, same cozy thatched roof cottage as last year.
+
+We ended the year with some nights out without Oscar thanks to a dogsitter.
+
+![Fancy curry on a night out at Nutmeg](/content/images/2025/01/PXL_20241128_202940646.jpg)
+<figcaption>Fancy curry on a night out at Nutmeg</figcaption>
+
+What's next?
+-------------
+
+This year I want to get back into music, it's been 10 years since I last did Clarinet and all the music theory - I am now learning Piano! Stephen invested in a Roland digital piano with weighted keys and we're both learning. I've been doing courses recommended by a friend, and getting used to playing left hand with bass clef along with right hand in trebel clef - it's going to take quite a while to get used to. Longer term plan is also to create some electronic music using the MIDI interface.
+
+Despite a lot of effort on the separation training, I'm happy to say we have started using a dog sitter, this allows Stephen and I to get out more and we're restarting Badminton, and making sure to get out more on the bike once the weather is nicer.
+
+I had some heart palpitations over Christmas which has worried me so as well as getting that checked out I am cutting out Saturated fat and Salt which aren't good for blood pressure either anyway. Last year we had a lot of MasterChef style slow cooked meals like Lamb Shanks and Beef Cheeks, as well as crème brûlée, probably a bit too often but definitely very cheffy. Also, a lot of BBQs on the Weber Grill! Hopefully can continue to eat well but healthier, beans, lentils, and lots of vegetables from our local Green Grocer (far superior than the supermarket, go to yours if you have one!).
+
+I've split this out into a separate post, but this year I also have a lot of thoughts to share on [change of Social Media and the Web](/2025/01/20/change-of-social-media-and-the-web) and how I am avoiding it so check it out if you're also wanting to disconnect from negativity online.
+
+I'm also going to launch some projects as mentioned above.
+
+I aim to post more often about learnings and projects, so hopefully more to share soon 🤞
+
+Jacres ❤️

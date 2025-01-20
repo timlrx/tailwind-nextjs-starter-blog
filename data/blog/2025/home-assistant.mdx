@@ -1,0 +1,538 @@
+Replacing Google Home with Home Assistant.
+
+A few weeks ago all my smart home with Google changed voice and was increasingly spinning and becoming unresponsive.
+Basic things like playing the radio and casting became almost impossible.
+
+What we have to setup.
+
+Unboxing
+Photos
+
+
+Plugged in and waited until yellow light flash like a heartbeat consistently.
+
+Downloaded and installed Home Assistant App for Android. Automatically detected IP address once on heartbeat.
+I created a secure user account saved to my KeePass.
+I allowed background location access and notifications to give full access.
+It automatically discovered our Cambridge Audio Evo 150 and Cast devices. I configured everything it found except for the upnp router which didn't work and I had no need for.
+
+Going to the overview screen now showed what was already playing on Evo 150 and it was impressive how it was fully integrated with the cambridge settings already.
+Screenshot from mobile.
+
+I found I could access home assistant on my laptop from https://my.home-assistant.io/ when visiting I configured it to redirect to http://homeassistant.local:8123 which was the default and I can login from there.
+2 Screenshots on laptop
+
+Next I wanted to setup HACS as I know a lot of things I want to setup need this first.
+https://hacs.xyz/
+
+This involved a few steps.
+
+In the HACS prerequisites https://hacs.xyz/docs/use/download/prerequisites/ they listed being able to edit files.
+So, I went to the settings addons store and installed studio code server.
+Screenshot.
+I want minimal things running for efficiency so I then disabled it from starting at boot, and made it show in the sidebar.
+Screenshot.
+
+I then started it and went to the sidebar. I chose Solarised Dark as my colour scheme.
+
+Next I used an addon to install HACS via https://my.home-assistant.io/redirect/supervisor_addon/?addon=cb646a50_get&repository_url=https%3A%2F%2Fgithub.com%2Fhacs%2Faddons
+
+As instructed after install from the logs I restarted home assistant from the top right ... menu.
+I then proceeded to follow the instructions from https://hacs.xyz/docs/use/configuration/basic/#to-set-up-the-hacs-integration
+Hard refreshed, then went to devices & services, then pressed Add Integration button bottom right.
+I then searched for HACS and selected it. It them prompted me to Authorise github which I completed.
+
+Next I configured a backup process as recommended. I went to settings > system > backups, then saved the emergency kit and encryption key to my KeePass.
+I chose to backup everything as I don't believe I will have large media files to skip.
+I then downloaded the first backup to my laptop, just in case.
+
+When going to the Map menu item I noticed it was showing my home in a different location to my phone. I went to settings > system > general and edited the location of the home.
+
+Then I wanted to setup my Meross devices. I've been using them via the Meross Cloud with Google Home, but now would like to make my setup fully local if I can.
+I installed the default MQTT (Mosquitto broker) addon via home assistant addons.
+It automatically discovered it so I added it as it recommended.
+
+I based the setup on the instructions at https://github.com/krahabb/meross_lan/discussions/63#discussioncomment-7452413
+and https://github.com/bytespider/Meross/wiki/Home-Assistant-(HASSIO)
+
+I created a new directory for the following node project.
+{
+  "engines": {
+    "node": "^18"
+  },
+  "dependencies": {
+    "commander": "^13.0.0",
+    "meross": "^1.0.15",
+    "uuid": "^11.0.3"
+  },
+  "scripts": {
+    "info": "meross info -g 10.10.10.1",
+    "setup": "meross setup --gateway 10.10.10.1 --wifi-ssid Xxx-Xxx --wifi-pass xxxxx --mqtt mqtts://homeassistant.local:8883"
+  }
+}
+
+Next connected the mac wifi to the Meross device which was flashing orange and green (hold plug power for 5 seconds to reset).
+Then running npm run info made a note of the mac address and password. I then switched back to the normal wifi.
+
+In Home Assistant, go to Configuration > People and add a new user. Customise the Display Name and use the device Mac address as the username, and the password from the previous step.
+
+I then switched back to the Meross WiFi and ran npm run setup
+
+At this point I realised it didn't connect because I didn't configured the SSL certificates on the MQTT.
+I used the terminal in studio code in home assistant to create the directories /ssl/mqtt and /share/mosquitto
+I then edited the Mosquitto broker configuration to change it to active and updated the paths
+Certificate file mqtt/server.crt
+CA File (under optional toggle) mqtt/ca.crt
+Private key file mqtt/server.key
+
+I notice the commands below have 360 days, therefore I suspect a new certificate will need to be updated before next year.
+Although, apparently Meross doesn't check the certificate https://albertogeniola.github.io/MerossIot/meross-protocol.html#client-device-pairing
+
+jamesacres@Jamess-Laptop meross $ openssl genrsa -des3 -out ca.key 2048
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+jamesacres@Jamess-Laptop meross $ ls -l
+total 64
+-rw-------   1 jamesacres  staff   1862  4 Jan 16:49 ca.key
+drwxr-xr-x  53 jamesacres  staff   1696  4 Jan 16:07 node_modules
+-rw-r--r--   1 jamesacres  staff  20552  4 Jan 16:07 package-lock.json
+-rw-r--r--   1 jamesacres  staff    359  4 Jan 16:23 package.json
+jamesacres@Jamess-Laptop meross $ openssl req -new -x509 -days 1826 -key ca.key -out ca.crt
+Enter pass phrase for ca.key:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:GB
+State or Province Name (full name) [Some-State]:Bristol
+Locality Name (eg, city) []:Bristol
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Home Assistant
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:homeassistant.local                                                   
+Email Address []:
+jamesacres@Jamess-Laptop meross $ openssl genrsa -out server.key 2048
+jamesacres@Jamess-Laptop meross $ openssl req -new -out server.csr -key server.key
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:GB
+State or Province Name (full name) [Some-State]:Bristol 
+Locality Name (eg, city) []:Bristol
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Home Assistant
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:homeassistant.local
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+jamesacres@Jamess-Laptop meross $ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 360
+Certificate request self-signature ok
+subject=C=GB, ST=Bristol, L=Bristol, O=Home Assistant, CN=homeassistant.local
+Enter pass phrase for ca.key:
+jamesacres@Jamess-Laptop meross $ ls -l
+total 104
+-rw-r--r--   1 jamesacres  staff   1342  4 Jan 16:50 ca.crt
+-rw-------   1 jamesacres  staff   1862  4 Jan 16:49 ca.key
+-rw-r--r--   1 jamesacres  staff     41  4 Jan 16:53 ca.srl
+drwxr-xr-x  53 jamesacres  staff   1696  4 Jan 16:07 node_modules
+-rw-r--r--   1 jamesacres  staff  20552  4 Jan 16:07 package-lock.json
+-rw-r--r--   1 jamesacres  staff    359  4 Jan 16:23 package.json
+-rw-r--r--   1 jamesacres  staff   1318  4 Jan 16:53 server.crt
+-rw-r--r--   1 jamesacres  staff   1005  4 Jan 16:52 server.csr
+-rw-------   1 jamesacres  staff   1704  4 Jan 16:51 server.key
+jamesacres@Jamess-Laptop meross $ openssl genrsa -out client.key 2048
+jamesacres@Jamess-Laptop meross $ openssl req -new -out client.csr -key client.key
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:GB
+State or Province Name (full name) [Some-State]:Bristol
+Locality Name (eg, city) []:Bristol
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Home Assistant
+Organizational Unit Name (eg, section) []:                   
+Common Name (e.g. server FQDN or YOUR name) []:homeassistant.local
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+jamesacres@Jamess-Laptop meross $ openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 360
+Certificate request self-signature ok
+subject=C=GB, ST=Bristol, L=Bristol, O=Home Assistant, CN=homeassistant.local
+Enter pass phrase for ca.key:
+
+
+Next I added the /share and /ssl folders to studio code and dragged and dropped the certificates into mqtt.
+
+Next, using studio code, inside the share/mosquitto directory create two files accesscontrollist and acl.conf.
+accesscontrollist:
+topic readwrite #
+pattern readwrite #
+
+acl.conf:
+acl_file /share/mosquitto/accesscontrollist
+
+
+
+Next, restart Mosquitto Broker and you should see it stable. As active is true it reads the files we have just created.
+You should also see Certificates found: SSL is available.
+
+If you do curl homeassistant.local:8883
+curl: (52) Empty reply from server
+
+This shows in the logs like
+2025-01-04 17:27:23: New connection from 172.30.32.1:45474 on port 8883.
+2025-01-04 17:27:23: OpenSSL Error[0]: error:1408F09C:SSL routines:ssl3_get_record:http request
+2025-01-04 17:27:23: Client <unknown> disconnected: Protocol error.
+
+Next, turn on Meross device!
+Hmm, nothing shows in the logs.
+Looking at the router, it has successfully connected to the wifi. We can ping it at 192.168.0.150
+
+Right, so the Meross device doesn't like the MQTT broker being the hostname homeassistant.local:8883 so I've changed this to 192.168.0.84:8883
+I can now see it connected successfully.
+
+So, we don't want these IP addresses to change. In the router settings I've made that first meross device static, and the home assistant static. Static DHCPv4 - Local Network
+
+Next. When going to settings I see an Operating System update, I choose to install it. Probably should have done that first.
+Then I created another backup.
+
+Let's continue with the Meross Setup..
+I went to HACS in the side menu then searched for Meross LAN as instructed by https://github.com/krahabb/meross_lan
+It then prompted me to restart in the settings so I went there and did it.
+
+I then got a notification saying it had identified all of my Meross devices.
+This included the ones I hadn't converted to MQTT yet.. some are still on the Cloud Setup and using Google Home.
+In brackets it shows the MAC address. So I chose the one which matched the one we just configured.
+
+I then renamed it to Lamp and tested turning it on and off, it works!
+
+I have two extension leads and another plug to move to the new system. Now the hard stuff is done all I need to do is put them into paiting mode, run the info command, add the user with mac address and password as a home assistant user, then run my setup command to configure MQTT, then add it via Home Assistant.
+I went in the garden in the snow to connect to the garden extension. The button on the device didn't work so had to remove from the Meross app to reset it! Also forgot to change the setup script from the main wifi to the garden but got there eventually!
+
+Then another backup!
+
+
+Adding voice assistant
+I followed this tutorial https://www.home-assistant.io/voice_control/voice_remote_local_assistant
+I installed Whisper, Piper and openWakeWord.
+I connected the Atom Echo via the link on this page https://www.home-assistant.io/voice_control/thirteen-usd-voice-remote/. You connect via USBC to your computer then select the port and configure the WIFI password.
+
+I then wanted it to come out my existing Google Home speakers next to it.
+I followed the guide at https://www.youtube.com/watch?v=o3yZWD_sFIE&ab_channel=SmartHomeJunkie with some tweaks.
+
+First I had to install ESPHome Device Builder addon.
+Then I installed the one associated with the kitchen.
+Press edit then paste code from https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.yaml
+Didn't work, due to https://github.com/esphome/firmware/issues/286
+
+
+media_player.kitchen_speaker media_player.bedroom_speaker
+
+on_tts_start:
+  - speaker.volume_set: 0%
+on_tts_end:
+  - homeassistant.service:
+      service: media_player.play_media
+      data:
+        entity_id: media_player.kitchen_speaker
+        media_content_id: !lambda 'return x;'
+        media_content_type: music
+        announce: "true"
+
+I got an error so also adjusted
+esp32:
+  board: m5stack-atom
+  framework:
+    type: esp-idf
+    version: 4.4.8
+    platform_version: 5.4.0
+
+
+I used this to add RoboVac https://github.com/CodeFoodPixels/robovac
+
+
+The speech to text wasn't good enough. So I subscribed to nabu casa. It fixed the issue and now understands I am saying turn on the garden lights rather than things like turn on the cardin shown in the debug view.
+It also includes remote access, and making devices show in Google Assistant if I want them to.
+
+I the used Govee integration in HACS as my light didn't support local LAN. I had to request an API key in the about section of the Govee app and input it into Home Assistant.
+This integration in HACS did not work. When removing it I also had a leftover govee.state which I could not remove. I found I had to go to developer tools > actions then purge entities and select it, then restart home assistant.
+Instead I followed https://github.com/wez/govee2mqtt/blob/main/docs/ADDON.md I added it as an addon repository and installed it. Then configured API key, username and password. The office light then showed up.
+
+
+I setup some automations, sunset to turn on the garden and living room lights and motion sensor ones.
+And sunrise to turn off the motion sensor lights.
+
+
+
+Music Assistant, radio browser bbc, qobuz
+
+Morning routine salt lamp and radio.
+
+Need to add weather later, seems more tricky to read it out, perhaps notifications to phone will do later?
+
+
+
+
+Atom echo improvements
+Using https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.adopted.yaml
+
+
+
+
+
+Next plans:
+Try to improve wake word detection
+Make sound come out of speakers instead of echo
+Voice support for music assistant
+SLZB-06M Zigbee controller
+Aqara Door and Window Sensor T1 (back door (garden lights on/off, alarm), later front door (alarm), later bedroom door (salt lamp, alarm)) https://www.aqara-shop.co.uk/product/aqara-door-and-window-sensor-t1-trio-bundle/
+Aqara Cube T1 Pro (shake: transfer queue to living room, 1: music off, 2: play 6 music 3: play radio 1, 4: play greatest hits radio, 5: 5 min timer, 6: shuffle favourites ) https://www.aqara-shop.co.uk/product/aqara-cube-t1-pro/
+Aqara Wireless Mini Switch T1 (bedroom toggle: salt lamp, long press: turn off all lights, double press: turn off music) https://www.aqara-shop.co.uk/product/aqara-wireless-mini-switch-t1/
+later Vibration sensor (on door to turn on salt lamp) https://www.aqara-shop.co.uk/product/aqara-vibration-sensor/
+Bin day notification
+
+Product	Total
+Aqara Door and Window Sensor T1 × 1	£14.99
+Aqara Cube T1 Pro × 1	£19.52
+Aqara Wireless Mini Switch T1 × 1	£14.39
+Subtotal:	£48.90
+
+
+
+
+
+
+
+
+Choose Zigbee Channel 25 - as our wifi is channel 1
+
+
+Zigbee Channel Recommendations:
+Zigbee channels are numbered 11 to 26, corresponding to different frequencies within the 2.4 GHz band. The most commonly used channels are:
+
+Zigbee Channel 15: This is a good middle ground, avoiding overlap with the most common WiFi channels.
+
+Zigbee Channel 20: Another good choice, slightly higher in the spectrum but still away from most WiFi channels.
+
+Zigbee Channel 25: This is at the upper end of the Zigbee channel range and can avoid most WiFi interference, but some Zigbee devices might not support it.
+
+WiFi Channel Recommendations:
+For your WiFi, especially on the 2.4 GHz band, you should ideally choose one of the non-overlapping channels:
+
+WiFi Channel 1: Best if you're using Zigbee Channel 25.
+
+WiFi Channel 6: Best if you're using Zigbee Channel 15.
+
+WiFi Channel 11: Best if you're using Zigbee Channel 15 or 20.
+
+Suggested Setup:
+Zigbee Controller: Set to Channel 15 or 20.
+
+WiFi Access Point: Set to Channel 1 or 11.
+
+
+
+
+
+
+-----
+
+this worked and fine for living room as we don't want to change other settings
+
+substitutions:
+  name: m5stack-atom-echo-a16370
+  friendly_name: M5Stack Atom Echo a16370
+packages:
+  m5stack.atom-echo-voice-assistant: github://esphome/firmware/voice-assistant/m5stack-atom-echo.adopted.yaml@main
+
+esp32:
+  framework:
+    type: esp-idf
+    version: 4.4.8
+    platform_version: 5.4.0
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: yaJ9i6dMCxKs20oTJ7tO9V7UP9yiFpHQXUGaMmz1x1M=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+----
+
+for kitchen and bedroom we want to announce to the speaker itself
+
+next replace with code from
+https://github.com/esphome/firmware/blob/main/voice-assistant/m5stack-atom-echo.adopted.yaml
+but keep api and wifi parts
+we will also keep the name and friendly_name the same as we have multiple of them
+  name: m5stack-atom-echo-a16370
+  friendly_name: M5Stack Atom Echo a16370
+and we will also add
+esp32:
+  board: m5stack-atom
+  framework:
+    type: esp-idf
+    version: 4.4.8
+    platform_version: 5.4.0
+
+and edit in (keep existing and patch the extra bits):
+on_tts_start:
+  - speaker.volume_set: 0%
+on_tts_end:
+  - homeassistant.service:
+      service: media_player.play_media
+      data:
+        entity_id: media_player.kitchen_speaker_2 / media_player.bedroom_speaker_2
+        media_content_id: !lambda 'return x;'
+        media_content_type: music
+        announce: "true"
+
+
+
+Problem! music does not resume after!!!
+trying to look into music assistant's solutions to this
+https://www.music-assistant.io/integration/announcements/?h=announce
+https://www.music-assistant.io/faq/massannounce/
+I think it might be because I am sending it to the original device rather than the music assistant entity.
+Going to try changing it to _2
+That worked!!!!
+Music assistant also has a setting for announcements on each player. I turned off pre announce on each to get rid of the ding noise, unfortunately not possible to remove the one from google cast.
+
+We also want this audio when timers end, like Alexa set a timer for 10 seconds.
+Edit on_timer_finished
+Changed to
+  on_timer_finished:
+    - switch.turn_on: timer_ringing
+    - light.turn_on:
+        id: led
+        red: 0%
+        green: 100%
+        blue: 0%
+        brightness: 100%
+        effect: "Fast Pulse"
+    - homeassistant.service:
+        service: tts.cloud_say
+        data:
+          entity_id: media_player.kitchen_speaker_2
+          message: "The timer has finished"
+    - delay: 1s
+    - script.execute: reset_led
+    - switch.turn_off: timer_ringing
+
+
+After installing, I had to go to settings, the devices and service, ESPHome, Then press configure next to each microphone and tick the box to allow it to run home assistant actions. This allows the atom echo to play media to the speaker!
+
+Adding music assistant voice controls
+Following instructions at https://www.music-assistant.io/integration/voice/?h=voice
+Did not work, as it's not installed with HACS, no support for now!
+Going to get a cube to control it instead, and use phone!
+
+
+If we want to notify phone
+
+Notify phone
+action: notify.mobile_app_pixel_8_pro
+data:
+  message: "You have an update!"
+  title: "Status changed"
+
+
+Created a custom dashboard
+
+
+------
+
+Stop announcing sorry message! Instead ignore and don't send to speaker
+How do we do this?
+Well, esphome says we can have lambda conditions, which is C++.
+
+https://esphome.io/automations/actions.html#lambda-condition
+lambda Condition
+This condition performs an arbitrary piece of C++ code (see Lambda) and can be used to create conditional flow in actions.
+
+
+We know already we're doing !lambda 'return x;'
+According to this page https://community.home-assistant.io/t/retrieving-text-output-from-esphome-voice-assistant/609668/8
+on_tts_start x is the text
+on_tts_end x is the raw file for the response
+So, to make it available to us in on_tts_end we could set it to a global variable in the start block so it is available in the end lambda https://esphome.io/components/globals.html
+
+put this above voice_assistant
+
+globals:
+  - id: tts_global_string
+    type: std::string
+
+put this to the bottom of
+
+on_tts_start:
+  - lambda: id(tts_global_string) = x;
+
+Then, we can check if the text does not start with sorry
+So, how about we check to see if x starts with Sorry. As all the error intents start with Sorry https://github.com/home-assistant/intents/blob/b383112204efc86886ebf26e71112469cf8a7625/sentences/en/_common.yaml#L5
+    - if:
+        condition:
+          lambda: return id(tts_global_string).rfind("Sorry", 0) == -1;
+        then:
+          - homeassistant.service:
+              service: media_player.play_media
+              data:
+                entity_id: media_player.kitchen_speaker_2
+                media_content_id: !lambda 'return x;'
+                media_content_type: music
+                announce: "true"
+        else:
+          - light.turn_on:
+              id: led
+              red: 100%
+              green: 0%
+              blue: 0%
+              brightness: 100%
+              effect: none
+          - delay: 1s
+          - script.execute: reset_led
+
+
+
+
+
+Change fallback intent rather than Gemini have our ignore one
+
+Look into music assistant search improvement of artist then album
+
+Airplay and cast speakers
+
+Noticiation on battery low for ipad and other devices
+
+
+
+Other thoughts:
+CPU at 50%
+Installed Glances https://github.com/hassio-addons/addon-glances/blob/b901132e4a32b08d1c5d91d8779ad1e3aae0cb1e/glances/DOCS.md
+addon_core_openwakeword had highest CPU, presumably from the microphone listening to our music I wonder if there is a way to pause listening with music.
+Even when pausing music it was still the same. So presumably it is always streaming and no difference when it's silent.
+I guess only way would be to change Atom Echo to stop streaming and start again when nearby somehow.
+
+Turning off the living room one went from 50% to 30% for the two in Kitchen and Bedroom.
+
