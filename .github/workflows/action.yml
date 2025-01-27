@@ -1,0 +1,60 @@
+name: Reusable tailwind-nextjs-starter-blog workflow
+
+on:
+  workflow_call:
+    inputs:
+      repo:
+        type: string
+        required: false
+        default: 'timlrx/tailwind-nextjs-starter-blog'
+      ref:
+        type: string
+        required: false
+        default: 'v2'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repo }}
+          ref: ${{ inputs.ref }}
+      - uses: actions/checkout@v4
+        with:
+          path: overrides
+      - name: rsync
+        run: |
+          set -ex
+          #
+          # 1. sync everything except `data/blog` (without --delete)
+          # 2. sync `data/blog` WITH --delete
+          #
+          # 1.
+          rsync -av --progress --exclude=.git --exclude=overrides/data/blog/ overrides/ ${{ github.workspace }}
+          # 2.
+          if [ -d "overrides/data/blog/" ]; then
+            rsync -av --progress --delete overrides/data/blog/ ${{ github.workspace }}/data/blog/
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: yarn
+      - id: configurepages
+        uses: actions/configure-pages@v5
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+      - run: yarn
+      - run: yarn build
+        env:
+          EXPORT: 1
+          UNOPTIMIZED: 1
+          BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
