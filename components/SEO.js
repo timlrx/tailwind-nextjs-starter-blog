@@ -4,33 +4,29 @@ import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
 const generateLinks = (router, availableLocales) => {
-  // First determine which locale should be canonical
-  const canonicalLocale = availableLocales.includes(router.defaultLocale)
-    ? router.defaultLocale
-    : availableLocales[0]
+  // Each language version should be canonical for itself
+  const links = []
 
-  const links = availableLocales.map((locale, index) => {
+  // Add canonical link for current locale
+  const currentUrl = `${siteMetadata.siteUrl}${
+    router.locale === router.defaultLocale ? "" : `/${router.locale}`
+  }${router.asPath}`
+  links.push(<link key="canonical" rel="canonical" href={currentUrl} />)
+
+  // Add hreflang links only for available locales
+  availableLocales.forEach((locale) => {
     const hrefLang = locale === "en" ? "en-US" : "fr-FR"
     const url = `${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
       router.asPath
     }`
 
-    return (
-      <React.Fragment key={index}>
-        <link
-          key={locale}
-          rel={locale === canonicalLocale ? "canonical" : "alternate"}
-          hrefLang={hrefLang}
-          href={url}
-        />
-      </React.Fragment>
-    )
+    // Only add hreflang if this locale version exists
+    links.push(<link key={`hreflang-${locale}`} rel="alternate" hrefLang={hrefLang} href={url} />)
   })
 
-  // Add x-default hreflang link
-  links.push(
-    <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
-  )
+  // Add x-default hreflang link pointing to the default locale version
+  const defaultUrl = `${siteMetadata.siteUrl}${router.asPath}`
+  links.push(<link key="x-default" rel="alternate" hrefLang="x-default" href={defaultUrl} />)
 
   return links
 }
