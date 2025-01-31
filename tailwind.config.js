@@ -72,5 +72,20 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    ({ addBase, theme }) => {
+      addBase({
+        'a, button': {
+          outlineColor: theme('colors.primary.500'),
+          '&:focus-visible': {
+            outline: '2px solid',
+            borderRadius: theme('borderRadius.DEFAULT'),
+            outlineColor: theme('colors.primary.500'),
+          },
+        },
+      })
+    },
+  ],
 }

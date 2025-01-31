@@ -23,7 +23,13 @@ interface ListLayoutProps {
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
   const pathname = usePathname()
-  const basePath = pathname.split('/')[1]
+  const segments = pathname.split('/')
+  const lastSegment = segments[segments.length - 1]
+  const basePath = pathname
+    .replace(/^\//, '') // Remove leading slash
+    .replace(/\/page\/\d+$/, '') // Remove any trailing /page
+  console.log(pathname)
+  console.log(basePath)
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
