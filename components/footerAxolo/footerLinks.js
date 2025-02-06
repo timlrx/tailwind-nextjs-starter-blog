@@ -1,7 +1,7 @@
 export const FooterLinks = ({ navigation }) => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-5 lg:col-span-4 lg:mt-0">
-      <div className="mt-12 ml-2 md:mt-0">
+      <div className="ml-2 mt-12 md:mt-0">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
           About
         </h3>
@@ -18,7 +18,7 @@ export const FooterLinks = ({ navigation }) => {
           ))}
         </ul>
       </div>
-      <div className="mt-12 ml-2 md:mt-0">
+      <div className="ml-2 mt-12 md:mt-0">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
           Product
         </h3>
@@ -35,7 +35,7 @@ export const FooterLinks = ({ navigation }) => {
           ))}
         </ul>
       </div>
-      <div className="mt-12 ml-2 md:mt-0">
+      <div className="ml-2 mt-12 md:mt-0">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
           Tools for developers
         </h3>
@@ -52,7 +52,7 @@ export const FooterLinks = ({ navigation }) => {
           ))}
         </ul>
       </div>
-      <div className="mt-12 ml-2 md:mt-0">
+      <div className="ml-2 mt-12 md:mt-0">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
           Support
         </h3>
@@ -69,7 +69,7 @@ export const FooterLinks = ({ navigation }) => {
           ))}
         </ul>
       </div>
-      <div className="mt-12 ml-2 md:mt-0">
+      <div className="ml-2 mt-12 md:mt-0">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-black dark:text-white">
           Ressources
         </h3>

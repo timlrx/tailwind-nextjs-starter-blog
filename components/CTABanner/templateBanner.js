@@ -35,13 +35,13 @@ function CTABanner({ type, tool = "github" }) {
       bg-gray-100 dark:bg-gray-800 md:flex
        md:items-center md:justify-between md:px-4"
       >
-        <h2 className="px-4 pt-4 md:px-0 md:pt-0 md:pb-4">
+        <h2 className="px-4 pt-4 md:px-0 md:pb-4 md:pt-0">
           <span className="block text-xl text-secondaryBlack dark:text-textWhite sm:text-2xl">
             {element.firstText}
           </span>
           <span className="block text-xl text-primaryBlue sm:text-2xl">{element.secondText}</span>
         </h2>
-        <div className="mt-0 flex flex-shrink-0 pb-4 sm:pl-4 md:pl-0 md:pb-0">
+        <div className="mt-0 flex flex-shrink-0 pb-4 sm:pl-4 md:pb-0 md:pl-0">
           <a
             href={element.link}
             rel="noopener noreferrer"

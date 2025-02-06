@@ -4,7 +4,7 @@ import ReviewStars from "./reviewStar"
 
 const G2Banner = ({ isDarkBackground = false }) => {
   return (
-    <div className="flex justify-center pt-10 pb-2 sm:pt-6 sm:pb-0">
+    <div className="flex justify-center pb-2 pt-10 sm:pb-0 sm:pt-6">
       <div
         className={classNames(
           "w-max ",

@@ -43,10 +43,10 @@ const EnterpriseEmailInput = ({ source }) => {
             />
           )}
         </div>
-        <div className="mt-3 sm:mt-0 sm:ml-3">
+        <div className="mt-3 sm:ml-3 sm:mt-0">
           <button
             onClick={subscribe}
-            className="block w-full rounded-md bg-primaryBlue py-3 px-4 font-medium text-white shadow hover:bg-hoverPrimary focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-gray-900"
+            className="block w-full rounded-md bg-primaryBlue px-4 py-3 font-medium text-white shadow hover:bg-hoverPrimary focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2 focus:ring-offset-gray-900"
           >
             {submitted ? "Invite a colleague" : "Request Axolo for Enterprise"}
           </button>
