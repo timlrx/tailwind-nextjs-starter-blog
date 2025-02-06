@@ -4,43 +4,29 @@ import siteMetadata from "@/data/siteMetadata"
 import React from "react"
 
 const generateLinks = (router, availableLocales) => {
-  const links = availableLocales.map((locale, index) => {
+  // Each language version should be canonical for itself
+  const links = []
+
+  // Add canonical link for current locale
+  const currentUrl = `${siteMetadata.siteUrl}${
+    router.locale === router.defaultLocale ? "" : `/${router.locale}`
+  }${router.asPath}`
+  links.push(<link key="canonical" rel="canonical" href={currentUrl} />)
+
+  // Add hreflang links only for available locales
+  availableLocales.forEach((locale) => {
     const hrefLang = locale === "en" ? "en-US" : "fr-FR"
-    return (
-      <React.Fragment key={index}>
-        <link
-          key={locale}
-          rel={
-            // Here we do as follow: Default langage is canonical
-            // if default langage is not present, we get the first element of the langage array by default
-            // Because the functions should be deterministic, it keep the same(s) link as canonical or alternante
-            locale === router.defaultLocale
-              ? "canonical"
-              : !availableLocales.includes(router.defaultLocale) && locale === availableLocales[0]
-              ? "canonical"
-              : "alternate"
-          }
-          hrefLang={hrefLang}
-          href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
-            router.asPath
-          }`}
-        />
-        {locale === router.locale && (
-          <link
-            rel="alternate"
-            hrefLang={hrefLang}
-            href={`${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
-              router.asPath
-            }`}
-          />
-        )}
-      </React.Fragment>
-    )
+    const url = `${siteMetadata.siteUrl}${locale === router.defaultLocale ? "" : `/${locale}`}${
+      router.asPath
+    }`
+
+    // Only add hreflang if this locale version exists
+    links.push(<link key={`hreflang-${locale}`} rel="alternate" hrefLang={hrefLang} href={url} />)
   })
-  // Add x-default hreflang link
-  links.push(
-    <link key="x-default" rel="alternate" hrefLang="x-default" href={`${siteMetadata.siteUrl}`} />
-  )
+
+  // Add x-default hreflang link pointing to the default locale version
+  const defaultUrl = `${siteMetadata.siteUrl}${router.asPath}`
+  links.push(<link key="x-default" rel="alternate" hrefLang="x-default" href={defaultUrl} />)
 
   return links
 }
@@ -77,12 +63,22 @@ const generateLinks = (router, availableLocales) => {
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLocales }) => {
   const router = useRouter()
 
+  // Determine canonical URL based on the same logic as generateLinks
+  const canonicalLocale = availableLocales?.includes(router.defaultLocale)
+    ? router.defaultLocale
+    : availableLocales?.[0]
+  const canonicalUrl = availableLocales
+    ? `${siteMetadata.siteUrl}${
+        canonicalLocale === router.defaultLocale ? "" : `/${canonicalLocale}`
+      }${router.asPath}`
+    : `${siteMetadata.siteUrl}${router.asPath}`
+
   return (
     <Head>
       <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={ogType} />
       {/* <meta property="og:site_name" content={siteMetadata.title} /> */}
       <meta
@@ -106,9 +102,7 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, availableLoca
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage} />
-      {!availableLocales && (
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
-      )}
+      {!availableLocales && <link rel="canonical" href={canonicalUrl} />}
       {availableLocales && generateLinks(router, availableLocales)}
     </Head>
   )
