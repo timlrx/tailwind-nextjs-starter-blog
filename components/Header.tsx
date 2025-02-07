@@ -23,12 +23,16 @@ const TRIGGER_HEIGHT = 96
 const Header = () => {
   const [scope, animate] = useAnimate()
   const { scrollPosition, scrollDir } = useDetectScroll({ thr: 20 })
-  const [isNavVisible, setIsNavVisible] = useState(true)
-  const [isNavDynamic, setIsNavDynamic] = useState(false)
-  const [isNavFloating, setIsNavFloating] = useState(false)
-  const [navWidth, setNavWidth] = useState('100%')
-  const [floatingNavWidth, setFloatingNavWidth] = useState('96%')
-  const [isNavShadow, setIsNavShadow] = useState(false)
+  const [navState, setNavState] = useState({
+    isVisible: true,
+    isDynamic: false,
+    isFloating: false,
+  })
+  const [navDimensions, setNavDimensions] = useState({
+    width: '100%',
+    floatingWidth: '96%',
+    floatingTop: '1vw',
+  })
 
   const isMd = useMediaQuery('screen and (min-width: 768px)')
   const isXl = useMediaQuery('screen and (min-width: 1280px)')
@@ -37,76 +41,71 @@ const Header = () => {
     const SCROLL_TOP = scrollPosition.top
     const SCROLL_UP = scrollDir === 'up'
 
-    setIsNavVisible(SCROLL_TOP <= TRIGGER_HEIGHT)
-    setIsNavDynamic(SCROLL_TOP > TRIGGER_HEIGHT)
-    setIsNavFloating(SCROLL_TOP > TRIGGER_HEIGHT && SCROLL_UP)
-    setIsNavShadow(NAV_DYNAMIC && SCROLL_TOP > TRIGGER_HEIGHT)
+    setNavState((prevState) => ({
+      ...prevState,
+      isVisible: SCROLL_TOP <= TRIGGER_HEIGHT,
+      isDynamic: SCROLL_TOP > TRIGGER_HEIGHT,
+      isFloating: SCROLL_TOP > TRIGGER_HEIGHT && SCROLL_UP,
+    }))
   }, [scrollPosition, scrollDir])
 
   useEffect(() => {
-    if (!NAV_DYNAMIC) return
-
-    handleScroll()
+    if (NAV_DYNAMIC) {
+      handleScroll()
+    }
   }, [scrollPosition, scrollDir, handleScroll])
 
-  const handleNavWidthChange = (navWidth: string, floatingNavWidth: string) => {
-    const WIDTH = isNavFloating ? floatingNavWidth : navWidth
-
-    animate(scope.current, { width: WIDTH }, { duration: 0 })
-  }
-
-  useEffect(() => {
-    if (!NAV_DYNAMIC) return
-
-    let navWidth: string
-    let floatingNavWidth: string
+  const updateNavDimensions = useCallback(() => {
+    let width = '100%'
+    let floatingWidth = '96%'
+    let floatingTop = '1vw'
 
     if (isXl) {
-      navWidth = '67rem'
-      floatingNavWidth = '65.5rem'
-
-      setNavWidth(navWidth)
-      setFloatingNavWidth(floatingNavWidth)
+      width = '67rem'
+      floatingWidth = '65.5rem'
+      floatingTop = '0.8rem'
     } else if (isMd) {
-      navWidth = '48rem'
-      floatingNavWidth = '46.5rem'
-
-      setNavWidth(navWidth)
-      setFloatingNavWidth(floatingNavWidth)
-    } else {
-      navWidth = '100%'
-      floatingNavWidth = '96%'
-
-      setNavWidth(navWidth)
-      setFloatingNavWidth(floatingNavWidth)
+      width = '48rem'
+      floatingWidth = '46.5rem'
+      floatingTop = '0.48rem'
     }
 
-    handleNavWidthChange(navWidth, floatingNavWidth)
-  }, [isMd, isXl])
+    setNavDimensions({ width, floatingWidth, floatingTop })
+    animate(scope.current, { width: navState.isDynamic ? floatingWidth : width }, { duration: 0 })
+  }, [isMd, isXl, animate, scope, navState.isDynamic])
 
   useEffect(() => {
-    const MUST_SHOW_NAV = isNavVisible && !isNavDynamic && !isNavFloating
-    const MUST_HIDE_NAV = !isNavVisible && isNavDynamic && !isNavFloating
-    const MUST_SHOW_FLOATING_NAV = isNavDynamic && isNavFloating
+    if (NAV_DYNAMIC) {
+      updateNavDimensions()
+    }
+  }, [isMd, isXl, updateNavDimensions])
+
+  useEffect(() => {
+    const { isVisible, isDynamic, isFloating } = navState
+    const { width, floatingWidth, floatingTop } = navDimensions
+
+    const MUST_SHOW_NAV = isVisible && !isDynamic && !isFloating
+    const MUST_HIDE_NAV = !isVisible && isDynamic && !isFloating
+    const MUST_SHOW_FLOATING_NAV = isFloating
 
     if (MUST_SHOW_NAV) {
-      animate(scope.current, { top: 0, height: '6rem', width: navWidth }, { duration: 0.5 })
+      animate(scope.current, { top: 0, height: '6rem', width }, { duration: 0.5 })
     }
     if (MUST_HIDE_NAV) {
       animate(
         scope.current,
-        { top: '-4.2rem', height: '4.2rem', width: floatingNavWidth },
+        { top: '-4.2rem', height: '4.2rem', width: floatingWidth },
         { duration: 0.5 }
       )
     }
     if (MUST_SHOW_FLOATING_NAV) {
       animate(
         scope.current,
-        { top: '1vw', height: '4.2rem', width: floatingNavWidth },
+        { top: floatingTop, height: '4.2rem', width: floatingWidth },
         { duration: 0.5 }
       )
     }
-  }, [isNavVisible, isNavDynamic, isNavFloating])
+  }, [navState, navDimensions, animate, scope])
 
   return (
     <header>
@@ -115,7 +114,7 @@ const Header = () => {
         ${NAV_FIXED ? 'fixed inset-x-0 top-0 z-50' : ''}
         ${NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50 rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''}
         ${!NAV_DEFAULT ? 'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]' : ''}
-        ${isNavShadow ? 'shadow-white-300 shadow-md dark:shadow-gray-800' : ''}`}
+        ${navState.isDynamic ? 'shadow-white-300 shadow-md dark:shadow-gray-800' : ''}`}
         ref={scope}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
