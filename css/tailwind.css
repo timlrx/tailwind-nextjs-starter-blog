@@ -10,6 +10,7 @@
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Colors */
+  /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
   --color-primary-50: oklch(0.971 0.014 343.198);
   --color-primary-100: oklch(0.948 0.028 342.258);
   --color-primary-200: oklch(0.899 0.061 343.231);
@@ -71,7 +72,7 @@
   a:focus-visible,
   button:focus-visible {
     outline: 2px solid;
-    border-radius: var(--rounded-sm);
+    border-radius: var(--radius-sm);
     outline-color: var(--color-primary-500);
   }
 }
