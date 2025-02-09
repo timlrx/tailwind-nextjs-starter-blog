@@ -6,7 +6,7 @@ const Card = ({ title, description, imgSrc, href }) => (
     <div
       className={`${
         imgSrc && 'h-full'
-      } border-opacity-60 overflow-hidden rounded-md border-2 border-gray-200 dark:border-gray-700`}
+      } overflow-hidden rounded-md border-2 border-gray-200/60 dark:border-gray-700/60`}
     >
       {imgSrc &&
         (href ? (
