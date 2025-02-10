@@ -15,6 +15,8 @@ Managing your merge requests is known to increase your tech team productivity. G
 
 Integrating GitLab with Slack using a dedicated app helps your team streamline communication and receive real-time updates on merge requests directly in your channels. This keeps your team informed about code changes, discussions, and approvals without constantly switching between platforms.
 
+<TOCInline toc={props.toc} toHeading={2} asDisclosure />
+
 ### Features
 
 Integrating GitLab with Slack offers a range of features designed to optimize your development process:
@@ -67,15 +69,15 @@ Here is a 6 minutes YouTube video recap of this article:
   ></iframe>
 </div>
 
-## **1. <a target="_blank" href="https://axolo.co/">Axolo</a>**
+### **1. <a target="_blank" href="https://axolo.co/">Axolo</a>**
 
 Focusing on collaboration across the whole engineering team, Axolo is not another pull request notification bot. It's been designed to engage about code easily and resolve pull requests in the most efficient way possible.
 
-### 😍 What we love:
+#### 😍 What we love:
 
 Axolo makes a temporary Slack channel for every GitLab merge request, it will invite reviewers and assignees to the channel, notify them of relevant events like code comments, comments, GitLab actions, deployments and finally it will archive the channel once you close or merge the request.
 
-#### Key Features
+###### Key Features
 
 Axolo stands out as a powerful GitLab Slack app that enhances collaboration and accelerates the [gitlab code review](https://axolo.co/gitlab-slack-integration) process. Some of its key features include:
 
@@ -116,7 +118,7 @@ Axolo stands out as a powerful GitLab Slack app that enhances collaboration and 
 - **Easy Integration**: Seamlessly connect GitLab to Slack and start collaborating without any complex setup.
 - **Enhanced Code Review Workflow**: Accelerate code reviews by centralizing discussions and approvals within Slack.
 
-#### GitLab CI Slack notification
+###### GitLab CI Slack notification
 
 Axolo recently added support for GitLab CI. How does it work? Axolo will send a summary of your jobs (builds or deployments) when a merge request pipeline is completed to the relevant Slack channel. It will look like this:
 
@@ -133,7 +135,7 @@ Axolo recently added support for GitLab CI. How does it work? Axolo will send a 
 
 <UserReview />
 
-## 2. <a target="_blank" rel="noopener noreferrer nofollow" href="https://code-dog.app/">Code Dog</a>
+### 2. <a target="_blank" rel="noopener noreferrer nofollow" href="https://code-dog.app/">Code Dog</a>
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -146,15 +148,15 @@ Axolo recently added support for GitLab CI. How does it work? Axolo will send a 
 Code Dog App is a well-made Slack app that is easy to configure and will send you direct messages for sleeping pull requests or actions that need your attention.
 You can set up a daily reminder for stand-up to remove any current blockers. The price is 18\$/ month.
 
-### 👍 What we like:
+#### 👍 What we like:
 
 Easy to configure and straight to the point.
 
-### 👎 What should be improved:
+#### 👎 What should be improved:
 
 It's a one-size-fits-all. One channel for everything might make it hard to follow for some engineers in your team. It would be nice to notify the right people only.
 
-## 3. <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.eleminder.com/">Eleminder</a>
+### 3. <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.eleminder.com/">Eleminder</a>
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -166,15 +168,15 @@ It's a one-size-fits-all. One channel for everything might make it hard to follo
 
 We’ve talked about Eleminder in one of our previous articles in the <a target="_blank" href="https://axolo.co/blog/p/top-5-github-pull-request-slack-integration">top 5 pull request and Slack integration</a>. Eleminder is a simple and straight to the point pull request review reminder. It will remind a channel about pull requests that are awaiting review. It can also notify pull request review requests and comments. To set it up on GitLab you will have to manually add a GitLab Webhook.
 
-### 👍 What we like:
+#### 👍 What we like:
 
 Free and simple bot.
 
-### 👎 What should be improved:
+#### 👎 What should be improved:
 
 Concerning CI/CD, Eleminder only integrates with CodeShip + Circle CI integrated.
 
-## 4. Zapier and Integromat
+### 4. Zapier and Integromat
 
 <div style={{ display: "flex", justifyContent: "center" }}>
   <img
@@ -190,15 +192,15 @@ Check what you can do on Integromat: <a target="_blank" rel="noopener noreferrer
 
 Check what you can do on Zapier: <a target="_blank" rel="noopener noreferrer nofollow" href="https://zapier.com/apps/gitlab/integrations/slack">Zapier Slack GitLab integration page</a>
 
-### 👍 What we like:
+#### 👍 What we like:
 
 Highly configurable, you can choose to have three steps processes in case you want to filter out some merge requests.
 
-### 👎 What should be improved:
+#### 👎 What should be improved:
 
 Shallow integrations, no information on deployments and GitLab CI/CD. It can be also expensive.
 
-## 5. Open source GitLab Slack <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/nazrhyn/gitlab-slack">integration from Nazhryn</a>
+### 5. Open source GitLab Slack <a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/nazrhyn/gitlab-slack">integration from Nazhryn</a>
 
 <div
   style={{
@@ -218,25 +220,25 @@ Shallow integrations, no information on deployments and GitLab CI/CD. It can be 
 
 GitLab-Slack from Nazrhyn is a JavaScript open-source service that receives hook notifications from GitLab and posts information to a Slack webhook. It takes a bit of time to set up but once done it can notify a channel about commits, branches, tags, issues, merge requests, and wiki pages.
 
-### 👍 What we like:
+#### 👍 What we like:
 
 Open source, you can trust it and also contribute to it.
 
-### 👎 What should be improved:
+#### 👎 What should be improved:
 
 Last updated two years ago. The setup takes a bit of time and can scare away some companies.
 
-## 6. Official Slack GitLab integration
+### 6. Official Slack GitLab integration
 
 The official Slack GitLab integration allows you to manage issues, (show, search, move, find, comment, close), deploy environments, and run commands for specific projects.
 
 Check out the documentation on <a target="_blank" rel="noopener noreferrer nofollow" href="https://docs.gitlab.com/ee/user/project/integrations/gitlab_slack_application.html">GitLab</a>
 
-### 👍 What we like:
+#### 👍 What we like:
 
 Good to handle issues for a repository from your Slack.
 
-### 👎 What should be improved:
+#### 👎 What should be improved:
 
 This integration is very limited. It takes a while to set up and you can only handle issues. It’s also hard to remember all the Slash commands and can be lengthy to mention the project every time.
 
@@ -248,7 +250,7 @@ The official Slack GitLab integration is also handy for managing issues. By usin
 
 <CTABanner type="learn" tool="gitlab" />
 
-## Key Benefits of Slack GitLab Integrations for Merge Requests
+### Key Benefits of Slack GitLab Integrations for Merge Requests
 
 Integrating GitLab with Slack provides numerous benefits for teams managing merge requests:
 
@@ -260,7 +262,7 @@ Integrating GitLab with Slack provides numerous benefits for teams managing merg
 
 By using a GitLab Slack app, teams can automate GitLab notifications in Slack, leading to increased productivity and faster turnaround times.
 
-## How to Choose the Right Integration for Your Team
+### How to Choose the Right Integration for Your Team
 
 Selecting the best integration depends on your team's size, workflow, and specific needs. Consider the following factors:
 
@@ -273,7 +275,7 @@ Selecting the best integration depends on your team's size, workflow, and specif
 
 By carefully assessing these factors, you can select a GitLab Slack app that optimizes your team's workflow and enhances collaboration.
 
-## Teams Boosting Productivity with Slack-GitLab Integrations
+### Teams Boosting Productivity with Slack-GitLab Integrations
 
 Many teams have significantly improved their productivity by integrating GitLab with Slack. For example, companies like Irwin have shifted from basic Slack bots to advanced integrations like Axolo, leading to more efficient code reviews and better team collaboration.
 
