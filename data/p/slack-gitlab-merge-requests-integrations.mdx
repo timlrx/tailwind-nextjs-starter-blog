@@ -1,7 +1,7 @@
 ---
 title: "Top 6 Slack GitLab Merge Request Integrations"
 date: "2022-01-06"
-lastmod: "2024-11-13"
+lastmod: "2025-02-10"
 tags: ["notification", "gitlab"]
 draft: false
 image: "/blog/static/images/gitlab/top6_gitlab_slack.png"
@@ -93,6 +93,7 @@ Axolo stands out as a powerful GitLab Slack app that enhances collaboration and 
   </a>
 
 - **Real-Time Notifications**: Stay updated with immediate alerts on code comments, commits, and GitLab actions directly in Slack.
+
   <ImageContainer
     alt="Axolo code review threads"
     src="/blog/static/images/gitlab/threads-2.png"
@@ -101,6 +102,7 @@ Axolo stands out as a powerful GitLab Slack app that enhances collaboration and 
     width={2252}
     height={2076}
   />
+
 - **GitLab CI Slack Notifications**: Receive summaries of your CI/CD pipelines when a merge request pipeline is completed.
   <ImageContainer
     alt="gitlab ci slack notification"
@@ -266,7 +268,7 @@ Selecting the best integration depends on your team's size, workflow, and specif
 - **Workflow Compatibility**: Ensure the integration aligns with your existing processes, including how you create merge requests in GitLab.
 - **Feature Set**: Evaluate the features offered, such as GitLab CI Slack notifications, real-time alerts, and collaboration tools.
 - **Ease of Setup**: Choose an integration that is easy to configure and allows you to connect GitLab to Slack without complex steps.
-- **Support for GitLab Self-Managed Instances**: If your team uses a [GitLab self-managed instance](https://axolo.co/blog/p/slack-integration-for-self-managed-gitlab), ensure that the integration supports it. Axolo, for example, provides support for [GitLab self-managed instances](https://axolo.co/blog/p/slack-integration-for-self-managed-gitlab).
+- **Support for GitLab Self-Managed Instances**: If your team uses a GitLab self-managed instance, ensure that the integration supports it. Axolo, for example, provides support for GitLab self-managed instances.
 - **Pricing**: Consider your budget and whether the integration's cost aligns with the value it provides.
 
 By carefully assessing these factors, you can select a GitLab Slack app that optimizes your team's workflow and enhances collaboration.
@@ -278,6 +280,117 @@ Many teams have significantly improved their productivity by integrating GitLab 
 By leveraging tools that integrate GitLab with Slack, teams can streamline their workflows, reduce delays, and enhance communication. This results in faster development cycles and higher-quality code.
 
 [Read more about Irwin's experience with Axolo.](https://axolo.co/blog/p/irwin-shift-from-slackbot-to-axolo)
+
+## <span className="rainbow-button text-2xl font-bold hover:cursor-auto">How to set up Slack notifications for a self-hosted GitLab instance?</span>
+
+Getting GitLab notifications on a self-managed instance can be a challenge today. Without these notifications, teams may miss important updates or fail to react quickly to critical issues.
+
+Slack is a popular tool for receiving these notifications in real-time, but setting up this integration can be tricky. In this article, we'll explore two alternative solutions for setting up GitLab Slack notifications for self-managed instances in 2024. Whether you choose to use a third-party tool or manually configure the notifications, we'll guide you through the steps and offer tips and best practices for a successful setup. Let's get started!
+
+<ImageContainer
+  alt="Photo by Pankaj Pantel on Unsplash"
+  src="/blog/static/images/gitlab/PankajPantelUnsplash.jpg"
+  classNameDiv="mx-10 sm:mx-28"
+  classNameImage=""
+  width={4470}
+  height={2980}
+/>
+
+### How to set up Axolo for a GitLab Self-Managed instance?
+
+To set up Axolo for GitLab Self-Managed and Slack, first, you need to [sign up for an Axolo account](https://app.axolo.co) and add it to your Slack workspace. You will then need to create an app in your GitLab instance, and complete the onboarding on the Axolo app.
+
+That's it! Your app will start sending notifications to Slack.
+
+#### Pros of using Axolo for a GitLab self-managed instance
+
+Using Axolo for a GitLab self-managed instance offers several benefits, including:
+
+1. **Improved communication and collaboration:** Axolo provides a centralized communication platform where teams can collaborate and discuss merge requests in real-time. This improves communication and helps teams to resolve merge requests faster.
+
+2. **Increased productivity:** Axolo offers various features such as daily pull request reminders, search capabilities, and team-specific notifications that help to increase productivity and efficiency in the code review process.
+
+3. **Accountability:** Axolo makes it easier to hold developers and QA engineers accountable for reviewing and merging pull requests. The tool keeps track of pull requests and provides reminders to ensure that they are not forgotten or left stale.
+
+4. **Positive user reviews:** Axolo has received positive user reviews and is a high performer according to G2, indicating that the tool is effective and well-liked by its users.
+
+<G2Banner />
+
+Overall, Axolo offers a range of benefits for teams using GitLab self-managed instances, helping to streamline the code review process, improve communication and collaboration, increase productivity, and hold team members accountable for their work.
+
+If you're interested, here is a [customer testimonial](https://axolo.co/blog/p/irwin-shift-from-slackbot-to-axolo) from a team that switched from using their internal bot to Axolo.
+
+#### Cons of using Axolo for a GitLab self-managed instance
+
+Here are a few potential cons of using Axolo:
+
+1. **Cost:** Axolo is not a free tool for team with more than 5 developers (it is $10/dev/mo). This may be a con those with budget constraints. But as our latest studies has shown, Axolo help developers save two hours per week on code reviews, which is a huge time saver for teams.
+
+2. **Dependency on Slack:** As Axolo is a Slack integration, it requires a Slack workspace to function. If your team does not use Slack or prefers to use a different communication tool, Axolo may not be the best fit.
+
+## Manually create a GitLab Slack notification integration for a self-managed instance
+
+<ImageContainer
+  alt="gitlab slack bot architecture"
+  src="/blog/static/images/gitlab/gitlab_slack_bot_architecture.png"
+  classNameDiv="mx-2 sm:mx-28"
+  classNameImage=""
+  width={1380}
+  height={1153}
+/>
+
+### How to create your own GitLab Slack notification integration for a self-managed instance?
+
+You can find here how to create your Slack application to send notifications from your GitLab instance:
+
+1. Create a Slack app:
+
+   - Create a new Slack app in the Slack API dashboard.
+   - Configure the Incoming Webhooks integration to receive notifications from GitLab.
+
+2. Generate a GitLab webhook URL:
+
+   - Go to the project settings in GitLab.
+   - Select "Webhooks" from the left-hand menu.
+   - Add a new webhook with the Slack webhook URL and the events you want to receive notifications for.
+
+3. Configure GitLab webhook settings:
+
+   - In the webhook settings, add the Slack webhook URL and select the events you want to receive notifications for.
+
+4. Test the Slack integration:
+
+   - Trigger a test event in GitLab.
+   - Verify that the notification appears in Slack.
+
+5. Customize notifications:
+   - Modify the webhook settings in GitLab or configure the Slack app to modify the notifications before they are sent to Slack.
+
+#### Pros of manually creating a GitLab Slack notification integration for a self-managed instance
+
+Here are a few potential pros of manually creating a GitLab Slack notification integration for a self-managed instance:
+
+1. Customization: By creating your own Slack integration, you can customize the notifications to meet your specific needs.
+
+2. Control: By having your own Slack integration, you have more control over how the notifications are sent and received.
+
+3. Learning opportunity: Creating your own integration can be a learning opportunity for your team, allowing them to develop new skills and gain experience with integrating different tools and technologies.
+
+4. Security: By creating your own integration, you have more control over the security of the notifications.
+
+#### Cons of manually creating a GitLab Slack notification integration for a self-managed instance
+
+Here are a few potential cons of manually creating a GitLab Slack notification integration for a self-managed instance:
+
+1. Time and resources: Building and maintaining your own Slack integration can be time-consuming and require a significant investment of resources.
+
+2. Complexity: Integrating GitLab and Slack can be a complex process, especially if you're working with multiple teams or have a large number of notifications.
+
+3. Maintenance: Once you've built your Slack integration, you'll need to maintain and update it over time to ensure that it continues to work correctly.
+
+4. Compatibility: Your Slack integration may not be compatible with future versions of GitLab or Slack, which could lead to issues down the road.
+
+5. Security: While creating your own integration can give you more control over security, it also means that you're responsible for ensuring that the integration is secure and doesn't expose sensitive information.
 
 ## Customizing a Slack GitLab Merge Request with Axolo
 
