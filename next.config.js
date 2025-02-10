@@ -149,6 +149,16 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
+          source: "/p/slack-integration-for-self-managed-gitlab",
+          destination: "/p/slack-gitlab-merge-requests-integrations",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/slack-integration-for-self-managed-gitlab",
+          destination: "/blog/p/slack-gitlab-merge-requests-integrations",
+          permanent: true,
+        },
+        {
           source: "/blog/p/",
           destination: "/blog",
           permanent: true,
