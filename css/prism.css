@@ -1,3 +1,5 @@
+@reference "./tailwind.css";
+
 /**
  * CSS Styles for code highlighting.
  * Feel free to customize token styles 
@@ -7,7 +9,7 @@
 
 /* Code title styles */
 .remark-code-title {
-  @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
+  @apply rounded-xs bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
 }
 
 .remark-code-title + div > pre {
@@ -20,23 +22,23 @@
 }
 
 .code-line {
-  @apply -mx-4 block border-l-4 border-transparent pl-4 pr-4;
+  @apply -mx-4 block border-l-4 border-transparent pr-4 pl-4;
 }
 
 .code-line.inserted {
-  @apply bg-green-500 bg-opacity-20;
+  @apply bg-green-500/20;
 }
 
 .code-line.deleted {
-  @apply bg-red-500 bg-opacity-20;
+  @apply bg-red-500/20;
 }
 
 .highlight-line {
-  @apply -mx-4 border-l-4 border-primary-500 bg-gray-700 bg-opacity-50;
+  @apply border-primary-500 -mx-4 border-l-4 bg-gray-700/50;
 }
 
 .line-number::before {
-  @apply -ml-2 mr-4 inline-block w-4 text-right text-gray-400;
+  @apply mr-4 -ml-2 inline-block w-4 text-right text-gray-400;
   content: attr(line);
 }
 
@@ -133,10 +135,6 @@
 
 .token.italic {
   font-style: italic;
-}
-
-.token.table {
-  display: inline;
 }
 
 .token.table {

@@ -35,8 +35,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="w-full">
               <Bleed>
                 <div
-                  className={`relative flex justify-center
-                  ${parentClass ?? ''}`}
+                  className={`relative flex justify-center ${parentClass ?? ''}`}
                   style={parentStyle}
                 >
                   <Image
@@ -44,8 +43,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     alt={title}
                     width={width ?? 800}
                     height={height ?? 400}
-                    className={`${childClass ?? ''}
-                    ${!hasImageWidthClass ? defaultImageWidthClass : ''}`}
+                    className={`${childClass ?? ''} ${!hasImageWidthClass ? defaultImageWidthClass : ''}`}
                     style={childStyle}
                   />
                 </div>
@@ -55,9 +53,9 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
               <PageTitle>{title}</PageTitle>
             </div>
           </div>
-          <div className="prose max-w-none py-4 dark:prose-invert">{children}</div>
+          <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
           {siteMetadata.comments && (
-            <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
               <Comments slug={slug} />
             </div>
           )}

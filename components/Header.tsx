@@ -102,11 +102,7 @@ const Header = () => {
   return (
     <header className="h-[6rem] print:hidden">
       <motion.nav
-        className={`flex h-[6rem] items-center justify-between bg-white dark:bg-gray-950
-        ${NAV_FIXED || NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50' : ''}
-        ${NAV_DYNAMIC ? 'rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''}
-        ${!NAV_DEFAULT ? 'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]' : ''}
-        ${navState.isDynamic ? 'shadow-md shadow-gray-200 dark:shadow-gray-800' : ''}`}
+        className={`flex h-[6rem] items-center justify-between bg-white dark:bg-gray-950 ${NAV_FIXED || NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50' : ''} ${NAV_DYNAMIC ? 'rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''} ${!NAV_DEFAULT ? 'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]' : ''} ${navState.isDynamic ? 'shadow-md shadow-gray-200 dark:shadow-gray-800' : ''}`}
         ref={scope}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
@@ -131,7 +127,7 @@ const Header = () => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="block font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
+                  className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
                 >
                   {link.title}
                 </Link>
