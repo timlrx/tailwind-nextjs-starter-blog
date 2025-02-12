@@ -37,7 +37,7 @@ const Header = () => {
   const isMd = useMediaQuery('screen and (min-width: 768px)')
   const isXl = useMediaQuery('screen and (min-width: 1280px)')
 
-  const handleScroll = useCallback(() => {
+  const updateNavStateOnScroll = useCallback(() => {
     const SCROLL_TOP = scrollPosition.top
     const SCROLL_UP = scrollDir === 'up'
 
@@ -47,13 +47,13 @@ const Header = () => {
       isDynamic: SCROLL_TOP > TRIGGER_HEIGHT,
       isFloating: SCROLL_TOP > TRIGGER_HEIGHT && SCROLL_UP,
     }))
-  }, [scrollPosition, scrollDir])
+  }, [scrollPosition.top, scrollDir])
 
   useEffect(() => {
     if (NAV_DYNAMIC) {
-      handleScroll()
+      updateNavStateOnScroll()
     }
-  }, [scrollPosition, scrollDir, handleScroll])
+  }, [scrollPosition.top, scrollDir, updateNavStateOnScroll])
 
   const updateNavDimensions = useCallback(() => {
     let width = '100%'
@@ -83,38 +83,30 @@ const Header = () => {
   useEffect(() => {
     const { isVisible, isDynamic, isFloating } = navState
     const { width, floatingWidth, floatingTop } = navDimensions
+    const duration = 0.5
 
     const MUST_SHOW_NAV = isVisible && !isDynamic && !isFloating
     const MUST_HIDE_NAV = !isVisible && isDynamic && !isFloating
     const MUST_SHOW_FLOATING_NAV = isFloating
 
     if (MUST_SHOW_NAV) {
-      animate(scope.current, { top: 0, height: '6rem', width }, { duration: 0.5 })
-    }
-    if (MUST_HIDE_NAV) {
-      animate(
-        scope.current,
-        { top: '-4.2rem', height: '4.2rem', width: floatingWidth },
-        { duration: 0.5 }
-      )
-    }
-    if (MUST_SHOW_FLOATING_NAV) {
-      animate(
-        scope.current,
-        { top: floatingTop, height: '4.2rem', width: floatingWidth },
-        { duration: 0.5 }
-      )
+      animate(scope.current, { top: 0, height: '6rem', width }, { duration })
+    } else if (MUST_HIDE_NAV) {
+      animate(scope.current, { top: '-4.2rem', height: '4.2rem', width }, { duration })
+      animate(scope.current, { width: floatingWidth }, { delay: duration })
+    } else if (MUST_SHOW_FLOATING_NAV) {
+      animate(scope.current, { top: floatingTop }, { duration })
     }
   }, [navState, navDimensions, animate, scope])
 
   return (
-    <header>
+    <header className="h-[6rem] print:hidden">
       <motion.nav
-        className={`flex h-[6rem] w-full items-center justify-between bg-white dark:bg-gray-950 print:hidden
-        ${NAV_FIXED ? 'fixed inset-x-0 top-0 z-50' : ''}
-        ${NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50 rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''}
+        className={`flex h-[6rem] items-center justify-between bg-white dark:bg-gray-950
+        ${NAV_FIXED || NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50' : ''}
+        ${NAV_DYNAMIC ? 'rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''}
         ${!NAV_DEFAULT ? 'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]' : ''}
-        ${navState.isDynamic ? 'shadow-white-300 shadow-md dark:shadow-gray-800' : ''}`}
+        ${navState.isDynamic ? 'shadow-md shadow-gray-200 dark:shadow-gray-800' : ''}`}
         ref={scope}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
@@ -150,7 +142,6 @@ const Header = () => {
           <MobileNav />
         </div>
       </motion.nav>
-      {!NAV_DEFAULT && <div aria-hidden="true" className="h-[6rem] print:hidden"></div>}
     </header>
   )
 }
