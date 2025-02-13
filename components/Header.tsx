@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import useDetectScroll from '@smakss/react-scroll-direction'
 import { useMediaQuery } from '@hooks'
 import { motion, useAnimate } from 'motion/react'
+import clsx from 'clsx'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
@@ -92,7 +93,7 @@ const Header = () => {
     if (MUST_SHOW_NAV) {
       animate(scope.current, { top: 0, height: '6rem', width }, { duration })
     } else if (MUST_HIDE_NAV) {
-      animate(scope.current, { top: '-4.2rem', height: '4.2rem', width }, { duration })
+      animate(scope.current, { top: '-4.2rem', height: '4.2rem' }, { duration })
       animate(scope.current, { width: floatingWidth }, { delay: duration })
     } else if (MUST_SHOW_FLOATING_NAV) {
       animate(scope.current, { top: floatingTop }, { duration })
@@ -102,7 +103,12 @@ const Header = () => {
   return (
     <header className="h-[6rem] print:hidden">
       <motion.nav
-        className={`flex h-[6rem] items-center justify-between bg-white dark:bg-gray-950 ${NAV_FIXED || NAV_DYNAMIC ? 'fixed inset-x-0 top-0 z-50' : ''} ${NAV_DYNAMIC ? 'rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30' : ''} ${!NAV_DEFAULT ? 'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]' : ''} ${navState.isDynamic ? 'shadow-md shadow-gray-200 dark:shadow-gray-800' : ''}`}
+        className={clsx('flex h-[6rem] items-center justify-between bg-white dark:bg-gray-950', {
+          'fixed inset-x-0 top-0 z-50': NAV_FIXED || NAV_DYNAMIC,
+          'rounded-md bg-white/30 backdrop-blur dark:bg-gray-950/30': NAV_DYNAMIC,
+          'mx-auto px-4 sm:px-6 md:w-[48rem] xl:w-[67rem]': !NAV_DEFAULT,
+          'shadow-md shadow-gray-200 dark:shadow-gray-800': navState.isDynamic,
+        })}
         ref={scope}
       >
         <Link href="/" aria-label={siteMetadata.headerTitle}>
