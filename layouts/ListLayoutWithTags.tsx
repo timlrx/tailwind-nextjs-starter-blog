@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx/lite'
 import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'
 import { formatDate } from 'pliny/utils/formatDate'
@@ -88,7 +89,10 @@ export default function ListLayoutWithTags({
                   <li key={path} className="py-5">
                     <article className="grid xl:grid-cols-8 xl:gap-x-4">
                       <dl
-                        className={`xl:row-start-1 xl:pt-1 ${isVertical ? 'xl:col-start-4 xl:col-end-9' : 'xl:col-start-1 xl:col-end-4'}`}
+                        className={clsx(
+                          'xl:row-start-1 xl:pt-1',
+                          isVertical ? 'xl:col-start-4 xl:col-end-9' : 'xl:col-start-1 xl:col-end-4'
+                        )}
                       >
                         <dt className="sr-only">Published on</dt>
                         <dd
@@ -102,7 +106,11 @@ export default function ListLayoutWithTags({
                       {url && (
                         <Link
                           href={`/${path}`}
-                          className={`mt-3 grid xl:col-start-1 xl:col-end-4 xl:mt-2 xl:justify-center ${parentClass ? parentClass : ''} ${isVertical ? 'xl:row-start-1 xl:row-end-5' : 'xl:row-start-2 xl:row-end-5'}`}
+                          className={clsx(
+                            'mt-3 grid xl:col-start-1 xl:col-end-4 xl:row-end-5 xl:mt-2 xl:justify-center',
+                            parentClass,
+                            isVertical ? 'xl:row-start-1' : 'xl:row-start-2'
+                          )}
                           style={parentStyle}
                         >
                           <Image
@@ -116,7 +124,10 @@ export default function ListLayoutWithTags({
                         </Link>
                       )}
                       <div
-                        className={`mt-3 xl:col-start-4 xl:col-end-9 ${isVertical ? 'xl:row-start-2 xl:row-end-3 xl:mt-3' : 'xl:row-start-1 xl:row-end-3 xl:mt-0'}`}
+                        className={clsx(
+                          'mt-3 xl:col-start-4 xl:col-end-9 xl:row-end-3',
+                          isVertical ? 'xl:row-start-2 xl:mt-3' : 'xl:row-start-1 xl:mt-0'
+                        )}
                       >
                         <h2 className="text-2xl leading-8 font-bold tracking-tight">
                           <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
