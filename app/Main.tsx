@@ -1,3 +1,4 @@
+import clsx from 'clsx/lite'
 import Image from 'next/image'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
@@ -48,7 +49,13 @@ export default function Home({ posts, pagination, initialDisplayPosts = [] }: Ho
               <li key={path} className="py-12 last:pb-0 md:mt-12 md:py-0">
                 <article className="md:border-opacity-60 grid md:grid-cols-7 md:overflow-hidden md:rounded-md md:border-2 md:border-gray-200 xl:grid-cols-8 md:dark:border-gray-700">
                   <dl
-                    className={`md:col-end-8 md:row-start-1 md:grid md:items-center md:p-[0.75rem] xl:border-r-2 xl:border-inherit ${url ? 'xl:row-end-2' : 'xl:row-end-5'} ${isSquare || isVertical ? 'md:col-start-3 md:border-l-2 md:border-inherit xl:col-start-3 xl:col-end-9 xl:border-none xl:pl-4' : 'md:col-start-1 xl:col-end-3 xl:text-center'}`}
+                    className={clsx(
+                      'md:col-end-8 md:row-start-1 md:grid md:items-center md:p-3 xl:border-r-2 xl:border-inherit',
+                      url ? 'xl:row-end-2' : 'xl:row-end-5',
+                      isSquare || isVertical
+                        ? 'md:col-start-3 md:border-l-2 md:border-inherit xl:col-start-3 xl:col-end-9 xl:border-none xl:pl-4'
+                        : 'md:col-start-1 xl:col-end-3 xl:text-center'
+                    )}
                   >
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
@@ -58,7 +65,16 @@ export default function Home({ posts, pagination, initialDisplayPosts = [] }: Ho
                   {url && (
                     <Link
                       href={`/blog/${slug}`}
-                      className={`relative mt-4 grid md:col-start-1 md:col-end-3 md:mt-0 md:items-center md:justify-center md:border-inherit xl:row-end-5 xl:h-full xl:border-r-2 xl:border-b-0 ${parentClass ?? ''} ${isSquare ? 'md:row-end-4 md:border-b-0 xl:row-start-1 xl:border-t-0' : 'md:row-end-3'} ${isVertical ? 'md:row-start-1 md:row-end-5 md:border-y-0 xl:aspect-[10/12]' : 'md:row-start-2 md:border-y-2'}`}
+                      className={clsx(
+                        'relative mt-4 grid md:col-start-1 md:col-end-3 md:mt-0 md:items-center md:justify-center md:border-inherit xl:row-end-5 xl:h-full xl:border-r-2 xl:border-b-0',
+                        parentClass,
+                        isSquare
+                          ? 'md:row-end-4 md:border-b-0 xl:row-start-1 xl:border-t-0'
+                          : 'md:row-end-3',
+                        isVertical
+                          ? 'md:row-start-1 md:row-end-5 md:border-y-0 xl:aspect-[10/12]'
+                          : 'md:row-start-2 md:border-y-2'
+                      )}
                       style={parentStyle}
                     >
                       <Image
@@ -66,13 +82,23 @@ export default function Home({ posts, pagination, initialDisplayPosts = [] }: Ho
                         alt={alt ?? ''}
                         width={width}
                         height={height}
-                        className={`pr-4 md:px-2 ${childClass ?? ''} ${!hasImageWidthClassMd ? 'md:w-[1000px]' : ''}`}
+                        className={clsx('pr-4 md:px-2', childClass, {
+                          'md:w-[1000px]': !hasImageWidthClassMd,
+                        })}
                         style={childStyle}
                       />
                     </Link>
                   )}
                   <div
-                    className={`mt-4 md:row-start-2 md:mt-0 md:border-2 md:border-r-0 md:border-inherit md:p-4 xl:row-end-2 xl:border-none xl:pb-0 ${url ? 'md:col-start-3 md:col-end-8 xl:col-end-9' : 'md:col-start-1 md:col-end-8 md:border-l-0 xl:col-start-3 xl:col-end-9'} ${isSquare || isVertical ? 'md:border-b-0 md:pb-0 xl:row-start-2' : 'xl:row-start-1'}`}
+                    className={clsx(
+                      'mt-4 md:row-start-2 md:mt-0 md:border-2 md:border-r-0 md:border-inherit md:p-4 xl:row-end-2 xl:border-none xl:pb-0',
+                      url
+                        ? 'md:col-start-3 md:col-end-8 xl:col-end-9'
+                        : 'md:col-start-1 md:col-end-8 md:border-l-0 xl:col-start-3 xl:col-end-9',
+                      isSquare || isVertical
+                        ? 'md:border-b-0 md:pb-0 xl:row-start-2'
+                        : 'xl:row-start-1'
+                    )}
                   >
                     <h2 className="text-2xl leading-8 font-bold tracking-tight">
                       <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
@@ -86,12 +112,20 @@ export default function Home({ posts, pagination, initialDisplayPosts = [] }: Ho
                     </div>
                   </div>
                   <div
-                    className={`prose mt-6 max-w-none border-inherit text-gray-500 md:col-end-8 md:row-start-3 md:mt-0 md:p-4 xl:col-start-3 xl:col-end-9 xl:row-start-2 xl:row-end-4 dark:text-gray-400 ${isSquare || isVertical ? 'md:col-start-3 md:border-l-2 xl:row-start-3 xl:border-l-0' : 'md:col-start-1'}`}
+                    className={clsx(
+                      'prose mt-6 max-w-none border-inherit text-gray-500 md:col-end-8 md:row-start-3 md:mt-0 md:p-4 xl:col-start-3 xl:col-end-9 xl:row-start-2 xl:row-end-4 dark:text-gray-400',
+                      isSquare || isVertical
+                        ? 'md:col-start-3 md:border-l-2 xl:row-start-3 xl:border-l-0'
+                        : 'md:col-start-1'
+                    )}
                   >
                     {summary}
                   </div>
                   <div
-                    className={`mt-6 flex justify-between text-base leading-6 font-medium md:col-end-8 md:row-start-4 md:mt-0 md:border-t-2 md:border-inherit xl:col-start-3 xl:col-end-9 xl:mt-auto ${isVertical ? 'md:col-start-3 md:border-l-2 xl:border-l-0' : 'md:col-start-1'}`}
+                    className={clsx(
+                      'mt-6 flex justify-between text-base leading-6 font-medium md:col-end-8 md:row-start-4 md:mt-0 md:border-t-2 md:border-inherit xl:col-start-3 xl:col-end-9 xl:mt-auto',
+                      isVertical ? 'md:col-start-3 md:border-l-2 xl:border-l-0' : 'md:col-start-1'
+                    )}
                   >
                     <Link
                       href={`/blog/${slug}`}
