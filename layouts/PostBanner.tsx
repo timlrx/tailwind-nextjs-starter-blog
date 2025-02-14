@@ -1,3 +1,4 @@
+import clsx from 'clsx/lite'
 import { ReactNode } from 'react'
 import Image from '@/components/Image'
 import Bleed from 'pliny/ui/Bleed'
@@ -35,7 +36,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="w-full">
               <Bleed>
                 <div
-                  className={`relative flex justify-center ${parentClass ?? ''}`}
+                  className={clsx('flex justify-center first-letter:relative', parentClass)}
                   style={parentStyle}
                 >
                   <Image
@@ -43,7 +44,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     alt={title}
                     width={width ?? 800}
                     height={height ?? 400}
-                    className={`${childClass ?? ''} ${!hasImageWidthClass ? defaultImageWidthClass : ''}`}
+                    className={clsx(childClass, !hasImageWidthClass && defaultImageWidthClass)}
                     style={childStyle}
                   />
                 </div>
