@@ -21,6 +21,47 @@ const layouts = {
   PostBanner,
 }
 
+interface PostImages {
+  url: string
+  alt?: string
+  width?: number
+  height?: number
+}
+
+const getPostImages = (post: unknown): PostImages[] => {
+  const { socialBanner } = siteMetadata
+
+  if (typeof post === 'string') {
+    return [{ url: post }]
+  }
+
+  if (Array.isArray(post)) {
+    return post.map((img) => {
+      if (typeof img === 'string') {
+        return { url: img }
+      }
+      if (typeof img === 'object') {
+        const { url, alt, width, height } = img
+        return {
+          url: url || socialBanner,
+          alt,
+          width,
+          height,
+        }
+      }
+      return {
+        url: socialBanner,
+      }
+    })
+  }
+
+  return [
+    {
+      url: socialBanner,
+    },
+  ]
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>
 }): Promise<Metadata | undefined> {
@@ -39,13 +80,20 @@ export async function generateMetadata(props: {
   const publishedAt = new Date(post.date).toISOString()
   const modifiedAt = new Date(post.lastmod || post.date).toISOString()
   const authors = authorDetails.map((author) => author.name)
-  let imageList = [siteMetadata.socialBanner]
-  if (post.images) {
-    imageList = typeof post.images === 'string' ? [post.images] : post.images
+  const twitterImages = getPostImages(post.images)
+
+  if (post.coverImage?.isCardImage) {
+    const cardImageInPostImages = twitterImages.some((img) => img.url === post.coverImage?.url)
+    if (!cardImageInPostImages) {
+      const { url, alt, width, height } = post.coverImage
+      twitterImages.unshift({ url, alt, width, height })
+    }
   }
-  const ogImages = imageList.map((img) => {
+
+  const ogImages = twitterImages.map((img) => {
+    const { url } = img
     return {
-      url: img.includes('http') ? img : siteMetadata.siteUrl + img,
+      url: url.includes('http') ? url : siteMetadata.siteUrl + url,
     }
   })
 
@@ -68,7 +116,7 @@ export async function generateMetadata(props: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: imageList,
+      images: twitterImages,
     },
   }
 }
