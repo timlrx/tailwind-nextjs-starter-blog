@@ -115,6 +115,7 @@ const CoverImage = defineNestedType(() => ({
     alt: { type: 'string' },
     width: { type: 'number', required: true },
     height: { type: 'number', required: true },
+    isCardImage: { type: 'boolean', default: true },
     home: { type: 'nested', of: ImageStyle },
     blog: { type: 'nested', of: ImageStyle },
     banner: { type: 'nested', of: ImageStyle },
