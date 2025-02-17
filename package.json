@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.3.1",
     "@headlessui/react": "2.2.0",
     "@next/bundle-analyzer": "15.1.4",
     "@smakss/react-scroll-direction": "^4.2.0",
