@@ -159,6 +159,16 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
+          source: "/p/github-slack-integration",
+          destination: "/p/top-5-github-pull-request-slack-integration",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/github-slack-integration",
+          destination: "/blog/p/top-5-github-pull-request-slack-integration",
+          permanent: true,
+        },
+        {
           source: "/blog/p/",
           destination: "/blog",
           permanent: true,
