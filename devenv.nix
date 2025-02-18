@@ -24,7 +24,6 @@
 
   pre-commit.hooks.eslint.enable = true;
   pre-commit.hooks.eslint.settings.binPath = "node_modules/.bin/eslint";
-  pre-commit.hooks.nixfmt.enable = true;
-  pre-commit.hooks.nixfmt.package = pkgs.nixfmt-rfc-style;
+  pre-commit.hooks.nixfmt-rfc-style.enable = true;
   pre-commit.hooks.prettier.enable = true;
 }
