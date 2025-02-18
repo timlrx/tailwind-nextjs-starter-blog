@@ -16,6 +16,7 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com/in/benmanns',
   threads: 'https://www.threads.net/@benfmanns',
   instagram: 'https://www.instagram.com/benfmanns',
+  bluesky: 'https://bsky.app/profile/benmanns.com',
   locale: 'en-US',
   stickyNav: false,
   newsletter: {

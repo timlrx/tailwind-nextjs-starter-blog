@@ -1,6 +1,7 @@
 import { NewsletterAPI } from 'pliny/newsletter'
 import siteMetadata from '@/data/siteMetadata'
 
+export const dynamic = 'force-static'
 export const runtime = 'edge'
 
 const handler = NewsletterAPI({
