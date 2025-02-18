@@ -5,3 +5,4 @@ pages_build_output_dir = ".vercel/output/static"
 
 [vars]
 NODE_VERSION = "20.11.1"
+POSTHOG_PROJECT_API_KEY="phc_K3cjgnQyImv3S9EJ7GuhDRj56Wtc89ZUVehTdx5KJQJ"

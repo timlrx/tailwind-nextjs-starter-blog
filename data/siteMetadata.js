@@ -22,7 +22,11 @@ const siteMetadata = {
   newsletter: {
     provider: 'convertkit',
   },
-  analytics: {},
+  analytics: {
+    posthogAnalytics: {
+      posthogProjectApiKey: process.env.POSTHOG_PROJECT_API_KEY,
+    },
+  },
   comments: {
     provider: 'giscus',
     giscusConfig: {
