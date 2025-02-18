@@ -159,6 +159,16 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
+          source: "/p/how-to-set-up-github-enterprise-server",
+          destination: "/p/github-enterprise-cost",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/how-to-set-up-github-enterprise-server",
+          destination: "/blog/p/github-enterprise-cost",
+          permanent: true,
+        },
+        {
           source: "/blog/p/",
           destination: "/blog",
           permanent: true,
