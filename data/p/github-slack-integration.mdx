@@ -1,94 +1,15 @@
 ---
 title: "GitHub Slack Integration"
 date: "2023-07-17"
-lastmod: "2023-07-17"
+lastmod: "2025-02-17"
 tags: ["GITHUB", "SOFTWARE-DEVELOPMENT", "Slack"]
-draft: false
+draft: true
 summary: "GitHub and Slack Integration Guide. From setup and key features to effective communication and security best practices. Explore customization options, including webhooks and custom Slack bots."
 image: "/blog/static/images/github-slack-integration/github slack integration.jpg"
 authors: ["sydney"]
 ---
 
-## 1. Introduction to Slack and GitHub Integration
-
 <TOCInline toc={props.toc} toHeading={4} asDisclosure />
-
-### 1.1 What is Slack?
-
-If you're on this page, it's safe to say you're probably not a stranger to Slack. However, let's ensure everyone is on the same level and start with the basics.
-
-According to a <NoFollowLink url="https://www.businessinsider.com/where-did-slack-get-its-name-2016-9?r=US&IR=T#:~:text=In%20a%20Twitter%20thread%20from,of%20All%20Conversation%20and%20Knowledge.%22">Business Insider article</NoFollowLink>, Slack stands for 'Searchable Log of All Conversation and Knowledge.' It's an enterprise software platform that was first introduced to the world in 2013 by Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov.
-
-Interestingly, the journey of Slack is intertwined with a gaming company. <NoFollowLink url="https://techcrunch.com/2019/05/30/the-slack-origin-story/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAL-IdxmGuwrQtLal33eG33j7JHOA0q4rrPZZCgOQbldqVUC3gMe2zM5cUH4bcqHqePxLBmk85KlV-tnILz0i0lzT9tZCsgRERuEew1duVZhjVQzosK_7SXBA8sryjKwftCX4Z3e6QkhiaN7Q6K4axY1LnNVVrDDDhGd4Eqff8jXC">TechCrunch's article</NoFollowLink> narrates how Slack was originally a communication tool developed for a team working on an online game named 'Glitch.' When the game failed to make a mark, the team realized the tool they'd developed had a much broader appeal and could meet the communication needs of teams worldwide. Thus, Slack, as we know it, was born.
-
-<ImageContainer
-  alt="glitch"
-  src="/blog/static/images/github-slack-integration/glitch.jpg"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={1744}
-  height={1014}
-/>{" "}
-
-According to Cal (CTO of Slack), Slack was initially designed for teams of 5 to 50 people maximum. It quickly spread and team that were much bigger asked to use the platform, they had to spend a significant amount of time redesigning their software just to accept larger teams.
-
-Fast forward to the present day, and Slack is no longer just a messaging platform. It's a comprehensive ecosystem for integrations, with the ability to consolidate numerous services — from GitHub to Google Drive to Trello, and so much more, as outlined on the <NoFollowLink url="https://slack.com/apps">Slack's official apps </NoFollowLink>page. For developers, Slack is an invaluable tool, transforming casual chats into productive development discussions, complete with code snippets, issue tracking, and even executing commands via Slack apps.
-
-In essence, Slack is far more than a platform for chatting. It's a central hub designed to streamline your development workflow. And if you didn't know what Slack was... well, we promise we won't spill the beans to your fellow developers.
-
-### 1.2 What is GitHub?
-
-There are very high changes you also know what GitHub is. But let's take this opportunity to give you some fun facts and history about GitHub.
-GitHub is a web-based hosting service for version control using Git. It's the haven where developers store their projects and network with like minds. (<NoFollowLink url="https://en.wikipedia.org/wiki/GitHub">Source Wikipedia</NoFollowLink>)
-
-Launched in 2008 by Tom Preston-Werner, Chris Wanstrath, and PJ Hyett, GitHub was not just another project hosting service. It was conceived with a mission to simplify collaboration among developers, foster innovation, and create a platform where developers could showcase their work to the world.
-
-The inception of GitHub ushered in a new era of social coding. It transformed Git, a powerful but complex command-line tool, into a user-friendly platform that enabled developers to collaborate on projects irrespective of their geographical location.
-
-With its commitment to fostering open-source projects, GitHub quickly became a popular platform among developers. Over time, it has grown into a vast repository of code with contributions from millions of users worldwide.
-
-And here's an interesting tidbit: The octocat, GitHub's adorable mascot, was selected via a Twitter logo contest. A graphic designer named Simon Oxley submitted the winning design, which has since become one of the most recognizable symbols in the developer community. <NoFollowLink url="https://www.mend.io/blog/the-hidden-stories-behind-the-open-source-logos-we-all-love/">"The hidden stories behind the open-source logos we all love." Mend.io</NoFollowLink>
-
-<ImageContainer
-  alt="github Logosvg"
-  src="/blog/static/images/github-slack-integration/github Logosvg.svg"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={246}
-  height={250}
-/>
-
-In a nutshell, GitHub is more than just a website for hosting code. It's a platform where developers learn, collaborate, contribute, and shape the future of software. And if you weren't quite familiar with GitHub before... well, we hope this makes up for lost time!"
-
-### 1.3 Purpose a of Slack and GitHub Integration
-
-The integration of Slack and GitHub bridges the gap between communication and code management, streamlining workflows and enhancing productivity within developer teams. It brings together the strengths of both platforms, fostering an environment where code and conversation coexist, enhancing transparency, efficiency, and collaboration.
-
-<br />
-
-<div style={{ display: "flex", justifyContent: "center" }}>
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/4jNY3UyWpGw"
-    title="YouTube video player"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  ></iframe>
-</div>
-
-#### Purpose of Slack and GitHub Integration
-
-The main purpose of integrating Slack with GitHub is to ensure seamless and efficient communication within a development team about code updates, issues, pull requests, deployments, and more, without needing to switch context between these two critical platforms.
-
-1. **Real-time Updates**: By integrating Slack with GitHub, you can receive real-time notifications in your Slack workspace about activities in your GitHub repositories, such as commits, pull requests, issues, and more. This enables your team to stay informed and respond promptly to changes.
-
-2. **Collaboration**: When GitHub is connected with Slack, it becomes possible to discuss code changes, review pull requests, and troubleshoot issues directly from your Slack channels. This helps foster a collaborative environment where team members can contribute their ideas and feedback more easily.
-
-3. **Workflow Automation**: With Slack-GitHub integration, you can use Slack commands to perform actions on GitHub, such as closing an issue, merging a pull request, or even triggering a new build. This reduces context switching and improves your team's efficiency.
-
-<UserReview />
 
 ### 1.4 Notable Benefits of Slack and GitHub Integration
 
@@ -103,6 +24,8 @@ Integrating Slack with GitHub presents an array of notable benefits that signifi
 4. **Fostering a Learning Environment**: Besides operational efficiency, the integration of Slack and GitHub fosters a culture of continuous learning and engagement. Developers can learn from each other by observing and participating in code discussions and reviews directly within Slack, contributing to shared knowledge and enhancing individual and team skills.
 
 In summary, the Slack and GitHub integration is a potent tool for any development team. It not only optimizes workflows but also promotes a transparent, engaged, and continuously learning development environment.
+
+############
 
 ## 2. Setting Up Slack and GitHub Integration
 
@@ -377,25 +300,6 @@ Axolo wouldn't be what it is today without its community. We have a dedicated Sl
 />{" "}
 
 ## 7. Success Stories: Companies Excelling with Axolo as a Slack and GitHub Integration
-
-### 7.1 Case Study 1: Axolo and the Development Workflow at Prepared
-
-<ImageContainer
-  alt="preparedScreenshot"
-  src="/blog/static/images/prepared/preparedScreenshot.jpg"
-  classNameDiv="mx-10 lg:mx-20"
-  classNameImage=""
-  width={3042}
-  height={1614}
-/>{" "}
-
-Prepared, a company whose primary mission is to bring lifesaving technology to 911 centers across the U.S., has found Axolo to be a game-changer in their software development workflow. Amirata, a senior software engineer at Prepared, shared his experience with Axolo, highlighting how it has transformed their software development workflow.
-
-Before Axolo, the team struggled with the notorious 'bad notifications' of GitHub, which often resulted in delays and unnecessary back-and-forth conversations on Slack or Huddle. Axolo addressed these issues by consolidating the notification process, routing all critical information to Slack, where developers naturally spend most of their time.
-
-With Axolo, the team at Prepared has been able to stay nimble and responsive to all challenges. The journey from feature ideation to implementation involves various stakeholders, including product managers, designers, and developers. PR reviews play a significant role in this process. With Axolo, the problems of chasing colleagues for a PR review or a reply on a comment have become a thing of the past.
-
-Axolo has proven to be a game-changer for software development teams, bringing cohesion and reducing unnecessary context switches. As Amirata's experience at Prepared demonstrates, Axolo can be instrumental in enhancing workflow, boosting productivity, and ensuring that teams can focus on what truly matters - the code. [Read more](https://axolo.co/blog/p/how-axolo-saves-lives)
 
 ### 7.2 Case Study 2: Reducing Pull Request cycle time by 65% with Agency Analytics
 
