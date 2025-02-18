@@ -82,6 +82,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [InnovateWire Blog](https://innovatewire.com) - A tech blog about software automation and automation tools ([Project Link](https://innovatewire.com))
 - [MichaelScheiwiller.com](https://www.michaelscheiwiller.com/) - Mix of software and data engineering blog as well as personal notes and updates
 - [Wahyu Ikbal Personal Website](https://www.wahyuikbal.web.id) - Personal website with blog and ai feature, share about Technology literacy ([source code](https://github.com/wahyudesu/Personal-Website-Next-js-Obsidian-Ai-))
+- [ByteGeometry Blog](https://bytegeometry.com/blog) - Software development blog about tech trends and business growth. AI and web-apps development ([Project Link](https://bytegeometry.com))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
