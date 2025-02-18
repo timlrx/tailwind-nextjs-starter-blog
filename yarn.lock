@@ -1747,35 +1747,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@benmanns/next-on-pages@npm:^1.14.1":
-  version: 1.14.1
-  resolution: "@benmanns/next-on-pages@npm:1.14.1"
-  dependencies:
-    acorn: ^8.8.0
-    ast-types: ^0.14.2
-    chalk: ^5.2.0
-    chokidar: ^3.5.3
-    commander: ^11.1.0
-    cookie: ^0.5.0
-    esbuild: ^0.15.3
-    js-yaml: ^4.1.0
-    miniflare: ^3.20231218.1
-    package-manager-manager: ^0.2.0
-    pcre-to-regexp: ^1.1.0
-    semver: ^7.5.2
-  peerDependencies:
-    "@cloudflare/workers-types": ^4.20240208.0
-    vercel: ">=30.0.0"
-    wrangler: ^3.28.2
-  peerDependenciesMeta:
-    "@cloudflare/workers-types":
-      optional: true
-  bin:
-    next-on-pages: bin/index.js
-  checksum: 4af3c11241504a19e6968dcb38b803e3c96ed5ba7282a40b1d4fadfab5adaad852fa88edb1fd7aea9bde9083c5db8fea83b458ca95631820942c142878266c1c
-  languageName: node
-  linkType: hard
-
 "@citation-js/core@npm:^0.7.1":
   version: 0.7.9
   resolution: "@citation-js/core@npm:0.7.9"
@@ -1845,6 +1816,35 @@ __metadata:
   dependencies:
     mime: ^3.0.0
   checksum: 7221f46231cfe4698260741d0661b36296d8cff7368672f563bc3d7fd806e36d66d15eb1abc0d114e8fc4d1218cd90f744729ff3aaa61fcfbfe0ac613704b3f5
+  languageName: node
+  linkType: hard
+
+"@cloudflare/next-on-pages@npm:^1.13.6":
+  version: 1.13.7
+  resolution: "@cloudflare/next-on-pages@npm:1.13.7"
+  dependencies:
+    acorn: ^8.8.0
+    ast-types: ^0.14.2
+    chalk: ^5.2.0
+    chokidar: ^3.5.3
+    commander: ^11.1.0
+    cookie: ^0.5.0
+    esbuild: ^0.15.3
+    js-yaml: ^4.1.0
+    miniflare: ^3.20231218.1
+    package-manager-manager: ^0.2.0
+    pcre-to-regexp: ^1.1.0
+    semver: ^7.5.2
+  peerDependencies:
+    "@cloudflare/workers-types": ^4.20240208.0
+    vercel: ">=30.0.0"
+    wrangler: ^3.28.2
+  peerDependenciesMeta:
+    "@cloudflare/workers-types":
+      optional: true
+  bin:
+    next-on-pages: bin/index.js
+  checksum: 35a2086aeb0b14c24b8e7ac6377c7088da11ad01adfb92f1d72a1a066fcd41f53a65032a2d76b9d66fb711e2673a1162bf5505cf46b5baeba9fab33428b6afa3
   languageName: node
   linkType: hard
 
@@ -6135,15 +6135,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-next-on-pages@npm:^1.13.2":
-  version: 1.13.2
-  resolution: "eslint-plugin-next-on-pages@npm:1.13.2"
+"eslint-plugin-next-on-pages@npm:^1.13.6":
+  version: 1.13.7
+  resolution: "eslint-plugin-next-on-pages@npm:1.13.7"
   dependencies:
     "@types/estree-jsx": ^1.0.0
     comment-parser: ^1.3.1
   peerDependencies:
     eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-  checksum: 2eb2afa9dddcdc5deb92dedc0fd71cf01361e244639afe413eac5dcc78daf012e74af39162aa42feba817fe1d3e56e6155f9d8f42e0f429da8f057d4b0a0928d
+  checksum: 3a51e11c13815be582690e62b9dde43f15ef42036332ee513a508d1ca0a841506e43d04829442904ad2da4577e41e1287b41b65959682b087fffba6a6ef1401e
   languageName: node
   linkType: hard
 
@@ -11955,7 +11955,7 @@ __metadata:
   resolution: "tailwind-nextjs-starter-blog@workspace:."
   dependencies:
     "@algolia/client-search": ^5.1.1
-    "@benmanns/next-on-pages": ^1.14.1
+    "@cloudflare/next-on-pages": ^1.13.6
     "@headlessui/react": 1.7.19
     "@next/bundle-analyzer": 14.2.3
     "@svgr/webpack": ^8.0.1
@@ -11974,7 +11974,7 @@ __metadata:
     eslint: ^8.45.0
     eslint-config-next: 14.2.3
     eslint-config-prettier: ^8.8.0
-    eslint-plugin-next-on-pages: ^1.13.2
+    eslint-plugin-next-on-pages: ^1.13.6
     eslint-plugin-prettier: ^5.0.0
     github-slugger: ^2.0.0
     gray-matter: ^4.0.2

@@ -1,5 +1,5 @@
 import { withContentlayer } from 'next-contentlayer2'
-import { setupDevPlatform } from '@benmanns/next-on-pages/next-dev'
+import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev'
 
 import bundleAnalyzer from '@next/bundle-analyzer'
 const withBundleAnalyzer = bundleAnalyzer({

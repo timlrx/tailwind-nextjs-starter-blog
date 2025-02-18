@@ -53,7 +53,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@benmanns/next-on-pages": "^1.14.1",
+    "@cloudflare/next-on-pages": "^1.13.6",
     "@svgr/webpack": "^8.0.1",
     "@types/mdx": "^2.0.12",
     "@types/react": "^18.2.73",
@@ -63,7 +63,7 @@
     "eslint": "^8.45.0",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-next-on-pages": "^1.13.2",
+    "eslint-plugin-next-on-pages": "^1.13.6",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^9.0.0",
     "lint-staged": "^13.0.0",
