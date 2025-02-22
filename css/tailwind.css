@@ -1,5 +1,6 @@
 @import 'tailwindcss';
-@config '../tailwind.config.js';
+@plugin "@tailwindcss/forms";
+@plugin '@tailwindcss/typography';
 @source '../node_modules/pliny';
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -74,6 +75,45 @@
     outline: 2px solid;
     border-radius: var(--radius-sm);
     outline-color: var(--color-primary-500);
+  }
+}
+
+@layer utilities {
+  .prose {
+    & a {
+      color: var(--color-primary-500);
+      &:hover {
+        color: var(--color-primary-600);
+      }
+      & code {
+        color: var(--color-primary-400);
+      }
+    }
+    & :where(h1, h2) {
+      font-weight: 700;
+      letter-spacing: var(--tracking-tight);
+    }
+    & h3 {
+      font-weight: 600;
+    }
+    & code {
+      color: var(--color-indigo-500);
+    }
+
+    &:where(.dark, .dark *) {
+      & a {
+        color: var(--color-primary-500);
+        &:hover {
+          color: var(--color-primary-400);
+        }
+        & code {
+          color: var(--color-primary-400);
+        }
+      }
+      & :where(h1, h2, h3, h4, h5, h6) {
+        color: var(--color-gray-100);
+      }
+    }
   }
 }
 
