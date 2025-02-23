@@ -96,7 +96,7 @@
     & h3 {
       font-weight: 600;
     }
-    & code {
+    & :where(code):not(.code-highlight) {
       color: var(--color-indigo-500);
     }
 
