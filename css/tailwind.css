@@ -96,23 +96,23 @@
     & h3 {
       font-weight: 600;
     }
-    & :where(code):not(.code-highlight) {
+    & :where(code):not(pre code) {
       color: var(--color-indigo-500);
     }
+  }
 
-    &:where(.dark, .dark *) {
-      & a {
-        color: var(--color-primary-500);
-        &:hover {
-          color: var(--color-primary-400);
-        }
-        & code {
-          color: var(--color-primary-400);
-        }
+  .prose-invert {
+    & a {
+      color: var(--color-primary-500);
+      &:hover {
+        color: var(--color-primary-400);
       }
-      & :where(h1, h2, h3, h4, h5, h6) {
-        color: var(--color-gray-100);
+      & code {
+        color: var(--color-primary-400);
       }
+    }
+    & :where(h1, h2, h3, h4, h5, h6) {
+      color: var(--color-gray-100);
     }
   }
 }
