@@ -198,6 +198,16 @@ module.exports = nextTranslate(
           destination: "/blog/p/2023-11-01-changelog",
           permanent: true,
         },
+        {
+          source: "/p/code-review-guideline",
+          destination: "/p/part-4-how-to-review-code-in-github",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/code-review-guideline",
+          destination: "/blog/p/part-4-how-to-review-code-in-github",
+          permanent: true,
+        },
       ]
     },
   })

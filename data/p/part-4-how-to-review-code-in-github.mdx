@@ -1,6 +1,7 @@
 ---
 title: "How to review code in GitHub"
 date: "2021-11-05"
+lastmod: "2025-02-27"
 tags: ["pull request guide"]
 draft: false
 summary: "Code review is one of the most important practices engineers should have. Your code will always need to be reviewed, and you will always need to review your coworkers' code. If you approach code reviews as a learning process, everyone wins."
@@ -8,15 +9,21 @@ image: "/blog/static/images/pull-request-guide/how-to-review-code.png"
 endCTA: "DiveIn"
 ---
 
+Learning **how to do a code review** is crucial for maintaining high development standards and mastering **code review on GitHub** is crucial for your team. With You can integrate changes smoothly, track updates in real time, and enhance cross-team visibility. If you’re unsure **how to do code review in GitHub**, following clear **code review guidelines** will help establish a repeatable process as we will see later on.
+
+Effective **GitHub code reviews** create a transparent feedback loop, uphold coding standards, and support timely merges. So stay with us and learn how you can improve your team's workflow.
+
+<TOCInline toc={props.toc} toHeading={3} asDisclosure />
+
 ## GitHub code review best practices
 
-Code review is one of the most important practices engineers should have. Your code will always need to be reviewed, and you will always need to review your coworkers' code. If you approach code reviews as a learning process, everyone wins.
+Code review is one of the most important practices engineers should have. Your code will always need to be reviewed, and you will always need to review your coworkers' code. If you approach code reviews as a learning process, everyone wins when you understand how to do a code review effectively.
 
 ### Why is code review important?
 
 #### Perfect for ensuring best practices and educating other developers
 
-Code reviews are one point of contact between engineers during the development process. They are the perfect time to ensure that the team is in sync regarding standards, best practices, and code style.
+Code reviews are one point of contact between engineers during the development process. They are the perfect time to ensure that the team is in sync regarding standards, GitHub code review best practices, and code style.
 
 When done properly, the team will advocate for best practices and share knowledge to raise the average level of the engineering squad. That way, junior developers will be able to quickly learn and reach the maximum of their potential with peer feedback.
 
@@ -27,9 +34,11 @@ Code review ensures that:
 - the test code is robust and valid,
 - the design and implementation are consistent across the application.
 
-They are not about finding bugs, that's what tests are for.
+Learning how to do a code review correctly also highlights opportunities for improvement. They are not about finding bugs, that's what tests are for.
 
 <h3 id="principles-of-a-good-code-review">Principles of a good code review</h3>
+
+If you still wonder how to do code review in GitHub, stay with us and we will guide you through the process.
 
 #### What is not written, does not exist
 
@@ -52,7 +61,7 @@ If your team has not yet a detailed process, it is ok to ask for a review. Ping 
 
 #### Review daily and sessions should last less than one hour
 
-Code reviewing should be a daily habit. As our focus decreases over time, it is best to review code by short sessions and often.
+Doing code review on GitHub should be a daily habit. As our focus decreases over time, it is best to review code by short sessions and often.
 
 ##### Understand what you're reviewing first
 
@@ -61,7 +70,7 @@ You won't be able to provide an effective code review if you do not understand w
 Having a brief checklist before looking at the code is a great way to be sure that you fully understand and that the code is ready to be reviewed. Inspired by Hugo Dias in <a
             href="https://hugodias.substack.com/p/code-review"
             rel="noopener noreferrer"
-            target="_blank">his code review article</a>, here is a template checklist that we advise you to customize and follow:
+            target="_blank">his code review article</a>, here is a code review template checklist that we advise you to customize and follow:
 
 - Does the PR have enough tests to cover the update?
 - Does this change require integration tests?
@@ -111,16 +120,218 @@ So next time your pull request has more than 400 lines changed, try to separate 
 
 #### Annotate your pull request and code before the review
 
-A good pull request provides content for the reviewer. If the author of the pull request wrote some comments on the code in tricky parts, it will help the reviewers and prevent some avoidable questions to be asked.
+Adding context is particularly helpful in GitHub code reviews, so reviewers understand tricky parts quickly. If the author of the pull request wrote some comments on the code in tricky parts, it will help the reviewers and prevent some avoidable questions to be asked.
 
 Provide screenshots, write comments and help your reviewer better understand your work before requesting a review.
 
 #### Use a pull request template (with a checklist)
 
-A good pull request template will help you better prepare for the review. They are useful to avoid common mistakes, provide clear expectations on what should be ready when requesting a review, and avoid useless back-and-forth during the code review. A checklist inside your pull request template is usually the easiest way to prepare your pull request. You should update your template along the way to customize it to your needs.
+A good pull request template doubles as a code review template will help you better prepare for the review. They are useful to avoid common mistakes, provide clear expectations on what should be ready when requesting a review, and avoid useless back-and-forth during the code review. A checklist inside your pull request template is usually the easiest way to prepare your pull request. You should update your template along the way to customize it to your needs.
 
-You can learn more about [pull request template in our dedicated section](https://axolo.co/blog/p/part-3-github-pull-request-template).
+These different principles form the core of GitHub code review best practices for any team. You can learn more about [pull request template in our dedicated section](https://axolo.co/blog/p/part-3-github-pull-request-template).
 
 #### Is styling important?
 
-If styling is important for your team, you should create a style guide. As we said in our first point, what is not written does not exist. Develop your style guide with the approval of the whole team and what is not inside it, will be a matter of personal preferences.
+If styling is important for your team, you should create a style guide to do code review on GitHub. As we said in our first point, what is not written does not exist. Develop your style guide with the approval of the whole team and what is not inside it, will be a matter of personal preferences.
+
+### <span className="rainbow-button text-2xl font-bold hover:cursor-auto">What is a code review guideline?</span>
+
+A code review guideline is a set of rules for submitting and reviewing code changes in a project. It outlines the steps for creating a pull request, submitting it for review, and merging it into the codebase.
+
+It's important because it establishes a clear and consistent process for collaborating. It can improve code quality, reduce review time, and ensure a smoother development process. Teams, developers, and managers can all benefit from a defined guideline.
+
+<ImageContainer
+  alt="code review"
+  src="/blog/static/images/code-review-guideline/code-review.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={1170}
+  height={780}
+/>
+
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Why do they [always touch their screen with their
+  fingers](https://axolo.co/blog/p/what-is-code-quality-in-2023-and-how-to-improve-it) in these
+  stock photos?
+</SubImageText>
+
+### <span className="rainbow-button text-2xl font-bold hover:cursor-auto">What should you implement in your code review guideline?</span>
+
+#### 1. Establish clear goals and objectives for the code review process.
+
+Clear goals and objectives for the code review process are important to ensure that the review process aligns with the project's goals and focuses on the most important aspects of the code. To implement this guideline, stakeholders should:
+
+##### 1. Define the goals and objectives of the code review process.
+
+##### 2. Communicate them to team members.
+
+##### 3. Regularly review and evaluate them to ensure relevance.
+
+Once you have done the preparation work, you will have your first guideline in place. I'm adding an example to help you start:
+
+```
+Goals:
+
+- To ensure that the code meets the project's functional and non-functional requirements
+- To identify and correct defects in the code
+- To improve the overall quality of the codebase
+- To provide a mechanism for sharing knowledge and best practices among team members
+
+Objectives:
+
+- To review all code changes before they are merged into the main codebase
+- To provide constructive feedback to developers to improve the quality of the code
+- To ensure that the code is consistent with the coding standards and guidelines
+- To ensure that the code is well-documented and easy to understand
+- To identify and correct defects in the code
+- To ensure that the code is scalable, maintainable, and extensible
+- To identify and share best practices and knowledge among team members
+```
+
+<ImageContainer
+  alt="thumsup"
+  src="/blog/static/images/code-review-guideline/thumsup.jpg"
+  classNameDiv="mx-10 lg:mx-40"
+  classNameImage=""
+  width={612}
+  height={408}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-80 ">
+  Thank you Tommy! We're now all aligned.
+</SubImageText>
+
+#### 2. Clearly define the roles and responsibilities of each team member involved in the review process.
+
+Clear roles and responsibilities for each team member involved in the review process are important to ensure efficiency and prevent confusion.
+
+You don't want people that have nothing to do with a specific pull request reviewing it. This will only slow down the process, waste time and create frustration.
+
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
+
+```
+Roles and Responsibilities:
+
+- Author: The developer who submits the code for review
+- Reviewer: The team member who reviews the code and provides feedback. How should we assign the reviewer?
+- Lead Reviewer: The team member responsible for coordinating and overseeing the code review process
+- Approver: The team member who approves or rejects the code changes after the review process
+```
+
+#### 3. Set guidelines for the scope and focus of the code review, including the size of pull requests and the areas of code to be reviewed.
+
+Here are some steps to define the scope and focus of the code review:
+
+##### 1. Define the scope and focus of the code review.
+
+##### 2. Set guidelines for the size of pull requests.
+
+##### 3. Establish criteria for evaluating code.
+
+##### 4. Communicate the guidelines clearly to team members.
+
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
+
+```
+Guidelines for the Scope and Focus of Code Review:
+
+- Define the scope of code review: Which files and areas of the code should be reviewed?
+- Define the focus of code review: Which aspects of the code should be prioritized for review (e.g., functionality, performance, security)?
+- Set guidelines for the size of pull requests: What is the maximum size of a pull request that can be reviewed effectively?
+- Establish criteria for evaluating code: What criteria should be used to determine whether the code meets the project's standards and requirements?
+- Communicate the guidelines clearly to team members: How should team members be informed of the guidelines, and how should they be enforced?
+```
+
+<ImageContainer
+  alt="plan"
+  src="/blog/static/images/code-review-guideline/plan.gif"
+  classNameDiv="mx-10 lg:mx-64"
+  classNameImage=""
+  width={498}
+  height={498}
+/>
+<SubImageText classNameDiv="" classNameText="lg:w-88 ">
+  The guideline says that you shouldn't ask for changes here!
+</SubImageText>
+
+#### 4. Define standards for code formatting, commenting, and documentation.
+
+Defining standards for code formatting and code review, in general, is hard. I tried to summarize the main steps to it easily:
+
+##### 1. Identify the coding standards to follow.
+
+##### 2. Define guidelines for commenting.
+
+##### 3. Set documentation requirements.
+
+##### 4. Determine the tools to be used.
+
+##### 5. Communicate the guidelines.
+
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
+
+```
+Standards for Code Formatting, Commenting, and Documentation:
+
+- Identify the coding standards to follow: Which coding standards should be used, such as indentation, line spacing, and naming conventions? How many lines max per pull request (you should not [review more than 400 lines to reduce pickup time](https://axolo.co/blog/p/how-to-reduce-cycle-time))
+- Define guidelines for commenting: What types of comments should be used, and where should they be placed in the code? How should comments be formatted?
+- Set documentation requirements: What types of documentation are required, such as high-level design documents, API documentation, or user manuals? What is the expected level of detail?
+- Determine the tools to be used: What tools will be used to ensure that code formatting, commenting, and documentation standards are enforced?
+- Communicate the guidelines: How should team members be informed of the guidelines, and how should they be enforced?
+```
+
+<ImageContainer
+  alt="codereviewloc"
+  src="/blog/static/images/code-review-guideline/codereviewloc.jpg"
+  classNameDiv="mx-10 lg:mx-20"
+  classNameImage=""
+  width={490}
+  height={288}
+/>
+
+#### 5. Determine the frequency and timing of code reviews, and ensure they are integrated into the development process.
+
+The two most important things for this part are the frequency and timing of code reviews. I have written an article specifically on [how to review code](https://axolo.co), so I will just summarize the main steps below.
+
+Don't forget that code reviews should be fast, daily, and well-tested. So for this part, you should:
+
+<span className="rainbow-button  hover:cursor-auto">Example:</span>
+
+```
+Frequency and Timing of Code Reviews:
+
+- Define the frequency of code reviews: How often should code reviews be conducted (e.g., daily, weekly, or monthly)? How long should they last?
+- Determine the timing of code reviews: At what point in the development process should code reviews be conducted (e.g., before merging, after merging, or during testing)?
+- Ensure integration into the development process: How should code reviews be integrated into the development process, and how should they be prioritized alongside other tasks?
+```
+
+##### 1. Define the frequency of code reviews
+
+##### 2. Determine the timing of code reviews
+
+If you want to make sure your code reviews are quick and efficient, I recommend you to read this article: [How to reduce your cycle time and code review time?](https://axolo.co/blog/p/how-to-reduce-cycle-time)
+
+#### 6. Encourage a positive and constructive culture around code reviews, emphasizing the importance of collaboration and learning.
+
+##### 1. Emphasize the importance of learning.
+
+Encourage team members to view code reviews as an opportunity for learning and improvement, rather than a critique of their work.
+
+##### 2. Foster a collaborative environment.
+
+Encourage team members to work together to identify issues and propose solutions. You should especially focus on that if your team is mostly working remotely.
+
+##### 3. Recognize achievements and contributions.
+
+Acknowledge team members who have made significant contributions to the review process, and recognize those who have demonstrated a positive and constructive attitude towards feedback. This is your time to motivate the team and shine as a manager!
+
+##### 4. Regularly review and refine the culture around code reviews.
+
+This will help ensure that the culture remains positive, constructive, and aligned with the goals of the project. Be sure that your team knows that it is heard. If you're interested in building the best work environment for your developer, you should also check out our advice for a [developer experience survey template](https://axolo.co/blog/p/developer-experience-survey-template).
+
+That's it! Now I hope you know how to create your code review guideline, if you're interested in a markdown template, I have summarized everything in [an open-source readme file](https://github.com/axolo-co/developer-resources/blob/main/code-review-guideline-template/code-review-guideline-template.md).
+
+## Bringing It All Together: Succeeding with GitHub Code Reviews
+
+By adopting consistent code review guidelines and a clear code review template, you can streamline feedback, maintain high-quality merges, and keep your team aligned. Make reviews an integral part of daily work, and leverage automation to ensure timely, focused pull requests.
+
+Embracing thorough **code review guidelines** ultimately refines your team’s approach, ensuring higher code quality and smoother deployments. From leveraging a **code review template** for consistent formatting to conducting **code review on GitHub** with well-defined roles, each step fosters continuous improvement. By staying aligned and regularly engaged, you can spot errors early, expedite feedback loops, and maintain a maintainable codebase. Whether you’re new to **code reviews in GitHub** or a seasoned engineer, a solid framework for collaboration ensures each contribution is valuable and efficient.
