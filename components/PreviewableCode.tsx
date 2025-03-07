@@ -29,7 +29,7 @@ const isPreviewableCodeBlock = (children: unknown): children is PreviewableCodeB
     typeof children === 'object' &&
     'props' in children &&
     'type' in children &&
-    (children as any).type === 'code'
+    children.type === 'code'
   )
 }
 
@@ -37,7 +37,7 @@ interface PreviewableCodeProps {
   children: ReactNode
   enablePreview?: boolean
   defaultView?: 'preview' | 'code'
-  renderers: { [key: string]: ComponentType<any> }
+  renderers: { [key: string]: ComponentType<{ code: string; [key: string]: unknown }> }
   [key: string]: unknown
 }
 
@@ -109,7 +109,7 @@ const PreviewableCode = ({
       </TabPanels>
       <TabPanel>
         <div className="">
-          <Renderer code={rawText} {...props} />
+          <Renderer {...props} code={rawText} />
         </div>
       </TabPanel>
     </TabGroup>
