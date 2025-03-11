@@ -198,6 +198,16 @@ module.exports = nextTranslate(
           destination: "/blog/p/2023-11-01-changelog",
           permanent: true,
         },
+        {
+          source: "/p/5-reasons-why-your-team-sucks-at-reviewing-pull-requests",
+          destination: "/p/why-your-pull-requests-are-taking-forever",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/5-reasons-why-your-team-sucks-at-reviewing-pull-requests",
+          destination: "/blog/p/why-your-pull-requests-are-taking-forever",
+          permanent: true,
+        },
       ]
     },
   })
