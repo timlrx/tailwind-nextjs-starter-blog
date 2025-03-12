@@ -199,6 +199,16 @@ module.exports = nextTranslate(
           permanent: true,
         },
         {
+          source: "/p/5-reasons-why-your-team-sucks-at-reviewing-pull-requests",
+          destination: "/p/why-your-pull-requests-are-taking-forever",
+          permanent: true,
+        },
+        {
+          source: "/blog/p/5-reasons-why-your-team-sucks-at-reviewing-pull-requests",
+          destination: "/blog/p/why-your-pull-requests-are-taking-forever",
+          permanent: true,
+        },
+        {
           source: "/p/code-review-guideline",
           destination: "/p/part-4-how-to-review-code-in-github",
           permanent: true,
