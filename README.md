@@ -86,7 +86,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Farhad's Blog](https://www.farhad.my) - Farhad's personal website sharing tech news and insights on emerging technologies, with a focus on AI and Data Science ([Project Link](https://farhad.my))
 - [Utanzu Cybersecurity](https://utanzu.com/) – A thriving community where mentorship and expert training help cybersecurity professionals unlock their full potential and advance their careers.
 - [trungtmnguyen.com](https://www.trungtmnguyen.com/) - 🇻🇳 Trung's personal and technical blogs – some idea about me, tips, ideas and learned. Add some custom components, like: UnderlineHoverLink, Timeline, neon-border styles and will have more in the future. ([source](https://github.com/trungntm/trungtmnguyen.com))
-
+- [ktovoz.com](https://www.ktovoz.com/) - Kto's personal blog, sharing life, technology. Added article categories and article directory navigation 「中文」
 Using the template? Feel free to create a PR and add your blog to this list.
 
 ## Examples V1
