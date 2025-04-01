@@ -27,7 +27,8 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   const lastSegment = segments[segments.length - 1]
   const basePath = pathname
     .replace(/^\//, '') // Remove leading slash
-    .replace(/\/page\/\d+\/?$/, '') // Remove any trailing /page and optional trailing slash
+    .replace(/\/page\/\d+\/?$/, '') // Remove any trailing /page
+    .replace(/\/$/, '') // Remove trailing slash
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
