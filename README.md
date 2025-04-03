@@ -34,7 +34,6 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
 - [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
 - [Karhdo's Blog](https://karhdo.dev) - Karhdo's Blog - Karhdo's Coding Adventure ([source code](https://github.com/Karhdo/karhdo.dev))
-- [tsix blog](https://tsix.top) - A front-end engineer is used to record some knowledge points in work and study _中文_
 - [SOTO's Blog](https://www.atksoto.com/) - A more personalized personal website upgraded from V1 ([source code](https://github.com/acsoto/soto-blog-nextjs))
 - [Prabhu's Blog](https://v1-prabhukirankonda.vercel.app) - Prabhu's Personal website with blog ([source code](https://github.com/prabhukiran8790/prabhukirankonda))
 - [Rabby Hasan's Blog](https://blog.rabbyhasan.com.bd/) - Rabby Hasan's personal blog about full stack development with cloud ([source code](https://github.com/rabbyalone/myblog))
