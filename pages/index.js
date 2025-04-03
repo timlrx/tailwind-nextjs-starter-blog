@@ -9,6 +9,7 @@ import NewsletterForm from "@/components/NewsletterForm"
 import useTranslation from "next-translate/useTranslation"
 import ListLayout from "@/layouts/ListLayout"
 import { POSTS_PER_PAGE } from "./p"
+import { useRouter } from "next/router"
 
 const postDateTemplate = { year: "numeric", month: "long", day: "numeric" }
 
@@ -38,6 +39,7 @@ export async function getStaticProps({ locale, defaultLocale, locales }) {
 }
 
 export function WithImage({ image, date, alt }) {
+  const { locale } = useRouter()
   return (
     <div className="flex flex-col">
       <div className="flex  justify-center pb-4  xl:block xl:justify-start xl:pb-0">
@@ -46,7 +48,7 @@ export function WithImage({ image, date, alt }) {
       <dl>
         <dt className="sr-only">Published on</dt>
         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-          <time dateTime={date}>{formatDate(date)}</time>
+          <time dateTime={date}>{formatDate(date, locale)}</time>
         </dd>
       </dl>
     </div>
