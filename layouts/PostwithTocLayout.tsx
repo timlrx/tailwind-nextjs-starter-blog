@@ -22,14 +22,19 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: 'numeric',
 }
 
+interface TOCItem {
+  value: string
+  url: string
+  depth: number
+}
+
 interface LayoutProps {
   content: CoreContent<Blog>
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  toc: any
+  toc: TOCItem[]
 }
 
 export default function PostwithTocLayout({
@@ -42,7 +47,6 @@ export default function PostwithTocLayout({
 }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
-
   return (
     <SectionContainer>
       <ScrollTopAndComment />
@@ -159,17 +163,15 @@ export default function PostwithTocLayout({
                     )}
                   </div>
                 )}
-              </div>
-              {/* Sidebar TOC */}
-              <div className="py-4 xl:py-8">
-                <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                  MENU
-                </h2>
-                <div className="toc-container mt-3">
-                  <TOCInline toc={toc} fromHeading={2} toHeading={3} collapse={true} />
+                <div className="py-4 xl:py-8">
+                  <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
+                    TABLE OF CONTENTS
+                  </h2>
+                  <div className="toc-container mt-3">
+                    <TOCInline toc={toc} fromHeading={2} toHeading={3} collapse={true} />
+                  </div>
                 </div>
               </div>
-              {/* Back to blog link */}
               <div className="pt-4 xl:pt-8">
                 <Link
                   href={`/${basePath}`}
