@@ -63,7 +63,7 @@ const Greetings = () => {
         <Link
           className="fixed bottom-40 sm:bottom-20 right-8 cursor-pointer hover:shadow-lg hover:brightness-125"
           target="_blank"
-          href={`https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2024`}
+          href={`https://github.com/HansKing98/hans-nextjs-blog/new/main/data/posts/2025`}
         >
           <Image src="/button/add.svg" className="w-24 sm:w-32" alt="" width={140} height={30} />
         </Link>
