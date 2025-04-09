@@ -1,5 +1,6 @@
 import {
   Mail,
+  BuyMeACoffee,
   Github,
   Facebook,
   Youtube,
@@ -15,6 +16,7 @@ import {
 
 const components = {
   mail: Mail,
+  buymeacoffee: BuyMeACoffee,
   github: Github,
   facebook: Facebook,
   youtube: Youtube,
