@@ -52,6 +52,9 @@ export async function generateMetadata(props: {
   return {
     title: post.title,
     description: post.summary,
+    alternates: {
+      canonical: post.canonicalUrl || `${siteMetadata.siteUrl}/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.summary,
@@ -60,7 +63,7 @@ export async function generateMetadata(props: {
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
-      url: './',
+      url: post.canonicalUrl || `${siteMetadata.siteUrl}/${post.slug}`,
       images: ogImages,
       authors: authors.length > 0 ? authors : [siteMetadata.author],
     },
