@@ -87,6 +87,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [trungtmnguyen.com](https://www.trungtmnguyen.com/) - 🇻🇳 Trung's personal and technical blogs – some idea about me, tips, ideas and learned. Add some custom components, like: UnderlineHoverLink, Timeline, neon-border styles and will have more in the future. ([source](https://github.com/trungntm/trungtmnguyen.com))
 - [Ryan Fitton's Blog](https://ryanfitton.co.uk/) – A custom theme version with 'Portfolio' section. Used as a personal Blog/Portfolio for development projects. ([source code](https://github.com/ryanfitton/ryanfitton-nextjs-2024))
 - [ktovoz.com](https://www.ktovoz.com/) - Kto's personal blog, sharing life, technology. Added article categories and article directory navigation 「中文」
+- [runningslang.com](https://runningslang.com/) - From "bonking" to "BQ", learn what runners really mean. The most comprehensive multilingual dictionary of running slang.([Project Link](https://runningslang.com/))
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
