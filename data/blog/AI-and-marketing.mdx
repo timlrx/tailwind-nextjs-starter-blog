@@ -1,27 +1,27 @@
 ---
-title: 'Exploring AI-Powered Creative Tools: A Prototype'
+title: 'Lessons from Building an AI-Powered Creative Platform'
 date: '08 / 28 / 2022'
 tags: ['AI', 'Product', 'Lessons Learned']
 draft: false
-summary: 'What I learned exploring a text-to-image concept for content creators in 2022.'
+summary: 'What I learned building a text-to-image platform for content creators in 2022.'
 ---
 
 ## Context
 
-In mid-2022, I started exploring an idea for an AI-powered creative tool aimed at content creators. The concept was straightforward: let writers and podcasters generate custom artwork for their content using text-to-image models, without needing design skills.
+In mid-2022, I built a prototype for an AI-powered creative tool aimed at content creators. The idea was straightforward: let writers and podcasters generate custom artwork for their content using text-to-image models, without needing design skills.
 
 This was before Midjourney went mainstream and DALL-E 3 shipped. The tooling was rough. Stable Diffusion had just come out, and running inference locally meant wrestling with CUDA drivers and VRAM limits.
 
-## What we explored
+## What we built
 
-The prototype let creators:
+The platform let creators:
 
 - Paste their content (article, script, podcast transcript)
 - Extract key themes and visual concepts
 - Generate images based on those themes
 - Iterate with prompt refinement
 
-We also explored on-chain attribution using NFTs. The idea was that creators could prove provenance and potentially earn royalties on derivative use.
+We also experimented with on-chain attribution using NFTs-the idea being that creators could prove provenance and potentially earn royalties on derivative use.
 
 ## What worked
 
@@ -39,16 +39,16 @@ We also explored on-chain attribution using NFTs. The idea was that creators cou
 
 **Timing.** Six months later, free tools with better models flooded the market. The moat we thought we had evaporated.
 
-## What we learned
+## Takeaways
 
-1. **Build for the workflow, not the technology.** Creators care about getting their newsletter out on time with decent visuals. The underlying technology matters less than the workflow it enables.
+1. **Build for the workflow, not the technology.** Creators don't care about diffusion models or NFT standards. They care about getting their newsletter out on time with decent visuals.
 
-2. **Moats in AI are temporary.** If the value proposition is "access to a model," you're competing with OpenAI's next API release.
+2. **Moats in AI are temporary.** If your value proposition is "access to a model," you're competing with OpenAI's next API release.
 
 3. **Crypto UX still isn't there.** On-chain attribution is a compelling concept, but the friction cost is real. Until wallets are invisible, adoption will be limited to crypto-native users.
 
-4. **Prototype fast, but know when to stop.** We spent time polishing features for a market that was about to get disrupted. Shipping earlier would have given us faster signal.
+4. **Prototype fast, but know when to stop.** We spent too long polishing features for a market that was about to get disrupted. Shipping earlier would have given us faster signal.
 
 ---
 
-This exploration shaped how I think about building at the intersection of AI and creative tools. The underlying problems around attribution, provenance, and creator economics are still worth solving. The approaches just look different now.
+This project didn't become a business, but it shaped how I think about building at the intersection of AI and creative tools. The underlying problems-attribution, provenance, creator economics-are still unsolved. The solutions just look different now.
