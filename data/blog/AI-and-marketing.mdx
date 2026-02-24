@@ -1,54 +1,62 @@
 ---
-title: 'Lessons from Building an AI-Powered Creative Platform'
+title: 'AI-driven NFT marketplace'
 date: '08 / 28 / 2022'
-tags: ['AI', 'Product', 'Lessons Learned']
+tags: ['AI', 'NFTs', 'Marketing', 'nextJS']
 draft: false
-summary: 'What I learned building a text-to-image platform for content creators in 2022.'
+summary: 'What if we could use AI and NFTs to create, market, and own our products'
 ---
 
-## Context
+## A place for artist to create and grow together.
 
-In mid-2022, I built a prototype for an AI-powered creative tool aimed at content creators. The idea was straightforward: let writers and podcasters generate custom artwork for their content using text-to-image models, without needing design skills.
+Marketing is the key to success of any product, but it's often the most difficult part of growing a business.
+With over _5 billion_ people using the internet there's a lot of opportunity to grow, but there's also competition for these opportunities.
+A study showed that information paired with an image improved people's retention of that content from 10% after 3 days, up to 65%.  
+[Source](https://http://brainrules.net/vision/)
 
-This was before Midjourney went mainstream and DALL-E 3 shipped. The tooling was rough. Stable Diffusion had just come out, and running inference locally meant wrestling with CUDA drivers and VRAM limits.
+Our platform allows writers, content creators, and media users to market themselves with the assistance of text-to-image AI technology. Creators
+Can upload or link their content and sponsor platform users to generate unique artwork for marketing after viewing said content.
+To ensure that creators and platform users are both incentivized, the winners artwork will be minted to an NFT collection, giving recognition and a percentage of earnings to both the sponsors and the users.
 
-## What we built
+**We can categorize our users as:**
 
-The platform let creators:
+1. Creators/Sponsors
+2. AI artist/platform users
 
-- Paste their content (article, script, podcast transcript)
-- Extract key themes and visual concepts
-- Generate images based on those themes
-- Iterate with prompt refinement
+### AI as a tool to visualize content and boost growth.
 
-We also experimented with on-chain attribution using NFTs-the idea being that creators could prove provenance and potentially earn royalties on derivative use.
+Unique art is eye-catching, exciting, and memorable, but it's also difficult to create for most people. This puts businesses and creators who rely on video, audio and written text at a disadvantage. It's been well recorded how important banner art is for building and engaging an audience.
 
-## What worked
+We can leverage image-generating AI to create captivating, unique and impactful art using text collected from content and user-provided information. Those without artistic background can now easily sponsor the creation of original art relevant to their needs for marketing, and adding a special twist to their work.
 
-**AI image generation as a creative starting point.** Most creators aren't looking for finished art. They want something to react to, to iterate on. The AI output served as a draft that could be refined or handed to a designer.
+**Usecases for the generated art include:**
 
-**Extracting visual concepts from text.** Running content through a summarization step before image generation improved results significantly. Raw text-to-image prompts are noisy. Structured extraction helps.
+- Profile pictures and banners
+- Book and cover art
+- Badges for rewarding community
+- Music album covers
+- Social media marketing
+- Thumbnails, channel art, personas
+- Music videos
+- Memes
 
-**Low barrier to entry.** People who would never open Photoshop were willing to try a tool that felt like a form.
+### Using NFTs to give artists and sponsors the recognition they deserve
 
-## What didn't
+Most artists would argue that they are not given the right compensation and recognition for their art. The internet has been known to use content without giving credit, often leaving the creators with not much to show for their work while the art has millions of views and downloads. NFTs help mitigate this problem, it is a standard that most tech giants are now adopting and incorporating into their platforms.
 
-**NFT complexity.** The overhead of wallets, gas fees, and blockchain concepts was a barrier for non-crypto-native users. Most creators just wanted the image, not on-chain proof.
+All winner collections will be minted onto the blockchain and viewable in our application. The creators will be credited and they will earn a royalty fee for the legal use and sale of their art. While sponsors get the NFT to prove ownership and provide protection for the content they paid to have created.
 
-**Inference costs.** Running image generation at scale in 2022 was expensive. The unit economics didn't work for a consumer product without significant funding.
+**Usecases for the NFTs include:**
 
-**Timing.** Six months later, free tools with better models flooded the market. The moat we thought we had evaporated.
+- Proof of work token for platform users
+- A portfolio of art generated for users
+- Content protection for both sponsors and users
+- A marketing strategy
+- Community building and token gating
+- Censorship resistant art
 
-## Takeaways
+### Why?
 
-1. **Build for the workflow, not the technology.** Creators don't care about diffusion models or NFT standards. They care about getting their newsletter out on time with decent visuals.
+We want to give everyone the opportunity to create captivating and useful content regardless of their artistic background. To own the content they create, and to get the credit they deserve for their work.
 
-2. **Moats in AI are temporary.** If your value proposition is "access to a model," you're competing with OpenAI's next API release.
-
-3. **Crypto UX still isn't there.** On-chain attribution is a compelling concept, but the friction cost is real. Until wallets are invisible, adoption will be limited to crypto-native users.
-
-4. **Prototype fast, but know when to stop.** We spent too long polishing features for a market that was about to get disrupted. Shipping earlier would have given us faster signal.
-
----
-
-This project didn't become a business, but it shaped how I think about building at the intersection of AI and creative tools. The underlying problems-attribution, provenance, creator economics-are still unsolved. The solutions just look different now.
+Find my links through:
+https://www.serotonindesigns.com
