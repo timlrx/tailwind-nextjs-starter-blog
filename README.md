@@ -90,6 +90,14 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 
 Using the template? Feel free to create a PR and add your blog to this list.
 
+## Examples V2 with content-collections
+
+Since [contentlayer](https://github.com/contentlayerdev/contentlayer) is no longer actively maintained, V2 can be migrated to use [content-collections](https://www.content-collections.dev/), which will also enable use of turbopack and the latest Next.js releases. Here are some examples implemented with content-collections.
+
+- [Ritwik Lodhiya's Blog](https://rlodhiya.dev) - Ritwik's personal blog and portfolio. Writing about AI, hobbies, tech, business, and more. ([source code](https://github.com/rldhy/www))
+
+Using the template with this pattern? Feel free to create a PR and add your blog to this list.
+
 ## Examples V1
 
 [v1-blogs-showcase.webm](https://github.com/timlrx/tailwind-nextjs-starter-blog/assets/28362229/2124c81f-b99d-4431-839c-347e01a2616c)
