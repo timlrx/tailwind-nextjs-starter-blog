@@ -78,6 +78,9 @@
   "resolutions": {
     "esbuild": "0.28.0",
     "micromatch": "^4.0.8",
-    "postcss-selector-parser": "^6.1.0"
+    "postcss-selector-parser": "^6.1.0",
+    "brace-expansion@^1.1.7": "1.1.13",
+    "brace-expansion@^2.0.1": "2.0.3",
+    "minimatch@^9.0.4": "9.0.9"
   }
 }
