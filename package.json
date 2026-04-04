@@ -74,5 +74,10 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "resolutions": {
+    "esbuild": "0.28.0",
+    "micromatch": "^4.0.8",
+    "postcss-selector-parser": "^6.1.0"
+  }
 }
