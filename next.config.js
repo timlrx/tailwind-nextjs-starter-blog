@@ -75,12 +75,23 @@ module.exports = withBundleAnalyzer({
 
     if (!dev && !isServer) {
       // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
+      const path = require('path')
+      const reactAliases = {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
-      })
+        'react/jsx-runtime': path.resolve(__dirname, 'node_modules/preact/compat/jsx-runtime.js'),
+        'react/jsx-dev-runtime': path.resolve(
+          __dirname,
+          'node_modules/preact/compat/jsx-dev-runtime.js'
+        ),
+      }
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        ...reactAliases,
+      }
+      // Disable exports field resolution for preact to avoid path matching issues
+      config.resolve.exportsFields = []
     }
 
     return config
