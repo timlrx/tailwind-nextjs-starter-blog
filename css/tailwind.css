@@ -7,22 +7,22 @@
 /* Core theme configuration */
 @theme {
   /* Font families */
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Colors */
   /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
-  --color-primary-50: oklch(0.971 0.014 343.198);
-  --color-primary-100: oklch(0.948 0.028 342.258);
-  --color-primary-200: oklch(0.899 0.061 343.231);
-  --color-primary-300: oklch(0.823 0.12 346.018);
-  --color-primary-400: oklch(0.718 0.202 349.761);
-  --color-primary-500: oklch(0.656 0.241 354.308);
-  --color-primary-600: oklch(0.592 0.249 0.584);
-  --color-primary-700: oklch(0.525 0.223 3.958);
-  --color-primary-800: oklch(0.459 0.187 3.815);
-  --color-primary-900: oklch(0.408 0.153 2.432);
-  --color-primary-950: oklch(0.284 0.109 3.907);
+  --color-primary-50: oklch(0.985 0.002 247.839);
+  --color-primary-100: oklch(0.967 0.003 264.542);
+  --color-primary-200: oklch(0.928 0.006 264.531);
+  --color-primary-300: oklch(0.872 0.01 258.338);
+  --color-primary-400: oklch(0.707 0.022 261.325);
+  --color-primary-500: oklch(0.551 0.027 264.364);
+  --color-primary-600: oklch(0.446 0.03 256.802);
+  --color-primary-700: oklch(0.373 0.034 259.733);
+  --color-primary-800: oklch(0.278 0.033 256.848);
+  --color-primary-900: oklch(0.21 0.034 264.665);
+  --color-primary-950: oklch(0.13 0.028 261.692);
 
   --color-gray-50: oklch(0.985 0.002 247.839);
   --color-gray-100: oklch(0.967 0.003 264.542);
@@ -46,6 +46,18 @@
   --z-60: 60;
   --z-70: 70;
   --z-80: 80;
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }
 
 /*
@@ -79,6 +91,10 @@
 }
 
 @layer utilities {
+  .animate-rotateplane {
+    animation: rotateplane 1.2s infinite ease-in-out;
+  }
+
   .prose {
     & a {
       color: var(--color-primary-500);

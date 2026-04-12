@@ -1,0 +1,27 @@
+---
+title: 'Announcing Zustand v5'
+date: '2024-10-20'
+lastmod: '2024-10-20'
+tags: ['react', 'global-state', 'zustand']
+draft: false
+summary: "No new features, just dropping old things"
+authors: ['daishi']
+---
+
+Have you heard of Zustand? [Zustand](https://zustand.docs.pmnd.rs/) is a state management library for React. We just released Zustand v5.
+
+## What's new in Zustand v5
+
+There are no new features in this release. This surprises people. But the fact is, we already added new features in v4.x, deprecating some old features. Zustand v5 drops all of those old features. It's a breaking change, so we needed a major version bump. The major version bump doesn't mean there's a big new feature. Actually, from the perspective of maintaining the library, no new features is a good thing. This is why we released v5.
+
+## So, what's changed in Zustand v5?
+
+The biggest change is that we dropped support for React versions below 18. This made it possible to drop the `use-sync-external-store` package, and Zustand now uses the native `useSyncExternalStore`. This has made the bundle size much smaller. We also dropped support for TypeScript versions below 4.5, and ES5 is no longer supported. These changes are important for making the library more maintainable in the future.
+
+While upgrading to Zustand v5 isn't necessary for all users, if your project meets the new requirements, it's highly recommended to migrate to v5, as new features will only be added in v5.
+
+## Migration Guide
+
+Since there are breaking changes, migration is required. However, from what we learned during the release candidate period, the migration isn't difficult. There were a few gotchas, but we usually have workarounds for them.
+
+Check out [the migration guide](https://zustand.docs.pmnd.rs/migrations/migrating-to-v5) before getting started.

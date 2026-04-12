@@ -1,0 +1,32 @@
+---
+title: 'Announcing Valtio v2'
+date: '2024-08-29'
+lastmod: '2024-08-29'
+tags: ['react', 'global-state', 'valtio']
+draft: false
+summary: "What's changed in Valtio v2"
+authors: ['daishi']
+---
+
+Valtio is a proxy-based state management library primarily for React. It allows any JavaScript object to be used as state for React. Valtio has been around for years and is widely used. Valtio v2 was originally proposed in April 2023. A year and a half later, we are finally releasing it. This blog post will share some background and the changes made in v2.
+
+## Why Did We Need Valtio v2?
+
+Valtio has supported React Suspense from the beginning. Internally, the library throws a promise to trigger suspense. Throwing a promise is an undocumented convention that some libraries use, but the React team has stated that it wasn't intended for public use. To address this, React 19 introduces a new `use` hook. This is an explicit way of handling promises and is now the public API. While this approach is now recommended, it prohibits the use of this pattern internally within libraries (except for hooks). To comply with this new rule, Valtio had to be modified, resulting in a breaking change.
+
+## What Are the Changes in Valtio v2?
+
+As mentioned, one significant change is that Valtio no longer throws a promise internally. Developers must now use the `use` hook explicitly. The `use` hook is only available in React 19, so I created a shim called `react18-use`, which allows React 18 users to utilize it while waiting to migrate to React 19.
+
+There's also another subtle change. Previously, Valtio always copied the initial object passed to the `proxy()` function. This design choice was intended to prevent misuse of the library. However, for developers looking to extend Valtio's capabilities, this copying behavior could be problematic, especially since there was no way to opt out of it. In Valtio v2, this behavior has been reversed; the initial object is no longer copied by default, and developers who want the v1 behavior must explicitly copy it themselves. We provide a `deepClone` utility function for this purpose. The recommended practice is to create the initial object and discard it immediately, such as `proxy({ foo: 1 })`. This way, you shouldn't need to worry about this subtle change.
+
+Internally, the codebase has been significantly cleaned up, dropping support for older setups. It also exposes some internal mechanisms, allowing third-party library authors to extend Valtio's capabilities, which should help grow the ecosystem.
+
+## How to Get Started?
+
+Visit [the repository](https://github.com/pmndrs/valtio) and [the website](https://valtio.pmnd.rs) to learn more.
+
+## Further Reading
+
+- [Release Note](https://github.com/pmndrs/valtio/releases/tag/v2.0.0)
+- [How Valtio Was Born](https://blog.axlight.com/posts/how-valtio-was-born/)

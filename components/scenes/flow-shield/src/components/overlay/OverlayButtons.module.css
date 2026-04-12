@@ -1,0 +1,88 @@
+.container {
+  position: fixed;
+  bottom: 74px;
+  right: 24px;
+  z-index: 55;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+  border: 1px solid var(--overlay-border);
+  border-radius: 4px;
+  background: var(--overlay-bg);
+  color: var(--overlay-text);
+  cursor: pointer;
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    opacity 0.2s;
+  pointer-events: auto;
+}
+
+.btn:hover {
+  border-color: var(--overlay-accent);
+}
+
+.active {
+  border-color: var(--overlay-accent);
+  background: var(--overlay-surface);
+}
+
+.inactive {
+  opacity: 0.6;
+}
+
+/* Import GLB — wider button with text + icon */
+.importBtn {
+  composes: btn;
+  gap: 6px;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.importBtn svg {
+  flex-shrink: 0;
+}
+
+.importLabel {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* Preset selector buttons */
+.presetGroup {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.presetBtn {
+  composes: btn;
+  padding: 0 10px;
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.separator {
+  width: 1px;
+  background: var(--overlay-border);
+  margin: 4px 0;
+  pointer-events: none;
+}

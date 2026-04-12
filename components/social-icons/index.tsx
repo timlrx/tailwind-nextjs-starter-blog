@@ -9,6 +9,7 @@ import {
   Mastodon,
   Threads,
   Instagram,
+  Discord,
   Medium,
   Bluesky,
 } from './icons'
@@ -24,6 +25,7 @@ const components = {
   mastodon: Mastodon,
   threads: Threads,
   instagram: Instagram,
+  discord: Discord,
   medium: Medium,
   bluesky: Bluesky,
 }
@@ -33,6 +35,11 @@ type SocialIconProps = {
   href: string | undefined
   size?: number
 }
+
+const sizeClasses = {
+  6: 'h-6 w-6',
+  8: 'h-8 w-8',
+} as const
 
 const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
   if (
@@ -52,7 +59,7 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`hover:text-primary-500 dark:hover:text-primary-400 fill-current text-gray-700 dark:text-gray-200 h-${size} w-${size}`}
+        className={`hover:text-primary-500 fill-current text-gray-700 dark:text-gray-200 dark:hover:opacity-60 ${sizeClasses[size] ?? sizeClasses[8]}`}
       />
     </a>
   )

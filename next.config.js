@@ -5,15 +5,23 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 // You might need to insert additional domains in script-src if you are using external services
+// const ContentSecurityPolicy = `
+//   default-src 'self';
+//   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is;
+//   style-src 'self' 'unsafe-inline';
+//   img-src * blob: data:;
+//   media-src *.s3.amazonaws.com;
+//   connect-src *;
+//   font-src 'self';
+//   frame-src giscus.app
+// `
+
 const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src *.s3.amazonaws.com;
-  connect-src *;
+  media-src 'self' *.s3.amazonaws.com;
   font-src 'self';
-  frame-src giscus.app
+  frame-src giscus.app pmndrs.github.io;
 `
 
 const securityHeaders = [
@@ -66,7 +74,7 @@ module.exports = () => {
   return plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
-    reactStrictMode: true,
+    reactStrictMode: false,
     trailingSlash: true,
     turbopack: {
       root: process.cwd(),
@@ -83,6 +91,10 @@ module.exports = () => {
         {
           protocol: 'https',
           hostname: 'picsum.photos',
+        },
+        {
+          protocol: 'https',
+          hostname: 'pmndrs.github.io',
         },
       ],
       unoptimized,
@@ -103,5 +115,15 @@ module.exports = () => {
 
       return config
     },
+    async redirects() {
+      return [
+        // Basic redirect
+        {
+          source: '/discord',
+          destination: 'https://discord.com/invite/poimandres',
+          permanent: true,
+        },
+      ]
+    }
   })
 }

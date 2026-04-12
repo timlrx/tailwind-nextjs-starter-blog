@@ -1,0 +1,108 @@
+---
+title: 'Reintroducing @react-three/xr'
+date: '2024-07-17'
+lastmod: '2024-07-17'
+tags: ['xr', 'react-three']
+draft: false
+summary: 'Reintroducing the @react-three/xr library'
+authors: ['bela']
+---
+
+We are excited to reintroduce React Three XR with the release of v6.1. This is a major overhaul of the [`@react-three/xr`](https://github.com/pmndrs/xr) package and enables developers to leverage the latest AR and VR capabilities in their React Three Fiber applications, a key missing piece to the React Three ecosystem.
+
+![Reintroducing react-three-xr](/static/images/reintroducing-react-three-xr.gif)
+
+## What's new?
+
+We focused on three aspects while rebuilding React Three XR: **ecosystem**, **simplicity**, and **capabilities**.
+
+We can't talk about **ecosystem** without first talking about the name change. Previously called `react-xr`, the library is renamed to `@react-three/xr` to include it the broader React Three vision. A thriving ecosystem builds on itself, like Lego blocks that can be composed into amazing sculptures. The lack of interoperability with our other libraries was the biggest pain point with the previous incarnation. That is a problem no more.
+
+React Three XR now works out of the box with [UIKit](https://github.com/pmndrs/uikit) and any other React Three component using touching, grabbing, and pointing. We demonstrated this interoperability by bringing six React Three Fiber examples to XR. [No really, here they are.](https://docs.pmnd.rs/xr/getting-started/examples)
+
+Our focus on **simplicity** led us to reduce the boilerplate that developers need to get started by providing more intuitive defaults, such as hand and controller interactions. However, a library is only as good as its documentation so we, you guessed it, simplified [our docs](https://docs.pmnd.rs/xr/) and added even more demos and tutorials for each feature.
+
+In addition to new interactions, React Three XR also provides new **capabilities** brought by WebXR itself. This includes mesh detection, plane detection, hit testing, DOM overlay, anchor API and even a [new testing emulator from Meta Quest](https://docs.pmnd.rs/xr/getting-started/development-setup).
+
+Lastly, I'd like to introduce myself. I am Bela, the new maintainer of React Three XR. I'm also the maintainer of UIKit, and I've been active in the open source WebXR space for a few years now. In case you are on the [pmndrs Discord](https://discord.com/invite/poimandres) you might have already seen me. If not, feel free to reach out 👋.
+
+All these changes will allow React developers to build new XR experiences, or even convert existing 3D apps, while leveraging the latest XR capabilities using only a few lines of code.
+
+## Sounds good. How do I get started?
+
+In the following, we will introduce how you can set up a React Three Fiber app and enable XR with a simple example that toggles a 3D box's color between red and blue when clicked:
+
+![get stared simple example](/static/images/react-three-xr-example.gif)
+
+0. **Install the dependency**
+
+```bash
+npm install @react-three/xr@latest
+```
+
+1. **Create an XR Store:** Start by creating an XR store using `createXRStore()`.
+
+```jsx
+import { createXRStore } from '@react-three/xr'
+
+import { Canvas } from '@react-three/fiber'
+import { XR } from '@react-three/xr'
+import { useState } from 'react'
+
+const store = createXRStore()
+```
+
+2. **Enter AR Mode:** Add a button to your app that allows users to enter AR mode by calling `store.enterAR()` when the button is clicked.
+
+```jsx
+<button onClick={() => store.enterAR()}>Enter AR</button>
+```
+
+3. **Wrap with XR Component:** Wrap your 3D content inside the `<XR>` component and pass the store as a prop.
+
+```jsx
+export function App() {
+  const [red, setRed] = useState(false)
+  return (
+    <>
+      <button onClick={() => store.enterAR()}>Enter AR</button>
+      <Canvas>
+        <XR store={store}>
+          <mesh
+            pointerEventsType={{ deny: 'grab' }}
+            onClick={() => setRed(!red)}
+            position={[0, 1, -1]}
+          >
+            <boxGeometry />
+            <meshBasicMaterial color={red ? 'red' : 'blue'} />
+          </mesh>
+        </XR>
+      </Canvas>
+    </>
+  )
+}
+```
+
+## Tutorials and Features
+
+To go beyond this simple example and help you make the most out of the React Three XR features, we offer a variety of tutorials to get you started:
+
+- **[Store](https://docs.pmnd.rs/xr/tutorials/store):**: Configure the XR store and learn its functions and state.
+- **[Interactions](https://docs.pmnd.rs/xr/tutorials/interactions):** Learn how to handle user interactions within your XR environment.
+- **[Object Detection](https://docs.pmnd.rs/xr/tutorials/object-detection):** Implement object detection seamlessly.
+- **[Origin](https://docs.pmnd.rs/xr/tutorials/origin):** Manage the origin point as well as rotation and scale of your XR scene.
+- **[Teleport](https://docs.pmnd.rs/xr/tutorials/teleport):** Enable teleportation as a way of navigating your scene.
+- **[Gamepad](https://docs.pmnd.rs/xr/tutorials/gamepad):** Leverage the gamepads of the controllers.
+- **[Custom Controllers and Hands](https://docs.pmnd.rs/xr/tutorials/custom-inputs)**: Provide your own controller or hand implementations.
+- **[Anchors](https://docs.pmnd.rs/xr/tutorials/anchors):** Anchor 3D objects on the real world environment.
+- **[Dom Overlays](https://docs.pmnd.rs/xr/tutorials/dom-overlay):** Place HTML as an overlay over the scene for handheld AR experiences.
+- **[Hit Test](https://docs.pmnd.rs/xr/tutorials/hit-test):** Use hit testing to place objects on real-world objects.
+- **[Guards](https://docs.pmnd.rs/xr/tutorials/guards):** Control access to different parts of your XR scene.
+
+## Roadmap
+
+Looking ahead, we are planning to add even more features to React Three XR. Our roadmap includes recognizing and using gestures within your XR scenes, using controllers and hands simultaneously, managing multiple layers in a XR environment, tracking user body movements for a more immersive experience, and building cross-platform controls such as `TransformControls` for the React Three ecosystem.
+
+## Conclusion
+
+We are thrilled to bring this React Three XR overhaul to the React Three ecosystem and look forward to seeing what you will build. Come ask questions, give feedback or show us what you made on the [repository](https://github.com/pmndrs/xr) or our [Discord](https://discord.com/invite/poimandres)! We'd love to hear from you ❤️.
