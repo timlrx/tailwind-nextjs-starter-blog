@@ -28,7 +28,7 @@ const Giscus = () => {
       metadata,
       inputPosition,
       lang,
-    } = siteMetadata?.comment?.giscusConfig
+    } = siteMetadata.comment.giscusConfig
 
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
