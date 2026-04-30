@@ -181,3 +181,13 @@ input:-webkit-autofill {
   z-index: -1;
   border-radius: inherit;
 }
+
+/* Factory.ai-inspired diagonal line slide animation for button hover */
+@keyframes slidePattern {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 7.07px 7.07px;
+  }
+}

@@ -1,0 +1,79 @@
+---
+title: 'Ralph Loops: How Speed Turns Automation Into Iteration'
+date: '2026-02-17'
+tags: ['AI', 'Frontend', 'Codex-Spark', 'UI Design']
+draft: true
+summary: 'Automated generate-review-fix-test cycles only become useful when the model is fast enough to complete them in seconds, not minutes.'
+---
+
+The idea of automated AI review loops is not new.
+
+Generate. Review. Fix. Test. Repeat.
+
+With Spark, that changes.
+
+## What a Ralph Loop Is
+
+Generate. Review. Fix. Test. Repeat. Automated. No human intervention in the middle.
+
+The name comes from the pattern. It is the idea that a sufficiently fast model can manage its own correction cycle faster than a human can context-switch.
+
+## Why Speed Is the Key Variable
+
+With a slow model, each iteration takes two to three minutes. A five-iteration loop takes fifteen minutes. You could have just fixed it yourself.
+
+The loop only earns its keep when each iteration is fast enough that five of them complete before you finish reading the first output.
+
+Spark at 1000+ tokens per second: a full generate-review-fix cycle completes in under thirty seconds. Five iterations in three minutes or less.
+
+That is a qualitatively different thing. The loop becomes a tool you actually reach for.
+
+## What I Built With It
+
+Complex UI component. Animated data visualization — animation timing, easing curves, state transitions all need to work together.
+
+Old approach: generate, manually check, edit the prompt, regenerate. Repeat until exhausted.
+
+Ralph loop approach: write a spec for what the component should do. Define review criteria — does the animation start on mount, does it handle resize, does it not jitter. Hand both to Spark. Let it run.
+
+Three minutes later: a component that passed all the review criteria. I had not touched it.
+
+## The Structure of a Good Loop
+
+A Ralph loop needs:
+
+**A clear generation prompt.** What to build. Technology constraints. Output format.
+
+**Executable review criteria.** Not "looks good" — testable assertions. Does the component render without errors? Does the animation trigger?
+
+**A feedback format the model can act on.** Structured error messages with context.
+
+**A stop condition.** All criteria pass, or maximum iteration count.
+
+## What Still Needs a Human
+
+The loop handles local correctness. It does not handle judgment.
+
+Is this the right visual approach? Does it feel right? Is the interaction model what users want?
+
+Those questions cannot be automated. The Ralph loop produces a technically correct output. Whether it is the right output is still a human call.
+
+## What I Would Tell You
+
+1. **Build the loop.** Five-line bash script running Spark in a loop is already useful.
+
+2. **Define testable criteria.** Not "looks good." Yes/no evaluable assertions.
+
+3. **Structure error output.** The model needs to understand what failed and why.
+
+4. **Set a stop condition.** Prevent infinite loops on intractable problems.
+
+5. **You handle judgment. The loop handles correctness.** That division works when the model is fast.
+
+## The Shift
+
+Slow model: you are the review loop. You read, decide, prompt, wait, repeat.
+
+Fast model with Ralph loops: the loop runs automatically. You write the spec. You review the final output.
+
+That is not automation for automation's sake. It is freeing your attention for the parts that actually need it.

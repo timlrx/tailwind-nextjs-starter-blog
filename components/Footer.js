@@ -8,7 +8,7 @@ export default function Footer() {
       { href: '/case-studies', title: 'Case Studies' },
       { href: '/contact', title: 'Contact' },
     ],
-    resources: [{ href: '/blog', title: 'Blog' }],
+    resources: [{ href: '/blog', title: 'Blog & Podcasts' }],
   }
 
   return (

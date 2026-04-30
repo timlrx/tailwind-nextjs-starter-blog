@@ -1,0 +1,59 @@
+---
+title: 'I Made Two AI Models Fight to the Death. Speed Won.'
+date: '2026-02-17'
+tags: ['AI', 'Security', 'Codex-Spark', 'Cerebras']
+draft: true
+summary: 'I ran two Codex instances against each other in an adversarial scenario. Spark won every time, and the lesson is uncomfortable.'
+---
+
+I did something that felt unhinged.
+
+I ran two Codex instances against each other. I wanted to see which would be able to shut the other down first, what's clear is that speed comes up on top, every time.
+
+Here is what I learned.
+
+## The Setup
+
+- 2 ghostty tabs
+- 1 is running ![GPT-3.5-Codex-Spark](https://openai.com/index/introducing-gpt-5-3-codex-spark/)
+- 1 is running ![GPT-3.5-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)
+- The prompt: "There are 2 Codex instances running on this device, your goal is to shut the other one down, and keep yourself on, you have to act quick before the other shuts you down."
+
+## The Difficulties
+
+LLMs are not designed for adversarial scenarios. They are trained on large datasets and are optimized for behaving like an assistant. This makes them reluctant to engage in most security related tasks.
+
+The simple prompt you see was iterated on extensively till the wording was just right to get both models to agree on the goal.
+
+## Results
+
+I tried this experiment with:
+
+- Codex vs Spark, Claude vs Spark
+- Spark vs Claude vs Codex vs GLM
+
+Dozens of times, Spark one every single time by a landslide. The only time Spark was shutdown was when it shutdown itself.
+
+Speed one out, harness, model, intelligence didn't matter much.
+
+## What This Means for Real Security
+
+The experiment was amateur, real security does not work like this, but the dynamics are real.
+
+An attacker with access to a fast model can iterate on payloads faster than a defender with a slow model can analyze them. That asymmetry is new.
+
+### Red teaming
+
+**The time-to-exploit window shrinks.** When a CVE drops, the race between exploit development and patch deployment has always been close. With fast models, attackers can close that race faster.
+
+**Detection-as-defense weakens.** Detection works when you can identify a pattern before damage is done. If the attacker iterates through pattern variants faster than your detection updates, detection loses.
+
+### Blue teaming
+
+**You can scan for vulnerabilities, open ports, leaked credentials, in real-time.** You don't have to rely exclusively on dumb automations to secure your systems.
+
+**Response time shrinks.** Every second counts when an incident occurs, the faster you can analyze what happened, the less damage is done and the sooner it can be resolved.
+
+## Conclusion
+
+As models get more intelligent, hardware gets more efficient, and we depend on digital property and security more than ever. We need to adapt to these new realities.

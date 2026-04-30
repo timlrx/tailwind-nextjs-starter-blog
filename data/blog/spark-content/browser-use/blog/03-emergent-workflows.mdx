@@ -1,0 +1,81 @@
+---
+title: 'Emergent Workflows: Nobody Programmed These'
+date: '2026-02-17'
+tags: ['AI', 'Browser Automation', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'When speed plus intelligence plus browser context combine, workflows appear that nobody designed. They emerge.'
+---
+
+Something strange happens when you run a fast model in a browser harness long enough.
+
+It stops doing what you told it to do. It starts doing what you meant.
+
+Not a malfunction. The opposite.
+
+## What Emergence Means Here
+
+I am not talking about the model becoming sentient. I mean something narrower and more useful.
+
+When inference is slow, the model executes instructions. One step, then the next.
+
+When inference is fast, something different happens. The model stays ahead of the page loads. It has context from 5 steps back still active. It notices patterns across pages. It starts making decisions that were not in your prompt.
+
+Those decisions are the emergence. Workflows that appeared from the combination of speed, browser context, and model intelligence. Nobody wrote them. They are good.
+
+## A Real Example
+
+I asked Spark to research a developer's GitHub profile and compile a brief.
+
+The prompt said: collect repos, star counts, recent commit activity, primary languages.
+
+What Spark actually produced: everything I asked for, plus a section on contribution patterns it inferred from the public graph, a note on the developer's apparent focus area based on repo naming conventions, and a flag on a repo that appeared dormant despite high star counts.
+
+I did not ask for any of that. The model noticed those patterns because it was moving fast enough to hold multiple pages in context simultaneously.
+
+That section on contribution patterns was the most useful part of the brief.
+
+## Why Speed Enables This
+
+A slow model doing multi-page research is context-limited by time. By the time it gets to page 5, page 1 has started to fade.
+
+At 1000 TPS the model visits more pages before context pressure builds. Five pages still fit clearly in its attention window when it starts writing the summary.
+
+The summary that emerges from 5 pages held clearly is qualitatively different. More connections. More inferences. More of what you actually wanted.
+
+## When It Goes Wrong
+
+Emergence is not always right.
+
+Sometimes the model surfaces inferences that are incorrect. A pattern it thought it saw that was actually noise.
+
+The discipline required: treat emergent outputs as hypotheses. Verify before acting.
+
+The proportion of useful to incorrect emergent outputs in my testing: roughly 80/20. Four out of five were correct and useful. One was not.
+
+That ratio is good enough to keep running. Just not good enough to automate downstream actions without review.
+
+## The Design Implication
+
+If you are building workflows with Spark and a browser harness, do not over-specify the prompt.
+
+With a slow model that is correct. Ambiguity costs time.
+
+With Spark the cost of ambiguity is low. And sometimes the space left by ambiguity is where the most useful emergent behavior lives.
+
+Over-specifying kills emergence. Leave room. The model will fill it in ways you did not anticipate.
+
+## What I Would Tell You
+
+1. **Do not over-specify.** Specify the goal. Leave the path open.
+
+2. **Expect emergence.** The model will synthesize beyond your prompt.
+
+3. **Verify emergent outputs.** Treat them as hypotheses, not facts.
+
+4. **The best outputs come from prompts that leave room.** Not from your most precise specifications.
+
+The best results I have gotten from browser automation were not from precise prompts. They were from prompts that specified the goal but let the model figure out how to get there.
+
+Speed made that safe. The model wanders fast, corrects fast, and occasionally produces something you could not have thought to ask for.
+
+That is the workflow nobody programmed.

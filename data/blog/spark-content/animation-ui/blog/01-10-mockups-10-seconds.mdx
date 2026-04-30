@@ -1,0 +1,82 @@
+---
+title: '10 Mockups in 10 Seconds Changes How You Design'
+date: '2026-02-17'
+tags: ['AI', 'Frontend', 'Codex-Spark', 'UI Design']
+draft: true
+summary: 'When generating a mockup costs nothing, you stop settling for the first one that works.'
+---
+
+I used to commit to the first UI that was not broken.
+
+Not the best one. The first one that worked well enough that rebuilding it felt like a waste.
+
+Spark broke that pattern.
+
+## The Old Math
+
+Standard Codex takes minutes per mockup. When one iteration takes three minutes, you run two or three variations. You pick the least-bad option. You move on.
+
+You do not run ten variations. Nobody does. It is not rational.
+
+## The New Math
+
+Codex-Spark runs on Cerebras WSE-3. 1000+ tokens per second. 15x faster.
+
+Ten mockups of the same component take about ten seconds.
+
+That number changes the decision tree entirely. When exploration costs nothing, you explore. You generate a batch, look at the spread, and pick what actually works.
+
+## What I Actually Did
+
+I was building a data visualization component. Neural network architecture display — nodes, weights, animated connections.
+
+With standard tooling, I would have built one version, iterated in-place, and called it done when it stopped feeling broken.
+
+With Spark: I generated eight variations in under fifteen seconds. Different layout approaches, different animation styles, different color treatments. I looked at all eight. I picked the third one.
+
+It was not the one I would have built first.
+
+That is the point. The best option is not always the first one that comes to mind.
+
+## The Exploration Cost Fallacy
+
+There is a hidden assumption: generating many options is wasteful.
+
+It is not. Discarding bad options is free. The cost is in generating them, and Spark makes that cost negligible.
+
+The real waste is committing to a mediocre first output because re-generating feels expensive.
+
+## The Numbers
+
+| Task                    | Spark         | Standard Codex      |
+| ----------------------- | ------------- | ------------------- |
+| Snake game              | 9 seconds     | 43 seconds          |
+| MC Escher splash screen | Done and open | Still writing files |
+
+These are representative of what 15x speed feels like across a sustained session.
+
+## What This Unlocks
+
+Novel experiences that would not exist otherwise.
+
+Nobody generates ten variations with standard Codex. It would take half an hour.
+
+With Spark it takes ten seconds. So you do it. And the tenth variation is often meaningfully better than the first.
+
+That difference — the gap between the first acceptable output and the best output — is where design quality lives.
+
+## What I Would Tell You
+
+1. **Stop committing to the first thing that works.** Generate five. Generate ten.
+
+2. **The exploration cost is near-zero.** Adjust your workflow to match the actual cost, not the cost you are used to.
+
+3. **The best version is probably not the first one.** It is the third or fifth or eighth.
+
+4. **You can only find it if the cost of looking lets you.** With Spark, the cost lets you.
+
+## The Practical Takeaway
+
+The best version of your component is probably not the first one you would have built. It is the third or fifth or eighth.
+
+You can only find it if the cost of looking lets you. With Spark, the cost lets you.

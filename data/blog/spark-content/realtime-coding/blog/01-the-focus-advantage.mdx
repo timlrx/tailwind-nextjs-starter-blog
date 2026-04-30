@@ -1,0 +1,94 @@
+---
+title: 'The Focus Advantage: How 1000 Tokens Per Second Keeps You in Flow'
+date: '2026-02-17'
+tags: ['AI', 'Developer Tools', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'Speed is not just faster output. At 1000 tokens per second, Spark eliminates context switching and keeps you in the code.'
+---
+
+I used to think AI coding tools were a productivity win because they wrote code for me.
+
+I was wrong about what the win actually was.
+
+## The Real Cost of Waiting
+
+With Claude Code or standard Codex, the loop goes like this. You write a prompt. You wait 30 to 60 seconds. Your brain has to go somewhere. So you switch tabs. Open another project. Start reviewing a PR you owe someone feedback on.
+
+The model finishes. You come back. Now you have to re-read what you were doing. Re-read the diff. Re-orient. Pay the tax of switching back.
+
+That is not a minor friction. That is a broken flow state. Every time.
+
+## What Happens at 1000 TPS
+
+Codex-Spark runs on Cerebras WSE-3 hardware. Over 1000 tokens per second. 15x faster than standard Codex.
+
+The output arrives before you have time to switch away.
+
+You prompt. The answer is there. You are still in the same mental context. You prompt again.
+
+| Workflow | Model Speed | What You Do While Waiting                    |
+| -------- | ----------- | -------------------------------------------- |
+| Old way  | 30-60s lag  | Open another project, review PR, check Slack |
+| Spark    | ~1s or less | Read the output                              |
+
+That difference in what you do during the wait is everything.
+
+## Context Switching Is the Real Bug
+
+I noticed this in my first session with Spark. I asked for a utility function. It was there. I was still thinking about the same problem. So I asked a follow-up. That was there too.
+
+Twenty minutes passed and I had not moved to another tab once.
+
+That never happens with slower models. The wait trains you to leave. You build a habit of multitasking that is actually just expensive context recovery on repeat.
+
+Spark broke that habit by removing the gap that created it.
+
+## The Math on Lost Focus
+
+Flow state research generally puts re-engagement cost at 10 to 20 minutes after a context switch. A deep coding session with 4 or 5 model interactions takes the better part of half a workday in recovery time alone if each one breaks your focus.
+
+With a 1-second model you do not switch. You stay in the file. You stay in the problem.
+
+The output is the same token quality. The session is twice as productive. Not because the code is better. Because you never left.
+
+## It Changes What You Prompt For
+
+When prompts are cheap and fast you start using the model differently.
+
+With slow models you batch. You write a long prompt trying to get everything in one shot. You over-specify because you do not want to wait again.
+
+With Spark you ask small questions. You treat it like a thought partner that responds instantly. "What is the edge case here." "Is this the right abstraction." "Give me the alternative implementation."
+
+You think out loud. The model answers. You stay in the problem.
+
+## The Focus Multiplier
+
+Speed does not just give you more code. It gives you more of your own thinking time inside a single session.
+
+You handle the decisions. The model handles the execution. And because the execution is instant you never have to hold your decision in a mental buffer while you wait for the machine to catch up.
+
+The bottleneck shifted. It is not the model anymore. It is your ability to think clearly and prompt precisely.
+
+That is a different kind of advantage than just faster output.
+
+## What I Would Tell You
+
+1. **Do not alt-tab.** When using Spark, commit to staying in the editor.
+
+2. **Prompt smaller.** Ask one thing at a time. The latency penalty for multiple prompts is nearly zero.
+
+3. **Notice when you drift.** If you catch yourself switching apps, it means the session is too slow.
+
+4. **Use it for exploratory thinking.** Ask questions you would normally not bother asking.
+
+5. **Protect the flow state.** Speed is the mechanism. Focus is the output.
+
+## The Actual Advantage
+
+The marketing story for fast inference is about throughput. More code per minute. More tasks completed per hour.
+
+That is real. But it is not the most important thing.
+
+The most important thing is that you never leave the problem. You stay in the codebase. You stay in the mental model of what you are building. The model becomes part of your thinking, not a service you send work to.
+
+That is a fundamentally different relationship with a tool. And it starts with the speed.

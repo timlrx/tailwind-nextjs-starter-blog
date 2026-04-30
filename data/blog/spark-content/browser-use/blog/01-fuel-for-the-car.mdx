@@ -1,0 +1,82 @@
+---
+title: 'Spark Is the Fuel. The Harness Is the Car.'
+date: '2026-02-17'
+tags: ['AI', 'Browser Automation', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'A fast model without a browser harness is a brain in a jar. A harness without speed is a car with no fuel. Neither works alone.'
+---
+
+I have been running Spark inside browser harnesses for two weeks. Not casually. Seriously.
+
+This is what I figured out: the model is not the product. The model plus the harness is the product.
+
+## Two Things That Do Not Work Alone
+
+Spark at 1000 tokens per second is extraordinary hardware. But raw inference speed has no surface area. It cannot click. It cannot navigate. It cannot open a GitHub profile, read the repositories, check the commit history, and write a report.
+
+A browser harness without speed is equally limited. Claude in Chrome, Nanobrowser, Browser Use — these tools exist. They work. But with a 67 tok/s model the interaction feels like watching a car coast downhill with no engine.
+
+The metaphor is exact. Spark is fuel. The harness is the car.
+
+Fuel without a car is just a fire. A car without fuel is furniture.
+
+## What a Harness Actually Does
+
+People hear "harness" and think wrapper. It is not a wrapper. It is an execution environment.
+
+| Layer            | What it provides                                     |
+| ---------------- | ---------------------------------------------------- |
+| Tool access      | Click, scroll, navigate, read DOM, fill forms        |
+| State management | Session, memory, tab context persist across steps    |
+| Guardrails       | Human-in-the-loop checkpoints, permission boundaries |
+| Orchestration    | Retry logic, parallel workflows, error handling      |
+
+Without this the model is a language predictor. With it the model is an agent.
+
+## What Happens When You Combine Them
+
+I tested Spark doing browser research. Deep research on a GitHub profile. Navigate, extract, compile.
+
+A slow model doing this drags. You watch it click. Watch it wait. Watch it process a page for 8 seconds. Your attention wanders.
+
+Spark does not give you time to get bored. It processes each page faster than the next page loads. It stays ahead of the network.
+
+That is the difference. Not a little faster. Qualitatively different.
+
+## The Non-Determinism That Speed Enables
+
+Scripted browser automation is deterministic. You write the steps. The bot follows them.
+
+Model-based automation is non-deterministic. The model decides what to do based on what it sees. No script. It improvises.
+
+The problem with non-deterministic automation at slow speeds: every improvisation costs time. The model misclicks. Corrects. Waits. The feedback loop is 15-30 seconds per error.
+
+At 1000 TPS the correction loop is under a second. The model misclicks and fixes it before you register that it happened. Non-determinism becomes a feature.
+
+## What I Actually Run
+
+I have Claude in Chrome installed. I tested Nanobrowser, Browser Use, Dia, GPT-Atlas.
+
+My current stack: Claude in Chrome for interactive work where I want to stay in the loop. Browser Use with Spark via API for research workflows I want to delegate fully.
+
+The key insight: the harness architecture matters as much as the model.
+
+## What I Would Tell You
+
+1. **Start with Claude in Chrome or Nanobrowser.** Get comfortable watching a model act in your browser.
+
+2. **If you tried browser automation and found it too slow, try Spark.** The same workflow at 15x speed is a different experience.
+
+3. **Use Browser Use for delegated research.** Python library. Point it at Spark via API.
+
+4. **The car was always there. It just needed fuel.**
+
+## The Shift That Is Happening
+
+Most people use frontier models for chat. A few use them for coding. Almost nobody has them running in the browser on real work.
+
+That changes when speed is no longer the bottleneck.
+
+At 67 tok/s you tolerate chat. At 1000 tok/s you delegate browser workflows that used to take you 45 minutes.
+
+The fuel was the missing piece. The cars existed. Now something can run them.

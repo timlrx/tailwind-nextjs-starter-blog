@@ -19,6 +19,8 @@ const contributors = [
   { name: 'MiniMax AI', href: 'https://minimax.io/', logo: '/static/images/minimax-logo.png' },
   { name: 'Hey', href: 'https://hey.xyz/' },
   { name: 'Synpress', href: 'https://synpress.io/' },
+  { name: 'Cerebras', href: 'https://cerebras.ai/' },
+  { name: 'GGML', href: 'https://github.com/ggml-ai/ggml' },
   // DAOs & Guilds
   { name: 'Raid Guild', href: 'https://raidguild.org/' },
   { name: 'Metagame', href: 'https://metagame.wtf/' },

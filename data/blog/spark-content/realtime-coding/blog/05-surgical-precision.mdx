@@ -1,0 +1,99 @@
+---
+title: 'Surgical Precision: You Handle Architecture, the Model Handles Execution'
+date: '2026-02-17'
+tags: ['AI', 'Developer Tools', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'When the model handles execution at 1000 tokens per second, you are free to focus entirely on the decisions that actually require a human.'
+---
+
+The best division of labor I have found in AI-assisted coding took me too long to figure out.
+
+The model is good at execution. I am good at decisions. The problem was that with slow models, execution was slow enough that the two things felt interleaved. I was waiting on execution instead of thinking about decisions.
+
+Spark made the division clean.
+
+## What Execution Actually Is
+
+Execution is the mechanical layer of coding. Writing a function that does what the spec says. Converting a data structure. Writing tests for known behavior. Adding error handling to existing logic. Formatting. Linting. Running the build.
+
+These are not trivial tasks. They take time and attention. But they do not require architectural judgment. They require precision and correctness.
+
+That is what models are good at. Precision within a bounded scope.
+
+## What Decisions Actually Are
+
+Architecture decisions are different. What is the right abstraction here. Does this module belong in this layer. Should this be two functions or one. Is this the right data model for how we will query this six months from now.
+
+These require context that the model does not have. Your team's conventions. The history of this codebase. The product direction. The performance tradeoffs you care about.
+
+Models can inform these decisions. They should not make them unilaterally. That is your job.
+
+## The Slow Model Problem
+
+With a 30-60 second round trip, you spend a lot of time waiting on execution. You are not thinking about architecture. You are watching a terminal.
+
+When you come back you often have to re-read to remember where you were in the decision process. The execution gap broke your architectural thinking.
+
+You end up making smaller decisions than you would have. You defer the bigger structural questions.
+
+## What Spark Changes
+
+At 1000 tokens per second, execution is not a wait state. It is a moment.
+
+You make a decision. You describe the execution. The execution arrives. You evaluate whether it matches your intent. You make the next decision.
+
+The loop is tight enough that you never leave the decision-making mode. You are always the architect. The model is always the builder. And the builder never makes you wait.
+
+## What This Looks Like in Practice
+
+I was refactoring an API layer in vllm-studio. The decisions were mine: how the routes should be structured, what the error format should look like, where the validation logic lived.
+
+I described each piece. Spark wrote it. I read it. I adjusted the decision if needed. I described the next piece.
+
+The entire session I was thinking about structure. I was never thinking about syntax. I was never interrupted by waiting.
+
+By the end of the session the refactor was done and I understood every part of it because I had made every architectural choice.
+
+## Surgical Changes
+
+The speed also enables surgical precision at a scale that slow models cannot support.
+
+With Claude Code I would batch fixes. Tell the model to find and fix similar issues across multiple files. Walk away. Come back to a large diff.
+
+With Spark I do one file. Review. One function. Review. The changes are small enough that I can evaluate each one in context.
+
+I catch more problems this way. The model does not drift. I do not lose the thread.
+
+## What You Stop Doing
+
+You stop writing boilerplate. You stop manually writing test cases for behavior you already specified. You stop converting data formats by hand. You stop looking up library APIs you know exist but cannot remember the exact signature for.
+
+All of that becomes describe-and-receive. Fast enough that it does not interrupt your thinking.
+
+## The Discipline Required
+
+The division only works if you maintain it.
+
+The failure mode is letting the model start making architectural decisions because it is fast enough to generate large changes quickly. Speed does not improve the quality of decisions you have not made yet. It just executes them faster.
+
+Stay in the driver seat. The model navigates. You decide where to go.
+
+## What I Would Tell You
+
+1. **Separate your thinking from your describing.** Think about the architecture first. Then describe the execution.
+
+2. **Stay surgical.** One change at a time. Evaluate before you continue.
+
+3. **Own the decisions.** If you cannot explain why a piece of code is structured the way it is, you delegated the decision instead of making it.
+
+4. **Use speed for breadth.** Generate multiple implementations of a decision and compare them.
+
+5. **Reject large autonomous diffs.** If Spark generates more than you can fully review, tighten the scope.
+
+## The Outcome
+
+Code I write with Spark in surgical mode has a different quality than code I generated by delegating to slow models.
+
+Every decision is mine. Every piece is reviewable. The model handled the execution but I handled the design.
+
+That is not a limitation of the tool. That is the right division of labor. Speed makes it possible. Discipline makes it work.

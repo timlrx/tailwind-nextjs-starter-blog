@@ -1,0 +1,88 @@
+---
+title: 'Prompt and Read: The Shift from Delegation to Collaboration'
+date: '2026-02-17'
+tags: ['AI', 'Developer Tools', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'Slow models train you to delegate and walk away. Spark is fast enough to change that into something closer to actual pair programming.'
+---
+
+There is a posture that every developer with slow models develops without noticing it.
+
+Prompt. Walk away. Come back later.
+
+It feels like efficiency. It is actually delegation. You are handing work to a slow machine and going to find something else to do.
+
+## When I Noticed the Difference
+
+I had Spark open on my vllm-studio codebase. I asked it to fix a bug in a parsing function. The answer came back before my hand left the keyboard.
+
+I read it. Still thinking about the same thing. I had a follow-up. Sent it. Answer back. Same speed.
+
+By the end of the session I had stayed in a single context for 40 minutes without stopping. That had not happened in months of AI-assisted coding.
+
+The difference was not the quality of the output. It was that I never disconnected.
+
+## Delegation Versus Collaboration
+
+With slow models the mental model is: AI as contractor. You write a spec. You submit it. You wait. You review the deliverable. That cycle takes minutes per loop.
+
+With Spark the mental model is: AI as the developer next to you. You say something. They respond. You say something back. The conversation is continuous.
+
+| Mode       | Mental Model    | Feedback Loop    | What You Do in Between     |
+| ---------- | --------------- | ---------------- | -------------------------- |
+| Slow model | Contractor      | 30-60s per round | Find other work            |
+| Spark      | Pair programmer | <1s per round    | Think about the next thing |
+
+The same token quality. Different relationship to the process.
+
+## What Pair Programming Actually Feels Like
+
+I spent time pair programming with senior engineers before AI tools existed. The dynamic was not one person typing and one person waiting. It was continuous conversation. One person holds the keyboard. Both hold the problem.
+
+AI pair programming with slow models was never that. It was more like code review with a long turnaround.
+
+Spark makes the loop tight enough that you can have the conversation in real time. You stay the driver. The model stays the navigator. But both of you are present for every decision.
+
+That shift — from walking away to reading — is the whole thing. Reading means you are still there. Still thinking. Still engaged with the output as it lands.
+
+## What Changes in How You Prompt
+
+When you are in delegation mode you write long prompts. You try to anticipate every edge case upfront because asking again costs you another 60-second wait. You batch everything into one ask.
+
+When you are in collaboration mode you say the next thing. You ask short questions. You iterate verbally.
+
+Delegation prompts: "Build me a complete API handler with error handling, logging, and type annotations, and make sure it handles the null case in line 47."
+
+Collaboration prompts: "What is the right abstraction here." Then: "Does this handle the null case." Then: "Add the logging."
+
+Different cadence. Different cognitive load. Shorter prompts are easier to write well.
+
+## The Cost of Walking Away
+
+Walking away from the session is not just time lost. It is context lost.
+
+When you come back to a model output after context switching you are re-reading it cold. You have lost the thread of why you asked that question, what you were trying to accomplish, what the next step was going to be.
+
+You rebuild that context mentally and then continue. That rebuild takes time. Multiple switches across a workday add up.
+
+Spark eliminates the gap that causes the walk-away. When the output is there immediately, you never unload the context. You keep the thread. You go faster because you never have to catch up.
+
+## What I Would Tell You
+
+1. **Change your prompting style.** Short questions, not long specs.
+
+2. **Watch for the walk-away reflex.** It is conditioned. Break it deliberately.
+
+3. **Stay in the file.** Open one codebase. Stay there for the whole session.
+
+4. **Read before you prompt again.** The output is worth reading. You are still in context.
+
+5. **Treat it as a conversation.** Not a job queue.
+
+## The Model Is Already There
+
+When you ask Spark a question, the model has finished answering before you have time to leave.
+
+That is not a small thing. It is the entire premise of working together instead of working in shifts. The tool is present. The question is whether you are.
+
+Stay in the conversation. That is the collaboration.

@@ -15,7 +15,7 @@ const LayoutWrapper = ({ children }) => {
             <div>
               <Link href="/home" aria-label={siteMetadata.headerTitle}>
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-semibold tracking-tight text-text-primary">
+                  <span className="whitespace-nowrap text-2xl font-semibold tracking-tight text-text-primary">
                     {siteMetadata.headerTitle}
                   </span>
                 </div>

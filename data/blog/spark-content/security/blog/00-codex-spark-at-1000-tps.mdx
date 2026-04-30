@@ -1,0 +1,448 @@
+---
+title: 'What 1000 TPS Actually Means: Three Weeks with Codex-Spark'
+date: '2026-02-17'
+tags: ['AI', 'Codex-Spark', 'Cerebras', 'Developer Tools']
+draft: true
+summary: 'Speed is not just faster output. It changes how you code, how you learn, how you research, and how you design. Here is what I learned.'
+---
+
+Three weeks with Codex-Spark on Cerebras WSE-3. 1000+ tokens per second. 15x faster than standard Codex.
+
+Here is what changed.
+
+<!-- IMAGE: Hero image showing Cerebras WSE-3 chip or Codex-Spark interface -->
+<!-- TODO: Find image from https://www.cerebras.ai/ or OpenAI announcement -->
+
+## The Setup
+
+| Spec           | Value                   |
+| -------------- | ----------------------- |
+| Speed          | 1000+ tokens per second |
+| Context window | 128K tokens (text only) |
+| Model          | GPT-5.3-Codex-Spark     |
+| Hardware       | Cerebras WSE-3          |
+| SWE-Bench Pro  | 56.8%                   |
+
+<!-- LINK: Link to Cerebras WSE-3 specs -->
+<!-- TODO: https://www.cerebras.ai/product-system/ -->
+
+<!-- LINK: Link to OpenAI Codex-Spark announcement -->
+<!-- TODO: Find OpenAI blog post or announcement -->
+
+That speed is not a benchmark number. It is a workflow change.
+
+<!-- IMAGE: Comparison chart showing 1000 TPS vs 67 TPS -->
+<!-- TODO: Create or find speed comparison visualization -->
+
+## The Core Insight
+
+Speed does not just make things faster. It makes them different.
+
+At 60 seconds per response, you walk away. You open another tab. You context switch. By the time you come back, you have lost the thread.
+
+At 1 second per response, you stay. You read. You think. You prompt again. The conversation continues unbroken.
+
+That difference — staying versus leaving — is the entire point.
+
+<!-- VIDEO: Side-by-side demo of Spark vs standard Codex response time -->
+<!-- TODO: Record screen capture showing the speed difference -->
+
+---
+
+## Part 1: How It Changed My Coding
+
+<!-- IMAGE: Screenshot of coding session with Spark -->
+<!-- TODO: Capture vllm-studio coding session -->
+
+I used to juggle three repos at once. Prompt one agent, switch to another, rotate between them. It felt efficient.
+
+It was actually expensive. Context switch recovery takes 10-25 minutes for deep work. Three repos, four rotations — I was spending half my cognitive budget just catching back up.
+
+<!-- LINK: Research on context switching costs -->
+<!-- TODO: Find study on context switch recovery time - possibly from https://www.ics.uci.edu/~gmark/ or similar research -->
+
+With Spark I stay in one codebase. One conversation. Full attention. The model keeps up with my thinking. I keep up with the model.
+
+<!-- LINK: Link to vllm-studio repo -->
+<!-- TODO: https://github.com/0xSero/vllm-studio -->
+
+I also stopped writing long prompts. Batching was rational when each prompt cost 60 seconds. At 1 second per prompt, I describe one thing, get it, describe the next.
+
+Short prompts are more precise. And when the model is this fast, I can afford precision.
+
+### The Focus Advantage
+
+<!-- IMAGE: Diagram showing old workflow (scattered) vs new workflow (focused) -->
+
+The old loop: ask question, wait, forget context, get answer, reconstruct.
+
+The new loop: ask, answer, deeper ask, answer. The loop accelerates until you run out of questions.
+
+I ran a 40-minute session in a single codebase without opening another tab once. That had not happened in months of AI-assisted coding.
+
+### The Keyboard Shortcut Model
+
+At 1000 TPS, the model finishes before you can context switch.
+
+I started treating Spark like a keyboard shortcut. Need a utility function? Describe it in one sentence. Have it in under a second. Paste it. Keep moving.
+
+That is a different mental model than anything I developed with slower models.
+
+<!-- TWEET EMBED: @seroxdesigns tweet about keyboard shortcut model -->
+<!-- TODO: Find/embed tweet about treating Spark like a keyboard shortcut -->
+
+### Surgical Precision
+
+The division of labor that actually works: I handle architecture, Spark handles execution.
+
+Architecture decisions require judgment — what goes where, what abstractions to use, what changes affect the structure. I make these before I describe anything to the model.
+
+Execution is what I describe: write this function, convert this format, add these tests. The model does this faster than I would and I stay focused on the next decision.
+
+---
+
+## Part 2: How It Changed My Learning
+
+<!-- IMAGE: Screenshot of learning session with Spark explaining a concept -->
+
+The bottleneck in learning has always been the question, not the answer.
+
+Spark inverts this. It supplies the answer instantly. The constraint shifts to your ability to form the next question.
+
+### The Speed Trap
+
+I ran 809 of my AI conversations through analysis. As volume went up, my spec quality went down.
+
+| Metric            | High Volume Weeks | Low Volume Weeks |
+| ----------------- | ----------------- | ---------------- |
+| Conversations     | 40+               | 15-20            |
+| Spec completeness | 0.21              | 0.49             |
+| Actual retention  | Low               | High             |
+
+<!-- LINK: Link to original analysis post about "more volume, less care" -->
+<!-- TODO: Find or link to the blog post about conversation analysis -->
+
+I was covering ground without understanding it. Fast answers feel like learning. They are not.
+
+Now I close Spark after every session and write what I understood in my own words. Within three sentences I usually discover I understood less than I thought.
+
+That friction — the struggle to explain — is where actual learning happens. Spark accelerates exposure. It does not accelerate integration.
+
+### 5 Explanations in 10 Seconds
+
+I asked Spark to explain recursion five ways. It took nine seconds.
+
+| Explanation | Approach                        |
+| ----------- | ------------------------------- |
+| 1           | Formal definition               |
+| 2           | Analogy (boxes inside boxes)    |
+| 3           | Visual (mirrors facing mirrors) |
+| 4           | Practical (factorial example)   |
+| 5           | Historical (McCarthy and LISP)  |
+
+<!-- VIDEO: Demo of multi-explanation generation -->
+<!-- TODO: Record screen capture showing the 5 explanations appearing -->
+
+A human tutor gives you one explanation. Maybe two if you ask. Then feels annoyed if you still do not get it.
+
+Spark gives you five in under ten seconds. No embarrassment. No impatience. Unlimited attempts.
+
+The bottleneck in learning shifted from access to will.
+
+<!-- LINK: Link to education/learning resources -->
+<!-- TODO: Find relevant link about personalized learning or tutoring research -->
+
+### Flow State Learning
+
+Traditional learning is episodic. Bursts of effort interrupted by waiting.
+
+Spark-enabled learning is continuous. One long thread of thinking, unbroken.
+
+<!-- IMAGE: Diagram comparing episodic vs continuous learning -->
+
+I ran a comparison. Same topic, two approaches:
+
+| Approach                           | Time       | Retention after 48 hours |
+| ---------------------------------- | ---------- | ------------------------ |
+| Fragmented (Google, multiple tabs) | 2 hours    | ~30%                     |
+| Flow (single Spark thread)         | 90 minutes | ~80%                     |
+
+Flow is not just more pleasant. It produces better retention.
+
+---
+
+## Part 3: How It Changed My Research
+
+<!-- IMAGE: Screenshot of browser automation workflow -->
+
+I used to write Playwright scripts for repetitive browser work. Deterministic, brittle, broke when the page changed.
+
+<!-- LINK: Playwright documentation -->
+<!-- TODO: https://playwright.dev/ -->
+
+Model-based automation was too slow. A misclick at 67 tok/s costs 20 seconds of recovery.
+
+At 1000 tok/s, a misclick costs under a second. The model corrects before I notice.
+
+### The Fuel and the Car
+
+Spark is fuel. The browser harness is the car. Neither works alone.
+
+<!-- IMAGE: Diagram showing Spark + Browser Harness = Working System -->
+
+| Component            | Role                                      |
+| -------------------- | ----------------------------------------- |
+| Browser harness      | Clicks, navigates, reads DOM, fills forms |
+| High-speed inference | Holds context, stays ahead of page loads  |
+| Model intelligence   | Pattern recognition, improvisation        |
+
+<!-- LINK: Claude in Chrome extension -->
+<!-- TODO: https://chrome.google.com/webstore or Anthropic's page -->
+
+<!-- LINK: Browser Use Python library -->
+<!-- TODO: https://github.com/browser-use/browser-use -->
+
+<!-- LINK: Nanobrowser -->
+<!-- TODO: Find Nanobrowser GitHub repo or website -->
+
+### Non-Deterministic Automation
+
+Scripted automation follows instructions exactly. It works until something changes. Then it breaks.
+
+Model-based automation improvises. It handles pages it has never seen. It adapts when layouts change.
+
+The problem at slow speeds: every improvisation costs time. Errors cost more to correct.
+
+At Spark speeds, the correction loop is under a second. Non-determinism becomes a feature.
+
+<!-- VIDEO: Demo of browser automation handling unexpected UI changes -->
+<!-- TODO: Record screen capture of Spark adapting to page changes -->
+
+### The Retry Loop Advantage
+
+I run 10 parallel browser workflows now and cherry-pick the best result.
+
+6 minutes for 10 research reports.
+
+<!-- IMAGE: Screenshot showing parallel workflows and results -->
+
+That workflow does not exist with slow models. 10 workflows at 15 minutes each would be 2.5 hours.
+
+The math: a system that fails 10% of the time but corrects in under a second is more productive than a system that fails 2% of the time but corrects in 25 seconds.
+
+Build for fast correction. Not for zero failure.
+
+### Emergent Workflows
+
+I asked Spark to research a GitHub profile. Collect repos, star counts, activity.
+
+What came back: everything I asked for, plus a section I did not request — contribution patterns inferred from the commit graph, focus area based on repo naming, a flag on a dormant repo with high stars.
+
+<!-- IMAGE: Example of emergent output from GitHub research -->
+
+I did not prompt for any of that. The model synthesized it because it was moving fast enough to hold multiple pages in context.
+
+80% of emergent outputs are useful. 20% are wrong. Verify before you act.
+
+---
+
+## Part 4: How It Changed My Design Work
+
+<!-- IMAGE: Grid showing multiple UI mockup variations -->
+
+I used to commit to the first UI that was not broken. Rebuilding cost too much time.
+
+Spark generates 10 mockups in 10 seconds. The exploration cost is near zero.
+
+### 10 Mockups in 10 Seconds
+
+| Task                      | Spark                      | Standard Codex           |
+| ------------------------- | -------------------------- | ------------------------ |
+| Snake game                | 9 seconds                  | 43 seconds               |
+| MC Escher splash screen   | Done and open              | Still writing files      |
+| Neural network visualizer | 8 variations in 15 seconds | 1 variation in 5 minutes |
+
+<!-- VIDEO: Timelapse of generating multiple mockups -->
+<!-- TODO: Record screen capture of rapid UI generation -->
+
+The best version of a component is rarely the first one. It is the third or fifth or eighth.
+
+You only find it if the cost of looking lets you. With Spark, the cost lets you.
+
+### Single-File Prototyping
+
+I start with HTML, CSS, and JS in one file. No build step. No dependencies. Browser opens it directly.
+
+The feedback cycle: prompt, file generates, browser opens, I look, I decide.
+
+<!-- IMAGE: Screenshot of single-file prototype in browser -->
+
+<!-- LINK: Example single-file prototype -->
+<!-- TODO: Link to a GitHub gist or CodePen example -->
+
+CSS animations look different in motion than in screenshots. Timing curves feel different when you see them animate. Interaction feedback is only real when you interact.
+
+Static mockups lie. Single-file prototypes show the truth.
+
+### Ralph Loops
+
+Automated generate-review-fix-test cycles.
+
+I write a spec. Define testable criteria. Let Spark run the loop.
+
+Three minutes later: a component that passes all criteria. The loop handled the iteration. I handled the judgment.
+
+<!-- IMAGE: Diagram of Ralph loop workflow -->
+
+This is not AI replacing design decisions. It is AI handling technical correction so I can focus on judgment.
+
+### Breadth First, Then Depth
+
+Spark is optimized for breadth — many variations fast.
+
+Full Codex is optimized for depth — one complex thing carefully.
+
+<!-- IMAGE: Diagram showing two-phase workflow -->
+
+Phase one: Spark generates 8-10 variations. I pick the best one. Ten minutes.
+
+Phase two: Full Codex builds the production version. Integrated, coherent, edge cases handled.
+
+Using both correctly: explore fast, build carefully. The combination beats either alone.
+
+---
+
+## Part 5: What Speed Does to Security
+
+<!-- IMAGE: Security-themed graphic or screenshot of adversarial test -->
+
+The same capabilities work in reverse.
+
+I ran two Codex instances against each other. Attacker on Spark, defender on standard.
+
+| Result        | Count |
+| ------------- | ----- |
+| Attacker wins | 17    |
+| Defender wins | 3     |
+
+Attacker won because in adversarial scenarios, iteration speed compounds. By the time Defender finished analyzing, Attacker had already iterated to a working payload.
+
+### Context Compaction
+
+The quiet threat.
+
+At 1000 TPS, you fill the 128K context window fast. When it fills, the model compacts — summarizes older context.
+
+Security instructions you established at the start get compressed into something vague. The model keeps generating confidently. It just forgets what it was supposed to avoid.
+
+<!-- IMAGE: Diagram showing context compaction erasing security instructions -->
+
+I established: "All database queries use parameterized statements."
+
+Twenty minutes later, after compaction, the model generated a SQL injection vulnerability. No error. No warning. Just wrong code that looked right.
+
+### The Defense
+
+Structural controls over prompt controls.
+
+| Control                                   | Why                                  |
+| ----------------------------------------- | ------------------------------------ |
+| Lint with security rules                  | Hard gate on every output            |
+| Separate validation pass                  | Clean context reviews generated code |
+| Fresh contexts for security-critical code | No compaction risk                   |
+| Probe tests every 15 minutes              | Detect drift before it matters       |
+
+<!-- LINK: Security linting tools -->
+<!-- TODO: Link to ESLint security rules, Semgrep, or similar -->
+
+Do not rely on prompt instructions. They can be compacted away. Enforce outside the model.
+
+---
+
+## The Mental Model Shift
+
+With slow models, I thought of AI as a contractor. Write a spec, submit, wait, review.
+
+With Spark, it is a thought partner. Say something, get a response, say something back. Continuous conversation.
+
+<!-- TWEET EMBED: @seroxdesigns tweet about pair programming vs delegation -->
+<!-- TODO: Find/embed relevant tweet -->
+
+That changes what I delegate:
+
+- Small questions I would not have bothered asking
+- Alternative implementations I would not have generated
+- Explorations I would have skipped
+
+The model does not just write code faster. It thinks alongside me faster.
+
+---
+
+## What I Would Tell You
+
+1. **Stay in one context.** The focus advantage is the real win. Close the other tabs.
+
+2. **Prompt short.** One thing at a time. Batching is for slow models.
+
+3. **Generate many, pick the best.** Exploration cost is near zero. Use it.
+
+4. **Close the chat and write.** If you cannot explain it without looking, you did not learn it.
+
+5. **Build for fast correction, not zero errors.** Retries are nearly free at this speed.
+
+6. **Clear context before compaction.** 60% is your limit. Start fresh.
+
+7. **You decide, it executes.** Architecture is yours. Execution is the model's.
+
+8. **Evaluate live, not static.** Visual work requires seeing, not reading.
+
+9. **Assume adversaries have the same speed.** Your threat model needs updating.
+
+10. **Speed is the mechanism. Focus is the output.** Do not confuse them.
+
+---
+
+## Resources
+
+### Tools Mentioned
+
+- [Cerebras WSE-3](https://www.cerebras.ai/product-system/) — The hardware running Spark
+- [Claude in Chrome](https://claude.ai) — Browser extension for interactive work
+- [Browser Use](https://github.com/browser-use/browser-use) — Python library for delegated browser automation
+- [Nanobrowser](https://github.com/nanobrowser/nanobrowser) — Local multi-agent browser automation
+- [Playwright](https://playwright.dev/) — For comparison with scripted automation
+
+<!-- TODO: Verify and update all links -->
+
+### Code Examples
+
+- [vllm-studio](https://github.com/0xSero/vllm-studio) — Where I tested Spark on real code
+- [Single-file prototype template](https://gist.github.com/) — Starting point for rapid UI iteration
+
+<!-- TODO: Create and link actual gist -->
+
+### Further Reading
+
+- [Ethereum is a Dark Forest](https://www.paradigm.xyz/2020/08/ethereum-is-a-dark-forest) — On adversarial dynamics (relevant to security section)
+- [Context Switch Cost Research](https://www.ics.uci.edu/~gmark/) — On why multitasking fails
+- [Flow State Research](<https://en.wikipedia.org/wiki/Flow_(psychology)>) — On why continuous focus matters
+
+<!-- TODO: Find better/more relevant links -->
+
+---
+
+## The Bottom Line
+
+1000 tokens per second is not just faster output. It is a different relationship with the tool.
+
+You stop walking away. You stop batching. You stop committing to the first acceptable option.
+
+You stay in the problem. You think out loud. You explore until you find the actually good version.
+
+The model becomes part of your thinking, not a service you send work to.
+
+That is what 1000 TPS actually means.
+
+---
+
+_Three weeks. That is how long I spent running Codex-Spark through everything I do. Coding, learning, research, design, security. The speed is the mechanism. The focus is the output. The question is whether you use them well._

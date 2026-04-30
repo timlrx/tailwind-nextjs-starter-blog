@@ -1,0 +1,137 @@
+---
+title: 'The Attack Surface of Speed'
+date: '2026-02-17'
+tags: ['AI', 'Security', 'Codex-Spark', 'Cerebras']
+draft: true
+summary: 'When bad actors get access to 1000 TPS, the threat model changes in ways most security teams have not accounted for.'
+---
+
+The security community spent years debating whether AI would change the threat landscape.
+
+The answer is yes. The follow-up question — how much, how fast, in which directions — is what matters now.
+
+Codex-Spark gives any API user 1000+ tokens per second of GPT-5.3-class capability for $200 per month. That is a research preview price. It will not stay that high.
+
+Here is what the threat model looks like at that price point and that speed.
+
+## Who Has Access
+
+Codex-Spark is currently a research preview for ChatGPT Pro subscribers. $200 per month. That is not cheap. It is also not a meaningful barrier.
+
+| Actor               | Access                  | Barrier    |
+| ------------------- | ----------------------- | ---------- |
+| Individual attacker | $200/month API          | Low        |
+| Organized crime     | $200/month API          | Negligible |
+| State-sponsored     | Internal infrastructure | None       |
+
+A skilled attacker with a recurring $200 expense has access to a model that runs 15x faster than the previous generation. For an operation targeting valuable assets — credentials, intellectual property, financial systems — $200 is nothing.
+
+State-sponsored threat actors have had this capability on internal infrastructure for longer. The shift is democratization. Capabilities that required significant infrastructure investment are now API calls.
+
+## Exploit Generation Velocity
+
+The old workflow for writing an exploit: understand the vulnerability, identify the target, craft the payload, test edge cases, handle encoding and evasion, iterate.
+
+That workflow is slow. A skilled human takes hours to days to develop a working exploit for a non-trivial vulnerability.
+
+At 1000 TPS, the iteration rate changes. Not because the model is better at exploit development than a skilled human. Because it can iterate through variants faster than the human can test any single one.
+
+When a new CVE drops, the window between vulnerability disclosure and working exploit has always been the critical period. Security teams race to patch before exploits are weaponized.
+
+A fast model narrows that window. Significantly.
+
+The math: if standard-speed AI can produce a prototype exploit variant in 10 minutes, Spark produces 15 variants in 10 minutes. Each variant may target a slightly different edge of the vulnerability. The probability that one variant works without further refinement increases with each iteration.
+
+## Social Engineering at Industrial Scale
+
+Phishing defense has gotten better. Generic phishing emails are caught by filters trained on their patterns.
+
+The defense assumes that personalization is expensive. Writing a convincing spear-phishing email — one that references real projects, uses correct internal terminology, is authored from a plausible internal perspective — takes time. That cost limits volume.
+
+At 1000 TPS, personalized content is no longer expensive.
+
+Given a target's LinkedIn profile, public GitHub activity, and a few pages of organizational context, Spark can generate a convincing spear-phishing email in seconds. Not minutes. Seconds.
+
+Then it can generate ten variants. Optimized for different pretexts. One from a fake IT security team. One from a fake executive. One from a fake vendor contact.
+
+The volume-personalization tradeoff that phishing defenses rely on breaks at this speed.
+
+## The Browser and Terminal Attack Surface
+
+Codex-Spark is positioned for agentic use — models operating in browser and terminal contexts. This is where the attack surface expands most dangerously.
+
+When a model operates in a terminal, it can execute commands. When it operates in a browser, it can interact with forms, submit data, navigate flows.
+
+An attacker who can inject instructions into a model's context — through a malicious webpage, a crafted document, a prompt injection in a web application — can leverage the model's terminal and browser access.
+
+The attack is not direct. The attacker does not have access to your terminal. The attacker has access to content your AI agent reads. If that content contains instructions the agent follows, the attacker has indirect access.
+
+At standard model speeds, this attack requires the attacker to get lucky — the agent has to read the malicious content at the right moment in its workflow. At 1000 TPS, the agent moves through content fast. More content per unit time means more exposure surface to injected instructions per unit time.
+
+## Credential Discovery Acceleration
+
+The same capability that makes Spark good at finding credentials in your codebase makes it good at finding credentials in codebases it should not have access to.
+
+Security through obscurity — storing credentials in formats that scanners do not recognize — weakens against a model that understands semantic context. A key disguised as a UUID, a token assembled from environment variable fragments, a password embedded in a configuration that looks like test data — Spark finds these because it understands code, not because it matches patterns.
+
+Any organization that relies on credential obscurity as part of its defense-in-depth posture has a model-shaped hole in that posture.
+
+## Timing-Based Attack Acceleration
+
+Some attacks are fundamentally computational — you brute force, you enumerate, you test permutations.
+
+LLM-assisted attacks in this category benefit directly from speed. Generating candidate payloads, crafting enumeration sequences, constructing timing-attack inputs — these are generation tasks. More tokens per second means more candidates per unit time.
+
+For attacks that previously required significant compute to run at scale, the cost curve changes when you can outsource the generation to a fast API.
+
+## The Asymmetric Disclosure Problem
+
+I ran analysis on my own AI conversation history from the testing period. 32.5% of conversations contained what I would call risky disclosure signals — moments where the model produced information that, in a different framing, represents a meaningful security risk.
+
+This is not a Spark-specific finding. It is a capability finding. The model can produce sensitive information. At 1000 TPS, it can produce it faster.
+
+The asymmetry: defenders need to prevent all disclosures. Attackers only need one.
+
+A single successful prompt that extracts a credential, a network topology detail, or an internal system identifier is enough. Speed gives attackers more attempts per unit time, which increases the probability of the single success they need.
+
+## The Reduced Review Window
+
+This affects defenders as much as attackers, but let me be specific about the attack angle.
+
+When AI tooling is generating code fast, the human review window per line of code shrinks. This is a deliberate attack surface.
+
+A supply chain attacker who can influence what an AI generates — through poisoned training examples, through prompt injection in dependencies, through crafted context — can insert malicious code into a codebase at a rate that overwhelms human review capacity.
+
+At standard model speeds, an attacker needs the malicious insertion to survive one review cycle. At 1000 TPS, the total volume of AI-generated code is higher, and each piece gets proportionally less review time.
+
+The math favors the attacker.
+
+## What the Threat Model Actually Requires
+
+I am not saying do not use Spark. The defensive capabilities are real. The speed advantage for defenders is genuine.
+
+But the threat model has to account for these factors:
+
+**Assume adversaries have access to the same or faster models.** Defense strategies that rely on attackers being slow are wrong.
+
+**Treat AI-generated content as untrusted.** Code generated at speed by AI agents operating in agentic contexts should be treated with the same scrutiny as third-party code.
+
+**Rate limiting is a real control.** Not all uses of fast models need to be fast. Security-critical generation paths can be throttled to create human review breathing room.
+
+**Audit the audit trail.** If you use Spark for security auditing, audit what Spark produces. The meta-layer of review cannot be skipped.
+
+The attack surface of speed is real. The question is whether your defenses are calibrated for it.
+
+Most are not yet.
+
+## What I Would Tell You
+
+1. **Assume your adversary has Spark.** The $200 barrier is not a barrier.
+
+2. **Treat AI-generated code like third-party code.** Same scrutiny. Same review requirements.
+
+3. **Rate limit critical paths.** Not everything needs to be fast.
+
+4. **Your phishing defenses are outdated.** Personalization is now cheap. Adapt accordingly.
+
+5. **Audit the auditor.** If you use Spark for security, someone needs to audit what it produces.

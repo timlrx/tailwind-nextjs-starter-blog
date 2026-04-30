@@ -1,0 +1,95 @@
+---
+title: 'The Death of Multitasking: Why Speed Kills the Context Switch'
+date: '2026-02-17'
+tags: ['AI', 'Developer Tools', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'Slow AI models trained developers to juggle multiple projects at once. Spark is fast enough to make that habit unnecessary and expensive.'
+---
+
+There is a workflow that became standard the moment slow AI models got good enough to use.
+
+You work on project A. You give the model a big task. You open project B while it runs. You do real work there until project A comes back. You context switch. You review. You re-engage.
+
+We called it efficient. It is not. It is a coping mechanism for slow tools.
+
+## How the Habit Formed
+
+Claude Code takes 30 to 90 seconds on a meaningful task. Standard Codex is similar. The model is thinking. You are idle. Your brain does not handle idle well.
+
+So you found productive things to fill the gap. Open another repo. Review a pull request. Answer a message. The AI becomes a background process and you become the scheduler.
+
+That sounds efficient. You are never waiting. You are always doing something.
+
+What you are actually doing is paying the context switch tax over and over, all day long.
+
+## The Context Switch Tax
+
+Neuroscience puts re-engagement cost after a context switch at 10 to 25 minutes for deep work. Coding is deep work. Every time you leave a codebase and come back you pay the re-entry cost.
+
+Four agent rotations across a workday is four re-entry costs per codebase. A significant portion of your thinking time goes to catching back up instead of moving forward.
+
+We normalized this because the alternative was sitting idle while the model worked. Multitasking felt better than waiting.
+
+## Spark Eliminates the Gap
+
+At 1000 tokens per second the model finishes before you have time to leave.
+
+This is the key mechanical fact. The gap that created the multitasking habit does not exist. You cannot productively switch to another project in one second. So you do not switch. You read. You stay.
+
+The first time I noticed this in a session I thought I was being less efficient. I was only in one repo. I was only doing one thing.
+
+By the end of the session I had made more progress than sessions where I was running four agents across three repos simultaneously. Because I never left. Every decision I made was within context of the same problem.
+
+## The Myth of Parallel Productivity
+
+Running multiple slow agents feels productive because things are always happening somewhere. One agent is building while another is finishing. You are always reviewing something.
+
+But you are never deep in anything. You are a supervisor, not a developer. You are reading outputs and redirecting constantly. You are not solving problems. You are managing a queue.
+
+Spark changes the job back to solving problems. You stay in one codebase. You think deeply about one problem. The model handles the execution layer at speed, and you keep thinking.
+
+One thing done well beats four things done in rotation.
+
+## What I Stopped Doing
+
+I used to have a standard setup for AI-assisted sessions. Three terminal windows. Three repos. One agent per repo. Rotate between them.
+
+With Spark I have one terminal. One repo. One conversation.
+
+The setup is simpler. The output is better. The day feels less scattered.
+
+I also stopped keeping Slack open during coding sessions. With slow models I filled the model-wait time with messages. With Spark there is no wait time to fill.
+
+That forced a choice: be present or do not code. It turned out being present was what I actually wanted.
+
+## The Single Repo Advantage
+
+When you stay in one codebase for a full session, things happen that do not happen in rotation mode.
+
+You start to see patterns across files. You notice a refactor that spans three components. You understand the history of a confusing function because you just read three related files in sequence. You hold the full shape of the problem in your head.
+
+That kind of understanding does not survive a context switch to another repo. It evaporates.
+
+With Spark you get to keep it. The session stays coherent because you stay coherent.
+
+## What I Would Tell You
+
+1. **Commit to one repo per session.** Speed enables this. Use it.
+
+2. **Close the other projects.** Not minimize. Close. Remove the temptation.
+
+3. **Notice the multitasking habit.** It formed as a response to slow tools. The tools are no longer slow.
+
+4. **Measure by depth, not volume.** One problem understood fully beats five problems touched superficially.
+
+5. **Let the speed do the work.** The model is fast enough to keep up with your thinking.
+
+## The Replacement
+
+Multitasking between repos while waiting for slow models was the best available option given the constraints.
+
+The constraints changed.
+
+The best available option now is staying in one codebase with your full attention and a model fast enough to keep pace with you.
+
+That is not slower. That is how good work actually gets done.

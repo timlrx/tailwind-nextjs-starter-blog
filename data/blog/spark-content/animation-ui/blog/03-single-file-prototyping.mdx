@@ -1,0 +1,97 @@
+---
+title: 'Single-File Prototyping: The Fastest Design Loop I Have Found'
+date: '2026-02-17'
+tags: ['AI', 'Frontend', 'Codex-Spark', 'UI Design']
+draft: true
+summary: 'HTML, CSS, and JS in one file. Generate it, open a browser, look at it, decide. Repeat every few seconds.'
+---
+
+I have tried a lot of prototyping workflows.
+
+Figma for wireframes, then code. Codepen for live experiments. Full component systems with storybook.
+
+None of them are as fast as what I do now.
+
+One file. HTML, CSS, JS. Generate it. Browser opens. I look at it. I decide.
+
+That is the loop.
+
+## Why Single-File
+
+The constraint is a feature.
+
+A single HTML file has no build step. No dependency resolution. No module bundler. You double-click it and it runs.
+
+The feedback cycle is: prompt goes in, file comes out, browser opens, you see it.
+
+## What Spark Makes Possible
+
+Codex-Spark generates at 1000+ tokens per second. A full single-file prototype generates in seconds.
+
+The browser is open before you have finished reading the prompt you wrote.
+
+I ran it on the MC Escher-inspired 3D splash screen. Spark finished and had the browser open while standard Codex was still writing files.
+
+## The Actual Workflow
+
+Write a prompt describing what you want to see. Be loose with it — the iteration cost is low.
+
+Run Spark. File writes to disk. A watcher script opens it in the browser automatically.
+
+You look at it. Real evaluation. Does this feel right? Is the animation timing what I imagined?
+
+You decide: keep it, iterate on it, or generate something different.
+
+Decide takes ten seconds. Generate takes five. You are through one iteration in under thirty seconds.
+
+## What You Are Actually Evaluating
+
+This is where single-file prototyping earns its value.
+
+You are looking at live code. The animation runs. The hover states trigger. The prototype is the thing, not a representation.
+
+CSS animations look different in motion than they do in a screenshot. Timing curves feel different when you see them animate. Interaction feedback is only real when you interact.
+
+Static mockups lie to you. Single-file prototypes show you the whole experience.
+
+## A Watcher Script
+
+The missing piece that makes this feel seamless.
+
+Without a watcher: generate, manually navigate, refresh. Adds fifteen seconds and two clicks.
+
+With a watcher: a script monitors the output file, opens it automatically when it changes.
+
+This is a five-line shell script. Every generated file pops open automatically.
+
+## Iteration Budget
+
+With standard tooling, ten mockups is a half-day of work. You do not do it.
+
+With this workflow, ten mockups is fifteen minutes. You do it all the time.
+
+That changes what "good enough" means. With a high iteration budget, you do not stop at the first workable solution. You explore until you find the clearly best one.
+
+## What I Would Tell You
+
+1. **One file.** HTML, CSS, JS embedded. No external dependencies.
+
+2. **Use a watcher.** Auto-open on save. Eliminate friction.
+
+3. **Evaluate live.** You cannot judge animation from code.
+
+4. **Ten mockups in fifteen minutes.** That is your new budget.
+
+5. **The best version is in the batch.** You just have to generate enough to find it.
+
+## The Real Shift
+
+Old approach: design in Figma, hand off specs, implement in code.
+
+New approach: generate live code directly. What you review is what you ship.
+
+With Spark making each generate cycle seconds long, you can review a lot of what you ship before you ship it.
+
+Start with one file. Generate something rough. Open it. Look at it. Decide.
+
+You will have eight versions in ten minutes. One of them will be the right one.

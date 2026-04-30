@@ -1,0 +1,260 @@
+---
+title: 'Browser Harnesses for LLMs: Automate Anything'
+date: '2026-02-16'
+tags: ['AI', 'Developer Tools', 'Browser Automation', 'Productivity']
+draft: true
+summary: 'Most of what we do at work is CRUD in a browser. A harness gives the model hands. Here is how to set one up.'
+---
+
+Most of what we do at work boils down to CRUD apps in a browser. Email. Docs. CRMs. Project management. Scheduling. Research. Social media.
+
+A model can reason. But without a harness it cannot act. It is a brain in a jar.
+
+> "A lot of people basically only use the agents for coding. I'm using them for everything you can think of."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+I do my dev work, research, financial budgeting, workout tracking, medical advice, and government paperwork through AI. I have never been more productive. The browser is where most of this work lives. So the browser is where the model needs to be.
+
+This is a guide. Not a review. I will explain what a harness is, why the browser matters, which tools exist today, and how to set one up.
+
+## What is a harness
+
+A harness is the infrastructure layer around a model. The model reasons. The harness gives it tools, memory, state, and an execution environment.
+
+Without a harness the model answers questions. With a harness it navigates sites, fills forms, compiles reports, and runs multi-step workflows.
+
+| Layer     | Role                                                                   |
+| --------- | ---------------------------------------------------------------------- |
+| Framework | Defines what the agent does. Model, tools, prompts                     |
+| Runtime   | Manages execution. Retries, parallelism, durable state                 |
+| Harness   | Full wrapper. Tool access, guardrails, session persistence, evaluation |
+
+Anthropic calls its Claude Agent SDK a general-purpose agent harness. OpenAI's Codex app functions as one for coding.
+
+> "using 1 cheap AI inside a harness of an expensive AI to set up my environment for a free AI. love it"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+> "Roocode is the best agentic harness for LLMs right now. The quarterly GLM plan is the best plan, 4.6 is an incredible coder, this is a breakthrough. Roocode's Orchestrator will spin up models to do planning, coding, reviewing, research."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+The pattern is becoming central to how frontier models ship real work. The gap between what models can do and what users actually get them to do is a harness problem. Not a model problem.
+
+## Why browser
+
+The browser is where knowledge work already happens. A browser-based harness meets the model where the work is.
+
+| Advantage               | What it means                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| Rich structured context | The model reads the DOM, sees tab titles, accesses URLs. No copy pasting                       |
+| Native actions          | Chrome APIs give direct access to clicking, form filling, navigation, tab management           |
+| Human in the loop       | Side panel interfaces let you watch, intervene, redirect, or approve at decision points        |
+| Parallel delegation     | Multiple extensions run simultaneously. One researches while another drafts                    |
+| No credential overhead  | It operates inside your real browser session. Gmail, Slack, Jira, GitHub without separate auth |
+
+> "A few weeks ago I got research access to Claude Chrome Extension. It's an incredible tool, even compared to Dia and Comet."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+Browser extensions versus headless automation is a real choice. Here is the trade-off.
+
+|             | Headless (Playwright / Selenium)           | Browser Extension Harness                  |
+| ----------- | ------------------------------------------ | ------------------------------------------ |
+| Environment | Separate browser instance                  | Your actual browser session                |
+| Auth        | Requires separate credential management    | Uses your existing login sessions          |
+| Context     | No access to cookies, bookmarks, app state | Full contextual richness                   |
+| Use case    | Scripted, repeatable automation            | Interactive, context-aware task delegation |
+| Visibility  | Runs in background, invisible              | Side panel alongside your tabs             |
+
+If you need repeatable scripts with no human input, use headless. If you need an assistant that understands what you are looking at and can act on it, use a browser harness.
+
+## What models work best in the browser
+
+Not all models are equal here. Browser tasks need strong instruction following, tool use, and context management.
+
+| Model               | Strengths                                                                      | Released          |
+| ------------------- | ------------------------------------------------------------------------------ | ----------------- |
+| GPT-5.3-Codex       | Best agentic coding, long-running tasks, tool use. SWE-Bench Pro SOTA          | Feb 2026          |
+| Kimi-K2.5           | Best raw browser automation. Understands intent. Vision capable                | Jan 2026          |
+| GPT-5.3-Codex-Spark | 1000+ tok/s on Cerebras. Optimized for real-time coding                        | Feb 2026          |
+| Claude Opus 4.6     | Strongest prompt injection robustness. Deep reasoning. Native Chrome extension | Claude 4.5 family |
+| Gemini 3 Pro        | 1M token context. State of the art multimodal reasoning. Strong tool use       | Nov 2025          |
+
+> "The meta for local AI: Minimax great in n8n great virtual assistant, awesome at deep research. GLM great models in general but 4.6V can control browsers very reliably. Qwen these guys have a model for every build out there."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+I am telling you. Kimi-K2.5 is the sleeper for browser automation. It understands intent better than anything else I have tested for navigating and configuring sites.
+
+## Real world use cases
+
+These are not hypotheticals. I have run all of these.
+
+**Content summarization.** Point it at a URL, YouTube video, or PDF. Get a structured summary. High reliability across all frontier models.
+
+**Email triage.** Read inbox threads, draft contextual replies, extract action items. Claude Opus and GPT-5.3-Codex handle this well.
+
+**Sales research.** Visit company sites, identify personnel, cross-reference social profiles, compile briefs. Medium reliability. Sometimes drifts on complex navigation.
+
+**Form filling and data entry.** Read source data from one tab, enter into forms in another. CRM, timesheets, expenses. High reliability.
+
+**Code review in browser.** Build in terminal, verify rendered output in browser, debug with DOM and console access. This is what I use Claude in Chrome for daily.
+
+**Browser research.** Deep research on a GitHub profile, compile a report, navigate pages, extract data. Speed is the edge here. The model processes context fast enough to stay ahead of network latency.
+
+> "I do my dev work, research, financial budgeting, private recommendation algo, workout tracking, medical advice, government paperwork, home research, memory management. All using AI/MCP. I have never been more impactful than I am today."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+### What does not work well yet
+
+Multi-step workflows requiring 50+ sequential actions. Models drift from instructions.
+
+Precise visual interpretation of complex UIs. Drag and drop, canvas editors, dynamic SPAs.
+
+Financial transactions and legally sensitive actions. Always need human approval.
+
+Long execution chains without intermediate checkpoints.
+
+## The tools
+
+Here is what exists today. I have used all of these.
+
+### Claude in Chrome
+
+Anthropic's official browser extension. This is the most polished harness I have used.
+
+Full browser agent in a side panel. Multi-tab workflows. Site permissions system. Drag tabs into a designated group and Claude can see and act on them.
+
+It integrates with Claude Code. Terminal to browser workflows. You can build in the CLI and verify in the browser without switching context.
+
+Available on paid plans. Pro, Max, Team, Enterprise.
+
+> "I have research access to anthropic's browser extension, idk if it's publicly available yet. I am also building my own!"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+### summarize.sh
+
+Peter Steinberger built this. CLI plus Chrome side panel plus Firefox sidebar.
+
+One command summarization. URLs, PDFs, images, audio, video, YouTube, podcasts. It runs a real extraction pipeline, not just a prompt wrapper.
+
+Install:
+
+```bash
+npm i -g @steipete/summarize
+```
+
+Or Homebrew on Mac:
+
+```bash
+brew install steipete/tap/summarize
+```
+
+Supports local models, paid APIs, and free models. JSON and Markdown output. I use this constantly for research.
+
+### Nanobrowser
+
+Open source. Multi-agent architecture. Planner, Navigator, and Validator agents work together.
+
+Supports OpenAI, Anthropic, Gemini, Ollama, Groq, Cerebras. BYOK. Runs locally. No data transmitted externally. Free.
+
+Install from Chrome Web Store or build from source on [GitHub](https://github.com/nanobrowser/nanobrowser).
+
+This is the one to watch if you want to run local models in the browser.
+
+### Browser Use
+
+Python library. Combines Playwright with LLMs. One-line code for browser navigation and data extraction.
+
+```bash
+pip install browser-use
+```
+
+Python 3.11+. Supports OpenAI, Google, Ollama. Good for scripted automation where you want AI decision making without a full extension.
+
+> "if you want your local models to control the browser, please contribute.. it works but i want to make this really good"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+### Parchi
+
+This is mine. [github.com/0xSero/parchi](https://github.com/0xSero/parchi).
+
+Browser sidepanel extension for AI-powered browsing. Chat UI paired with tool-driven browser automation. Navigate, read, and act on pages without leaving your workflow. Inline tool-call timeline with reasoning during streaming.
+
+I built it because I wanted full control over the harness. Model agnostic. You pick the backend.
+
+### Dia
+
+The Browser Company built this. An AI-first browser. The URL bar acts as a chat interface. Auto-switches between chat and search.
+
+Chat with all open tabs. Summarize files inline. Custom pre-saved prompts called Skills. macOS only. M1 or later. Currently in beta.
+
+### GPT-Atlas
+
+OpenAI's browser. Chromium-based. ChatGPT built in at the core.
+
+Sidebar assistant for instant answers and summaries. Browser memories that remember context from sites you visit. Agent mode for multi-step automation.
+
+Available to Free, Plus, Pro users globally.
+
+## Three tiers of implementation
+
+Pick your tier based on how deep you want to go.
+
+### Tier 1: Use existing tools
+
+Install Claude in Chrome or summarize.sh. Point them at your work. No code required.
+
+This is where most people should start. Get comfortable with the model acting in your browser before building custom workflows.
+
+| Tool             | Type            | Install          | Key Feature                   |
+| ---------------- | --------------- | ---------------- | ----------------------------- |
+| Claude in Chrome | Extension       | Chrome Web Store | Full browser agent, multi-tab |
+| summarize.sh     | CLI + Extension | npm or brew      | One-click summarization       |
+| Nanobrowser      | Extension       | Chrome Web Store | Multi-agent, BYOK             |
+| GPT-Atlas        | Browser         | Download         | ChatGPT native                |
+| Dia              | Browser         | Download         | AI-first, Skills system       |
+
+### Tier 2: Build workflow automations
+
+Write prompts. Document your preferences. Create reusable workflows with n8n or similar.
+
+> "GLM-4.5-Air running local w vllm running in claude code built an entire functional mcp to allow itself to make n8n automations for me. This is one hell of a model, buy a GPU"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+> "You can tell the models to build the workflows"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+This tier is about chaining tools together. Claude in Chrome handles the browser. n8n handles the orchestration. Local models handle the processing.
+
+> "I think there's a lot of value in running 10 workflows at a time then cherry picking what you like. This requires using Openweight models tho otherwise it'll break bank"
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+### Tier 3: Hybrid harness
+
+Browser plus terminal. Claude Code plus Claude in Chrome. Codex plus Browser Use. Custom extensions plus local models.
+
+This is maximum capability. You build in the terminal and verify in the browser. The model can write code, run it, open the result, debug from the DOM, fix the code, and verify again. All in one loop.
+
+> "I built this into codex, multi-model orchestration with sub-agents, i don't have much time to drive it, but I really believe this model."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+The architecture pattern that works best here:
+
+> "Architecture patterns that work best with AI: Reflection (self-evaluation), Tool Use (external resources), Planning (detailed roadmap), Multiagent (specialized subtasks). These enable more autonomous, efficient coding."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+## How I think about this
+
+The model is not the bottleneck anymore. The harness is.
+
+> "Code is dirt cheap. Architecture, moderation and quality assurance are now most important details of builder workflow."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+Most people use frontier models for chat. Some use them for coding. Almost nobody has them acting in the browser on real work.
+
+The developers who figure out browser harnesses first will have a massive advantage. Not because the technology is hard. Because the mental model shift is hard. You need to stop thinking of AI as a chatbot and start thinking of it as a coworker that needs a desk, a screen, and access to the tools you use.
+
+> "Most people need a 'ready' agent with everything already figured out for them. I think this will be a big business."
+> — [@seroxdesigns](https://x.com/seroxdesigns)
+
+Give the model a browser. Give it your session. Let it work.
+
+That is the harness.

@@ -124,31 +124,24 @@ export default function About() {
       insight: 'Learned that the systems we build shape who has power.',
     },
     {
-      era: 'The Expansion',
-      title: 'Web3 & DAOs',
+      era: 'The Shift',
+      title: 'Open Source & AI',
       description:
-        'Joined Raid Guild. Built governance infrastructure for ZKSync, worked with Ethereum Foundation on zero-knowledge research. Contributed to MakerDAO, Gnosis, Superfluid, Lens Protocol.',
-      insight: 'Decentralization is about returning power to individuals.',
-    },
-    {
-      era: 'The Convergence',
-      title: 'AI Infrastructure',
-      description:
-        'Contributing to ElizaOS (17k+ stars), building Open Orchestra for multi-agent coordination, running local models on 8x 3090s. Making AI work for developers, not against them.',
+        'Building production tools for developers. TurboQuant for KV cache quantization, vLLM Studio for local inference, Parchi for browser AI agents. 200+ repos, 1,200+ stars.',
       insight: 'The best tools give you control, not dependency.',
     },
     {
       era: 'Now',
-      title: 'Thrive Protocol',
+      title: 'Systems & Infrastructure',
       description:
-        'Building AI systems that automate treasury allocations from crypto ecosystems to builders. $150M+ committed capital, 1,800+ funded builders.',
-      insight: "You shouldn't need to be an insider to build great things.",
+        'Running local LLMs on 8x 3090s. Contributing to Warp, ExLlamaV3, and vLLM ecosystems. Building the boring plumbing that makes AI work in production.',
+      insight: 'Infrastructure should be invisible.',
     },
   ]
 
   const beliefs = [
-    { label: 'Freedom Tech', description: 'Systems that give individuals more control, not less' },
-    { label: 'Build in Public', description: '175+ repos, most of them open source' },
+    { label: 'Build in Public', description: '200+ repos, most of them open source' },
+    { label: 'Local First', description: 'Run models locally. Own your data.' },
     { label: 'Boring Reliability', description: 'The best infrastructure is invisible' },
     { label: 'Say No', description: 'To projects that extract value without creating it' },
   ]
@@ -179,9 +172,9 @@ export default function About() {
               <span className="block text-accent-subtle">give people control.</span>
             </h1>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg md:text-xl">
-              That's the thread running through everything: AI agents, blockchain infrastructure,
-              the content protection work I started with years ago. Being a father changed how I see
-              technology. My kid is going to inherit this internet.
+              I build production software and open-source tools. Currently focused on AI
+              infrastructure, local inference, and developer tooling. Being a father changed how I
+              see technology. My kid is going to inherit this internet.
             </p>
           </div>
         </SlideUp>
@@ -250,24 +243,21 @@ export default function About() {
                 </h3>
                 <p className="text-sm leading-relaxed text-text-secondary">
                   Contributing to{' '}
-                  <Link href="https://elizaos.ai" className="text-accent-subtle hover:underline">
-                    ElizaOS
+                  <Link
+                    href="https://github.com/0xSero/turboquant"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    TurboQuant
                   </Link>{' '}
-                  (17k+ stars). Building orchestration layers, memory systems, and the boring
-                  plumbing that makes AI agents work in production. Running local models on 8x 3090s
-                  because I don't trust corporations with my data.
-                </p>
-              </div>
-
-              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
-                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
-                  Blockchain Systems
-                </h3>
-                <p className="text-sm leading-relaxed text-text-secondary">
-                  Governance infrastructure for ZKSync (150k+ daily events). Zero-knowledge research
-                  with Ethereum Foundation. Contributor to MakerDAO, Gnosis, Superfluid, Lens
-                  Protocol. Not the sexy frontend stuff - the backend systems that keep things
-                  running.
+                  (1,200+ stars) for KV cache quantization. Building{' '}
+                  <Link
+                    href="https://github.com/0xSero/vllm-studio"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    vLLM Studio
+                  </Link>{' '}
+                  for local inference control panels. Running local models on 8x 3090s because I
+                  don't trust corporations with my data.
                 </p>
               </div>
 
@@ -277,26 +267,49 @@ export default function About() {
                 </h3>
                 <p className="text-sm leading-relaxed text-text-secondary">
                   <Link
-                    href="https://github.com/0xSero/Azul"
+                    href="https://github.com/0xSero/parchi"
                     className="text-accent-subtle hover:underline"
                   >
-                    Azul
+                    Parchi
                   </Link>{' '}
-                  - terminal web browser with AI.{' '}
+                  (525 stars) - AI friend in your browser.{' '}
                   <Link
-                    href="https://github.com/0xSero/open-orchestra"
+                    href="https://github.com/0xSero/pi-brain"
                     className="text-accent-subtle hover:underline"
                   >
-                    Open Orchestra
+                    Pi Brain
                   </Link>{' '}
-                  - multi-agent coordination.{' '}
+                  (162 stars) - local AI memory.{' '}
                   <Link
-                    href="https://github.com/0xSero/AI-Data-Extraction"
+                    href="https://github.com/0xSero/moe-compress"
                     className="text-accent-subtle hover:underline"
                   >
-                    AI Data Extraction
+                    MoE Compress
                   </Link>{' '}
-                  - reclaim your coding assistant history.
+                  (177 stars) - model compression automation.
+                </p>
+              </div>
+
+              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
+                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
+                  Systems & Research
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">
+                  <Link
+                    href="https://github.com/0xSero/reap-expert-swap"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    REAP Expert Swap
+                  </Link>{' '}
+                  (122 stars) - MoE expert pruning.{' '}
+                  <Link
+                    href="https://github.com/0xSero/claude-acp-server"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    Claude ACP Server
+                  </Link>{' '}
+                  (91 stars) - Anthropic-compatible facade. Contributing to Warp, ExLlamaV3, and
+                  vLLM ecosystems.
                 </p>
               </div>
 
@@ -311,11 +324,126 @@ export default function About() {
                   >
                     57 episodes
                   </Link>{' '}
-                  talking to builders about technology, business, spirituality, and life. Guests
-                  include Ameen Soleimani (Moloch DAO), founders from Flow, DeFi Wonderland, and the
-                  teams behind AI coding tools.
+                  talking to builders about technology, business, and life. Guests include founders
+                  from AI coding tools, open-source projects, and systems engineering.
                 </p>
               </div>
+            </div>
+          </div>
+        </SlideUp>
+      </section>
+
+      {/* HuggingFace Work */}
+      <section className="section-breathe px-4 sm:px-6">
+        <SlideUp>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-text-muted sm:mb-8 sm:text-sm sm:tracking-[0.3em]">
+              HuggingFace Models
+            </h2>
+            <p className="mb-8 text-center text-sm text-text-secondary sm:text-base">
+              Published 40+ models on HuggingFace focusing on expert pruning (REAP) and quantization
+              for efficient inference.
+            </p>
+
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
+                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
+                  REAP Expert Pruning
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">
+                  <Link
+                    href="https://huggingface.co/0xSero/GLM-4.7-REAP-50-W4A16"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    GLM-4.7-REAP-50-W4A16
+                  </Link>{' '}
+                  (69 likes) - MoE expert pruning with quantization. Also{' '}
+                  <Link
+                    href="https://huggingface.co/0xSero/gemma-4-21b-a4b-it-REAP"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    Gemma-4-REAP
+                  </Link>{' '}
+                  (91 likes) and{' '}
+                  <Link
+                    href="https://huggingface.co/0xSero/Qwen3.6-28B-REAP"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    Qwen3.6-REAP
+                  </Link>{' '}
+                  models for efficient inference.
+                </p>
+              </div>
+
+              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
+                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
+                  GGUF Quantized Models
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">
+                  <Link
+                    href="https://huggingface.co/0xSero/Qwen3.6-35B-A3B-GGUF-Strix"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    Qwen3.6-GGUF-Strix
+                  </Link>{' '}
+                  (16 likes) - Optimized for AMD Strix Halo with Vulkan. GGUF format for llama.cpp
+                  integration with efficient quantization.
+                </p>
+              </div>
+
+              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
+                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
+                  Large-Scale Models
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">
+                  <Link
+                    href="https://huggingface.co/0xSero/GLM-5.1-555B-A14B-REAP-GPTQ-W4A16"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    GLM-5.1-555B
+                  </Link>{' '}
+                  (5 likes) - Large model compression with REAP pruning and GPTQ quantization. Also{' '}
+                  <Link
+                    href="https://huggingface.co/0xSero/GLM-5.1-478B-A42B-REAP-NVFP4"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    NVFP4
+                  </Link>{' '}
+                  variants for Blackwell GPUs.
+                </p>
+              </div>
+
+              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-4 sm:p-6">
+                <h3 className="mb-2 text-base font-semibold text-text-primary sm:mb-3 sm:text-lg">
+                  Research & Experimentation
+                </h3>
+                <p className="text-sm leading-relaxed text-text-secondary">
+                  <Link
+                    href="https://huggingface.co/0xSero/DeepSeek-V3.2-REAP-345B-W3A16"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    DeepSeek-V3.2-REAP
+                  </Link>{' '}
+                  (10 likes) - DeepSeek compression.{' '}
+                  <Link
+                    href="https://huggingface.co/0xSero/INTELLECT-3-REAP-50"
+                    className="text-accent-subtle hover:underline"
+                  >
+                    INTELLECT-3-REAP
+                  </Link>{' '}
+                  (4 likes) - Prime Intellect model compression. Continuous research in MoE
+                  efficiency.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 text-center">
+              <Link
+                href="https://huggingface.co/0xSero"
+                className="text-sm text-accent-subtle transition-colors hover:text-text-primary"
+              >
+                View all on HuggingFace →
+              </Link>
             </div>
           </div>
         </SlideUp>
@@ -377,9 +505,9 @@ export default function About() {
               Let's Work Together
             </h2>
             <p className="mb-4 text-sm leading-relaxed text-text-secondary sm:mb-6 sm:text-base">
-              I take on a limited number of projects - usually infrastructure work that requires
-              deep context and careful execution. If you're building something that gives people
-              more freedom, more privacy, or more control over their digital lives, let's talk.
+              I take on a limited number of projects — usually infrastructure work that requires
+              deep context and careful execution. If you're building developer tools, AI systems, or
+              production software that needs to just work, let's talk.
             </p>
             <p className="mb-6 text-xs text-text-muted sm:mb-8 sm:text-sm">
               If you're building another extractive platform, I'm not your guy.

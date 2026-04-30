@@ -1,0 +1,82 @@
+---
+title: 'The Keyboard Shortcut Model: When AI Becomes Part of Your Hands'
+date: '2026-02-17'
+tags: ['AI', 'Developer Tools', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'At 1000 tokens per second, you stop thinking of AI as a tool you send work to. It becomes a reflex — describe it, have it, move on.'
+---
+
+There is a moment when a tool stops feeling like a tool.
+
+It happens with keyboard shortcuts. At some point you stop thinking "I need to rename this variable" and your fingers go to F2 before the thought finishes. The action is no longer mediated by deliberate intent. It is part of the motion.
+
+Spark is starting to feel like that.
+
+## The Keyboard Shortcut Mental Model
+
+When I was deep in my vllm-studio codebase with Spark open in the terminal, something shifted.
+
+I needed a utility to parse a specific response format. Normally I would write it myself. It is a few minutes of work. Simple but not instant.
+
+Instead I described it in one sentence. It was there in under a second. I pasted it in and kept moving.
+
+I had not thought of it as "use the AI." I had thought of it the way I think about a snippet. Describe the thing. Have the thing. Move on.
+
+That is a different mental model than anything I had developed with slower models.
+
+## Why Speed Is the Prerequisite
+
+Keyboard shortcuts work because they are zero-cost. If pressing F2 to rename took 30 seconds you would not use it as a reflex. You would think about whether it was worth the wait.
+
+That is exactly what happens with slow AI models. Every prompt is a conscious decision: is this worth 60 seconds of waiting?
+
+At 1 second the calculation disappears. You just describe what you need.
+
+| Tool Speed     | Decision Required         | Becomes Reflex |
+| -------------- | ------------------------- | -------------- |
+| 30-60 seconds  | "Is this worth the wait?" | No             |
+| Under 1 second | None                      | Yes            |
+
+## What This Enables
+
+When the model is a reflex you use it for things you would not have bothered with before.
+
+You describe a one-off data transform. Done. You ask for the type annotation you cannot remember the exact syntax for. Done. You want to see an alternative implementation. Done.
+
+None of these feel expensive with Spark. The exploration cost is near zero. You ask because asking takes no time.
+
+## The Paste-and-Move Workflow
+
+The physical motion settled into a pattern. Describe. Read. Paste. Continue.
+
+No review cycle. No "is this good enough" deliberation. Read it, it looks right, paste it. The speed of the round trip is low enough that re-prompting if something is wrong costs almost nothing.
+
+With slow models you inspect outputs carefully because re-prompting is expensive. With Spark you just try it. Paste it in. See what happens. Ask again if needed. The cost of being wrong is one second.
+
+## What It Is Not
+
+This does not mean you stop thinking.
+
+A keyboard shortcut does not think for you. It executes one specific action at high speed. You still decide what action to take. You still own the intent.
+
+Same here. Spark executes descriptions. You provide the descriptions. And describing things precisely is still a skill.
+
+## What I Would Tell You
+
+1. **Lower the threshold for asking.** If it would take you more than 30 seconds to write yourself, describe it to Spark first.
+
+2. **Keep prompts to one sentence when possible.** Reflex prompts are short. Long prompts break the flow.
+
+3. **Do not over-inspect.** Read, judge, use or discard. The speed means re-asking is almost free.
+
+4. **Let it handle the mechanical.** Regex, type conversions, boilerplate. These are keyboard shortcut territory.
+
+5. **Save your focus for decisions.** Architecture, abstraction, naming. The parts that require your judgment.
+
+## The Transition
+
+With slow models I thought of AI as a smart search engine. Or a junior developer I give tasks to. Or a code generator I use for scaffolding.
+
+With Spark it is becoming something else. An extension of my intent. Not something I delegate to. Something I think through.
+
+That is a new category of tool. And it only exists at this speed.

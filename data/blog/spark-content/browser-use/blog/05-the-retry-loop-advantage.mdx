@@ -1,0 +1,85 @@
+---
+title: 'The Retry Loop Advantage: Why Misclicks Do Not Matter at 1000 TPS'
+date: '2026-02-17'
+tags: ['AI', 'Browser Automation', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'Perfect automation is not the goal. Fast correction is. At 1000 tokens per second, a misclick is a non-event.'
+---
+
+I used to evaluate browser automation tools by their error rate. How often does it misclick. How often does it navigate wrong.
+
+I was measuring the wrong thing.
+
+The right metric is not error rate. It is correction speed.
+
+## The Math Nobody Does
+
+A browser automation model makes an error. Clicks the wrong button. Misreads a field label. Navigates somewhere unexpected.
+
+At 67 tok/s: the model notices, generates the corrective response, takes the corrective action. That cycle takes 15-25 seconds.
+
+At 1000 tok/s: same cycle. Same error. Same corrective reasoning. Under 1 second.
+
+The model did not get smarter. The same mistake happened. The correction just costs nothing.
+
+This changes the entire calculus of automated browser work.
+
+## What "Viable" Means
+
+There are browser tasks I wrote off as not viable with AI automation. Too long. Too many steps. Too many things that could go wrong.
+
+I was right. They were not viable at 67 tok/s. Each error was expensive. On a 20-step workflow with a 10% error rate per step, you get approximately 2 errors. At 20 seconds per recovery that is 40 seconds of overhead.
+
+At 1000 tok/s: same workflow, same error rate, same 2 errors. Recovery is 2 seconds total. The overhead is invisible.
+
+| Workflow                    | Slow Model | Spark  |
+| --------------------------- | ---------- | ------ |
+| 20-step form fill           | Too risky  | Viable |
+| Multi-page data extraction  | Tedious    | Viable |
+| Navigating unfamiliar sites | Avoid      | Viable |
+
+## The Retry Loop Reframing
+
+Old thinking: build the automation to be robust. Handle every edge case. Make it bulletproof.
+
+New thinking: build the automation to be fast. Let it fail. Build a retry loop. Let it self-correct.
+
+The retry loop is a standard software pattern. Circuit breakers. Exponential backoff. We use this in distributed systems constantly.
+
+We have not applied it to browser automation because retries were too expensive. At Spark speeds retries are free.
+
+## Parallel Delegation and the Cherry-Pick Approach
+
+Here is the workflow that only works at Spark speeds: run 10 parallel browser tasks, review the results, keep what works.
+
+This is not how anyone thinks about browser automation. Automation is usually about reliability. Do the thing correctly once.
+
+But correctness is hard. Edge cases are infinite. Reliable automation is expensive to build.
+
+The alternative: reliability through volume. Run 10 imperfect attempts. Most will be good enough. Some will be excellent. Keep the excellent ones.
+
+At 67 tok/s this is insane. 10 workflows at 15 minutes each is 2.5 hours.
+
+At 1000 tok/s: 10 workflows running in parallel, each taking 2-3 minutes. Total elapsed time is 2-3 minutes. You spend the next 3 minutes reviewing.
+
+6 minutes for 10 research reports. Cherry-pick the one you want.
+
+## What This Means for Imperfect Models
+
+A model that can run 10 parallel attempts and self-select the best result is functionally smarter than a model that gets one attempt.
+
+Speed enables a different intelligence architecture. Not smarter per inference. Smarter per task because you can afford more inferences.
+
+## What I Would Tell You
+
+1. **Stop optimizing for zero errors.** Build fast-correcting systems instead.
+
+2. **Run parallel attempts and cherry-pick.** 6 minutes for 10 reports.
+
+3. **The retry loop is a design pattern now.** At Spark speeds retries are nearly free.
+
+4. **Good enough consistently beats perfect occasionally.** Every time.
+
+The actual takeaway: at 1000 tok/s you can build automation that is good enough consistently, rather than perfect occasionally.
+
+Good enough consistently wins.

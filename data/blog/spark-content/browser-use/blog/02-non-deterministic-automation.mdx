@@ -1,0 +1,87 @@
+---
+title: 'Speed Is What Makes Non-Deterministic Automation Work'
+date: '2026-02-17'
+tags: ['AI', 'Browser Automation', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'Scripted automation breaks when the page changes. Model-based automation improvises. Speed is what makes the improvisation viable.'
+---
+
+I used to write Playwright scripts for repetitive browser work. Not because I liked it. Because the alternative was a model that would misclick and spend 20 seconds recovering.
+
+The script won by default. It was brittle but fast. The model was flexible but slow.
+
+That trade-off just changed.
+
+## The Old Binary
+
+Scripted automation is deterministic. You define every step. The bot follows your instructions exactly. It works perfectly until something changes — a CSS class gets renamed, a modal appears that your script did not expect.
+
+Then it breaks.
+
+Model-based automation is non-deterministic. The model reads what is on the page and decides what to do. It can handle the modal. It can find the button when it moves. It can navigate a site it has never visited before.
+
+The problem: improvisation is expensive at slow speeds. Every non-deterministic decision costs tokens. Errors cost more tokens to correct. At 67 tok/s that adds up fast.
+
+So people went back to scripts.
+
+## What 1000 TPS Changes
+
+Speed does not fix the model's judgment. Spark still misclicks. It still gets confused by unusual layouts.
+
+The difference: recovery time.
+
+At 1000 TPS a misclick is corrected in under a second. The model sees the result of the wrong click, recognizes the error, and clicks the right thing.
+
+The error rate stays the same. The cost of errors drops by 15x.
+
+That changes the arithmetic. If a script has 0% error rate but breaks entirely when the page changes, and a model has 5% error rate but corrects instantly and handles page changes gracefully — the model wins.
+
+Non-determinism is no longer a liability. At Spark speeds it becomes the feature.
+
+## What This Looks Like in Practice
+
+I ran Spark through a task I used to script: navigate a GitHub profile, collect the last 10 repository names, identify the most recently active ones, compile as JSON.
+
+Old approach: write a script. Parse the DOM. Handle pagination. Export.
+
+Spark approach: describe the task in plain language. Watch it navigate. Let it figure out the page structure.
+
+Spark misread the layout on the first repository card. Grabbed the wrong field. Noticed the inconsistency. Went back. Re-read the card. Corrected the entry.
+
+Total correction time: 0.7 seconds.
+
+A script would have silently output the wrong field 10 times. The model caught its own error. That is the difference.
+
+## The Retry Loop Reframing
+
+Here is the mental model shift: stop thinking of errors as failures and start thinking of them as cheap retries.
+
+| Automation Type | Error Cost                       | Error Handling                    |
+| --------------- | -------------------------------- | --------------------------------- |
+| Script          | High (debug, fix, redeploy)      | Explicit exception handling       |
+| Slow model      | Medium (15-30 seconds per retry) | Implicit, slow, user-visible      |
+| Spark           | Low (<1 second per retry)        | Implicit, fast, usually invisible |
+
+The Spark column is where non-determinism becomes practical.
+
+## What I Actually Delegate Now
+
+Tasks I used to avoid delegating because they were too slow:
+
+Research workflows across multiple pages. Cross-referencing data from two different sites. Scanning unfamiliar UIs that change frequently.
+
+I delegate all of these now. Not because the model got smarter. Because the cost of the inevitable small mistakes dropped below the threshold where I care about them.
+
+## What I Would Tell You
+
+1. **Stop optimizing for zero errors.** That is the wrong goal.
+
+2. **Build for fast correction.** Let the model handle edge cases through retry loops.
+
+3. **Run parallel attempts and cherry-pick.** 6 minutes for 10 research reports.
+
+4. **Non-determinism plus speed beats determinism.** When correction is cheap, improvisation wins.
+
+I was wrong about model-based browser automation two years ago. I wrote it off as too slow. Speed was the bottleneck the whole time, not the model.
+
+Now the bottleneck is gone.

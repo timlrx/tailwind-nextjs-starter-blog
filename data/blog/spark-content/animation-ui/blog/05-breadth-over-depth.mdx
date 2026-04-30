@@ -1,0 +1,88 @@
+---
+title: 'Breadth First: The Strategic Pattern for Using Spark Alongside Full Codex'
+date: '2026-02-17'
+tags: ['AI', 'Frontend', 'Codex-Spark', 'UI Design']
+draft: true
+summary: 'Spark for many variations fast, full Codex for one complex thing carefully — two different tools for two different phases of work.'
+---
+
+I made a mistake early on with Spark.
+
+I tried to use it for everything. Fast model, use it for all generation. Obvious move. Wrong move.
+
+Spark is optimized for breadth. Full Codex is optimized for depth. Using the wrong one for the wrong job costs you both speed and quality.
+
+## What Breadth Means
+
+Breadth: many variations of the same thing, fast. Exploring the possibility space. Finding the best option in a set.
+
+This is Spark's domain. 1000+ tokens per second means you can generate ten component variations before you could have finished speccing a single one for full Codex.
+
+When you need to know: what is the best approach to this problem? Use Spark. Generate a dozen answers. Pick the best one.
+
+## What Depth Means
+
+Depth: one complex thing built carefully. A component with tight integration requirements. A system that needs to compose correctly with existing architecture.
+
+This is full Codex's domain. Slower, but optimized for coherence across a large generation.
+
+When you need: a single complex output that gets all the details right. Use full Codex.
+
+## The Two-Phase Pattern
+
+In practice, I use them sequentially.
+
+Phase one: breadth. Spark generates five to ten variations of the design direction. I look at all of them, pick the one that works best.
+
+Phase two: depth. I take the direction I found in phase one and hand it to full Codex with full context. Full Codex builds the production version.
+
+The output from phase one is an input to phase two. Spark finds the direction. Codex builds the destination.
+
+## Why This Beats Using Either Alone
+
+Using only Spark: fast generation but miss the depth. Complex production code requires holding context consistently.
+
+Using only full Codex: depth but sacrifice breadth. You commit to directions before you have explored them.
+
+Using both correctly: you explore fast and build carefully.
+
+## The Comparison
+
+| Task                           | Right Tool | Why                               |
+| ------------------------------ | ---------- | --------------------------------- |
+| Exploring layout options       | Spark      | Speed matters, coherence does not |
+| Tuning animation timing        | Spark      | High iteration count              |
+| Building production components | Full Codex | Coherence, edge cases             |
+| Generating variation set       | Spark      | Breadth by definition             |
+| Refactoring existing code      | Full Codex | Context fidelity                  |
+| Prototyping interaction models | Spark      | Need to see many approaches       |
+
+## The Commit Trap
+
+The biggest cost of using only full Codex for everything is commitment bias.
+
+When one iteration takes three minutes, you do not run ten. You run two. You commit to whichever is better. You move on.
+
+That commitment is often to a mediocre option. Not because you could not have found a better one — because the cost of looking made finding it irrational.
+
+Spark eliminates the commitment trap in the breadth phase. You explore until you find the actually good option.
+
+Then you commit. To the right thing. And you build it properly with full Codex.
+
+## What I Would Tell You
+
+1. **Use each for what it is good at.** Spark for breadth. Codex for depth.
+
+2. **Run them sequentially.** Phase one finds direction. Phase two builds it.
+
+3. **Stop treating AI as a single monolithic tool.** It is a two-phase process.
+
+4. **Fast-and-correct is available.** It just requires two tools, used in sequence.
+
+## The Strategic Shift
+
+The mistake I made — and see others make — is forcing one tool to do both jobs.
+
+You end up with either fast-but-shallow or slow-but-correct.
+
+Fast-and-correct is available. It just requires two tools, used in sequence, for the right phases.

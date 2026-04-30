@@ -2,40 +2,44 @@ import Link from '@/components/Link'
 
 const featuredProjects = [
   {
-    title: 'AI Data Extraction',
-    description: 'Extract conversations from Claude Code, Cursor, Codex, Windsurf for ML training',
-    href: 'https://github.com/0xSero/ai-data-extraction',
-    tags: ['Python', 'AI'],
+    title: 'TurboQuant',
+    description:
+      'Near-optimal KV cache quantization for LLM inference (3-bit keys, 2-bit values) with Triton kernels + vLLM integration',
+    href: 'https://github.com/0xSero/turboquant',
+    tags: ['Python', '1.2k stars'],
   },
   {
-    title: 'Open Orchestra',
-    description: 'Hub-and-spoke multi-agent orchestration with Neo4j memory and 22+ tool APIs',
-    href: 'https://github.com/0xSero/open-orchestra',
-    tags: ['TypeScript', 'Agents'],
+    title: 'Parchi',
+    description:
+      'Your AI friend right in your browser. Browser extension for AI automation with orchestrator mode and vision',
+    href: 'https://github.com/0xSero/parchi',
+    tags: ['TypeScript', '525 stars'],
   },
   {
-    title: 'Azul',
-    description: 'Terminal web browser in Rust with AI chat, multi-engine search, and tool-calling',
-    href: 'https://github.com/0xSero/Azul',
-    tags: ['Rust', 'TUI'],
+    title: 'vLLM Studio',
+    description:
+      'Control panel for VLLM, SGLang, llama.cpp, ExLlamaV3. Local inference management UI',
+    href: 'https://github.com/0xSero/vllm-studio',
+    tags: ['TypeScript', '502 stars'],
   },
   {
-    title: 'Mem-Layer',
-    description: 'Graph-based AI memory with scoped isolation and MCP server support',
-    href: 'https://github.com/0xSero/mem-layer',
-    tags: ['Python', 'Graphs'],
+    title: 'MoE Compress',
+    description:
+      'Model-agnostic MoE compression automation: calibration, REAP/quantization, benchmark, publish',
+    href: 'https://github.com/0xSero/moe-compress',
+    tags: ['Python', '177 stars'],
   },
   {
-    title: 'Browser-AI',
-    description: 'Chrome extension for AI browser automation with orchestrator mode and vision',
-    href: 'https://github.com/0xSero/browser-ai',
-    tags: ['Chrome', 'Automation'],
+    title: 'Pi Brain',
+    description: 'Local AI memory system with graph-based retrieval and MCP server support',
+    href: 'https://github.com/0xSero/pi-brain',
+    tags: ['TypeScript', '162 stars'],
   },
   {
-    title: 'Codex Local',
-    description: 'Fork of OpenAI Codex with multi-agent orchestration and local LLM support',
-    href: 'https://github.com/0xSero/codex-local',
-    tags: ['Rust', 'Agents'],
+    title: 'REAP Expert Swap',
+    description: 'How many experts do we need to serve a model? MoE expert pruning research',
+    href: 'https://github.com/0xSero/reap-expert-swap',
+    tags: ['Python', '122 stars'],
   },
 ]
 

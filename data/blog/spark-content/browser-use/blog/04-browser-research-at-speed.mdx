@@ -1,0 +1,101 @@
+---
+title: 'Browser Research at 1000 TPS: How I Actually Use It'
+date: '2026-02-17'
+tags: ['AI', 'Browser Automation', 'Codex-Spark', 'Productivity']
+draft: true
+summary: 'A practical breakdown of how I use Spark for deep browser research — navigating pages, extracting data, compiling reports faster than I can open tabs.'
+---
+
+I spent two weeks testing Spark on browser research workflows. Not toy tasks. Real work.
+
+Here is exactly what I did.
+
+## Why Research Is the Right Starting Point
+
+Browser research is the perfect test case for Spark in a harness. High volume. Repetitive. Multiple pages. Requires judgment.
+
+And it is something almost every knowledge worker does constantly.
+
+Sales research. Competitive analysis. Due diligence. Hiring background checks. All of it is the same pattern: open tabs, read pages, extract what matters, compile.
+
+Most of us do this slowly and poorly. We open 15 tabs, read three of them fully, skim the rest, forget what we read first.
+
+Spark in a browser harness does it differently.
+
+## The Basic Setup
+
+I run two configurations depending on the task.
+
+**Interactive:** Claude in Chrome with Spark as the backend. I watch it work. I redirect if needed. I stay in the loop.
+
+**Delegated:** Browser Use (Python library) pointed at Spark via API. I give it a task and let it run. I review the output when it finishes.
+
+For research tasks I almost always use delegated. The workflow is too long to monitor every step.
+
+## What I Actually Run It On
+
+### GitHub Profile Research
+
+Point Spark at a developer's profile and get a structured brief.
+
+What it collects reliably: repository names, descriptions, star counts, fork counts, primary language, last commit date.
+
+What it synthesizes without being asked: apparent focus area, activity trend, repos that seem abandoned versus active.
+
+| Method     | Time      | Output Quality                   |
+| ---------- | --------- | -------------------------------- |
+| Manual     | 20-40 min | Varies with attention            |
+| Slow model | 12-18 min | Consistent, often incomplete     |
+| Spark      | 2-4 min   | Consistent, often exceeds prompt |
+
+### Competitive Landscape Scanning
+
+Give it a category. Tell it to find the top 10 products, visit each site, extract: pricing model, target customer, primary differentiator.
+
+This used to be a 2-hour task. Spark does it in 15-20 minutes.
+
+### Technical Documentation Research
+
+Survey documentation for 5 different API providers. Identify how each handles authentication, pagination, rate limiting. Compile a comparison table.
+
+Spark navigated all 5 docs sites and compiled the table in 8 minutes. I would have taken 45.
+
+## The Speed Mechanics
+
+A slow model visiting a 10-page research workflow processes page 1, waits, navigates to page 2, processes it. By page 7 the early context is compressed.
+
+Spark processes page 1 so fast that it navigates to page 2 before the network has finished loading. It is waiting on the page load, not the inference.
+
+The result: it holds all 10 pages in clear context when writing the synthesis.
+
+## What Breaks the Workflow
+
+**Long authentication flows.** Pre-authenticate in your browser session.
+
+**Paywalled content.** Spark cannot bypass paywalls.
+
+**JavaScript-heavy SPAs.** Add a wait step: "wait 2 seconds after each page loads."
+
+**CAPTCHAs and bot detection.** Use your real browser session through Claude in Chrome.
+
+## The Time Math
+
+If I run 3 research tasks per week manually at 45 minutes each, that is 2.25 hours weekly on research.
+
+Spark: 15-20 minutes per task, 45-60 minutes weekly. Including setup and review.
+
+That is 90 minutes per week recovered. Every week.
+
+## What I Would Tell You
+
+1. **Start with GitHub profile research.** Simple, structured, easy to verify.
+
+2. **Use delegated mode for long workflows.** Give it the task, come back to a report.
+
+3. **Flag uncertainty explicitly in your prompt.** "Write 'not documented' if you cannot find it."
+
+4. **Verify pricing and differentiator columns.** Those require the most inference.
+
+5. **The compound effect is real.** 90 minutes per week adds up.
+
+The developers I know who have set this up are producing more thorough research, faster, with fewer gaps. Not because they work harder. Because they delegated the mechanical part to a system that does not get tired.

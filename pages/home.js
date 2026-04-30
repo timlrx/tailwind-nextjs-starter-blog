@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react'
 import { SlideUp } from '@/lib/transitions/PageTransition'
 import { createPattern, getPatternConfig, patternConfigs } from '@/lib/patterns'
 
-const PortalSeparator = ({ patternKey = 'tri' }) => {
+const PortalSeparator = ({ patternKey = 'rings' }) => {
   const canvasRef = useRef(null)
   const wrapperRef = useRef(null)
 
@@ -24,16 +24,12 @@ const PortalSeparator = ({ patternKey = 'tri' }) => {
     // Responsive sizing for mobile
     const isMobile = wrapper.clientWidth < 640
     const patternOverrides = {
-      tri: {},
-      metamorph: {
-        clearRadius: 0.3,
-        eyeSpacing: isMobile ? 55 : 50,
-        ringSpacing: isMobile ? 35 : 40,
-        ringCount: 12,
-        edgePadding: isMobile ? 8 : 12,
-        eyeScale: isMobile ? 0.65 : 0.85,
-      },
-      life: { clearRadius: 0, golGridSize: 6, lifeDensity: 0.16, cycleMs: 7000 },
+      rings: {},
+      circuit: {},
+      hexagons: {},
+      cracks: {},
+      waves: {},
+      life: {},
     }
     const patternConfig = { ...activeConfig, ...patternOverrides[patternKey] }
     let animationId = null
@@ -61,8 +57,7 @@ const PortalSeparator = ({ patternKey = 'tri' }) => {
       const elapsed = time - startTime
       const cycleT = (elapsed % patternConfig.cycleMs) / patternConfig.cycleMs
 
-      ctx.fillStyle = 'hsl(30, 5%, 10.5%)'
-      ctx.fillRect(0, 0, width, height)
+      ctx.clearRect(0, 0, width, height)
       if (pattern) {
         pattern.render(ctx, cycleT)
       }
@@ -81,12 +76,8 @@ const PortalSeparator = ({ patternKey = 'tri' }) => {
   }, [patternKey])
 
   return (
-    <div
-      ref={wrapperRef}
-      className="bg-surface-elevated/60 relative my-12 min-h-[180px] overflow-hidden rounded-2xl"
-    >
-      <canvas ref={canvasRef} className="opacity-85 absolute inset-0 h-full w-full" />
-      <div className="bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.2),transparent_70%)] pointer-events-none absolute inset-0" />
+    <div ref={wrapperRef} className="relative my-12 min-h-[180px] overflow-hidden rounded-2xl">
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
   )
 }
@@ -105,31 +96,30 @@ export default function Home({ posts }) {
   const recentWork = [
     {
       type: 'Open Source',
-      project: 'Open Orchestra',
-      detail: 'Multi-agent orchestration with Neo4j memory',
-    },
-    {
-      type: 'Client',
-      project: 'ZKSync Governance',
-      detail: '80k-160k daily RPC calls → RSS feeds',
-    },
-    {
-      type: 'Research',
-      project: 'EF IVCNotes',
-      detail: 'ZK proofs + IVC for private digital notes',
+      project: 'TurboQuant',
+      detail: 'KV cache quantization for LLM inference',
     },
     {
       type: 'Open Source',
-      project: 'Azul Browser',
-      detail: 'Terminal web browser with AI tool-calling',
+      project: 'vLLM Studio',
+      detail: 'Control panel for local inference',
+    },
+    {
+      type: 'Open Source',
+      project: 'Parchi',
+      detail: 'AI friend in your browser',
+    },
+    {
+      type: 'Open Source',
+      project: 'Pi Brain',
+      detail: 'Local AI memory system',
     },
   ]
 
   const stats = [
-    { value: '50k+', label: 'Stars on Contributed Projects' },
-    { value: '800+', label: 'Fellow Contributors' },
-    { value: '510+', label: 'Stars on Own Repos' },
-    { value: '175+', label: 'Public Repositories' },
+    { value: '60k+', label: 'Total Stars' },
+    { value: '200+', label: 'Public Repositories' },
+    { value: '5k+', label: 'Stars Contributed' },
   ]
 
   return (
@@ -138,78 +128,25 @@ export default function Home({ posts }) {
 
       {/* Hero Section */}
       <section className="section-breathe relative overflow-hidden">
-        {/* Splash-inspired background: concentric rings + subtle grid */}
-        <div className="pointer-events-none absolute inset-0">
-          <svg
-            className="absolute inset-0 h-full w-full opacity-[0.04]"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {[...Array(14)].map((_, i) => (
-              <circle
-                key={i}
-                cx="50"
-                cy="50"
-                r={6 + i * 5}
-                stroke="currentColor"
-                strokeWidth="0.2"
-                className="text-border-subtle"
-                fill="none"
-              />
-            ))}
-          </svg>
-          <svg
-            className="absolute inset-0 h-full w-full opacity-[0.03]"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {[...Array(10)].map((_, i) => (
-              <line
-                key={i}
-                x1={i * 10}
-                y1="0"
-                x2={i * 10}
-                y2="100"
-                stroke="currentColor"
-                strokeWidth="0.1"
-                className="text-border-subtle"
-              />
-            ))}
-            {[...Array(10)].map((_, i) => (
-              <line
-                key={`h${i}`}
-                x1="0"
-                y1={i * 10}
-                x2="100"
-                y2={i * 10}
-                stroke="currentColor"
-                strokeWidth="0.1"
-                className="text-border-subtle"
-              />
-            ))}
-          </svg>
-        </div>
-
-        <div className="relative z-10 grid gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-center">
+        <div className="relative z-10">
           <SlideUp className="text-left">
             <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-text-muted">
-              Sybil Solutions / 0xSero
+              0xSero
             </p>
             <h1 className="mb-4 text-4xl font-semibold tracking-tight text-text-primary md:text-5xl lg:text-6xl">
-              AI agents, blockchain infra, and systems
-              <span className="block text-accent-subtle">that work when it matters.</span>
+              Building the future of AI
             </h1>
             <p className="mb-8 max-w-xl text-lg text-text-secondary md:text-xl">
-              I build production systems at the intersection of AI and crypto. Open-source tools
-              used by developers worldwide. Client work for Ethereum Foundation, ZKSync, GitCoin,
-              and more.
+              I work to make AI more accessible, affordable, and useful for everyone. From
+              compressing LLMs to fit on edge devices, to educating people on the technology and
+              what can be done with it.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
               <Link
                 href="/contact"
                 className="w-full rounded-lg bg-text-primary px-8 py-3 text-center text-sm font-medium text-surface-base transition-all hover:opacity-90 sm:w-auto"
               >
-                Start a project
+                Contact me
               </Link>
               <Link
                 href="/case-studies"
@@ -219,48 +156,57 @@ export default function Home({ posts }) {
               </Link>
             </div>
           </SlideUp>
+        </div>
+      </section>
 
-          <SlideUp className="md:justify-self-end">
-            <div className="divider-asymmetric surface-float hover-glow hover-lift bg-surface-elevated/70 relative max-w-sm rounded-xl border border-border-subtle p-6 backdrop-blur">
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
-                CURRENT FOCUS
-              </p>
-              <ul className="space-y-2 text-sm text-text-secondary">
-                <li>
-                  <span className="text-accent-subtle">AI</span> Tool-using agents, orchestration
-                  layers, LLM infrastructure
-                </li>
-                <li>
-                  <span className="text-accent-subtle">Crypto</span> Governance, ZK protocols, L2
-                  infrastructure
-                </li>
-                <li>
-                  <span className="text-accent-subtle">Open Source</span> Developer tools that
-                  remove friction
-                </li>
-              </ul>
-              <div className="mt-5 flex flex-wrap gap-3 text-xs text-text-muted">
-                <Link href="https://github.com/0xSero" className="hover:text-text-secondary">
-                  GitHub
-                </Link>
-                <span className="h-1 w-1 self-center rounded-full bg-border-subtle" />
-                <Link href="https://x.com/0xsero" className="hover:text-text-secondary">
-                  X/Twitter
-                </Link>
-                <span className="h-1 w-1 self-center rounded-full bg-border-subtle" />
-                <Link href="https://warpcast.com/sero" className="hover:text-text-secondary">
-                  Farcaster
-                </Link>
+      {/* Current Focus - Full Width Row */}
+      <section className="section-breathe pt-0">
+        <SlideUp>
+          <div className="divider-asymmetric surface-float hover-glow hover-lift bg-surface-elevated/70 rounded-xl border border-border-subtle p-6 backdrop-blur">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+              Current Focus
+            </p>
+            <div className="grid gap-6 sm:grid-cols-3">
+              <div>
+                <p className="text-sm font-medium text-text-primary">LLM Compression</p>
+                <p className="mt-1 text-sm text-text-secondary">
+                  Expert pruning, quantization, and model optimization for edge deployment
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-text-primary">AI Education</p>
+                <p className="mt-1 text-sm text-text-secondary">
+                  Making AI accessible through tools, documentation, and community building
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-text-primary">Open Source</p>
+                <p className="mt-1 text-sm text-text-secondary">
+                  Building and contributing to open-source tools used by developers worldwide
+                </p>
               </div>
             </div>
-          </SlideUp>
-        </div>
+            <div className="mt-5 flex flex-wrap gap-3 text-xs text-text-muted">
+              <Link href="https://github.com/0xSero" className="hover:text-text-secondary">
+                GitHub
+              </Link>
+              <span className="h-1 w-1 self-center rounded-full bg-border-subtle" />
+              <Link href="https://x.com/0xsero" className="hover:text-text-secondary">
+                X/Twitter
+              </Link>
+              <span className="h-1 w-1 self-center rounded-full bg-border-subtle" />
+              <Link href="https://warpcast.com/sero" className="hover:text-text-secondary">
+                Farcaster
+              </Link>
+            </div>
+          </div>
+        </SlideUp>
       </section>
 
       {/* Stats Bar */}
       <section className="section-breathe pt-0">
         <SlideUp>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-3 gap-4 md:grid-cols-3">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-2xl font-semibold text-accent-subtle md:text-3xl">
@@ -275,7 +221,7 @@ export default function Home({ posts }) {
 
       <section className="section-breathe pt-0">
         <SlideUp>
-          <PortalSeparator patternKey="tri" />
+          <PortalSeparator patternKey="rings" />
         </SlideUp>
       </section>
 
@@ -310,7 +256,7 @@ export default function Home({ posts }) {
 
       <section className="section-breathe pt-0">
         <SlideUp>
-          <PortalSeparator patternKey="metamorph" />
+          <PortalSeparator patternKey="circuit" />
         </SlideUp>
       </section>
 
@@ -323,8 +269,8 @@ export default function Home({ posts }) {
                 SELECTED CAPABILITIES
               </h2>
               <p className="mt-3 max-w-xl text-sm text-text-secondary">
-                From zero-knowledge research and governance infra to production-ready AI agents, I
-                take on projects at the edge of what's possible and make them boringly reliable.
+                I take on complex projects at the edge of what's possible and make them boringly
+                reliable.
               </p>
             </div>
             <div className="grid gap-3 text-sm text-text-secondary sm:grid-cols-3">
@@ -338,10 +284,10 @@ export default function Home({ posts }) {
               </div>
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
-                  CRYPTO / GOVERNANCE
+                  DEV TOOLS
                 </p>
                 <p className="mt-1">
-                  ZK protocols, L2 infra, governance event systems, grants tooling
+                  Open-source libraries, browser automation, data extraction tooling
                 </p>
               </div>
               <div>
@@ -372,7 +318,7 @@ export default function Home({ posts }) {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {recentWork.map((item, i) => (
             <SlideUp key={item.project} delay={i * 0.06}>
-              <div className="bg-surface-elevated/50 rounded-xl border border-border-subtle p-5">
+              <div className="bg-surface-elevated/50 flex h-full flex-col rounded-xl border border-border-subtle p-5">
                 <span className="text-xs font-medium uppercase tracking-wider text-accent-subtle">
                   {item.type}
                 </span>
@@ -392,7 +338,7 @@ export default function Home({ posts }) {
 
       <section className="section-breathe pt-0">
         <SlideUp>
-          <PortalSeparator patternKey="life" />
+          <PortalSeparator patternKey="cracks" />
         </SlideUp>
       </section>
 
@@ -453,8 +399,7 @@ export default function Home({ posts }) {
           <div className="divider-asymmetric relative p-8 text-center md:p-12">
             <h2 className="mb-4 text-3xl font-semibold text-text-primary">Stay Updated</h2>
             <p className="mx-auto mb-8 max-w-xl text-text-secondary">
-              Subscribe for insights on AI agents, blockchain infrastructure, and building in
-              public.
+              Subscribe for insights on AI systems, developer tools, and building in public.
             </p>
             <div className="mx-auto max-w-md">
               <NewsletterForm />
