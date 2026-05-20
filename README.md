@@ -145,7 +145,7 @@ I wanted it to be nearly as feature-rich as popular blogging templates like [bea
 - Light and dark theme
 - Font optimization with [next/font](https://nextjs.org/docs/app/api-reference/components/font)
 - Integration with [pliny](https://github.com/timlrx/pliny) that provides:
-  - Multiple analytics options including [Umami](https://umami.is/), [Plausible](https://plausible.io/), [Simple Analytics](https://simpleanalytics.com/), Posthog and Google Analytics
+  - Multiple analytics options including [Umami](https://umami.is/), [Plausible](https://plausible.io/), [Simple Analytics](https://simpleanalytics.com/), Posthog, [Gizmo](https://gizmoanalytics.io/) and Google Analytics
   - Comments via [Giscus](https://github.com/laymonage/giscus), [Utterances](https://github.com/utterance/utterances) or Disqus
   - Newsletter API and component with support for Mailchimp, Buttondown, Convertkit, Klaviyo, Revue, Emailoctopus and Beehiiv
   - Command palette search with [Kbar](https://github.com/timc1/kbar) or Algolia

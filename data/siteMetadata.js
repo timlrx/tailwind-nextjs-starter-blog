@@ -28,7 +28,7 @@ const siteMetadata = {
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
-    // supports Plausible, Simple Analytics, Umami, Posthog or Google Analytics.
+    // supports Plausible, Simple Analytics, Umami, Posthog, Gizmo, or Google Analytics.
     umamiAnalytics: {
       // We use an env variable for this site to avoid other users cloning our analytics ID
       umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
@@ -47,6 +47,11 @@ const siteMetadata = {
     // },
     // googleAnalytics: {
     //   googleAnalyticsId: '', // e.g. G-XXXXXXX
+    // },
+    // gizmoAnalytics: {
+    //   gizmoPublicKey: '', // e.g. ak_public_… — sign up free at gizmoanalytics.io
+    // Cookieless, GDPR-friendly, no consent banner required.
+    //   src: '', // optional — only if proxying through your own domain
     // },
   },
   newsletter: {
