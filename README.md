@@ -89,6 +89,7 @@ Internationalization support - [Template with i18n](https://tailwind-nextjs-star
 - [ktovoz.com](https://www.ktovoz.com/) - Kto's personal blog, sharing life, technology. Added article categories and article directory navigation 「中文」
 
 Using the template? Feel free to create a PR and add your blog to this list.
+  * [NextPaper](https://hitsujii.github.io/next-paper/) - AstroPaper-inspired visual variation of Tailwind Nextjs Starter Blog. ([source code](https://github.com/Hitsujii/next-paper))
 
 ## Examples V1
 
