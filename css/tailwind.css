@@ -76,6 +76,12 @@
     border-radius: var(--radius-sm);
     outline-color: var(--color-primary-500);
   }
+
+  code {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
 }
 
 @layer utilities {
