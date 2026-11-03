@@ -42,6 +42,13 @@
   content: attr(line);
 }
 
+/* Code blocks: allow long lines to wrap on narrow screens instead of overflowing */
+pre > code {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 /* Token styles */
 /**
  * MIT License
